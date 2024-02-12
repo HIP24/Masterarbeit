@@ -45,6 +45,3 @@ mkdir core2
 cd core2  
 ../init.sh -b build -m sigmatek-core2 -d salamander  
 bitbake salamander-image -k  
-
-# Desktop folders not visible
-sudo apt install ubuntu-desktop
