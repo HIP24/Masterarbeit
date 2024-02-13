@@ -11,5 +11,5 @@ sudo apt install ubuntu-desktop
 # Launch programs after startup
 - nano /home/sigma_ibo/startup.sh
 - chmod +x /home/sigma_ibo/startup.sh
-- File: [startup.sh](scripts/startup.sh) 
+- File: [startup.sh](scripts/startup.sh.txt) 
 - Configure [Startup Apps](images/startup/startup_apps.png)
