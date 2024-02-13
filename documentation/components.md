@@ -4,18 +4,18 @@ Angabe
 [Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die Einhaltung der Echtzeit](pdfs/MA_Pamuk.pdf)
 
 Setup  
-[Bash commands](bash_commands.md)
+[Bash commands](sigmatek/bash_commands.md)
 
 Yocto-Umgebung  
-[Build with Yocto](build_with_yocto.md)
+[Build with Yocto](sigmatek/build_with_yocto.md)
 
 Salamander OS  
 [Skript Michi](scripts/build-salamander4-ordinary.sh)  
-[Build LRT](build_LRT.md)
+[Build LRT](sigmatek/build_LRT.md)
 
 Xenomai  
-[Preempt_rt.png](images/preempt_rt.png)  
-[Xenomai.png](images/xenomai.png)
+[Preempt_rt.png](images/info/preempt_rt.png)  
+[Xenomai.png](images/info/xenomai.png)
 
 QEMU  
 
@@ -27,7 +27,7 @@ PCI-Einsteckmodul, das als Schnittstelle zwischen einem PC und dem VARAN-Bus die
 
 Evaluierung Virtualisierungsplattform (QEMU, Hyper-V, Virtual Box, etc.)
 - QEMU
-https://petri.com/how-to-enable-nested-virtualization-in-hyper-v/
+
 - HYPER-V
 
 - Virtual Box 

@@ -7,3 +7,9 @@ sudo apt install ubuntu-desktop
 
 # How to Extract (Unzip) tar.xz File
 <a href="https://linuxize.com/post/how-to-extract-unzip-tar-xz-file/" target="_blank">How to Extract (Unzip) tar.xz File</a>
+
+# Launch programs after startup
+- nano /home/sigma_ibo/startup.sh
+- chmod +x /home/sigma_ibo/startup.sh
+- File: [startup.sh](scripts/startup.sh) 
+- Configure [Startup Apps](images/startup/startup_apps.png)
