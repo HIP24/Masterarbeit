@@ -11,8 +11,12 @@ ln -s /media/sigma_ibo/Windows/Dokumente\ und\ Einstellungen/Pamibr/Desktop/Mast
 - File: [startup.sh](scripts/startup.sh.txt) 
 - Configure [Startup Apps](images/startup/startup_apps.png)
 
-# Deleted gnome
+# Install gnome
 `sudo apt install gnome-shell-extension-ubuntu-dock`
 
 # Desktop folders not visible
 `sudo apt install ubuntu-desktop`
+
+# Windows 11 on QEMU and display settings
+[Install Windows 11 in KVM on Ubuntu 22.04](https://www.youtube.com/watch?v=0RiUrsljD_E)    
+Execute [virtio-win-guest-tools](exe/virtio-win-guest-tools.exe) in VM
