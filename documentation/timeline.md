@@ -1,6 +1,6 @@
 # Timeline
 
-| Date       | Event |
+| Date       | Log |
 |------------|-------|
 | 08.02.2024 | [Dual boot](resources/images/dual_boot/grub.jpg) Windows and Ubuntu |
 | 09.02.2024 | Booted [Salamander 4](resources/images/install_salamander/sigmatek_login.png) on Ubuntu |
