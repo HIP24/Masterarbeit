@@ -1,7 +1,7 @@
-# Essential packages
+## Essential packages
 sudo apt install gcc g++ libelf-dev libssl-dev make pkg-config gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev python3-subunit mesa-common-dev zstd liblz4-tool file locales libacl1
 
-# Fetch script for yocto
+## Fetch script for yocto
 ```
 chmod +x fetchsdk.sh  
 ./fetchsdk.sh -h  
@@ -13,7 +13,7 @@ Each time you wish to use the SDK in a new shell session, you need to source the
 . /opt/salamander/sigmatek-core2/09.07.119_T1701/environment-setup-core2-64-sigmatek-linux  
 . /opt/salamander/sigmatek-core2/09.07.119_T1701/environment-setup-x86-sigmatekmllib32-linux  
 
-# Mount storage
+## Mount storage
 ```
 sudo blkid  
 sudo nano /etc/fstab  
@@ -21,7 +21,7 @@ sudo mount -a
 sudo chown -R sigma_ibo /home/sigma_ibo/Develop  
 df -h ~/Develop  
 ```
-# Setup
+## Setup
 ```
 mkdir ~/Develop  
 mkdir ~/Develop/docker  
@@ -39,10 +39,10 @@ git clone git@git.sigmatek.at:SIG_SW_BS/salamander/ipipe.git
 git clone git@git.sigmatek.at:SIG_SW_BS/salamander/xenomai  
 ```
 
-# Yocto example
+## Yocto example
 <a href="https://learn.arm.com/learning-paths/embedded-systems/yocto_qemu/yocto_build/" target="_blank">Minimal Yocto Linux image</a>
 
-# Salamander 4 with yocto
+## Salamander 4 with yocto
 ```
 git clone --recurse-submodules git@git.sigmatek.at:SIG_SW_BS/salamander/yocto4/salamander.git  
 cd Develop/jenkins/home/salamander/  

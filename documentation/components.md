@@ -1,26 +1,26 @@
 # Timeline Echtzeit-Robotersteuerungsplattform
 
-Angabe  
+## Angabe  
 [Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die Einhaltung der Echtzeit](pdfs/MA_Pamuk.pdf)
 
-Setup  
+## Setup  
 [Bash commands](sigmatek/bash_commands.md)
 
-Yocto-Umgebung  
+## Yocto-Umgebung  
 [Build with Yocto](sigmatek/build_with_yocto.md)
 
-Salamander OS  
+## Salamander OS  
 [Skript Michi](scripts/build-salamander4-ordinary.sh.txt)  
 [Build LRT](sigmatek/build_LRT.md)
 
-Xenomai  
+## Xenomai  
 [Preempt_rt.png](images/info/preempt_rt.png)  
 [Xenomai.png](images/info/xenomai.png)
 
-QEMU  
+## QEMU  
 
 
-PCV-521  
+## PCV-521  
 PCI-Einsteckmodul, das als Schnittstelle zwischen einem PC und dem VARAN-Bus dient  
 [PCV 522.pdf](pdfs/PCV%20522.pdf)  
 
