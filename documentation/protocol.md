@@ -38,3 +38,4 @@ Connect LasalClass2 with [Salamander 4](resources/images/lasal/class2/lasalclass
 - [Activate Connection](resources/images/configure_bridge/activate_connection.png) .
 
 
+## Use the Xenomai test suite

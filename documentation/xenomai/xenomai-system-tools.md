@@ -10,16 +10,16 @@ What sets Xenomai4 apart from its predecessor, Xenomai3, is the complete redesig
 
 | Command | Description |
 | --- | --- |
-| latency | Xenomai timer latency benchmark |
-| clocktest | Xenomai Clock Test |
+| <a href="latency.md" target="_blank">latency</a>  | Xenomai timer latency benchmark |
+| <a href="clocktest.md" target="_blank">clocktest</a>  | Xenomai Clock Test |
 | switchtest | Xenomai context switch test |
-| xeno-test | Run latency test under load |
 | dohell | Generate load, in parallel of the latency test |
 | rtcanconfig | Xenomai tool for configuring the CAN controller |
 | rtcansend | Xenomai tool for sending CAN messages |
 | rtcanrecv | Xenomai tool for receiving CAN messages |
-| xeno-config | Display Xenomai libraries configuration |
 | xeno | Wrapper for Xenomai executables |
+| xeno-config | Display Xenomai libraries configuration |
+| xeno-test | Run latency test under load |
 
 ❌ **Not supported by Salamander4**
 
