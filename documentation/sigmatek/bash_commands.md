@@ -42,12 +42,3 @@ git clone git@git.sigmatek.at:SIG_SW_BS/salamander/xenomai
 ## Yocto example
 <a href="https://learn.arm.com/learning-paths/embedded-systems/yocto_qemu/yocto_build/" target="_blank">Minimal Yocto Linux image</a>
 
-## Salamander 4 with yocto
-```
-git clone --recurse-submodules git@git.sigmatek.at:SIG_SW_BS/salamander/yocto4/salamander.git  
-cd Develop/jenkins/home/salamander/  
-mkdir core2  
-cd core2  
-../init.sh -b build -m sigmatek-core2 -d salamander  
-bitbake salamander-image -k  
-```

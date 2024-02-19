@@ -26,11 +26,11 @@ Now you can run bitbake for building a gecko-image or salamander-image:
 
 To continue the build after an error, start bitbake with -k or –continue.
 ```
-bitbake salamander-image
+bitbake salamander-image -k
 ```
 This process can take up to several hours. So you better are not in a hurry.
 
-Afterwards you will find a .lbi-file in the deploy-subdir `~/Develop/jenkins/home/buildwithyocto/salamander/core2/build/tmp/deploy/images/sigmatek-core2/`
+Afterwards you will find a .lbi-file in the deploy-subdir `~/Develop/jenkins/home/buildwithyocto/salamander/core2/build/tmp/deploy/resources/images/sigmatek-core2/`
 
 Hopefully everything goes according to plan. If you encounter a build problem and you punch through it, please write some trouble shooting for this ;-)
 
