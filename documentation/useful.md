@@ -4,13 +4,10 @@
 
 
 ## Mount Windows partition Desktop
-
 - `sudo nano /etc/fstab`  
 - At the end of the file, add: UUID=0E58A36658A34B73 /home/sigma_ibo/Desktop ntfs defaults 0 0, it looks like 
-<a href="images/useful/mount_windows.png" target="_blank">this</a>  
+<a href="resources/images/useful/mount_windows.png" target="_blank">this</a>  
 - rebootreb
-
-
 
 ## How to Extract (Unzip) tar.xz File
 <a href="https://linuxize.com/post/how-to-extract-unzip-tar-xz-file/" target="_blank">How to Extract (Unzip) tar.xz File</a>
@@ -18,8 +15,8 @@
 ## Launch programs after startup
 - `nano /home/sigma_ibo/startup.sh`
 - `chmod +x /home/sigma_ibo/startup.sh`
-- File: [startup.sh](scripts/startup.sh.txt) 
-- Configure [Startup Apps](images/startup/startup_apps.png)
+- File: [startup.sh](resources/scripts/startup.sh.txt) 
+- Configure [Startup Apps](resources/images/startup/startup_apps.png)
 
 ## Install gnome
 `sudo apt install gnome-shell-extension-ubuntu-dock`
@@ -29,8 +26,9 @@
 
 ## Windows 11 on QEMU and display settings
 <a href="https://www.youtube.com/watch?v=0RiUrsljD_E" target="_blank">Install Windows 11 in KVM on Ubuntu 22.04</a>  
-Execute [virtio-win-guest-tools](exe/virtio-win-guest-tools.exe) in VM  
+Execute [virtio-win-guest-tools](resources/exe/virtio-win-guest-tools.exe) in VM  
 <a href="https://techglimpse.com/windows-10-virtual-machine-shows-100-percentage-cpu-utilization-qemu-kvm/" target="_blank">Windows 10 VM shows 100% CPU</a>  
+QEMU settings: <a href="resources/images/qemu/qemu_settings.png" target="_blank">QEMU</a>, <a href="resources/xml/win11onQEMU.xml.txt" target="_blank">XML win11</a>  
 <a href="https://www.youtube.com/watch?v=ZqBJzrQy7Do" target="_blank">Windows 10 VM Settings</a>
 
 
