@@ -9,6 +9,10 @@ latency - Xenomai timer latency benchmark
 ## Description
 **latency** is part of the Xenomai test suite. It is a timer latency benchmark program. The system must run a suitable Xenomai enabled kernel with the respective module (xeno\_timerbench).
 
+
+## Documentation
+<a href="https://manpages.debian.org/unstable/xenomai-system-tools/latency.1.en.html" target="_blank">latency - Xenomai timer latency benchmark</a>  
+
 ## Options
 | Option                | Description                                                  |
 |-----------------------|--------------------------------------------------------------|
@@ -29,10 +33,6 @@ latency - Xenomai timer latency benchmark
 | **-b**                | Break upon mode switch                                       |
 
 **latency** was written by Philippe Gerum. This man page was written by Roland Stigge.
-
-
-## Documentation
-<a href="https://manpages.debian.org/unstable/xenomai-system-tools/latency.1.en.html" target="_blank">latency - Xenomai timer latency benchmark</a>  
 
 ## Map
 | Output       | Description |
@@ -131,3 +131,5 @@ warming up...
 |---|-----------|-----------|-----------|--------|------|-------------------------
 |RTS|      1.574|      3.290|    375.502|      81|     0|    00:01:00/00:01:00||
 
+## Explanation
+The test ran for 60 seconds (-T 60). The minimum latency (lat min) was 1.574 microseconds, the average latency (lat avg) was 3.290 microseconds, and the maximum latency (lat max) was 375.502 microseconds. There were 81 overruns and 0 mode switches.
