@@ -35,8 +35,6 @@ For this program to work, you need to run a suitable Xenomai enabled kernel with
 | warps | The number of "warps" or significant jumps in system time |
 | max delta [us] | The maximum observed difference (delta) in the time, in microseconds (us) |
 
-
-
 ## Output: `clocktest -D -T 60`  
 root@sigmatek-core2:/usr/sbin# clocktest -D -T 60
 == Testing built-in CLOCK_REALTIME (0)
@@ -44,3 +42,5 @@ root@sigmatek-core2:/usr/sbin# clocktest -D -T 60
 |-----|------------------|-------------------|-------|-----------------|
 |   0 |              0.7 |            -0.005 |     0 |             0.0 |
 
+## Explanation
+The test was run on CPU 0, the ToD offset was 0.7 microseconds, the ToD drift was -0.005 microseconds per second, there were no warps, and the maximum delta was 0.0 microseconds.

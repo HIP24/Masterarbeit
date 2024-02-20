@@ -37,3 +37,8 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 - Open the utility “Passwords & Keys”. If not installed: `sudo apt-get install seahorse`  
 - Right-click the “Login” folder and select “Change Password”.
 - Enter your old password and leave the new password blank.
+
+## See how many cores you have
+`nproc` or `cat /proc/cpuinfo | grep processor | wc -l` or `cat /proc/cpuinfo | grep 'core id'` or `lscpu`
+
+

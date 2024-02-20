@@ -39,3 +39,46 @@ Connect LasalClass2 with [Salamander 4](resources/images/lasal/class2/lasalclass
 
 
 ## Use the Xenomai test suite
+- `latency -T 60`  
+- `clocktest -D -T 60` 
+
+
+
+
+```
+Richard Feedback:
+
+1. CPU-Isolierung auf dem Host: Du solltest die CPUs auf deinem Ubuntu-System (dem Host) isolieren, um sicherzustellen, dass sie nicht von anderen Aufgaben unterbrochen werden. Die Option `isolcpus=0,1,2` sollte zur Kernel-Boot-Konfiguration des Hostsystems hinzugefügt werden, nicht zur QEMU-Konfiguration. ✅
+
+2. Überwachung der CPU-Nutzung und Tracing: Du solltest auf dem Hostsystem messen, wann die virtuelle Maschine (VM) immer die CPU hat und dies mit dem Gastsystem zu vergleichen. Dies könnte dir helfen, eine Korrelation zwischen den Zeiten zu sehen, in denen die VM die CPU hat, und den Ausreißern in der Latenz. Mit den VMEnter/Exit Tracpoints kannst du sehen, wann die VM die CPU betritt und verlässt. Dies könnte dir helfen, die Interaktion zwischen dem Host- und dem Gastsystem besser zu verstehen und zu optimieren.
+```
+
+## Isolate CPUs on host system (Ubuntu),
+
+To isolate CPUs on your host system (Ubuntu), you can add the `isolcpus` option to the kernel boot configuration. Here are the steps you can follow:
+
+1. open the GRUB configuration file with a text editor. You can use the `nano` editor for this. Execute the following command in your terminal:
+    ```bash
+    sudo nano /etc/default/grub
+    ```
+2. search for the entry `GRUB_CMDLINE_LINUX` and add `isolcpus=0,1,2,3,4` (or the corresponding CPU numbers you want to isolate). It should then look like this:
+    ```bash
+    GRUB_CMDLINE_LINUX="isolcpus=0,1,2,3,4"
+    ```
+3. save the changes and close the editor. If you are using `nano`, you can do this by pressing `Ctrl+X`, then typing `Y` to save the changes, and finally pressing `Enter` to close the editor.
+
+4. update GRUB with the following command:
+    ```bash
+    sudo update-grub
+    ```
+5. reboot your system for the changes to take effect.
+
+
+Check with: `cat /sys/devices/system/cpu/isolated`
+
+```
+sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/online
+0-19
+sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
+0-4
+```

@@ -1,17 +1,5 @@
-| Option                | Description                                                  |
-|-----------------------|--------------------------------------------------------------|
-| **-h**                | Print histograms of min, avg, max latencies                  |
-| **-g <file>**         | Dump histogram to <file> in a format easily readable with gnuplot. An example script for gnuplot may be found in scripts/histo.gp in Xenomai sources distribution |
-| **-s**                | Print statistics of min, avg, max latencies                 |
-| **-H <histogram-size>**| Default = 200, increase if your last bucket is full          |
-| **-B <bucket-size>**   | Default = 1000ns, decrease for more resolution               |
-| **-p <period_us>**     | Sampling period                                             |
-| **-l <data-lines per header>** | Default=21, 0 to suppress headers                   |
-| **-T <test_duration_seconds>** | Default=0, so ^C to end                                |
-| **-q**                | Suppresses RTD, RTH lines if -T is used                     |
-| **-D <testing_device_no>** | Number of testing device, default=0                    |
-| **-t <test_mode>**    | 0=user task (default), 1=kernel task, 2=timer IRQ           |
-| **-f**                | Freeze trace for each new max latency                       |
-| **-c <cpu>**          | Pin measuring task down to given CPU                         |
-| **-P <priority>**     | Task priority (test mode 0 and 1 only)                       |
-| **-b**                | Break upon mode switch                                       |
+1. **CPU-Isolierung auf dem Host**: Du solltest die CPUs auf deinem Ubuntu-System (dem Host) isolieren, um sicherzustellen, dass sie nicht von anderen Aufgaben unterbrochen werden. Die Option `isolcpus=0,1,2` sollte zur Kernel-Boot-Konfiguration des Hostsystems hinzugefügt werden, nicht zur QEMU-Konfiguration.
+
+2. **Überwachung der CPU-Nutzung und Tracing**: Du solltest auf dem Hostsystem messen, wann die virtuelle Maschine (VM) immer die CPU hat und dies mit dem Gastsystem zu vergleichen. Dies könnte dir helfen, eine Korrelation zwischen den Zeiten zu sehen, in denen die VM die CPU hat, und den Ausreißern in der Latenz. Mit den VMEnter/Exit Tracpoints kannst du sehen, wann die VM die CPU betritt und verlässt. Dies könnte dir helfen, die Interaktion zwischen dem Host- und dem Gastsystem besser zu verstehen und zu optimieren.
+
+
