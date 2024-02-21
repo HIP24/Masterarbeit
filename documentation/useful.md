@@ -7,7 +7,7 @@
 - `sudo nano /etc/fstab`  
 - At the end of the file, add: UUID=0E58A36658A34B73 /home/sigma_ibo/Desktop ntfs defaults 0 0, it looks like 
 <a href="resources/images/useful/mount_windows.png" target="_blank">this</a>  
-- rebootreb
+- reboot
 
 ## How to Extract (Unzip) tar.xz File
 <a href="https://linuxize.com/post/how-to-extract-unzip-tar-xz-file/" target="_blank">How to Extract (Unzip) tar.xz File</a>
