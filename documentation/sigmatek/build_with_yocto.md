@@ -35,6 +35,30 @@ Afterwards you will find a .lbi-file in the deploy-subdir `~/Develop/jenkins/hom
 Hopefully everything goes according to plan. If you encounter a build problem and you punch through it, please write some trouble shooting for this ;-)
 
 
+## Tipps
+### Using less cores
+If you build locally, you may run into the problem that you system is loaded heavily by the yocto build. In fact the load can be so heavy that working with your system on other task can become very slow due to lack of responsiveness.
+
+One solution is to tell yocto to use less threads for the build by adding the following line to ~/some/path/build/conf/local.conf
+
+```
+BB_NUMBER_THREADS = "${@oe.utils.cpu_count()//2}"
+```
+In this example we set the number of threads to half the number of cpu cores on the system. In addition one can also set the number of parallel compilations done by make:
+```
+PARALLEL_MAKE = "-j${@oe.utils.cpu_count()//2}"
+```
+
+### Using jenkins as download mirror
+Sometimes it happens that servers that hold repos necessary for builds are down. In this case it is possible to use the jenkins as a download mirror.
+
+For this you simply add the following two lines to one of the config files, e.g. site.conf
+
+```
+SOURCE_MIRROR_URL ?= "http://osjenkins.lhau.sigaut.org:8080/userContent/downloads/"
+INHERIT += "own-mirrors"
+```
+
 ## Sigmatek Documentation
 
 <!-- [Build LRT](http://swrtd01.lhau.sigaut.org:8000/docs/rtfm/en/latest/getting_started_at_sigmatek/build_lrt.html#build-lrt-label)-->
