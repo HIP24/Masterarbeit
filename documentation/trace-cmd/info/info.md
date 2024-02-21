@@ -46,5 +46,10 @@ trace-cmd [COMMAND] ...
 | convert         | Convert a trace file to a different version             |
 
 <br>
+
 Host: trace-cmd version 3.2.0 (not-a-git-repo)
+/usr/bin/trace-cmd -> 2.9.6
+/usr/local/bin/trace-cmd -> 3.2.0
+
+
 Guest: trace-cmd version 2.9.1 ()
