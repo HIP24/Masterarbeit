@@ -22,4 +22,4 @@
 *.glo
 *.gls
 *.ist
-documentation/test/
+documentation/test/*
