@@ -31,7 +31,6 @@ Execute [virtio-win-guest-tools](resources/exe/virtio-win-guest-tools.exe) in VM
 QEMU settings: <a href="resources/images/qemu/qemu_settings.png" target="_blank">QEMU</a>, <a href="resources/xml/win11onQEMU.xml.txt" target="_blank">XML win11</a>  
 <a href="https://www.youtube.com/watch?v=ZqBJzrQy7Do" target="_blank">Windows 10 VM Settings</a>
 
-
 ## Remove keyring from Edge
 To stop being prompted to unlock the ‘default’ keyring on boot, set a blank password for the keyring.
 - Open the utility “Passwords & Keys”. If not installed: `sudo apt-get install seahorse`  
@@ -42,3 +41,6 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 `nproc` or `cat /proc/cpuinfo | grep processor | wc -l` or `cat /proc/cpuinfo | grep 'core id'` or `lscpu`
 
 
+## Untrack files to be ignored named “documentation/test” in git:
+`git rm --cached documentation/test`  
+<a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">Understanding Gitignore Basics</a>
