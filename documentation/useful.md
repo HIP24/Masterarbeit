@@ -40,19 +40,15 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 ## See how many cores you have
 `nproc` or `cat /proc/cpuinfo | grep processor | wc -l` or `cat /proc/cpuinfo | grep 'core id'` or `lscpu`
 
-
 ## Untrack files to be ignored named “documentation/test” in git:
 `git rm --cached documentation/test`  
-<a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">Understanding Gitignore Basics</a>
-
+<a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">How To Fix Gitignore Not Working</a>
 
 ## start_qemu.sh from everytwhere
-Script [start_qemu.sh](resources/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/documentation/QEMU/`. 
+Script [start_qemu.sh](resources/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/`. 
 ```
 sudo nano ~/.bashrc
-export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/QEMU/
+export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
 ```
-
-
 ## Add konsole to replace console
 [nautilus-open-any-terminal](git%20clone/nautilus-open-any-terminal/)

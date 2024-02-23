@@ -12,4 +12,5 @@
 | 19.02.2024 | [Xenomai-system-tools](xenomai/xenomai-system-tools.md)|
 | 20.02.2024 | KernelShark |
 | 21.02.2024 | Local Yocto Build finally done |
-| 22.02.2024 | |
+| 22.02.2024 | [trace-cmd agent](resources/images/trace-cmd/trace-cmd_agent_host_guest.png) on guest communicates with host |
+| 23.02.2024 | Teammeeting and Germany |

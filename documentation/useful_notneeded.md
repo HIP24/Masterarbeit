@@ -62,4 +62,12 @@ Remember to replace abc with the actual PID of the latency task. You can repeat 
 Kill processes with `kill x`
 
 
+## ^M error message
+The error message you're seeing is typically caused by a mismatch in line endings. Scripts that have been edited or created on Windows use a different line ending (`\r\n`) than Unix/Linux (`\n`). The `^M` in the error message is a visual representation of `\r` (carriage return), which is not expected or understood by the Linux shell.
 
+You can convert the line endings of your script to the Unix format using a tool like `dos2unix`. Here's how you can do it:
+
+```bash
+sudo apt-get install dos2unix  # Install dos2unix tool
+dos2unix /home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/start_qemu.sh
+```
