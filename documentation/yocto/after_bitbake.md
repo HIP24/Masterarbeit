@@ -11,7 +11,11 @@ bitbake salamander-image -k
 ```
 
 ## QEMU 
-Add `-device vhost-vsock-pci,guest-cid=3,id=vsock0 \`
+Add
+`-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4" \`  
+`-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \`  
+`-device vhost-vsock-pci,guest-cid=3,id=vsock0 \`
+
 ```
 #!/bin/sh
 
@@ -31,14 +35,10 @@ exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -no-reboot -nographic
 ```
 
-
-
-## Where is the output of the bitbake .ipk build process
+## scp .ipk to Salamander4 and install
 When you run bitbake xxx, the output of the build process, including any generated .ipk files, is typically stored in the tmp/deploy/ipk/ directory within your build directory1. The exact location can depend on your configuration and the specific recipe you’re building.
 
 The .ipk files are package files used by opkg, a lightweight package management system. These files are created when you build a recipe that includes packaging steps.
-
-## scp ipk to Salamander4 and install
 ```
 cd ~/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64$ ssh 10.30.248.137
 cp trace-cmd_2.9.1-r0_core2-64.ipk root@10.30.248.137:/home/root/bb

@@ -6,7 +6,7 @@ sleep 2
 wmctrl -r :ACTIVE: -e 0,0,0,1920,1080
 
 # Öffne VS Code auf Bildschirm 3
-gnome-terminal -- bash -c "cd /home/sigma_ibo/Develop/Yocto/salamander4 && code ." &
+gnome-terminal -- bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander && code ." &
 sleep 2
 wmctrl -r :ACTIVE: -e 0,1920,0,960,1080
 
@@ -20,7 +20,7 @@ sleep 2
 wmctrl -r :ACTIVE: -e 0,3840,0,960,1080
 
 # Öffne das zweite Terminal auf der rechten Seite des Bildschirms
-gnome-terminal -- bash -c "cd /home/sigma_ibo/Develop/Yocto/salamander4/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image && sudo ./qemu_def.sh" &
+gnome-terminal -- bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image && sudo ./qemu_def.sh" &
 sleep 2
 wmctrl -r :ACTIVE: -e 0,4800,0,960,1080
 
