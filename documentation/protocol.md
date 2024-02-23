@@ -10,12 +10,12 @@
     - git clone git@git.sigmatek.at:SIG_SW_BS/devops/qemutest.git
     - `cd qemutest`
     - `./test_qemu_image.sh -b ../salamander4/salamander-core2/build`
-    - [QEMU testing boot](resources/images/install_salamander/qemutest_testing-boot.png)
-    - [QEMU testing shutdown](resources/images/install_salamander/qemutest_testing-shutdown.png)
+    - [QEMU testing boot](resources/images/yocto/qemutest_testing-boot.png)
+    - [QEMU testing shutdown](resources/images/yocto/qemutest_testing-shutdown.png)
 5) Boot Salamander 4
     - `cd ~/Develop/Yocto/salamander4/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image`
     - [`./qemu_def.sh`](resources/scripts/working_qemu_def.sh.txt)
-    - [Welcome at Sigmatek PLC](resources/images/install_salamander/sigmatek_login.png)
+    - [Welcome at Sigmatek PLC](resources/images/yocto/sigmatek_login.png)
 
 ## Configure ip addresses 
 [Configure PC](resources/images/configure_ip/ip_static_connection_ubuntu.png) to `10.10.1.1`.   
