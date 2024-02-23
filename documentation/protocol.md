@@ -53,7 +53,7 @@ Richard Feedback:
 2. Überwachung der CPU-Nutzung und Tracing: Du solltest auf dem Hostsystem messen, wann die virtuelle Maschine (VM) immer die CPU hat und dies mit dem Gastsystem zu vergleichen. Dies könnte dir helfen, eine Korrelation zwischen den Zeiten zu sehen, in denen die VM die CPU hat, und den Ausreißern in der Latenz. Mit den VMEnter/Exit Tracpoints kannst du sehen, wann die VM die CPU betritt und verlässt. Dies könnte dir helfen, die Interaktion zwischen dem Host- und dem Gastsystem besser zu verstehen und zu optimieren.
 ```
 
-## Isolate CPUs on host system (Ubuntu),
+## Isolate CPUs on host system (Ubuntu)
 
 To isolate CPUs on your host system (Ubuntu), you can add the `isolcpus` option to the kernel boot configuration. Here are the steps you can follow:
 
