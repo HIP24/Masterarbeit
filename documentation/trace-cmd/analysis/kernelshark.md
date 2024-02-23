@@ -1,4 +1,7 @@
 ## Use kernelshark
+
+[File trace.dat contains no data](../../resources/images/trace-cmd/kernelshark/contains_no_data.png)
+
 ```
 sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit
 trace-cmd report

@@ -1,5 +1,7 @@
 ## File://0001.patch error 
 
+[Unable to find file file://0001-Fix.patch](../resources/images/install_salamander/0001patch.png)
+
 ```
 cd meta-sigmatek/
 git branch
