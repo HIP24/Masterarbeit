@@ -1,5 +1,5 @@
 ##  Dual Boot
-1) Flash SSD by install https://etcher.balena.io/ 
+1) Flash SSD by installing [etcher](https://etcher.balena.io/) 
 2) Ubuntu and Windows on same machine
 
 ## Install Salamander4 OS
@@ -42,9 +42,6 @@ Connect LasalClass2 with [Salamander 4](resources/images/lasal/class2/lasalclass
 - `latency -T 60`  
 - `clocktest -D -T 60` 
 
-
-
-
 ```
 Richard Feedback:
 
@@ -82,3 +79,44 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/online
 sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 0-4
 ```
+
+## trace-cmd Problems 
+[Rostedt Tutorial](https://rostedt.org/host-guest-tutorial/)  
+`sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all`
+
+### 2 Problems  
+1. "Failed to negotiate timestamps synchronization with the host"
+[timestamp_error.png](resources/images/trace-cmd/timestamp_error.png)
+
+2. "Cannot find host / guest tracing into the loaded streams" [kvm_combo_error.png](resources/images/trace-cmd/kvm_combo_error.png)
+
+
+### What I did
+1.  - enabled
+        - CONFIG_VSOCKETS=y
+        - CONFIG_VHOST_VSOCK=y
+        - CONFIG_VIRTIO_VSOCKETS=y
+        - CONFIG_VIRTIO_VSOCKETS_COMMON=y
+        - CONFIG_VSOCKETS_DIAG=y
+        - CONFIG_VSOCKETS_LOOPBACK=y
+        - CONFIG_TRACING=y  
+        - CONFIG_FTRACE=y  
+        - CONFIG_FUNCTION_TRACER=y  
+        - CONFIG_FUNCTION_GRAPH_TRACER=y  
+        - CONFIG_DYNAMIC_FTRACE=y  
+        - CONFIG_DYNAMIC_FTRACE_WITH_REGS=y  
+        - CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y  
+        - CONFIG_DYNAMIC_FTRACE_WITH_ARGS=y  
+        - CONFIG_SCHED_TRACER=y  
+        - CONFIG_FTRACE_SYSCALLS=y  
+        - CONFIG_TRACER_SNAPSHOT=y  
+        - CONFIG_KPROBE_EVENTS=y  
+        - CONFIG_UPROBE_EVENTS=y  
+        - CONFIG_BPF_EVENTS=y  
+        - CONFIG_DYNAMIC_EVENTS=y  
+        - CONFIG_PROBE_EVENTS=y  
+        - CONFIG_SYNTH_EVENTS=y  
+        - CONFIG_HIST_TRIGGERS=y  
+- checked via zcat /proc/config.gz if everything landed on the kernel
+- changed clocksource in guest from kvm-clock to tsc in `/sys/devices/system/clocksource/clocksource0`
+x check Code 
