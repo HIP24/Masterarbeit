@@ -52,3 +52,31 @@ export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/Q
 ```
 ## Add konsole to replace console
 [nautilus-open-any-terminal](git%20clone/nautilus-open-any-terminal/)
+
+
+## ssh ohne Passwort
+Um eine SSH-Verbindung von Ihrem Host-Computer zu Ihrem Gast-Computer (oder Server) herzustellen, können Sie die folgenden Schritte ausführen:
+
+1. **Generieren Sie ein SSH-Schlüsselpaar auf Ihrem Host-Computer**. Sie können dies mit dem Befehl `ssh-keygen` tun. Sie werden aufgefordert, ein Passwort einzugeben, aber Sie können einfach Enter drücken, um kein Passwort zu setzen (obwohl dies aus Sicherheitsgründen nicht empfohlen wird).
+
+```bash
+ssh-keygen
+```
+
+2. **Kopieren Sie Ihren öffentlichen Schlüssel auf den Gast-Computer**. Sie können dies mit dem Befehl `ssh-copy-id` tun. Ersetzen Sie `benutzername` durch Ihren Benutzernamen auf dem Gast-Computer und `ip_address` durch die IP-Adresse des Gast-Computers.
+
+```bash
+ssh-copy-id root@192.168.1.51
+```
+
+3. **Stellen Sie eine SSH-Verbindung zum Gast-Computer her**. Sie können dies mit dem Befehl `ssh` tun. Ersetzen Sie wieder `benutzername` und `ip_address` durch Ihren Benutzernamen und die IP-Adresse des Gast-Computers.
+
+```bash
+ssh root@192.168.1.51
+```
+
+Nachdem Sie diese Schritte ausgeführt haben, sollten Sie in der Lage sein, sich ohne Passwort bei Ihrem Gast-Computer anzumelden. 
+
+Wenn Sie den ssh-copy-id Befehl verwenden, wird Ihr öffentlicher SSH-Schlüssel in der Datei `~/.ssh/authorized_keys` auf dem Gast-Computer (dem Computer, zu dem Sie eine SSH-Verbindung herstellen) gespeichert.
+
+Jede Zeile in dieser Datei repräsentiert einen öffentlichen Schlüssel, der für die Authentifizierung zugelassen ist. Wenn Sie also mehrere Schlüssel haben, die Sie verwenden, um sich bei diesem Computer anzumelden, wird jeder Schlüssel als separate Zeile in dieser Datei angezeigt
