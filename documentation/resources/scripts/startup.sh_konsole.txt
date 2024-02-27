@@ -19,8 +19,6 @@ konsole --new-tab -e bash -c "cd"
 # Öffne das zweite Terminal auf der rechten Seite des Bildschirms
 konsole --new-tab -e bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image && sudo ./qemu_def.sh"
 
-
-
 # Öffne Virt Manager
 virt-manager &
 

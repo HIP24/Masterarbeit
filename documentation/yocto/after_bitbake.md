@@ -1,7 +1,35 @@
 ## Enable kernel modules  
-CONFIG_VSOCKETS=y  
-CONFIG_VHOST_VSOCK=y  
-CONFIG_VIRTIO_VSOCKETS=y  
+[Host-Guest Tutorial](https://rostedt.org/host-guest-tutorial/)  
+To have trace-cmd trace guests from the host, it is required that the guest is set up with vsocks. These are a virtual socket that lets the guest connect directly with the host. To do this, make sure that your guest kernel has the following configurations:
+
+CONFIG_VSOCKETS=m
+CONFIG_VHOST_VSOCK=m
+CONFIG_VIRTIO_VSOCKETS=m
+CONFIG_VIRTIO_VSOCKETS_COMMON=m
+CONFIG_VSOCKETS_DIAG=m
+CONFIG_VSOCKETS_LOOPBACK=m
+And obviously have tracing enabled as well:
+
+CONFIG_TRACING=y  
+CONFIG_FTRACE=y  
+CONFIG_FUNCTION_TRACER=y  
+CONFIG_FUNCTION_GRAPH_TRACER=y  
+CONFIG_DYNAMIC_FTRACE=y  
+CONFIG_DYNAMIC_FTRACE_WITH_REGS=y  
+CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y  
+CONFIG_DYNAMIC_FTRACE_WITH_ARGS=y  
+CONFIG_SCHED_TRACER=y  
+CONFIG_FTRACE_SYSCALLS=y  
+CONFIG_TRACER_SNAPSHOT=y  
+CONFIG_KPROBE_EVENTS=y  
+CONFIG_UPROBE_EVENTS=y  
+CONFIG_BPF_EVENTS=y  
+CONFIG_DYNAMIC_EVENTS=y  
+CONFIG_PROBE_EVENTS=y  
+CONFIG_SYNTH_EVENTS=y  
+CONFIG_HIST_TRIGGERS=y  
+
+
 [VirtioVsock](https://wiki.qemu.org/Features/VirtioVsock)
 
 ## bitbake 
@@ -40,8 +68,7 @@ When you run bitbake xxx, the output of the build process, including any generat
 
 The .ipk files are package files used by opkg, a lightweight package management system. These files are created when you build a recipe that includes packaging steps.
 ```
-cd ~/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64$ ssh 10.30.248.137
-cp trace-cmd_2.9.1-r0_core2-64.ipk root@10.30.248.137:/home/root/bb
+cd ~/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64$ scp trace-cmd_2.9.1-r0_core2-64.ipk root@10.30.248.137:/home/root/bb
 opkg install trace-cmd_2.9.1-r0_core2-64.ipk
 ```
 
@@ -70,7 +97,10 @@ It seems like the SSH host key for the server at 10.30.248.137 has changed, whic
 You can resolve this issue by removing the old host key from your known_hosts file. The offending key is on line 12 of the file. You can remove it with the following command:
 
 ```
-ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "10.30.248.137"
+ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "10.30.248.137" # Salzburg
+ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "192.168.1.78" # Wien"
+
 ```
 This will remove the old key for 10.30.248.137 from your known_hosts file. The next time you connect, you should be prompted to accept the new host key.
+
 
