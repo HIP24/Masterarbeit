@@ -4,7 +4,7 @@
 
 ## Install Salamander4 OS
 1) Install Ubuntu 22.04.3 LTS
-2) Run [script](resources/scripts/build-salamander4-ordinary.sh.txt) or download [salamander4.tar.xz](resources/scripts/salamaner4.tar.xz) from Michi  
+2) Run [script](resources/scripts/build-salamander4-ordinary.sh) or download [salamander4.tar.xz](resources/scripts/salamaner4.tar.xz) from Michi  
 3) If latter, run tar -xvf salamaner4.tar.xz
 4) Test QEMU 
     - git clone git@git.sigmatek.at:SIG_SW_BS/devops/qemutest.git
@@ -14,7 +14,7 @@
     - [QEMU testing shutdown](resources/images/yocto/qemutest_testing-shutdown.png)
 5) Boot Salamander 4
     - `cd ~/Develop/Yocto/salamander4/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image`
-    - [`./qemu_def.sh`](resources/scripts/working_qemu_def.sh.txt)
+    - [`./qemu_def.sh`](resources/scripts/working_qemu_def.sh)
     - [Welcome at Sigmatek PLC](resources/images/yocto/sigmatek_login.png)
 
 ## Configure ip addresses 
