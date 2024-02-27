@@ -10,7 +10,7 @@
 [Build with Yocto](sigmatek/build_with_yocto.md)
 
 ## Salamander OS  
-[Skript Michi](resources/scripts/build-salamander4-ordinary.sh.txt)  
+[Skript Michi](resources/scripts/build-salamander4-ordinary.sh)  
 [Build LRT](sigmatek/build_LRT.md)
 
 ## Xenomai  
