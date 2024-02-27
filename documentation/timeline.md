@@ -15,3 +15,4 @@
 | 22.02.2024 | [trace-cmd agent](resources/images/trace-cmd/trace-cmd_agent_host_guest.png) on guest communicates with host |
 | 23.02.2024 | Teammeeting and Germany |
 | 26.02.2024 | after_bitbake, kernelshark, paths |
+| 27.02.2024 | --------------------------------- |

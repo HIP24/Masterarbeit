@@ -10,13 +10,13 @@ sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit
 
 Host and Guest track kvm, sched, irq, irq_vectors
 ```
-sudo trace-cmd record -e kvm -e sched -e irq -e irq_vectors -A @3:823 --name Salamander4 -e all ssh root@192.168.1.78 'ls -lR . > /dev/null'
+sudo trace-cmd record -e kvm -e sched -e irq -e irq_vectors -A @3:823 --name Salamander4 -e all ssh root@192.168.51 'ls -lR . > /dev/null'
 ```
 
 
 Host and Guest track kvm_entry and kvm_exit
 ```
-sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all ssh root@192.168.1.78 'ls -lR . > /dev/null'
+sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all ssh root@192.168.1.7851 'ls -lR . > /dev/null'
 ```
 
 
