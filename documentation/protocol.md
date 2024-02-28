@@ -90,6 +90,7 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 
 2. "Cannot find host / guest tracing into the loaded streams" [kvm_combo_error.png](resources/images/trace-cmd/kvm_combo_error.png)
 
+(These were solved in [Ubuntu 22.04 VM](#ubuntu-vm-on-virtual-machine-manager))
 
 ### What I did
 1.  - enabled
@@ -124,7 +125,54 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 
 
 
+## Ubuntu VM on virtual machine manager
+After giving the VM [access to the vsocket](resources/images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](trace-cmd/analysis/start_kernelshark.sh), we can view [KVM Combo plots](resources/images/protocol/kvm_combo_plots.png)
 
 
+<div style="text-align: right">
 
 [Link to top](#)
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
