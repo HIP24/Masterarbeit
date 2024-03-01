@@ -27,7 +27,6 @@
 ## Kernel config
 [kernelconfig Documentation](https://www.kernelconfig.io/)
 
-
 ## AI
 [Copilot](https://copilot.microsoft.com/)  
 [ChatGPT](https://chat.openai.com/c/3fed58fe-a6dc-4f86-9a34-ed46f8acb3a9)  

@@ -29,13 +29,22 @@ or `ssh -p 22 root@192.168.1.x` (changes often)
 Connect LasalClass2 with [Salamander 4](resources/images/lasal/class2/lasalclass2_ip.png), IP of [Salamander4 device](resources/images/lasal/class2/lasalclass2_salamander4_ip.png)
 
 ## Configure bridge for qemu
+This setup allows the virtual machines to communicate with the outside network through the Ethernet connection provided by either the laptop or the docking station.
+
+| name       | device |
+|------------|-------|
+| enp0s31f6 | Laptop's Ethernet port |
+| enx4cd717733f80 | Docking station's Ethernet port |
+
 - Disable [ipv4](resources/images/configure_bridge/ethernet_disable_ip4.png) and [ipv6](resources/images/configure_bridge/ethernet_disable_ip6.png)
 - Enter [nmtui](resources/images/configure_bridge/nmtui.png)
-- Edit Connection and [\<Add\>](resources/images/add_connection.png). Select Bridge.
+- Edit Connection and [\<Add\>](resources/images/configure_bridge/add_connection.png). Select Bridge.
 - [Edit](resources/images/configure_bridge/edit_connection.png) and \<Add\> Ethernet.
 - [Copy name](resources/images/configure_bridge/copy_name.png) enx4cd717733f80 (4C:D7:17:73:3F:80) of Wired connection 2
 - [Edit Connection of Ethernet connection 1](resources/images/configure_bridge/ethernet1.png) so that it automatically connects.
-- [Activate Connection](resources/images/configure_bridge/activate_connection.png) .
+- [Activate Connection](resources/images/configure_bridge/activate_connection.png).
+- Result should look like [this](resources/images/configure_bridge/get-to-know/connections.png) and [this](resources/images/configure_bridge/get-to-know/bridge_connections.png).
+- More info in <a href="nmbridge.md" target="_blank">nmbridge.md</a>. 
 
 
 ## Use the Xenomai test suite
@@ -74,7 +83,7 @@ To isolate CPUs on your host system (Ubuntu), you can add the `isolcpus` option 
 Check with: `cat /sys/devices/system/cpu/isolated`
 
 ```
-sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/online
+sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/onlineboth_laptop_and_docking
 0-19
 sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 0-4
