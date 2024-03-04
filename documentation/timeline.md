@@ -19,4 +19,5 @@
 | 28.02.2024 | Host-Guest [timestamp sync](resources/images/protocol/negotiated_with_guest.png) works with VM, can view [KVM Combo plots](resources/images/protocol/kvm_combo_plots_vis.png), does still not work with Salamander4 |
 | 29.02.2024 | useful_links and search_for_x.py |
 | 01.03.2024 | checklist.md, nmbridge.md, understand nmbridge |
+| 04.03.2024 | Finally: Negotiated kvm time sync protocol with guest Salamander4|
 
