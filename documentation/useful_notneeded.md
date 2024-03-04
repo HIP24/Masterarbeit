@@ -69,7 +69,7 @@ You can convert the line endings of your script to the Unix format using a tool 
 
 ```bash
 sudo apt-get install dos2unix  # Install dos2unix tool
-dos2unix /home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/start_qemu.sh
+dos2unix <file>
 ```
 
 ## Split too long Prompt
