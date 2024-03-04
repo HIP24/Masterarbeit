@@ -9,10 +9,9 @@
 - [ ] Isolated host CPU for guest
 - [ ] Enabled access to the vsocket for guest
 - [ ] trace-cmd and kernelshark worked for Ubuntu VM
-
+- [ ] trace-cmd and kernelshark did not work for Salamander4
 
 ## Missing
-- [ ] trace-cmd and kernelshark did not work for Salamander4
 - [ ] Salamander4 über QEMU unter native Windows booten
 - [ ] Salamander4 über QEMU unter WSL in native Windows booten
 - [ ] Compare Ubuntu, Windows and WSL
