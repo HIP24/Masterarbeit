@@ -132,10 +132,19 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 - Did not check Code yet 
 2. Nothing yet, probably hand in hand with 1.
 
+## Solution to [trace-cmd Problems](#trace-cmd-problems)
+The problem was the trace-cmd version. Set both host and guest to v3.2.0 by copying the files from host to guest:
+```
+scp /usr/local/bin/trace-cmd root@"$ip_address":/usr/bin
+scp /usr/local/lib64/libtracefs.so.1 root@"$ip_address":/lib64
+scp /usr/local/lib64/libtraceevent.so.1 root@"$ip_address":/lib64
+```
+Now, [trace-cmd version 3.2.0](resources/images/trace-cmd/trace-cmd_version3.2.0.png) is active and [tracing the guest](resources/images/trace-cmd/time_sync.png) finally works with `trace-cmd agent` on the guest.
 
+Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](trace-cmd/analysis//test/start_kernelshark.sh), we get the expected [visualization](resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
 
 ## Ubuntu VM on virtual machine manager
-After giving the VM [access to the vsocket](resources/images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](trace-cmd/analysis/start_kernelshark.sh), we can view [KVM Combo plots](resources/images/protocol/kvm_combo_plots.png)
+After giving the VM [access to the vsocket](resources/images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](resources/images/protocol/kvm_combo_plots.png)
 
 
 <div style="text-align: right">
@@ -143,45 +152,3 @@ After giving the VM [access to the vsocket](resources/images/protocol/virtm_cid.
 [Link to top](#)
 
 </div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
