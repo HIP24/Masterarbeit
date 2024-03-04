@@ -1,10 +1,18 @@
 # The words to search for
-#search_words = ['trac', 'trace', 'tracing', 'ftrace']
-search_words = ['clock', 'sync']
+search_words = ['trac', 
+                'trace',
+                'tracing',
+                'ftrace',
+                'kvm',
+                'guest' ]
+
+#search_words = ['clock', 'sync']
 
 # The words to exclude
-# exclude_words = ['#','track','tracking']
-exclude_words = ['#']
+exclude_words = ['#',
+                 'track',
+                 'tracking']
+#exclude_words = ['#']
 
 # Open the input file and read the lines
 with open('config-6.5.0-21-generic', 'r') as f:
