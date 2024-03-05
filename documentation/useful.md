@@ -80,3 +80,6 @@ Nachdem Sie diese Schritte ausgeführt haben, sollten Sie in der Lage sein, sich
 Wenn Sie den ssh-copy-id Befehl verwenden, wird Ihr öffentlicher SSH-Schlüssel in der Datei `~/.ssh/authorized_keys` auf dem Gast-Computer (dem Computer, zu dem Sie eine SSH-Verbindung herstellen) gespeichert.
 
 Jede Zeile in dieser Datei repräsentiert einen öffentlichen Schlüssel, der für die Authentifizierung zugelassen ist. Wenn Sie also mehrere Schlüssel haben, die Sie verwenden, um sich bei diesem Computer anzumelden, wird jeder Schlüssel als separate Zeile in dieser Datei angezeigt
+
+## check on which CPU a task is running
+`ps -eo pid,psr,comm | grep <name>`
