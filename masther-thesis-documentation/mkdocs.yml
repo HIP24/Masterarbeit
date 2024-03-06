@@ -1,0 +1,20 @@
+site_name: Masther thesis Documentation
+# site_url: https://www.example.com
+# repo_url: https://github.com/username/repo
+# repo_name: GitHub
+# edit_uri: edit/master/docs/
+site_description: My awesome docs
+site_author: Halil Pamuk
+#site_favicon: page/uni.png
+theme:
+  name: material
+  palette:
+    primary: blue
+    scheme: slate
+  logo: 'page/uni.png'
+#extra_css:
+#  - css/extra.css
+#extra_javascript:
+#  - js/extra.js
+plugins:
+  - search
