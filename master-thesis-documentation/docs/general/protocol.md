@@ -33,7 +33,7 @@ This setup allows the virtual machines to communicate with the outside network t
 - [Edit Connection of Ethernet connection 1](../resources//images/configure_bridge/ethernet1.png) so that it automatically connects.
 - [Activate Connection](../resources//images/configure_bridge/activate_connection.png).
 - Result should look like [this](../resources//images/configure_bridge/get-to-know/connections.png) and [this](../resources//images/configure_bridge/get-to-know/bridge_connections.png).
-- More info in [nmbridge.md](../resources//QEMU/nmbridge.md). 
+- More info in [nmbridge.md](../QEMU/nmbridge.md). 
 
 
 ## Use the Xenomai test suite
@@ -71,7 +71,7 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 0-4
 ```
 
-Before taskset with [`qemu_def_4schedstats.sh`](../resources//QEMU/qemu_def_4schedstats.sh)
+Before taskset with [`qemu_def_4schedstats.sh`](../QEMU/qemu_def_4schedstats.sh)
 ```
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    7295  10 start_qemu.sh
@@ -152,7 +152,7 @@ RTS|      1.175|      2.955|    374.075|      40|     0|    00:01:00/00:01:00
 ```
 
 
-After taskset on CPU4 with [`qemu_def_5taskset.sh`](../resources//QEMU/qemu_def_5taskset.sh)
+After taskset on CPU4 with [`qemu_def_5taskset.sh`](../QEMU/qemu_def_5taskset.sh)
 ```
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    8752   0 start_qemu.sh
