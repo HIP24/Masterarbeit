@@ -55,7 +55,7 @@
 ### README 
 | File       | Description |
 |------------|-------|
-| [README.md](../../README.md)   | README of the masterthesis |
+| [README.md](README.md)   | README of the masterthesis |
 | [README.md](trace-cmd/LTS/libtraceevent-1.8.2/README.md)   | README of libtraceevent |
 | [README.md](trace-cmd/LTS/libtracefs-1.8.0/README.md)   | README of libtracefs |
 | [README.md](trace-cmd/LTS/trace-cmd-libtracecmd-1.5.1/README.md)   | README of libtracecmd |
