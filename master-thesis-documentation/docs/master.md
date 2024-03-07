@@ -74,12 +74,12 @@
 ### QEMU config
 | File       | Description |
 |------------|-------|
-| [qemu_def_1default.sh](resources/QEMU/qemu_def_1default.sh) | default qemu_def.sh  |
-| [qemu_def_2nmbridge.sh](resources/QEMU/qemu_def_2nmbridge.sh) | qemu_def.sh with nm bridge  |
-| [qemu_def_3vsock.sh](resources/QEMU/qemu_def_3vsock.sh) |qemu_def.sh with vsock |
-| [qemu_def_4schedstats.sh](resources/QEMU/qemu_def_4schedstats.sh) | qemu_def.sh with schedstats  |
-| [qemu_def_5taskset.sh](resources/QEMU/qemu_def_5taskset.sh) | qemu_def.sh with taskset  |
-| [start_qemu.sh](resources/QEMU/start_qemu.sh) | Script for starting QEMU |
+| [qemu_def_1default.sh](QEMU/qemu_def_1default.sh) | default qemu_def.sh  |
+| [qemu_def_2nmbridge.sh](QEMU/qemu_def_2nmbridge.sh) | qemu_def.sh with nm bridge  |
+| [qemu_def_3vsock.sh](QEMU/qemu_def_3vsock.sh) |qemu_def.sh with vsock |
+| [qemu_def_4schedstats.sh](QEMU/qemu_def_4schedstats.sh) | qemu_def.sh with schedstats  |
+| [qemu_def_5taskset.sh](QEMU/qemu_def_5taskset.sh) | qemu_def.sh with taskset  |
+| [start_qemu.sh](QEMU/start_qemu.sh) | Script for starting QEMU |
 
 
 <hr>
