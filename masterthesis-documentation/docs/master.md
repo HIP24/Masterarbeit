@@ -11,8 +11,15 @@
 | [protocol.md](general/protocol.md)   | Protocol of the process |
 | [timeline.md](general/timeline.md)   | Timeline view of the process |
 | [components.md](general/components.md)   | Components of the process |
+| [documentations.md](general/documentations.md)   | Documentations |
+| [checklist.md](general/checklist.md)   | Checklist of the process |
+
+### Workflow
+| File       | Description |
+|------------|-------|
 | [useful.md](workflow/useful.md)   | Useful stuff in the process |
 | [useful_notneeded.md](workflow/useful_notneeded.md)   | Useful stuff that is not needed in the process |
+| [useful_links.md](workflow/useful_links.md)   | Useful stuff that is not needed in the process |
 | [most_popular_paths.md](workflow/most_popular_paths.md)   | Most used paths in the process |
 
 <hr>
@@ -74,6 +81,7 @@
 ### QEMU config
 | File       | Description |
 |------------|-------|
+| [nmbridge.md](salamander4/QEMU/nmbridge.md) | Steps to configure nmbridge  |
 | [qemu_def_1default.sh](salamander4/QEMU/qemu_def_1default.sh) | default qemu_def.sh  |
 | [qemu_def_2nmbridge.sh](salamander4/QEMU/qemu_def_2nmbridge.sh) | qemu_def.sh with nm bridge  |
 | [qemu_def_3vsock.sh](salamander4/QEMU/qemu_def_3vsock.sh) |qemu_def.sh with vsock |
