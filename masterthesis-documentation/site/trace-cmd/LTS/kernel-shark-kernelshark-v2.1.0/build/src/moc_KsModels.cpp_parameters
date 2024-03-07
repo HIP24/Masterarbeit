@@ -1,0 +1,5 @@
+-I/home/sigma_ibo/Desktop/Masterarbeit/documentation/trace-cmd/LTS/kernel-shark-kernelshark-v2.1.0/src
+-I/home/sigma_ibo/Desktop/Masterarbeit/documentation/trace-cmd/LTS/kernel-shark-kernelshark-v2.1.0/build/src
+-o
+/home/sigma_ibo/Desktop/Masterarbeit/documentation/trace-cmd/LTS/kernel-shark-kernelshark-v2.1.0/build/src/moc_KsModels.cpp
+/home/sigma_ibo/Desktop/Masterarbeit/documentation/trace-cmd/LTS/kernel-shark-kernelshark-v2.1.0/src/KsModels.hpp
