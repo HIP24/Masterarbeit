@@ -21,4 +21,6 @@
 | 01.03.2024 | checklist.md, nmbridge.md, understand nmbridge |
 | 04.03.2024 | Finally: Negotiated kvm time sync protocol with guest Salamander4|
 | 05.03.2024 | lat worst reduced from 374.075 to 87.379 |
+| 06.03.2024 | Add documentation local server |
+| 07.03.2024 | Start Salamander4 CPU with [icecc](../salamander4/yocto/icecc.png) |
 
