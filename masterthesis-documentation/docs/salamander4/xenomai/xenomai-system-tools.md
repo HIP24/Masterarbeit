@@ -10,8 +10,8 @@ What sets Xenomai4 apart from its predecessor, Xenomai3, is the complete redesig
 
 | Command | Description |
 | --- | --- |
-| <a href="xenomai/latency.md" target="_blank">latency</a>  | Xenomai timer latency benchmark |
-| <a href="xenomai/clocktest.md" target="_blank">clocktest</a>  | Xenomai Clock Test |
+| <a href="latency.md" target="_blank">latency</a>  | Xenomai timer latency benchmark |
+| <a href="clocktest.md" target="_blank">clocktest</a>  | Xenomai Clock Test |
 | switchtest | Xenomai context switch test |
 | dohell | Generate load, in parallel of the latency test |
 | rtcanconfig | Xenomai tool for configuring the CAN controller |

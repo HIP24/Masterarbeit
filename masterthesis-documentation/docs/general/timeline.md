@@ -9,7 +9,7 @@
 | 14.02.2024 | Installed [Windows VM on Ubuntu](../resources/images/lasal/class2/windows_vm.png), installed [Lasal Class 2 on Windows VM](../resources/images/lasal/class2/lasalclass2.png), connected with [Salamander 4](../resources/images/lasal/class2/lasalclass2_connected.png) |
 | 15.02.2024 | Run [pumpcontrol example](../resources/images/lasal/class2/pumpcontrol.png) successfully |
 | 16.02.2024 | Increased virtual CPU in Windows |
-| 19.02.2024 | [Xenomai-system-tools](../xenomai/xenomai-system-tools.md)|
+| 19.02.2024 | [Xenomai-system-tools](../salamander4/xenomai/xenomai-system-tools.md)|
 | 20.02.2024 | KernelShark |
 | 21.02.2024 | Local Yocto Build finally done |
 | 22.02.2024 | [trace-cmd agent](../resources/images/trace-cmd/trace-cmd_agent_host_guest.png) on guest communicates with host |
