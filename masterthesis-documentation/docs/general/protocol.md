@@ -1,3 +1,5 @@
+# Protocol
+
 ##  Dual Boot
 1) Flash SSD by installing <a href="https://etcher.balena.io/" target="_blank">etcher</a>
 2) Ubuntu and Windows on same machine
@@ -33,7 +35,7 @@ This setup allows the virtual machines to communicate with the outside network t
 - [Edit Connection of Ethernet connection 1](../resources//images/configure_bridge/ethernet1.png) so that it automatically connects.
 - [Activate Connection](../resources//images/configure_bridge/activate_connection.png).
 - Result should look like [this](../resources//images/configure_bridge/get-to-know/connections.png) and [this](../resources//images/configure_bridge/get-to-know/bridge_connections.png).
-- More info in [nmbridge.md](../QEMU/nmbridge.md). 
+- More info in [nmbridge.md](../salamander4/QEMU/nmbridge.md). 
 
 
 ## Use the Xenomai test suite
@@ -71,7 +73,7 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 0-4
 ```
 
-Before taskset with [`qemu_def_4schedstats.sh`](../QEMU/qemu_def_4schedstats.sh)
+Before taskset with [`qemu_def_4schedstats.sh`](../salamander4/QEMU/qemu_def_4schedstats.sh)
 ```
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    7295  10 start_qemu.sh
@@ -152,7 +154,7 @@ RTS|      1.175|      2.955|    374.075|      40|     0|    00:01:00/00:01:00
 ```
 
 
-After taskset on CPU4 with [`qemu_def_5taskset.sh`](../QEMU/qemu_def_5taskset.sh)
+After taskset on CPU4 with [`qemu_def_5taskset.sh`](../salamander4/QEMU/qemu_def_5taskset.sh)
 ```
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    8752   0 start_qemu.sh
@@ -245,9 +247,9 @@ RTS|      1.154|      3.078|     87.379|       0|     0|    00:01:00/00:01:00
 
 ### 2 Problems  
 1. "Failed to negotiate timestamps synchronization with the host"
-[timestamp_error.png](../resources//images/trace-cmd/timestamp_error.png)
+[timestamp_error.png](../resources/images/trace-cmd/timestamp_error.png)
 
-2. "Cannot find host / guest tracing into the loaded streams" [kvm_combo_error.png](../resources//images/trace-cmd/kvm_combo_error.png)
+2. "Cannot find host / guest tracing into the loaded streams" [kvm_combo_error.png](../resources/images/trace-cmd/kvm_combo_error.png)
 
 (These were solved in [Ubuntu 22.04 VM](#ubuntu-vm-on-virtual-machine-manager))
 
@@ -289,12 +291,12 @@ scp /usr/local/bin/trace-cmd root@"$ip_address":/usr/bin
 scp /usr/local/lib64/libtracefs.so.1 root@"$ip_address":/lib64
 scp /usr/local/lib64/libtraceevent.so.1 root@"$ip_address":/lib64
 ```
-Now, [trace-cmd version 3.2.0](../resources/images/trace-cmd/trace-cmd_version3.2.0.png) is active and [tracing the guest](../resources//images/trace-cmd/time_sync.png) finally works with `trace-cmd agent` on the guest.
+Now, [trace-cmd version 3.2.0](../resources/images/trace-cmd/trace-cmd_version3.2.0.png) is active and [tracing the guest](../resources/images/trace-cmd/time_sync.png) finally works with `trace-cmd agent` on the guest.
 
-Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../trace-cmd/analysis//test/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
+Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis//test/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
 
 ## Ubuntu VM on virtual machine manager
-After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](../trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
+After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
 
 
 <div style="text-align: right">

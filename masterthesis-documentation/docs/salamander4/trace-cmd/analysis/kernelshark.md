@@ -1,6 +1,6 @@
 ## Use kernelshark
 
-[File trace.dat contains no data](../../resources/images/trace-cmd/kernelshark/contains_no_data.png)
+[File trace.dat contains no data](../../../resources/images/trace-cmd/kernelshark/contains_no_data.png)
 
 Host only
 ```

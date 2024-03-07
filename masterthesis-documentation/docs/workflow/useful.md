@@ -45,7 +45,7 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 <a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">How To Fix Gitignore Not Working</a>
 
 ## start_qemu.sh from everytwhere
-Script [start_qemu.sh](../QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
+Script [start_qemu.sh](../salamander4/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
 ```
 sudo nano ~/.bashrc
 export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/

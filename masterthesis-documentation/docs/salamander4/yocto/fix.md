@@ -1,6 +1,6 @@
 ## File://0001.patch error 
 
-[Unable to find file file://0001-Fix.patch](../resources/images/yocto/0001patch.png)
+[Unable to find file file://0001-Fix.patch](../../resources/images/yocto/0001patch.png)
 
 ```
 cd meta-sigmatek/
