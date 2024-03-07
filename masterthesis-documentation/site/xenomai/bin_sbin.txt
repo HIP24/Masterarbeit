@@ -1,0 +1,263 @@
+root@sigmatek-core2:/usr/bin# ls
+X                                   pdf2ps
+Xorg                                pf2afm
+[                                   pfbtopfa
+[[                                  pgrep
+aconnect                            pgrep.procps
+addr2line                           pkcs1-conv
+alsaloop                            pkill
+alsamixer                           pkill.procps
+alsatplg                            pldd
+alsaucm                             pmap
+amidi                               pmap.procps
+amixer                              ppdc
+amuFormat.sh                        ppdhtml
+aplay                               ppdi
+aplaymidi                           ppdmerge
+ar                                  ppdpo
+arecord                             pphs
+arecordmidi                         printafm
+as                                  printf
+ascii                               procan
+aseqdump                            ps2ascii
+aseqnet                             ps2epsi
+awk                                 ps2pdf
+axfer                               ps2pdf12
+basename                            ps2pdf13
+blkdiscard                          ps2pdf14
+bsdcat                              ps2pdfwr
+bunzip2                             ps2ps
+bzcat                               ps2ps2
+bzip2                               pstree
+c++filt                             pwait
+cancel                              pwdx
+chage                               pwdx.procps
+chfn                                qemu-aarch64
+chfn.shadow                         qemu-arm
+chsh                                qemu-edid
+chsh.shadow                         qemu-ga
+chvt                                qemu-i386
+clear                               qemu-img
+clocktest                           qemu-io
+cmd_bits                            qemu-mips
+cmd_read                            qemu-mips.real
+cmd_write                           qemu-mips64
+cmp                                 qemu-mips64el
+crc32                               qemu-mipsel
+cupstestppd                         qemu-nbd
+curl                                qemu-ppc
+cut                                 qemu-ppc64
+cvt                                 qemu-ppc64le
+dbus-cleanup-sockets                qemu-pr-helper
+dbus-daemon                         qemu-riscv32
+dbus-launch                         qemu-riscv64
+dbus-monitor                        qemu-sh4
+dbus-run-session                    qemu-storage-daemon
+dbus-send                           qemu-system-aarch64
+dbus-update-activation-environment  qemu-system-arm
+dbus-uuidgen                        qemu-system-i386
+deallocvt                           qemu-system-mips
+dfu-prefix                          qemu-system-mips64
+dfu-suffix                          qemu-system-mips64el
+dfu-util                            qemu-system-mipsel
+diff                                qemu-system-ppc
+dirname                             qemu-system-ppc64
+dohell                              qemu-system-riscv32
+dtc                                 qemu-system-riscv64
+du                                  qemu-system-sh4
+dumpleases                          qemu-system-x86_64
+dvipdf                              qemu-x86_64
+dwp                                 randstat
+efisecdb                            ranlib
+efivar                              rdesktop
+elfedit                             readbootlog
+env                                 readelf
+eps2eps                             readlink
+expiry                              realpath
+expr                                regina
+faillog                             regina-config
+fc-cache                            renice
+fc-cat                              reset
+fc-conflist                         resize
+fc-list                             resize.xterm
+fc-match                            rexx
+fc-pattern                          rngtest
+fc-query                            rt_signal_hist
+fc-scan                             rt_signal_test_fpe
+fc-validate                         rt_signal_test_ill
+fdtdump                             rt_signal_test_segfault
+fdtget                              rtcanrecv
+fdtoverlay                          rtcansend
+fdtput                              rxqueue
+filan                               rxstack
+find                                rxvt
+flock                               rxvtc
+free                                rxvtd
+free.procps                         scmp_sys_resolver
+fuser                               scp
+fuser.psmisc                        scp.openssh
+gencat                              seq
+getconf                             setxkbmap
+getent                              sexp-conv
+getsubids                           sg
+gpasswd                             sha1sum
+gpiobench                           sha256sum
+gpiotest                            sha3sum
+gprof                               shred
+groups                              shuf
+groups.shadow                       sigmatek_alchemy_auto_unlock1
+gs                                  sigmatek_alchemy_auto_unlock2
+gsbj                                sigmatek_pthread_auto_unlock1
+gsdj                                sigmatek_pthread_auto_unlock2
+gsdj500                             size
+gslj                                skill
+gslp                                skill.procps
+gsnd                                slabtop
+head                                smb2-quota
+hexdump                             smbinfo
+iconv                               smokey
+id                                  smokey_net_server
+iecset                              snice
+insn_bits                           snice.procps
+insn_read                           socat
+insn_write                          sort
+install                             speaker-test
+ippeveprinter                       spitest
+ippfind                             sprof
+ipptool                             ssh
+iptables-xml                        ssh-keygen
+kennel                              ssh.openssh
+killall                             ssl_client
+killall.psmisc                      startx
+koi8rxterm                          stek-getty
+last                                strings
+last.sysvinit                       strip
+lastb                               svc
+lastb.sysvinit                      switchtest
+lastlog                             tail
+latency                             tee
+ld                                  telnet
+ld.bfd                              test
+ld.gold                             tester
+ldd                                 tftp
+less                                tgz
+libevdev-tweak-device               time
+locale                              tload
+localedef                           top
+logger                              top.procps
+logname                             touchpad-edge-detector
+lp                                  tput
+lpoptions                           tr
+lpq                                 traceroute
+lpr                                 truncate
+lprm                                ts
+lprsetup.sh                         tset
+lpstat                              tty
+lsattr                              udevadm
+lsof                                uniq
+lspci                               unix-lpr.sh
+lsscsi                              unlink
+lsusb                               unzip
+lsusb.usbutils                      update-alternatives
+lz                                  update-mime-database
+lzcat                               uptime
+makedb                              uptime.procps
+matchbox-remote                     urclock
+matchbox-window-manager             usb-devices
+mattrib                             usbhid-dump
+mbadblocks                          users
+mcat                                usv-update
+mcd                                 utmpdump
+mcheck                              utmpdump.sysvinit
+mcomp                               uxterm
+mcookie                             uz
+mcookie.util-linux                  virgl_test_server
+mcopy                               vlock
+md5sum                              vmstat
+mdel                                w
+mdeltree                            w.procps
+mdir                                wall
+mdu                                 wall.sysvinit
+mesg                                wc
+mesg.sysvinit                       wf_generate
+mformat                             wget
+microcom                            which
+minfo                               who
+mkfifo                              whoami
+mkmanifest                          wrap-link.sh
+mkpasswd                            x-terminal-emulator
+mlabel                              x86_64-sigmatek-linux-addr2line
+mmd                                 x86_64-sigmatek-linux-ar
+mmount                              x86_64-sigmatek-linux-as
+mmove                               x86_64-sigmatek-linux-c++filt
+mouse-dpi-tool                      x86_64-sigmatek-linux-dwp
+mpartition                          x86_64-sigmatek-linux-elfedit
+mpicalc                             x86_64-sigmatek-linux-gprof
+mrd                                 x86_64-sigmatek-linux-ld
+mren                                x86_64-sigmatek-linux-ld.bfd
+mshortname                          x86_64-sigmatek-linux-ld.gold
+mshowfat                            x86_64-sigmatek-linux-nm
+mtdev-test                          x86_64-sigmatek-linux-objcopy
+mtools                              x86_64-sigmatek-linux-objdump
+mtoolstest                          x86_64-sigmatek-linux-ranlib
+mtype                               x86_64-sigmatek-linux-readelf
+mupdf-gl                            x86_64-sigmatek-linux-size
+mutool                              x86_64-sigmatek-linux-strings
+mxtar                               x86_64-sigmatek-linux-strip
+mzip                                xargs
+nc                                  xauth
+nettle-hash                         xdpyinfo
+nettle-lfib-stream                  xeno
+nettle-pbkdf2                       xeno-config
+newgidmap                           xeno-test
+newgrp                              xeno-test-run
+newgrp.shadow                       xeno-test-run-wrapper
+newuidmap                           xhost
+nl                                  xinit
+nm                                  xinput
+nohup                               xinput_calibrator
+nproc                               xinput_calibrator_once.sh
+nsenter                             xkbcomp
+nslookup                            xkeystone
+objcopy                             xmodmap
+objdump                             xrandr
+od                                  xset
+openvt                              xterm
+opkg                                xxd
+opkg-check-config                   xzcat
+passwd                              yat2m
+passwd.shadow                       yes
+paste                               zipcmp
+patch                               zipmerge
+pcprofiledump                       ziptool
+pdf2dsc
+
+
+
+root@sigmatek-core2:/usr/sbin# ls
+addgroup                  fsck.msdos                iptables-restore          rsyslogd
+adduser                   fsck.vfat                 iptables-save             rtcanconfig
+alsactl                   groupadd                  iw                        rtcfg
+analogy_calibrate         groupdel                  loadfont                  rtifconfig
+analogy_config            groupmems                 logoutd                   rtiwconfig
+autotune                  groupmod                  logrotate                 rtnet
+chgpasswd                 grpck                     lpadmin                   rtping
+chkkconf                  grpconv                   lpc                       rtps
+chpasswd                  grpunconv                 lpinfo                    rtroute
+chpasswd.shadow           hdb                       lpmove                    service
+chroot                    i2cdetect                 lspci                     setpci
+corectl                   i2cdump                   mkdosfs                   slackspot
+cupsaccept                i2cget                    mkfs.fat                  sshd
+cupsctl                   i2cset                    mkfs.msdos                tdmacfg
+cupsd                     i2ctransfer               mkfs.vfat                 ubirename
+cupsdisable               iconvconfig               mkfs.vfat.dosfstools      udhcpd
+cupsenable                ip6tables                 newusers                  update-pciids
+cupsfilter                ip6tables-legacy          nomaccfg                  useradd
+cupsreject                ip6tables-legacy-restore  partprobe                 userdel
+delgroup                  ip6tables-legacy-save     powertop                  usermod
+deluser                   ip6tables-restore         pwck                      version
+dosfsck                   ip6tables-save            pwconv                    vsftpd
+dosfslabel                iptables                  pwunconv                  xtables-legacy-multi
+fatlabel                  iptables-legacy           rdate
+fbset                     iptables-legacy-restore   rfkill
+fsck.fat                  iptables-legacy-save      rngd
