@@ -19,30 +19,33 @@ theme:
 plugins:
   - search
 markdown_extensions:
-  - pymdownx.arithmatex: # For rendering block and inline math equations[^1^][1]
+  - pymdownx.arithmatex: # For rendering block and inline math equations
+      generic: true
   - pymdownx.betterem: # Improves emphasis detection for bold and italic text
   - pymdownx.caret: # Adds ability to highlight text and define sub- and superscript
-  - pymdownx.mark: # Companion to caret, for highlighting text[^2^][2]
+  - pymdownx.mark: # Companion to caret, for highlighting text
   - pymdownx.tilde: # Companion to caret, for sub- and superscript
-  - pymdownx.critic: # For tracking changes in Markdown with Critic Markup[^3^][3]
+  - pymdownx.critic: # For tracking changes in Markdown with Critic Markup
   - pymdownx.details: # Makes Admonition call-outs collapsible
-  - pymdownx.emoji: # Inlines emojis and icons in *.svg format into HTML[^4^][4]
-  - pymdownx.highlight: # Adds syntax highlighting for code blocks[^5^][5]
-  - pymdownx.inlinehilite: # Syntax highlighting for inline code[^6^][6]
-  - pymdownx.keys: # For rendering keyboard keys and combinations[^7^][7]
-  - pymdownx.smartsymbols: # Converts character sequences to corresponding symbols[^8^][8]
+  - pymdownx.emoji: # Inlines emojis and icons in *.svg format into HTML
+  - pymdownx.highlight: # Adds syntax highlighting for code blocks
+  - pymdownx.inlinehilite: # Syntax highlighting for inline code
+  - pymdownx.keys: # For rendering keyboard keys and combinations
+  - pymdownx.smartsymbols: # Converts character sequences to corresponding symbols
   - pymdownx.snippets: # Embed content from files into documents
-  - pymdownx.superfences: # Allows nesting of code/content blocks[^9^][9]
-  - pymdownx.tabbed: # Groups related content under accessible tabs[^10^][10]
-  - pymdownx.tasklist: # GitHub Flavored Markdown inspired task lists[^11^][11]
+  - pymdownx.superfences: # Allows nesting of code/content blocks
+  - pymdownx.tabbed: # Groups related content under accessible tabs
+  - pymdownx.tasklist: # GitHub Flavored Markdown inspired task lists
       custom_checkbox: true
-  - toc:
-      permalink: true
+  - abbr
   - admonition
   - attr_list
   - def_list
   - footnotes
-  - tables
-  - abbr
   - md_in_html
+  - toc:
+      permalink: true
+  - tables
+
+  
 
