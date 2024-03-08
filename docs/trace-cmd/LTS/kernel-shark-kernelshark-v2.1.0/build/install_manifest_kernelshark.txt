@@ -1,0 +1,15 @@
+/usr/local/lib64/libkshark.so.2.1.0
+/usr/local/lib64/libkshark.so.2
+/usr/local/lib64/libkshark-plot.so.2.1.0
+/usr/local/bin/kernelshark
+/usr/local/bin/kshark-record
+/usr/local/lib64/libkshark-gui.so.2.1.0
+/usr/local/share/applications/kernelshark.desktop
+/usr/local/share/icons/kernelshark/KS_icon_shark.svg
+/usr/local/share/icons/kernelshark/KS_icon_fin.svg
+/usr/local/bin/kshark-su-record
+/usr/local/lib64/kernelshark/plugins/plugin-sched_events.so
+/usr/local/lib64/kernelshark/plugins/plugin-event_field_plot.so
+/usr/local/lib64/kernelshark/plugins/plugin-latency_plot.so
+/usr/local/lib64/kernelshark/plugins/plugin-kvm_combo.so
+/usr/local/lib64/kernelshark/plugins/plugin-missed_events.so
