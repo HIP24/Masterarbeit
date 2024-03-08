@@ -1,6 +1,0 @@
-/usr/local/lib64/libkshark.so
-/usr/local/include/kernelshark/libkshark.h
-/usr/local/include/kernelshark/libkshark-model.h
-/usr/local/include/kernelshark/libkshark-plugin.h
-/usr/local/include/kernelshark/libkshark-tepdata.h
-/usr/local/lib/x86_64-linux-gnu/pkgconfig/libkshark.pc
