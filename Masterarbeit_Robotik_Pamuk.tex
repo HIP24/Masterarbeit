@@ -69,7 +69,8 @@
 %
 % Einträge für Deckblatt, Kurzfassung, etc.
 %
-\title{Arbeitstitel\\Arbeitstitel}
+\title{Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die
+Einhaltung der Echtzeit}
 \author{Halil Pamuk, BSc}
 \studentnumber{51842568}
 %\author{Titel Vorname Name, Titel\and{}Titel Vorname Name, Titel}
@@ -81,10 +82,17 @@
 %\secondsupervisor[Begutachter]{Titel Vorname Name, Titel}
 %\secondsupervisor[Begutachterinnen]{Titel Vorname Name, Titel}
 \place{Wien}
-\kurzfassung{\blindtext}
+\kurzfassung{Erstellung einer Echtzeit-Robotersteuerungsplattform unter Verwendung von Salamander OS, Xenomai, QEMU
+und PCV-521 in der Yocto-Umgebung. Die Plattform basiert auf Salamander OS und nutzt Xenomai für Echtzeit-
+Funktionen. Dazu muss im ersten Schritt die Virtualisierungsplattform evaluiert werden. (QEMU, Hyper-V, Virtual
+Box, etc.) Als weiterer Schritt folgt die Anbindung eines Roboters über eine VARAN-Bus Schnittstelle. Das
+gesamte System wird in der Yocto-Umgebung erstellt und konfiguriert.
+Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzeit-Funktionen und effizienten
+Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von
+Roboteranwendungen verbessern kann}
 \schlagworte{Schlagwort1, Schlagwort2, Schlagwort3, Schlagwort4}
 \outline{\blindtext}
-\keywords{Keyword1, Keyword2, Keyword3, Keyword4}
+\keywords{Echtzeit, Virtualisierung, Xenomai, VARAN}
 %\acknowledgements{\blindtext}
 
 \begin{document}
@@ -94,37 +102,47 @@
 %
 % .. und hier beginnt die eigentliche Arbeit. Viel Erfolg beim Verfassen!
 %
-\chapter{Erste Überschrift der Ebene 1 (chapter)}
-\blinddocument
+%Die folgende Gliederung von Bachelor- und Masterarbeiten ist für die Robotik-Studiengänge
+%verpflichtend vorgeschrieben.
+%
+%- Deckblatt
+%- Eidesstattliche Erklärung (digital signiert)
+%- Kurzfassung und Abstract mit Schlüsselwörtern/Keywords
+%- Danksagung (optional)
+%- Inhaltsverzeichnis
 
+%- Einleitung (die genannten Punkte müssen keine eigenen Unterkapitel sein, müssen aber aus der Einleitung klar hervorkommen):
+%   - Stand der Technik
+%   - Problem- und Aufgabenstellung
+%   - Zielsetzung
+%- Hauptteil -> Gliederung je nach Thema
+%   - Methodik
+%   - Resultate
+%   - Wirtschaftliche Betrachtung (optional)
+%   - Diskussion
+%- Zusammenfassung und Ausblick
+
+%- Literaturverzeichnis
+%- Abbildungsverzeichnis
+%- Tabellenverzeichnis
+%- Abkürzungsverzeichnis (optional)
+%- Glossar (optional)
+%- Anhang (optional)
+\chapter{Einleitung}
 \blindmathpaper
-
-\section{Erste Überschrift Tiefe 2 (section)}
+\clearpage
+\section{Stand der Technik}
+\blindtext
+\clearpage
+\section{Problem- und Aufgabenstellung}
+\blindtext
+\clearpage
+\section{Zielsetzung}
 \blindtext
 
-\subsection{Erste Überschrift Tiefe 3 (subsection)}
-\blindtext
-
-\subsubsection{Erste Überschrift Tiefe 4 (subsubsection)}
-\blindtext
-
-\chapter{Zweite Überschrift der Tiefe 1 (chapter)}
-\blindtext
-
-\section{Zweite Überschrift Tiefe 2 (section)}
-\blindtext
-
-\section{Zweite Überschrift Tiefe 2 (section)}
-\blindtext
-
-\subsection{Zweite Überschrift Tiefe 3 (subsection)}
-\blindtext
-
-\subsection{Dritte Überschrift Tiefe 3 (subsection)}
-\blindtext
-
-\subsubsection{Zweite Überschrift Tiefe 4 (subsubsection)}
-\blindtext
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\chapter{Methodik}
 
 \noindent Querverweise werden in \LaTeX{} automatisch erzeugt und verwaltet, damit sie leicht aktualisiert werden können. Hier wird zum Beispiel auf Abbildung \ref{Abb1} verwiesen.
 
@@ -188,59 +206,17 @@ int main(int argc, char **argv)
 Literaturverweise sollten automatisch verwaltet werden, vor allem, wenn es viele Quellenverweise gibt. Beispiele sind  \cite{Ko05a}, \cite{Ko05b}, \cite{MiGo05}, \cite{TeGo14}, \cite{HuHa07}, \cite{HuZi10}, \cite{ZiKu07}, \cite{He07}, \cite{SIE11}, \cite{SIE14}, \cite{ISO98}, \cite{ATM11}, \cite{Hu11}, \cite{Po10}. Das verwendete Zitierformat (bzw.~das Format des Literaturverzeichnisses) ist entspechend der Vorgaben der Studiengänge zu wählen.
 Es wird dringend empfohlen, BibTeX~zu verwenden (wie in diesem Beispiel).
 
-\chapter{Dritte Überschrift der Tiefe 1 (chapter)}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.5\linewidth]{img/buchruecken}
-\caption{3. Beispiel für die Beschriftung eines Buchrückens.}\label{Abb3}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.5\linewidth]{img/buchruecken}
-\caption{4. Beispiel für die Beschriftung eines Buchrückens.}\label{Abb4}
-\end{figure}
+
+\clearpage
+\chapter{Hauptteil}
+\clearpage
+\chapter{Resultate}
+\clearpage
+\chapter{Diskussion}
+\clearpage
+\chapter{Zusammenfassung und Ausblick}
 
 
-\begin{table}[!htbp]
-\centering
-\caption{3. Semesterplan der Lehrveranstaltung \glqq Angewandte Mathematik\grqq.}\label{tab3}
-\begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
-Datum & Thema & Raum\\\hline
-20.08.2008 & Graphentheorie & HS 3.13\\
-01.10.2008 & Biomathematik & HS 1.05\\\hline
-\end{tabular}
-\end{table}
-\begin{table}[!htbp]
-\centering
-\caption{4. Semesterplan der Lehrveranstaltung \glqq Angewandte Mathematik\grqq.}\label{tab4}
-\begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
-Datum & Thema & Raum\\\hline
-20.08.2008 & Graphentheorie & HS 3.13\\
-01.10.2008 & Biomathematik & HS 1.05\\\hline
-\end{tabular}
-\end{table}
-
-\begin{align}
-x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl3}
-\end{align}
-\begin{align}
-x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl4}
-\end{align}
-\begin{lstlisting}[language=C++,name={2. Beispiel},label={sc:bsp:2}]
-#include <iostream>
-
-void SayHello(void)
-{
-    // Kommentar
-    cout << "Hello World!" << endl;
-}
-
-int main(int argc, char **argv)
-{
-    SayHello();
-    return 0;
-}
-\end{lstlisting}
 
 %
 % Hier beginnen die Verzeichnisse.
@@ -248,11 +224,6 @@ int main(int argc, char **argv)
 \clearpage
 \printbibliography
 \clearpage
-
-
-
-\cite{SIE14}
-
 
 % Das Abbildungsverzeichnis
 \listoffigures
