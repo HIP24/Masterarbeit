@@ -1,4 +1,4 @@
-# Am Dienstag, 20. Februar 2024, 11:20 
+## Am Dienstag, 20. Februar 2024, 11:20 
 Hallo Halil,
 
 >> 375us ist halt weit weg von dem was Salamander sonst an Latenz hat.
@@ -26,7 +26,7 @@ LG,
 
 <hr>
 
-# Am Dienstag, 20. Februar 2024, 12:41 
+## Am Dienstag, 20. Februar 2024, 12:41 
 Hallo Halil,
 
 > Ich habe bis jetzt folgendes getan, um die Latenz zu reduzieren
@@ -51,6 +51,21 @@ LG,
 
 
 <hr>
+
+
+
+## Richard Meeting 11.03.2024
+CPU isolierung läuft auf User space, nicht kernel space
+QEMU mit echtzeit prio chrt einschalten aber niedrige prio 1-99
+
+1) out-of-of-the-box
+2) cpi isolated auf user space
+3) realtime priority experimentieren
+4) cpu soll keine interrupts behandeln -> welche cpu soll ich wählen?
+5) HYprerthreading ausschalten damit cpu cores nicht geteilt werden
+6) kernelshark
+
+
 
 
 

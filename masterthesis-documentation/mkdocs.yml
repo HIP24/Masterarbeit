@@ -17,6 +17,14 @@ theme:
 #extra_javascript:
 #  - js/extra.js
 plugins:
+  - exclude:
+      glob:
+        - kernel-patch/linux/*
+        - kernel-patch/rt_linux/*
+        - "*.tmp"
+        - "*.gz"
+      regex:
+        - '.*.(tmp|bin|tar)$'
   - search
 markdown_extensions:
   - pymdownx.arithmatex: # For rendering block and inline math equations
