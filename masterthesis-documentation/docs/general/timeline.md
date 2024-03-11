@@ -23,4 +23,5 @@
 | 05.03.2024 | lat worst reduced from 374.075 to 87.379 |
 | 06.03.2024 | Add documentation local server |
 | 07.03.2024 | Start Salamander4 CPU with [icecc](../salamander4/yocto/icecc.png) |
-
+| 08.03.2024 | Merge master and readme |
+| 11.03.2024 | Kernel patch |
