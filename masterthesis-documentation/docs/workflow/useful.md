@@ -44,6 +44,9 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 `git rm --cached documentation/test`  
 <a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">How To Fix Gitignore Not Working</a>
 
+## Remove a commit but keep the changes in your working directory
+git reset --soft HEAD~1
+
 ## start_qemu.sh from everytwhere
 Script [start_qemu.sh](../salamander4/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
 ```
