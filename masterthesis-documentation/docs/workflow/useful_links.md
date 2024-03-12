@@ -6,7 +6,7 @@
 [ftrace: trace your kernel functions!](https://jvns.ca/blog/2017/03/19/getting-started-with-ftrace/)  
 
 ## trace-cmd
-[Tracing VMs Seeing How Host and Guest Interact - Steven Rostedt, Google](https://www.youtube.com/watch?v=v0ocveEsvNU)  
+Youtube: [Tracing VMs Seeing How Host and Guest Interact - Steven Rostedt, Google](https://www.youtube.com/watch?v=v0ocveEsvNU)  
 [trace-cmd Tutorial](https://rostedt.org/host-guest-tutorial/)  
 [trace-cmd Presentation](https://kvm-forum.qemu.org/2021/HostGuestTracingInVirtualizationSlides.pdf)  
 [trace-cmd Documentation](https://trace-cmd.org/Documentation/trace-cmd/)  

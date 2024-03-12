@@ -1,7 +1,7 @@
 # Linux kernel patch
 
 [The Linux Kernel Archives](https://www.kernel.org/)  
-[Youtube: Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
+Youtube: [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
 
 ## Proceedure
 Install [Linux kernels](https://mirrors.edge.kernel.org/pub/linux/kernel/)  

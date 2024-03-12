@@ -65,9 +65,11 @@ QEMU mit echtzeit prio chrt einschalten aber niedrige prio 1-99
 5) HYprerthreading ausschalten damit cpu cores nicht geteilt werden
 6) kernelshark
 
+https://www.suse.com/c/cpu-isolation-nohz_full-part-3/
+https://sigma-star.at/blog/2022/02/linux-proc-prios/
+https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html
 
-
-
+[  235.780378][  T336] X-LRT-Timer: Sigmatek LRT Driver: time-keeper: detected overrun when waiting on period, ovr=2, res=-110
 
 
 ❌✅
