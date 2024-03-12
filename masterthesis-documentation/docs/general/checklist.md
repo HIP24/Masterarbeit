@@ -12,8 +12,7 @@
 - [x] trace-cmd and kernelshark with Salamander4 as guest 
 - [x] Used the Xenomai test suite: latency -T 60` 
 - [x] Isolated host CPU for guest
-- [x] Latency got better after [isolation](../general/protocol.md#isolate-cpus-on-host-system-ubuntu)
-
+- [x] Latency got better after [isolation](../general/protocol.md#isolate-cpus-on-host-system)
 
 
 ## Missing
@@ -37,3 +36,10 @@ Test latency
     - [ ] Inspect Kernelshark
 - [ ] Turn off Hyprerthreading so that CPU cores are not divided
     - [ ] Inspect Kernelshark
+
+
+
+
+
+Kapitel 1: Ich muss begründen warum ich das mache weil es gibt schon bestehende materialien, warum neu? Nicht wegen Firma! Welche Requirements? basieren auf normen? physik? begründen. 
+Problem: Integration von Echtzeit-Funktionen (Harter Echtzeit) in eine virtualisierte Robotersteuerungsplattform

@@ -25,3 +25,4 @@
 | 07.03.2024 | Start Salamander4 CPU with [icecc](../resources/images/yocto/icecc.png) |
 | 08.03.2024 | Merge master and readme |
 | 11.03.2024 | [Kernel patch](../resources/images/kernel-patch/uname.png), richard meeting and settings.json |
+| 12.03.2024 | real time priorities with chrt -f 50, no success |

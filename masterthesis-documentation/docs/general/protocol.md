@@ -8,10 +8,6 @@
 1) Install Ubuntu 22.04.3 LTS
 2) Do everything in [build_with_yocto.md](../sigmatek/build_with_yocto.md)
 
-## Configure ip addresses 
-[Configure PC](../resources//images/configure_ip/ip_static_connection_ubuntu.png) to `10.10.1.1`.   
-[Salamander Gateway](../resources//images/configure_ip/ip_list_ubuntu.png) set to `10.10.1.229`
-
 ## SSH to device
 Connect to device with `ssh -oHostKeyAlgorithms=+ssh-rsa root@10.10.1.229`  
 or `ssh -p 22 root@192.168.1.x` (changes often)
@@ -19,7 +15,7 @@ or `ssh -p 22 root@192.168.1.x` (changes often)
 ## LasalClass2 to device
 Connect LasalClass2 with [Salamander 4](../resources//images/lasal/class2/lasalclass2_ip.png), IP of [Salamander4 device](../resources//images/lasal/class2/lasalclass2_salamander4_ip.png)
 
-## Configure bridge for qemu
+## Configure bridge for QEMU
 This setup allows the virtual machines to communicate with the outside network through the Ethernet connection provided by either the laptop or the docking station.
 
 | name       | device |
@@ -37,42 +33,12 @@ This setup allows the virtual machines to communicate with the outside network t
 - Result should look like [this](../resources//images/configure_bridge/get-to-know/connections.png) and [this](../resources//images/configure_bridge/get-to-know/bridge_connections.png).
 - More info in [nmbridge.md](../salamander4/QEMU/nmbridge.md). 
 
-
-## Use the Xenomai test suite
+## Reduce latency
+We test the system using the Xenomai test suite
 - `latency -T 60`  
 - `clocktest -D -T 60` 
 
-
-## Isolate CPUs on host system (Ubuntu)
-
-To isolate CPUs on your host system (Ubuntu), you can add the `isolcpus` option to the kernel boot configuration. Here are the steps you can follow:
-
-1. Open the GRUB configuration file with a text editor. You can use the `nano` editor for this. Execute the following command in your terminal:
-    ```bash
-    sudo nano /etc/default/grub
-    ```
-2. Search for the entry `GRUB_CMDLINE_LINUX` and add `isolcpus=0,1,2,3,4` (or the corresponding CPU numbers you want to isolate). It should then look like this:
-    ```bash
-    GRUB_CMDLINE_LINUX="isolcpus=0,1,2,3,4"
-    ```
-3. Save the changes and close the editor. If you are using `nano`, you can do this by pressing `Ctrl+X`, then typing `Y` to save the changes, and finally pressing `Enter` to close the editor.
-
-4. Update GRUB with the following command:
-    ```bash
-    sudo update-grub
-    ```
-5. Reboot your system for the changes to take effect.
-
-
-Check with: `cat /sys/devices/system/cpu/isolated`
-
-```
-sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/online 
-0-19
-sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
-0-4
-```
-
+### Out-of-the-box 
 Before taskset with [`qemu_def_4schedstats.sh`](../salamander4/QEMU/qemu_def_4schedstats.sh)
 ```
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
@@ -153,6 +119,38 @@ HSS|    max|        59|     68.847|     77.257
 RTS|      1.175|      2.955|    374.075|      40|     0|    00:01:00/00:01:00
 ```
 
+
+
+
+### Isolate CPUs on host
+
+To isolate CPUs on your host system (Ubuntu), you can add the `isolcpus` option to the kernel boot configuration. Here are the steps you can follow:
+
+1. Open the GRUB configuration file with a text editor. You can use the `nano` editor for this. Execute the following command in your terminal:
+    ```bash
+    sudo nano /etc/default/grub
+    ```
+2. Search for the entry `GRUB_CMDLINE_LINUX` and add `isolcpus=0,1,2,3,4` (or the corresponding CPU numbers you want to isolate). It should then look like this:
+    ```bash
+    GRUB_CMDLINE_LINUX="isolcpus=0,1,2,3,4"
+    ```
+3. Save the changes and close the editor. If you are using `nano`, you can do this by pressing `Ctrl+X`, then typing `Y` to save the changes, and finally pressing `Enter` to close the editor.
+
+4. Update GRUB with the following command:
+    ```bash
+    sudo update-grub
+    ```
+5. Reboot your system for the changes to take effect.
+
+
+Check with: `cat /sys/devices/system/cpu/isolated`
+
+```
+sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/online 
+0-19
+sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
+0-4
+```
 
 After taskset on CPU4 with [`qemu_def_5taskset.sh`](../salamander4/QEMU/qemu_def_5taskset.sh)
 ```
@@ -237,54 +235,165 @@ HSS|    max|        59|     46.746|     19.462
 RTS|      1.154|      3.078|     87.379|       0|     0|    00:01:00/00:01:00
 ```
 
-
 > lat worst reduced from 374.075 to 87.379
 
+### Enable Preempt_RT Kernel
+Do everything in [kernel-patch.md](../kernel-patch/kernel-patch.md) to patch the kernel and enable Fully Preemptible Kernel (RT).
 
-## trace-cmd Problems 
-<a href="https://rostedt.org/host-guest-tutorial/" target="_blank">Rostedt Tutorial</a>  
-`sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all`
+!!! info
+    Before the isolation of CPU 4, both kernel threads and user processes were running on this CPU. The user processes included various applications such as msedge, code, bash and qemu-system-x86.
+    
+    After isolating CPU 4, only kernel threads and the qemu-system-x86 process appear to be running on this CPU. There do not appear to be any other user processes running on this CPU.
+    
+    The isolcpus option prevents the kernel from scheduling normal (non-real-time) processes on the isolated CPUs. However, there are some exceptions:
 
-### 2 Problems  
-1. "Failed to negotiate timestamps synchronization with the host"
+    - If a process is explicitly set to run on an isolated CPU (for example with taskset), it will run on that CPU even if it is isolated.
+    - Some kernel threads can run on isolated CPUs because they are not controlled by the normal scheduler. These include the threads you see in your output, such as kthreadd, migration/4, ksoftirqd/4, kworker/4:0-events and others.
+    - Interrupts can be handled on isolated CPUs unless they are explicitly redirected with the irqaffinity option.
+
+```
+sigma_ibo@pamhal:$ ps -e -o pid,psr,comm | awk '$2 == 4'
+      2   4 kthreadd
+     18   4 pr/legacy
+     35   4 cpuhp/4
+     36   4 idle_inject/4
+     37   4 irq_work/4
+     38   4 migration/4
+     39   4 rcuc/4
+     40   4 ktimers/4
+     41   4 ksoftirqd/4
+     42   4 kworker/4:0-events
+     43   4 kworker/4:0H-kblockd
+    198   4 kdevtmpfs
+    201   4 kauditd
+    207   4 kcompactd0
+    208   4 ksmd
+    237   4 irq/124-PCIe PME
+    252   4 hwrng
+    268   4 kworker/4:1-events
+    372   4 irq/138-rtsx_pci
+    416   4 irq/178-nvme1q5
+    483   4 jbd2/nvme1n1p2-8
+    866   4 irq/230-iwlwifi:queue_14
+    867   4 irq/230-s-iwlwifi:queue_14
+    913   4 kworker/R-ttm
+    914   4 card0-crtc0
+    915   4 card0-crtc1
+    916   4 card0-crtc2
+    917   4 card0-crtc3
+   1677   4 krfcommd
+   3184   4 kworker/4:1H-kblockd
+   3370   4 qemu-system-x86
+   3387   4 kvm-nx-lpage-recovery-3370
+   3776   4 kvm-pit/3370
+```
+
+The latency is way too unreliable and not realtime.
+```
+root@sigmatek-core2:~# latency -s -T 60
+== Sampling period: 100 us
+== Test mode: periodic user-mode task
+== All results in microseconds
+warming up...
+RTT|  00:00:01  (periodic user-mode task, 100 us period, priority 99)
+RTH|----lat min|----lat avg|----lat max|-overrun|---msw|---lat best|--lat worst
+RTD|      0.995|      2.722|   4154.694|      47|     0|      0.995|   4154.694
+RTD|      0.916|      2.406|    303.367|      58|     0|      0.916|   4154.694
+RTD|      0.723|      2.305|    295.200|      68|     0|      0.723|   4154.694
+RTD|      0.901|      2.330|    244.994|      76|     0|      0.723|   4154.694
+RTD|      0.950|      2.247|    220.734|      80|     0|      0.723|   4154.694
+RTD|      0.725|      2.130|     53.888|      80|     0|      0.723|   4154.694
+RTD|      0.794|      2.270|    117.382|      81|     0|      0.723|   4154.694
+RTD|      0.691|      2.748|   4907.415|     133|     0|      0.691|   4907.415
+RTD|      0.982|      2.253|     67.471|     133|     0|      0.691|   4907.415
+RTD|      0.748|      2.221|     90.370|     133|     0|      0.691|   4907.415
+RTD|      0.818|      2.230|     63.722|     133|     0|      0.691|   4907.415
+RTD|      1.045|      2.193|     50.296|     133|     0|      0.691|   4907.415
+RTD|      1.216|      2.213|     37.887|     133|     0|      0.691|   4907.415
+RTD|      1.040|      2.211|     46.584|     133|     0|      0.691|   4907.415
+RTD|      0.676|      2.283|    716.719|     142|     0|      0.676|   4907.415
+RTD|      0.590|      2.240|    148.979|     143|     0|      0.590|   4907.415
+RTD|      0.700|      2.218|    144.958|     148|     0|      0.590|   4907.415
+RTD|      0.598|      2.818|    161.812|     153|     0|      0.590|   4907.415
+RTD|      0.852|      2.202|    127.750|     157|     0|      0.590|   4907.415
+RTD|      1.118|      2.705|   4493.786|     205|     0|      0.590|   4907.415
+RTD|      0.630|      2.226|    189.791|     207|     0|      0.590|   4907.415
+RTT|  00:00:22  (periodic user-mode task, 100 us period, priority 99)
+RTH|----lat min|----lat avg|----lat max|-overrun|---msw|---lat best|--lat worst
+RTD|      1.043|      3.102|   4843.394|     287|     0|      0.590|   4907.415
+RTD|      0.981|      2.579|   2054.323|     312|     0|      0.590|   4907.415
+RTD|      1.006|      2.346|    203.226|     318|     0|      0.590|   4907.415
+RTD|      0.946|      2.333|    173.532|     323|     0|      0.590|   4907.415
+RTD|      0.741|      2.413|    195.747|     328|     0|      0.590|   4907.415
+RTD|      0.695|      2.369|    224.494|     334|     0|      0.590|   4907.415
+RTD|      0.921|      2.385|    477.227|     343|     0|      0.590|   4907.415
+RTD|      1.263|      2.616|   3155.684|     378|     0|      0.590|   4907.415
+RTD|      0.775|      2.252|    179.318|     380|     0|      0.590|   4907.415
+RTD|      0.721|      2.226|     25.904|     380|     0|      0.590|   4907.415
+RTD|      0.810|      2.200|    189.302|     382|     0|      0.590|   4907.415
+RTD|      0.619|      2.295|    211.109|     387|     0|      0.590|   4907.415
+RTD|      0.681|      2.716|   4740.773|     436|     0|      0.590|   4907.415
+RTD|      0.745|      2.244|    184.998|     439|     0|      0.590|   4907.415
+RTD|      0.806|      2.259|    184.789|     443|     0|      0.590|   4907.415
+RTD|      0.577|      2.320|    259.109|     450|     0|      0.577|   4907.415
+RTD|      0.927|      2.595|   1453.449|     474|     0|      0.577|   4907.415
+RTD|      0.824|      2.710|   3261.857|     514|     0|      0.577|   4907.415
+RTD|      0.718|      2.450|    229.777|     522|     0|      0.577|   4907.415
+RTD|      0.773|      2.382|    238.656|     531|     0|      0.577|   4907.415
+RTD|      0.815|      2.470|    268.511|     538|     0|      0.577|   4907.415
+RTT|  00:00:43  (periodic user-mode task, 100 us period, priority 99)
+RTH|----lat min|----lat avg|----lat max|-overrun|---msw|---lat best|--lat worst
+RTD|      1.500|      2.560|    384.558|     554|     0|      0.577|   4907.415
+RTD|      1.371|      2.475|    243.396|     562|     0|      0.577|   4907.415
+RTD|      0.624|      2.573|    511.409|     576|     0|      0.577|   4907.415
+RTD|      0.899|      3.044|   4593.851|     648|     0|      0.577|   4907.415
+RTD|      1.090|      2.827|   3403.441|     688|     0|      0.577|   4907.415
+RTD|      0.900|      2.549|    337.856|     701|     0|      0.577|   4907.415
+RTD|      0.979|      2.323|    282.412|     711|     0|      0.577|   4907.415
+RTD|      0.768|      2.298|    236.064|     718|     0|      0.577|   4907.415
+RTD|      0.846|      2.243|    202.747|     723|     0|      0.577|   4907.415
+RTD|      0.732|      3.081|   4731.553|     810|     0|      0.577|   4907.415
+RTD|      1.630|      2.339|    264.409|     818|     0|      0.577|   4907.415
+RTD|      0.820|      2.417|    305.139|     829|     0|      0.577|   4907.415
+RTD|      0.857|      2.954|   5926.355|     899|     0|      0.577|   5926.355
+RTD|      0.752|      2.234|    273.349|     906|     0|      0.577|   5926.355
+RTD|      0.630|      2.290|    225.216|     914|     0|      0.577|   5926.355
+RTD|      1.323|      2.322|    226.582|     920|     0|      0.577|   5926.355
+RTD|      1.181|      2.296|    224.922|     928|     0|      0.577|   5926.355
+HSH|--param|--samples-|--average--|---stddev--
+HSS|    min|        59|      0.220|      0.418
+HSS|    avg|    598956|      1.996|      4.444
+HSS|    max|        59|    219.780|     84.249
+---|-----------|-----------|-----------|--------|------|-------------------------
+RTS|      0.577|      2.428|   5926.355|     928|     0|    00:01:00/00:01:00
+```
+### Realtime priority
+
+!!! danger
+    Setting a real-time priority of 99 for a process means that this process has the highest priority in the system and is executed before all other processes. This can result in other processes, including important system processes, not receiving the CPU time they need to function properly. This can lead to system instability and, in the worst case, to the system becoming unresponsive or "crashing".
+
+    It is important to be careful when using real-time priorities and ensure that other important processes still get the CPU time they need. It might be helpful to gradually increase the real-time priority and observe the effects on the system instead of jumping straight to the highest priority.
+
+
+To see the real-time priorities of all running processes, you can use this command:
+```
+ps -eo pid,comm,ni,rtprio,cls
+```
+
+## Trace-cmd 
+### Problems trace-cmd 
+After following <a href="https://rostedt.org/host-guest-tutorial/" target="_blank">Rostedt Tutorial</a>, I had following problems when using: 
+```
+sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all
+```
+#### Problem 1  
+"Failed to negotiate timestamps synchronization with the host"
 [timestamp_error.png](../resources/images/trace-cmd/timestamp_error.png)
 
+#### Problem 2
 2. "Cannot find host / guest tracing into the loaded streams" [kvm_combo_error.png](../resources/images/trace-cmd/kvm_combo_error.png)
 
-(These were solved in [Ubuntu 22.04 VM](#ubuntu-vm-on-virtual-machine-manager))
-
-### What I did
-1.  - enabled
-        - CONFIG_VSOCKETS=y
-        - CONFIG_VHOST_VSOCK=y
-        - CONFIG_VIRTIO_VSOCKETS=y
-        - CONFIG_VIRTIO_VSOCKETS_COMMON=y
-        - CONFIG_VSOCKETS_DIAG=y
-        - CONFIG_VSOCKETS_LOOPBACK=y
-        - CONFIG_TRACING=y  
-        - CONFIG_FTRACE=y  
-        - CONFIG_FUNCTION_TRACER=y  
-        - CONFIG_FUNCTION_GRAPH_TRACER=y  
-        - CONFIG_DYNAMIC_FTRACE=y  
-        - CONFIG_DYNAMIC_FTRACE_WITH_REGS=y  
-        - CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y  
-        - CONFIG_DYNAMIC_FTRACE_WITH_ARGS=y  
-        - CONFIG_SCHED_TRACER=y  
-        - CONFIG_FTRACE_SYSCALLS=y  
-        - CONFIG_TRACER_SNAPSHOT=y  
-        - CONFIG_KPROBE_EVENTS=y  
-        - CONFIG_UPROBE_EVENTS=y  
-        - CONFIG_BPF_EVENTS=y  
-        - CONFIG_DYNAMIC_EVENTS=y  
-        - CONFIG_PROBE_EVENTS=y  
-        - CONFIG_SYNTH_EVENTS=y  
-        - CONFIG_HIST_TRIGGERS=y  
-- checked via zcat /proc/config.gz if everything landed on the kernel
-- changed clocksource in guest from kvm-clock to tsc in `/sys/devices/system/clocksource/clocksource0`  
-- Did not check Code yet 
-2. Nothing yet, probably hand in hand with 1.
-
-## Solution to [trace-cmd Problems](#trace-cmd-problems)
+### Solution to [trace-cmd problems](#solution-to-trace-cmd-problems)
 The problem was the trace-cmd version. Set both host and guest to v3.2.0 by copying the files from host to guest:
 ```
 scp /usr/local/bin/trace-cmd root@"$ip_address":/usr/bin
@@ -295,12 +404,11 @@ Now, [trace-cmd version 3.2.0](../resources/images/trace-cmd/trace-cmd_version3.
 
 Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis//test/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
 
-## Ubuntu VM on virtual machine manager
+### Ubuntu VM on virtual machine manager
 After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
 
 
-<div style="text-align: right">
 
-[Link to top](#)
 
-</div>
+
+
