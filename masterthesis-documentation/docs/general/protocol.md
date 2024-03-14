@@ -408,7 +408,5 @@ Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simpl
 After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
 
 
-
-
-
-
+## Connect to hardware Salamander 4
+ssh root@192.168.1.244
