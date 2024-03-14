@@ -4,16 +4,15 @@
 Youtube: [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
 
 ## Proceedure
-Install [Linux kernels](https://mirrors.edge.kernel.org/pub/linux/kernel/)  
-Install [patches](https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/)  
-Patch the kernel source code 
+Download [Linux kernel and patch](https://mirrors.edge.kernel.org/pub/linux/kernel/)  
+Gunzip the patch
+```
+gunzip patch-*
+```
+Patch the kernel source code
 ```
 patch -p1 < ../../rt_linux/patch-*
 ```  
-Load the default configuration for the kernel based on the architecture of your current system, which is x86_64 in this case. 
-```
-make x86_64_defconfig
-```
 Customize the configuration
 ```
 sudo make menuconfig
