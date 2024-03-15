@@ -27,3 +27,5 @@
 | 11.03.2024 | [Kernel patch](../resources/images/kernel-patch/uname.png), richard meeting and settings.json |
 | 12.03.2024 | real time priorities with chrt -f 50, no success |
 | 13.03.2024 | Preventing kernel tasks from being scheduled on CPU4 |
+| 14.03.2024 | irq.md |
+| 15.03.2024 | Timer 1000Hz|
