@@ -78,3 +78,6 @@ dos2unix <file>
 ## Configure ip addresses 
 [Configure PC](../resources//images/configure_ip/ip_static_connection_ubuntu.png) to `10.10.1.1`.   
 [Salamander Gateway](../resources//images/configure_ip/ip_list_ubuntu.png) set to `10.10.1.229`
+
+## Stress the CPUs
+stress -c $(nproc)

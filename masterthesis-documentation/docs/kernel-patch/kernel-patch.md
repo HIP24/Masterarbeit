@@ -61,3 +61,8 @@ scripts/config --disable SYSTEM_REVOCATION_KEYS
 ```
 Then run make again and it should work!  
 [Source](https://stackoverflow.com/questions/67670169/compiling-kernel-gives-error-no-rule-to-make-target-debian-certs-debian-uefi-ce)
+
+
+
+## Useful stuff
+[qemu-optimization](https://null-src.com/posts/qemu-optimization/post.php)
