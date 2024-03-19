@@ -29,3 +29,4 @@
 | 13.03.2024 | Preventing kernel tasks from being scheduled on CPU4 |
 | 14.03.2024 | irq.md |
 | 15.03.2024 | Timer 1000Hz|
+| 18.03.2024 | kernel_processes.md, kernelshark, start thesis|
