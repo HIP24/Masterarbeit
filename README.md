@@ -13,4 +13,5 @@ Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und 
 Roboteranwendungen verbessern kann. 
 
 ### Documentation
+`mkdocs gh-deploy`  
 [Masterthesis documentation](https://hip24.github.io/Masterarbeit/)

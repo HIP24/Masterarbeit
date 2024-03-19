@@ -69,7 +69,25 @@ https://www.suse.com/c/cpu-isolation-nohz_full-part-3/
 https://sigma-star.at/blog/2022/02/linux-proc-prios/
 https://www.osadl.org/Create-a-latency-plot-from-cyclictest-hi.bash-script-for-latency-plot.0.html
 
+
+<hr>
+
+
+## Richard Meeting 19.03.2024
 [  235.780378][  T336] X-LRT-Timer: Sigmatek LRT Driver: time-keeper: detected overrun when waiting on period, ovr=2, res=-110
+
+QEMU, VirtualBox, KVM, and Hyper-V? --> Salamander4
+
+kernel patch
+kernel-tasks
+chrt
+kvm_exit warum?
+kernel tasks auf andere cpu pinnen
+oder
+höhere prio als andere kernel tasks haben -> zb netzwerkkarte
+
 
 
 ❌✅
+
+
