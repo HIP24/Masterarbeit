@@ -54,7 +54,7 @@ fffff
 ## Change permissions for the IRQs
 In order to change the mask, first give permissions:
 ```
-chmod 777 /proc/irq//smp_affinity
+chmod 777 /proc/irq/*/smp_affinity
 ```
 
 ## Change Mask of IRQ
