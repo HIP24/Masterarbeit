@@ -7,6 +7,11 @@ site_description: My awesome docs
 site_author: Halil Pamuk
 theme:
   name: material
+  #features:
+  #- navigation.instant
+  #- navigation.tabs
+  #- navigation.tabs.sticky
+  #- navigation.progress
   palette:
     primary: blue
     scheme: slate

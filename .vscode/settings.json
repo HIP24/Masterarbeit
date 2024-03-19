@@ -9,5 +9,32 @@
         "**/masterthesis-documentation/docs/salamander4/trace-cmd/analysis/test/trace.dat": true,
         "**/masterthesis-documentation/docs/salamander4/trace-cmd/LTS/*": true,
         "**/masterthesis-documentation/docs/salamander4/trace-cmd/working_trace-cmd/*": true
-    }
+    },
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex and Copy",
+            "tools": ["pdflatex", "copy_pdf"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "copy_pdf",
+            "command": "cp",
+            "args": [
+                "%DIR%/%DOCFILE%.pdf",
+                "masterthesis-documentation/docs/%DOCFILE%.pdf"
+            ],
+            "env": {}
+        }
+    ]
 }
