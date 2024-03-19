@@ -17,6 +17,18 @@ Roboteranwendungen verbessern kann.
 |------------|-------|
 | [BS Virtualisierungsprojekt.xlsx](general/BS Virtualisierungsprojekt.xlsx)   | Masterthesis progress |
 
+
+## PDFs
+| File       | Description |
+|------------|-------|
+| [MA_Pamuk.pdf](resources/pdfs/MA_Pamuk.pdf)   | Masterthesis description  |
+| [MA_guide.pdf](resources/pdfs/MA_guide.pdf)   | Masterthesis writing guide |
+| [MA_precision.pdf](resources/pdfs/MA_precision.pdf)   | Master thesis Robotics degree precision  |
+| [MA_deadlines.pdf](resources/pdfs/MA_deadlines.pdf)   | Master thesis deadlines |
+| [PCV 522.pdf](resources/pdfs/PCV 522.pdf)   | PCV 522 module handbook |
+| [LasalClass2_eng.pdf](resources/pdfs/lasalClass2/LasalClass2_eng.pdf)   | Lasal Class 2 documentation  |
+
+
 ## Markdown files
 ### General
 | File       | Description |

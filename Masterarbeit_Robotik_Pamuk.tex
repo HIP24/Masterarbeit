@@ -91,7 +91,7 @@ Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzei
 Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von
 Roboteranwendungen verbessern kann}
 \schlagworte{Schlagwort1, Schlagwort2, Schlagwort3, Schlagwort4}
-\outline{\blindtext}
+\outline{Abstract}
 \keywords{Echtzeit, Virtualisierung, Xenomai, VARAN}
 %\acknowledgements{\blindtext}
 
@@ -128,86 +128,41 @@ Roboteranwendungen verbessern kann}
 %- Abkürzungsverzeichnis (optional)
 %- Glossar (optional)
 %- Anhang (optional)
-\chapter{Einleitung}
-\blindmathpaper
+\chapter{Introduction}
+
 \clearpage
-\section{Stand der Technik}
-\blindtext
+\section{State of the art}
+
 \clearpage
-\section{Problem- und Aufgabenstellung}
-\blindtext
+\section{Problem and task definition}
+In robotics, accurate and timely control is crucial to ensure precise movements and reliable interaction with the environment. However, existing robot control systems often have limitations in terms of real-time capabilities and communication efficiency, which can have a detrimental effect on response time and reliability. The challenge is to develop a powerful real-time robot control platform that overcomes these limitations and improves the performance of robotic applications.
+
+
 \clearpage
-\section{Zielsetzung}
-\blindtext
+\section{Objective}
+
+The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. By combining these technologies, a platform is to be created that provides real-time functions and efficient communication systems. This integration is expected to lead to a significant improvement in the response time and reliability of robot applications.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\chapter{Methodik}
+\chapter{Methodology}
 
-\noindent Querverweise werden in \LaTeX{} automatisch erzeugt und verwaltet, damit sie leicht aktualisiert werden können. Hier wird zum Beispiel auf Abbildung \ref{Abb1} verwiesen.
+The methodology of this thesis consists of several steps. First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualisation platform is selected. After the selection of the virtualisation platform, the robot control platform is implemented. This step includes the installation and configuration of Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. Once the platform has been implemented, the robot is connected via a VARAN bus interface. Finally, the platform is evaluated to determine how the integration of real-time functions and efficient communication systems improves the response time and reliability of robot applications.
 
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.5\linewidth]{img/buchruecken}
-\caption{Beispiel für die Beschriftung eines Buchrückens.}\label{Abb1}
-\end{figure}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.5\linewidth]{img/buchruecken}
-\caption{2. Beispiel für die Beschriftung eines Buchrückens.}\label{Abb2}
-\end{figure}
+- Evaluation der Virtualisierungsplattform: 
+Ich werde verschiedene Virtualisierungsplattformen wie QEMU, Hyper-V, Virtual Box usw. evaluieren. Dies ist ein wichtiger Schritt, um die beste Plattform für meine Anforderungen zu finden.
+  
+- Erstellung und Konfiguration des Systems in der Yocto-Umgebung: 
+Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstellen und zu konfigurieren. Yocto bietet viele Tools und Funktionen, die mir bei der Erstellung und Konfiguration meines Systems helfen können.
 
-Und hier ist ein Verweis auf Tabelle \ref{tab1}. Das gezeigte Tabellenformat ist nur ein Beispiel. Tabellen können individuell gestaltet werden.
+- Verbesserung der Reaktionszeit und Zuverlässigkeit von Roboteranwendungen: 
+Mein Hauptziel ist es, herauszufinden, wie die Integration von Echtzeitfunktionen und effizienten Kommunikationssystemen die Reaktionszeit und Zuverlässigkeit von Roboteranwendungen verbessern kann. Ich strebe an, die Leistung und Zuverlässigkeit meiner Roboteranwendungen zu verbessern, indem ich ihre Fähigkeit verbessere, in Echtzeit auf Ereignisse zu reagieren.
 
-\begin{table}[!htbp]
-\centering
-\caption{Semesterplan der Lehrveranstaltung \glqq Angewandte Mathematik\grqq.}\label{tab1}
-\begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
-Datum & Thema & Raum\\\hline
-20.08.2008 & Graphentheorie & HS 3.13\\
-01.10.2008 & Biomathematik & HS 1.05\\\hline
-\end{tabular}
-\end{table}
-\begin{table}[!htbp]
-\centering
-\caption{2. Semesterplan der Lehrveranstaltung \glqq Angewandte Mathematik\grqq.}\label{tab2}
-\begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
-Datum & Thema & Raum\\\hline
-20.08.2008 & Graphentheorie & HS 3.13\\
-01.10.2008 & Biomathematik & HS 1.05\\\hline
-\end{tabular}
-\end{table}
+- Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
+Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
 
-Hier wird auf die Formel \ref{Gl1} verwiesen.
-
-\begin{align}
-x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl1}
-\end{align}
-\begin{align}
-x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl2}
-\end{align}
-
-\begin{lstlisting}[language=C++,name={1. Beispiel},label={sc:bsp:1}]
-#include <iostream>
-
-void SayHello(void)
-{
-    // Kommentar
-    cout << "Hello World!" << endl;
-}
-
-int main(int argc, char **argv)
-{
-    SayHello();
-    return 0;
-}
-\end{lstlisting}
-
-Literaturverweise sollten automatisch verwaltet werden, vor allem, wenn es viele Quellenverweise gibt. Beispiele sind  \cite{Ko05a}, \cite{Ko05b}, \cite{MiGo05}, \cite{TeGo14}, \cite{HuHa07}, \cite{HuZi10}, \cite{ZiKu07}, \cite{He07}, \cite{SIE11}, \cite{SIE14}, \cite{ISO98}, \cite{ATM11}, \cite{Hu11}, \cite{Po10}. Das verwendete Zitierformat (bzw.~das Format des Literaturverzeichnisses) ist entspechend der Vorgaben der Studiengänge zu wählen.
-Es wird dringend empfohlen, BibTeX~zu verwenden (wie in diesem Beispiel).
-
-
-\clearpage
+\clearpage 
 \chapter{Hauptteil}
 \clearpage
 \chapter{Resultate}

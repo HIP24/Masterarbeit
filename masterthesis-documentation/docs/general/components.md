@@ -19,8 +19,8 @@
 
 
 ## Lasal CLass 
-[Lasal Class 2 english](../resources/pdfs/lasalClass2/LASAL%20CLASS%202_eng.pdf)  
-[Lasal Class 2 deutsch](../resources/pdfs/lasalClass2/LASAL%20CLASS%202.pdf)
+[Lasal Class 2 english](../resources/pdfs/lasalClass2/LasalClass2_eng.pdf)  
+[Lasal Class 2 deutsch](../resources/pdfs/lasalClass2/LasalClass2.pdf)
 
 
 ## QEMU  

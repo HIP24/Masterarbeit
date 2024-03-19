@@ -1,0 +1,279 @@
+%
+% FH Technikum Wien
+% !TEX encoding = UTF-8 Unicode
+%
+% Erstellung von Master- und Bachelorarbeiten an der FH Technikum Wien mit Hilfe von LaTeX und der Klasse TWBOOK
+%
+% Um ein eigenes Dokument zu erstellen, müssen Sie folgendes ergänzen:
+% 1) Mit \documentclass[..] einstellen: Master- oder Bachelorarbeit, Studiengang und Sprache
+% 2) Mit \newcommand{\FHTWCitationType}.. Zitierstandard festlegen (wird in der Regel vom Studiengang vorgegeben - bitte erfragen)
+% 3) Deckblatt, Kurzfassung, etc. ausfüllen
+% 4) und die Arbeit schreiben (die verwendeten Literaturquellen in Literatur.bib eintragen)
+%
+% Getestet mit TeXstudio mit Zeichenkodierung ISO-8859-1 (=ansinew/latin1) und MikTex unter Windows
+% Zu beachten ist, dass die Kodierung der Datei mit der Kodierung des paketes inputenc zusammen passt!
+% Die Kodierung der Datei twbook.cls MUSS ANSI betragen!
+% Bei der Verwendung von UTF8 muss dnicht nur die Kodierung des Dokuments auf UTF8 gestellt sein, sondern auch die des BibTex-Files!
+%
+% Bugreports und Feedback bitte per E-Mail an latex@technikum-wien.at
+%
+% Versionen
+% *) V0.7: 9.1.2015, RO: Modeline angepasst und verschoben
+% *) V0.6: 10.10.2014, RO: Weitere Anpassung an die UK
+% *) V0.5: 8.8.2014, WK: Literaturquellen überarbeitet und angepasst
+% *) V0.4: 4.8.2014, WK: Initalversion in SVN eingespielt
+%
+\documentclass[MMR,Master,english]{twbook}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%
+% Hier biblatex & Biber konfigurieren; Vergessen Sie nicht, dass Sie biber verwenden müssen um eine Bibliothek zu erzeugen
+%
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{Literatur.bib}
+
+%
+% Bei Bedarf bitte hier die Syntax-Highlightings anpassen
+%
+\usepackage[final]{listings}
+\lstset{captionpos=b, numberbychapter=false,caption=\lstname,frame=single, numbers=left, stepnumber=1, numbersep=2pt, xleftmargin=15pt, framexleftmargin=15pt, numberstyle=\tiny, tabsize=3, columns=fixed, basicstyle={\fontfamily{pcr}\selectfont\footnotesize}, keywordstyle=\bfseries, commentstyle={\color[gray]{0.33}\itshape}, stringstyle=\color[gray]{0.25}, breaklines, breakatwhitespace, breakautoindent}
+\lstloadlanguages{[ANSI]C, C++, [gnu]make, gnuplot, Matlab}
+
+%Formatieren des Quellcodeverzeichnisses
+\makeatletter
+% Setzen der Bezeichnungen für das Quellcodeverzeichnis/Abkürzungsverzeichnis in Abhängigkeit von der eingestellten Sprache
+\providecommand\listacroname{}
+\@ifclasswith{twbook}{english}
+{%
+    \renewcommand\lstlistingname{Code}
+    \renewcommand\lstlistlistingname{List of Code}
+    \renewcommand\listacroname{List of Abbreviations}
+}{%
+    \renewcommand\lstlistingname{Quellcode}
+    \renewcommand\lstlistlistingname{Quellcodeverzeichnis}
+    \renewcommand\listacroname{Abkürzungsverzeichnis}
+}
+% Wenn die Option listof=entryprefix gewählt wurde, Definition des Entyprefixes für das Quellcodeverzeichnis. Definition des Macros listoflolentryname analog zu listoflofentryname und listoflotentryname der KOMA-Klasse
+\@ifclasswith{scrbook}{listof=entryprefix}
+{%
+    \newcommand\listoflolentryname\lstlistingname
+}{%
+}
+\makeatother
+\newcommand{\listofcode}{\phantomsection\lstlistoflistings}
+
+% Die nachfolgenden Pakete stellen sonst nicht benötigte Features zur Verfügung
+\usepackage{blindtext}
+
+%
+% Einträge für Deckblatt, Kurzfassung, etc.
+%
+\title{Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die
+Einhaltung der Echtzeit}
+\author{Halil Pamuk, BSc}
+\studentnumber{51842568}
+%\author{Titel Vorname Name, Titel\and{}Titel Vorname Name, Titel}
+%\studentnumber{XXXXXXXXXXXXXXX\and{}XXXXXXXXXXXXXXX}
+\supervisor{Sebastian Rauh, MSc. BEng}
+%\supervisor[Begutachter]{Titel Vorname Name, Titel}
+%\supervisor[Begutachterin]{Titel Vorname Name, Titel}
+%\secondsupervisor{Titel Vorname Name, Titel}
+%\secondsupervisor[Begutachter]{Titel Vorname Name, Titel}
+%\secondsupervisor[Begutachterinnen]{Titel Vorname Name, Titel}
+\place{Wien}
+\kurzfassung{Erstellung einer Echtzeit-Robotersteuerungsplattform unter Verwendung von Salamander OS, Xenomai, QEMU
+und PCV-521 in der Yocto-Umgebung. Die Plattform basiert auf Salamander OS und nutzt Xenomai für Echtzeit-
+Funktionen. Dazu muss im ersten Schritt die Virtualisierungsplattform evaluiert werden. (QEMU, Hyper-V, Virtual
+Box, etc.) Als weiterer Schritt folgt die Anbindung eines Roboters über eine VARAN-Bus Schnittstelle. Das
+gesamte System wird in der Yocto-Umgebung erstellt und konfiguriert.
+Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzeit-Funktionen und effizienten
+Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von
+Roboteranwendungen verbessern kann}
+\schlagworte{Schlagwort1, Schlagwort2, Schlagwort3, Schlagwort4}
+\outline{\blindtext}
+\keywords{Echtzeit, Virtualisierung, Xenomai, VARAN}
+%\acknowledgements{\blindtext}
+
+\begin{document}
+
+\maketitle
+
+%
+% .. und hier beginnt die eigentliche Arbeit. Viel Erfolg beim Verfassen!
+%
+%Die folgende Gliederung von Bachelor- und Masterarbeiten ist für die Robotik-Studiengänge
+%verpflichtend vorgeschrieben.
+%
+%- Deckblatt
+%- Eidesstattliche Erklärung (digital signiert)
+%- Kurzfassung und Abstract mit Schlüsselwörtern/Keywords
+%- Danksagung (optional)
+%- Inhaltsverzeichnis
+
+%- Einleitung (die genannten Punkte müssen keine eigenen Unterkapitel sein, müssen aber aus der Einleitung klar hervorkommen):
+%   - Stand der Technik
+%   - Problem- und Aufgabenstellung
+%   - Zielsetzung
+%- Hauptteil -> Gliederung je nach Thema
+%   - Methodik
+%   - Resultate
+%   - Wirtschaftliche Betrachtung (optional)
+%   - Diskussion
+%- Zusammenfassung und Ausblick
+
+%- Literaturverzeichnis
+%- Abbildungsverzeichnis
+%- Tabellenverzeichnis
+%- Abkürzungsverzeichnis (optional)
+%- Glossar (optional)
+%- Anhang (optional)
+\chapter{Einleitung}
+\blindmathpaper
+\clearpage
+\section{Stand der Technik}
+\blindtext
+\clearpage
+\section{Problem- und Aufgabenstellung}
+In robotics, accurate and timely control is crucial to ensure precise movements and reliable interaction with the environment. However, existing robot control systems often have limitations in terms of real-time capabilities and communication efficiency, which can have a detrimental effect on response time and reliability. The challenge is to develop a powerful real-time robot control platform that overcomes these limitations and improves the performance of robotic applications.
+
+
+\clearpage
+\section{Zielsetzung}
+
+The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. By combining these technologies, a platform is to be created that provides real-time functions and efficient communication systems. This integration is expected to lead to a significant improvement in the response time and reliability of robot applications.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\chapter{Methodik}
+
+The methodology of this thesis consists of several steps. First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualisation platform is selected. After the selection of the virtualisation platform, the robot control platform is implemented. This step includes the installation and configuration of Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. Once the platform has been implemented, the robot is connected via a VARAN bus interface. Finally, the platform is evaluated to determine how the integration of real-time functions and efficient communication systems improves the response time and reliability of robot applications.
+
+
+
+
+- Evaluation der Virtualisierungsplattform: 
+Ich werde verschiedene Virtualisierungsplattformen wie QEMU, Hyper-V, Virtual Box usw. evaluieren. Dies ist ein wichtiger Schritt, um die beste Plattform für meine Anforderungen zu finden.
+  
+- Erstellung und Konfiguration des Systems in der Yocto-Umgebung: 
+Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstellen und zu konfigurieren. Yocto bietet viele Tools und Funktionen, die mir bei der Erstellung und Konfiguration meines Systems helfen können.
+
+- Verbesserung der Reaktionszeit und Zuverlässigkeit von Roboteranwendungen: 
+Mein Hauptziel ist es, herauszufinden, wie die Integration von Echtzeitfunktionen und effizienten Kommunikationssystemen die Reaktionszeit und Zuverlässigkeit von Roboteranwendungen verbessern kann. Ich strebe an, die Leistung und Zuverlässigkeit meiner Roboteranwendungen zu verbessern, indem ich ihre Fähigkeit verbessere, in Echtzeit auf Ereignisse zu reagieren.
+
+- Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
+Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
+
+
+\noindent Querverweise werden in \LaTeX{} automatisch erzeugt und verwaltet, damit sie leicht aktualisiert werden können. Hier wird zum Beispiel auf Abbildung \ref{Abb1} verwiesen.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.5\linewidth]{img/buchruecken}
+\caption{Beispiel für die Beschriftung eines Buchrückens.}\label{Abb1}
+\end{figure}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.5\linewidth]{img/buchruecken}
+\caption{2. Beispiel für die Beschriftung eines Buchrückens.}\label{Abb2}
+\end{figure}
+
+Und hier ist ein Verweis auf Tabelle \ref{tab1}. Das gezeigte Tabellenformat ist nur ein Beispiel. Tabellen können individuell gestaltet werden.
+
+\begin{table}[!htbp]
+\centering
+\caption{Semesterplan der Lehrveranstaltung \glqq Angewandte Mathematik\grqq.}\label{tab1}
+\begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
+Datum & Thema & Raum\\\hline
+20.08.2008 & Graphentheorie & HS 3.13\\
+01.10.2008 & Biomathematik & HS 1.05\\\hline
+\end{tabular}
+\end{table}
+\begin{table}[!htbp]
+\centering
+\caption{2. Semesterplan der Lehrveranstaltung \glqq Angewandte Mathematik\grqq.}\label{tab2}
+\begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
+Datum & Thema & Raum\\\hline
+20.08.2008 & Graphentheorie & HS 3.13\\
+01.10.2008 & Biomathematik & HS 1.05\\\hline
+\end{tabular}
+\end{table}
+
+Hier wird auf die Formel \ref{Gl1} verwiesen.
+
+\begin{align}
+x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl1}
+\end{align}
+\begin{align}
+x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl2}
+\end{align}
+
+\begin{lstlisting}[language=C++,name={1. Beispiel},label={sc:bsp:1}]
+#include <iostream>
+
+void SayHello(void)
+{
+    // Kommentar
+    cout << "Hello World!" << endl;
+}
+
+int main(int argc, char **argv)
+{
+    SayHello();
+    return 0;
+}
+\end{lstlisting}
+
+Literaturverweise sollten automatisch verwaltet werden, vor allem, wenn es viele Quellenverweise gibt. Beispiele sind  \cite{Ko05a}, \cite{Ko05b}, \cite{MiGo05}, \cite{TeGo14}, \cite{HuHa07}, \cite{HuZi10}, \cite{ZiKu07}, \cite{He07}, \cite{SIE11}, \cite{SIE14}, \cite{ISO98}, \cite{ATM11}, \cite{Hu11}, \cite{Po10}. Das verwendete Zitierformat (bzw.~das Format des Literaturverzeichnisses) ist entspechend der Vorgaben der Studiengänge zu wählen.
+Es wird dringend empfohlen, BibTeX~zu verwenden (wie in diesem Beispiel).
+
+
+\clearpage
+\chapter{Hauptteil}
+\clearpage
+\chapter{Resultate}
+\clearpage
+\chapter{Diskussion}
+\clearpage
+\chapter{Zusammenfassung und Ausblick}
+
+
+
+%
+% Hier beginnen die Verzeichnisse.
+%
+\clearpage
+\printbibliography
+\clearpage
+
+% Das Abbildungsverzeichnis
+\listoffigures
+\clearpage
+
+% Das Tabellenverzeichnis
+\listoftables
+\clearpage
+
+% Das Quellcodeverzeichnis
+\listofcode
+\clearpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{\listacroname}
+\chapter*{\listacroname}
+\begin{acronym}[XXXXX]
+    \acro{ABC}[ABC]{Alphabet}
+    \acro{WWW}[WWW]{world wide web}
+    \acro{ROFL}[ROFL]{Rolling on floor laughing}
+\end{acronym}
+
+%
+% Hier beginnt der Anhang.
+%
+\clearpage
+\appendix
+\chapter{Anhang A}
+\clearpage
+\chapter{Anhang B}
+\end{document}
