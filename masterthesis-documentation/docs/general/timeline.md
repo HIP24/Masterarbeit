@@ -30,4 +30,4 @@
 | 14.03.2024 | irq.md |
 | 15.03.2024 | Timer 1000Hz|
 | 18.03.2024 | kernel_processes.md, kernelshark, start thesis|
-| 18.03.2024 | Added [zotero](https://guides.library.iit.edu/c.php?g=720120&p=6296986), |
+| 18.03.2024 | Added [Zotero](https://guides.library.iit.edu/c.php?g=720120&p=6296986), [Ubuntu Pro](https://ubuntu.com/pro/dashboard) and [Ubuntu PREEMPT_RT](https://ubuntu.com/blog/real-time-ubuntu-released)|

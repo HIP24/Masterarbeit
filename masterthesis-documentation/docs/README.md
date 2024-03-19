@@ -15,10 +15,10 @@ Roboteranwendungen verbessern kann.
 ### Masterarbeit 
 Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
 !!! info
-    Diese Masterarbeit wird laufend aktualisiert. Zu einem späteren Zeitpunkt kann mehr Inhalt vorhanden sein.
+    Diese Masterarbeit wird täglich aktualisiert. Zu einem späteren Zeitpunkt kann mehr Inhalt vorhanden sein.
 
 <div id="page-wrapper">
-  <div><b>Fortschritt der Masterarbeit:</b> Anfangsphase</div> 
+  <div>[Fortschritt](https://codepen.io/chriscoyier/pen/eYBOvJB) der Masterarbeit:<b> Anfangsphase</b> </div> 
   <div class="meter animate">
     <span style="width: 2%"><span></span></span>
   </div> 
