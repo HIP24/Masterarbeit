@@ -11,3 +11,6 @@ gesamte System wird in der Yocto-Umgebung erstellt und konfiguriert.
 Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzeit-Funktionen und effizienten 
 Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von 
 Roboteranwendungen verbessern kann. 
+
+### Documentation
+[Masterthesis documentation](https://hip24.github.io/Masterarbeit/)

@@ -12,6 +12,139 @@ Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzei
 Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von 
 Roboteranwendungen verbessern kann. 
 
+### Masterarbeit 
+Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
+!!! info
+    Diese Masterarbeit wird laufend aktualisiert. Zu einem späteren Zeitpunkt kann mehr Inhalt vorhanden sein.
+
+<div id="page-wrapper">
+  <div><b>Fortschritt der Masterarbeit:</b> Anfangsphase</div> 
+  <div class="meter animate">
+    <span style="width: 2%"><span></span></span>
+  </div> 
+  <!--<div class="meter orange nostripes">
+    <span style="width: 33.3%"></span>
+  </div>
+  <div class="meter red">
+    <span style="width: 80%"></span>
+  </div>
+  -->
+</div>
+
+<style>
+.meter {
+  box-sizing: content-box;
+  height: 20px; /* Can be anything */
+  position: relative;
+  margin: 0; /* Just for demo spacing */
+  background: #555;
+  border-radius: 25px;
+  padding: 3px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(43, 194, 83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43, 194, 83) 37%,
+    rgb(84, 240, 84) 69%
+  );
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.meter > span:after,
+.animate > span > span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  z-index: 1;
+  background-size: 50px 50px;
+  animation: move 2s linear infinite;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+}
+
+.animate > span:after {
+  display: none;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.orange > span {
+  background-image: linear-gradient(#f1a165, #f36d0a);
+}
+
+.red > span {
+  background-image: linear-gradient(#f0a3a3, #f42323);
+}
+
+.nostripes > span > span,
+.nostripes > span::after {
+  background-image: none;
+}
+
+#page-wrapper {
+  width: auto;
+  height: auto;
+}
+pre {
+  background: #000;
+  text-align: left;
+  padding: 20px;
+  margin: 0 auto 30px;
+}
+* {
+  box-sizing: border-box;
+}
+</style>
+
+<script>
+    $(".meter > span").each(function () {
+  $(this)
+    .data("origWidth", $(this).width())
+    .width(0)
+    .animate(
+      {
+        width: $(this).data("origWidth")
+      },
+      1200
+    );
+});
+</script>
+
+
+
 ## Overview
 | File       | Description |
 |------------|-------|
@@ -38,6 +171,8 @@ Roboteranwendungen verbessern kann.
 | [components.md](general/components.md)   | Components of the process |
 | [documentations.md](general/documentations.md)   | Documentations |
 | [checklist.md](general/checklist.md)   | Checklist of the process |
+
+<hr>
 
 ### Workflow
 | File       | Description |
