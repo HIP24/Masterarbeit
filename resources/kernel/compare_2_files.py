@@ -35,4 +35,4 @@ def compare_files(file1, file2, output_file):
     print(f"Comparison results have been written to {output_file}")
 
 # Call the function with the file names
-compare_files("defconfig", "output.txt", "output_comparison.txt")
+compare_files("6.5.0", "6.8.0", "output_comparison.txt")
