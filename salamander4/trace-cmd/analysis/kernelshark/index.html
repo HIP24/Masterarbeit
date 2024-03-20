@@ -16,7 +16,7 @@
         <link rel="prev" href="../info/">
       
       
-        <link rel="next" href="../../../xenomai/clocktest/">
+        <link rel="next" href="../test/kvm_exit_results/">
       
       
       <link rel="icon" href="../../../../img/uni.png">
@@ -1111,6 +1111,70 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2_3" id="__nav_5_2_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Test
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Test
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/kvm_exit_results/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kvm exit results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1591,6 +1655,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful VSCode stuff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1652,6 +1737,9 @@
 <p><a href="../../../../resources/images/trace-cmd/kernelshark/contains_no_data.png">File trace.dat contains no data</a></p>
 <p>Host only
 <div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit
+</code></pre></div></p>
+<p>Host and Guest track all both
+<div class="highlight"><pre><span></span><code>sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all
 </code></pre></div></p>
 <p>Host and Guest track kvm, sched, irq, irq_vectors
 <div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm -e sched -e irq -e irq_vectors -A @3:823 --name Salamander4 -e all ssh root@192.168.51 &#39;ls -lR . &gt; /dev/null&#39;
