@@ -48,7 +48,7 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 git reset --soft HEAD~1
 
 ## start_qemu.sh from everytwhere
-Script [start_qemu.sh](../salamander4/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
+Script [start_qemu.sh](../sigmatek/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
 ```
 sudo nano ~/.bashrc
 export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/

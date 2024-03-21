@@ -9,7 +9,7 @@
 | 14.02.2024 | Installed [Windows VM on Ubuntu](../resources/images/lasal/class2/windows_vm.png), installed [Lasal Class 2 on Windows VM](../resources/images/lasal/class2/lasalclass2.png), connected with [Salamander 4](../resources/images/lasal/class2/lasalclass2_connected.png) |
 | 15.02.2024 | Run [pumpcontrol example](../resources/images/lasal/class2/pumpcontrol.png) successfully |
 | 16.02.2024 | Increased virtual CPU in Windows |
-| 19.02.2024 | [Xenomai-system-tools](../salamander4/xenomai/xenomai-system-tools.md)|
+| 19.02.2024 | [Xenomai-system-tools](../sigmatek/xenomai/xenomai-system-tools.md)|
 | 20.02.2024 | KernelShark |
 | 21.02.2024 | Local Yocto Build finally done |
 | 22.02.2024 | [trace-cmd agent](../resources/images/trace-cmd/trace-cmd_agent_host_guest.png) on guest communicates with host |
@@ -31,5 +31,5 @@
 | 15.03.2024 | Timer 1000Hz|
 | 18.03.2024 | kernel_processes.md, kernelshark, start thesis|
 | 19.03.2024 | Added [Zotero](https://guides.library.iit.edu/c.php?g=720120&p=6296986), [Ubuntu Pro](https://ubuntu.com/pro/dashboard) and [Ubuntu PREEMPT_RT](https://ubuntu.com/blog/real-time-ubuntu-released)|
-| 20.03.2024 | kvm_exit reasons [plot](../salamander4/trace-cmd/analysis/test/plot.png) |
+| 20.03.2024 | kvm_exit reasons [plot](../sigmatek/trace-cmd/analysis/test/plot.png) |
 | 21.03.2024 | |

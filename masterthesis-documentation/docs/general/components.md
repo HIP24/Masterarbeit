@@ -4,14 +4,14 @@
 [Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die Einhaltung der Echtzeit](../resources/pdfs/MA_Pamuk.pdf)
 
 ## Setup  
-[Bash commands](../sigmatek/bash_commands.md)
+[Bash commands](../sigmatek/salamander4/bash_commands.md)
 
 ## Yocto-Umgebung  
-[Build with Yocto](../sigmatek/build_with_yocto.md)
+[Build with Yocto](../sigmatek/salamander4/build_with_yocto.md)
 
 ## Salamander OS  
 [Skript Michi](../resources/scripts/build-salamander4-ordinary.sh)  
-[Build LRT](../sigmatek/build_LRT.md)
+[Build LRT](../sigmatek/salamander4/build_LRT.md)
 
 ## Xenomai  
 [Preempt_rt.png](../resources/images/info/preempt_rt.png)  
