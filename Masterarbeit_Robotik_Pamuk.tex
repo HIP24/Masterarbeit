@@ -26,7 +26,6 @@
 \documentclass[MMR,Master,english]{twbook}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
 %
 % Hier biblatex & Biber konfigurieren; Vergessen Sie nicht, dass Sie biber verwenden müssen um eine Bibliothek zu erzeugen
 %
@@ -35,6 +34,10 @@
 
 %
 % Bei Bedarf bitte hier die Syntax-Highlightings anpassen
+%
+\usepackage{float}
+%
+% Platzierungsoptionen 
 %
 \usepackage[final]{listings}
 \lstset{captionpos=b, numberbychapter=false,caption=\lstname,frame=single, numbers=left, stepnumber=1, numbersep=2pt, xleftmargin=15pt, framexleftmargin=15pt, numberstyle=\tiny, tabsize=3, columns=fixed, basicstyle={\fontfamily{pcr}\selectfont\footnotesize}, keywordstyle=\bfseries, commentstyle={\color[gray]{0.33}\itshape}, stringstyle=\color[gray]{0.25}, breaklines, breakatwhitespace, breakautoindent}
@@ -196,12 +199,91 @@ Mein Hauptziel ist es, herauszufinden, wie die Integration von Echtzeitfunktione
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
 
 \clearpage 
-\chapter{Salamander 4}
-Salamander 4 ist das proprietäre Betriebssystem. Es basiert auf der Linux-Architektur und integriert zusätzlich Xenomai, eine Echtzeit-Entwicklungsumgebung \cite{Xenomai}. 
+\chapter{Salamander 4 Operating System}
+Salamander 4 ist das proprietäre Betriebssystem.
+Es basiert auf der der Linux-Version 5.15.94 und integriert zusätzlich Xenomai 3.2, eine Echtzeit-Entwicklungsumgebung \cite{Xenomai}. Es handelt sich um ein 64-Bit-System, was auf die x86\_64-Architektur hinweist. Das Echtzeitverhalten wird durch die Verwendung von Symmetric Multi-Processing (SMP) und Preemptive Scheduling (PREEMPT) erreicht. Darüber hinaus nutzt es IRQPIPE, um Interrupts in einer Weise zu verarbeiten, die die Echtzeitanforderungen des Systems erfüllt. Xenomai besteht aus 3 Teilen. Diese sind der Tabelle \ref{tab:what_is_xenomai} zu entnehmen 
 
-Durch die Kombination dieser Technologien bietet Salamander OS sowohl die Flexibilität und Offenheit von Linux als auch die Echtzeitfähigkeiten von Xenomai, was es zu einer idealen Lösung für unsere spezifischen Anforderungen macht.”
+\begin{table}[!h]
+    \centering
+    \setlength{\tabcolsep}{0.5em} % for the horizontal padding
+    {\renewcommand{\arraystretch}{1.2}% for the vertical padding
+    \begin{tabular}{|c|p{0.6\textwidth}|}
+        \hline
+        \textbf{Teil} & \textbf{Beschreibung} \\ \hline
+        i-pipe  & Kernelerweiterung für das Domain-Konzept \\ \hline
+        Xenomai Kernel & Benutzt die i-pipe, und hängt sich als root-Domain ein \\ \hline
+        Xenomai User &  Programme (LRT) verwenden diese Bibliothek, um Xenomai Funktionen verwenden zu können. \\ \hline
+    \end{tabular}}
+  \end{table}
+  
+
+\noindent Xenomai beruht auf einem Domain-Konzept, das bedeutet, dass alle IRQ an die erste Domain gesendet werden. (root – Domain / Xenomai)
+Nur wenn diese nichts mehr zu tun hat, dann darf die 2. Domain arbeiten.
+Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten die Linux-Tasks.
+
+\noindent In der Regel unterbricht der Prozessor beim IRQ-Handling seine aktuellen Aktivitäten, um einen Interrupt zu bearbeiten, während die IRQ-Behandlung von Xenomai einen Interrupt-Pipeline-Mechanismus verwendet, der das gleichzeitige Abrufen und Vorbereiten eines anderen Interrupts ermöglicht, während ein Interrupt bearbeitet wird, was die Leistung verbessert und die Latenzzeit verringert.  
+
+\noindent Was Xenomai4 von seinem Vorgänger Xenomai3 unterscheidet, ist die vollständige Neugestaltung der Ausführungsphase mit hoher Priorität. Dies geschah aus Gründen der Portabilität und Wartungsfreundlichkeit: I-pipe - die zweite Iteration der ursprünglichen Adeos-Interrupt-Pipeline - wurde vollständig durch Dovetail ersetzt. 
+
+\begin{table}[H]
+    \centering
+    \caption[Kurz]{Lang}
+    \label{tab:domain_specific_functions}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Xenomai spezifische Funktionen} & \textbf{Linux spezifische Funktionen} \\ \hline
+        Tasks                                   & Dateizugriffe                           \\ \hline
+        Mutexes, Semaphoren, Events             & Netzwerk                                \\ \hline
+    \end{tabular}
+\end{table}
 
 
+\noindent Ein Aufruf dieser Funktionen erfordert die entsprechende Domain. Wenn der Task in der falschen Domain läuft, dann wird ein Domain-Wechsel forciert.
+Ein Domainwechsel von Xenomai nach Linux geht relativ einfach. Aber der Wechsel von Linux nach Xenomai braucht Unterstützung, und dafür ist die Hilfe des Gatekeepers notwendig. Das bedeutet, der Gatekeeper hilft einem Task von Linux nach Xenomai zu wechseln.
+
+\section{Task priorities}
+Es gibt grundsätzlich 4 Gruppen
+
+\begin{table}[ht]
+    \centering
+    \caption{Übersicht der Prioritätsgruppen und ihrer Beziehungen}
+    \label{tab:priorities}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Prioritätsgruppe} & \textbf{Bereich}  \\ \hline
+        Xenomai Priorität & 0 bis 99  \\ \hline
+        Linux RT Priorität & 1 bis 99 \\ \hline
+        Linux (Nice Level) Priorität & -20 bis 19  \\ \hline
+        RTK Priorität & 0 bis 14 \\ \hline
+    \end{tabular}
+
+\end{table}
+ 
+
+
+
+\section{Memory Management}
+Es gibt verschiedene Speicherbereiche
+
+Linux/System/Programm Speicher
+	Der Speicher, den Linux und Programme belegt haben.
+	Dieser Speicher ist intern in viele Teile aufgeteilt. (DMA, …)
+
+LRT-Heap Speicher
+	Speicher den der LRT verwendet, oder welcher über ein CIL Funktionen
+	angefordert wird.
+
+App Heap, App Code, …
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
+    \caption[Kurz]{Lang}
+    \label{fig:memory_management}
+  \end{figure}
+
+ 
 \clearpage
 \chapter{Results}
 \clearpage
