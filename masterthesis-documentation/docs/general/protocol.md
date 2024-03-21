@@ -405,7 +405,7 @@ Now, [trace-cmd version 3.2.0](../resources/images/trace-cmd/trace-cmd_version3.
 Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis//test/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
 
 ### Ubuntu VM on virtual machine manager
-After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with [dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md), run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
+After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with dependancies<!--[dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)-->, run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../salamander4/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
 
 
 ## Connect to hardware Salamander 4
