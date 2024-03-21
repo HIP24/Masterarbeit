@@ -1,4 +1,4 @@
-# Instructions for Pushing Large Files with Git LFS
+# Git LFS
 
 ## Step 1: Install Git LFS
 
