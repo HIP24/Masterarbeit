@@ -15,7 +15,7 @@ def count_lines_with_word(file_path, word, total_lines):
 # Usage
 file_path = 'kvm_exit_log.txt'  # replace with your file path
 total_lines = sum(1 for line in open(file_path))
-print(f"Total lines: {total_lines}.")
+print(f"Total exits: {total_lines}.")
 
 words = ['APIC_WRITE', 
          'HLT', 
@@ -26,9 +26,8 @@ words = ['APIC_WRITE',
          'EOI_INDUCED',
          'EPT_VIOLATION',
          'PAUSE_INSTRUCTION',
-         'CPUID'   
-         'MSR_READ',
- 
+         'CPUID',   
+         'MSR_READ'
          ]  # replace with the words you want to search for
 
 counts = []
