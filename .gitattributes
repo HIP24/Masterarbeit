@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 masterthesis-documentation/docs/salamander4/trace-cmd/analysis/test/trace.dat filter=lfs diff=lfs merge=lfs -text
+trace.dat filter=lfs diff=lfs merge=lfs -text
