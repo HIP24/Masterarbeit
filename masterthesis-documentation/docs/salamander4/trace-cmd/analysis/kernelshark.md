@@ -7,6 +7,10 @@ Host only
 sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit
 ```
 
+Host and Guest track all both
+```
+sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all
+```
 
 Host and Guest track kvm, sched, irq, irq_vectors
 ```

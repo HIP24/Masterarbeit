@@ -1,19 +1,17 @@
 ## kvm_exit
-```
-$ python3 count_lines.py
-Total lines: 122528.
-The word 'reason APIC_WRITE rip' appears in 60178 lines.
-Remaining lines: 62350.
-The word 'reason EXTERNAL_INTERRUPT rip' appears in 909 lines.
-Remaining lines: 61441.
-The word 'reason HLT rip' appears in 53640 lines.
-Remaining lines: 7801.
-The word 'reason EPT_MISCONFIG rip' appears in 3839 lines.
-Remaining lines: 3962.
-The word 'reason PREEMPTION_TIMER rip' appears in 3239 lines.
-Remaining lines: 723.
-The word 'reason PAUSE_INSTRUCTION rip' appears in 20 lines.
-Remaining lines: 703.
-The word 'reason EPT_VIOLATION ripreason IO_INSTRUCTION ripreason EOI_INDUCED ripreason MSR_READ ripreason CPUID rip' appears in 0 lines.
-Remaining lines: 703.
-```
+| Exit Reason         | Description                                               | Frequency     |
+|---------------------|-----------------------------------------------------------|---------------|
+| APIC_WRITE          | Triggered when the guest writes to its Advanced Programmable Interrupt Controller (APIC).                                  | 60178 times   |
+| EXTERNAL_INTERRUPT  | Triggered when an external hardware interrupt occurs, usually caused by hardware devices signaling the host’s CPU.          | 909 times     |
+| HLT                 | Triggered when the guest executes the HLT instruction, halting the CPU until the next external interrupt is fired.         | 53640 times   |
+| EPT_MISCONFIG       | Triggered due to a misconfiguration in the Extended Page Tables (EPT), a memory management feature in modern CPUs.         | 3839 times    |
+| PREEMPTION_TIMER    | Triggered when the preemption timer of the host expires, related to the host’s scheduling of the guest.                    | 3239 times    |
+| PAUSE_INSTRUCTION   | Triggered when the PAUSE instruction is executed, used in spinlock loops to improve performance and reduce power consumption.| 20 times      |
+| EPT_VIOLATION       | Triggered when a guest access to a page would result in a violation of the EPT permission settings.                        | 48 times      |
+| IO_INSTRUCTION      | Triggered when the guest executes an I/O instruction, such as IN or OUT.                                                   | 565 times     |
+| EOI_INDUCED         | Triggered when an end-of-interrupt (EOI) signal is sent to the APIC.                                                        | 78 times      |
+| MSR_READ            | Triggered when the guest reads from a Model-Specific Register (MSR).                                                        | 2 times       |
+| CPUID               | Triggered when the guest executes the CPUID instruction, used to identify the processor.                                    | 10 times      |
+
+
+![Plot](plot.png)
