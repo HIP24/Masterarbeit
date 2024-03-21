@@ -1109,6 +1109,176 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_5" id="__nav_5_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    No taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            No taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../salamander4/xenomai/no_taskset/latency_no_taskset_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot no taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../salamander4/xenomai/no_taskset/latency_no_taskset_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency no taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_6" id="__nav_5_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    With taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            With taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../salamander4/xenomai/with_taskset/latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../salamander4/xenomai/with_taskset/latency_with_taskset_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2083,7 +2253,7 @@ scp /usr/local/lib64/libtraceevent.so.1 root@&quot;$ip_address&quot;:/lib64
 Now, <a href="../../resources/images/trace-cmd/trace-cmd_version3.2.0.png">trace-cmd version 3.2.0</a> is active and <a href="../../resources/images/trace-cmd/time_sync.png">tracing the guest</a> finally works with <code>trace-cmd agent</code> on the guest.</p>
 <p>Using kernelshark with <code>kernelshark trace.dat -a trace-Salamander4.dat</code> or simply <a href="../../salamander4/trace-cmd/analysis/test/start_kernelshark.sh"><code>./start_kernelshark.sh</code></a>, we get the expected <a href="../../resources/images/trace-cmd/kernelshark/kernelshark_combo.png">visualization</a>. Events of the guest happen between kvm_entry and kvm_exit of the host.</p>
 <h3 id="ubuntu-vm-on-virtual-machine-manager">Ubuntu VM on virtual machine manager<a class="headerlink" href="#ubuntu-vm-on-virtual-machine-manager" title="Permanent link">&para;</a></h3>
-<p>After giving the VM <a href="../../resources/images/protocol/virtm_cid.png">access to the vsocket</a>, and installing trace-cmd along with <a href="../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md">dependancies</a>, run <a href="../../resources/images/protocol/trace-cmd_agent.png"><code>trace-cmd agent</code></a>. Now, the guest is able to negotiate with host about <a href="../../resources/images/protocol/negotiated_with_guest.png">timestamp synchronization</a>. After running <a href="../../salamander4/trace-cmd/analysis/test/start_kernelshark.sh"><code>./start_kernelshark.sh</code></a>, we can view <a href="../../resources/images/protocol/kvm_combo_plots.png">KVM Combo plots</a></p>
+<p>After giving the VM <a href="../../resources/images/protocol/virtm_cid.png">access to the vsocket</a>, and installing trace-cmd along with dependancies<!--<a href="../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md">dependancies</a>-->, run <a href="../../resources/images/protocol/trace-cmd_agent.png"><code>trace-cmd agent</code></a>. Now, the guest is able to negotiate with host about <a href="../../resources/images/protocol/negotiated_with_guest.png">timestamp synchronization</a>. After running <a href="../../salamander4/trace-cmd/analysis/test/start_kernelshark.sh"><code>./start_kernelshark.sh</code></a>, we can view <a href="../../resources/images/protocol/kvm_combo_plots.png">KVM Combo plots</a></p>
 <h2 id="connect-to-hardware-salamander-4">Connect to hardware Salamander 4<a class="headerlink" href="#connect-to-hardware-salamander-4" title="Permanent link">&para;</a></h2>
 <p>ssh root@192.168.1.244</p>
 
