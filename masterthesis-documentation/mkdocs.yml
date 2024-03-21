@@ -28,6 +28,7 @@ plugins:
         - kernel-patch/rt_linux/*
         - salamander4/trace-cmd/analysis/test/trace.dat
         - salamander4/trace-cmd/analysis/test/trace-Salamander4.dat
+        - salamander4/trace-cmd/LTS/*
         - "*.tmp"
         - "*.gz"
       regex:

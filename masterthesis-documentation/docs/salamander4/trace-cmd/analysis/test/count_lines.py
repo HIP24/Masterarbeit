@@ -15,27 +15,30 @@ def count_lines_with_word(file_path, word, total_lines):
 # Usage
 file_path = 'kvm_exit_log.txt'  # replace with your file path
 total_lines = sum(1 for line in open(file_path))
-print(f"Total lines: {total_lines}.")
+print(f"Total exits: {total_lines}.")
 
 words = ['APIC_WRITE', 
-         'EXTERNAL_INTERRUPT', 
          'HLT', 
          'EPT_MISCONFIG',
          'PREEMPTION_TIMER',
-         'PAUSE_INSTRUCTION',
-         'EPT_VIOLATION',
+         'EXTERNAL_INTERRUPT', 
          'IO_INSTRUCTION',
          'EOI_INDUCED',
-         'MSR_READ',
-         'CPUID'    
+         'EPT_VIOLATION',
+         'PAUSE_INSTRUCTION',
+         'CPUID',   
+         'MSR_READ'
          ]  # replace with the words you want to search for
 
-word_counts = []
+counts = []
 for word in words:
     total_lines, word_lines = count_lines_with_word(file_path, word, total_lines)
-    print(f"The word '{word}' appears in {word_lines} lines.")
-    print(f"Remaining lines: {total_lines}.")
-    word_counts.append(word_lines)
+    print(f"'{word}': {word_lines} times")
+    counts.append((word, word_lines))
+
+# Sort words and counts by count in descending order
+counts.sort(key=lambda x: x[1], reverse=True)
+words, word_counts = zip(*counts)  # unzip the sorted pairs
 
 # Set the figure size
 plt.figure(figsize=(10, 6))
@@ -50,7 +53,7 @@ for bar in bars:
 
 plt.xlabel('Reasons')
 plt.ylabel('Count')
-plt.title('Word Counts in File')
+plt.title('Exit Reason Count')
 plt.xticks(rotation=90, fontsize='small')  # Adjust font size for readability
 
 # Adjust bottom margin
@@ -60,5 +63,7 @@ plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
 #plt.xlim([0, len(words)])  # Set x-axis length
 plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
 
-plt.show()
+# Save the figure
+plt.savefig('plot.png', bbox_inches='tight')
 
+plt.show()
