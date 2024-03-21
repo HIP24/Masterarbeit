@@ -1,0 +1,16 @@
+# gnuplot no taskset
+```
+# Calculate statistics
+stats 'latency_no_taskset_10min.txt' using 2 nooutput
+
+# Define labels for the statistics
+set label 1 sprintf("Minimum: %.2f", STATS_min) at graph 0.02, graph 0.9
+set label 2 sprintf("Maximum: %.2f", STATS_max) at graph 0.02, graph 0.85
+set label 3 sprintf("Average: %.2f", STATS_mean) at graph 0.02, graph 0.8
+set label 4 sprintf("Standard Deviation: %.2f", STATS_stddev) at graph 0.02, graph 0.75
+
+# Plot the data
+plot 'latency_no_taskset_10min.txt' using 1:2 with linespoints title 'Latency Histogram'
+```
+
+![plot_latency_no_taskset.png](plot_latency_no_taskset.png)

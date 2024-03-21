@@ -218,6 +218,7 @@ pre {
 
 <hr>
 
+<!--
 ### README 
 | File       | Description |
 |------------|-------|
@@ -226,6 +227,7 @@ pre {
 | [README.md](salamander4/trace-cmd/LTS/libtracefs-1.8.0/README.md)   | README of libtracefs |
 | [README.md](salamander4/trace-cmd/LTS/trace-cmd-libtracecmd-1.5.1/README.md)   | README of libtracecmd |
 | [README.md](salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)   | README of trace-cmd |
+-->
 
 
 ## Scripts
