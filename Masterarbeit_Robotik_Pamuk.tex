@@ -199,12 +199,14 @@ Mein Hauptziel ist es, herauszufinden, wie die Integration von Echtzeitfunktione
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
 
 \clearpage 
-\chapter{Salamander 4 Operating System}
+\chapter{Salamander Operating System}
 Salamander 4 ist das proprietäre Betriebssystem.
 Es basiert auf der der Linux-Version 5.15.94 und integriert zusätzlich Xenomai 3.2, eine Echtzeit-Entwicklungsumgebung \cite{Xenomai}. Es handelt sich um ein 64-Bit-System, was auf die x86\_64-Architektur hinweist. Das Echtzeitverhalten wird durch die Verwendung von Symmetric Multi-Processing (SMP) und Preemptive Scheduling (PREEMPT) erreicht. Darüber hinaus nutzt es IRQPIPE, um Interrupts in einer Weise zu verarbeiten, die die Echtzeitanforderungen des Systems erfüllt. Xenomai besteht aus 3 Teilen. Diese sind der Tabelle \ref{tab:what_is_xenomai} zu entnehmen 
 
 \begin{table}[!h]
     \centering
+    \caption[Kurz]{Lang}
+    \label{tab:what_is_xenomai}
     \setlength{\tabcolsep}{0.5em} % for the horizontal padding
     {\renewcommand{\arraystretch}{1.2}% for the vertical padding
     \begin{tabular}{|c|p{0.6\textwidth}|}
