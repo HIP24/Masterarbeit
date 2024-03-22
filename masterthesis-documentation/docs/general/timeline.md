@@ -33,3 +33,4 @@
 | 19.03.2024 | Added [Zotero](https://guides.library.iit.edu/c.php?g=720120&p=6296986), [Ubuntu Pro](https://ubuntu.com/pro/dashboard) and [Ubuntu PREEMPT_RT](https://ubuntu.com/blog/real-time-ubuntu-released)|
 | 20.03.2024 | kvm_exit reasons [plot](../sigmatek/trace-cmd/analysis/test/plot.png) |
 | 21.03.2024 | gitlfs and settings.json, plot with and without taskset, write more thesis |
+| 22.03.2024 | Literature paper search |
