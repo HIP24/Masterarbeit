@@ -21,7 +21,7 @@ Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
   <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Fortschritt</a>
  der Masterarbeit:<b> Anfangsphase</b> </div> 
   <div class="meter animate">
-    <span style="width: 2%"><span></span></span>
+    <span style="width: 10%"><span></span></span>
   </div> 
   <!--<div class="meter orange nostripes">
     <span style="width: 33.3%"></span>
@@ -153,12 +153,12 @@ pre {
 ## PDFs
 | File       | Description |
 |------------|-------|
-| [MA_Pamuk.pdf](resources/pdfs/MA_Pamuk.pdf)   | Masterthesis description  |
-| [MA_guide.pdf](resources/pdfs/MA_guide.pdf)   | Masterthesis writing guide |
-| [MA_precision.pdf](resources/pdfs/MA_precision.pdf)   | Master thesis Robotics degree precision  |
-| [MA_deadlines.pdf](resources/pdfs/MA_deadlines.pdf)   | Master thesis deadlines |
-| [PCV 522.pdf](resources/pdfs/PCV%20522.pdf)   | PCV 522 module handbook |
-| [LasalClass2_eng.pdf](resources/pdfs/lasalClass2/LasalClass2_eng.pdf)   | Lasal Class 2 documentation  |
+| [MA_Pamuk.pdf](resources/pdfs/MA/MA_Pamuk.pdf)   | Masterthesis description  |
+| [MA_guide.pdf](resources/pdfs/MA/MA_guide.pdf)   | Masterthesis writing guide |
+| [MA_precision.pdf](resources/pdfs/MA/MA_precision.pdf)   | Master thesis Robotics degree precision  |
+| [MA_deadlines.pdf](resources/pdfs/MA/MA_deadlines.pdf)   | Master thesis deadlines |
+| [PCV 522.pdf](resources/pdfs/Sigmatek/PCV%20522.pdf)   | PCV 522 module handbook |
+| [LasalClass2_eng.pdf](resources/pdfs/Sigmatek/LasalClass2/LasalClass2_eng.pdf)   | Lasal Class 2 documentation  |
 
 
 ## Markdown files

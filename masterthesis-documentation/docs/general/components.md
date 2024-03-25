@@ -1,7 +1,7 @@
 # Components
 
 ## Angabe  
-[Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die Einhaltung der Echtzeit](../resources/pdfs/MA_Pamuk.pdf)
+[Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die Einhaltung der Echtzeit](../resources/pdfs/MA/MA_Pamuk.pdf)
 
 ## Setup  
 [Bash commands](../sigmatek/salamander4/bash_commands.md)
@@ -19,8 +19,8 @@
 
 
 ## Lasal CLass 
-[Lasal Class 2 english](../resources/pdfs/lasalClass2/LasalClass2_eng.pdf)  
-[Lasal Class 2 deutsch](../resources/pdfs/lasalClass2/LasalClass2.pdf)
+[Lasal Class 2 english](../resources/pdfs/Sigmatek/LasalClass2/LasalClass2_eng.pdf)  
+[Lasal Class 2 deutsch](../resources/pdfs/Sigmatek/LasalClass2/LasalClass2.pdf)
 
 
 ## QEMU  
@@ -28,7 +28,7 @@
 
 ## PCV-521  
 PCI-Einsteckmodul, das als Schnittstelle zwischen einem PC und dem VARAN-Bus dient  
-[PCV 522.pdf](../resources/pdfs/PCV%20522.pdf)  
+[PCV 522.pdf](../resources/pdfs/Sigmatek/PCV%20522.pdf)  
 
 
 Evaluierung Virtualisierungsplattform (QEMU, Hyper-V, Virtual Box, etc.)

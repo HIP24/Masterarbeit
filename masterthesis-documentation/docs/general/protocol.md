@@ -13,7 +13,7 @@ Connect to device with `ssh -oHostKeyAlgorithms=+ssh-rsa root@10.10.1.229`
 or `ssh -p 22 root@192.168.1.x` (changes often)
 
 ## LasalClass2 to device
-Connect LasalClass2 with [Salamander 4](../resources//images/lasal/class2/lasalclass2_ip.png), IP of [Salamander4 device](../resources//images/lasal/class2/lasalclass2_salamander4_ip.png)
+Connect LasalClass2 with [Salamander 4](../resources/images/lasal/class2/lasalclass2_ip.png), IP of [Salamander4 device](../resources/images/lasal/class2/lasalclass2_salamander4_ip.png)
 
 ## Configure bridge for QEMU
 This setup allows the virtual machines to communicate with the outside network through the Ethernet connection provided by either the laptop or the docking station.
@@ -23,14 +23,14 @@ This setup allows the virtual machines to communicate with the outside network t
 | enp0s31f6 | Laptop's Ethernet port |
 | enx4cd717733f80 | Docking station's Ethernet port |
 
-- Disable [ipv4](../resources//images/configure_bridge/ethernet_disable_ip4.png) and [ipv6](../resources//images/configure_bridge/ethernet_disable_ip6.png)
-- Enter [nmtui](../resources//images/configure_bridge/nmtui.png)
-- Edit Connection and [\<Add\>](../resources//images/configure_bridge/add_connection.png). Select Bridge.
-- [Edit](../resources//images/configure_bridge/edit_connection.png) and \<Add\> Ethernet.
-- [Copy name](../resources//images/configure_bridge/copy_name.png) enx4cd717733f80 (4C:D7:17:73:3F:80) of Wired connection 2
-- [Edit Connection of Ethernet connection 1](../resources//images/configure_bridge/ethernet1.png) so that it automatically connects.
-- [Activate Connection](../resources//images/configure_bridge/activate_connection.png).
-- Result should look like [this](../resources//images/configure_bridge/get-to-know/connections.png) and [this](../resources//images/configure_bridge/get-to-know/bridge_connections.png).
+- Disable [ipv4](../resources/images/configure_bridge/ethernet_disable_ip4.png) and [ipv6](../resources/images/configure_bridge/ethernet_disable_ip6.png)
+- Enter [nmtui](../resources/images/configure_bridge/nmtui.png)
+- Edit Connection and [\<Add\>](../resources/images/configure_bridge/add_connection.png). Select Bridge.
+- [Edit](../resources/images/configure_bridge/edit_connection.png) and \<Add\> Ethernet.
+- [Copy name](../resources/images/configure_bridge/copy_name.png) enx4cd717733f80 (4C:D7:17:73:3F:80) of Wired connection 2
+- [Edit Connection of Ethernet connection 1](../resources/images/configure_bridge/ethernet1.png) so that it automatically connects.
+- [Activate Connection](../resources/images/configure_bridge/activate_connection.png).
+- Result should look like [this](../resources/images/configure_bridge/get-to-know/connections.png) and [this](../resources/images/configure_bridge/get-to-know/bridge_connections.png).
 - More info in [nmbridge.md](../sigmatek/QEMU/nmbridge.md). 
 
 ## Reduce latency
@@ -402,10 +402,10 @@ scp /usr/local/lib64/libtraceevent.so.1 root@"$ip_address":/lib64
 ```
 Now, [trace-cmd version 3.2.0](../resources/images/trace-cmd/trace-cmd_version3.2.0.png) is active and [tracing the guest](../resources/images/trace-cmd/time_sync.png) finally works with `trace-cmd agent` on the guest.
 
-Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis//test/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
+Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis/test/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
 
 ### Ubuntu VM on virtual machine manager
-After giving the VM [access to the vsocket](../resources//images/protocol/virtm_cid.png), and installing trace-cmd along with dependancies<!--[dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)-->, run [`trace-cmd agent`](../resources//images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources//images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources//images/protocol/kvm_combo_plots.png)
+After giving the VM [access to the vsocket](../resources/images/protocol/virtm_cid.png), and installing trace-cmd along with dependancies<!--[dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)-->, run [`trace-cmd agent`](../resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis/test/start_kernelshark.sh), we can view [KVM Combo plots](../resources/images/protocol/kvm_combo_plots.png)
 
 
 ## Connect to hardware Salamander 4
