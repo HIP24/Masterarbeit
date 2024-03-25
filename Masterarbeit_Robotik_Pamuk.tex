@@ -37,6 +37,7 @@
 %
 \usepackage{float}
 \usepackage{comment}
+\usepackage{csquotes}
 %
 % Platzierungsoptionen 
 %
@@ -211,6 +212,13 @@ Mein Hauptziel ist es, herauszufinden, wie die Integration von Echtzeitfunktione
 - Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
 
+\bigskip \noindent Trace-cmd was used for tracing the Linux kernel. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency \cite{Tracecmd}. 
+
+\bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed \cite{KernelShark}. 
+
+\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times\cite{Xenomai}.
+
+
 \clearpage 
 \chapter{Salamander Operating System}
 Salamander 4 ist das proprietäre Betriebssystem.
@@ -291,7 +299,7 @@ LRT-Heap Speicher
 App Heap, App Code, …
 
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
     \caption[Kurz]{Lang}
@@ -310,7 +318,7 @@ App Heap, App Code, …
 
   \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.6\columnwidth]{img/Software-Struktur einer LASAL CPU.png}
+    \includegraphics[width=0.5\columnwidth]{img/Software-Struktur einer LASAL CPU.png}
     \caption[Kurz]{Lang}
     \label{fig:lasal_cpu}
   \end{figure}
@@ -318,11 +326,23 @@ App Heap, App Code, …
 \clearpage
 
 
-\chapter{Real-Time Virtualisation}
+\chapter{Comparison of Real-Time Latency}
+
+\section{Salamander 4 Bare Metal}
+
+
+
+
+\section{Salamander 4 Virtualisation}
+
+
+
 
 Salamander 4 
 
-Trace-cmd was used for tracing the Linux kernel. It enables kernel events and function calls to be recorded and analysed in real time. With trace-cmd, developers and system administrators can gain detailed insights into system behaviour and identify bottlenecks or performance problems.
+
+
+
 
 \section{Kernelshark}
 
@@ -345,8 +365,6 @@ WSL\newline
 \chapter{Discussion}
 \clearpage
 \chapter{Summary and Outlook}
-I am using \cite{blackadarHistoricalReviewCauses2016} for citing.
-
 
 %
 % Hier beginnen die Verzeichnisse.
