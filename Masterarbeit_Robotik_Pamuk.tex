@@ -143,15 +143,15 @@ In today's industrial production and automation, robot systems are well establis
 
 \bigskip \noindent Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality. Examples of this are multimedia systems where the occasional deviation from a playback rate of 25 frames/sec. leads to stuttering or similar.
 
-\begin{comment}
-In der heutigen industriellen Fertigung und Automatisierung sind Robotersysteme sehr etabliert und von entscheidender Bedeutung. Roboter müssen auf ihre Umgebung reagieren und zeitkritische Aufgaben innerhalb strenger Zeitvorgaben ausführen. Verzögerungen oder Fehler können in einigen Fällen katastrophale Konseqenzen haben. Traditionelle Betriebssysteme, wie Windows oder Linux sind für diese Art von Echtzeitanforderungen oft nicht geeignet, da sie keine deterministischen Ausführungszeiten garantieren können. Daher sind Echtzeit-Betriebssysteme nötig, die speziell dafür konzipiert sind, auf Ereignisse innerhalb fester Zeitschranken zu reagieren und Prozesse mit hoher Priorität bevorzugt auszuführen. Bei diesen RTOS-Systemen basiert das Task-Scheduling auf dem sogenannten prioritätsbasierten präemptiven Scheduling. Jeder Task in einer Software-Applikation ist eine Priorität zuzuweisen. Eine höhere Priorität bedeutet, dass eine schnellere Reaktion erforderlich ist. Durch das präemptive Task-Scheduling wird eine sehr schnelle Reaktion sichergestellt. Präemptiv bedeutet, dass der Scheduler eine gerade laufende Task an jeder Stelle anhalten kann, wenn er erkennt, dass eine andere Task sofort ausgeführt werden muss. Die Grundregel, auf der das prioritätsbasierte präemptive Scheduling basiert, besagt, dass die ausführbereite Task mit der höchsten Priorität immer die Task ist, die ausgeführt werden muss. Wenn also sowohl eine Task mit niedriger als auch eine Task mit höherer Priorität ausführbereit sind, sorgt der Scheduler dafür, dass zuerst die Task mit der höheren Priorität läuft. Die Task mit niedrigerer Priorität wird erst dann ausgeführt, wenn die höherpriore Task verarbeitet wurde.
 
-\noindent Echtzeitsysteme werden in der Regel entweder als weiches oder als hartes Echtzeitsystem kategorisiert. Der Unterschied liegt ausschließlich in den Folgen einer Verletzung der Zeitschranken.
+%In der heutigen industriellen Fertigung und Automatisierung sind Robotersysteme sehr etabliert und von entscheidender Bedeutung. Roboter müssen auf ihre Umgebung reagieren und zeitkritische Aufgaben innerhalb strenger Zeitvorgaben ausführen. Verzögerungen oder Fehler können in einigen Fällen katastrophale Konseqenzen haben. Traditionelle Betriebssysteme, wie Windows oder Linux sind für diese Art von Echtzeitanforderungen oft nicht geeignet, da sie keine deterministischen Ausführungszeiten garantieren können. Daher sind Echtzeit-Betriebssysteme nötig, die speziell dafür konzipiert sind, auf Ereignisse innerhalb fester Zeitschranken zu reagieren und Prozesse mit hoher Priorität bevorzugt auszuführen. Bei diesen RTOS-Systemen basiert das Task-Scheduling auf dem sogenannten prioritätsbasierten präemptiven Scheduling. Jeder Task in einer Software-Applikation ist eine Priorität zuzuweisen. Eine höhere Priorität bedeutet, dass eine schnellere Reaktion erforderlich ist. Durch das präemptive Task-Scheduling wird eine sehr schnelle Reaktion sichergestellt. Präemptiv bedeutet, dass der Scheduler eine gerade laufende Task an jeder Stelle anhalten kann, wenn er erkennt, dass eine andere Task sofort ausgeführt werden muss. Die Grundregel, auf der das prioritätsbasierte präemptive Scheduling basiert, besagt, dass die ausführbereite Task mit der höchsten Priorität immer die Task ist, die ausgeführt werden muss. Wenn also sowohl eine Task mit niedriger als auch eine Task mit höherer Priorität ausführbereit sind, sorgt der Scheduler dafür, dass zuerst die Task mit der höheren Priorität läuft. Die Task mit niedrigerer Priorität wird erst dann ausgeführt, wenn die höherpriore Task verarbeitet wurde.
 
-\noindent Harte Echtzeit liegt vor, wenn das System seinen Betrieb einstellt, wenn ein Termin verpasst wurde, was katastrophale Folgen haben kann. Zu diesen Folgen zählen die Gefährdung von Menschen, die Beschädigung von Maschinen, also Auswirkungen auf Gesundheit und Unversehrtheit der Umgebung. Typische Beispiele hierfür sind einige Steuerungssysteme im Flugzeug oder im Auto, z.B. bei der Verbrennungsmaschine.
+%\noindent Echtzeitsysteme werden in der Regel entweder als weiches oder als hartes Echtzeitsystem kategorisiert. Der Unterschied liegt ausschließlich in den Folgen einer Verletzung der Zeitschranken.
 
-\noindent Weiche Echtzeit besteht, wenn ein System weiter funktionsbereit ist, selbst wenn es die Aufgaben innerhalb einer festgelegten Zeit nicht ausführen kann. Wenn das System den Termin verpasst hat, hat dies keine kritischen Konsequenzen. Das System läuft weiter, obwohl es dies mit unerwünscht geringerer Ausgabenqualität tut. Beispiele hierfür sind Multimediasysteme, bei denen das gelegentlich Abweichen von einer Abspielrate von 25 Bildern/sek. zu einem Ruckeln o.ä. führt.
-\end{comment}
+%\noindent Harte Echtzeit liegt vor, wenn das System seinen Betrieb einstellt, wenn ein Termin verpasst wurde, was katastrophale Folgen haben kann. Zu diesen Folgen zählen die Gefährdung von Menschen, die Beschädigung von Maschinen, also Auswirkungen auf Gesundheit und Unversehrtheit der Umgebung. Typische Beispiele hierfür sind einige Steuerungssysteme im Flugzeug oder im Auto, z.B. bei der Verbrennungsmaschine.
+
+%\noindent Weiche Echtzeit besteht, wenn ein System weiter funktionsbereit ist, selbst wenn es die Aufgaben innerhalb einer festgelegten Zeit nicht ausführen kann. Wenn das System den Termin verpasst hat, hat dies keine kritischen Konsequenzen. Das System läuft weiter, obwohl es dies mit unerwünscht geringerer Ausgabenqualität tut. Beispiele hierfür sind Multimediasysteme, bei denen das gelegentlich Abweichen von einer Abspielrate von 25 Bildern/sek. zu einem Ruckeln o.ä. führt.
+
 
 
 \clearpage
@@ -162,10 +162,15 @@ Diese Masterarbeit wurde in der Firma SIGMATEK GmbH \& Co KG erstellt.
 
 
 
-
-
 \clearpage
 \section{State of the art}
+
+
+
+
+
+
+
 \clearpage
 
 
@@ -293,20 +298,49 @@ App Heap, App Code, …
     \label{fig:memory_management}
   \end{figure}
 
- 
+
+  Eine LASAL CPU besteht aus den folgenden Software-Modulen:
+  \begin{itemize}
+    \item Operating system
+    \item Loader
+    \item Hardware-Klassen
+  \end{itemize}
+  
+  Die Schnittstelle zwischen den einzelnen Modulen wird in Abbildung \ref{fig:lasal_cpu} durch einen Pfeil gekennzeichnet.
+
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{img/Software-Struktur einer LASAL CPU.png}
+    \caption[Kurz]{Lang}
+    \label{fig:lasal_cpu}
+  \end{figure}
+
 \clearpage
+
+
+\chapter{Real-Time Virtualisation}
+
+Salamander 4 
+
+Trace-cmd was used for tracing the Linux kernel. It enables kernel events and function calls to be recorded and analysed in real time. With trace-cmd, developers and system administrators can gain detailed insights into system behaviour and identify bottlenecks or performance problems.
+
+\section{Kernelshark}
+
+
+
+
 \chapter{Results}
-Firma SIGMATEK
-Yocto
-Salamander 4 - harte Echtzeit
-Xenomai
-QEMU
-Trace-cmd
-Kernelshark
-VARAN-Bus PCV-521
-Windows
-Ubuntu
-WSL
+Firma SIGMATEK\newline
+Yocto\newline
+Salamander 4\newline
+Xenomai\newline
+QEMU\newline
+Trace-cmd\newline
+Kernelshark\newline
+VARAN-Bus PCV-521\newline
+Windows\newline
+Ubuntu\newline
+WSL\newline
 \clearpage
 \chapter{Discussion}
 \clearpage
