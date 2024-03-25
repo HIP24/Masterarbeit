@@ -36,6 +36,7 @@
 % Bei Bedarf bitte hier die Syntax-Highlightings anpassen
 %
 \usepackage{float}
+\usepackage{comment}
 %
 % Platzierungsoptionen 
 %
@@ -132,34 +133,37 @@ Roboteranwendungen verbessern kann}
 %- Glossar (optional)
 %- Anhang (optional)
 \chapter{Introduction}
+In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Traditional operating systems, such as Windows or Linux, are often not suitable for these types of real-time requirements as they cannot guarantee deterministic execution times. Therefore, real-time operating systems are required that are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes. 
+
+\bigskip \noindent The core component of an RTOS that enables real-time capabilities is the kernel. The kernel is responsible for managing system resources, scheduling tasks, and ensuring deterministic behavior. It employs preemptive scheduling mechanisms to allow high-priority tasks to preempt lower-priority tasks, ensuring that time-critical tasks are not delayed. The kernel also implements priority-based scheduling algorithms, such as Rate Monotonic Scheduling (RMS) or Earliest Deadline First (EDF), to schedule tasks based on their priorities and timing constraints. Additionally, RTOS kernels are designed to minimize interrupt latency, which is crucial for real-time applications that require immediate response to external events.
+
+\bigskip \noindent In these RTOS systems, task scheduling is based on so-called priority-based preemptive scheduling. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Pre-emptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognises that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed. Real-time systems are usually categorised as either soft or hard real-time systems. The difference lies exclusively in the consequences of a violation of the time limits. 
+
+\bigskip \noindent Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. These consequences include endangering people, damaging machinery, impacting the health and integrity of the environment. Typical examples of this are some control systems in aeroplanes or cars, e.g. internal combustion engines.
+
+\bigskip \noindent Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality. Examples of this are multimedia systems where the occasional deviation from a playback rate of 25 frames/sec. leads to stuttering or similar.
+
+\begin{comment}
+In der heutigen industriellen Fertigung und Automatisierung sind Robotersysteme sehr etabliert und von entscheidender Bedeutung. Roboter müssen auf ihre Umgebung reagieren und zeitkritische Aufgaben innerhalb strenger Zeitvorgaben ausführen. Verzögerungen oder Fehler können in einigen Fällen katastrophale Konseqenzen haben. Traditionelle Betriebssysteme, wie Windows oder Linux sind für diese Art von Echtzeitanforderungen oft nicht geeignet, da sie keine deterministischen Ausführungszeiten garantieren können. Daher sind Echtzeit-Betriebssysteme nötig, die speziell dafür konzipiert sind, auf Ereignisse innerhalb fester Zeitschranken zu reagieren und Prozesse mit hoher Priorität bevorzugt auszuführen. Bei diesen RTOS-Systemen basiert das Task-Scheduling auf dem sogenannten prioritätsbasierten präemptiven Scheduling. Jeder Task in einer Software-Applikation ist eine Priorität zuzuweisen. Eine höhere Priorität bedeutet, dass eine schnellere Reaktion erforderlich ist. Durch das präemptive Task-Scheduling wird eine sehr schnelle Reaktion sichergestellt. Präemptiv bedeutet, dass der Scheduler eine gerade laufende Task an jeder Stelle anhalten kann, wenn er erkennt, dass eine andere Task sofort ausgeführt werden muss. Die Grundregel, auf der das prioritätsbasierte präemptive Scheduling basiert, besagt, dass die ausführbereite Task mit der höchsten Priorität immer die Task ist, die ausgeführt werden muss. Wenn also sowohl eine Task mit niedriger als auch eine Task mit höherer Priorität ausführbereit sind, sorgt der Scheduler dafür, dass zuerst die Task mit der höheren Priorität läuft. Die Task mit niedrigerer Priorität wird erst dann ausgeführt, wenn die höherpriore Task verarbeitet wurde.
+
+\noindent Echtzeitsysteme werden in der Regel entweder als weiches oder als hartes Echtzeitsystem kategorisiert. Der Unterschied liegt ausschließlich in den Folgen einer Verletzung der Zeitschranken.
+
+\noindent Harte Echtzeit liegt vor, wenn das System seinen Betrieb einstellt, wenn ein Termin verpasst wurde, was katastrophale Folgen haben kann. Zu diesen Folgen zählen die Gefährdung von Menschen, die Beschädigung von Maschinen, also Auswirkungen auf Gesundheit und Unversehrtheit der Umgebung. Typische Beispiele hierfür sind einige Steuerungssysteme im Flugzeug oder im Auto, z.B. bei der Verbrennungsmaschine.
+
+\noindent Weiche Echtzeit besteht, wenn ein System weiter funktionsbereit ist, selbst wenn es die Aufgaben innerhalb einer festgelegten Zeit nicht ausführen kann. Wenn das System den Termin verpasst hat, hat dies keine kritischen Konsequenzen. Das System läuft weiter, obwohl es dies mit unerwünscht geringerer Ausgabenqualität tut. Beispiele hierfür sind Multimediasysteme, bei denen das gelegentlich Abweichen von einer Abspielrate von 25 Bildern/sek. zu einem Ruckeln o.ä. führt.
+\end{comment}
+
+
+\clearpage
+\section{Relevant SIGMATEK information}
 Diese Masterarbeit wurde in der Firma SIGMATEK GmbH \& Co KG erstellt. 
-
-Firma SIGMATEK
-
-Yocto
-
-Salamander 4 - harte Echtzeit
-
-Xenomai
-
-QEMU
-
-Trace-cmd
-
-Kernelshark
-
-VARAN-Bus PCV-521
-
-Windows
-Ubuntu
-WSL
-
 
 
 \clearpage
 \section{State of the art}
-
 \clearpage
+
+
 \section{Problem and task definition}
 In robotics, accurate and timely control is crucial to ensure precise movements and reliable interaction with the environment. However, existing robot control systems often have limitations in terms of real-time capabilities and communication efficiency, which can have a detrimental effect on response time and reliability. The challenge is to develop a powerful real-time robot control platform that overcomes these limitations and improves the performance of robotic applications.
 
@@ -288,6 +292,25 @@ App Heap, App Code, …
  
 \clearpage
 \chapter{Results}
+Firma SIGMATEK
+
+Yocto
+
+Salamander 4 - harte Echtzeit
+
+Xenomai
+
+QEMU
+
+Trace-cmd
+
+Kernelshark
+
+VARAN-Bus PCV-521
+
+Windows
+Ubuntu
+WSL
 \clearpage
 \chapter{Discussion}
 \clearpage
