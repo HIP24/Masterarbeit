@@ -44,7 +44,7 @@ words, word_counts = zip(*counts)  # unzip the sorted pairs
 plt.figure(figsize=(10, 6))
 
 # Plotting
-bars = plt.bar(words, word_counts)
+bars = plt.bar(words, word_counts, color='blue')  # Added color='blue'
 
 # Labeling the bars with their counts
 for bar in bars:
@@ -64,6 +64,8 @@ plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
 plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
 
 # Save the figure
-plt.savefig('plot.png', bbox_inches='tight')
+plt.savefig('../../../../../../img/kvm_exits.png', bbox_inches='tight')
+plt.savefig('kvm_exits.png', bbox_inches='tight')
 
-plt.show()
+# Print a success message
+print("The plot was successfully saved to kvm_exits.png")
