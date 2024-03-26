@@ -18,8 +18,8 @@ plt.xlim([0, 600])
 plt.ylim([0, 5000])
 
 # Save the plot to a file
-plt.savefig("latency.png")
-plt.savefig("../../../../img/latency.png")
+plt.savefig("latency_no_taskset.png")
+plt.savefig("../../../../img/latency_no_taskset.png")
 
 # Print a success message
 print("The plot was successfully saved to latency.png")
