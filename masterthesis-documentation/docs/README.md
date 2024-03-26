@@ -144,6 +144,7 @@ pre {
 });
 </script>
 
+
 ## Overview
 | File       | Description |
 |------------|-------|
@@ -237,7 +238,9 @@ pre {
 | [after_bitbake_1.sh](sigmatek/yocto/after_bitbake_1.sh)   | Script after bitbake 1 |
 | [after_bitbake_2.sh](sigmatek/yocto/after_bitbake_2.sh)   | Script after bitbake 2 |
 
+
 <hr>
+
 
 ### QEMU config
 | File       | Description |
@@ -254,13 +257,12 @@ pre {
 <hr>
 
 
-
-
 ### Resources 
 | File       | Description |
 |------------|-------|
 | [startup_console.sh](resources/scripts/startup_console.sh)   | Startup script for console |
 | [startup_konsole.sh](resources/scripts/startup_konsole.sh)   | Startup script for konsole |
+
 
 <hr>
 
@@ -270,6 +272,18 @@ pre {
 |------------|-------|
 | [start_kernelshark.sh](sigmatek/trace-cmd/analysis/test/start_kernelshark.sh)   | Script for starting kernelshark with host and guest trace.dat |
 | [start_kernelshark_convert.sh](sigmatek/trace-cmd/analysis/test/start_kernelshark_convert.sh)   | Script for starting kernelshark with converted v6 host and guest trace.dat |
+
+
+## Python
+| File       | Description |
+|------------|-------|
+| [kvm_exit_number.py](sigmatek/trace-cmd/analysis/test/kvm_exit_number.py)   | Count kvm_exit events  |
+| [latency_no_taskset.py](sigmatek/xenomai/latency_no_taskset.py)             | Plot latency of Slamander 4 with no taskset  |
+| [latency_taskset.py](sigmatek/xenomai/latency_taskset.py)                   | Plot latency of Slamander 4 with taskset  |
+| [print_numbers.py](sigmatek/xenomai/print_numbers.py)                       | Print numbers of specified range  |
+| [search_for_x.py](resources/kernel/search_for_x.py)                         | Search for lines that contain x |
+| [compare_2_files.py](resources/kernel/compare_2_files.py)                   | Compare two config files line by line  |
+
 
 ## GIT
 ### Sigmatek
