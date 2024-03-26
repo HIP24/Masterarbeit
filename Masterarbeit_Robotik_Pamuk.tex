@@ -29,15 +29,16 @@
 %
 % Hier biblatex & Biber konfigurieren; Vergessen Sie nicht, dass Sie biber verwenden müssen um eine Bibliothek zu erzeugen
 %
-\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 \addbibresource{Literatur.bib}
-
 %
 % Bei Bedarf bitte hier die Syntax-Highlightings anpassen
 %
+% own 
 \usepackage{float}
 \usepackage{comment}
 \usepackage{csquotes}
+\usepackage{pgfplots}
 %
 % Platzierungsoptionen 
 %
@@ -70,7 +71,6 @@
 
 % Die nachfolgenden Pakete stellen sonst nicht benötigte Features zur Verfügung
 \usepackage{blindtext}
-
 %
 % Einträge für Deckblatt, Kurzfassung, etc.
 %
@@ -206,8 +206,6 @@ Ich werde verschiedene Virtualisierungsplattformen wie QEMU, Hyper-V, Virtual Bo
 - Erstellung und Konfiguration des Systems in der Yocto-Umgebung: 
 Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstellen und zu konfigurieren. Yocto bietet viele Tools und Funktionen, die mir bei der Erstellung und Konfiguration meines Systems helfen können.
 
-- Verbesserung der Reaktionszeit und Zuverlässigkeit von Roboteranwendungen: 
-Mein Hauptziel ist es, herauszufinden, wie die Integration von Echtzeitfunktionen und effizienten Kommunikationssystemen die Reaktionszeit und Zuverlässigkeit von Roboteranwendungen verbessern kann. Ich strebe an, die Leistung und Zuverlässigkeit meiner Roboteranwendungen zu verbessern, indem ich ihre Fähigkeit verbessere, in Echtzeit auf Ereignisse zu reagieren.
 
 - Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
@@ -216,13 +214,31 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 \bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed \cite{KernelShark}. 
 
-\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times\cite{Xenomai}.
+\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{Xenomai}.
 
 
 \clearpage 
 \chapter{Salamander Operating System}
-Salamander 4 ist das proprietäre Betriebssystem.
-Es basiert auf der der Linux-Version 5.15.94 und integriert zusätzlich Xenomai 3.2, eine Echtzeit-Entwicklungsumgebung \cite{Xenomai}. Es handelt sich um ein 64-Bit-System, was auf die x86\_64-Architektur hinweist. Das Echtzeitverhalten wird durch die Verwendung von Symmetric Multi-Processing (SMP) und Preemptive Scheduling (PREEMPT) erreicht. Darüber hinaus nutzt es IRQPIPE, um Interrupts in einer Weise zu verarbeiten, die die Echtzeitanforderungen des Systems erfüllt. Xenomai besteht aus 3 Teilen. Diese sind der Tabelle \ref{tab:what_is_xenomai} zu entnehmen 
+
+Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{Xenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it utilises IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
+
+\vspace{1em}
+
+\begin{lstlisting}[caption={Ein Beispiel für einen Linux-Befehl}, label={lst:uname_a}]
+root@sigmatek-core2:~# uname -a
+Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
+\end{lstlisting}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{img/kvm_exits.png}
+    \caption[Kurz]{Lang}
+    \label{fig:kvm_exits}
+  \end{figure}
+
+
+Xenomai consists of 3 parts. These can be found in the table \ref{tab:what_is_xenomai}.
 
 \begin{table}[!h]
     \centering
@@ -327,26 +343,53 @@ App Heap, App Code, …
 
 
 \chapter{Comparison of Real-Time Latency}
+We tried to measure the latencies under 2 conditions:
+IDLE and CPU-STRESSED. In the IDLE condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
+
+
+\begin{table}[H]
+    \centering
+    \caption[Kurz]{Lang}
+    \label{tab:kernel_configuration}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Kernel} & \textbf{Patches} \\ \hline
+        . & .  \\ \hline
+        . & .  \\ \hline
+    \end{tabular}
+\end{table}
+
 
 \section{Salamander 4 Bare Metal}
 
-
-
-
 \section{Salamander 4 Virtualisation}
+In Xenomai 3, you need:
 
+The Linux kernel with the Dovetail interface, which allows the kernel to handle real-time tasks with low latency.
+The Cobalt real-time core, which is responsible for scheduling and executing real-time tasks.
+In Xenomai 4, you need:
 
-
-
-Salamander 4 
-
-
-
-
+The Linux kernel with the EVL interface, which, like Dovetail, enables the kernel to handle real-time tasks with low latency.
+The libevl library, which provides a user interface to the EVL core, allowing applications to use the real-time capabilities provided by EVL.
+So, while both versions require a Linux kernel with a real-time interface (Dovetail for Xenomai 3, EVL for Xenomai 4), Xenomai 3 uses a real-time core (Cobalt), while Xenomai 4 uses a library (libevl) to provide applications with access to its real-time capabilities.
 
 \section{Kernelshark}
 
-
+\begin{lstlisting}[language=C++,name={1. Beispiel},label={sc:bsp:1}]
+    #include <iostream>
+    
+    void SayHello(void)
+    {
+        // Kommentar
+        cout << "Hello World!" << endl;
+    }
+    
+    int main(int argc, char **argv)
+    {
+        SayHello();
+        return 0;
+    }
+    \end{lstlisting}
 
 
 \chapter{Results}
