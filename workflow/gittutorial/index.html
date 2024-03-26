@@ -1,0 +1,2048 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="My awesome docs">
+      
+      
+        <meta name="author" content="Halil Pamuk">
+      
+      
+      
+        <link rel="prev" href="../gitlfs/">
+      
+      
+        <link rel="next" href="../most_popular_paths/">
+      
+      
+      <link rel="icon" href="../../img/uni.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>Gittutorial - Masther thesis Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#synopsis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Masther thesis Documentation" class="md-header__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
+      
+  <img src="../../img/uni.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Masther thesis Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gittutorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Masther thesis Documentation" class="md-nav__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
+      
+  <img src="../../img/uni.png" alt="logo">
+
+    </a>
+    Masther thesis Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/checklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checklist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/documentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/protocol/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../general/timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kernel patch
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Kernel patch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kernel-patch/irq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Irq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kernel-patch/kernel-patch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux kernel patch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kernel-patch/kernel_processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kernel processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sigmatek
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Sigmatek
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    QEMU
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            QEMU
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/QEMU/nmbridge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nmbridge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Salamander4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Salamander4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/bash_commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bash commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/build_LRT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build LRT - Salamander 3 Terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/build_with_yocto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build with Yocto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Trace cmd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Trace cmd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_1" id="__nav_5_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Analysis
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Analysis
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/trace-cmd/analysis/info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Info
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/trace-cmd/analysis/kernelshark/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kernelshark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_1_3" id="__nav_5_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Test
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Test
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/trace-cmd/analysis/test/kvm_exit_results/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kvm exit results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xenomai
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Xenomai
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/clocktest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    clocktest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/switchtest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    switchtest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/xenomai-system-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xenomai system tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_5" id="__nav_5_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    No taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            No taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/no_taskset/latency_no_taskset_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot no taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/no_taskset/latency_no_taskset_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency no taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_6" id="__nav_5_4_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    With taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            With taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/with_taskset/latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/with_taskset/latency_with_taskset_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Yocto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Yocto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/yocto/after_bitbake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    After bitbake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/yocto/fix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workflow
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git LFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gittutorial
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Gittutorial
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      SYNOPSIS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      DESCRIPTION
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing a new project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-tracks-content-not-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git tracks content not files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-project-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing project history
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing branches
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-git-for-collaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Git for collaboration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring history
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEE ALSO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      GIT
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../most_popular_paths/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Most popular paths
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useful_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useful_notneeded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful notneeded
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful VSCode stuff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      SYNOPSIS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      DESCRIPTION
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing a new project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-tracks-content-not-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git tracks content not files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-project-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing project history
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing branches
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-git-for-collaboration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Git for collaboration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring history
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEE ALSO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      GIT
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Gittutorial</h1>
+
+<h2 id="synopsis">SYNOPSIS<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
+<h2 id="description">DESCRIPTION<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>This tutorial explains how to import a new project into Git, make changes to it, and share changes with other developers.</p>
+<p>If you are instead primarily interested in using Git to fetch a project, for example, to test the latest version, you may prefer to start with the first two chapters of <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/user-manual.html">The Git User’s Manual</a>.</p>
+<p>First, note that you can get documentation for a command such as <code>git log --graph</code> with:</p>
+<p>or:</p>
+<p>With the latter, you can use the manual viewer of your choice; see <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-help.html">git-help(1)</a> for more information.</p>
+<p>It is a good idea to introduce yourself to Git with your name and public email address before doing any operation. The easiest way to do so is:</p>
+<div class="highlight"><pre><span></span><code>$ git config --global user.name &quot;Your Name Comes Here&quot;
+$ git config --global user.email you@yourdomain.example.com
+</code></pre></div>
+<h2 id="importing-a-new-project">Importing a new project<a class="headerlink" href="#importing-a-new-project" title="Permanent link">&para;</a></h2>
+<p>Assume you have a tarball <code>project.tar.gz</code> with your initial work. You can place it under Git revision control as follows.</p>
+<div class="highlight"><pre><span></span><code>$ tar xzf project.tar.gz
+$ cd project
+$ git init
+</code></pre></div>
+<p>Git will reply</p>
+<div class="highlight"><pre><span></span><code>Initialized empty Git repository in .git/
+</code></pre></div>
+<p>You’ve now initialized the working directory—you may notice a new directory created, named <code>.git</code>.</p>
+<p>Next, tell Git to take a snapshot of the contents of all files under the current directory (note the <code>.</code>), with <code>git add</code>:</p>
+<p>This snapshot is now stored in a temporary staging area which Git calls the "index". You can permanently store the contents of the index in the repository with <code>git commit</code>:</p>
+<p>This will prompt you for a commit message. You’ve now stored the first version of your project in Git.</p>
+<h2 id="making-changes">Making changes<a class="headerlink" href="#making-changes" title="Permanent link">&para;</a></h2>
+<p>Modify some files, then add their updated contents to the index:</p>
+<div class="highlight"><pre><span></span><code>$ git add file1 file2 file3
+</code></pre></div>
+<p>You are now ready to commit. You can see what is about to be committed using <code>git diff</code> with the <code>--cached</code> option:</p>
+<p>(Without <code>--cached</code>, <code>git diff</code> will show you any changes that you’ve made but not yet added to the index.) You can also get a brief summary of the situation with <code>git status</code>:</p>
+<div class="highlight"><pre><span></span><code>$ git status
+On branch master
+Changes to be committed:
+  (use &quot;git restore --staged &amp;lt;file&amp;gt;...&quot; to unstage)
+
+        modified:   file1
+        modified:   file2
+        modified:   file3
+</code></pre></div>
+<p>If you need to make any further adjustments, do so now, and then add any newly modified content to the index. Finally, commit your changes with:</p>
+<p>This will again prompt you for a message describing the change, and then record a new version of the project.</p>
+<p>Alternatively, instead of running <code>git add</code> beforehand, you can use</p>
+<p>which will automatically notice any modified (but not new) files, add them to the index, and commit, all in one step.</p>
+<p>A note on commit messages: Though not required, it’s a good idea to begin the commit message with a single short (no more than 50 characters) line summarizing the change, followed by a blank line and then a more thorough description. The text up to the first blank line in a commit message is treated as the commit title, and that title is used throughout Git. For example, <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-format-patch.html">git-format-patch(1)</a> turns a commit into email, and it uses the title on the Subject line and the rest of the commit in the body.</p>
+<h2 id="git-tracks-content-not-files">Git tracks content not files<a class="headerlink" href="#git-tracks-content-not-files" title="Permanent link">&para;</a></h2>
+<p>Many revision control systems provide an <code>add</code> command that tells the system to start tracking changes to a new file. Git’s <code>add</code> command does something simpler and more powerful: <code>git add</code> is used both for new and newly modified files, and in both cases it takes a snapshot of the given files and stages that content in the index, ready for inclusion in the next commit.</p>
+<h2 id="viewing-project-history">Viewing project history<a class="headerlink" href="#viewing-project-history" title="Permanent link">&para;</a></h2>
+<p>At any point you can view the history of your changes using</p>
+<p>If you also want to see complete diffs at each step, use</p>
+<p>Often the overview of the change is useful to get a feel of each step</p>
+<div class="highlight"><pre><span></span><code>$ git log --stat --summary
+</code></pre></div>
+<h2 id="managing-branches">Managing branches<a class="headerlink" href="#managing-branches" title="Permanent link">&para;</a></h2>
+<p>A single Git repository can maintain multiple branches of development. To create a new branch named <code>experimental</code>, use</p>
+<div class="highlight"><pre><span></span><code>$ git branch experimental
+</code></pre></div>
+<p>If you now run</p>
+<p>you’ll get a list of all existing branches:</p>
+<p>The <code>experimental</code> branch is the one you just created, and the <code>master</code> branch is a default branch that was created for you automatically. The asterisk marks the branch you are currently on; type</p>
+<div class="highlight"><pre><span></span><code>$ git switch experimental
+</code></pre></div>
+<p>to switch to the <code>experimental</code> branch. Now edit a file, commit the change, and switch back to the <code>master</code> branch:</p>
+<div class="highlight"><pre><span></span><code>(edit file)
+$ git commit -a
+$ git switch master
+</code></pre></div>
+<p>Check that the change you made is no longer visible, since it was made on the <code>experimental</code> branch and you’re back on the <code>master</code> branch.</p>
+<p>You can make a different change on the <code>master</code> branch:</p>
+<div class="highlight"><pre><span></span><code>(edit file)
+$ git commit -a
+</code></pre></div>
+<p>at this point the two branches have diverged, with different changes made in each. To merge the changes made in <code>experimental</code> into <code>master</code>, run</p>
+<p>If the changes don’t conflict, you’re done. If there are conflicts, markers will be left in the problematic files showing the conflict;</p>
+<p>will show this. Once you’ve edited the files to resolve the conflicts,</p>
+<p>will commit the result of the merge. Finally,</p>
+<p>will show a nice graphical representation of the resulting history.</p>
+<p>At this point you could delete the <code>experimental</code> branch with</p>
+<div class="highlight"><pre><span></span><code>$ git branch -d experimental
+</code></pre></div>
+<p>This command ensures that the changes in the <code>experimental</code> branch are already in the current branch.</p>
+<p>If you develop on a branch <code>crazy-idea</code>, then regret it, you can always delete the branch with</p>
+<div class="highlight"><pre><span></span><code>$ git branch -D crazy-idea
+</code></pre></div>
+<p>Branches are cheap and easy, so this is a good way to try something out.</p>
+<h2 id="using-git-for-collaboration">Using Git for collaboration<a class="headerlink" href="#using-git-for-collaboration" title="Permanent link">&para;</a></h2>
+<p>Suppose that Alice has started a new project with a Git repository in <code>/home/alice/project</code>, and that Bob, who has a home directory on the same machine, wants to contribute.</p>
+<p>Bob begins with:</p>
+<div class="highlight"><pre><span></span><code>bob$ git clone /home/alice/project myrepo
+</code></pre></div>
+<p>This creates a new directory <code>myrepo</code> containing a clone of Alice’s repository. The clone is on an equal footing with the original project, possessing its own copy of the original project’s history.</p>
+<p>Bob then makes some changes and commits them:</p>
+<div class="highlight"><pre><span></span><code>(edit files)
+bob$ git commit -a
+(repeat as necessary)
+</code></pre></div>
+<p>When he’s ready, he tells Alice to pull changes from the repository at <code>/home/bob/myrepo</code>. She does this with:</p>
+<div class="highlight"><pre><span></span><code>alice$ cd /home/alice/project
+alice$ git pull /home/bob/myrepo master
+</code></pre></div>
+<p>This merges the changes from Bob’s <code>master</code> branch into Alice’s current branch. If Alice has made her own changes in the meantime, then she may need to manually fix any conflicts.</p>
+<p>The <code>pull</code> command thus performs two operations: it fetches changes from a remote branch, then merges them into the current branch.</p>
+<p>Note that in general, Alice would want her local changes committed before initiating this <code>pull</code>. If Bob’s work conflicts with what Alice did since their histories forked, Alice will use her working tree and the index to resolve conflicts, and existing local changes will interfere with the conflict resolution process (Git will still perform the fetch but will refuse to merge — Alice will have to get rid of her local changes in some way and pull again when this happens).</p>
+<p>Alice can peek at what Bob did without merging first, using the <code>fetch</code> command; this allows Alice to inspect what Bob did, using a special symbol <code>FETCH_HEAD</code>, in order to determine if he has anything worth pulling, like this:</p>
+<div class="highlight"><pre><span></span><code>alice$ git fetch /home/bob/myrepo master
+alice$ git log -p HEAD..FETCH_HEAD
+</code></pre></div>
+<p>This operation is safe even if Alice has uncommitted local changes. The range notation <code>HEAD..FETCH_HEAD</code> means "show everything that is reachable from the <code>FETCH_HEAD</code> but exclude anything that is reachable from <code>HEAD</code>". Alice already knows everything that leads to her current state (<code>HEAD</code>), and reviews what Bob has in his state (<code>FETCH_HEAD</code>) that she has not seen with this command.</p>
+<p>If Alice wants to visualize what Bob did since their histories forked she can issue the following command:</p>
+<p>This uses the same two-dot range notation we saw earlier with <code>git log</code>.</p>
+<p>Alice may want to view what both of them did since they forked. She can use three-dot form instead of the two-dot form:</p>
+<p>This means "show everything that is reachable from either one, but exclude anything that is reachable from both of them".</p>
+<p>Please note that these range notation can be used with both <code>gitk</code> and <code>git log</code>.</p>
+<p>After inspecting what Bob did, if there is nothing urgent, Alice may decide to continue working without pulling from Bob. If Bob’s history does have something Alice would immediately need, Alice may choose to stash her work-in-progress first, do a <code>pull</code>, and then finally unstash her work-in-progress on top of the resulting history.</p>
+<p>When you are working in a small closely knit group, it is not unusual to interact with the same repository over and over again. By defining <em>remote</em> repository shorthand, you can make it easier:</p>
+<div class="highlight"><pre><span></span><code>alice$ git remote add bob /home/bob/myrepo
+</code></pre></div>
+<p>With this, Alice can perform the first part of the <code>pull</code> operation alone using the <code>git fetch</code> command without merging them with her own branch, using:</p>
+<p>Unlike the longhand form, when Alice fetches from Bob using a remote repository shorthand set up with <code>git remote</code>, what was fetched is stored in a remote-tracking branch, in this case <code>bob/master</code>. So after this:</p>
+<div class="highlight"><pre><span></span><code>alice$ git log -p master..bob/master
+</code></pre></div>
+<p>shows a list of all the changes that Bob made since he branched from Alice’s <code>master</code> branch.</p>
+<p>After examining those changes, Alice could merge the changes into her <code>master</code> branch:</p>
+<div class="highlight"><pre><span></span><code>alice$ git merge bob/master
+</code></pre></div>
+<p>This <code>merge</code> can also be done by <em>pulling from her own remote-tracking branch</em>, like this:</p>
+<div class="highlight"><pre><span></span><code>alice$ git pull . remotes/bob/master
+</code></pre></div>
+<p>Note that git pull always merges into the current branch, regardless of what else is given on the command line.</p>
+<p>Later, Bob can update his repo with Alice’s latest changes using</p>
+<p>Note that he doesn’t need to give the path to Alice’s repository; when Bob cloned Alice’s repository, Git stored the location of her repository in the repository configuration, and that location is used for pulls:</p>
+<div class="highlight"><pre><span></span><code>bob$ git config --get remote.origin.url
+/home/alice/project
+</code></pre></div>
+<p>(The complete configuration created by <code>git clone</code> is visible using <code>git config -l</code>, and the <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-config.html">git-config(1)</a> man page explains the meaning of each option.)</p>
+<p>Git also keeps a pristine copy of Alice’s <code>master</code> branch under the name <code>origin/master</code>:</p>
+<div class="highlight"><pre><span></span><code>bob$ git branch -r
+  origin/master
+</code></pre></div>
+<p>If Bob later decides to work from a different host, he can still perform clones and pulls using the ssh protocol:</p>
+<div class="highlight"><pre><span></span><code>bob$ git clone alice.org:/home/alice/project myrepo
+</code></pre></div>
+<p>Alternatively, Git has a native protocol, or can use http; see <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-pull.html">git-pull(1)</a> for details.</p>
+<p>Git can also be used in a CVS-like mode, with a central repository that various users push changes to; see <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-push.html">git-push(1)</a> and <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitcvs-migration.html">gitcvs-migration(7)</a>.</p>
+<h2 id="exploring-history">Exploring history<a class="headerlink" href="#exploring-history" title="Permanent link">&para;</a></h2>
+<p>Git history is represented as a series of interrelated commits. We have already seen that the <code>git log</code> command can list those commits. Note that first line of each <code>git log</code> entry also gives a name for the commit:</p>
+<div class="highlight"><pre><span></span><code>$ git log
+commit c82a22c39cbc32576f64f5c6b3f24b99ea8149c7
+Author: Junio C Hamano &amp;lt;junkio@cox.net&amp;gt;
+Date:   Tue May 16 17:18:22 2006 -0700
+
+    merge-base: Clarify the comments on post processing.
+</code></pre></div>
+<p>We can give this name to <code>git show</code> to see the details about this commit.</p>
+<div class="highlight"><pre><span></span><code>$ git show c82a22c39cbc32576f64f5c6b3f24b99ea8149c7
+</code></pre></div>
+<p>But there are other ways to refer to commits. You can use any initial part of the name that is long enough to uniquely identify the commit:</p>
+<div class="highlight"><pre><span></span><code>$ git show c82a22c39c   # the first few characters of the name are
+                        # usually enough
+$ git show HEAD         # the tip of the current branch
+$ git show experimental # the tip of the &quot;experimental&quot; branch
+</code></pre></div>
+<p>Every commit usually has one "parent" commit which points to the previous state of the project:</p>
+<div class="highlight"><pre><span></span><code>$ git show HEAD^  # to see the parent of HEAD
+$ git show HEAD^^ # to see the grandparent of HEAD
+$ git show HEAD~4 # to see the great-great grandparent of HEAD
+</code></pre></div>
+<p>Note that merge commits may have more than one parent:</p>
+<div class="highlight"><pre><span></span><code>$ git show HEAD^1 # show the first parent of HEAD (same as HEAD^)
+$ git show HEAD^2 # show the second parent of HEAD
+</code></pre></div>
+<p>You can also give commits names of your own; after running</p>
+<div class="highlight"><pre><span></span><code>$ git tag v2.5 1b2e1d63ff
+</code></pre></div>
+<p>you can refer to <code>1b2e1d63ff</code> by the name <code>v2.5</code>. If you intend to share this name with other people (for example, to identify a release version), you should create a "tag" object, and perhaps sign it; see <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-tag.html">git-tag(1)</a> for details.</p>
+<p>Any Git command that needs to know a commit can take any of these names. For example:</p>
+<div class="highlight"><pre><span></span><code>$ git diff v2.5 HEAD     # compare the current HEAD to v2.5
+$ git branch stable v2.5 # start a new branch named &quot;stable&quot; based
+                         # at v2.5
+$ git reset --hard HEAD^ # reset your current branch and working
+                         # directory to its state at HEAD^
+</code></pre></div>
+<p>Be careful with that last command: in addition to losing any changes in the working directory, it will also remove all later commits from this branch. If this branch is the only branch containing those commits, they will be lost. Also, don’t use <code>git reset</code> on a publicly-visible branch that other developers pull from, as it will force needless merges on other developers to clean up the history. If you need to undo changes that you have pushed, use <code>git revert</code> instead.</p>
+<p>The <code>git grep</code> command can search for strings in any version of your project, so</p>
+<p>searches for all occurrences of "hello" in <code>v2.5</code>.</p>
+<p>If you leave out the commit name, <code>git grep</code> will search any of the files it manages in your current directory. So</p>
+<p>is a quick way to search just the files that are tracked by Git.</p>
+<p>Many Git commands also take sets of commits, which can be specified in a number of ways. Here are some examples with <code>git log</code>:</p>
+<div class="highlight"><pre><span></span><code>$ git log v2.5..v2.6            # commits between v2.5 and v2.6
+$ git log v2.5..                # commits since v2.5
+$ git log --since=&quot;2 weeks ago&quot; # commits from the last 2 weeks
+$ git log v2.5.. Makefile       # commits since v2.5 which modify
+                                # Makefile
+</code></pre></div>
+<p>You can also give <code>git log</code> a "range" of commits where the first is not necessarily an ancestor of the second; for example, if the tips of the branches <code>stable</code> and <code>master</code> diverged from a common commit some time ago, then</p>
+<p>will list commits made in the <code>master</code> branch but not in the stable branch, while</p>
+<p>will show the list of commits made on the stable branch but not the <code>master</code> branch.</p>
+<p>The <code>git log</code> command has a weakness: it must present commits in a list. When the history has lines of development that diverged and then merged back together, the order in which <code>git log</code> presents those commits is meaningless.</p>
+<p>Most projects with multiple contributors (such as the Linux kernel, or Git itself) have frequent merges, and <code>gitk</code> does a better job of visualizing their history. For example,</p>
+<div class="highlight"><pre><span></span><code>$ gitk --since=&quot;2 weeks ago&quot; drivers/
+</code></pre></div>
+<p>allows you to browse any commits from the last 2 weeks of commits that modified files under the <code>drivers</code> directory. (Note: you can adjust gitk’s fonts by holding down the control key while pressing "-" or "+".)</p>
+<p>Finally, most commands that take filenames will optionally allow you to precede any filename by a commit, to specify a particular version of the file:</p>
+<div class="highlight"><pre><span></span><code>$ git diff v2.5:Makefile HEAD:Makefile.in
+</code></pre></div>
+<p>You can also use <code>git show</code> to see any such file:</p>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>This tutorial should be enough to perform basic distributed revision control for your projects. However, to fully understand the depth and power of Git you need to understand two simple ideas on which it is based:</p>
+<ul>
+<li>
+<p>The object database is the rather elegant system used to store the history of your project—files, directories, and commits.</p>
+</li>
+<li>
+<p>The index file is a cache of the state of a directory tree, used to create commits, check out working directories, and hold the various trees involved in a merge.</p>
+</li>
+</ul>
+<p>Part two of this tutorial explains the object database, the index file, and a few other odds and ends that you’ll need to make the most of Git. You can find it at <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gittutorial-2.html">gittutorial-2(7)</a>.</p>
+<p>If you don’t want to continue with that right away, a few other digressions that may be interesting at this point are:</p>
+<ul>
+<li>
+<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-format-patch.html">git-format-patch(1)</a>, <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-am.html">git-am(1)</a>: These convert series of git commits into emailed patches, and vice versa, useful for projects such as the Linux kernel which rely heavily on emailed patches.</p>
+</li>
+<li>
+<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-bisect.html">git-bisect(1)</a>: When there is a regression in your project, one way to track down the bug is by searching through the history to find the exact commit that’s to blame. <code>git bisect</code> can help you perform a binary search for that commit. It is smart enough to perform a close-to-optimal search even in the case of complex non-linear history with lots of merged branches.</p>
+</li>
+<li>
+<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitworkflows.html">gitworkflows(7)</a>: Gives an overview of recommended workflows.</p>
+</li>
+<li>
+<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/giteveryday.html">giteveryday(7)</a>: Everyday Git with 20 Commands Or So.</p>
+</li>
+<li>
+<p><a href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/gitcvs-migration.html">gitcvs-migration(7)</a>: Git for CVS users.</p>
+</li>
+</ul>
+<h2 id="see-also">SEE ALSO<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<h2 id="git">GIT<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+    
+  </body>
+</html>
