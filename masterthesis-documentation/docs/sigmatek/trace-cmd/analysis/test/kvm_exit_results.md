@@ -14,4 +14,4 @@
 | CPUID               | Triggered when the guest executes the CPUID instruction, used to identify the processor.                                    | 10 times      |
 
 
-![Plot](plot.png)
+![Plot](kvm_exits.png)
