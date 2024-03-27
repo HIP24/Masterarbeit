@@ -225,7 +225,7 @@ Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Lin
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-\begin{lstlisting}[language=bash,name={System information},label={lst:uname_a}]
+\begin{lstlisting}[name={System information},label={lst:uname_a}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
@@ -364,12 +364,21 @@ After analyzing the inital latency of both versions, Trace-cmd and Kernelshark w
 \section{Salamander 4 Bare Metal}
 Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including 
 
+Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\columnwidth]{img/max_latency_hardware.png}
+  \caption[Latency hardware]{Latency hardware}
+  \label{fig:max_latency_hardware}
+\end{figure}
+
+
 \section{Salamander 4 Virtualisation}
 In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{lst:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
-    \begin{lstlisting}[language=bash,name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
+    \begin{lstlisting}[name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
     sigma_ibo@localhost:~/Desktop/salamander-image$ ls -1
     bzImage
     drive-c
@@ -386,7 +395,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[language=bash,name={QEMU script for starting Salamander 4 virtualisation},label={lst:qemu_def}]
+\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={lst:qemu_def}]
     #!/bin/sh
 
     if  [ ! -d drive-c/ ]; then
@@ -443,63 +452,92 @@ Here is a description of the used components:
  %   
  %   \end{table}
  
+\clearpage
+\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is noted bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU.
 
 
- Figure \ref{fig:latency_hardware}
- \begin{figure}[H]
-   \centering
-   \includegraphics[width=0.8\columnwidth]{img/latency_hardware.png}
-   \caption[Latency hardware]{Latency hardware}
-   \label{fig:latency_hardware}
- \end{figure}
- 
- 
- 
- Figure \ref{fig:latency_no_taskset}
+Figure \ref{fig:max_latency_default} shows latency of QEMU default Salamander4.
  
  \begin{figure}[H]
      \centering
-     \includegraphics[width=0.8\columnwidth]{img/latency_default.png}
+     \includegraphics[width=0.75\columnwidth]{img/max_latency_default.png}
      \caption[Latency no taskset]{Latency no taskset}
-     \label{fig:latency_no_taskset}
+     \label{fig:max_latency_default}
    \end{figure}
  
  
-   Figure \ref{fig:latency_taskset}
+   Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
    \begin{figure}[H]
      \centering
-     \includegraphics[width=0.8\columnwidth]{img/latency_taskset.png}
+     \includegraphics[width=0.75\columnwidth]{img/max_latency_taskset.png}
      \caption[Latency taskset]{Latency taskset}
-     \label{fig:latency_taskset}
-   \end{figure}
- 
- Figure \ref{fig:kvm_exits} shows 5 seconds of sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all
-
-
-
-
- \begin{figure}[H]
-     \centering
-     \includegraphics[width=0.8\columnwidth]{img/kvm_exits.png}
-     \caption[kvm exits]{kvm exits}
-     \label{fig:kvm_exits}
+     \label{fig:max_latency_taskset}
    \end{figure}
  
 
-   Figure \ref{fig:gnuplot_max_latency_hardware}
+\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exits} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events. 
+
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|p{0.62\textwidth}|}
+  \hline
+  \textbf{Exit Reason} & \textbf{Description}\\
+  \hline
+  APIC\_WRITE & Triggered when the guest writes to its APIC. \\ \hline
+  EXTERNAL\_INTERRUPT & Triggered by external hardware interrupts. \\ \hline
+  HLT & Triggered when the guest executes the HLT instruction. \\ \hline
+  EPT\_MISCONFIG & Triggered by a misconfiguration in the EPT. \\ \hline
+  PREEMPTION\_TIMER & Triggered when the host's preemption timer expires. \\ \hline
+  PAUSE\_INSTRUCTION & Triggered when the PAUSE instruction is executed. \\ \hline
+  EPT\_VIOLATION & Triggered by a violation of the EPT permission settings. \\ \hline
+  IO\_INSTRUCTION & Triggered when the guest executes an I/O instruction. \\ \hline
+  EOI\_INDUCED & Triggered when an EOI signal is sent to the APIC. \\ \hline
+  MSR\_READ & Triggered when the guest reads from a MSR. \\ \hline
+  CPUID & Triggered when the guest executes the CPUID instruction.  \\ \hline
+  \end{tabular}
+  \caption{Description of kvm\_exit reasons}
+  \label{tab:kvm_exit}
+  \end{table}
+
+\clearpage
+  Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency with CPU islation.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\columnwidth]{img/kvm_exits.png}
+    \caption[kvm exits]{kvm exits}
+    \label{fig:kvm_exits}
+  \end{figure}
+
+  Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CPU islation.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\columnwidth]{img/kvm_exits_default.png}
+    \caption[kvm exits default]{kvm exits default}
+    \label{fig:kvm_exits_default}
+  \end{figure}
+  \clearpage
+
+\noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer \texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a \texttt{kvm\_exit} and kvm\_entry.
+
+\noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in \texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
+
+\noindent In the process of analyzing the \texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the \texttt{APIC\_WRITE} and \texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included \texttt{EXTERNAL\_INTERRUPT} and \texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as \texttt{EPT\_MISCONFIG} and \texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like \texttt{PAUSE\_INSTRUCTION}, \texttt{EPT\_VIOLATION}, \texttt{EOI\_INDUCED}, \texttt{MSR\_READ}, and \texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction. 
+
+The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_max_latency_hardware}
    \begin{figure}[H]
        \centering
        \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/hardware/gnuplot_max_latency_hardware.png}
        \caption[gnuplot latency hardware]{gnuplot latency hardware}
-       \label{fig:gnuplot_max_latency_hardware}
+       \label{fig:gnuplot_max_max_latency_hardware}
      \end{figure}
 
-     Figure \ref{fig:gnuplot_max_latency_no_taskset}
+     Figure \ref{fig:gnuplot_max_max_latency_default}
      \begin{figure}[H]
          \centering
          \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/default/gnuplot_max_latency_default.png}
          \caption[gnuplot latency no taskset]{gnuplot latency no taskset}
-         \label{fig:gnuplot_max_latency_no_taskset}
+         \label{fig:gnuplot_max_max_latency_default}
        \end{figure}
 
 
@@ -512,13 +550,6 @@ Here is a description of the used components:
      \end{figure}
 
 
-
-
-
-
-
-
-
 \clearpage
 \chapter{Results}
 
@@ -526,8 +557,6 @@ VARAN-Bus PCV-521\newline
 Windows\newline
 Ubuntu\newline
 WSL\newline\newline\newline
-
-
 
 In Xenomai 3, you need:
 
@@ -537,8 +566,6 @@ In Xenomai 4, you need:
 The Linux kernel with the EVL interface, which, like Dovetail, enables the kernel to handle real-time tasks with low latency.
 The libevl library, which provides a user interface to the EVL core, allowing applications to use the real-time capabilities provided by EVL.
 So, while both versions require a Linux kernel with a real-time interface (Dovetail for Xenomai 3, EVL for Xenomai 4), Xenomai 3 uses a real-time core (Cobalt), while Xenomai 4 uses a library (libevl) to provide applications with access to its real-time capabilities.
-
-
 
 \clearpage
 \chapter{Discussion}
