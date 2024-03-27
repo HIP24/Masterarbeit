@@ -1,7 +1,7 @@
-# Latency hardware
+# Max Latency hardware
 
 ```
-root@sigmatek-core2:~# latency -h -s -T 600 -g latency_hardware.txt
+root@sigmatek-core2:~# latency -h -s -T 600 -g max_latency_hardware.txt
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
 == All results in microseconds

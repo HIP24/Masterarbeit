@@ -1,7 +1,7 @@
-# Latency with taskset 
+# Max Latency with taskset 
 
 ```
-root@sigmatek-core2:~# latency -h -s -T 600 -g latency_with_taskset_10min.txt
+root@sigmatek-core2:~# latency -h -s -T 600 -g max_latency_with_taskset_10min.txt
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
 == All results in microseconds
