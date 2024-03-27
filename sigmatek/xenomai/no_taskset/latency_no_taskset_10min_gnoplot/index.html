@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../../xenomai-system-tools/">
+        <link rel="prev" href="../../hardware/latency_hardware_10min_log/">
       
       
         <link rel="next" href="../latency_no_taskset_10min_log/">
@@ -1010,6 +1010,91 @@
                 
   
   
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_5" id="__nav_5_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/latency_hardware_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/latency_hardware_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1022,10 +1107,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_4_5" id="__nav_5_4_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4_6" id="__nav_5_4_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1036,8 +1121,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_4_5">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4_6">
             <span class="md-nav__icon md-icon"></span>
             No taskset
           </label>
@@ -1117,10 +1202,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_5_4_6" id="__nav_5_4_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4_7" id="__nav_5_4_7_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1131,8 +1216,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_4_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_7">
             <span class="md-nav__icon md-icon"></span>
             With taskset
           </label>
@@ -1515,15 +1600,15 @@
 stats &#39;latency_no_taskset_10min.txt&#39; using 2 nooutput
 
 # Define labels for the statistics
-set label 1 sprintf(&quot;Minimum: %.2f&quot;, STATS_min) at graph 0.02, graph 0.9
-set label 2 sprintf(&quot;Maximum: %.2f&quot;, STATS_max) at graph 0.02, graph 0.85
-set label 3 sprintf(&quot;Average: %.2f&quot;, STATS_mean) at graph 0.02, graph 0.8
-set label 4 sprintf(&quot;Standard Deviation: %.2f&quot;, STATS_stddev) at graph 0.02, graph 0.75
+set label 1 sprintf(&quot;Minimum: %.2f&quot;, STATS_min) at graph 0.6, graph 0.3
+set label 2 sprintf(&quot;Maximum: %.2f&quot;, STATS_max) at graph 0.6, graph 0.25
+set label 3 sprintf(&quot;Average: %.2f&quot;, STATS_mean) at graph 0.6, graph 0.2
+set label 4 sprintf(&quot;Standard Deviation: %.2f&quot;, STATS_stddev) at graph 0.6, graph 0.15
 
 # Plot the data
 plot &#39;latency_no_taskset_10min.txt&#39; using 1:2 with linespoints title &#39;Latency Histogram&#39;
 </code></pre></div>
-<p><img alt="plot_latency_no_taskset.png" src="../plot_latency_no_taskset.png" /></p>
+<p><img alt="gnuplot_latency_no_taskset.png" src="../gnuplot_latency_no_taskset.png" /></p>
 
 
 

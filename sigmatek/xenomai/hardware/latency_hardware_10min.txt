@@ -1,0 +1,23 @@
+root@sigmatek-core2:~# cat latency_hardware.txt 
+# 00:10:00 (periodic user-mode task, 100 us period, priority 99)
+# ----lat min|----lat avg|----lat max|-overrun|---msw|
+#       0.613|      1.380|     10.709|       0|     0|
+# Xenomai version: Xenomai/cobalt v3.2.2 -- #92edb496f (2022-08-04 16:33:30 +0200)
+# Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
+# Kernel parameters: BOOT_IMAGE=/bzImage nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 FirstUsbDrive=E  vEEPROM="eeprom" console=/dev/null noconsole root=/dev/sda2 rw efi=runtime usbcore.autosuspend=-1 i915.disable_power_well=0 i915.enable_dc=0 i915.enable_guc=2 i915.enable_rc6=0 BOARDname="CP841" PRODUCTname="CP841" PRODUCTfamily="CP8xx" CPUname="CP841" ALIASname="CP8xx"  irqaffinity=1 threadirqs BOOTTYPE="EFI64"
+# Cobalt core 3.2.2 detected
+# Compiler: gcc version 11.2.0 (GCC) 
+# Build args: --build=x86_64-linux --host=i686-sigmatekmllib32-linux --target=i686-sigmatekmllib32-linux --prefix=/usr --exec_prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/libexec --datadir=/usr/share --sysconfdir=/etc --sharedstatedir=/com --localstatedir=/var --libdir=/usr/lib --includedir=/usr/include/xenomai --oldincludedir=/usr/include --infodir=/usr/share/info --mandir=/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot --with-core=cobalt --enable-static --enable-smp build_alias=x86_64-linux host_alias=i686-sigmatekmllib32-linux target_alias=i686-sigmatekmllib32-linux CC=i686-sigmatekmllib32-linux-gcc  -m32 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot CFLAGS= -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot=                      -fdebug-prefix-map=FIXMESTAGINGDIRHOST=  LDFLAGS=-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot=                      -fdebug-prefix-map=FIXMESTAGINGDIRHOST=  -Wl,-z,relro,-z,now CPPFLAGS= CPP=i686-sigmatekmllib32-linux-gcc -E --sysroot=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot  -m32 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security PKG_CONFIG_PATH=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot/usr/lib/pkgconfig:/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot/usr/share/pkgconfig:/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/recipe-sysroot//usr/share/pkgconfig PKG_CONFIG_LIBDIR=/home/jenkins/jobs/Salamander4_x86_release/workspace/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot/usr/lib/pkgconfig
+0 1
+0.5 209
+1.5 5894070
+2.5 97267
+3.5 7563
+4.5 767
+5.5 101
+6.5 12
+7.5 3
+8.5 3
+9.5 2
+10.5 2
+11 1
