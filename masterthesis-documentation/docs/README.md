@@ -19,9 +19,9 @@ Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
 
 <div id="page-wrapper">
   <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Fortschritt</a>
- der Masterarbeit:<b> Anfangsphase</b> </div> 
+ der Masterarbeit:<b> Fortgeschrittene Anfangsphase</b> </div> 
   <div class="meter animate">
-    <span style="width: 10%"><span></span></span>
+    <span style="width: 20%"><span></span></span>
   </div> 
   <!--<div class="meter orange nostripes">
     <span style="width: 33.3%"></span>
@@ -270,14 +270,14 @@ pre {
 ### trace-cmd and kernelshark
 | File       | Description |
 |------------|-------|
-| [start_kernelshark.sh](sigmatek/trace-cmd/analysis/test/start_kernelshark.sh)   | Script for starting kernelshark with host and guest trace.dat |
+| [start_kernelshark.sh](sigmatek/trace-cmd/analysis/test/taskset/start_kernelshark.sh)   | Script for starting kernelshark with host and guest trace.dat |
 | [start_kernelshark_convert.sh](sigmatek/trace-cmd/analysis/test/start_kernelshark_convert.sh)   | Script for starting kernelshark with converted v6 host and guest trace.dat |
 
 
 ## Python
 | File       | Description |
 |------------|-------|
-| [kvm_exit_number.py](sigmatek/trace-cmd/analysis/test/kvm_exit_number.py)   | Count kvm_exit events  |
+| [kvm_exit_number.py](sigmatek/trace-cmd/analysis/test/taskset/kvm_exit_number.py)   | Count kvm_exit events  |
 | [max_latency_no_taskset.py](sigmatek/xenomai/max_latency_default.py)             | Plot latency of Slamander 4 QEMU with no taskset  |
 | [max_latency_taskset.py](sigmatek/xenomai/max_latency_taskset.py)                   | Plot latency of Slamander 4 QEMU with taskset  |
 | [max_latency_hardware.py](sigmatek/xenomai/max_latency_hardware.py)                   | Plot latency of Slamander 4 hardware  |

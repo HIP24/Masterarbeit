@@ -1,0 +1,2 @@
+trace.dat filter=lfs diff=lfs merge=lfs -text
+trace-Salamander4.dat filter=lfs diff=lfs merge=lfs -text
