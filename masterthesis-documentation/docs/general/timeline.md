@@ -34,3 +34,6 @@
 | 20.03.2024 | kvm_exit reasons [plot](../sigmatek/trace-cmd/analysis/test/kvm_exits.png) |
 | 21.03.2024 | gitlfs and settings.json, plot with and without taskset, write more thesis |
 | 22.03.2024 | Literature paper search |
+| 25.03.2024 | Start masterthesis |
+| 26.03.2024 | Write masterthesis  |
+| 27.03.2024 | Write masterthesis |

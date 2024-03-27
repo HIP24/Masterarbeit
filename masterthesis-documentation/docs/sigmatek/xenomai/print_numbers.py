@@ -1,5 +1,5 @@
 # Open the file in write mode
-with open("numbers.txt", "w") as file:
+with open("print_numbers.txt", "w") as file:
     # Write numbers from 1 to 600
     for number in range(1, 601):
         file.write(str(number) + "\n")

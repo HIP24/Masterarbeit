@@ -156,8 +156,9 @@ In today's industrial production and automation, robot systems are well establis
 
 
 \clearpage
-\section{Thesis Context}
-Diese Masterarbeit wurde in der Firma SIGMATEK GmbH \& Co KG erstellt. 
+\section{Application Context}
+This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
+
 
 
 
@@ -212,47 +213,31 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 \bigskip \noindent Trace-cmd was used for tracing the Linux kernel. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency \cite{Tracecmd}. 
 
-\bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed \cite{KernelShark}. 
+\bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool \cite{KernelShark}. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed. 
 
-\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{Xenomai}.
+\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{XenomaiXenomai}.
 
 
 \clearpage 
 \chapter{Salamander Operating System}
 
-Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{Xenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it utilises IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
+Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it utilises IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
 
 \vspace{1em}
-
-\begin{lstlisting}[caption={Ein Beispiel für einen Linux-Befehl}, label={lst:uname_a}]
+\begin{minipage}{0.95\columnwidth}
+\begin{lstlisting}[language=bash,name={System information},label={lst:uname_a}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
+\end{minipage}
 
-
-Figure \ref{fig:latency_no_taskset}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\columnwidth]{img/latency_no_taskset.png}
-    \caption[Kurz]{Lang}
-    \label{fig:latency_no_taskset}
-  \end{figure}
-
-Figure \ref{fig:kvm_exits}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\columnwidth]{img/kvm_exits.png}
-    \caption[Kurz]{Lang}
-    \label{fig:kvm_exits}
-  \end{figure}
 
 
 Xenomai consists of 3 parts. These can be found in the Table \ref{tab:what_is_xenomai}.
 
 \begin{table}[!h]
     \centering
-    \caption[Kurz]{Lang}
+    \caption[Xenomai architecture]{Xenomai architecture}
     \label{tab:what_is_xenomai}
     \setlength{\tabcolsep}{0.5em} % for the horizontal padding
     {\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -276,13 +261,13 @@ Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten d
 
 \begin{table}[H]
     \centering
-    \caption[Kurz]{Lang}
+    \caption[Domain specific functions]{Domain specific functions}
     \label{tab:domain_specific_functions}
     \begin{tabular}{|c|c|}
         \hline
         \textbf{Xenomai spezifische Funktionen} & \textbf{Linux spezifische Funktionen} \\ \hline
-        Tasks                                   & Dateizugriffe                           \\ \hline
-        Mutexes, Semaphoren, Events             & Netzwerk                                \\ \hline
+        Tasks    & Dateizugriffe \\ \hline
+        Mutexes, Semaphoren, Events & Netzwerk \\ \hline
     \end{tabular}
 \end{table}
 
@@ -295,7 +280,7 @@ Es gibt grundsätzlich 4 Gruppen
 
 \begin{table}[ht]
     \centering
-    \caption{Übersicht der Prioritätsgruppen und ihrer Beziehungen}
+    \caption{Overview of the priority groups and their relationships}
     \label{tab:priorities}
     \begin{tabular}{|c|c|}
         \hline
@@ -328,7 +313,7 @@ App Heap, App Code, …
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
-    \caption[Kurz]{Lang}
+    \caption[Memory Management]{Memory Management}
     \label{fig:memory_management}
   \end{figure}
 
@@ -344,8 +329,8 @@ App Heap, App Code, …
 
   \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\columnwidth]{img/Software-Struktur einer LASAL CPU.png}
-    \caption[Kurz]{Lang}
+    \includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
+    \caption[LASAL CPU]{LASAL CPU}
     \label{fig:lasal_cpu}
   \end{figure}
 
@@ -353,13 +338,17 @@ App Heap, App Code, …
 
 
 \chapter{Comparison of Real-Time Latency}
-We tried to measure the latencies under 2 conditions:
-IDLE and CPU-STRESSED. In the IDLE condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
+In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version. 
+
+Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
+
+
+%In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
 
 
 \begin{table}[H]
     \centering
-    \caption[Kurz]{Lang}
+    \caption[Kernel and Patches]{Kernel and Patches}
     \label{tab:kernel_configuration}
     \begin{tabular}{|c|c|}
         \hline
@@ -369,51 +358,184 @@ IDLE and CPU-STRESSED. In the IDLE condition, in order to create such test envir
     \end{tabular}
 \end{table}
 
+After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence. 
+
 
 \section{Salamander 4 Bare Metal}
+Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including 
 
 \section{Salamander 4 Virtualisation}
+In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{lst:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+    \begin{lstlisting}[language=bash,name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
+    sigma_ibo@localhost:~/Desktop/salamander-image$ ls -1
+    bzImage
+    drive-c
+    ovmf.code.qcow2
+    qemu_def_bkp.sh
+    qemu_def.sh
+    salamander-image-sigmatek-core2.ext4
+    stek-drive-c-image-sigmatek-core2.tar.gz
+    vmlinux
+    \end{lstlisting}
+    \end{minipage}
+    
+
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=bash,name={QEMU script for starting Salamander 4 virtualisation},label={lst:qemu_def}]
+    #!/bin/sh
+
+    if  [ ! -d drive-c/ ]; then
+            echo "Filling drive-c/"
+            mkdir drive-c/
+            tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
+    fi
+    
+    exec  qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+    -m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+    -append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable" \
+    -net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+    -fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
+    -device vhost-vsock-pci,guest-cid=3,id=vsock0 \
+    -drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+    -no-reboot -nographic
+\end{lstlisting}
+\end{minipage}
+
+Here is a description of the used components:
+\begin{itemize}
+    \item \textbf{bzImage}: Compressed Linux kernel image, loaded by QEMU at system start.
+    \item \textbf{ovmf.code.qcow2}: Firmware file for QEMU, enables UEFI boot process.
+    \item \textbf{qemu\_def.sh}: Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS.
+    \item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script.
+    \item \textbf{drive-c}: Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script..
+    \item \textbf{salamander-image-sigmatek-core2.ext4}: Root file system for Salamander 4 OS, used as hard drive for QEMU system.
+    \item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage.
+\end{itemize}
+
+ %   \begin{table}[ht]
+ %       \centering
+ %       \caption{QEMU script components}
+ %       \label{tab:qemu_components}
+ %       \begin{tabular}{|l|p{8cm}|}
+ %           \hline
+ %           \textbf{File} & \textbf{Description} \\
+ %           \hline
+ %           bzImage & Compressed Linux kernel image, loaded by QEMU at system start. \\
+ %           \hline
+ %           ovmf.code.qcow2 & Firmware file for QEMU, enables UEFI boot process. \\
+ %           \hline
+ %           qemu\_def.sh & Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS. \\
+ %           \hline
+ %           stek-drive-c-image-sigmatek-core2.tar.gz & Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script. \\
+ %           \hline
+ %           drive-c & Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script. \\
+ %           \hline
+ %           salamander-image-sigmatek-core2.ext4 & Root file system for Salamander 4 OS, used as hard drive for QEMU system. \\
+ %           \hline
+ %           vmlinux & Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage. \\
+ %           \hline
+ %       \end{tabular}
+ %   
+ %   \end{table}
+ 
+
+
+ Figure \ref{fig:latency_hardware}
+ \begin{figure}[H]
+   \centering
+   \includegraphics[width=0.8\columnwidth]{img/latency_hardware.png}
+   \caption[Latency hardware]{Latency hardware}
+   \label{fig:latency_hardware}
+ \end{figure}
+ 
+ 
+ 
+ Figure \ref{fig:latency_no_taskset}
+ 
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.8\columnwidth]{img/latency_no_taskset.png}
+     \caption[Latency no taskset]{Latency no taskset}
+     \label{fig:latency_no_taskset}
+   \end{figure}
+ 
+ 
+   Figure \ref{fig:latency_taskset}
+   \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.8\columnwidth]{img/latency_taskset.png}
+     \caption[Latency taskset]{Latency taskset}
+     \label{fig:latency_taskset}
+   \end{figure}
+ 
+ Figure \ref{fig:kvm_exits}
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.8\columnwidth]{img/kvm_exits.png}
+     \caption[kvm exits]{kvm exits}
+     \label{fig:kvm_exits}
+   \end{figure}
+ 
+
+   Figure \ref{fig:gnuplot_latency_hardware}
+   \begin{figure}[H]
+       \centering
+       \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/hardware/gnuplot_latency_hardware.png}
+       \caption[gnuplot latency hardware]{gnuplot latency hardware}
+       \label{fig:gnuplot_latency_hardware}
+     \end{figure}
+
+     Figure \ref{fig:gnuplot_latency_no_taskset}
+     \begin{figure}[H]
+         \centering
+         \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/no_taskset/gnuplot_latency_no_taskset.png}
+         \caption[gnuplot latency no taskset]{gnuplot latency no taskset}
+         \label{fig:gnuplot_latency_no_taskset}
+       \end{figure}
+
+
+   Figure \ref{fig:gnuplot_latency_with_taskset}
+   \begin{figure}[H]
+       \centering
+       \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/with_taskset/gnuplot_latency_with_taskset.png}
+       \caption[gnuplot latency with taskset]{gnuplot latency with taskset}
+       \label{fig:gnuplot_latency_with_taskset}
+     \end{figure}
+
+
+
+
+
+
+
+
+
+\clearpage
+\chapter{Results}
+
+VARAN-Bus PCV-521\newline
+Windows\newline
+Ubuntu\newline
+WSL\newline\newline\newline
+
+
+
 In Xenomai 3, you need:
 
 The Linux kernel with the Dovetail interface, which allows the kernel to handle real-time tasks with low latency.
 The Cobalt real-time core, which is responsible for scheduling and executing real-time tasks.
 In Xenomai 4, you need:
-
 The Linux kernel with the EVL interface, which, like Dovetail, enables the kernel to handle real-time tasks with low latency.
 The libevl library, which provides a user interface to the EVL core, allowing applications to use the real-time capabilities provided by EVL.
 So, while both versions require a Linux kernel with a real-time interface (Dovetail for Xenomai 3, EVL for Xenomai 4), Xenomai 3 uses a real-time core (Cobalt), while Xenomai 4 uses a library (libevl) to provide applications with access to its real-time capabilities.
 
-\section{Kernelshark}
-
-\begin{lstlisting}[language=C++,name={1. Beispiel},label={sc:bsp:1}]
-    #include <iostream>
-    
-    void SayHello(void)
-    {
-        // Kommentar
-        cout << "Hello World!" << endl;
-    }
-    
-    int main(int argc, char **argv)
-    {
-        SayHello();
-        return 0;
-    }
-    \end{lstlisting}
 
 
-\chapter{Results}
-Firma SIGMATEK\newline
-Yocto\newline
-Salamander 4\newline
-Xenomai\newline
-QEMU\newline
-Trace-cmd\newline
-Kernelshark\newline
-VARAN-Bus PCV-521\newline
-Windows\newline
-Ubuntu\newline
-WSL\newline
 \clearpage
 \chapter{Discussion}
 \clearpage
@@ -442,9 +564,8 @@ WSL\newline
 \addcontentsline{toc}{chapter}{\listacroname}
 \chapter*{\listacroname}
 \begin{acronym}[XXXXX]
-    \acro{ABC}[ABC]{Alphabet}
-    \acro{WWW}[WWW]{world wide web}
-    \acro{ROFL}[ROFL]{Rolling on floor laughing}
+    \acro{CPU}[CPU]{Central Processing Unit}
+    \acro{QEMU}[QEMU]{Quick Emulator}
 \end{acronym}
 
 %
