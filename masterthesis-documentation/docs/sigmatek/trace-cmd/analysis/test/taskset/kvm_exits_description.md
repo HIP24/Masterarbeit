@@ -1,4 +1,3 @@
-## kvm_exit
 | Exit Reason         | Description                                               | Frequency     |
 |---------------------|-----------------------------------------------------------|---------------|
 | APIC_WRITE          | Triggered when the guest writes to its Advanced Programmable Interrupt Controller (APIC).                                  | 60178 times   |
@@ -12,6 +11,3 @@
 | EOI_INDUCED         | Triggered when an end-of-interrupt (EOI) signal is sent to the APIC.                                                        | 78 times      |
 | MSR_READ            | Triggered when the guest reads from a Model-Specific Register (MSR).                                                        | 2 times       |
 | CPUID               | Triggered when the guest executes the CPUID instruction, used to identify the processor.                                    | 10 times      |
-
-
-![Plot](kvm_exits.png)
