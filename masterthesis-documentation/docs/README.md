@@ -278,7 +278,7 @@ pre {
 | File       | Description |
 |------------|-------|
 | [kvm_exit_number.py](sigmatek/trace-cmd/analysis/test/kvm_exit_number.py)   | Count kvm_exit events  |
-| [latency_no_taskset.py](sigmatek/xenomai/latency_no_taskset.py)             | Plot latency of Slamander 4 QEMU with no taskset  |
+| [latency_no_taskset.py](sigmatek/xenomai/latency_default.py)             | Plot latency of Slamander 4 QEMU with no taskset  |
 | [latency_taskset.py](sigmatek/xenomai/latency_taskset.py)                   | Plot latency of Slamander 4 QEMU with taskset  |
 | [latency_hardware.py](sigmatek/xenomai/latency_hardware.py)                   | Plot latency of Slamander 4 hardware  |
 | [print_numbers.py](sigmatek/xenomai/print_numbers.py)                       | Print numbers of specified range  |
