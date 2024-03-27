@@ -1,7 +1,7 @@
-# Latency default
+# Max Latency default
 
 ```
-root@sigmatek-core2:~# latency -h -s -T 600 -g latency_default_10min.txt
+root@sigmatek-core2:~# latency -h -s -T 600 -g max_latency_default_10min.txt
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
 == All results in microseconds

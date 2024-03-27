@@ -1,4 +1,4 @@
-root@sigmatek-core2:~# cat latency_hardware.txt 
+root@sigmatek-core2:~# cat max_latency_hardware.txt 
 # 00:10:00 (periodic user-mode task, 100 us period, priority 99)
 # ----lat min|----lat avg|----lat max|-overrun|---msw|
 #       0.613|      1.380|     10.709|       0|     0|

@@ -1,4 +1,4 @@
-root@sigmatek-core2:~# cat latency_default_10min.txt 
+root@sigmatek-core2:~# cat max_latency_default_10min.txt 
 # 00:10:01 (periodic user-mode task, 100 us period, priority 99)
 # ----lat min|----lat avg|----lat max|-overrun|---msw|
 #       0.431|      2.272|   4070.018|    1280|     0|
