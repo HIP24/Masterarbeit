@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../../hardware/latency_hardware_10min_log/">
+        <link rel="prev" href="../../hardware/max_latency_hardware_10min_log/">
       
       
-        <link rel="next" href="../latency_with_taskset_10min_log/">
+        <link rel="next" href="../max_latency_with_taskset_10min_log/">
       
       
       <link rel="icon" href="../../../../img/uni.png">
@@ -1048,7 +1048,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../default/latency_default_10min_gnoplot/" class="md-nav__link">
+      <a href="../../default/max_latency_default_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1069,11 +1069,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../default/latency_default_10min_log/" class="md-nav__link">
+      <a href="../../default/max_latency_default_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Latency default
+    Max Latency default
   </span>
   
 
@@ -1133,7 +1133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hardware/latency_hardware_10min_gnoplot/" class="md-nav__link">
+      <a href="../../hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1154,11 +1154,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hardware/latency_hardware_10min_log/" class="md-nav__link">
+      <a href="../../hardware/max_latency_hardware_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Latency hardware
+    Max Latency hardware
   </span>
   
 
@@ -1251,11 +1251,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../latency_with_taskset_10min_log/" class="md-nav__link">
+      <a href="../max_latency_with_taskset_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Latency with taskset
+    Max Latency with taskset
   </span>
   
 
@@ -1597,7 +1597,7 @@
 
 <h1 id="gnuplot-with-taskset">gnuplot with taskset<a class="headerlink" href="#gnuplot-with-taskset" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code># Calculate statistics
-stats &#39;latency_with_taskset_10min.txt&#39; using 2 nooutput
+stats &#39;max_latency_with_taskset_10min.txt&#39; using 2 nooutput
 
 # Define labels for the statistics
 set label 1 sprintf(&quot;Minimum: %.2f&quot;, STATS_min) at graph 0.6, graph 0.3
@@ -1606,9 +1606,9 @@ set label 3 sprintf(&quot;Average: %.2f&quot;, STATS_mean) at graph 0.6, graph 0
 set label 4 sprintf(&quot;Standard Deviation: %.2f&quot;, STATS_stddev) at graph 0.6, graph 0.15
 
 # Plot the data
-plot &#39;latency_with_taskset_10min.txt&#39; using 1:2 with linespoints title &#39;Latency Histogram&#39;
+plot &#39;max_latency_with_taskset_10min.txt&#39; using 1:2 with linespoints title &#39;Latency Histogram&#39;
 </code></pre></div>
-<p><img alt="gnuplot_latency_with_taskset.png.png" src="../gnuplot_latency_with_taskset.png" /></p>
+<p><img alt="gnuplot_max_latency_with_taskset.png.png" src="../gnuplot_max_latency_with_taskset.png" /></p>
 
 
 

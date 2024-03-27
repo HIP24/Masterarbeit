@@ -19,10 +19,10 @@ plt.xlim([0, 600])
 plt.ylim([0, 15])
 
 # Save the plot to a file
-plt.savefig("latency_hardware.png")
-plt.savefig("../../../../img/latency_hardware.png")
+plt.savefig("max_latency_hardware.png")
+plt.savefig("../../../../img/max_latency_hardware.png")
 
 # Print a success message
-print("The plot was successfully saved to latency_hardware.png")
+print("The plot was successfully saved to max_latency_hardware.png")
 
 
