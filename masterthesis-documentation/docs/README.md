@@ -270,14 +270,15 @@ pre {
 ### trace-cmd and kernelshark
 | File       | Description |
 |------------|-------|
-| [start_kernelshark.sh](sigmatek/trace-cmd/analysis/test/taskset/start_kernelshark.sh)   | Script for starting kernelshark with host and guest trace.dat |
-| [start_kernelshark_convert.sh](sigmatek/trace-cmd/analysis/test/start_kernelshark_convert.sh)   | Script for starting kernelshark with converted v6 host and guest trace.dat |
+| [start_kernelshark.sh](sigmatek/trace-cmd/analysis/taskset/start_kernelshark.sh)   | Script for starting kernelshark with host and guest trace.dat |
+| [start_kernelshark_convert.sh](sigmatek/trace-cmd/analysis/start_kernelshark_convert.sh)   | Script for starting kernelshark with converted v6 host and guest trace.dat |
 
 
 ## Python
 | File       | Description |
 |------------|-------|
-| [kvm_exit_number.py](sigmatek/trace-cmd/analysis/test/taskset/kvm_exit_number.py)   | Count kvm_exit events  |
+| [kvm_exit_number.py](sigmatek/trace-cmd/analysis/default/kvm_exit_default_number.py)   | Count kvm_exit events default  |
+| [kvm_exit_number.py](sigmatek/trace-cmd/analysis/taskset/kvm_exit_taskset_number.py)   | Count kvm_exit events taskset |
 | [max_latency_no_taskset.py](sigmatek/xenomai/max_latency_default.py)             | Plot latency of Slamander 4 QEMU with no taskset  |
 | [max_latency_taskset.py](sigmatek/xenomai/max_latency_taskset.py)                   | Plot latency of Slamander 4 QEMU with taskset  |
 | [max_latency_hardware.py](sigmatek/xenomai/max_latency_hardware.py)                   | Plot latency of Slamander 4 hardware  |
