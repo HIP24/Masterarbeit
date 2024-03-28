@@ -16,6 +16,7 @@ def count_lines_with_word(file_path, word, total_lines):
 file_path = 'kvm_exit_log.txt'  # replace with your file path
 total_lines = sum(1 for line in open(file_path))
 print(f"Total exits: {total_lines}.")
+total = total_lines
 
 words = ['APIC_WRITE', 
          'HLT', 
@@ -53,7 +54,7 @@ for bar in bars:
 
 plt.xlabel('Reasons')
 plt.ylabel('Count')
-plt.title('Exit Reason Count')
+plt.title(f'Exit Reason Count (Total exits: {total})')  # Add total exits to the title
 plt.xticks(rotation=90, fontsize='small')  # Adjust font size for readability
 
 # Adjust bottom margin
@@ -64,8 +65,8 @@ plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
 plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
 
 # Save the figure
-plt.savefig('../../../../../../img/kvm_exits.png', bbox_inches='tight')
-plt.savefig('kvm_exits.png', bbox_inches='tight')
+plt.savefig('../../../../../../../img/kvm_exits_taskset.png', bbox_inches='tight')
+plt.savefig('kvm_exits_taskset.png', bbox_inches='tight')
 
 # Print a success message
-print("The plot was successfully saved to kvm_exits.png")
+print("The plot was successfully saved to kvm_exits_taskset.png")
