@@ -14,4 +14,4 @@ Total exits: 122528.
 'MSR_READ': 2 times
 ```
 
-![Plot](kvm_exits.png)
+![Plot](kvm_exits_taskset.png)
