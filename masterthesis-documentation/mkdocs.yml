@@ -12,6 +12,7 @@ theme:
   #- navigation.tabs
   #- navigation.tabs.sticky
   #- navigation.progress
+  #- navigation.tabs.expanded
   palette:
     primary: blue
     scheme: slate
