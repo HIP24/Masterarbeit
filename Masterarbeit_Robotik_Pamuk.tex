@@ -134,42 +134,30 @@ Roboteranwendungen verbessern kann}
 %- Glossar (optional)
 %- Anhang (optional)
 \chapter{Introduction}
-In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Traditional operating systems, such as Windows or Linux, are often not suitable for these types of real-time requirements as they cannot guarantee deterministic execution times. Therefore, real-time operating systems are required that are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes. 
+In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Traditional operating systems, such as Windows or Linux, are often not suitable for these types of real-time requirements as they cannot guarantee deterministic execution times. Therefore, real-time operating systems are required that are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes.
 
 \bigskip \noindent The core component of an RTOS that enables real-time capabilities is the kernel. The kernel is responsible for managing system resources, scheduling tasks, and ensuring deterministic behavior. It employs preemptive scheduling mechanisms to allow high-priority tasks to preempt lower-priority tasks, ensuring that time-critical tasks are not delayed. The kernel also implements priority-based scheduling algorithms, such as Rate Monotonic Scheduling (RMS) or Earliest Deadline First (EDF), to schedule tasks based on their priorities and timing constraints. Additionally, RTOS kernels are designed to minimize interrupt latency, which is crucial for real-time applications that require immediate response to external events.
 
-\bigskip \noindent In these RTOS systems, task scheduling is based on so-called priority-based preemptive scheduling. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Pre-emptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognises that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed. Real-time systems are usually categorised as either soft or hard real-time systems. The difference lies exclusively in the consequences of a violation of the time limits. 
+\bigskip \noindent In these RTOS systems, task scheduling is based on so-called priority-based preemptive scheduling. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Preemptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognizes that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed. Real-time systems are usually categorized as either soft or hard real-time systems. The difference lies exclusively in the consequences of a violation of the time limits.
 
-\bigskip \noindent Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. These consequences include endangering people, damaging machinery, impacting the health and integrity of the environment. Typical examples of this are some control systems in aeroplanes or cars, e.g. internal combustion engines.
-
-\bigskip \noindent Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality. Examples of this are multimedia systems where the occasional deviation from a playback rate of 25 frames/sec. leads to stuttering or similar.
-
-
-%In der heutigen industriellen Fertigung und Automatisierung sind Robotersysteme sehr etabliert und von entscheidender Bedeutung. Roboter müssen auf ihre Umgebung reagieren und zeitkritische Aufgaben innerhalb strenger Zeitvorgaben ausführen. Verzögerungen oder Fehler können in einigen Fällen katastrophale Konseqenzen haben. Traditionelle Betriebssysteme, wie Windows oder Linux sind für diese Art von Echtzeitanforderungen oft nicht geeignet, da sie keine deterministischen Ausführungszeiten garantieren können. Daher sind Echtzeit-Betriebssysteme nötig, die speziell dafür konzipiert sind, auf Ereignisse innerhalb fester Zeitschranken zu reagieren und Prozesse mit hoher Priorität bevorzugt auszuführen. Bei diesen RTOS-Systemen basiert das Task-Scheduling auf dem sogenannten prioritätsbasierten präemptiven Scheduling. Jeder Task in einer Software-Applikation ist eine Priorität zuzuweisen. Eine höhere Priorität bedeutet, dass eine schnellere Reaktion erforderlich ist. Durch das präemptive Task-Scheduling wird eine sehr schnelle Reaktion sichergestellt. Präemptiv bedeutet, dass der Scheduler eine gerade laufende Task an jeder Stelle anhalten kann, wenn er erkennt, dass eine andere Task sofort ausgeführt werden muss. Die Grundregel, auf der das prioritätsbasierte präemptive Scheduling basiert, besagt, dass die ausführbereite Task mit der höchsten Priorität immer die Task ist, die ausgeführt werden muss. Wenn also sowohl eine Task mit niedriger als auch eine Task mit höherer Priorität ausführbereit sind, sorgt der Scheduler dafür, dass zuerst die Task mit der höheren Priorität läuft. Die Task mit niedrigerer Priorität wird erst dann ausgeführt, wenn die höherpriore Task verarbeitet wurde.
-
-%\noindent Echtzeitsysteme werden in der Regel entweder als weiches oder als hartes Echtzeitsystem kategorisiert. Der Unterschied liegt ausschließlich in den Folgen einer Verletzung der Zeitschranken.
-
-%\noindent Harte Echtzeit liegt vor, wenn das System seinen Betrieb einstellt, wenn ein Termin verpasst wurde, was katastrophale Folgen haben kann. Zu diesen Folgen zählen die Gefährdung von Menschen, die Beschädigung von Maschinen, also Auswirkungen auf Gesundheit und Unversehrtheit der Umgebung. Typische Beispiele hierfür sind einige Steuerungssysteme im Flugzeug oder im Auto, z.B. bei der Verbrennungsmaschine.
-
-%\noindent Weiche Echtzeit besteht, wenn ein System weiter funktionsbereit ist, selbst wenn es die Aufgaben innerhalb einer festgelegten Zeit nicht ausführen kann. Wenn das System den Termin verpasst hat, hat dies keine kritischen Konsequenzen. Das System läuft weiter, obwohl es dies mit unerwünscht geringerer Ausgabenqualität tut. Beispiele hierfür sind Multimediasysteme, bei denen das gelegentlich Abweichen von einer Abspielrate von 25 Bildern/sek. zu einem Ruckeln o.ä. führt.
-
-
+\bigskip \noindent Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality.
 
 \clearpage
 \section{Application Context}
-This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
+This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}. This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used.
+
+SIGMATEK uses its own customized Linux distribution to be run on their self-manufactured CPUs, namely Salamander 4. This operating system
 
 
+, to employ hard real-time in their Salamander4 is virtualized through third party services.
 
+
+The details of this operating system are explained in section \ref{sec:salamander4}
 
 
 
 \clearpage
 \section{State of the art}
-
-
-
-
 
 
 
@@ -183,7 +171,7 @@ In robotics, accurate and timely control is crucial to ensure precise movements 
 \clearpage
 \section{Objective}
 
-The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. 
+The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment.
 
 This integration is expected to lead to a significant improvement in the response time and reliability of robot applications.
 
@@ -191,41 +179,41 @@ This integration is expected to lead to a significant improvement in the respons
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \chapter{Methodology}
- 
+
 In diesem Abschnitt werden sämtliche theoretischen Konzepte und Randbedingungen sowie praktische Methoden, die zur Erreichung der Zielsetzung dieser Masterarbeit beigetragen haben, detailliert beschrieben.
 
 Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
 
-First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualisation platform is selected. 
+First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualisation platform is selected.
 
 
 After the selection of the virtualisation platform, the robot control platform is implemented. This step includes the installation and configuration of Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. Once the platform has been implemented, the robot is connected via a VARAN bus interface. Finally, the platform is evaluated to determine how the integration of real-time functions and efficient communication systems improves the response time and reliability of robot applications.
 
-- Evaluation der Virtualisierungsplattform: 
+- Evaluation der Virtualisierungsplattform:
 Ich werde verschiedene Virtualisierungsplattformen wie QEMU, Hyper-V, Virtual Box usw. evaluieren. Dies ist ein wichtiger Schritt, um die beste Plattform für meine Anforderungen zu finden.
-  
-- Erstellung und Konfiguration des Systems in der Yocto-Umgebung: 
+
+- Erstellung und Konfiguration des Systems in der Yocto-Umgebung:
 Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstellen und zu konfigurieren. Yocto bietet viele Tools und Funktionen, die mir bei der Erstellung und Konfiguration meines Systems helfen können.
 
 
 - Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
 
-\bigskip \noindent Trace-cmd was used for tracing the Linux kernel. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency \cite{Tracecmd}. 
+\bigskip \noindent Trace-cmd was used for tracing the Linux kernel. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency \cite{Tracecmd}.
 
-\bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool \cite{KernelShark}. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed. 
+\bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool \cite{KernelShark}. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed.
 
 \bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{XenomaiXenomai}.
 
 
-\clearpage 
-\chapter{Salamander Operating System}
+\clearpage
+\chapter{Salamander Operating System}\label{sec:salamander4}
 
 Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it utilises IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-\begin{lstlisting}[name={System information},label={lst:uname_a}]
+	\begin{lstlisting}[name={System information},label={lst:uname_a}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
@@ -236,39 +224,39 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 Xenomai consists of 3 parts. These can be found in the Table \ref{tab:what_is_xenomai}.
 
 \begin{table}[!h]
-    \centering
-    \caption[Xenomai architecture]{Xenomai architecture}
-    \label{tab:what_is_xenomai}
-    \setlength{\tabcolsep}{0.5em} % for the horizontal padding
-    {\renewcommand{\arraystretch}{1.2}% for the vertical padding
-    \begin{tabular}{|c|p{0.6\textwidth}|}
-        \hline
-        \textbf{Teil} & \textbf{Beschreibung} \\ \hline
-        i-pipe  & Kernelerweiterung für das Domain-Konzept \\ \hline
-        Xenomai Kernel & Benutzt die i-pipe, und hängt sich als root-Domain ein \\ \hline
-        Xenomai User &  Programme (LRT) verwenden diese Bibliothek, um Xenomai Funktionen verwenden zu können. \\ \hline
-    \end{tabular}}
-  \end{table}
-  
+	\centering
+	\caption[Xenomai architecture]{Xenomai architecture}
+	\label{tab:what_is_xenomai}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|c|p{0.6\textwidth}|}
+			\hline
+			\textbf{Teil}  & \textbf{Beschreibung}                                                                  \\ \hline
+			i-pipe         & Kernelerweiterung für das Domain-Konzept                                               \\ \hline
+			Xenomai Kernel & Benutzt die i-pipe, und hängt sich als root-Domain ein                                 \\ \hline
+			Xenomai User   & Programme (LRT) verwenden diese Bibliothek, um Xenomai Funktionen verwenden zu können. \\ \hline
+		\end{tabular}}
+\end{table}
+
 
 \noindent Xenomai beruht auf einem Domain-Konzept, das bedeutet, dass alle IRQ an die erste Domain gesendet werden. (root – Domain / Xenomai)
 Nur wenn diese nichts mehr zu tun hat, dann darf die 2. Domain arbeiten.
 Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten die Linux-Tasks.
 
-\noindent In der Regel unterbricht der Prozessor beim IRQ-Handling seine aktuellen Aktivitäten, um einen Interrupt zu bearbeiten, während die IRQ-Behandlung von Xenomai einen Interrupt-Pipeline-Mechanismus verwendet, der das gleichzeitige Abrufen und Vorbereiten eines anderen Interrupts ermöglicht, während ein Interrupt bearbeitet wird, was die Leistung verbessert und die Latenzzeit verringert.  
+\noindent In der Regel unterbricht der Prozessor beim IRQ-Handling seine aktuellen Aktivitäten, um einen Interrupt zu bearbeiten, während die IRQ-Behandlung von Xenomai einen Interrupt-Pipeline-Mechanismus verwendet, der das gleichzeitige Abrufen und Vorbereiten eines anderen Interrupts ermöglicht, während ein Interrupt bearbeitet wird, was die Leistung verbessert und die Latenzzeit verringert.
 
-\noindent Was Xenomai4 von seinem Vorgänger Xenomai3 unterscheidet, ist die vollständige Neugestaltung der Ausführungsphase mit hoher Priorität. Dies geschah aus Gründen der Portabilität und Wartungsfreundlichkeit: I-pipe - die zweite Iteration der ursprünglichen Adeos-Interrupt-Pipeline - wurde vollständig durch Dovetail ersetzt. 
+\noindent Was Xenomai4 von seinem Vorgänger Xenomai3 unterscheidet, ist die vollständige Neugestaltung der Ausführungsphase mit hoher Priorität. Dies geschah aus Gründen der Portabilität und Wartungsfreundlichkeit: I-pipe - die zweite Iteration der ursprünglichen Adeos-Interrupt-Pipeline - wurde vollständig durch Dovetail ersetzt.
 
 \begin{table}[H]
-    \centering
-    \caption[Domain specific functions]{Domain specific functions}
-    \label{tab:domain_specific_functions}
-    \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Xenomai spezifische Funktionen} & \textbf{Linux spezifische Funktionen} \\ \hline
-        Tasks    & Dateizugriffe \\ \hline
-        Mutexes, Semaphoren, Events & Netzwerk \\ \hline
-    \end{tabular}
+	\centering
+	\caption[Domain specific functions]{Domain specific functions}
+	\label{tab:domain_specific_functions}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Xenomai spezifische Funktionen} & \textbf{Linux spezifische Funktionen} \\ \hline
+		Tasks                                   & Dateizugriffe                         \\ \hline
+		Mutexes, Semaphoren, Events             & Netzwerk                              \\ \hline
+	\end{tabular}
 \end{table}
 
 
@@ -279,20 +267,18 @@ Ein Domainwechsel von Xenomai nach Linux geht relativ einfach. Aber der Wechsel 
 Es gibt grundsätzlich 4 Gruppen
 
 \begin{table}[ht]
-    \centering
-    \caption{Overview of the priority groups and their relationships}
-    \label{tab:priorities}
-    \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Prioritätsgruppe} & \textbf{Bereich}  \\ \hline
-        Xenomai Priorität & 0 bis 99  \\ \hline
-        Linux RT Priorität & 1 bis 99 \\ \hline
-        Linux (Nice Level) Priorität & -20 bis 19  \\ \hline
-        RTK Priorität & 0 bis 14 \\ \hline
-    \end{tabular}
-
+	\centering
+	\caption{Overview of the priority groups and their relationships}
+	\label{tab:priorities}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Prioritätsgruppe}    & \textbf{Bereich} \\ \hline
+		Xenomai Priorität            & 0 bis 99         \\ \hline
+		Linux RT Priorität           & 1 bis 99         \\ \hline
+		Linux (Nice Level) Priorität & -20 bis 19       \\ \hline
+		RTK Priorität                & 0 bis 14         \\ \hline
+	\end{tabular}
 \end{table}
- 
 
 
 
@@ -300,45 +286,45 @@ Es gibt grundsätzlich 4 Gruppen
 Es gibt verschiedene Speicherbereiche
 
 Linux/System/Programm Speicher
-	Der Speicher, den Linux und Programme belegt haben.
-	Dieser Speicher ist intern in viele Teile aufgeteilt. (DMA, …)
+Der Speicher, den Linux und Programme belegt haben.
+Dieser Speicher ist intern in viele Teile aufgeteilt. (DMA, …)
 
 LRT-Heap Speicher
-	Speicher den der LRT verwendet, oder welcher über ein CIL Funktionen
-	angefordert wird.
+Speicher den der LRT verwendet, oder welcher über ein CIL Funktionen
+angefordert wird.
 
 App Heap, App Code, …
 
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
-    \caption[Memory Management]{Memory Management}
-    \label{fig:memory_management}
-  \end{figure}
+	\centering
+	\includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
+	\caption[Memory Management]{Memory Management}
+	\label{fig:memory_management}
+\end{figure}
 
 
-  Eine LASAL CPU besteht aus den folgenden Software-Modulen:
-  \begin{itemize}
-    \item Operating system
-    \item Loader
-    \item Hardware-Klassen
-  \end{itemize}
-  
-  Die Schnittstelle zwischen den einzelnen Modulen wird in Abbildung \ref{fig:lasal_cpu} durch einen Pfeil gekennzeichnet.
+Eine LASAL CPU besteht aus den folgenden Software-Modulen:
+\begin{itemize}
+	\item Operating system
+	\item Loader
+	\item Hardware-Klassen
+\end{itemize}
 
-  \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
-    \caption[LASAL CPU]{LASAL CPU}
-    \label{fig:lasal_cpu}
-  \end{figure}
+Die Schnittstelle zwischen den einzelnen Modulen wird in Abbildung \ref{fig:lasal_cpu} durch einen Pfeil gekennzeichnet.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
+	\caption[LASAL CPU]{LASAL CPU}
+	\label{fig:lasal_cpu}
+\end{figure}
 
 \clearpage
 
 
 \chapter{Comparison of Real-Time Latency}
-In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version. 
+In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
 
 Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
 
@@ -347,29 +333,29 @@ Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
 
 
 \begin{table}[H]
-    \centering
-    \caption[Kernel and Patches]{Kernel and Patches}
-    \label{tab:kernel_configuration}
-    \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Kernel} & \textbf{Patches} \\ \hline
-        . & .  \\ \hline
-        . & .  \\ \hline
-    \end{tabular}
+	\centering
+	\caption[Kernel and Patches]{Kernel and Patches}
+	\label{tab:kernel_configuration}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Kernel} & \textbf{Patches} \\ \hline
+		.               & .                \\ \hline
+		.               & .                \\ \hline
+	\end{tabular}
 \end{table}
 
-After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence. 
+After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
 
 
 \section{Salamander 4 Bare Metal}
-Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including 
+Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including
 
 Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\columnwidth]{img/max_latency_hardware.png}
-  \caption[Latency hardware]{Latency hardware}
-  \label{fig:max_latency_hardware}
+	\centering
+	\includegraphics[width=0.8\columnwidth]{img/max_latency_hardware.png}
+	\caption[Latency hardware]{Latency hardware}
+	\label{fig:max_latency_hardware}
 \end{figure}
 
 
@@ -378,7 +364,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
-    \begin{lstlisting}[name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
+	\begin{lstlisting}[name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
     sigma_ibo@localhost:~/Desktop/salamander-image$ ls -1
     bzImage
     drive-c
@@ -389,13 +375,13 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
     stek-drive-c-image-sigmatek-core2.tar.gz
     vmlinux
     \end{lstlisting}
-    \end{minipage}
-    
+\end{minipage}
+
 
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={lst:qemu_def}]
+	\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={lst:qemu_def}]
     #!/bin/sh
 
     if  [ ! -d drive-c/ ]; then
@@ -417,137 +403,137 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 Here is a description of the used components:
 \begin{itemize}
-    \item \textbf{bzImage}: Compressed Linux kernel image, loaded by QEMU at system start.
-    \item \textbf{ovmf.code.qcow2}: Firmware file for QEMU, enables UEFI boot process.
-    \item \textbf{qemu\_def.sh}: Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS.
-    \item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script.
-    \item \textbf{drive-c}: Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script..
-    \item \textbf{salamander-image-sigmatek-core2.ext4}: Root file system for Salamander 4 OS, used as hard drive for QEMU system.
-    \item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage.
+	\item \textbf{bzImage}: Compressed Linux kernel image, loaded by QEMU at system start.
+	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU, enables UEFI boot process.
+	\item \textbf{qemu\_def.sh}: Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS.
+	\item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script.
+	\item \textbf{drive-c}: Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script..
+	\item \textbf{salamander-image-sigmatek-core2.ext4}: Root file system for Salamander 4 OS, used as hard drive for QEMU system.
+	\item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage.
 \end{itemize}
 
- %   \begin{table}[ht]
- %       \centering
- %       \caption{QEMU script components}
- %       \label{tab:qemu_components}
- %       \begin{tabular}{|l|p{8cm}|}
- %           \hline
- %           \textbf{File} & \textbf{Description} \\
- %           \hline
- %           bzImage & Compressed Linux kernel image, loaded by QEMU at system start. \\
- %           \hline
- %           ovmf.code.qcow2 & Firmware file for QEMU, enables UEFI boot process. \\
- %           \hline
- %           qemu\_def.sh & Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS. \\
- %           \hline
- %           stek-drive-c-image-sigmatek-core2.tar.gz & Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script. \\
- %           \hline
- %           drive-c & Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script. \\
- %           \hline
- %           salamander-image-sigmatek-core2.ext4 & Root file system for Salamander 4 OS, used as hard drive for QEMU system. \\
- %           \hline
- %           vmlinux & Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage. \\
- %           \hline
- %       \end{tabular}
- %   
- %   \end{table}
- 
+%   \begin{table}[ht]
+%       \centering
+%       \caption{QEMU script components}
+%       \label{tab:qemu_components}
+%       \begin{tabular}{|l|p{8cm}|}
+%           \hline
+%           \textbf{File} & \textbf{Description} \\
+%           \hline
+%           bzImage & Compressed Linux kernel image, loaded by QEMU at system start. \\
+%           \hline
+%           ovmf.code.qcow2 & Firmware file for QEMU, enables UEFI boot process. \\
+%           \hline
+%           qemu\_def.sh & Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS. \\
+%           \hline
+%           stek-drive-c-image-sigmatek-core2.tar.gz & Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script. \\
+%           \hline
+%           drive-c & Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script. \\
+%           \hline
+%           salamander-image-sigmatek-core2.ext4 & Root file system for Salamander 4 OS, used as hard drive for QEMU system. \\
+%           \hline
+%           vmlinux & Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage. \\
+%           \hline
+%       \end{tabular}
+%   
+%   \end{table}
+
 \clearpage
 \noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is noted bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU.
 
 
 Figure \ref{fig:max_latency_default} shows latency of QEMU default Salamander4.
- 
- \begin{figure}[H]
-     \centering
-     \includegraphics[width=0.75\columnwidth]{img/max_latency_default.png}
-     \caption[Latency no taskset]{Latency no taskset}
-     \label{fig:max_latency_default}
-   \end{figure}
- 
- 
-   Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
-   \begin{figure}[H]
-     \centering
-     \includegraphics[width=0.75\columnwidth]{img/max_latency_taskset.png}
-     \caption[Latency taskset]{Latency taskset}
-     \label{fig:max_latency_taskset}
-   \end{figure}
- 
 
-\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exits} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{img/max_latency_default.png}
+	\caption[Latency no taskset]{Latency no taskset}
+	\label{fig:max_latency_default}
+\end{figure}
+
+
+Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{img/max_latency_taskset.png}
+	\caption[Latency taskset]{Latency taskset}
+	\label{fig:max_latency_taskset}
+\end{figure}
+
+
+\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exits} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
 
 
 \begin{table}[H]
-  \centering
-  \begin{tabular}{|l|p{0.62\textwidth}|}
-  \hline
-  \textbf{Exit Reason} & \textbf{Description}\\
-  \hline
-  APIC\_WRITE & Triggered when the guest writes to its APIC. \\ \hline
-  EXTERNAL\_INTERRUPT & Triggered by external hardware interrupts. \\ \hline
-  HLT & Triggered when the guest executes the HLT instruction. \\ \hline
-  EPT\_MISCONFIG & Triggered by a misconfiguration in the EPT. \\ \hline
-  PREEMPTION\_TIMER & Triggered when the host's preemption timer expires. \\ \hline
-  PAUSE\_INSTRUCTION & Triggered when the PAUSE instruction is executed. \\ \hline
-  EPT\_VIOLATION & Triggered by a violation of the EPT permission settings. \\ \hline
-  IO\_INSTRUCTION & Triggered when the guest executes an I/O instruction. \\ \hline
-  EOI\_INDUCED & Triggered when an EOI signal is sent to the APIC. \\ \hline
-  MSR\_READ & Triggered when the guest reads from a MSR. \\ \hline
-  CPUID & Triggered when the guest executes the CPUID instruction.  \\ \hline
-  \end{tabular}
-  \caption{Description of kvm\_exit reasons}
-  \label{tab:kvm_exit}
-  \end{table}
+	\centering
+	\begin{tabular}{|l|p{0.62\textwidth}|}
+		\hline
+		\textbf{Exit Reason} & \textbf{Description}                                     \\
+		\hline
+		APIC\_WRITE          & Triggered when the guest writes to its APIC.             \\ \hline
+		EXTERNAL\_INTERRUPT  & Triggered by external hardware interrupts.               \\ \hline
+		HLT                  & Triggered when the guest executes the HLT instruction.   \\ \hline
+		EPT\_MISCONFIG       & Triggered by a misconfiguration in the EPT.              \\ \hline
+		PREEMPTION\_TIMER    & Triggered when the host's preemption timer expires.      \\ \hline
+		PAUSE\_INSTRUCTION   & Triggered when the PAUSE instruction is executed.        \\ \hline
+		EPT\_VIOLATION       & Triggered by a violation of the EPT permission settings. \\ \hline
+		IO\_INSTRUCTION      & Triggered when the guest executes an I/O instruction.    \\ \hline
+		EOI\_INDUCED         & Triggered when an EOI signal is sent to the APIC.        \\ \hline
+		MSR\_READ            & Triggered when the guest reads from a MSR.               \\ \hline
+		CPUID                & Triggered when the guest executes the CPUID instruction. \\ \hline
+	\end{tabular}
+	\caption{Description of kvm\_exit reasons}
+	\label{tab:kvm_exit}
+\end{table}
 
 \clearpage
-  Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency with CPU islation.
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1.0\columnwidth]{img/kvm_exits.png}
-    \caption[kvm exits]{kvm exits}
-    \label{fig:kvm_exits}
-  \end{figure}
+Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency with CPU islation.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/kvm_exits.png}
+	\caption[kvm exits]{kvm exits}
+	\label{fig:kvm_exits}
+\end{figure}
 
-  Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CPU islation.
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=1.0\columnwidth]{img/kvm_exits_default.png}
-    \caption[kvm exits default]{kvm exits default}
-    \label{fig:kvm_exits_default}
-  \end{figure}
-  \clearpage
+Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CPU islation.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/kvm_exits_default.png}
+	\caption[kvm exits default]{kvm exits default}
+	\label{fig:kvm_exits_default}
+\end{figure}
+\clearpage
 
 \noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer \texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a \texttt{kvm\_exit} and kvm\_entry.
 
 \noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in \texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
 
-\noindent In the process of analyzing the \texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the \texttt{APIC\_WRITE} and \texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included \texttt{EXTERNAL\_INTERRUPT} and \texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as \texttt{EPT\_MISCONFIG} and \texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like \texttt{PAUSE\_INSTRUCTION}, \texttt{EPT\_VIOLATION}, \texttt{EOI\_INDUCED}, \texttt{MSR\_READ}, and \texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction. 
+\noindent In the process of analyzing the \texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the \texttt{APIC\_WRITE} and \texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included \texttt{EXTERNAL\_INTERRUPT} and \texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as \texttt{EPT\_MISCONFIG} and \texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like \texttt{PAUSE\_INSTRUCTION}, \texttt{EPT\_VIOLATION}, \texttt{EOI\_INDUCED}, \texttt{MSR\_READ}, and \texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
 
 The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_max_latency_hardware}
-   \begin{figure}[H]
-       \centering
-       \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/hardware/gnuplot_max_latency_hardware.png}
-       \caption[gnuplot latency hardware]{gnuplot latency hardware}
-       \label{fig:gnuplot_max_max_latency_hardware}
-     \end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/hardware/gnuplot_max_latency_hardware.png}
+	\caption[gnuplot latency hardware]{gnuplot latency hardware}
+	\label{fig:gnuplot_max_max_latency_hardware}
+\end{figure}
 
-     Figure \ref{fig:gnuplot_max_max_latency_default}
-     \begin{figure}[H]
-         \centering
-         \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/default/gnuplot_max_latency_default.png}
-         \caption[gnuplot latency no taskset]{gnuplot latency no taskset}
-         \label{fig:gnuplot_max_max_latency_default}
-       \end{figure}
+Figure \ref{fig:gnuplot_max_max_latency_default}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/default/gnuplot_max_latency_default.png}
+	\caption[gnuplot latency no taskset]{gnuplot latency no taskset}
+	\label{fig:gnuplot_max_max_latency_default}
+\end{figure}
 
 
-   Figure \ref{fig:gnuplot_max_latency_with_taskset}
-   \begin{figure}[H]
-       \centering
-       \includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/with_taskset/gnuplot_max_latency_with_taskset.png}
-       \caption[gnuplot latency with taskset]{gnuplot latency with taskset}
-       \label{fig:gnuplot_max_latency_with_taskset}
-     \end{figure}
+Figure \ref{fig:gnuplot_max_latency_with_taskset}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/with_taskset/gnuplot_max_latency_with_taskset.png}
+	\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
+	\label{fig:gnuplot_max_latency_with_taskset}
+\end{figure}
 
 
 \clearpage
@@ -595,8 +581,8 @@ So, while both versions require a Linux kernel with a real-time interface (Dovet
 \addcontentsline{toc}{chapter}{\listacroname}
 \chapter*{\listacroname}
 \begin{acronym}[XXXXX]
-    \acro{CPU}[CPU]{Central Processing Unit}
-    \acro{QEMU}[QEMU]{Quick Emulator}
+	\acro{CPU}[CPU]{Central Processing Unit}
+	\acro{QEMU}[QEMU]{Quick Emulator}
 \end{acronym}
 
 %
