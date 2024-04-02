@@ -25,6 +25,7 @@ theme:
 plugins:
   - exclude:
       glob:
+        - tools/*
         - kernel-patch/linux/*
         - kernel-patch/rt_linux/*
         - sigmatek/trace-cmd/analysis/default/trace.dat
