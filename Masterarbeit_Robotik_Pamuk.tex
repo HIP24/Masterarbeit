@@ -144,15 +144,9 @@ In today's industrial production and automation, robot systems are well establis
 
 \clearpage
 \section{Application Context}
-This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}. This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used.
-
-SIGMATEK uses its own customized Linux distribution to be run on their self-manufactured CPUs, namely Salamander 4. This operating system
-
-
-, to employ hard real-time in their Salamander4 is virtualized through third party services.
-
-
-The details of this operating system are explained in section \ref{sec:salamander4}
+This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}. 
+%This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used. 
+SIGMATEK uses its own customized Linux distribution to be run on their self-manufactured CPUs, namely Salamander 4. This operating system employs hard real-time with latency requirements between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal CPUs. Salamander 4 is virtualized through a third party service, QEMU. The details of this operating system are explained in section \ref{sec:salamander4}. 
 
 
 
@@ -165,7 +159,6 @@ The details of this operating system are explained in section \ref{sec:salamande
 
 
 \section{Problem and task definition}
-In robotics, accurate and timely control is crucial to ensure precise movements and reliable interaction with the environment. However, existing robot control systems often have limitations in terms of real-time capabilities and communication efficiency, which can have a detrimental effect on response time and reliability. The challenge is to develop a powerful real-time robot control platform that overcomes these limitations and improves the performance of robotic applications.
 
 
 \clearpage
@@ -173,14 +166,13 @@ In robotics, accurate and timely control is crucial to ensure precise movements 
 
 The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment.
 
-This integration is expected to lead to a significant improvement in the response time and reliability of robot applications.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \chapter{Methodology}
 
-In diesem Abschnitt werden sämtliche theoretischen Konzepte und Randbedingungen sowie praktische Methoden, die zur Erreichung der Zielsetzung dieser Masterarbeit beigetragen haben, detailliert beschrieben.
+This section describes in detail all the theoretical concepts and boundary conditions as well as practical methods that contributed to achieving the objectives of this master's thesis.
+
 
 Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
 
@@ -209,7 +201,7 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 \clearpage
 \chapter{Salamander Operating System}\label{sec:salamander4}
 
-Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it utilises IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
+Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}

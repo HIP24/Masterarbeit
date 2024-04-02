@@ -386,3 +386,10 @@ After giving the VM [access to the vsocket](../resources/images/protocol/virtm_c
 
 ## Connect to hardware Salamander 4
 ssh root@192.168.1.244
+
+
+## bcc
+```
+git clone https://github.com/iovisor/bcc
+
+```

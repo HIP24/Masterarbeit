@@ -181,6 +181,10 @@ pre {
 | [useful_notneeded.md](workflow/useful_notneeded.md)   | Useful stuff that is not needed in the process |
 | [useful_links.md](workflow/useful_links.md)   | Useful stuff that is not needed in the process |
 | [most_popular_paths.md](workflow/most_popular_paths.md)   | Most used paths in the process |
+| [problem_solution.md](workflow/problem_solution.md)   | Fix Yocto build 0001.patch |
+| [vscode.md](workflow/vscode.md)   | Stuff related to VSCode |
+| [gitlfs.md](workflow/gitlfs.md)   | Setup gitlfs in repository |
+| [gittutorial.md](workflow/gittutorial.md)   | GIT tutorial |
 
 <hr>
 
@@ -196,7 +200,6 @@ pre {
 ### Yocto 
 | File       | Description |
 |------------|-------|
-| [fix.md](sigmatek/yocto/fix.md)   | Fix Yocto build 0001.patch |
 | [after_bitbake.md](sigmatek/yocto/after_bitbake.md)   | Commands after bitbake |
 
 <hr>

@@ -39,3 +39,5 @@
 | 27.03.2024 | Write masterthesis |
 | 28.03.2024 | Write masterthesis |
 | 29.03.2024 | Write masterthesis |
+| 01.04.2024 | Ostern |
+| 02.04.2024 | bcc tool |
