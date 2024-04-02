@@ -37,3 +37,5 @@
 | 25.03.2024 | Start masterthesis |
 | 26.03.2024 | Write masterthesis  |
 | 27.03.2024 | Write masterthesis |
+| 28.03.2024 | Write masterthesis |
+| 29.03.2024 | Write masterthesis |
