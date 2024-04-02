@@ -81,3 +81,4 @@ dos2unix <file>
 
 ## Stress the CPUs
 stress -c $(nproc)
+
