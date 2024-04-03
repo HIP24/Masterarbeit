@@ -11,7 +11,7 @@
 In the context of APIC virtualization, the APIC (Advanced Programmable Interrupt Controller) is virtualized by the hypervisor. This means that when the guest tries to interact with the APIC, it’s actually interacting with a virtual representation of the APIC provided by the hypervisor. This allows the hypervisor to maintain control over the hardware and manage the delivery of interrupts to the guests.
 
 https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2018/08/29/apicv
-
+https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2020/09/10/kvm-performance-1  
 https://terenceli.github.io/
 
 https://edc.intel.com/content/www/us/en/design/ipla/software-development-platforms/client/platforms/alder-lake-desktop/12th-generation-intel-core-processors-datasheet-volume-1-of-2/002/intel-apic-virtualization-technology-intel-apicv/
