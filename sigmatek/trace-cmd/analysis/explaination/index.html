@@ -1802,8 +1802,9 @@
 <li>Guest Handles the Interrupt: This guest interrupt triggers the appropriate handler in the guest to process the incoming data or handle the completed operation.</li>
 </ul>
 <p>In the context of APIC virtualization, the APIC (Advanced Programmable Interrupt Controller) is virtualized by the hypervisor. This means that when the guest tries to interact with the APIC, it’s actually interacting with a virtual representation of the APIC provided by the hypervisor. This allows the hypervisor to maintain control over the hardware and manage the delivery of interrupts to the guests.</p>
-<p>https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2018/08/29/apicv</p>
-<p>https://terenceli.github.io/</p>
+<p>https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2018/08/29/apicv
+https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2020/09/10/kvm-performance-1<br />
+https://terenceli.github.io/</p>
 <p>https://edc.intel.com/content/www/us/en/design/ipla/software-development-platforms/client/platforms/alder-lake-desktop/12<sup>th</sup>-generation-intel-core-processors-datasheet-volume-1-of-2/002/intel-apic-virtualization-technology-intel-apicv/</p>
 <h2 id="apic-virtualization-apicv">APIC Virtualization (APICv)<a class="headerlink" href="#apic-virtualization-apicv" title="Permanent link">&para;</a></h2>
 <p>Newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance.</p>

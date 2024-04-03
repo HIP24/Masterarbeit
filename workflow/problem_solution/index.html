@@ -1687,16 +1687,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#problems" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problems
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#problem-1" class="md-nav__link">
     <span class="md-ellipsis">
       Problem 1
@@ -1714,15 +1704,61 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#solution_2" class="md-nav__link">
     <span class="md-ellipsis">
       Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      bcc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="bcc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 2
     </span>
   </a>
   
@@ -1934,16 +1970,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#problems" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problems
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#problem-1" class="md-nav__link">
     <span class="md-ellipsis">
       Problem 1
@@ -1961,15 +1987,61 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#solution_2" class="md-nav__link">
     <span class="md-ellipsis">
       Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      bcc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="bcc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 2
     </span>
   </a>
   
@@ -2041,14 +2113,13 @@ cd salamander/salamander-core2
 bitbake salamander-image -k
 </code></pre></div>
 <h2 id="trace-cmd">Trace-cmd<a class="headerlink" href="#trace-cmd" title="Permanent link">&para;</a></h2>
-<h3 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h3>
 <p>After following <a href="https://rostedt.org/host-guest-tutorial/" target="_blank">Rostedt Tutorial</a>, I had following problems when using: 
 <div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all
 </code></pre></div></p>
-<h4 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h4>
+<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
 <p>"Failed to negotiate timestamps synchronization with the host"
 <a href="../../resources/images/trace-cmd/timestamp_error.png">timestamp_error.png</a></p>
-<h4 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h4>
+<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
 <p>"Cannot find host / guest tracing into the loaded streams" <a href="../../resources/images/trace-cmd/kvm_combo_error.png">kvm_combo_error.png</a></p>
 <h3 id="solution_2">Solution<a class="headerlink" href="#solution_2" title="Permanent link">&para;</a></h3>
 <p>The problem was the trace-cmd version. Set both host and guest to v3.2.0 by copying the files from host to guest:
@@ -2058,6 +2129,48 @@ scp /usr/local/lib64/libtraceevent.so.1 root@&quot;$ip_address&quot;:/lib64
 </code></pre></div>
 Now, <a href="../../resources/images/trace-cmd/trace-cmd_version3.2.0.png">trace-cmd version 3.2.0</a> is active and <a href="../../resources/images/trace-cmd/time_sync.png">tracing the guest</a> finally works with <code>trace-cmd agent</code> on the guest.</p>
 <p>Using kernelshark with <code>kernelshark trace.dat -a trace-Salamander4.dat</code> or simply <a href="../../sigmatek/trace-cmd/analysis/taskset/start_kernelshark.sh"><code>./start_kernelshark.sh</code></a>, we get the expected <a href="../../resources/images/trace-cmd/kernelshark/kernelshark_combo.png">visualization</a>. Events of the guest happen between kvm_entry and kvm_exit of the host.</p>
+<h2 id="bcc">bcc<a class="headerlink" href="#bcc" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1_1">Problem 1<a class="headerlink" href="#problem-1_1" title="Permanent link">&para;</a></h3>
+<p>Unable to find clang libraries
+<div class="highlight"><pre><span></span><code>sigma_ibo@sigma-ibo:~/Desktop/latency/bcc/build$ cmake ..
+-- Latest recognized Git tag is v0.30.0
+-- Git HEAD is 6a5602cef2ebd97c351554d53a4f95532db6a568
+-- Revision is 0.30.0+6a5602ce (major 0, minor 30, patch 0)
+-- Kernel release: 6.5.0-26-generic
+-- Kernel headers: /usr/src/linux-headers-6.5.0-26-generic
+-- Found LLVM: /usr/lib/llvm-14/include 14.0.0 (Use LLVM_ROOT envronment variable for another version of LLVM)
+CMake Error at CMakeLists.txt:173 (message):
+  Unable to find clang libraries
+
+
+-- Configuring incomplete, errors occurred!
+See also &quot;/home/sigma_ibo/Desktop/latency/bcc/CMakeFiles/CMakeOutput.log&quot;.
+</code></pre></div></p>
+<h3 id="solution-1">Solution 1<a class="headerlink" href="#solution-1" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>sudo apt install libclang-dev
+</code></pre></div>
+<a href="https://askubuntu.com/questions/1220739/llvm-dev-package-missing-libclangbasic">Source</a></p>
+<h3 id="problem-2_1">Problem 2<a class="headerlink" href="#problem-2_1" title="Permanent link">&para;</a></h3>
+<p>It seems that the library is trying to access the symbol bpf_module_create_b in the shared library libbcc.so.0, but it can’t find it.
+<div class="highlight"><pre><span></span><code>root@sigma-ibo:/usr/share/bcc/tools# sudo ./kvmexit
+Traceback (most recent call last):
+  File &quot;/usr/share/bcc/tools/./kvmexit&quot;, line 32, in &lt;module&gt;
+    from bcc import BPF
+  File &quot;/usr/lib/python3/dist-packages/bcc/__init__.py&quot;, line 27, in &lt;module&gt;
+    from .libbcc import lib, bcc_symbol, bcc_symbol_option, bcc_stacktrace_build_id, _SYM_CB_TYPE
+  File &quot;/usr/lib/python3/dist-packages/bcc/libbcc.py&quot;, line 20, in &lt;module&gt;
+    lib.bpf_module_create_b.restype = ct.c_void_p
+  File &quot;/usr/lib/python3.10/ctypes/__init__.py&quot;, line 387, in __getattr__
+    func = self.__getitem__(name)
+  File &quot;/usr/lib/python3.10/ctypes/__init__.py&quot;, line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: /lib/x86_64-linux-gnu/libbcc.so.0: undefined symbol: bpf_module_create_b
+</code></pre></div></p>
+<h3 id="solution-2">Solution 2<a class="headerlink" href="#solution-2" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>sudo rm /usr/lib/python3/dist-packages/bcc
+cd /usr/share/bcc/tools &amp;&amp; sudo ./kvmexit
+</code></pre></div>
+<a href="https://github.com/iovisor/bcc/issues/4583">Source</a></p>
 
 
 
