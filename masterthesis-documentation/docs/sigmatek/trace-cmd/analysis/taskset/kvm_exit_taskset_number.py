@@ -65,7 +65,7 @@ plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
 plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
 
 # Save the figure
-plt.savefig('../../../../../../../img/kvm_exits_taskset.png', bbox_inches='tight')
+plt.savefig('../../../../../../img/kvm_exits_taskset.png', bbox_inches='tight')
 plt.savefig('kvm_exits_taskset.png', bbox_inches='tight')
 
 # Print a success message
