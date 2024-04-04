@@ -152,9 +152,6 @@ SIGMATEK uses its own customized Linux distribution to be run on their self-manu
 
 \clearpage
 \section{State of the art}
-
-
-
 \clearpage
 
 
@@ -174,6 +171,8 @@ The main objective of this work is to create a real-time robot control platform 
 This section describes in detail all the theoretical concepts and boundary conditions as well as practical methods that contributed to achieving the objectives of this master's thesis.
 
 
+\begin{comment}
+
 Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
 
 First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualisation platform is selected.
@@ -190,6 +189,9 @@ Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstel
 
 - Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
+	
+\end{comment}
+
 
 \bigskip \noindent Trace-cmd was used for tracing the Linux kernel. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency \cite{Tracecmd}.
 
@@ -453,7 +455,7 @@ Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 \end{figure}
 
 
-\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exits} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
+\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exit_taskset} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
 
 
 \begin{table}[H]
@@ -482,9 +484,9 @@ Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency with CPU islation.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\columnwidth]{img/kvm_exits.png}
+	\includegraphics[width=1.0\columnwidth]{img/kvm_exits_taskset.png}
 	\caption[kvm exits]{kvm exits}
-	\label{fig:kvm_exits}
+	\label{fig:kvm_exit_taskset}
 \end{figure}
 
 Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CPU islation.
@@ -502,12 +504,12 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 
 \noindent In the process of analyzing the \texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the \texttt{APIC\_WRITE} and \texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included \texttt{EXTERNAL\_INTERRUPT} and \texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as \texttt{EPT\_MISCONFIG} and \texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like \texttt{PAUSE\_INSTRUCTION}, \texttt{EPT\_VIOLATION}, \texttt{EOI\_INDUCED}, \texttt{MSR\_READ}, and \texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
 
-The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_max_latency_hardware}
+The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_latency_hardware}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/hardware/gnuplot_max_latency_hardware.png}
 	\caption[gnuplot latency hardware]{gnuplot latency hardware}
-	\label{fig:gnuplot_max_max_latency_hardware}
+	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
 
 Figure \ref{fig:gnuplot_max_max_latency_default}
@@ -528,13 +530,86 @@ Figure \ref{fig:gnuplot_max_latency_with_taskset}
 \end{figure}
 
 
+\chapter{Latency Reduction}
+\section{CPU isolation}
 \clearpage
+\section{User and Kerneltasks}
+\clearpage
+\section{IRQ}
+\clearpage
+
+
+\chapter{KVM exit reasons}
+\section{APIC\_WRITE} 
+
+
+The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. It consists of two main components: the I/O APIC and the local APICs. The I/O APIC receives interrupt requests from devices and distributes them as messages to the Local APICs. The Local APICs then forward the highest-priority interrupt to the CPU core. The APIC offers many advantages, including more inputs for interrupts, a flexible configuration, definable priorities and support for message-signalled interrupts.
+
+\cite{lutsykPipelinedMulticoreMachine2020}
+%https://www.wikiwand.com/de/Advanced_Programmable_Interrupt_Controller
+
+\subsection{APIC virtualization} 
+
+
+Newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance.
+
+
+
+
+
+\clearpage
+\section{HLT}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{EPT\_MISCONFIG}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{PREEMPTION\_TIMER}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{EXTERNAL\_INTERRUPT}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{IO\_INSTRUCTION}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{EOI\_INDUCED}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{EPT\_VIOLATION}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{PAUSE\_INSTRUCTION}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{CPUID}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+\section{MSR\_READ}
+\subsection{Description}
+\subsection{Occurence Reduction}
+\clearpage
+
+
 \chapter{Results}
+
+\begin{comment}
 
 VARAN-Bus PCV-521\newline
 Windows\newline
 Ubuntu\newline
 WSL\newline\newline\newline
+
+
 
 In Xenomai 3, you need:
 
@@ -544,6 +619,8 @@ In Xenomai 4, you need:
 The Linux kernel with the EVL interface, which, like Dovetail, enables the kernel to handle real-time tasks with low latency.
 The libevl library, which provides a user interface to the EVL core, allowing applications to use the real-time capabilities provided by EVL.
 So, while both versions require a Linux kernel with a real-time interface (Dovetail for Xenomai 3, EVL for Xenomai 4), Xenomai 3 uses a real-time core (Cobalt), while Xenomai 4 uses a library (libevl) to provide applications with access to its real-time capabilities.
+\end{comment}
+
 
 \clearpage
 \chapter{Discussion}
