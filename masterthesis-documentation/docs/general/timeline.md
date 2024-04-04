@@ -41,3 +41,4 @@
 | 29.03.2024 | Write masterthesis |
 | 01.04.2024 | Ostern |
 | 02.04.2024 | bcc tool |
+| 03.04.2024 | Write masterthesis APIC_WRITE |
