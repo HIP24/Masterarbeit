@@ -51,12 +51,12 @@ def summarize_irqs(irqs):
     return ','.join(map(str, ranges))
 
 # Open the log file
-with open("irq_affinity.log", "w") as f:
+with open("check_smp_affinity_all.log", "w") as f:
     # Print the IRQs for each CPU
     for cpu in range(num_cpus):
         # Write the output to the log file
         f.write(f'CPU {cpu}: [{summarize_irqs(irqs_per_cpu[cpu])}] -> total of {len(irqs_per_cpu[cpu])} IRQs\n')
 
 # Print a success message
-print("The IRQs for each CPU have been successfully written to irq_affinity.log")
+print("The IRQs for each CPU have been successfully written to check_smp_affinity_all.log")
 

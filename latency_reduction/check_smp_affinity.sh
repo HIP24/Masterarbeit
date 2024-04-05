@@ -16,5 +16,9 @@ for IRQ in /proc/irq/*; do
 done
 # Sort the array
 IFS=$'\n' sorted=($(sort -n <<<"${IRQs[*]}"))
-# Print the sorted IRQ numbers on the same line, separated by ","
-IFS=','; echo "CPU $CPU: ${sorted[*]}"
+# Print the CPU number
+echo "CPU $CPU IRQ affinity:"
+# Print the sorted IRQ numbers on separate lines
+for irq in "${sorted[@]}"; do
+    echo "$irq"
+done
