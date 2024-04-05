@@ -23,25 +23,25 @@ sigma_ibo@pamhal:$ cat /sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_max_freq
 5000000
 ```
 
-## Check which IRQs use CPU 17
-CPU17 is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh):
+## Check which IRQs use CPU x
+CPU x is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh):
 ```
 0
-10
-11
-13
-138
-15
-191
-194
 2
-208
-214
 3
 4
 5
 6
 7
+10
+11
+13
+15
+130
+172
+173
+189
+192
 ```
 
 ## Check the mask of IRQ
