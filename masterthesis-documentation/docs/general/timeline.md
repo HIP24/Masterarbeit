@@ -42,4 +42,5 @@
 | 01.04.2024 | Ostern |
 | 02.04.2024 | bcc tool |
 | 03.04.2024 | Write masterthesis APIC_WRITE |
-| 03.04.2024 | defconfig, vapic |
+| 04.04.2024 | defconfig, vapic |
+| 05.04.2024 | check_smp_affinity |
