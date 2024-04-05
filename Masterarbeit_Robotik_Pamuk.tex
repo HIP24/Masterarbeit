@@ -39,6 +39,10 @@
 \usepackage{comment}
 \usepackage{csquotes}
 \usepackage{pgfplots}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{xcolor}  % Required for custom colors
+\sethlcolor{blue}
 %
 % Platzierungsoptionen 
 %
@@ -401,7 +405,7 @@ Here is a description of the used components:
 	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU, enables UEFI boot process.
 	\item \textbf{qemu\_def.sh}: Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS.
 	\item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script.
-	\item \textbf{drive-c}: Directory, serves as C drive for QEMU system, created and filled by qemu\_def.sh script..
+	\item \textbf{drive-c}: Directory serving as C drive for QEMU system, created and filled by qemu\_def.sh script.
 	\item \textbf{salamander-image-sigmatek-core2.ext4}: Root file system for Salamander 4 OS, used as hard drive for QEMU system.
 	\item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage.
 \end{itemize}
@@ -453,6 +457,9 @@ Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 	\caption[Latency taskset]{Latency taskset}
 	\label{fig:max_latency_taskset}
 \end{figure}
+
+
+
 
 
 \noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exit_taskset} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
@@ -532,6 +539,32 @@ Figure \ref{fig:gnuplot_max_latency_with_taskset}
 
 \chapter{Latency Reduction}
 \section{CPU isolation}
+
+\vspace{1em}
+\begin{minipage}{0.95\columnwidth}
+	\begin{lstlisting}[name={User and Kernel Tasks},label={lst:pse},escapeinside={(*@}{@*)}]
+		sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/isolated
+		19
+		sigma_ibo@sigma-ibo:~$ ps -e -o pid,psr,comm | awk '$2 == 19'
+				92  19 cpuhp/19
+				93  19 idle_inject/19
+ 	    		94  19 migration/19
+ 	    		95  19 ksoftirqd/19
+ 	    		97  19 kworker/19:0H-events_highpri
+ 	 		 1025  19 irq/205-iwlwifi:queue_7
+ 	 		17448  19 kworker/19:1H-kblockd
+ 	 		17499  19 kworker/19:2-events
+ 	 		18761  19 kworker/19:3-events
+		   (*@\colorbox{yellow}{21401 19 qemu-system-x86}@*)
+\end{lstlisting}
+\end{minipage}
+
+
+
+
+
+
+
 \clearpage
 \section{User and Kerneltasks}
 \clearpage
