@@ -137,7 +137,7 @@ Roboteranwendungen verbessern kann}
 %- Abkürzungsverzeichnis (optional)
 %- Glossar (optional)
 %- Anhang (optional)
-\chapter{Introduction}
+\chapter{Introduction}\label{cha:introduction}
 In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Traditional operating systems, such as Windows or Linux, are often not suitable for these types of real-time requirements as they cannot guarantee deterministic execution times. Therefore, real-time operating systems are required that are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes.
 
 \bigskip \noindent The core component of an RTOS that enables real-time capabilities is the kernel. The kernel is responsible for managing system resources, scheduling tasks, and ensuring deterministic behavior. It employs preemptive scheduling mechanisms to allow high-priority tasks to preempt lower-priority tasks, ensuring that time-critical tasks are not delayed. The kernel also implements priority-based scheduling algorithms, such as Rate Monotonic Scheduling (RMS) or Earliest Deadline First (EDF), to schedule tasks based on their priorities and timing constraints. Additionally, RTOS kernels are designed to minimize interrupt latency, which is crucial for real-time applications that require immediate response to external events.
@@ -148,20 +148,16 @@ In today's industrial production and automation, robot systems are well establis
 
 \clearpage
 \section{Application Context}
-This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}. 
+This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 %This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used. 
-SIGMATEK uses its own customized Linux distribution to be run on their self-manufactured CPUs, namely Salamander 4. This operating system employs hard real-time with latency requirements between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal CPUs. Salamander 4 is virtualized through a third party service, QEMU. The details of this operating system are explained in section \ref{sec:salamander4}. 
+SIGMATEK uses its own customized Linux distribution to be run on their self-manufactured CPUs, namely Salamander 4. This operating system employs hard real-time with latency requirements between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal CPUs. Salamander 4 is virtualized through a third party service, QEMU. The details of this operating system are explained in chapter \ref{cha:salamander4}.
 
 
 
 \clearpage
 \section{State of the art}
 \clearpage
-
-
 \section{Problem and task definition}
-
-
 \clearpage
 \section{Objective}
 
@@ -170,7 +166,8 @@ The main objective of this work is to create a real-time robot control platform 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\chapter{Methodology}
+
+\chapter{Methodology}\label{cha:methodology}
 
 This section describes in detail all the theoretical concepts and boundary conditions as well as practical methods that contributed to achieving the objectives of this master's thesis.
 
@@ -193,7 +190,7 @@ Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstel
 
 - Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
 Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
-	
+
 \end{comment}
 
 
@@ -205,13 +202,14 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 
 \clearpage
-\chapter{Salamander Operating System}\label{sec:salamander4}
 
-Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{lst:uname_a}.
+\chapter{Salamander 4}\label{cha:salamander4}
+
+Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-	\begin{lstlisting}[name={System information},label={lst:uname_a}]
+	\begin{lstlisting}[name={System information},label={output:uname_a}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
@@ -261,7 +259,10 @@ Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten d
 \noindent Ein Aufruf dieser Funktionen erfordert die entsprechende Domain. Wenn der Task in der falschen Domain läuft, dann wird ein Domain-Wechsel forciert.
 Ein Domainwechsel von Xenomai nach Linux geht relativ einfach. Aber der Wechsel von Linux nach Xenomai braucht Unterstützung, und dafür ist die Hilfe des Gatekeepers notwendig. Das bedeutet, der Gatekeeper hilft einem Task von Linux nach Xenomai zu wechseln.
 
-\section{Task priorities}
+\clearpage
+\section{Salamander 4 Description}
+
+\subsection{Task priorities}
 Es gibt grundsätzlich 4 Gruppen
 
 \begin{table}[ht]
@@ -277,10 +278,9 @@ Es gibt grundsätzlich 4 Gruppen
 		RTK Priorität                & 0 bis 14         \\ \hline
 	\end{tabular}
 \end{table}
+\clearpage
 
-
-
-\section{Memory Management}
+\subsection{Memory Management}
 Es gibt verschiedene Speicherbereiche
 
 Linux/System/Programm Speicher
@@ -320,31 +320,6 @@ Die Schnittstelle zwischen den einzelnen Modulen wird in Abbildung \ref{fig:lasa
 
 \clearpage
 
-
-\chapter{Comparison of Real-Time Latency}
-In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
-
-Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
-
-
-%In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
-
-
-\begin{table}[H]
-	\centering
-	\caption[Kernel and Patches]{Kernel and Patches}
-	\label{tab:kernel_configuration}
-	\begin{tabular}{|c|c|}
-		\hline
-		\textbf{Kernel} & \textbf{Patches} \\ \hline
-		.               & .                \\ \hline
-		.               & .                \\ \hline
-	\end{tabular}
-\end{table}
-
-After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
-
-
 \section{Salamander 4 Bare Metal}
 Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including
 
@@ -355,10 +330,10 @@ Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
 	\caption[Latency hardware]{Latency hardware}
 	\label{fig:max_latency_hardware}
 \end{figure}
-
+\clearpage
 
 \section{Salamander 4 Virtualisation}
-In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{lst:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
+In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -367,7 +342,6 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
     bzImage
     drive-c
     ovmf.code.qcow2
-    qemu_def_bkp.sh
     qemu_def.sh
     salamander-image-sigmatek-core2.ext4
     stek-drive-c-image-sigmatek-core2.tar.gz
@@ -379,7 +353,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
-	\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={lst:qemu_def}]
+	\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={script:qemu_def}]
     #!/bin/sh
 
     if  [ ! -d drive-c/ ]; then
@@ -398,7 +372,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
     -no-reboot -nographic
 \end{lstlisting}
 \end{minipage}
-
+\clearpage
 Here is a description of the used components:
 \begin{itemize}
 	\item \textbf{bzImage}: Compressed Linux kernel image, loaded by QEMU at system start.
@@ -436,7 +410,6 @@ Here is a description of the used components:
 %   
 %   \end{table}
 
-\clearpage
 \noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is noted bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU.
 
 
@@ -535,14 +508,41 @@ Figure \ref{fig:gnuplot_max_latency_with_taskset}
 	\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
 	\label{fig:gnuplot_max_latency_with_taskset}
 \end{figure}
+\clearpage
+
+\section{Latency Comparison}
+In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
+
+Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
 
 
-\chapter{Latency Reduction}
+%In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
+
+
+\begin{table}[H]
+	\centering
+	\caption[Kernel and Patches]{Kernel and Patches}
+	\label{tab:kernel_configuration}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Kernel} & \textbf{Patches} \\ \hline
+		.               & .                \\ \hline
+		.               & .                \\ \hline
+	\end{tabular}
+\end{table}
+
+After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
+\clearpage
+
+\chapter{Real-Time Latency Reduction}\label{cha:latency_reduction}
 \section{CPU isolation}
+Isolating CPUs inolves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process.
+
+Output \ref{output:pse} shows 
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-	\begin{lstlisting}[name={User and Kernel Tasks},label={lst:pse},escapeinside={(*@}{@*)}]
+	\begin{lstlisting}[name={User and Kernel Tasks},label={output:pse},escapeinside={(*@}{@*)}]
 		sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/isolated
 		19
 		sigma_ibo@sigma-ibo:~$ ps -e -o pid,psr,comm | awk '$2 == 19'
@@ -555,25 +555,75 @@ Figure \ref{fig:gnuplot_max_latency_with_taskset}
  	 		17448  19 kworker/19:1H-kblockd
  	 		17499  19 kworker/19:2-events
  	 		18761  19 kworker/19:3-events
-		   (*@\colorbox{yellow}{21401 19 qemu-system-x86}@*)
+			21401  19 qemu-system-x86
+\end{lstlisting}
+\end{minipage}
+
+\clearpage
+\section{Kernel tuning}
+\clearpage
+\section{IRQ affinity}
+
+
+The IRQ affinity can be configured so that interrupts are handled on CPUs other than CPU 19. This helps reduce the number of kernel threads that are executed on CPU 19. 
+
+
+The script \ref{script:irq_affinity} checks the smp\_affinity for each IRQ on a specific CPU and prints the IRQ numbers that are allowed to run on that CPU, sorted in ascending order. 
+
+\vspace{1em}
+\begin{minipage}{0.95\columnwidth}
+	\begin{lstlisting}[name={Read IRQ affinity per CPU on system},label={script:irq_affinity}]
+		#!/bin/bash
+		# Get the CPU number from the command-line argument
+		CPU=$1
+		echo -n "CPU $CPU: "
+		for IRQ in /proc/irq/*; do
+			if [ -f "$IRQ/smp_affinity" ]; then
+				# Read the current smp_affinity
+				AFFINITY=$(cat "$IRQ/smp_affinity")
+				# Check if the bit for the current CPU is set
+				if (( (0x$AFFINITY & (1 << CPU)) != 0 )); then
+					# Print the IRQ number without a newline, followed by a space
+					echo -n "${IRQ#/proc/irq/} "
+				fi
+			fi
+		done | sort -n
+		# Print a final newline
+		echo
+\end{lstlisting}
+\end{minipage}
+
+Output \ref{output:irq_affinity} shows the output of the script above for CPU 19.
+
+\vspace{1em}
+\begin{minipage}{0.95\columnwidth}
+\begin{lstlisting}[name={Output},label={output:irq_affinity}, breaklines=true]
+	sigma_ibo@sigma-ibo:~$ ./check_smp_affinity.sh 19
+	CPU 19 IRQ affinity:
+	0
+	2
+	3
+	4
+	5
+	6
+	7
+	10
+	11
+	13
+	15
+	130
+	172
+	173
+	189
+	192
 \end{lstlisting}
 \end{minipage}
 
 
 
-
-
-
-
 \clearpage
-\section{User and Kerneltasks}
-\clearpage
-\section{IRQ}
-\clearpage
-
-
-\chapter{KVM exit reasons}
-\section{APIC\_WRITE} 
+\section{KVM exit reasons}\label{sec:kvm_exit_reasons}
+\subsection{APIC\_WRITE}
 
 
 The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. It consists of two main components: the I/O APIC and the local APICs. The I/O APIC receives interrupt requests from devices and distributes them as messages to the Local APICs. The Local APICs then forward the highest-priority interrupt to the CPU core. The APIC offers many advantages, including more inputs for interrupts, a flexible configuration, definable priorities and support for message-signalled interrupts.
@@ -581,7 +631,7 @@ The Advanced Programmable Interrupt Controller (APIC) is responsible for the dis
 \cite{lutsykPipelinedMulticoreMachine2020}
 %https://www.wikiwand.com/de/Advanced_Programmable_Interrupt_Controller
 
-\subsection{APIC virtualization} 
+\subsubsection{APIC virtualization}
 
 
 Newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance.
@@ -591,49 +641,49 @@ Newer Intel processors offer hardware virtualization of the Advanced Programmabl
 
 
 \clearpage
-\section{HLT}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{HLT}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{EPT\_MISCONFIG}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{EPT\_MISCONFIG}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{PREEMPTION\_TIMER}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{PREEMPTION\_TIMER}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{EXTERNAL\_INTERRUPT}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{EXTERNAL\_INTERRUPT}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{IO\_INSTRUCTION}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{IO\_INSTRUCTION}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{EOI\_INDUCED}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{EOI\_INDUCED}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{EPT\_VIOLATION}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{EPT\_VIOLATION}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{PAUSE\_INSTRUCTION}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{PAUSE\_INSTRUCTION}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{CPUID}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{CPUID}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
-\section{MSR\_READ}
-\subsection{Description}
-\subsection{Occurence Reduction}
+\subsection{MSR\_READ}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
 \clearpage
 
 
-\chapter{Results}
+\chapter{Results}\label{cha:results}
 
 \begin{comment}
 
@@ -656,9 +706,9 @@ So, while both versions require a Linux kernel with a real-time interface (Dovet
 
 
 \clearpage
-\chapter{Discussion}
+\chapter{Discussion}\label{cha:discussion}
 \clearpage
-\chapter{Summary and Outlook}
+\chapter{Summary and Outlook}\label{cha:summary_and_outlook}
 
 %
 % Hier beginnen die Verzeichnisse.
@@ -685,6 +735,7 @@ So, while both versions require a Linux kernel with a real-time interface (Dovet
 \begin{acronym}[XXXXX]
 	\acro{CPU}[CPU]{Central Processing Unit}
 	\acro{QEMU}[QEMU]{Quick Emulator}
+	\acro{IRQ}[Interrupt Request]{Interrupt Request}
 \end{acronym}
 
 %
@@ -692,7 +743,10 @@ So, while both versions require a Linux kernel with a real-time interface (Dovet
 %
 \clearpage
 \appendix
+
 \chapter{Anhang A}
 \clearpage
+
 \chapter{Anhang B}
+
 \end{document}
