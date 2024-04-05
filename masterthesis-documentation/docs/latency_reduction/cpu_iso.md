@@ -1,3 +1,18 @@
+## Steps for latency reduction
+
+## defconfig
+
+CONFIG_PARAVIRT=y
+CONFIG_KVM_GUEST=y
+CONFIG_X86_IOAT_VAPIC_BROKEN_CTL=y
+CONFIG_MTRR_SANITIZER=y
+CONFIG_ARCH_CPUIDLE_HALTPOLL=y
+CONFIG_HUGETLBFS=y
+
+
+
+## CPU isolation 
+
 **CPU isolation** in Ubuntu involves restricting certain CPUs from the scheduler to enhance performance or achieve real-time behavior. Let's explore a few methods for achieving this:
 
 1. **`isolcpus` Boot Parameter**:
@@ -20,4 +35,6 @@
         - **`cpuset`**: Allows you to create CPU sets (cpusets) and move tasks (threads or processes) into specific cpusets. You can shield CPUs from the scheduler by moving tasks into an isolated cpuset.
         - **`tuna`**: Dynamically isolates a CPU core and moves processes running on that core to neighboring CPUs. You can use `tuna` to isolate a CPU core in real-time¹.
 
-Remember that CPU isolation can significantly impact system behavior, so use it judiciously based on your specific requirements. 🚀
+
+
+## 

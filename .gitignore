@@ -5,8 +5,8 @@
 *.fdb_latexmk
 *.blg
 *.lof
-*.log
-*.log
+.log
+Masterarbeit_Robotik_Pamuk.log
 *.lol
 *.lot
 *.toc

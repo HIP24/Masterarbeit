@@ -24,7 +24,7 @@ sigma_ibo@pamhal:$ cat /sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_max_freq
 ```
 
 ## Check which IRQs use CPU 17
-CPU17 is being used by IRQs with [check_smp_activity.sh](check_smp_activity.sh):
+CPU17 is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh):
 ```
 0
 10
@@ -70,7 +70,7 @@ dffff
 ```
 
 ## Check again which IRQs use CPU 17
-CPU17 is being used by IRQs with [check_smp_activity.sh](check_smp_activity.sh) (IRQ0 is not listed anymore): 
+CPU17 is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh) (IRQ0 is not listed anymore): 
 ```
 10
 11
