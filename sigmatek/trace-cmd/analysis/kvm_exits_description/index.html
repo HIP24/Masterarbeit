@@ -481,11 +481,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../latency_reduction/cpu_iso/" class="md-nav__link">
+      <a href="../../../../latency_reduction/irq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Cpu iso
+    Irq
   </span>
   
 
@@ -502,11 +502,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../latency_reduction/irq/" class="md-nav__link">
+      <a href="../../../../latency_reduction/latency_reduction_steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Irq
+    Latency reduction steps
   </span>
   
 
@@ -1371,7 +1371,7 @@
             
   
   <span class="md-ellipsis">
-    With taskset
+    Vapic
   </span>
   
 
@@ -1380,6 +1380,91 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Vapic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot vapic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency vapic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_8" id="__nav_6_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    With taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_8">
             <span class="md-nav__icon md-icon"></span>
             With taskset
           </label>
@@ -1769,57 +1854,57 @@
 <tr>
 <td>APIC_WRITE</td>
 <td>Triggered when the guest writes to its Advanced Programmable Interrupt Controller (APIC).</td>
-<td>60178 times</td>
+<td></td>
 </tr>
 <tr>
 <td>EXTERNAL_INTERRUPT</td>
 <td>Triggered when an external hardware interrupt occurs, usually caused by hardware devices signaling the host’s CPU.</td>
-<td>909 times</td>
+<td></td>
 </tr>
 <tr>
 <td>HLT</td>
 <td>Triggered when the guest executes the HLT instruction, halting the CPU until the next external interrupt is fired.</td>
-<td>53640 times</td>
+<td></td>
 </tr>
 <tr>
 <td>EPT_MISCONFIG</td>
 <td>Triggered due to a misconfiguration in the Extended Page Tables (EPT), a memory management feature in modern CPUs.</td>
-<td>3839 times</td>
+<td></td>
 </tr>
 <tr>
 <td>PREEMPTION_TIMER</td>
 <td>Triggered when the preemption timer of the host expires, related to the host’s scheduling of the guest.</td>
-<td>3239 times</td>
+<td></td>
 </tr>
 <tr>
 <td>PAUSE_INSTRUCTION</td>
 <td>Triggered when the PAUSE instruction is executed, used in spinlock loops to improve performance and reduce power consumption.</td>
-<td>20 times</td>
+<td></td>
 </tr>
 <tr>
 <td>EPT_VIOLATION</td>
 <td>Triggered when a guest access to a page would result in a violation of the EPT permission settings.</td>
-<td>48 times</td>
+<td></td>
 </tr>
 <tr>
 <td>IO_INSTRUCTION</td>
 <td>Triggered when the guest executes an I/O instruction, such as IN or OUT.</td>
-<td>565 times</td>
+<td></td>
 </tr>
 <tr>
 <td>EOI_INDUCED</td>
 <td>Triggered when an end-of-interrupt (EOI) signal is sent to the APIC.</td>
-<td>78 times</td>
+<td></td>
 </tr>
 <tr>
 <td>MSR_READ</td>
 <td>Triggered when the guest reads from a Model-Specific Register (MSR).</td>
-<td>2 times</td>
+<td></td>
 </tr>
 <tr>
 <td>CPUID</td>
 <td>Triggered when the guest executes the CPUID instruction, used to identify the processor.</td>
-<td>10 times</td>
+<td></td>
 </tr>
 </tbody>
 </table>

@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../cpu_iso/">
+        <link rel="prev" href="../../kernel-patch/kernel-patch/">
       
       
-        <link rel="next" href="../../sigmatek/QEMU/nmbridge/">
+        <link rel="next" href="../latency_reduction_steps/">
       
       
       <link rel="icon" href="../../img/uni.png">
@@ -485,27 +485,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../cpu_iso/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cpu iso
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -680,6 +659,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../latency_reduction_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency reduction steps
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1526,7 +1526,7 @@
             
   
   <span class="md-ellipsis">
-    With taskset
+    Vapic
   </span>
   
 
@@ -1535,6 +1535,91 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Vapic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot vapic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency vapic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_8" id="__nav_6_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    With taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_8">
             <span class="md-nav__icon md-icon"></span>
             With taskset
           </label>
@@ -2071,22 +2156,21 @@
 </code></pre></div>
 <h2 id="check-which-irqs-use-cpu-x">Check which IRQs use CPU x<a class="headerlink" href="#check-which-irqs-use-cpu-x" title="Permanent link">&para;</a></h2>
 <p>CPU x is being used by IRQs with <a href="../check_smp_affinity.sh">check_smp_affinity.sh</a>:
-<div class="highlight"><pre><span></span><code>0
+<div class="highlight"><pre><span></span><code>10
+11
+13
+138
+15
+191
+194
 2
+208
+214
 3
 4
 5
 6
 7
-10
-11
-13
-15
-130
-172
-173
-189
-192
 </code></pre></div></p>
 <h2 id="check-the-mask-of-irq">Check the mask of IRQ<a class="headerlink" href="#check-the-mask-of-irq" title="Permanent link">&para;</a></h2>
 <p>The mask for IRQ0 for example would be: 
@@ -2095,11 +2179,11 @@ fffff
 </code></pre></div></p>
 <h2 id="change-permissions-for-the-irqs">Change permissions for the IRQs<a class="headerlink" href="#change-permissions-for-the-irqs" title="Permanent link">&para;</a></h2>
 <p>In order to change the mask, first give permissions:
-<div class="highlight"><pre><span></span><code>chmod 777 /proc/irq/*/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/*/smp_affinity
 </code></pre></div></p>
 <h2 id="change-mask-of-irq">Change Mask of IRQ<a class="headerlink" href="#change-mask-of-irq" title="Permanent link">&para;</a></h2>
 <p>Then change the mask with 
-<div class="highlight"><pre><span></span><code>sudo echo dffff &gt; /proc/irq/0/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo echo 7ffff &gt; /proc/irq/0/smp_affinity
 </code></pre></div></p>
 <h2 id="check-again-the-changed-mask-of-irq">Check again the changed mask of IRQ<a class="headerlink" href="#check-again-the-changed-mask-of-irq" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity
@@ -2141,21 +2225,22 @@ sudo chmod 777 /proc/irq/6/smp_affinity
 sudo chmod 777 /proc/irq/7/smp_affinity
 </code></pre></div>
 <h2 id="batch-cat-irq-smp_affinity">Batch cat IRQ smp_affinity<a class="headerlink" href="#batch-cat-irq-smp_affinity" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/10/smp_affinity  -&gt; fffff
-cat /proc/irq/11/smp_affinity  -&gt; fffff
-cat /proc/irq/13/smp_affinity  -&gt; fffff
-cat /proc/irq/138/smp_affinity -&gt; fffff
-cat /proc/irq/15/smp_affinity  -&gt; fffff
-cat /proc/irq/191/smp_affinity -&gt; 20000
-cat /proc/irq/194/smp_affinity -&gt; fffff
-cat /proc/irq/2/smp_affinity   -&gt; fffff
-cat /proc/irq/208/smp_affinity -&gt; 20000
-cat /proc/irq/214/smp_affinity -&gt; fffff
-cat /proc/irq/3/smp_affinity   -&gt; fffff
-cat /proc/irq/4/smp_affinity   -&gt; fffff
-cat /proc/irq/5/smp_affinity   -&gt; fffff
-cat /proc/irq/6/smp_affinity   -&gt; fffff
-cat /proc/irq/7/smp_affinity   -&gt; fffff
+<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity  -&gt; fffff
+cat /proc/irq/2/smp_affinity -&gt; fffff             
+cat /proc/irq/3/smp_affinity -&gt; fffff             
+cat /proc/irq/4/smp_affinity -&gt; fffff            
+cat /proc/irq/5/smp_affinity -&gt; fffff             
+cat /proc/irq/6/smp_affinity -&gt; fffff            
+cat /proc/irq/7/smp_affinity -&gt; fffff            
+cat /proc/irq/10/smp_affinity -&gt; fffff              
+cat /proc/irq/11/smp_affinity -&gt; fffff            
+cat /proc/irq/13/smp_affinity -&gt; fffff            
+cat /proc/irq/15/smp_affinity -&gt; fffff              
+cat /proc/irq/130/smp_affinity -&gt; fffff              
+cat /proc/irq/172/smp_affinity -&gt; 80000              
+cat /proc/irq/173/smp_affinity -&gt; fffff              
+cat /proc/irq/189/smp_affinity -&gt; 80000              
+cat /proc/irq/192/smp_affinity -&gt; fffff              
 </code></pre></div>
 <h2 id="batch-change-irq-smp_affinity-of-fffff">Batch change IRQ smp_affinity of fffff<a class="headerlink" href="#batch-change-irq-smp_affinity-of-fffff" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>sudo echo dffff &gt; /proc/irq/10/smp_affinity
@@ -2170,18 +2255,18 @@ sudo echo dffff &gt; /proc/irq/6/smp_affinity
 sudo echo dffff &gt; /proc/irq/7/smp_affinity
 </code></pre></div>
 <h2 id="could-not-be-changed">COULD NOT BE CHANGED<a class="headerlink" href="#could-not-be-changed" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>191
-194
-2
-208
-214
+<div class="highlight"><pre><span></span><code>2
+172
+173
+189
+192
 </code></pre></div>
 <h2 id="values">VALUES<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/191/smp_affinity   -&gt; 20000
-cat /proc/irq/194/smp_affinity   -&gt; fffff
-cat /proc/irq/2/smp_affinity   -&gt; fffff
-cat /proc/irq/208/smp_affinity   -&gt; 20000
-cat /proc/irq/214/smp_affinity   -&gt; fffff
+<div class="highlight"><pre><span></span><code>cat /proc/irq/2/smp_affinity   -&gt; fffff
+cat /proc/irq/172/smp_affinity   -&gt; 80000
+cat /proc/irq/173/smp_affinity   -&gt; fffff
+cat /proc/irq/189/smp_affinity   -&gt; 80000
+cat /proc/irq/192/smp_affinity   -&gt; fffff
 </code></pre></div>
 <h2 id="batch-check-permissions">Batch check permissions<a class="headerlink" href="#batch-check-permissions" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>ll /proc/irq/0/smp_affinity
