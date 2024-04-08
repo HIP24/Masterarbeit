@@ -13,7 +13,7 @@ def count_lines_with_word(file_path, word, total_lines):
     return total_lines, count
 
 # Usage
-file_path = 'kvm_exit_test.txt'  # replace with your file path
+file_path = 'kvm_exit_vapic.txt'  # replace with your file path
 total_lines = sum(1 for line in open(file_path))
 print(f"Total exits: {total_lines}.")
 total = total_lines
@@ -28,7 +28,8 @@ words = ['APIC_WRITE',
          'EPT_VIOLATION',
          'PAUSE_INSTRUCTION',
          'CPUID',   
-         'MSR_READ'
+         'MSR_READ',
+         'MSR_WRITE'
          ]  # replace with the words you want to search for
 
 counts = []
@@ -65,8 +66,8 @@ plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
 plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
 
 # Save the figure
-plt.savefig('../../../../../../img/kvm_exit_test.png', bbox_inches='tight')
-plt.savefig('kvm_exit_test.png', bbox_inches='tight')
+plt.savefig('../../../../../../img/kvm_exit_vapic.png', bbox_inches='tight')
+plt.savefig('kvm_exit_vapic.png', bbox_inches='tight')
 
 # Print a success message
-print("The plot was successfully saved to kvm_exit_test.png")
+print("The plot was successfully saved to kvm_exit_vapic.png")

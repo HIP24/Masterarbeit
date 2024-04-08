@@ -28,7 +28,8 @@ words = ['APIC_WRITE',
          'EPT_VIOLATION',
          'PAUSE_INSTRUCTION',
          'CPUID',   
-         'MSR_READ'
+         'MSR_READ',
+         'MSR_WRITE'
          ]  # replace with the words you want to search for
 
 counts = []

@@ -1,0 +1,3 @@
+Max: 4070.018
+Min: 6.963
+Standard Deviation: 359.2658924891002
