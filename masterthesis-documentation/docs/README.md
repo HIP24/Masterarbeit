@@ -282,9 +282,9 @@ pre {
 |------------|-------|
 | [kvm_exit_number.py](sigmatek/trace-cmd/analysis/default/kvm_exit_default_number.py)   | Count kvm_exit events default  |
 | [kvm_exit_number.py](sigmatek/trace-cmd/analysis/taskset/kvm_exit_taskset_number.py)   | Count kvm_exit events taskset |
-| [max_latency_no_taskset.py](sigmatek/xenomai/max_latency_default.py)             | Plot latency of Slamander 4 QEMU with no taskset  |
-| [max_latency_taskset.py](sigmatek/xenomai/max_latency_taskset.py)                   | Plot latency of Slamander 4 QEMU with taskset  |
-| [max_latency_hardware.py](sigmatek/xenomai/max_latency_hardware.py)                   | Plot latency of Slamander 4 hardware  |
+| [max_latency_no_taskset.py](sigmatek/xenomai/max_latency_default/max_latency_default.py)             | Plot latency of Slamander 4 QEMU with no taskset  |
+| [max_latency_taskset.py](sigmatek/xenomai/max_latency_taskset/max_latency_taskset.py)                   | Plot latency of Slamander 4 QEMU with taskset  |
+| [max_latency_hardware.py](sigmatek/xenomai/max_latency_hardware/max_latency_hardware.py)                   | Plot latency of Slamander 4 hardware  |
 | [print_numbers.py](sigmatek/xenomai/print_numbers.py)                       | Print numbers of specified range  |
 | [search_for_x.py](resources/kernel/search_for_x.py)                         | Search for lines that contain x |
 | [compare_2_files.py](resources/kernel/compare_2_files.py)                   | Compare two config files line by line  |
