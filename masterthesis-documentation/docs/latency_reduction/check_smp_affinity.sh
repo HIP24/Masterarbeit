@@ -1,4 +1,9 @@
 #!/bin/bash
+# Check if a command-line argument is provided
+if [ -z "$1" ]; then
+    echo "Please provide a CPU number as a command-line argument."
+    exit 1
+fi
 # Get the CPU number from the command-line argument
 CPU=$1
 # Initialize an empty array to store the IRQ numbers
