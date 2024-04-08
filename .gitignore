@@ -23,5 +23,6 @@ Masterarbeit_Robotik_Pamuk.log
 *.gls
 *.ist
 masterthesis-documentation/site/
-masterthesis-documentation/docs/tools/
+masterthesis-documentation/docs/tools/bcc/
+masterthesis-documentation/docs/sigmatek/trace-cmd/LTS/
 .vscode/

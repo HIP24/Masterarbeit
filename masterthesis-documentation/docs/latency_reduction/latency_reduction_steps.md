@@ -10,7 +10,6 @@ CONFIG_ARCH_CPUIDLE_HALTPOLL=y
 CONFIG_HUGETLBFS=y
 
 
-
 ## CPU isolation 
 
 **CPU isolation** in Ubuntu involves restricting certain CPUs from the scheduler to enhance performance or achieve real-time behavior. Let's explore a few methods for achieving this:
@@ -37,4 +36,14 @@ CONFIG_HUGETLBFS=y
 
 
 
-## 
+## smp_affinity 
+cat /proc/irq/0/smp_affinity
+sudo chmod 777 /proc/irq/0/smp_affinity
+sudo echo dffff > /proc/irq/0/smp_affinity
+
+
+## Enable APICV
+/sys/module/kvm_intel/parameters/enable_apicv
+
+
+-cpu host,hv-passthrough \
