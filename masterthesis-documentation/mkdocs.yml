@@ -32,6 +32,8 @@ plugins:
         - sigmatek/trace-cmd/analysis/default/trace-Salamander4.dat
         - sigmatek/trace-cmd/analysis/taskset/trace.dat
         - sigmatek/trace-cmd/analysis/taskset/trace-Salamander4.dat
+        - sigmatek/trace-cmd/analysis/vapic/trace.dat
+        - sigmatek/trace-cmd/analysis/vapic/trace-Salamander4.dat
         - themes.md
         - "*.tmp"
         - "*.gz"
