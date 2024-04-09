@@ -44,4 +44,4 @@
 | 03.04.2024 | Write masterthesis APIC_WRITE |
 | 04.04.2024 | defconfig, vapic |
 | 05.04.2024 | check_smp_affinity and check_CPU_IRQ_usage |
-| 08.04.2024 |  |
+| 08.04.2024 | kvm_exit_vapic_results |
