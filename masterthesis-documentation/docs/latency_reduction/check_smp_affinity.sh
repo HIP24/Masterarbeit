@@ -7,7 +7,7 @@ fi
 # Get the CPU number from the command-line argument
 CPU=$1
 # Check if the CPU exists
-if [ $CPU -ge $(nproc) ]; then
+if [ $CPU -ge $(getconf _NPROCESSORS_CONF) ]; then
     echo "CPU $CPU does not exist."
     exit 1
 fi
