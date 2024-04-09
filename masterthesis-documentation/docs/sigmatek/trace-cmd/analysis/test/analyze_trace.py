@@ -25,13 +25,16 @@ def count_tasks(filename):
             # Update the total count of all events
             total_count += 1
 
-    # Print the counts
-    for task, count in task_counts.items():
-        print(f"{task}: {count}")
+    # Sort the tasks by count in ascending order
+    sorted_tasks = sorted(task_counts.items(), key=lambda x: x[1], reverse=True)
 
     # Print the total count of all events
     print(f"Total count of all events: {total_count}")
 
-# Call the function with the name of your file
+    # Print the counts
+    for task, count in sorted_tasks:
+        print(f"{task}: {count}")
+
+    # Call the function with the name of your file
 count_tasks('guest_report.txt')
 
