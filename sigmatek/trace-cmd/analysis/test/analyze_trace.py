@@ -1,11 +1,11 @@
 from collections import defaultdict
 
-def count_properties(filename):
-    # Initialize dictionaries to store the counts
+def count_tasks(filename):
+    # Initialize a dictionary to store the counts
     task_counts = defaultdict(int)
-    cpu_counts = defaultdict(int)
-    timestamp_counts = defaultdict(int)
-    exit_reason_counts = defaultdict(int)
+
+    # Initialize a variable to store the total count of all events
+    total_count = 0
 
     with open(filename, 'r') as f:
         for line in f:
@@ -13,21 +13,28 @@ def count_properties(filename):
             words = line.split()
 
             # Skip lines that don't have enough words
-            if len(words) < 4:
+            if len(words) < 1:
                 continue
 
-            # Update the counts
-            task_counts[words[0]] += 1
-            cpu_counts[words[1]] += 1
-            timestamp_counts[words[2]] += 1
-            exit_reason_counts[words[3]] += 1
+            # The task is the first word in the line
+            task = words[0]
+
+            # Update the count for this task
+            task_counts[task] += 1
+
+            # Update the total count of all events
+            total_count += 1
+
+    # Sort the tasks by count in ascending order
+    sorted_tasks = sorted(task_counts.items(), key=lambda x: x[1], reverse=True)
+
+    # Print the total count of all events
+    print(f"Total count of all events: {total_count}") 
 
     # Print the counts
-    print("Task counts:", dict(task_counts))
-    print("CPU counts:", dict(cpu_counts))
-    print("Timestamp counts:", dict(timestamp_counts))
-    print("Exit reason counts:", dict(exit_reason_counts))
+    for task, count in sorted_tasks:
+        print(f"{task}: {count}")
 
-# Call the function with the name of your file
-count_properties('guest_report.txt')
+    # Call the function with the name of your file
+count_tasks('guest_report.txt')
 
