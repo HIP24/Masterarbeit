@@ -29,7 +29,7 @@ def count_tasks(filename):
     sorted_tasks = sorted(task_counts.items(), key=lambda x: x[1], reverse=True)
 
     # Print the total count of all events
-    print(f"Total count of all events: {total_count}")
+    print(f"Total count of all events: {total_count}") 
 
     # Print the counts
     for task, count in sorted_tasks:
