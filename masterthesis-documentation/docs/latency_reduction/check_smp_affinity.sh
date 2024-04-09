@@ -6,6 +6,11 @@ if [ -z "$1" ]; then
 fi
 # Get the CPU number from the command-line argument
 CPU=$1
+# Check if the CPU exists
+if [ $CPU -ge $(nproc) ]; then
+    echo "CPU $CPU does not exist."
+    exit 1
+fi
 # Initialize an empty array to store the IRQ numbers
 IRQs=()
 for IRQ in /proc/irq/*; do
