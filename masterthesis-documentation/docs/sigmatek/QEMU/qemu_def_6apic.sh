@@ -13,5 +13,5 @@ exec taskset -c 19 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
 -device vhost-vsock-pci,guest-cid=3,id=vsock0 \
 -drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
--cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,hv_crash,hv_vpindex,hv_vendor_id=whatever \
+-cpu host,hv-passthrough \
 -no-reboot -nographic
