@@ -87,6 +87,54 @@ oder
 höhere prio als andere kernel tasks haben -> zb netzwerkkarte
 
 
+<hr>
+
+
+## Richard Meeting 09.04.2024
+
+[Masterarbeit_Robotik_Pamuk](../Masterarbeit_Robotik_Pamuk.pdf)  
+
+### isolate CPU
+taskset
+
+### defconfig
+CONFIG_PARAVIRT=y  
+CONFIG_KVM_GUEST=y  
+CONFIG_X86_IOAT_VAPIC_BROKEN_CTL=y  
+CONFIG_MTRR_SANITIZER=y  
+CONFIG_ARCH_CPUIDLE_HALTPOLL=y  
+CONFIG_HUGETLBFS=y
+
+### smp_affinity 
+cat /proc/irq/*/smp_affinity  
+sudo chmod 777 /proc/irq/*/smp_affinity  
+sudo echo dffff > /proc/irq/*/smp_affinity  
+
+### Enable APICV
+/sys/module/kvm_intel/parameters/enable_apicv
+
+### QEMU_vapic
+-cpu host,hv-passthrough
+
+[kvm_exit_vapic.png](../masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/vapic/kvm_exit_vapic.png)
+
+### trace-cmd report host and guest 
+[results_guest_report.txt](../masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/results_guest_report.txt)  
+[results_host_report.txt](../masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/results_host_report.txt)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ❌✅
 
