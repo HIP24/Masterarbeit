@@ -28,11 +28,22 @@ Host and Guest track kvm_entry and kvm_exit
 sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all
 ```
 
-
 After trace-cmd raw
 ```
 trace-cmd report
 ```
+
+After trace-cmd Salamander4
+```
+trace-cmd report --cpu 19 > host_report.txt
+```
+
+After trace-cmd Salamander4
+```
+trace-cmd report -i trace-Salamander4.dat > guest_report.txt
+```
+
+
 
 
 After trace-cmd kernelshark
