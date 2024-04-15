@@ -43,9 +43,6 @@ After trace-cmd Salamander4
 trace-cmd report -i trace-Salamander4.dat > guest_report.txt
 ```
 
-
-
-
 After trace-cmd kernelshark
 ```
 sudo trace-cmd convert -i trace.dat -o trace_v6.dat --file-version 6 --compression none
