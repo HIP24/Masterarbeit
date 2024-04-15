@@ -431,8 +431,13 @@ Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 	\label{fig:max_latency_taskset}
 \end{figure}
 
-
-
+Figure \ref{fig:max_latency_vapic} shows latency of QEMU vapic Salamander4.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{img/max_latency_vapic.png}
+	\caption[Latency taskset]{Latency taskset}
+	\label{fig:max_latency_vapic}
+\end{figure}
 
 
 \noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exit_taskset} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
@@ -461,7 +466,7 @@ Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 \end{table}
 
 \clearpage
-Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency with CPU islation.
+Figure \ref{fig:kvm_exit_taskset} shows \texttt{kvm\_exit} frequency with CPU islation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/kvm_exits_taskset.png}
@@ -475,6 +480,17 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 	\includegraphics[width=1.0\columnwidth]{img/kvm_exits_default.png}
 	\caption[kvm exits default]{kvm exits default}
 	\label{fig:kvm_exits_default}
+\end{figure}
+
+\clearpage
+
+Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC virtualisation.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/kvm_exit_vapic.png}
+	\caption[kvm exits default]{kvm exits default}
+	\label{fig:kvm_exit_vapic}
 \end{figure}
 \clearpage
 
@@ -500,7 +516,6 @@ Figure \ref{fig:gnuplot_max_max_latency_default}
 	\label{fig:gnuplot_max_max_latency_default}
 \end{figure}
 
-
 Figure \ref{fig:gnuplot_max_latency_with_taskset}
 \begin{figure}[H]
 	\centering
@@ -508,6 +523,16 @@ Figure \ref{fig:gnuplot_max_latency_with_taskset}
 	\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
 	\label{fig:gnuplot_max_latency_with_taskset}
 \end{figure}
+
+Figure \ref{fig:gnuplot_max_latency_vapic}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/vapic/gnuplot_max_latency_vapic.png}
+	\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
+	\label{fig:gnuplot_max_latency_vapic}
+\end{figure}
+
+
 \clearpage
 
 \section{Latency Comparison}
@@ -536,9 +561,7 @@ After analyzing the inital latency of both versions, Trace-cmd and Kernelshark w
 
 \chapter{Real-Time Latency Reduction}\label{cha:latency_reduction}
 \section{CPU isolation}
-Isolating CPUs inolves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process.
-
-Output \ref{output:pse} shows 
+Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section \ref{sec:irq_handling}. Output \ref{output:pse} shows the user and kernel tasks that run on CPU 19. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -560,36 +583,42 @@ Output \ref{output:pse} shows
 \end{minipage}
 
 \clearpage
-\section{Kernel tuning}
-\clearpage
-\section{IRQ affinity}
-
-
-The IRQ affinity can be configured so that interrupts are handled on CPUs other than CPU 19. This helps reduce the number of kernel threads that are executed on CPU 19. 
-
-
-The script \ref{script:irq_affinity} checks the smp\_affinity for each IRQ on a specific CPU and prints the IRQ numbers that are allowed to run on that CPU, sorted in ascending order. 
+\section{Interrupt Requests Handling}\label{sec:irq_handling}
+Once the CPUs were isolated, Interrupt Requests Handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPUs. This was done by manipulating a file in the proc filesystem, namely \texttt{/proc/irq/default\_smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 20 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be FFFFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-	\begin{lstlisting}[name={Read IRQ affinity per CPU on system},label={script:irq_affinity}]
+	\begin{lstlisting}[name={Check distribution of Interrupt Requests across each CPU},label={script:smp_affinity}]
 		#!/bin/bash
+		# Check if a command-line argument is provided
+		if [ -z "$1" ]; then
+			echo "Please provide a CPU number as a command-line argument."
+			exit 1
+		fi
 		# Get the CPU number from the command-line argument
 		CPU=$1
-		echo -n "CPU $CPU: "
+		# Initialize an empty array to store the IRQ numbers
+		IRQs=()
 		for IRQ in /proc/irq/*; do
 			if [ -f "$IRQ/smp_affinity" ]; then
 				# Read the current smp_affinity
 				AFFINITY=$(cat "$IRQ/smp_affinity")
 				# Check if the bit for the current CPU is set
 				if (( (0x$AFFINITY & (1 << CPU)) != 0 )); then
-					# Print the IRQ number without a newline, followed by a space
-					echo -n "${IRQ#/proc/irq/} "
+					# Add the IRQ number to the array
+					IRQs+=("${IRQ#/proc/irq/}")
 				fi
 			fi
-		done | sort -n
-		# Print a final newline
-		echo
+		done
+		# Sort the array
+		IFS=$'\n' sorted=($(sort -n <<<"${IRQs[*]}"))
+		# Print the CPU number
+		echo "CPU $CPU IRQ affinity:"
+		# Print the sorted IRQ numbers on separate lines
+		for irq in "${sorted[@]}"; do
+			echo "$irq"
+		done
+		
 \end{lstlisting}
 \end{minipage}
 
@@ -597,7 +626,7 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-\begin{lstlisting}[name={Output},label={output:irq_affinity}, breaklines=true]
+\begin{lstlisting}[name={Output of smp_affinity for CPU 19},label={output:irq_affinity}, breaklines=true]
 	sigma_ibo@sigma-ibo:~$ ./check_smp_affinity.sh 19
 	CPU 19 IRQ affinity:
 	0
@@ -611,15 +640,26 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 	11
 	13
 	15
-	130
+	131
 	172
-	173
+	188
 	189
-	192
+	195
 \end{lstlisting}
 \end{minipage}
 
 
+
+
+
+By changing the values in 
+
+
+, I could effectively control the assignment of IRQs, ensuring they would not be handled by the isolated CPUs. This manipulation was done carefully, considering the implications and ensuring the stability and integrity of the system.
+
+Through this approach, I was able to create a more streamlined and efficient environment for the execution of specific tasks on the isolated CPUs. By reducing the interruptions caused by IRQs, the isolated CPUs were able to focus more on their assigned tasks, potentially leading to improved performance and more predictable execution times.
+
+\section{Kernel tuning}
 
 \clearpage
 \section{KVM exit reasons}\label{sec:kvm_exit_reasons}
@@ -682,7 +722,6 @@ Newer Intel processors offer hardware virtualization of the Advanced Programmabl
 \subsubsection{Occurence Reduction}
 \clearpage
 
-
 \chapter{Results}\label{cha:results}
 
 \begin{comment}
@@ -735,7 +774,7 @@ So, while both versions require a Linux kernel with a real-time interface (Dovet
 \begin{acronym}[XXXXX]
 	\acro{CPU}[CPU]{Central Processing Unit}
 	\acro{QEMU}[QEMU]{Quick Emulator}
-	\acro{IRQ}[Interrupt Request]{Interrupt Request}
+	\acro{IRQ}[IRQ]{Interrupt Request}
 \end{acronym}
 
 %
