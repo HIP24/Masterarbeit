@@ -1110,6 +1110,70 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_2" id="__nav_6_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working trace cmd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Working trace cmd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reinstall trace cmd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1916,12 +1980,6 @@
 <h1 id="gnuplot-default">gnuplot default<a class="headerlink" href="#gnuplot-default" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code># Calculate statistics
 stats &#39;max_latency_default_10min.txt&#39; using 2 nooutput
-
-# Define labels for the statistics
-set label 1 sprintf(&quot;Minimum: %.2f&quot;, STATS_min) at graph 0.6, graph 0.3
-set label 2 sprintf(&quot;Maximum: %.2f&quot;, STATS_max) at graph 0.6, graph 0.25
-set label 3 sprintf(&quot;Average: %.2f&quot;, STATS_mean) at graph 0.6, graph 0.2
-set label 4 sprintf(&quot;Standard Deviation: %.2f&quot;, STATS_stddev) at graph 0.6, graph 0.15
 
 # Plot the data
 plot &#39;max_latency_default_10min.txt&#39; using 1:2 with linespoints title &#39;Latency Histogram&#39;

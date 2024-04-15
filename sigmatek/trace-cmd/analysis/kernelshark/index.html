@@ -1159,6 +1159,70 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_2" id="__nav_6_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working trace cmd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Working trace cmd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reinstall trace cmd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1984,6 +2048,12 @@
 </code></pre></div></p>
 <p>After trace-cmd raw
 <div class="highlight"><pre><span></span><code>trace-cmd report
+</code></pre></div></p>
+<p>After trace-cmd Salamander4
+<div class="highlight"><pre><span></span><code>trace-cmd report --cpu 19 &gt; host_report.txt
+</code></pre></div></p>
+<p>After trace-cmd Salamander4
+<div class="highlight"><pre><span></span><code>trace-cmd report -i trace-Salamander4.dat &gt; guest_report.txt
 </code></pre></div></p>
 <p>After trace-cmd kernelshark
 <div class="highlight"><pre><span></span><code>sudo trace-cmd convert -i trace.dat -o trace_v6.dat --file-version 6 --compression none

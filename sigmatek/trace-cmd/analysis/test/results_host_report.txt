@@ -1,7 +1,10 @@
-Total count of all events: 16672
-qemu-system-x86-150750: 11646
-<idle>-0: 4316
-vhost-150742-150787: 632
-qemu-system-x86-150742: 68
-<...>-150742: 9
+Total count of all events: 252866
+qemu-system-x86-3834: 173059
+<idle>-0: 62931
+vhost-3799-3891: 11760
+qemu-system-x86-3799: 4270
+qemu-system-x86-10180: 425
+qemu-system-x86-10168: 350
+kworker/19:2-3830: 64
+migration/19-94: 6
 cpus=20: 1
