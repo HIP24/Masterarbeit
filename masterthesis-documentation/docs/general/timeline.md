@@ -45,3 +45,6 @@
 | 04.04.2024 | defconfig, vapic |
 | 05.04.2024 | check_smp_affinity and check_CPU_IRQ_usage |
 | 08.04.2024 | kvm_exit_vapic_results |
+| 09.04.2024 | trace-cmd report analysis |
+| 10.04.2024 | getconf _NPROCESSORS_CONF |
+| 11.04.2024 | Richard Meeting |
