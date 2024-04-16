@@ -1,9 +1,9 @@
 ## kvm_stat
 ```
-sudo kvm_stat -s 1
+sudo kvm_stat -s 1 -c -L test.csv
 ```
 
 ## bcc
 ```
-cd /usr/share/bcc/tools && sudo ./kvmexit
+sudo kvmexit 1 > kvmexit.md
 ```

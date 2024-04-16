@@ -1,3 +1,4 @@
+## Without VAPIC
 ```
 root@sigma-ibo:/home/sigma_ibo# kvmexit 10
 Display kvm exit reasons and statistics for all threads after sleeping 10 secs.
@@ -15,6 +16,7 @@ PID      TID      KVM_EXIT_REASON                     COUNT
 Total: 21 070
 
 
+## With VAPIC
 ```
 root@sigma-ibo:/home/sigma_ibo# kvmexit 10
 Display kvm exit reasons and statistics for all threads after sleeping 10 secs.
