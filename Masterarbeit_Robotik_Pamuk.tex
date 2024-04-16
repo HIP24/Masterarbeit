@@ -494,6 +494,65 @@ Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC vir
 \end{figure}
 \clearpage
 
+
+\begin{table}[h!]
+	\centering
+	\begin{minipage}{.5\textwidth}
+	\centering
+	\caption{Host report (Total of 445.908)}
+	\label{tab:results_host_report}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	PID & Task & Count \\ \hline
+	182579 & qemu-system-x86 & 302.748 \\ \hline
+	0 & \textless{}idle\textgreater{} & 112.911 \\ \hline
+	182618 & vhost & 21.204 \\ \hline
+	182572 & qemu-system-x86 & 7.597 \\ \hline
+	182755 & qemu-system-x86 & 644 \\ \hline
+	182754 & qemu-system-x86 & 643 \\ \hline
+	181870 & kworker/19:1 & 139 \\ \hline
+	3820 & kworker/19:1H & 16 \\ \hline
+	94 & migration/19 & 6 \\ \hline
+	\end{tabular}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+	\centering
+	\caption{Guest report (Total of 362.370)}
+	\label{tab:results_guest_report}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	PID & Task & Count \\ \hline
+	0 & \textless{}idle\textgreater{} & 150.744 \\ \hline
+	331 & LRT-Main & 56.697 \\ \hline
+	377 & trace-cmd & 48.507 \\ \hline
+	346 & CLI & 26.426 \\ \hline
+	378 & kthreadd & 25.837 \\ \hline
+	340 & MainTaskLow & 19.291 \\ \hline
+	339 & \textless{}...\textgreater{} & 9.980 \\ \hline
+	34 & MainTaskHigh & 9.185 \\ \hline
+	327 & LE-Logger & 4.965 \\ \hline
+	369 & kworker/0:0 & 2.793 \\ \hline
+	321 & kWorker-LRT & 2.542 \\ \hline
+	328 & LRTMgr-Main & 1.651 \\ \hline
+	34 & LrtMgrCyclic & 1.220 \\ \hline
+	332 & cobalt\_printf & 1.112 \\ \hline
+	325 & LE-System & 534 \\ \hline
+	343 & TCP-Listen & 187 \\ \hline
+	15 & rcu\_preempt & 162 \\ \hline
+	25 & kcompactd0 & 122 \\ \hline
+	58 & kworker/0:1H & 96 \\ \hline
+	63 & kworker/u2:2 & 89 \\ \hline
+	8 & jbd2/sda-8 & 86 \\ \hline
+	22 & kworker/0:1 & 56 \\ \hline
+	1 & init & 31 \\ \hline
+	2 & kthreadd & 25 \\ \hline
+	375 & trace-cmd & 24 \\ \hline
+	14 & ksoftirqd/0 & 8 \\ \hline
+	\end{tabular}
+	\end{minipage}
+	\end{table}
+
+
 \noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer \texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a \texttt{kvm\_exit} and kvm\_entry.
 
 \noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in \texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
@@ -541,20 +600,14 @@ In the initial phase, a comparative latency analysis was conducted between the h
 Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
 
 
+\subsection{Generic Ubuntu}
+
+\subsection{Real-Time Ubuntu}
+
+
+
+
 %In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
-
-
-\begin{table}[H]
-	\centering
-	\caption[Kernel and Patches]{Kernel and Patches}
-	\label{tab:kernel_configuration}
-	\begin{tabular}{|c|c|}
-		\hline
-		\textbf{Kernel} & \textbf{Patches} \\ \hline
-		.               & .                \\ \hline
-		.               & .                \\ \hline
-	\end{tabular}
-\end{table}
 
 After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
 \clearpage
@@ -584,7 +637,7 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 
 \clearpage
 \section{Interrupt Requests Handling}\label{sec:irq_handling}
-Once the CPUs were isolated, Interrupt Requests Handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPUs. This was done by manipulating a file in the proc filesystem, namely \texttt{/proc/irq/default\_smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 20 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be FFFFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4.
+Once the CPUs were isolated, Interrupt Requests Handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPUs. This was done by manipulating a file in the proc filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 20 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be FFFFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -649,15 +702,8 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 \end{minipage}
 
 
+\noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
 
-
-
-By changing the values in 
-
-
-, I could effectively control the assignment of IRQs, ensuring they would not be handled by the isolated CPUs. This manipulation was done carefully, considering the implications and ensuring the stability and integrity of the system.
-
-Through this approach, I was able to create a more streamlined and efficient environment for the execution of specific tasks on the isolated CPUs. By reducing the interruptions caused by IRQs, the isolated CPUs were able to focus more on their assigned tasks, potentially leading to improved performance and more predictable execution times.
 
 \section{Kernel tuning}
 
