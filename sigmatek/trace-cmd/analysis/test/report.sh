@@ -1,5 +1,5 @@
 #!/bin/bash
-trace-cmd report | grep kvm_exit > kvm_exit_test.txt && echo "kvm_exit_test completed"&
+trace-cmd report | grep kvm_exit > kvm_exit_count.txt && echo "kvm_exit_count completed"&
 trace-cmd report --cpu 19 > host_report.txt && echo "host_report completed"&
 trace-cmd report -i trace-Salamander4.dat > guest_report.txt && echo "guest_report completed"&
 # Wait for all background jobs to finish
