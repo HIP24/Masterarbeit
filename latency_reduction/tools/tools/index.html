@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../irq/">
+        <link rel="prev" href="../kvmexit/">
       
       
-        <link rel="next" href="../kernel-patch/kernel-patch/">
+        <link rel="next" href="../../../sigmatek/QEMU/nmbridge/">
       
       
-      <link rel="icon" href="../../img/uni.png">
+      <link rel="icon" href="../../../img/uni.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
-        <title>Latency reduction steps - Masther thesis Documentation</title>
+        <title>Tools - Masther thesis Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#steps-for-latency-reduction" class="md-skip">
+        <a href="#kvm_stat" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Masther thesis Documentation" class="md-header__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
+    <a href="../../.." title="Masther thesis Documentation" class="md-header__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
       
-  <img src="../../img/uni.png" alt="logo">
+  <img src="../../../img/uni.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Latency reduction steps
+              Tools
             
           </span>
         </div>
@@ -184,9 +184,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Masther thesis Documentation" class="md-nav__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
+    <a href="../../.." title="Masther thesis Documentation" class="md-nav__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
       
-  <img src="../../img/uni.png" alt="logo">
+  <img src="../../../img/uni.png" alt="logo">
 
     </a>
     Masther thesis Documentation
@@ -201,7 +201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -221,7 +221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/" class="md-nav__link">
+      <a href="../../../test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -276,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../general/checklist/" class="md-nav__link">
+      <a href="../../../general/checklist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -297,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../general/components/" class="md-nav__link">
+      <a href="../../../general/components/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -318,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../general/documentations/" class="md-nav__link">
+      <a href="../../../general/documentations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -339,7 +339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../general/protocol/" class="md-nav__link">
+      <a href="../../../general/protocol/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -360,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../general/timeline/" class="md-nav__link">
+      <a href="../../../general/timeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -425,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../irq/" class="md-nav__link">
+      <a href="../../irq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,28 +443,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Latency reduction steps
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../latency_reduction_steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -473,69 +455,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#steps-for-latency-reduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for latency reduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      defconfig
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cpu-isolation" class="md-nav__link">
-    <span class="md-ellipsis">
-      CPU isolation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#smp_affinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      smp_affinity
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enable-apicv" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enable APICV
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -583,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kernel-patch/kernel-patch/" class="md-nav__link">
+      <a href="../../kernel-patch/kernel-patch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -609,17 +528,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
@@ -633,7 +554,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             Tools
@@ -647,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/bcc/" class="md-nav__link">
+      <a href="../bcc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -668,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/install_bcc/" class="md-nav__link">
+      <a href="../install_bcc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -689,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/kvmexit/" class="md-nav__link">
+      <a href="../kvmexit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -707,10 +628,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tools/tools/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -719,6 +658,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kvm_stat" class="md-nav__link">
+    <span class="md-ellipsis">
+      kvm_stat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      bcc
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -816,7 +791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/QEMU/nmbridge/" class="md-nav__link">
+      <a href="../../../sigmatek/QEMU/nmbridge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -880,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/salamander4/bash_commands/" class="md-nav__link">
+      <a href="../../../sigmatek/salamander4/bash_commands/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -901,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/salamander4/build_LRT/" class="md-nav__link">
+      <a href="../../../sigmatek/salamander4/build_LRT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -922,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/salamander4/build_with_yocto/" class="md-nav__link">
+      <a href="../../../sigmatek/salamander4/build_with_yocto/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1021,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/explaination/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/explaination/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1042,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/info/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/info/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1063,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/kernel_processes/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/kernel_processes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1084,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/kernelshark/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/kernelshark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1105,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/kvm_exits_description/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/kvm_exits_description/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1161,7 +1136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/default/kvm_exit_default_results/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/default/kvm_exit_default_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1225,7 +1200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/taskset/kvm_exit_taskset_results/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/taskset/kvm_exit_taskset_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1289,7 +1264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/test/results_guest_report/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/test/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1310,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/test/results_host_report/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/test/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1374,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/analysis/vapic/kvm_exit_vapic_results/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/analysis/vapic/kvm_exit_vapic_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1446,7 +1421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+      <a href="../../../sigmatek/trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1518,7 +1493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/clocktest/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/clocktest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1539,7 +1514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/latency/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/latency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1560,7 +1535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/switchtest/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/switchtest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1581,7 +1556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/xenomai-system-tools/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/xenomai-system-tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1637,7 +1612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1658,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1722,7 +1697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1743,7 +1718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1807,7 +1782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1828,7 +1803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1892,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1913,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
+      <a href="../../../sigmatek/xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1985,7 +1960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/yocto/after_bitbake/" class="md-nav__link">
+      <a href="../../../sigmatek/yocto/after_bitbake/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2056,7 +2031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/gitlfs/" class="md-nav__link">
+      <a href="../../../workflow/gitlfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2077,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/gittutorial/" class="md-nav__link">
+      <a href="../../../workflow/gittutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2098,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/most_popular_paths/" class="md-nav__link">
+      <a href="../../../workflow/most_popular_paths/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2119,7 +2094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/problem_solution/" class="md-nav__link">
+      <a href="../../../workflow/problem_solution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2140,7 +2115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/useful/" class="md-nav__link">
+      <a href="../../../workflow/useful/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2161,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/useful_links/" class="md-nav__link">
+      <a href="../../../workflow/useful_links/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2182,7 +2157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/useful_notneeded/" class="md-nav__link">
+      <a href="../../../workflow/useful_notneeded/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2203,7 +2178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/vscode/" class="md-nav__link">
+      <a href="../../../workflow/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2259,7 +2234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/meetings/richard/" class="md-nav__link">
+      <a href="../../../workflow/meetings/richard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2280,7 +2255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workflow/meetings/wober/" class="md-nav__link">
+      <a href="../../../workflow/meetings/wober/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2334,45 +2309,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#steps-for-latency-reduction" class="md-nav__link">
+  <a href="#kvm_stat" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps for latency reduction
+      kvm_stat
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#defconfig" class="md-nav__link">
+  <a href="#bcc" class="md-nav__link">
     <span class="md-ellipsis">
-      defconfig
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cpu-isolation" class="md-nav__link">
-    <span class="md-ellipsis">
-      CPU isolation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#smp_affinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      smp_affinity
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enable-apicv" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enable APICV
+      bcc
     </span>
   </a>
   
@@ -2393,63 +2341,14 @@
                   
 
 
-  <h1>Latency reduction steps</h1>
+  <h1>Tools</h1>
 
-<h2 id="steps-for-latency-reduction">Steps for latency reduction<a class="headerlink" href="#steps-for-latency-reduction" title="Permanent link">&para;</a></h2>
-<h2 id="defconfig">defconfig<a class="headerlink" href="#defconfig" title="Permanent link">&para;</a></h2>
-<p>CONFIG_PARAVIRT=y
-CONFIG_KVM_GUEST=y
-CONFIG_X86_IOAT_VAPIC_BROKEN_CTL=y
-CONFIG_MTRR_SANITIZER=y
-CONFIG_ARCH_CPUIDLE_HALTPOLL=y
-CONFIG_HUGETLBFS=y</p>
-<h2 id="cpu-isolation">CPU isolation<a class="headerlink" href="#cpu-isolation" title="Permanent link">&para;</a></h2>
-<p><strong>CPU isolation</strong> in Ubuntu involves restricting certain CPUs from the scheduler to enhance performance or achieve real-time behavior. Let's explore a few methods for achieving this:</p>
-<ol>
-<li>
-<p><strong><code>isolcpus</code> Boot Parameter</strong>:</p>
-<ul>
-<li>The <code>isolcpus</code> boot parameter allows you to isolate one or more CPUs from the scheduler. Once a CPU is isolated, the scheduler won't schedule any user-space threads on it.</li>
-<li>However, you'll need to manually assign processes to the isolated CPU using CPU affinity system calls or the <code>numactl</code> command².</li>
-</ul>
-</li>
-<li>
-<p><strong><code>tuned-profiles-realtime</code></strong>:</p>
-<ul>
-<li>The <code>tuned-profiles-realtime</code> package provides a way to isolate CPUs for latency-sensitive workloads.</li>
-<li>Isolating CPUs generally involves:<ul>
-<li>Removing all user-space threads.</li>
-<li>Removing unbound kernel threads (bound kernel threads are tied to specific CPUs and cannot be moved).</li>
-<li>Modifying the <code>/proc/irq/N/smp_affinity</code> property of each Interrupt Request (IRQ) number N in the system³.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>tuned-profiles-cpu-partitioning</code></strong>:</p>
-<ul>
-<li>This profile partitions system CPUs into isolated and housekeeping CPUs.</li>
-<li>Isolated CPUs experience reduced jitter and fewer interruptions by the kernel, making them suitable for real-time tasks⁴.</li>
-</ul>
-</li>
-<li>
-<p><strong>Third-Party Tools</strong>:</p>
-<ul>
-<li>Consider using tools like <strong><code>cpuset</code></strong> or <strong><code>tuna</code></strong>:<ul>
-<li><strong><code>cpuset</code></strong>: Allows you to create CPU sets (cpusets) and move tasks (threads or processes) into specific cpusets. You can shield CPUs from the scheduler by moving tasks into an isolated cpuset.</li>
-<li><strong><code>tuna</code></strong>: Dynamically isolates a CPU core and moves processes running on that core to neighboring CPUs. You can use <code>tuna</code> to isolate a CPU core in real-time¹.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="smp_affinity">smp_affinity<a class="headerlink" href="#smp_affinity" title="Permanent link">&para;</a></h2>
-<p>cat /proc/irq/0/smp_affinity
-sudo chmod 777 /proc/irq/0/smp_affinity
-sudo echo dffff &gt; /proc/irq/0/smp_affinity</p>
-<h2 id="enable-apicv">Enable APICV<a class="headerlink" href="#enable-apicv" title="Permanent link">&para;</a></h2>
-<p>/sys/module/kvm_intel/parameters/enable_apicv</p>
-<p>-cpu host,hv-passthrough \</p>
+<h2 id="kvm_stat">kvm_stat<a class="headerlink" href="#kvm_stat" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sudo kvm_stat -s 1 -c -L test.csv
+</code></pre></div>
+<h2 id="bcc">bcc<a class="headerlink" href="#bcc" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sudo kvmexit 1 &gt; kvmexit.md
+</code></pre></div>
 
 
 
@@ -2496,10 +2395,10 @@ sudo echo dffff &gt; /proc/irq/0/smp_affinity</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.bd41221c.min.js"></script>
       
     
   </body>
