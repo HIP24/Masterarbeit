@@ -114,11 +114,11 @@ sudo echo dffff > /proc/irq/*/smp_affinity
 ### QEMU_vapic
 -cpu host,hv-passthrough
 
-[kvm_exit_vapic.png](../sigmatek/trace-cmd/analysis/vapic/kvm_exit_vapic.png)
+[kvm_exit_vapic.png](../../sigmatek/trace-cmd/analysis/vapic/kvm_exit_vapic.png)
 
 ### trace-cmd report host and guest 
-[results_guest_report.txt](../sigmatek/trace-cmd/analysis/test/results_guest_report.md)  
-[results_host_report.txt](../sigmatek/trace-cmd/analysis/test/results_host_report.md)
+[results_guest_report.txt](../../sigmatek/trace-cmd/analysis/test/results_guest_report.md)  
+[results_host_report.txt](../../sigmatek/trace-cmd/analysis/test/results_host_report.md)
 
 
 
