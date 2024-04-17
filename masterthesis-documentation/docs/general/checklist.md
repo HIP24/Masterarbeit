@@ -16,23 +16,6 @@
 
 
 ## Missing
-- [ ] Salamander4 über QEMU unter native Windows booten
-- [ ] Salamander4 über QEMU unter WSL in native Windows booten
-- [ ] Compare Ubuntu, Windows and WSL
-- [ ] Preempt_RT vs Xenomai
-
-## Richard Meeting 11.03.2024
-Boot QEMU with realtime priority `chrt` but little priority 1-99  
-
-Test latency  
-
-- [ ] Out-of-of-the-box
-    - [ ] Inspect Kernelshark
-- [ ] CPU isolated on user space
-    - [ ] Inspect Kernelshark
-- [ ] Realtime priority experiment
-    - [ ] Inspect Kernelshark
-- [ ] CPU Shall not process interrupts -> select which cpu?
-    - [ ] Inspect Kernelshark
-- [ ] Turn off Hyprerthreading so that CPU cores are not divided
-    - [ ] Inspect Kernelshark
+- [ ] Inspect kvm_exit reasons
+- [ ] Analyze Host and Guest Processes
+- [ ] 
