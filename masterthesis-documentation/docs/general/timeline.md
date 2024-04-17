@@ -48,3 +48,6 @@
 | 09.04.2024 | trace-cmd report analysis |
 | 10.04.2024 | getconf _NPROCESSORS_CONF |
 | 11.04.2024 | Richard Meeting |
+| 15.04.2024 | report.sh |
+| 16.04.2024 | Updated analyze_trace.py, include in thesis |
+| 17.04.2024 |  |

@@ -19,9 +19,9 @@ Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
 
 <div id="page-wrapper">
   <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Fortschritt</a>
- der Masterarbeit:<b> Fortgeschrittene Anfangsphase</b> </div> 
+ der Masterarbeit:<b> </b> </div> 
   <div class="meter animate">
-    <span style="width: 20%"><span></span></span>
+    <span style="width: 35%"><span></span></span>
   </div> 
   <!--<div class="meter orange nostripes">
     <span style="width: 33.3%"></span>
@@ -144,7 +144,7 @@ pre {
 });
 </script>
 
-
+<!--
 ## Overview
 | File       | Description |
 |------------|-------|
@@ -221,7 +221,7 @@ pre {
 | [kernelshark.md](sigmatek/trace-cmd/analysis/kernelshark.md)   | Kernelshark commands for host and guest |
 
 <hr>
-
+-->
 <!--
 ### README 
 | File       | Description |
@@ -232,7 +232,7 @@ pre {
 | [README.md](sigmatek/trace-cmd/LTS/trace-cmd-libtracecmd-1.5.1/README.md)   | README of libtracecmd |
 | [README.md](sigmatek/trace-cmd/LTS/trace-cmd-v3.2/README.md)   | README of trace-cmd |
 -->
-
+<!--
 
 ## Scripts
 ### Yocto
@@ -310,3 +310,4 @@ pre {
 | <a href="https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/" target="_blank">libtraceevent</a>  | libtraceevent git|
 | <a href="https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/" target="_blank">libtracefs</a>  | libtracefs git|
 | <a href="https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/" target="_blank">trace-cmd</a>  | trace-cmd git |
+-->

@@ -9,8 +9,7 @@
 ## Yocto-Umgebung  
 [Build with Yocto](../sigmatek/salamander4/build_with_yocto.md)
 
-## Salamander OS  
-[Skript Michi](../resources/scripts/build-salamander4-ordinary.sh)  
+## Salamander OS   
 [Build LRT](../sigmatek/salamander4/build_LRT.md)
 
 ## Xenomai  
@@ -29,14 +28,3 @@
 ## PCV-521  
 PCI-Einsteckmodul, das als Schnittstelle zwischen einem PC und dem VARAN-Bus dient  
 [PCV 522.pdf](../resources/pdfs/Sigmatek/PCV%20522.pdf)  
-
-
-Evaluierung Virtualisierungsplattform (QEMU, Hyper-V, Virtual Box, etc.)
-- QEMU
-
-- HYPER-V
-
-- Virtual Box 
-
-- WSL
-
