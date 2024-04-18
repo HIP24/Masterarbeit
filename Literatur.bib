@@ -17,6 +17,25 @@
   file = {/home/sigma_ibo/Zotero/storage/Z5PB3E2L/Abedi et al. - 2019 - RTNF Predictable Latency for Network Function Vir.pdf}
 }
 
+@inproceedings{broskyShieldedProcessorsGuaranteeing2003,
+  title = {Shielded Processors: Guaranteeing Sub-Millisecond Response in Standard {{Linux}}},
+  shorttitle = {Shielded Processors},
+  booktitle = {Proceedings {{International Parallel}} and {{Distributed Processing Symposium}}},
+  author = {Brosky, S. and Rotolo, S.},
+  date = {2003},
+  pages = {9},
+  publisher = {IEEE Comput. Soc},
+  location = {Nice, France},
+  doi = {10.1109/IPDPS.2003.1213237},
+  url = {http://ieeexplore.ieee.org/document/1213237/},
+  urldate = {2024-04-18},
+  abstract = {The low latency and preemption patches provide significant progress making standard Linux into a more responsive system for real-time applications. These patches allow guarantees on worst case interrupt response time at slightly above a millisecond. However, these guarantees can only be met when there is no networking or graphics activity in the system. This paper will describe the implementation of shielded processors in RedHawk Linux and their benefits. It will also present the results of realtime performance benchmarks. Interrupt response time guarantees are significantly below one millisecond and can be guaranteed even in the presence of networking and graphics activity.},
+  eventtitle = {International {{Parallel}} and {{Distributed Processing Symposium}} ({{IPDPS}} 2003)},
+  isbn = {978-0-7695-1926-5},
+  langid = {english},
+  file = {/home/sigma_ibo/Zotero/storage/XWIKRIV8/Brosky and Rotolo - 2003 - Shielded processors guaranteeing sub-millisecond .pdf}
+}
+
 @inproceedings{casiniLatencyAnalysisVirtualization2021,
   title = {Latency {{Analysis}} of {{I}}/{{O Virtualization Techniques}} in {{Hypervisor-Based Real-Time Systems}}},
   booktitle = {2021 {{IEEE}} 27th {{Real-Time}} and {{Embedded Technology}} and {{Applications Symposium}} ({{RTAS}})},
@@ -93,6 +112,12 @@
   file = {/home/sigma_ibo/Zotero/storage/582LDH83/Gu and Zhao - 2012 - A State-of-the-Art Survey on Real-Time Issues in E.pdf}
 }
 
+@article{HardRealTime,
+  title = {Hard {{Real}} Time {{Linux}}* {{Using Xenomai}}* on {{Intel}}® {{Multi-Core Processors}}},
+  langid = {english},
+  file = {/home/sigma_ibo/Zotero/storage/354IZGZE/Hard Real time Linux Using Xenomai on Intel® Mul.pdf}
+}
+
 @inproceedings{javierperezHowRealTime2022,
   title = {How {{Real}} ({{Time}}) {{Are Virtual PLCs}}?},
   booktitle = {2022 {{IEEE}} 27th {{International Conference}} on {{Emerging Technologies}} and {{Factory Automation}} ({{ETFA}})},
@@ -134,6 +159,14 @@
   abstract = {The presented work is a result of extended research and analysis on timing methods precision, their efficiency in different virtual environments and the impact of timing precision on the performance of high-speed networks applications. We investigated how timer hardware is shared among heavily CPU- and I/O-bound tasks on a virtualized OS as well as on bare OS. By replacing the invoked timing methods within a well-known application for estimation of available path bandwidth, we provide the analysis of their impact on estimation accuracy. We show that timer overhead and precision are crucial for high-performance network applications, and low-precision timing methods usage, e.g., the delays and overheads issued by virtualization result in the degradation of the virtual environment. Furthermore, in this paper, we provide confirmation that, by using the methods we intentionally developed for both precise timing operations and AvB estimation, it is possible to overcome the inefficiency of standard time-related operations and overhead that comes with the virtualization. The impacts of negative virtualization factors were investigated in five different environments to define the most optimal virtual environment for high-speed network applications.},
   langid = {english},
   file = {/home/sigma_ibo/Zotero/storage/JAUGT6Z8/Kirova et al. - 2019 - Impact of Modern Virtualization Methods on Timing .pdf}
+}
+
+@article{kiszkaLinuxRealTimeHypervisor,
+  title = {Towards {{Linux}} as a {{Real-Time Hypervisor}}},
+  author = {Kiszka, Jan},
+  abstract = {Combining virtualization and real-time is important for an increasing amount of use cases, from embedded system to enterprise computing. In this paper, we will analyze the real-time capabilities of Linux as a hypervisor when using KVM and QEMU. We will furthermore introduce and evaluate a paravirtual scheduling interface that helps resolving priority inversion problems in embedded virtualization scenarios.},
+  langid = {english},
+  file = {/home/sigma_ibo/Zotero/storage/5IRWDK6Y/Kiszka - Towards Linux as a Real-Time Hypervisor.pdf}
 }
 
 @article{linPerformanceEvaluationXenomai,
@@ -193,6 +226,34 @@
   file = {/home/sigma_ibo/Zotero/storage/4RMXKZ3L/Masrur et al. - 2010 - VM-Based Real-Time Services for Automotive Control.pdf}
 }
 
+@article{mckenneyRealTimeVs,
+  title = {‘{{Real Time}}’ vs. ‘{{Real Fast}}’: {{How}} to {{Choose}}?},
+  author = {McKenney, Paul E},
+  langid = {english},
+  file = {/home/sigma_ibo/Zotero/storage/QCBTPVKJ/McKenney - ‘Real Time’ vs. ‘Real Fast’ How to Choose.pdf}
+}
+
+@incollection{pielAsymmetricSchedulingLoad2006,
+  title = {Asymmetric {{Scheduling}} and {{Load Balancing}} for {{Real-Time}} on {{Linux SMP}}},
+  booktitle = {Parallel {{Processing}} and {{Applied Mathematics}}},
+  author = {Piel, Éric and Marquet, Philippe and Soula, Julien and Dekeyser, Jean-Luc},
+  editor = {Wyrzykowski, Roman and Dongarra, Jack and Meyer, Norbert and Waśniewski, Jerzy},
+  editorb = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Dough and Vardi, Moshe Y. and Weikum, Gerhard},
+  editorbtype = {redactor},
+  date = {2006},
+  volume = {3911},
+  pages = {896--903},
+  publisher = {Springer Berlin Heidelberg},
+  location = {Berlin, Heidelberg},
+  doi = {10.1007/11752578_108},
+  url = {http://link.springer.com/10.1007/11752578_108},
+  urldate = {2024-04-18},
+  abstract = {The ARTiS system, a real-time extension of the GNU/Linux scheduler dedicated to SMP (Symmetric Multi-Processors) systems is proposed. ARTiS exploits the SMP architecture to guarantee the preemption of a processor when the system has to schedule a real-time task. The basic idea of ARTiS is to assign a selected set of processors to realtime operations. A migration mechanism of non-preemptible tasks insures a latency level on these real-time processors. Furthermore, specific load-balancing strategies allows ARTiS to benefit from the full power of the SMP systems: the real-time reservation, while guaranteed, is not exclusive and does not imply a waste of resources.},
+  isbn = {978-3-540-34141-3 978-3-540-34142-0},
+  langid = {english},
+  file = {/home/sigma_ibo/Zotero/storage/EMTCREC3/Piel et al. - 2006 - Asymmetric Scheduling and Load Balancing for Real-.pdf}
+}
+
 @online{pixelartSIGMATEKKompletteAutomatisierungssysteme,
   title = {SIGMATEK - Komplette Automatisierungssysteme},
   author = {{pixelart}},
@@ -243,7 +304,7 @@
   urldate = {2024-03-25},
   abstract = {The increasing functional and nonfunctional requirements of real-time applications, the advent of mixed criticality computing, and the necessity of reducing costs are leading to an increase in the interest for employing COTS hardware in real-time domains. In this scenario, the Linux kernel is emerging as a valuable solution on the software side, thanks to the rich support for hardware devices and peripherals, along with a well-established programming environment. However, Linux has been developed as a general-purpose operating system, followed by several approaches to introduce actual real-time capabilities in the kernel. Among these, the PREEMPT\_RT patch, developed by the kernel maintainers, has the goal to increase the predictability and reduce the latencies of the kernel directly modifying the existent kernel code. This article aims at providing a survey of the state-of-the-art approaches for building real-time Linux-based systems, with a focus on PREEMPT\_RT, its evolution, and the challenges that should be addressed in order to move PREEMPT\_RT one step ahead. Finally, we present some applications and use cases that have already benefited from the introduction of this patch.},
   langid = {english},
-  file = {/home/sigma_ibo/Zotero/storage/JLZ6ULAA/Reghenzani et al. - 2020 - The Real-Time Linux Kernel A Survey on PREEMPT_RT.pdf;/home/sigma_ibo/Zotero/storage/MWS3H9XP/Reghenzani et al. - 2020 - The Real-Time Linux Kernel A Survey on PREEMPT_RT.pdf}
+  file = {/home/sigma_ibo/Zotero/storage/JLZ6ULAA/Reghenzani et al. - 2020 - The Real-Time Linux Kernel A Survey on PREEMPT_RT.pdf}
 }
 
 @online{Tracecmd,
@@ -265,6 +326,14 @@
   url = {https://xenomai.org/},
   urldate = {2024-03-21},
   file = {/home/sigma_ibo/Zotero/storage/HXDK75NC/xenomai.org.html}
+}
+
+@article{yoonRealTimePerformanceAnalysis,
+  title = {Real-{{Time Performance Analysis}} in {{Linux-Based Robotic Systems}}},
+  author = {Yoon, Hobin and Song, Jungmoo and Lee, Jamee},
+  abstract = {Mobile or humanoid robots collect environmental data and reflect back as robotic behaviors via various sensors and actuators. It is crucial this occurs within a specified time. Although real-time flavored Linux has been used to control robot arms and legs for quite a while, it has not been reported much whether the current real-time features in Linux could still meet this requirement for a much more complicated system - a humanoid with about 60 servo motors and sensors with multiple algorithms such as recognition, decision, and navigation running simultaneously. In this paper, in order to meet such requirement, adopting EtherCAT technology is introduced and its Linux implementation is illustrated. In addition, results of real-time experiments and timing analysis on a multi-core processor are presented showing Linux is a viable solution to be successfully deployed in various robotic systems.},
+  langid = {english},
+  file = {/home/sigma_ibo/Zotero/storage/I7PY7MRB/Yoon et al. - Real-Time Performance Analysis in Linux-Based Robo.pdf}
 }
 
 @article{zotero-5,
