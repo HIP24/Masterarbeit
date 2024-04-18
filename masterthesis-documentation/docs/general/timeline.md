@@ -50,4 +50,5 @@
 | 11.04.2024 | Richard Meeting |
 | 15.04.2024 | report.sh |
 | 16.04.2024 | Updated analyze_trace.py, include in thesis |
+| 17.04.2024 | Describe host and guest tasks |
 | 17.04.2024 |  |
