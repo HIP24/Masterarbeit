@@ -50,6 +50,28 @@ This is the [output](fully_rt.png)
 [Source](https://unix.stackexchange.com/questions/616621/real-time-patch-on-linux-5-9-1-does-not-show-fully-preemptible-option-for-arm64)
 
 <hr>
+OR 
+<hr>
+
+In `arch/Kconfig`, search for the entry: `ARCH_SUPPORTS_RT`. 
+
+Change the entry from
+
+```
+config ARCH_SUPPORTS_RT
+    bool
+```
+to
+```
+config ARCH_SUPPORTS_RT
+    def_bool y
+```
+When you now also have the `EXPERT` (General Setup -> Embedded System) flag enabled you should see the option `Fully Preemptible Kernel (Real-Time)` under General Setup -> Preemption Model.
+
+[Source](https://unix.stackexchange.com/questions/582075/trouble-selecting-fully-preemptible-kernel-real-time-when-configuring-compil
+)
+
+
 
 ### Problem 2
 No rule to make target 'debian/canonical-certs.pem'
@@ -61,7 +83,6 @@ scripts/config --disable SYSTEM_REVOCATION_KEYS
 ```
 Then run make again and it should work!  
 [Source](https://stackoverflow.com/questions/67670169/compiling-kernel-gives-error-no-rule-to-make-target-debian-certs-debian-uefi-ce)
-
 
 
 ## Useful stuff

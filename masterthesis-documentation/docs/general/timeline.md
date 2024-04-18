@@ -51,4 +51,5 @@
 | 15.04.2024 | report.sh |
 | 16.04.2024 | Updated analyze_trace.py, include in thesis |
 | 17.04.2024 | Describe host and guest tasks |
-| 17.04.2024 |  |
+| 18.04.2024 | Read 4 papers |
+| 19.04.2024 |  |
