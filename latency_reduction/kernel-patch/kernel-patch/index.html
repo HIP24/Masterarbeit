@@ -754,6 +754,70 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rt tester
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Rt tester
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/rt-tester/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rt-tester
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2509,7 +2573,20 @@ Linux pamhal 6.8.0-rt7 #1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86
 <p>This is the <a href="../fully_rt.png">output</a><br />
 <a href="https://unix.stackexchange.com/questions/616621/real-time-patch-on-linux-5-9-1-does-not-show-fully-preemptible-option-for-arm64">Source</a></p>
 <hr>
+<p>OR </p>
+<hr>
 
+<p>In <code>arch/Kconfig</code>, search for the entry: <code>ARCH_SUPPORTS_RT</code>. </p>
+<p>Change the entry from</p>
+<p><div class="highlight"><pre><span></span><code>config ARCH_SUPPORTS_RT
+    bool
+</code></pre></div>
+to
+<div class="highlight"><pre><span></span><code>config ARCH_SUPPORTS_RT
+    def_bool y
+</code></pre></div>
+When you now also have the <code>EXPERT</code> (General Setup -&gt; Embedded System) flag enabled you should see the option <code>Fully Preemptible Kernel (Real-Time)</code> under General Setup -&gt; Preemption Model.</p>
+<p><a href="https://unix.stackexchange.com/questions/582075/trouble-selecting-fully-preemptible-kernel-real-time-when-configuring-compil">Source</a></p>
 <h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
 <p>No rule to make target 'debian/canonical-certs.pem'</p>
 <h3 id="solution-2">Solution 2<a class="headerlink" href="#solution-2" title="Permanent link">&para;</a></h3>
