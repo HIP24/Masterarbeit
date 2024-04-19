@@ -237,7 +237,7 @@ RTS|      1.154|      3.078|     87.379|       0|     0|    00:01:00/00:01:00
 > lat worst reduced from 374.075 to 87.379
 
 ### Enable Preempt_RT Kernel
-Do everything in [kernel-patch.md](../latency_reduction/kernel-patch/kernel-patch.md) to patch the kernel and enable Fully Preemptible Kernel (RT).
+Do everything in [kernel-patch.md](../sigmatek/latency_reduction/kernel-patch/kernel-patch.md) to patch the kernel and enable Fully Preemptible Kernel (RT).
 
 !!! info
     Before the isolation of CPU 4, both kernel threads and user processes were running on this CPU. The user processes included various applications such as msedge, code, bash and qemu-system-x86.
