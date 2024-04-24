@@ -122,7 +122,7 @@ AttributeError: /lib/x86_64-linux-gnu/libbcc.so.0: undefined symbol: bpf_module_
 ```
 ### Solution 2
 ```
-sudo rm /usr/lib/python3/dist-packages/bcc
+sudo rm -fr /usr/lib/python3/dist-packages/bcc
 cd /usr/share/bcc/tools && sudo ./kvmexit
 ```
 [Source](https://github.com/iovisor/bcc/issues/4583)

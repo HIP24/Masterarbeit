@@ -6,7 +6,7 @@
 ## Mount Windows partition Desktop
 - `sudo nano /etc/fstab`  
 - At the end of the file, add: UUID=0E58A36658A34B73 /home/sigma_ibo/Desktop ntfs defaults 0 0, it looks like 
-<a href="resources/images/useful/mount_windows.png" target="_blank">this</a>  
+<a href="../resources/images/useful/mount_windows.png" target="_blank">this</a>  
 - reboot
 
 ## How to Extract (Unzip) tar.xz File
@@ -28,7 +28,7 @@
 <a href="https://www.youtube.com/watch?v=0RiUrsljD_E" target="_blank">Install Windows 11 in KVM on Ubuntu 22.04</a>  
 Execute [virtio-win-guest-tools](../resources/exe/virtio-win-guest-tools.exe) in VM  
 <a href="https://techglimpse.com/windows-10-virtual-machine-shows-100-percentage-cpu-utilization-qemu-kvm/" target="_blank">Windows 10 VM shows 100% CPU</a>  
-QEMU settings: <a href="resources/images/qemu/qemu_settings.png" target="_blank">QEMU</a>, <a href="resources/xml/win11onQEMU.xml" target="_blank">XML win11</a>  
+QEMU settings: <a href="../resources/images/qemu/qemu_settings.png" target="_blank">QEMU</a>, <a href="../resources/xml/win11onQEMU.xml" target="_blank">XML win11</a>  
 <a href="https://www.youtube.com/watch?v=ZqBJzrQy7Do" target="_blank">Windows 10 VM Settings</a>
 
 ## Remove keyring from Edge
@@ -47,14 +47,15 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 ## Remove a commit but keep the changes in your working directory
 git reset --soft HEAD~1
 
-## start_qemu.sh from everytwhere
+## start_qemu.sh from everywhere
 Script [start_qemu.sh](../sigmatek/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
 ```
 sudo nano ~/.bashrc
 export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
 ```
 ## Add konsole to replace console
-<a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a>
+<a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a>  
+<a href="https://askubuntu.com/questions/1351228/change-default-terminal-with-right-click-option-open-in-terminal-in-file-manag" target="_blank">Change default terminal with right-click option "Open in Terminal" in file manager</a>
 
 
 ## ssh ohne Passwort
