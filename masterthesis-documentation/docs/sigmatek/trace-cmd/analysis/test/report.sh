@@ -5,6 +5,7 @@ trace-cmd report -i trace-Salamander4.dat > guest_report.txt && echo "guest_repo
 # Wait for all background jobs to finish
 wait
 # Now run the Python scripts
+python kvm_exit_count.py && echo "kvm_exit_count plot completed"&
 python analyze_trace.py host_report.txt && echo "analyze_trace for host_report completed"&
 python analyze_trace.py guest_report.txt && echo "analyze_trace for guest_report completed"&
 wait

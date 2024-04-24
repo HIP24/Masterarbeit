@@ -97,7 +97,7 @@ def count_tasks(input_filename):
     # Save the figure
     plt.savefig(f'results_{base_filename}.png', bbox_inches='tight')
     # Save to /img folder
-    plt.savefig(f'../../../../../../img/results_{base_filename}.png', bbox_inches='tight')
+    #plt.savefig(f'../../../../../../img/results_{base_filename}.png', bbox_inches='tight')
 
 # Get the input file name from the command-line arguments
 input_filename = sys.argv[1]
