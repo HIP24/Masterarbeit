@@ -52,4 +52,6 @@
 | 16.04.2024 | Updated analyze_trace.py, include in thesis |
 | 17.04.2024 | Describe host and guest tasks |
 | 18.04.2024 | Read 4 papers |
-| 19.04.2024 |  |
+| 19.04.2024 | Read x papers |
+| 22.04.2024 | Boot ubuntu anew |
+| 23.04.2024 | Rebuild workspace |
