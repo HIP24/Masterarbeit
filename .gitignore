@@ -27,3 +27,5 @@ masterthesis-documentation/docs/tools/bcc/
 masterthesis-documentation/docs/Masterarbeit_Robotik_Pamuk.pdf
 Masterarbeit_Robotik_Pamuk.pdf
 .vscode/settings.json
+papers (delete)/
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*
