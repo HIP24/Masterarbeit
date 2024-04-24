@@ -11,12 +11,12 @@ Delete SingletonLock in `/home/sigma_ibo/.config/microsoft-edge`
 
 
 ## Yocto 
-### Problem
+### Problem 1
 File://0001.patch error
 
 [Unable to find file file://0001-Fix.patch](../resources/images/yocto/0001patch.png)
 
-### Solution
+### Solution 1
 ```
 cd meta-sigmatek/
 git branch
@@ -49,7 +49,17 @@ cd salamander/salamander-core2
 bitbake salamander-image -k
 ```
 
+### Problem 2
+```
+ERROR: salamander-image-1.0-r0 do_rootfs: Unable to install packages. Command '/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatek-linux/salamander-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg --volatile-cache -f /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatek-linux/salamander-image/1.0-r0/opkg.conf -t /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatek-linux/salamander-image/1.0-r0/temp/ipktemp/ -o /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatek-linux/salamander-image/1.0-r0/rootfs  --force_postinstall --prefer-arch-to-version --no-install-recommends  --force-maintainer --force-overwrite install cups-locale-en lib32-cups-locale-en' returned 255:
+ * opkg_prepare_url_for_install: Couldn't find anything to satisfy 'lib32-cups-locale-en'.
 
+ERROR: Logfile of failure stored in: /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatek-linux/salamander-image/1.0-r0/temp/log.do_rootfs.76045
+ERROR: Task (/home/sigma_ibo/Develop/Yocto_local/salamander/meta-sigmatek/recipes-sigmatek/images/salamander-image.bb:do_rootfs) failed with exit code '1'
+```
+
+### Solution 2
+bitbake -c do_cleanall lib32-cups
 
 ## Trace-cmd 
 
@@ -126,3 +136,17 @@ sudo rm -fr /usr/lib/python3/dist-packages/bcc
 cd /usr/share/bcc/tools && sudo ./kvmexit
 ```
 [Source](https://github.com/iovisor/bcc/issues/4583)
+
+## QEMU
+
+### Problem
+```
+$ sudo ./qemu_def.sh 
+failed to parse default acl file `/etc/qemu/bridge.conf'
+qemu-system-x86_64: -netdev bridge,id=e1000,br=nm-bridge: bridge helper failed
+```
+### Solution
+```
+sudo mkdir /etc/qemu && cd /etc/qemu 
+echo "allow nm-bridge" | sudo tee bridge.conf > /dev/null
+```
