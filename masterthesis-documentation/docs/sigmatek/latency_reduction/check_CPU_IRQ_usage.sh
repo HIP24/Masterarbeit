@@ -1,10 +1,17 @@
 #!/bin/bash
+# Check if an argument was provided
+if [ -z "$1" ]; then
+    echo "Please provide an IRQ number as a command-line argument."
+    exit 1
+fi
+
 # Get the IRQ number from the command-line argument
 IRQ=$1
 # Get the number of CPUs
 num_cpus=$(nproc)
 # Initialize an empty array to store the CPU numbers
 CPUs=()
+
 # Check if the smp_affinity file exists for this IRQ
 if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
     # Read the current smp_affinity
@@ -30,3 +37,4 @@ if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
 else
     echo "IRQ $IRQ does not exist or does not have an smp_affinity file."
 fi
+
