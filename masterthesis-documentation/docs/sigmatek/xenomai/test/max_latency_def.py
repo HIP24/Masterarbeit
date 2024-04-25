@@ -39,13 +39,13 @@ plt.savefig("max_latency_def.png")
 print("The plot was successfully saved to max_latency_def.png")
 
 # Write the statistics to a file
-with open('max_latency_def.txt', 'w') as f:
+with open('max_latency_def_statistics.txt', 'w') as f:
     f.write(f"Max: {max_y}\n")
     f.write(f"Min: {min_y}\n")
-    f.write(f"Standard Deviation: {std_y}\n")
+    f.write(f"Standard Deviation: {round(std_y, 2)}\n")
 
 # Print a success message
-print("The statistics were successfully written to max_latency_def.txt")
+print("The statistics were successfully written to max_latency_def_statistics.txt")
 
 
 

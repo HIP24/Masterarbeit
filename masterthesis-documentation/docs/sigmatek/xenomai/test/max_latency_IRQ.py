@@ -38,13 +38,13 @@ plt.savefig("max_latency_IRQ.png")
 print("The plot was successfully saved to max_latency_IRQ.png")
 
 # Write the statistics to a file
-with open('max_latency_IRQ.txt', 'w') as f:
+with open('max_latency_IRQ_statistics.txt', 'w') as f:
     f.write(f"Max: {max_y}\n")
     f.write(f"Min: {min_y}\n")
-    f.write(f"Standard Deviation: {std_y}\n")
+    f.write(f"Standard Deviation: {round(std_y, 2)}\n")
 
 # Print a success message
-print("The statistics were successfully written to max_latency_IRQ.txt")
+print("The statistics were successfully written to max_latency_IRQ_statistics.txt")
 
 
 
