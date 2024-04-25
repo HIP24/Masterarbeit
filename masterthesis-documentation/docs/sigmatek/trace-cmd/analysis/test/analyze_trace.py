@@ -68,7 +68,7 @@ def count_tasks(input_filename):
         
     # Plotting
     tasks, counts = zip(*sorted_tasks)  # Unpack the sorted tasks and counts
-    plt.figure(figsize=(10, 7))  # Adjust the figure size to better fit the horizontal plot
+    plt.figure(figsize=(15, 7))  # Adjust the figure size to better fit the horizontal plot
     bars = plt.barh(tasks, counts, color='blue')  # Use barh instead of bar for a horizontal plot
     
     # Labeling the bars with their counts
