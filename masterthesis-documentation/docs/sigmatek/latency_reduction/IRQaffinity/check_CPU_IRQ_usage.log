@@ -30,8 +30,8 @@ IRQ 127: [10,11] -> total of 2 CPUs
 IRQ 129: [4,5] -> total of 2 CPUs
 IRQ 130: [16,17,18] -> total of 3 CPUs
 IRQ 131: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18] -> total of 19 CPUs
-IRQ 132: [10,11] -> total of 2 CPUs
-IRQ 133: [8] -> total of 1 CPUs
+IRQ 132: [8,9] -> total of 2 CPUs
+IRQ 133: [12] -> total of 1 CPUs
 IRQ 134: [16,17,18] -> total of 3 CPUs
 IRQ 135: [4,5] -> total of 2 CPUs
 IRQ 136: [2,3] -> total of 2 CPUs
