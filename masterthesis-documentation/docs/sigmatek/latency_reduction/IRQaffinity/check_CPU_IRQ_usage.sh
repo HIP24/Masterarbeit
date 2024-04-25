@@ -8,7 +8,7 @@ fi
 # Get the IRQ number from the command-line argument
 IRQ=$1
 # Get the number of CPUs
-num_cpus=$(nproc)
+num_cpus=$(getconf _NPROCESSORS_CONF)
 # Initialize an empty array to store the CPU numbers
 CPUs=()
 
@@ -24,8 +24,6 @@ if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
             CPUs+=("$cpu")
         fi
     done
-    # Add the isolated CPU to the list
-    CPUs+=("19")
     # Sort the array
     IFS=$'\n' sorted=($(sort -n <<<"${CPUs[*]}"))
     # Print the IRQ number
@@ -37,4 +35,3 @@ if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
 else
     echo "IRQ $IRQ does not exist or does not have an smp_affinity file."
 fi
-
