@@ -22,12 +22,19 @@ Masterarbeit_Robotik_Pamuk.log
 *.glo
 *.gls
 *.ist
+.vscode/settings.json
 masterthesis-documentation/site/
-masterthesis-documentation/docs/tools/bcc/
 masterthesis-documentation/docs/Masterarbeit_Robotik_Pamuk.pdf
 Masterarbeit_Robotik_Pamuk.pdf
-.vscode/settings.json
 papers (delete)/
 
-masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*
-masterthesis-documentation/docs/sigmatek/xenomai/test/*
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.png
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.md
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.txt
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.dat
+
+masterthesis-documentation/docs/sigmatek/xenomai/test/*.png
+masterthesis-documentation/docs/sigmatek/xenomai/test/*.txt
+
+masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/*.log
+masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/table_CPU_IRQ.md
