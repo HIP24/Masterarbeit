@@ -55,3 +55,5 @@
 | 19.04.2024 | Read x papers |
 | 22.04.2024 | Boot ubuntu anew |
 | 23.04.2024 | Rebuild workspace |
+| 24.04.2024 | Rebuild workspace, problem_solution |
+| 25.04.2024 | Rebuild workspace, table IRQ CPU |
