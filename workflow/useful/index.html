@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../img/uni.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -522,11 +522,67 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/latency_reduction/irq/" class="md-nav__link">
+      <a href="../../sigmatek/latency_reduction/latency_reduction_steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Irq
+    Latency reduction steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IRQaffinity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            IRQaffinity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/latency_reduction/IRQaffinity/IRQ_affinity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IRQ affinity
   </span>
   
 
@@ -543,15 +599,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/latency_reduction/latency_reduction_steps/" class="md-nav__link">
+      <a href="../../sigmatek/latency_reduction/IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Latency reduction steps
+    table CPU IRQ
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2095,9 +2159,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start_qemush-from-everytwhere" class="md-nav__link">
+  <a href="#start_qemush-from-everywhere" class="md-nav__link">
     <span class="md-ellipsis">
-      start_qemu.sh from everytwhere
+      start_qemu.sh from everywhere
     </span>
   </a>
   
@@ -2427,9 +2491,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start_qemush-from-everytwhere" class="md-nav__link">
+  <a href="#start_qemush-from-everywhere" class="md-nav__link">
     <span class="md-ellipsis">
-      start_qemu.sh from everytwhere
+      start_qemu.sh from everywhere
     </span>
   </a>
   
@@ -2495,7 +2559,7 @@
 <ul>
 <li><code>sudo nano /etc/fstab</code>  </li>
 <li>At the end of the file, add: UUID=0E58A36658A34B73 /home/sigma_ibo/Desktop ntfs defaults 0 0, it looks like 
-<a href="resources/images/useful/mount_windows.png" target="_blank">this</a>  </li>
+<a href="../resources/images/useful/mount_windows.png" target="_blank">this</a>  </li>
 <li>reboot</li>
 </ul>
 <h2 id="how-to-extract-unzip-tarxz-file">How to Extract (Unzip) tar.xz File<a class="headerlink" href="#how-to-extract-unzip-tarxz-file" title="Permanent link">&para;</a></h2>
@@ -2515,7 +2579,7 @@
 <p><a href="https://www.youtube.com/watch?v=0RiUrsljD_E" target="_blank">Install Windows 11 in KVM on Ubuntu 22.04</a><br />
 Execute <a href="../../resources/exe/virtio-win-guest-tools.exe">virtio-win-guest-tools</a> in VM<br />
 <a href="https://techglimpse.com/windows-10-virtual-machine-shows-100-percentage-cpu-utilization-qemu-kvm/" target="_blank">Windows 10 VM shows 100% CPU</a><br />
-QEMU settings: <a href="resources/images/qemu/qemu_settings.png" target="_blank">QEMU</a>, <a href="resources/xml/win11onQEMU.xml" target="_blank">XML win11</a><br />
+QEMU settings: <a href="../resources/images/qemu/qemu_settings.png" target="_blank">QEMU</a>, <a href="../resources/xml/win11onQEMU.xml" target="_blank">XML win11</a><br />
 <a href="https://www.youtube.com/watch?v=ZqBJzrQy7Do" target="_blank">Windows 10 VM Settings</a></p>
 <h2 id="remove-keyring-from-edge">Remove keyring from Edge<a class="headerlink" href="#remove-keyring-from-edge" title="Permanent link">&para;</a></h2>
 <p>To stop being prompted to unlock the ‘default’ keyring on boot, set a blank password for the keyring.
@@ -2529,13 +2593,14 @@ QEMU settings: <a href="resources/images/qemu/qemu_settings.png" target="_blank"
 <a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">How To Fix Gitignore Not Working</a></p>
 <h2 id="remove-a-commit-but-keep-the-changes-in-your-working-directory">Remove a commit but keep the changes in your working directory<a class="headerlink" href="#remove-a-commit-but-keep-the-changes-in-your-working-directory" title="Permanent link">&para;</a></h2>
 <p>git reset --soft HEAD~1</p>
-<h2 id="start_qemush-from-everytwhere">start_qemu.sh from everytwhere<a class="headerlink" href="#start_qemush-from-everytwhere" title="Permanent link">&para;</a></h2>
+<h2 id="start_qemush-from-everywhere">start_qemu.sh from everywhere<a class="headerlink" href="#start_qemush-from-everywhere" title="Permanent link">&para;</a></h2>
 <p>Script <a href="../../sigmatek/QEMU/start_qemu.sh">start_qemu.sh</a> needs to be in <code>/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/</code>. 
 <div class="highlight"><pre><span></span><code>sudo nano ~/.bashrc
 export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
 </code></pre></div></p>
 <h2 id="add-konsole-to-replace-console">Add konsole to replace console<a class="headerlink" href="#add-konsole-to-replace-console" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a></p>
+<p><a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a><br />
+<a href="https://askubuntu.com/questions/1351228/change-default-terminal-with-right-click-option-open-in-terminal-in-file-manag" target="_blank">Change default terminal with right-click option "Open in Terminal" in file manager</a></p>
 <h2 id="ssh-ohne-passwort">ssh ohne Passwort<a class="headerlink" href="#ssh-ohne-passwort" title="Permanent link">&para;</a></h2>
 <p>Um eine SSH-Verbindung von Ihrem Host-Computer zu Ihrem Gast-Computer (oder Server) herzustellen, können Sie die folgenden Schritte ausführen:</p>
 <ol>
@@ -2618,7 +2683,7 @@ processors=2 # Makes the WSL 2 VM use two virtual processors
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
       
     
   </body>

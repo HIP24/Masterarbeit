@@ -15,7 +15,7 @@ def count_lines_with_word(file_path, word, total_lines):
 # Usage
 file_path = 'kvm_exit_count.txt'  # replace with your file path
 total_lines = sum(1 for line in open(file_path))
-print(f"Total exits: {total_lines}.")
+#print(f"Total exits: {total_lines}.")
 total = total_lines
 
 words = ['APIC_WRITE', 
@@ -35,7 +35,7 @@ words = ['APIC_WRITE',
 counts = []
 for word in words:
     total_lines, word_lines = count_lines_with_word(file_path, word, total_lines)
-    print(f"'{word}': {word_lines} times")
+    #print(f"'{word}': {word_lines} times")
     counts.append((word, word_lines))
 
 # Sort words and counts by count in descending order
@@ -66,8 +66,8 @@ plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
 plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
 
 # Save the figure
-plt.savefig('../../../../../../img/kvm_exit_count.png', bbox_inches='tight')
+#plt.savefig('../../../../../../img/kvm_exit_count.png', bbox_inches='tight')
 plt.savefig('kvm_exit_count.png', bbox_inches='tight')
 
 # Print a success message
-print("The plot was successfully saved to kvm_exit_count.png")
+#print("The plot was successfully saved to kvm_exit_count.png")

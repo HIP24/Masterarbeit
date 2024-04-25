@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../../QEMU/nmbridge/">
+        <link rel="prev" href="../../latency_reduction_steps/">
       
       
-        <link rel="next" href="../latency_reduction_steps/">
+        <link rel="next" href="../table_CPU_IRQ/">
       
       
-      <link rel="icon" href="../../../img/uni.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+      <link rel="icon" href="../../../../img/uni.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
     
     
       
-        <title>Irq - Masther thesis Documentation</title>
+        <title>IRQ affinity - Masther thesis Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.66ac8b77.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -90,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Masther thesis Documentation" class="md-header__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
+    <a href="../../../.." title="Masther thesis Documentation" class="md-header__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
       
-  <img src="../../../img/uni.png" alt="logo">
+  <img src="../../../../img/uni.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Irq
+              IRQ affinity
             
           </span>
         </div>
@@ -184,9 +184,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Masther thesis Documentation" class="md-nav__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
+    <a href="../../../.." title="Masther thesis Documentation" class="md-nav__button md-logo" aria-label="Masther thesis Documentation" data-md-component="logo">
       
-  <img src="../../../img/uni.png" alt="logo">
+  <img src="../../../../img/uni.png" alt="logo">
 
     </a>
     Masther thesis Documentation
@@ -201,7 +201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -221,7 +221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/" class="md-nav__link">
+      <a href="../../../../test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -276,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/checklist/" class="md-nav__link">
+      <a href="../../../../general/checklist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -297,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/components/" class="md-nav__link">
+      <a href="../../../../general/components/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -318,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/documentations/" class="md-nav__link">
+      <a href="../../../../general/documentations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -339,7 +339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/protocol/" class="md-nav__link">
+      <a href="../../../../general/protocol/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -360,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/timeline/" class="md-nav__link">
+      <a href="../../../../general/timeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -460,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../QEMU/nmbridge/" class="md-nav__link">
+      <a href="../../../QEMU/nmbridge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -523,6 +523,64 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../latency_reduction_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency reduction steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IRQaffinity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            IRQaffinity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
     
   
   
@@ -537,7 +595,7 @@
           
   
   <span class="md-ellipsis">
-    Irq
+    IRQ affinity
   </span>
   
 
@@ -548,7 +606,7 @@
         
   
   <span class="md-ellipsis">
-    Irq
+    IRQ affinity
   </span>
   
 
@@ -709,15 +767,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../latency_reduction_steps/" class="md-nav__link">
+      <a href="../table_CPU_IRQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Latency reduction steps
+    table CPU IRQ
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -765,7 +831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kernel-patch/kernel-patch/" class="md-nav__link">
+      <a href="../../kernel-patch/kernel-patch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -837,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../salamander4/bash_commands/" class="md-nav__link">
+      <a href="../../../salamander4/bash_commands/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -858,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../salamander4/build_LRT/" class="md-nav__link">
+      <a href="../../../salamander4/build_LRT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -879,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../salamander4/build_with_yocto/" class="md-nav__link">
+      <a href="../../../salamander4/build_with_yocto/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -978,7 +1044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/explaination/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/explaination/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -999,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/info/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/info/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1020,7 +1086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/kernel_processes/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/kernel_processes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1041,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/kernelshark/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/kernelshark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1062,7 +1128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/kvm_exits_description/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/kvm_exits_description/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1083,7 +1149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/show_process/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/show_process/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1139,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/default/kvm_exit_default_results/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/default/kvm_exit_default_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1203,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/taskset/kvm_exit_taskset_results/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/taskset/kvm_exit_taskset_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1267,7 +1333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/test/results_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1288,7 +1354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/test/results_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1352,7 +1418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/analysis/vapic/kvm_exit_vapic_results/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/vapic/kvm_exit_vapic_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+      <a href="../../../trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1496,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/clocktest/" class="md-nav__link">
+      <a href="../../../xenomai/clocktest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1517,7 +1583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/latency/" class="md-nav__link">
+      <a href="../../../xenomai/latency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1538,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/switchtest/" class="md-nav__link">
+      <a href="../../../xenomai/switchtest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1559,7 +1625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/xenomai-system-tools/" class="md-nav__link">
+      <a href="../../../xenomai/xenomai-system-tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1615,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1636,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1700,7 +1766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1721,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1785,7 +1851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1806,7 +1872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1870,7 +1936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1891,7 +1957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1963,7 +2029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../yocto/after_bitbake/" class="md-nav__link">
+      <a href="../../../yocto/after_bitbake/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2034,7 +2100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/gitlfs/" class="md-nav__link">
+      <a href="../../../../workflow/gitlfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2055,7 +2121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/gittutorial/" class="md-nav__link">
+      <a href="../../../../workflow/gittutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2076,7 +2142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/most_popular_paths/" class="md-nav__link">
+      <a href="../../../../workflow/most_popular_paths/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2097,7 +2163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/problem_solution/" class="md-nav__link">
+      <a href="../../../../workflow/problem_solution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2118,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/useful/" class="md-nav__link">
+      <a href="../../../../workflow/useful/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2139,7 +2205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/useful_links/" class="md-nav__link">
+      <a href="../../../../workflow/useful_links/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2160,7 +2226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/useful_notneeded/" class="md-nav__link">
+      <a href="../../../../workflow/useful_notneeded/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2181,7 +2247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/vscode/" class="md-nav__link">
+      <a href="../../../../workflow/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2237,7 +2303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/meetings/richard/" class="md-nav__link">
+      <a href="../../../../workflow/meetings/richard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2258,7 +2324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/meetings/wober/" class="md-nav__link">
+      <a href="../../../../workflow/meetings/wober/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2452,7 +2518,7 @@
                   
 
 
-  <h1>Irq</h1>
+  <h1>IRQ affinity</h1>
 
 <h2 id="select-best-cpu-for-qemu">Select best CPU for QEMU<a class="headerlink" href="#select-best-cpu-for-qemu" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>sigma_ibo@pamhal:$ cat /sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_max_freq
@@ -2478,22 +2544,25 @@
 5000000
 </code></pre></div>
 <h2 id="check-which-irqs-use-cpu-x">Check which IRQs use CPU x<a class="headerlink" href="#check-which-irqs-use-cpu-x" title="Permanent link">&para;</a></h2>
-<p>CPU x is being used by IRQs with <a href="../check_smp_affinity.sh">check_smp_affinity.sh</a>:
-<div class="highlight"><pre><span></span><code>10
-11
-13
-138
-15
-191
-194
+<p><a href="../check_smp_affinity.sh">check_smp_affinity.sh</a>:
+<div class="highlight"><pre><span></span><code>./check_smp_affinity.sh 19
+CPU 19 IRQ affinity:
+0
 2
-208
-214
 3
 4
 5
 6
 7
+10
+11
+13
+15
+131
+172
+188
+189
+192
 </code></pre></div></p>
 <h2 id="check-the-mask-of-irq">Check the mask of IRQ<a class="headerlink" href="#check-the-mask-of-irq" title="Permanent link">&para;</a></h2>
 <p>The mask for IRQ0 for example would be: 
@@ -2531,101 +2600,108 @@ dffff
 7
 </code></pre></div></p>
 <h2 id="batch-change-permissions">Batch change permissions<a class="headerlink" href="#batch-change-permissions" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/10/smp_affinity
-sudo chmod 777 /proc/irq/11/smp_affinity
-sudo chmod 777 /proc/irq/13/smp_affinity
-sudo chmod 777 /proc/irq/138/smp_affinity
-sudo chmod 777 /proc/irq/15/smp_affinity
-sudo chmod 777 /proc/irq/191/smp_affinity
-sudo chmod 777 /proc/irq/194/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/0/smp_affinity
 sudo chmod 777 /proc/irq/2/smp_affinity
-sudo chmod 777 /proc/irq/208/smp_affinity
-sudo chmod 777 /proc/irq/214/smp_affinity
 sudo chmod 777 /proc/irq/3/smp_affinity
 sudo chmod 777 /proc/irq/4/smp_affinity
 sudo chmod 777 /proc/irq/5/smp_affinity
 sudo chmod 777 /proc/irq/6/smp_affinity
 sudo chmod 777 /proc/irq/7/smp_affinity
+sudo chmod 777 /proc/irq/10/smp_affinity
+sudo chmod 777 /proc/irq/11/smp_affinity
+sudo chmod 777 /proc/irq/13/smp_affinity
+sudo chmod 777 /proc/irq/15/smp_affinity
+sudo chmod 777 /proc/irq/131/smp_affinity
+sudo chmod 777 /proc/irq/172/smp_affinity
+sudo chmod 777 /proc/irq/188/smp_affinity
+sudo chmod 777 /proc/irq/189/smp_affinity
+sudo chmod 777 /proc/irq/192/smp_affinity
 </code></pre></div>
 <h2 id="batch-cat-irq-smp_affinity">Batch cat IRQ smp_affinity<a class="headerlink" href="#batch-cat-irq-smp_affinity" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity  -&gt; fffff
-cat /proc/irq/2/smp_affinity -&gt; fffff             
-cat /proc/irq/3/smp_affinity -&gt; fffff             
-cat /proc/irq/4/smp_affinity -&gt; fffff            
-cat /proc/irq/5/smp_affinity -&gt; fffff             
-cat /proc/irq/6/smp_affinity -&gt; fffff            
-cat /proc/irq/7/smp_affinity -&gt; fffff            
-cat /proc/irq/10/smp_affinity -&gt; fffff              
-cat /proc/irq/11/smp_affinity -&gt; fffff            
-cat /proc/irq/13/smp_affinity -&gt; fffff            
-cat /proc/irq/15/smp_affinity -&gt; fffff              
-cat /proc/irq/130/smp_affinity -&gt; fffff              
-cat /proc/irq/172/smp_affinity -&gt; 80000              
-cat /proc/irq/173/smp_affinity -&gt; fffff              
-cat /proc/irq/189/smp_affinity -&gt; 80000              
-cat /proc/irq/192/smp_affinity -&gt; fffff              
+<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity   # -&gt; fffff
+cat /proc/irq/2/smp_affinity   # -&gt; fffff             
+cat /proc/irq/3/smp_affinity   # -&gt; fffff             
+cat /proc/irq/4/smp_affinity   # -&gt; fffff            
+cat /proc/irq/5/smp_affinity   # -&gt; fffff             
+cat /proc/irq/6/smp_affinity   # -&gt; fffff            
+cat /proc/irq/7/smp_affinity   # -&gt; fffff            
+cat /proc/irq/10/smp_affinity  # -&gt; fffff              
+cat /proc/irq/11/smp_affinity  # -&gt; fffff            
+cat /proc/irq/13/smp_affinity  # -&gt; fffff            
+cat /proc/irq/15/smp_affinity  # -&gt; fffff              
+cat /proc/irq/131/smp_affinity # -&gt; fffff              
+cat /proc/irq/172/smp_affinity # -&gt; 80000              
+cat /proc/irq/188/smp_affinity # -&gt; 80000              
+cat /proc/irq/189/smp_affinity # -&gt; fffff              
+cat /proc/irq/192/smp_affinity # -&gt; fffff              
 </code></pre></div>
 <h2 id="batch-change-irq-smp_affinity-of-fffff">Batch change IRQ smp_affinity of fffff<a class="headerlink" href="#batch-change-irq-smp_affinity-of-fffff" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo echo dffff &gt; /proc/irq/10/smp_affinity
-sudo echo dffff &gt; /proc/irq/11/smp_affinity
-sudo echo dffff &gt; /proc/irq/13/smp_affinity
-sudo echo dffff &gt; /proc/irq/138/smp_affinity
-sudo echo dffff &gt; /proc/irq/15/smp_affinity
-sudo echo dffff &gt; /proc/irq/3/smp_affinity
-sudo echo dffff &gt; /proc/irq/4/smp_affinity
-sudo echo dffff &gt; /proc/irq/5/smp_affinity
-sudo echo dffff &gt; /proc/irq/6/smp_affinity
-sudo echo dffff &gt; /proc/irq/7/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo echo 7ffff &gt; /proc/irq/0/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/2/smp_affinity  # stays fffff
+sudo echo 7ffff &gt; /proc/irq/3/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/4/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/5/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/6/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/7/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/10/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/11/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/13/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/15/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/131/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/172/smp_affinity    # stays 80000
+sudo echo 7ffff &gt; /proc/irq/188/smp_affinity    # stays 80000
+sudo echo 7ffff &gt; /proc/irq/189/smp_affinity    # stays fffff
+sudo echo 7ffff &gt; /proc/irq/192/smp_affinity    # stays fffff
 </code></pre></div>
 <h2 id="could-not-be-changed">COULD NOT BE CHANGED<a class="headerlink" href="#could-not-be-changed" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>2
 172
-173
+188
 189
 192
 </code></pre></div>
 <h2 id="values">VALUES<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/2/smp_affinity   -&gt; fffff
-cat /proc/irq/172/smp_affinity   -&gt; 80000
-cat /proc/irq/173/smp_affinity   -&gt; fffff
-cat /proc/irq/189/smp_affinity   -&gt; 80000
-cat /proc/irq/192/smp_affinity   -&gt; fffff
+<div class="highlight"><pre><span></span><code>cat /proc/irq/2/smp_affinity    #-&gt; fffff
+cat /proc/irq/172/smp_affinity  #-&gt; 80000
+cat /proc/irq/188/smp_affinity  #-&gt; 80000
+cat /proc/irq/189/smp_affinity  #-&gt; fffff
+cat /proc/irq/192/smp_affinity  #-&gt; fffff
 </code></pre></div>
 <h2 id="batch-check-permissions">Batch check permissions<a class="headerlink" href="#batch-check-permissions" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>ll /proc/irq/0/smp_affinity
-ll /proc/irq/10/smp_affinity
-ll /proc/irq/11/smp_affinity
-ll /proc/irq/13/smp_affinity
-ll /proc/irq/138/smp_affinity
-ll /proc/irq/15/smp_affinity
-ll /proc/irq/191/smp_affinity
-ll /proc/irq/194/smp_affinity
 ll /proc/irq/2/smp_affinity
-ll /proc/irq/208/smp_affinity
-ll /proc/irq/214/smp_affinity
 ll /proc/irq/3/smp_affinity
 ll /proc/irq/4/smp_affinity
 ll /proc/irq/5/smp_affinity
 ll /proc/irq/6/smp_affinity
 ll /proc/irq/7/smp_affinity
+ll /proc/irq/10/smp_affinity
+ll /proc/irq/11/smp_affinity
+ll /proc/irq/13/smp_affinity
+ll /proc/irq/15/smp_affinity
+ll /proc/irq/131/smp_affinity
+ll /proc/irq/172/smp_affinity
+ll /proc/irq/188/smp_affinity
+ll /proc/irq/189/smp_affinity
+ll /proc/irq/192/smp_affinity
 </code></pre></div>
 <h2 id="batch-check-values">Batch check values<a class="headerlink" href="#batch-check-values" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity
-cat /proc/irq/10/smp_affinity
-cat /proc/irq/11/smp_affinity
-cat /proc/irq/13/smp_affinity
-cat /proc/irq/138/smp_affinity
-cat /proc/irq/15/smp_affinity
-cat /proc/irq/191/smp_affinity
-cat /proc/irq/194/smp_affinity
 cat /proc/irq/2/smp_affinity
-cat /proc/irq/208/smp_affinity
-cat /proc/irq/214/smp_affinity
 cat /proc/irq/3/smp_affinity
 cat /proc/irq/4/smp_affinity
 cat /proc/irq/5/smp_affinity
 cat /proc/irq/6/smp_affinity
 cat /proc/irq/7/smp_affinity
+cat /proc/irq/10/smp_affinity
+cat /proc/irq/11/smp_affinity
+cat /proc/irq/13/smp_affinity
+cat /proc/irq/15/smp_affinity
+cat /proc/irq/131/smp_affinity
+cat /proc/irq/172/smp_affinity
+cat /proc/irq/188/smp_affinity
+cat /proc/irq/189/smp_affinity
+cat /proc/irq/192/smp_affinity
 </code></pre></div>
 
 
@@ -2673,10 +2749,10 @@ cat /proc/irq/7/smp_affinity
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
       
     
   </body>

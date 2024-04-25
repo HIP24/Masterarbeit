@@ -1,23 +1,24 @@
 #!/bin/bash
 
-# Öffne Microsoft Edge auf Bildschirm 1
-microsoft-edge &
+# Überprüfen, ob ein Prozess mit "msedge" im Namen läuft
+if ! ps aux | grep -i "msedge" | grep -v "grep"
+then
+    # Starte Microsoft Edge, wenn es nicht bereits läuft
+    microsoft-edge &
+fi
 
-# Öffne Dateimanager auf Bildschirm 2
-nautilus /home/sigma_ibo/Desktop/Masterarbeit &
+# Öffne nautilus Dateimanager
+#nautilus /home/sigma_ibo/Desktop/Masterarbeit &
+#nautilus /home/sigma_ibo/Desktop/salamander-image &
 
-nautilus /home/sigma_ibo/Desktop/salamander-image &
+# VS Code
+konsole --new-tab -e bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander && code ."&
+konsole --new-tab -e bash -c "cd /home/sigma_ibo/Desktop/Masterarbeit && code ."&
+konsole --new-tab -e bash -c "cd /home/sigma_ibo && code ."&
 
-# Öffne VS Code auf Bildschirm 3
-konsole --new-tab -e bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander && code ."
-
-konsole --new-tab -e bash -c "cd /home/sigma_ibo/Desktop/Masterarbeit && code ."
-
-# Öffne das erste Terminal auf der linken Seite des Bildschirms
-konsole --new-tab -e bash -c "cd"
-
-# Öffne das zweite Terminal auf der rechten Seite des Bildschirms
-konsole --new-tab -e bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image && sudo ./qemu_def.sh"
+# Konsole 
+konsole &
+konsole --new-tab -e bash -c "cd /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/qemu/sigmatek-core2/salamander-image && sudo ./qemu_def.sh"&
 
 # Öffne Virt Manager
 virt-manager &

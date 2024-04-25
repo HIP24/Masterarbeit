@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ip_address="192.168.1.128"
+ip_address="192.168.1.74"
 
 #cd /home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64
 #ssh root@"$ip_address" 'mkdir bb'

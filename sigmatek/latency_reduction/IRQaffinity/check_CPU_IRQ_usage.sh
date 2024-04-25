@@ -1,10 +1,17 @@
 #!/bin/bash
+# Check if an argument was provided
+if [ -z "$1" ]; then
+    echo "Please provide an IRQ number as a command-line argument."
+    exit 1
+fi
+
 # Get the IRQ number from the command-line argument
 IRQ=$1
 # Get the number of CPUs
-num_cpus=$(nproc)
+num_cpus=$(getconf _NPROCESSORS_CONF)
 # Initialize an empty array to store the CPU numbers
 CPUs=()
+
 # Check if the smp_affinity file exists for this IRQ
 if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
     # Read the current smp_affinity
@@ -17,8 +24,6 @@ if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
             CPUs+=("$cpu")
         fi
     done
-    # Add the isolated CPU to the list
-    CPUs+=("19")
     # Sort the array
     IFS=$'\n' sorted=($(sort -n <<<"${CPUs[*]}"))
     # Print the IRQ number
