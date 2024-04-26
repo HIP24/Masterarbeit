@@ -28,9 +28,11 @@ masterthesis-documentation/docs/Masterarbeit_Robotik_Pamuk.pdf
 Masterarbeit_Robotik_Pamuk.pdf
 papers (delete)/
 
-masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.png
-masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.md
-masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.txt
+# Ignore everything in the directory
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/**/*
+# But do not ignore files (unignore files)
+!masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/**/*.*
+# Ignore .dat
 masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.dat
 
 masterthesis-documentation/docs/sigmatek/xenomai/test/*.png
