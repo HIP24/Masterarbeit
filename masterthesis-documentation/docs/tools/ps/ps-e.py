@@ -2,7 +2,7 @@
 import collections
 
 # Define the file name
-file_name = "ps.txt"
+file_name = "ps-e.txt"
 
 # Initialize a dictionary to store the counts
 counts = collections.defaultdict(int)
@@ -58,33 +58,25 @@ sorted_counts = sorted(counts.items(), key=lambda item: item[1], reverse=True)
 sorted_group_counts = sorted(group_counts.items(), key=lambda item: item[1], reverse=True)
 
 # Open the output file and write the counts in a table format
-with open("amount.md", 'w') as file:
+with open("ps-e_amount.md", 'w') as file:
     # Write the table header
     file.write(f"Total tasks count (individual): {total_count}\n")
 
-    # Write the count of kernel and user tasks
-    file.write(f"\nKernel tasks: {kernel_count}\n")
-    file.write(f"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User tasks: {user_count}\n")
-
-    file.write("| Task | Task Type | Count |\n")
-    file.write("| --- | --- | --- |\n")
+    file.write("| Task | Count |\n")
+    file.write("| --- | --- |\n")
 
     # Write the counts
     for (task_name, task_type), count in sorted_counts:
-        file.write(f"| {task_name} | {task_type} | {count} |\n")
+        file.write(f"| {task_name} | {count} |\n")
     
 # Open the group output file and write the counts in a table format
-with open("amount_group.md", 'w') as file:
+with open("ps-e_amount_group.md", 'w') as file:
     # Write the table header
     file.write(f"Total tasks count (grouped): {total_group_count}\n")
 
-    # Write the count of kernel and user tasks
-    file.write(f"\nKernel tasks: {group_kernel_count}\n")
-    file.write(f"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User tasks: {user_count}\n")
-
-    file.write("| Task Group | Task Type | Count |\n")
-    file.write("| --- | --- | --- |\n")
+    file.write("| Task Group | Count |\n")
+    file.write("| --- | --- |\n")
 
     # Write the counts
     for (group_name, task_type), count in sorted_group_counts:
-        file.write(f"| {group_name} | {task_type} | {count} |\n")
+        file.write(f"| {group_name} | {count} |\n")
