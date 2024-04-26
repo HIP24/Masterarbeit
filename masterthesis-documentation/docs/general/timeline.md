@@ -57,3 +57,4 @@
 | 23.04.2024 | Rebuild workspace |
 | 24.04.2024 | Rebuild workspace, problem_solution |
 | 25.04.2024 | Rebuild workspace, table IRQ CPU |
+| 26.04.2024 | [compare.md](../sigmatek/trace-cmd/analysis/test/compare.md), [ps.sh](../tools/ps/ps.sh) |
