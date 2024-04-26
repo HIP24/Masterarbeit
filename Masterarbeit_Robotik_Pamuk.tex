@@ -35,6 +35,7 @@
 % Bei Bedarf bitte hier die Syntax-Highlightings anpassen
 %
 % own 
+\usepackage{hyperref}
 \usepackage{float}
 \usepackage{comment}
 \usepackage{csquotes}
@@ -548,16 +549,16 @@ Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC vir
 	\end{minipage}
 	\end{table}
 
-
 \noindent In the following, the host and guest tasks along with their impact on system latency are briefly described. 
 
 \begin{itemize} 
 	\item \textbf{qemu-system-x86}: Part of the QEMU process and specifically, this task emulates x86 systems. In table \ref{tab:results_host_report}, it occurs four times under different PIDs, hence there are four threads of it.
-	\item \textbf{<idle>}: This represents the idle time of the CPU, hence it is not being used by any process. 
-	\item \textbf{vhost}: A kernel module which improves virtio (virtual input/output) performance by handling virtqueues in the kernel, thereby reducing context switches and system calls. 
+	\item \textbf{<idle>}: This represents the idle time of the CPU, hence it is not being used by any process, allowing to save power. The system halts until the next interrupt, which could be a timer interrupt, I/O interrupt, etc.
+	\item \textbf{vhost}: A kernel module which improves virtual input/output (virtio) performance by handling virtqueues in the kernel, thereby reducing context switches and system calls. 
 	\item \textbf{kworker/19:1}: A kernel worker thread created by the Linux kernel, kworker/19:1 performs work in response to system events. The number after the slash and colon indicate the CPU core and internal ID of the worker thread, respectively. 
 	\item \textbf{kworker/19:1H}: Similar to kworker/19:1, kworker/19:1H is a kernel worker thread, with the ‘H’ suggesting that this thread handles hardware interrupts. 
-	\item \textbf{migration/19}: The migration process is a kernel process that balances load across CPU cores by moving threads from one CPU to another. The number after the slash indicates the CPU core to which the migration process is bound. 
+	\item \textbf{migration/19}: The migration process is a kernel process that balances load across CPU cores by moving threads from one CPU to another. The number after the slash indicates the CPU core to which the migration process is bound. (URL: \url{https://elixir.bootlin.com/linux/latest/source/kernel/sched/core.c#L2325})
+
 \end{itemize}
 
 \begin{comment}
