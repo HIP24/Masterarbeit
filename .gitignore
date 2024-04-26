@@ -40,3 +40,8 @@ masterthesis-documentation/docs/sigmatek/xenomai/test/*.txt
 
 masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/*.log
 masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/table_CPU_IRQ.md
+
+# Ignore everything in the directory
+masterthesis-documentation/docs/tools/ps/**/*
+# But do not ignore files (unignore files)
+!masterthesis-documentation/docs/tools/ps/**/*.*
