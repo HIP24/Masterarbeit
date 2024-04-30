@@ -509,6 +509,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cpufreq" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpufreq
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2881,6 +2890,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cpufreq" class="md-nav__link">
+    <span class="md-ellipsis">
+      cpufreq
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3272,6 +3290,54 @@ RTS|      0.577|      2.428|   5926.355|     928|     0|    00:01:00/00:01:00
 <p>ssh root@192.168.1.244</p>
 <h2 id="bcc">bcc<a class="headerlink" href="#bcc" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/iovisor/bcc
+</code></pre></div>
+<h2 id="cpufreq">cpufreq<a class="headerlink" href="#cpufreq" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+
+sigma_ibo@sigma-ibo:~$ echo &quot;performance&quot; | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+performance
+
+sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
 </code></pre></div>
 
 

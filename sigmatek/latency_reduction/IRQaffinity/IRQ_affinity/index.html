@@ -680,9 +680,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-again-which-irqs-use-cpu-17" class="md-nav__link">
+  <a href="#check-again-which-irqs-use-cpu-19" class="md-nav__link">
     <span class="md-ellipsis">
-      Check again which IRQs use CPU 17
+      Check again which IRQs use CPU 19
     </span>
   </a>
   
@@ -2814,9 +2814,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-again-which-irqs-use-cpu-17" class="md-nav__link">
+  <a href="#check-again-which-irqs-use-cpu-19" class="md-nav__link">
     <span class="md-ellipsis">
-      Check again which IRQs use CPU 17
+      Check again which IRQs use CPU 19
     </span>
   </a>
   
@@ -2963,23 +2963,24 @@ fffff
 <div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity
 dffff
 </code></pre></div>
-<h2 id="check-again-which-irqs-use-cpu-17">Check again which IRQs use CPU 17<a class="headerlink" href="#check-again-which-irqs-use-cpu-17" title="Permanent link">&para;</a></h2>
-<p>CPU17 is being used by IRQs with <a href="../check_smp_affinity.sh">check_smp_affinity.sh</a> (IRQ0 is not listed anymore): 
-<div class="highlight"><pre><span></span><code>10
-11
-13
-138
-15
-191
-194
+<h2 id="check-again-which-irqs-use-cpu-19">Check again which IRQs use CPU 19<a class="headerlink" href="#check-again-which-irqs-use-cpu-19" title="Permanent link">&para;</a></h2>
+<p>CPU19 is being used by IRQs with <a href="../check_smp_affinity.sh">check_smp_affinity.sh</a> (IRQ0 is not listed anymore): 
+<div class="highlight"><pre><span></span><code>0
 2
-208
-214
 3
 4
 5
 6
 7
+10
+11
+13
+15
+132
+171
+188
+189
+192
 </code></pre></div></p>
 <h2 id="batch-change-permissions">Batch change permissions<a class="headerlink" href="#batch-change-permissions" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/0/smp_affinity
@@ -2993,8 +2994,8 @@ sudo chmod 777 /proc/irq/10/smp_affinity
 sudo chmod 777 /proc/irq/11/smp_affinity
 sudo chmod 777 /proc/irq/13/smp_affinity
 sudo chmod 777 /proc/irq/15/smp_affinity
-sudo chmod 777 /proc/irq/131/smp_affinity
-sudo chmod 777 /proc/irq/172/smp_affinity
+sudo chmod 777 /proc/irq/132/smp_affinity
+sudo chmod 777 /proc/irq/171/smp_affinity
 sudo chmod 777 /proc/irq/188/smp_affinity
 sudo chmod 777 /proc/irq/189/smp_affinity
 sudo chmod 777 /proc/irq/192/smp_affinity
@@ -3011,8 +3012,8 @@ cat /proc/irq/10/smp_affinity  # -&gt; fffff
 cat /proc/irq/11/smp_affinity  # -&gt; fffff            
 cat /proc/irq/13/smp_affinity  # -&gt; fffff            
 cat /proc/irq/15/smp_affinity  # -&gt; fffff              
-cat /proc/irq/131/smp_affinity # -&gt; fffff              
-cat /proc/irq/172/smp_affinity # -&gt; 80000              
+cat /proc/irq/132/smp_affinity # -&gt; fffff              
+cat /proc/irq/171/smp_affinity # -&gt; 80000              
 cat /proc/irq/188/smp_affinity # -&gt; 80000              
 cat /proc/irq/189/smp_affinity # -&gt; fffff              
 cat /proc/irq/192/smp_affinity # -&gt; fffff              
@@ -3029,22 +3030,22 @@ sudo echo 7ffff &gt; /proc/irq/10/smp_affinity
 sudo echo 7ffff &gt; /proc/irq/11/smp_affinity
 sudo echo 7ffff &gt; /proc/irq/13/smp_affinity
 sudo echo 7ffff &gt; /proc/irq/15/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/131/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/172/smp_affinity    # stays 80000
+sudo echo 7ffff &gt; /proc/irq/132/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/171/smp_affinity    # stays 80000
 sudo echo 7ffff &gt; /proc/irq/188/smp_affinity    # stays 80000
 sudo echo 7ffff &gt; /proc/irq/189/smp_affinity    # stays fffff
 sudo echo 7ffff &gt; /proc/irq/192/smp_affinity    # stays fffff
 </code></pre></div>
 <h2 id="could-not-be-changed">COULD NOT BE CHANGED<a class="headerlink" href="#could-not-be-changed" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>2
-172
+171
 188
 189
 192
 </code></pre></div>
 <h2 id="values">VALUES<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cat /proc/irq/2/smp_affinity    #-&gt; fffff
-cat /proc/irq/172/smp_affinity  #-&gt; 80000
+cat /proc/irq/171/smp_affinity  #-&gt; 80000
 cat /proc/irq/188/smp_affinity  #-&gt; 80000
 cat /proc/irq/189/smp_affinity  #-&gt; fffff
 cat /proc/irq/192/smp_affinity  #-&gt; fffff
@@ -3079,8 +3080,8 @@ cat /proc/irq/10/smp_affinity
 cat /proc/irq/11/smp_affinity
 cat /proc/irq/13/smp_affinity
 cat /proc/irq/15/smp_affinity
-cat /proc/irq/131/smp_affinity
-cat /proc/irq/172/smp_affinity
+cat /proc/irq/132/smp_affinity
+cat /proc/irq/171/smp_affinity
 cat /proc/irq/188/smp_affinity
 cat /proc/irq/189/smp_affinity
 cat /proc/irq/192/smp_affinity
