@@ -1,4 +1,4 @@
-site_name: Masther thesis Documentation
+site_name: Masterthesis Documentation
 # site_url: https://www.example.com
 # repo_url: https://github.com/username/repo
 # repo_name: GitHub
@@ -25,17 +25,7 @@ theme:
 plugins:
   - exclude:
       glob:
-        - tools/*
-        - kernel-patch/linux/*
-        - kernel-patch/rt_linux/*
-        - sigmatek/trace-cmd/analysis/default/trace.dat
-        - sigmatek/trace-cmd/analysis/default/trace-Salamander4.dat
-        - sigmatek/trace-cmd/analysis/taskset/trace.dat
-        - sigmatek/trace-cmd/analysis/taskset/trace-Salamander4.dat
-        - sigmatek/trace-cmd/analysis/vapic/trace.dat
-        - sigmatek/trace-cmd/analysis/vapic/trace-Salamander4.dat
-        - sigmatek/trace-cmd/analysis/test/trace.dat
-        - sigmatek/trace-cmd/analysis/test/trace-Salamander4.dat
+        - "*.dat"
         - themes.md
         - "*.tmp"
         - "*.gz"

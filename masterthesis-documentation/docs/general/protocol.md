@@ -392,3 +392,53 @@ ssh root@192.168.1.244
 git clone https://github.com/iovisor/bcc
 
 ```
+
+## cpufreq
+```
+sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+powersave
+
+sigma_ibo@sigma-ibo:~$ echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+performance
+
+sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+performance
+```

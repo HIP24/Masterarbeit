@@ -1,0 +1,11 @@
+Display kvm exit reasons and statistics for all threads after sleeping 100 secs.
+PID      TID      KVM_EXIT_REASON                     COUNT
+159607   159615   EXTERNAL_INTERRUPT                  1246    
+159607   159615   HLT                                 53760   
+159607   159615   MSR_READ                            20      
+159607   159615   PAUSE_INSTRUCTION                   290     
+159607   159615   EOI_INDUCED                         1119    
+159607   159615   EPT_VIOLATION                       134     
+159607   159615   EPT_MISCONFIG                       15444   
+159607   159615   PREEMPTION_TIMER                    1703    
+159607   159615   APIC_WRITE                          118014  
