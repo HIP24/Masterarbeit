@@ -2976,11 +2976,11 @@ dffff
 11
 13
 15
-132
-171
+130
+172
 188
 189
-192
+191
 </code></pre></div></p>
 <h2 id="batch-change-permissions">Batch change permissions<a class="headerlink" href="#batch-change-permissions" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/0/smp_affinity
@@ -2994,11 +2994,11 @@ sudo chmod 777 /proc/irq/10/smp_affinity
 sudo chmod 777 /proc/irq/11/smp_affinity
 sudo chmod 777 /proc/irq/13/smp_affinity
 sudo chmod 777 /proc/irq/15/smp_affinity
-sudo chmod 777 /proc/irq/132/smp_affinity
-sudo chmod 777 /proc/irq/171/smp_affinity
+sudo chmod 777 /proc/irq/130/smp_affinity
+sudo chmod 777 /proc/irq/172/smp_affinity
 sudo chmod 777 /proc/irq/188/smp_affinity
 sudo chmod 777 /proc/irq/189/smp_affinity
-sudo chmod 777 /proc/irq/192/smp_affinity
+sudo chmod 777 /proc/irq/191/smp_affinity
 </code></pre></div>
 <h2 id="batch-cat-irq-smp_affinity">Batch cat IRQ smp_affinity<a class="headerlink" href="#batch-cat-irq-smp_affinity" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity   # -&gt; fffff
@@ -3030,25 +3030,25 @@ sudo echo 7ffff &gt; /proc/irq/10/smp_affinity
 sudo echo 7ffff &gt; /proc/irq/11/smp_affinity
 sudo echo 7ffff &gt; /proc/irq/13/smp_affinity
 sudo echo 7ffff &gt; /proc/irq/15/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/132/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/171/smp_affinity    # stays 80000
+sudo echo 7ffff &gt; /proc/irq/130/smp_affinity
+sudo echo 7ffff &gt; /proc/irq/172/smp_affinity    # stays 80000
 sudo echo 7ffff &gt; /proc/irq/188/smp_affinity    # stays 80000
 sudo echo 7ffff &gt; /proc/irq/189/smp_affinity    # stays fffff
-sudo echo 7ffff &gt; /proc/irq/192/smp_affinity    # stays fffff
+sudo echo 7ffff &gt; /proc/irq/191/smp_affinity    # stays fffff
 </code></pre></div>
 <h2 id="could-not-be-changed">COULD NOT BE CHANGED<a class="headerlink" href="#could-not-be-changed" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>2
-171
+172
 188
 189
-192
+191
 </code></pre></div>
 <h2 id="values">VALUES<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cat /proc/irq/2/smp_affinity    #-&gt; fffff
-cat /proc/irq/171/smp_affinity  #-&gt; 80000
+cat /proc/irq/172/smp_affinity  #-&gt; 80000
 cat /proc/irq/188/smp_affinity  #-&gt; 80000
 cat /proc/irq/189/smp_affinity  #-&gt; fffff
-cat /proc/irq/192/smp_affinity  #-&gt; fffff
+cat /proc/irq/191/smp_affinity  #-&gt; fffff
 </code></pre></div>
 <h2 id="batch-check-permissions">Batch check permissions<a class="headerlink" href="#batch-check-permissions" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>ll /proc/irq/0/smp_affinity
@@ -3080,11 +3080,11 @@ cat /proc/irq/10/smp_affinity
 cat /proc/irq/11/smp_affinity
 cat /proc/irq/13/smp_affinity
 cat /proc/irq/15/smp_affinity
-cat /proc/irq/132/smp_affinity
-cat /proc/irq/171/smp_affinity
+cat /proc/irq/130/smp_affinity
+cat /proc/irq/172/smp_affinity
 cat /proc/irq/188/smp_affinity
 cat /proc/irq/189/smp_affinity
-cat /proc/irq/192/smp_affinity
+cat /proc/irq/191/smp_affinity
 </code></pre></div>
 
 
