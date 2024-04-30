@@ -20,6 +20,6 @@ python analyze_trace.py guest_report.txt && echo "analyze_trace for guest_report
 wait
 # Move and Copy elements in directory 
 mv *.txt *.md *.png $1
-cp start_kernelshark.sh *.dat $1
+cp merge.py failed_reason.py start_kernelshark.sh *.dat $1
 exit 0
 
