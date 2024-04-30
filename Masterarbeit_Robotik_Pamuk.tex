@@ -481,16 +481,6 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 
 \clearpage
 
-Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC virtualisation.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\columnwidth]{img/kvm_exit_vapic.png}
-	\caption[kvm exits default]{kvm exits default}
-	\label{fig:kvm_exit_vapic}
-\end{figure}
-\clearpage
-
 
 \begin{table}[h!]
 	\centering
@@ -561,6 +551,121 @@ Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC vir
 
 \end{itemize}
 
+\section{Latency Comparison}
+In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
+
+Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
+
+
+\subsection{Generic Ubuntu}
+
+\subsection{Real-Time Ubuntu}
+
+%In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
+
+After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
+\clearpage
+
+\chapter{Real-Time Performance Optimizations and Latency Reduction}\label{cha:latency_reduction}
+\section{Host OS Optimization}
+
+\subsection{CPU governor}
+
+Figure \ref{fig:power_saver_kvm_exit} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/power_saver/kvm_exit_count.png}
+	\caption[kvm exits default]{power\_saver kvm\_exit\_count}
+	\label{fig:power_saver_kvm_exit}
+\end{figure}
+\clearpage
+
+Figure \ref{fig:power_saver_kvm_host} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/power_saver/results_host_report.png}
+	\caption[kvm exits default]{power\_saver host report}
+	\label{fig:power_saver_kvm_host}
+\end{figure}
+\clearpage
+
+Figure \ref{fig:power_saver_kvm_guest} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/power_saver/results_guest_report.png}
+	\caption[kvm exits default]{power\_saver guest report}
+	\label{fig:power_saver_kvm_guest}
+\end{figure}
+\clearpage
+
+
+
+Figure \ref{fig:balanced_kvm_exit} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/balanced/kvm_exit_count.png}
+	\caption[kvm exits default]{balanced kvm\_exit\_count}
+	\label{fig:balanced_kvm_exit}
+\end{figure}
+\clearpage
+
+Figure \ref{fig:balanced_kvm_host} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/balanced/results_host_report.png}
+	\caption[kvm exits default]{balanced host report}
+	\label{fig:balanced_kvm_host}
+\end{figure}
+\clearpage
+
+Figure \ref{fig:balanced_kvm_guest} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/balanced/results_guest_report.png}
+	\caption[kvm exits default]{balanced guest report}
+	\label{fig:balanced_kvm_guest}
+\end{figure}
+\clearpage
+
+
+
+Figure \ref{fig:performance_kvm_exit} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/performance/kvm_exit_count.png}
+	\caption[kvm exits default]{performance \_exit\_count}
+	\label{fig:performance_kvm_exit}
+\end{figure}
+\clearpage
+
+
+Figure \ref{fig:performance_kvm_host} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/performance/results_host_report.png}
+	\caption[kvm exits default]{performance host report}
+	\label{fig:performance_kvm_host}
+\end{figure}
+\clearpage
+
+Figure \ref{fig:performance_kvm_guest} shows ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/performance/results_guest_report.png}
+	\caption[kvm exits default]{balanced guest report}
+	\label{fig:performance_kvm_guest}
+\end{figure}
+\clearpage
+
 \begin{comment}
 \noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer \texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a \texttt{kvm\_exit} and kvm\_entry.
 
@@ -604,26 +709,7 @@ Figure \ref{fig:gnuplot_max_latency_vapic}
 
 \clearpage
 
-\section{Latency Comparison}
-In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
-
-Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
-
-
-\subsection{Generic Ubuntu}
-
-\subsection{Real-Time Ubuntu}
-
-
-
-
-%In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
-
-After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
-\clearpage
-
-\chapter{Real-Time Latency Reduction}\label{cha:latency_reduction}
-\section{CPU isolation}
+\subsection{CPU isolation}
 Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section \ref{sec:irq_handling}. Output \ref{output:pse} shows the user and kernel tasks that run on CPU 19. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
 
 \vspace{1em}
@@ -646,7 +732,8 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 \end{minipage}
 
 \clearpage
-\section{Interrupt Requests Handling}\label{sec:irq_handling}
+
+\subsection{Interrupt Requests Handling}\label{sec:irq_handling}
 Once the CPUs were isolated, Interrupt Requests Handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPUs. This was done by manipulating a file in the proc filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 20 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be FFFFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4.
 
 \vspace{1em}
@@ -714,27 +801,35 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 
 \noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
 
+\subsection{Kernel tuning}
 
-\section{Kernel tuning}
+\section{Guest OS Optimization}
+
+\section{Virtual Machine Configuration Optimizations}
 
 \clearpage
+
 \section{KVM exit reasons}\label{sec:kvm_exit_reasons}
+
 \subsection{APIC\_WRITE}
 
+The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. An APIC\_WRITE occurs when a guest operating system attempts to write to the APIC registers. Since the APIC is a physical hardware component, KVM must intercept this operation and cause a VM exit. To avoid this, newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance. 
 
-The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. It consists of two main components: the I/O APIC and the local APICs. The I/O APIC receives interrupt requests from devices and distributes them as messages to the Local APICs. The Local APICs then forward the highest-priority interrupt to the CPU core. The APIC offers many advantages, including more inputs for interrupts, a flexible configuration, definable priorities and support for message-signalled interrupts.
+This can be done by setting the apic flag to 'v' in the VM configuration file.
 
-\cite{lutsykPipelinedMulticoreMachine2020}
-%https://www.wikiwand.com/de/Advanced_Programmable_Interrupt_Controller
-
-\subsubsection{APIC virtualization}
+Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC virtualisation. Comparing this to the previous Figures \ref{fig:kvm_exit_taskset} and \ref{fig:kvm_exits_default}, it can be observed that an APIC\_Write no longer occurs.
 
 
-Newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance.
+(URL: \url{https://www.qemu.org/docs/master/system/i386/hyperv.html})
 
 
-
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/kvm_exit_vapic.png}
+	\caption[kvm exits default]{kvm exits default}
+	\label{fig:kvm_exit_vapic}
+\end{figure}
+\clearpage
 
 \clearpage
 \subsection{HLT}
@@ -777,6 +872,26 @@ Newer Intel processors offer hardware virtualization of the Advanced Programmabl
 \subsubsection{Description}
 \subsubsection{Occurence Reduction}
 \clearpage
+
+
+
+
+\chapter{To Include}\label{cha:to_include}
+
+The Figure \ref{fig:latency_comparison} below compares non-optimized guest latency with optimized guest latency and includes optimized bare-metal latency as a reference. The data shows that a 40\% reduction in QD1 latency is achievable through system tuning.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/latency_comparison.png}
+	\caption[latency comparison]{latency comparison}
+	\label{fig:latency_comparison}
+\end{figure}
+\clearpage
+
+
+
 
 \chapter{Results}\label{cha:results}
 
