@@ -123,8 +123,31 @@ results_host_report.txt
 
 
 
+## Richard Meeting xx.xx.2024
 
+### Host optimization
+- BIOS Settings?
+- NUMA Affinity
+- Memory Tuning
+    - Preallocated Memory
+    - Hugepages
+- Linux Process Scheduler Tuning (chrt)
+- Linux Kernel Tuning (Preempt_RT)
 
+https://null-src.com/posts/qemu-optimization/post.php
+https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04
+
+APIC_Write
+HLT
+EPT_MISCONFIG
+PREEMPTION_TIMER
+EXTERNAL_INTERRUPT
+IO_INSTRUCTION
+EOI_INDUCED
+EPT_VIOLATION
+PAUSE_INSTRUCTION
+CPUID
+MSR_READ
 
 
 
@@ -133,5 +156,3 @@ results_host_report.txt
 
 
 ❌✅
-
-
