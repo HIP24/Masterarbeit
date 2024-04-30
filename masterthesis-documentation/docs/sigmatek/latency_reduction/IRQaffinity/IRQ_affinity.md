@@ -71,24 +71,25 @@ cat /proc/irq/0/smp_affinity
 dffff
 ```
 
-## Check again which IRQs use CPU 17
-CPU17 is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh) (IRQ0 is not listed anymore): 
+## Check again which IRQs use CPU 19
+CPU19 is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh) (IRQ0 is not listed anymore): 
 ```
-10
-11
-13
-138
-15
-191
-194
+0
 2
-208
-214
 3
 4
 5
 6
 7
+10
+11
+13
+15
+130
+172
+188
+189
+191
 ```
 
 
@@ -106,11 +107,11 @@ sudo chmod 777 /proc/irq/10/smp_affinity
 sudo chmod 777 /proc/irq/11/smp_affinity
 sudo chmod 777 /proc/irq/13/smp_affinity
 sudo chmod 777 /proc/irq/15/smp_affinity
-sudo chmod 777 /proc/irq/131/smp_affinity
+sudo chmod 777 /proc/irq/130/smp_affinity
 sudo chmod 777 /proc/irq/172/smp_affinity
 sudo chmod 777 /proc/irq/188/smp_affinity
 sudo chmod 777 /proc/irq/189/smp_affinity
-sudo chmod 777 /proc/irq/192/smp_affinity
+sudo chmod 777 /proc/irq/191/smp_affinity
 ```
 
 
@@ -127,8 +128,8 @@ cat /proc/irq/10/smp_affinity  # -> fffff
 cat /proc/irq/11/smp_affinity  # -> fffff            
 cat /proc/irq/13/smp_affinity  # -> fffff            
 cat /proc/irq/15/smp_affinity  # -> fffff              
-cat /proc/irq/131/smp_affinity # -> fffff              
-cat /proc/irq/172/smp_affinity # -> 80000              
+cat /proc/irq/132/smp_affinity # -> fffff              
+cat /proc/irq/171/smp_affinity # -> 80000              
 cat /proc/irq/188/smp_affinity # -> 80000              
 cat /proc/irq/189/smp_affinity # -> fffff              
 cat /proc/irq/192/smp_affinity # -> fffff              
@@ -148,11 +149,11 @@ sudo echo 7ffff > /proc/irq/10/smp_affinity
 sudo echo 7ffff > /proc/irq/11/smp_affinity
 sudo echo 7ffff > /proc/irq/13/smp_affinity
 sudo echo 7ffff > /proc/irq/15/smp_affinity
-sudo echo 7ffff > /proc/irq/131/smp_affinity
+sudo echo 7ffff > /proc/irq/130/smp_affinity
 sudo echo 7ffff > /proc/irq/172/smp_affinity    # stays 80000
 sudo echo 7ffff > /proc/irq/188/smp_affinity    # stays 80000
 sudo echo 7ffff > /proc/irq/189/smp_affinity    # stays fffff
-sudo echo 7ffff > /proc/irq/192/smp_affinity    # stays fffff
+sudo echo 7ffff > /proc/irq/191/smp_affinity    # stays fffff
 ```
 
 ## COULD NOT BE CHANGED
@@ -161,7 +162,7 @@ sudo echo 7ffff > /proc/irq/192/smp_affinity    # stays fffff
 172
 188
 189
-192
+191
 ```
 
 ## VALUES
@@ -170,7 +171,7 @@ cat /proc/irq/2/smp_affinity    #-> fffff
 cat /proc/irq/172/smp_affinity  #-> 80000
 cat /proc/irq/188/smp_affinity  #-> 80000
 cat /proc/irq/189/smp_affinity  #-> fffff
-cat /proc/irq/192/smp_affinity  #-> fffff
+cat /proc/irq/191/smp_affinity  #-> fffff
 ```
 
 ## Batch check permissions
@@ -206,11 +207,11 @@ cat /proc/irq/10/smp_affinity
 cat /proc/irq/11/smp_affinity
 cat /proc/irq/13/smp_affinity
 cat /proc/irq/15/smp_affinity
-cat /proc/irq/131/smp_affinity
+cat /proc/irq/130/smp_affinity
 cat /proc/irq/172/smp_affinity
 cat /proc/irq/188/smp_affinity
 cat /proc/irq/189/smp_affinity
-cat /proc/irq/192/smp_affinity
+cat /proc/irq/191/smp_affinity
 ```
 
 
