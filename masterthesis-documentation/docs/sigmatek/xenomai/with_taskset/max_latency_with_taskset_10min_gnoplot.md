@@ -1,5 +1,5 @@
 # gnuplot with taskset
-```
+```bash
 # Calculate statistics
 stats 'max_latency_with_taskset_10min.txt' using 2 nooutput
 

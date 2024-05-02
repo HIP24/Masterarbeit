@@ -1,89 +1,67 @@
 # Linux kernel patch
 
 [The Linux Kernel Archives](https://www.kernel.org/)  
-Youtube: [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
 
-## Proceedure
+See all kernels on system
+```bash
+dpkg --get-selections | grep linux-image
+```
+Remove unused kernel
+```bash
+sudo apt remove --purge linux-image-<uname-r>
+sudo apt-get purge linux-image-<uname-r>
+```
+
+Kernel Basic  
+- [Kernel Basics](https://www.youtube.com/watch?v=rTcnTOXf_jM)  
+- [How to remove an old Linux kernel](https://www.youtube.com/watch?v=KIk0GqtzDsc)  
+- [How to Remove Old Kernel in Kali Linux](https://www.youtube.com/watch?v=wOgxZG1imCA)  
+
+Real-time kernel  
+- [Introduction to Realtime Linux](https://www.youtube.com/watch?v=BKkX9WASfpI&list=PLmDQKQxAsgbak5aWa6WDKPvZeLcRKTUDE)  
+- [An introduction to real-time Linux](https://www.youtube.com/watch?v=-wAo6bWh4jM)  
+- [Kernel Recipes 2016 - Understanding a Real-Time System (more than just a kernel) - Steven Rostedt](https://www.youtube.com/watch?v=w3yT8zJe0Uw&list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU)
+- [Ubuntu Pro Realtime Kernel Performance Comparison (2023)](https://www.youtube.com/watch?v=sUDMG6ey9d0)  
+- [2. Kernel Configuration - Building a Custom Linux Kernel](https://www.youtube.com/watch?v=T5SZERvLriA)
+
+Patch  
+- [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
+
+## Kernel Patch Proceedure
 Download [Linux kernel and patch](https://mirrors.edge.kernel.org/pub/linux/kernel/)  
 Gunzip the patch
-```
+```bash
 gunzip patch-*
 ```
 Patch the kernel source code
-```
+```bash
 patch -p1 < ../../rt_linux/patch-*
 ```  
 Customize the configuration
-```
+```bash
 sudo make menuconfig
 ```
 Compile the kernel by using multiple cores. $(nproc) returns the number of processing units available. 
-```
+```bash
 make -j$(nproc)
 ```
 Install the kernel and its modules to the appropriate system directories.
-```
+```bash
 sudo make modules_install install 
 ```
 Update the bootloader
-```
+```bash
 sudo update-grub
 ```
 Reboot the system
-```
+```bash
 sudo reboot 
 ```
 This is the output 
-```
+```bash
 $ uname -a
 Linux pamhal 6.8.0-rt7 #1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86_64 x86_64 GNU/Linux
 ```
-
-## Troubleshooting
-### Problem 1
-Fully Preemptible Kernel (RT) not showing up in [menuconfig](no_fully_rt.png)  
-### Solution 1
-1) Run `make mrproper`  
-2) Then run `make menuconfig`  
-
-This is the [output](fully_rt.png)  
-[Source](https://unix.stackexchange.com/questions/616621/real-time-patch-on-linux-5-9-1-does-not-show-fully-preemptible-option-for-arm64)
-
-<hr>
-OR 
-<hr>
-
-In `arch/Kconfig`, search for the entry: `ARCH_SUPPORTS_RT`. 
-
-Change the entry from
-
-```
-config ARCH_SUPPORTS_RT
-    bool
-```
-to
-```
-config ARCH_SUPPORTS_RT
-    def_bool y
-```
-When you now also have the `EXPERT` (General Setup -> Embedded System) flag enabled you should see the option `Fully Preemptible Kernel (Real-Time)` under General Setup -> Preemption Model.
-
-[Source](https://unix.stackexchange.com/questions/582075/trouble-selecting-fully-preemptible-kernel-real-time-when-configuring-compil
-)
-
-
-
-### Problem 2
-No rule to make target 'debian/canonical-certs.pem'
-### Solution 2
-If you get the certificate error, execute the following in the root of the kernel source
-```
-scripts/config --disable SYSTEM_TRUSTED_KEYS
-scripts/config --disable SYSTEM_REVOCATION_KEYS
-```
-Then run make again and it should work!  
-[Source](https://stackoverflow.com/questions/67670169/compiling-kernel-gives-error-no-rule-to-make-target-debian-certs-debian-uefi-ce)
-
 
 ## Useful stuff
 [qemu-optimization](https://null-src.com/posts/qemu-optimization/post.php)

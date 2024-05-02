@@ -1,7 +1,7 @@
 # Build LRT - Salamander 3 Terminal
 
 ## Set SDK
-```
+```bash
 . /opt/poky/1.6.2/environment-setup-cortexa9-vfp-neon-poky-linux-gnueabi 
 ```
 

@@ -49,7 +49,7 @@ git reset --soft HEAD~1
 
 ## start_qemu.sh from everywhere
 Script [start_qemu.sh](../sigmatek/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
-```
+```bash
 sudo nano ~/.bashrc
 export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
 ```
@@ -92,14 +92,14 @@ Jede Zeile in dieser Datei repräsentiert einen öffentlichen Schlüssel, der f�
 ## Limit WSL2 resources
 
 Edit the WSL config to limit the memory usage as mentioned here.
-```
+```bash
 #turn off all wsl instances such as docker-desktop
 wsl --shutdown
 notepad "$env:USERPROFILE/.wslconfig"
 ```
 Set the values you want for CPU core and Memory:
 
-```
+```bash
 [wsl2]
 memory=3GB   # Limits VM memory in WSL 2 up to 3GB
 processors=2 # Makes the WSL 2 VM use two virtual processors

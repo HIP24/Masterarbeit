@@ -1,4 +1,4 @@
-```
+```bash
 sigma_ibo@sigma-ibo:~$ ls /proc/464458/task | wc -l
 6
 sigma_ibo@sigma-ibo:~$ ps -e | grep qemu-system-x86

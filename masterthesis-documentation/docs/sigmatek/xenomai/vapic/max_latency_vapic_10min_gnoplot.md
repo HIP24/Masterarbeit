@@ -1,5 +1,5 @@
 # gnuplot vapic
-```
+```bash
 # Calculate statistics
 stats 'max_latency_vapic_10min.txt' using 2 nooutput
 

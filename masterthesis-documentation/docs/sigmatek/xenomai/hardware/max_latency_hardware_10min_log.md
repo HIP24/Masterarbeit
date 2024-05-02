@@ -1,6 +1,6 @@
 # Max Latency hardware
 
-```
+```bash
 root@sigmatek-core2:~# latency -h -s -T 600 -g max_latency_hardware.txt
 == Sampling period: 100 us
 == Test mode: periodic user-mode task

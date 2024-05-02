@@ -40,13 +40,13 @@ We test the system using the Xenomai test suite
 
 ### Out-of-the-box 
 Before taskset with [`qemu_def_4schedstats.sh`](../sigmatek/QEMU/qemu_def_4schedstats.sh)
-```
+```bash
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    7295  10 start_qemu.sh
    7298  17 qemu-system-x86
 ```
 `latency -s -T 60`
-```
+```bash
 root@sigmatek-core2:~# latency -s -T 60
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
@@ -144,7 +144,7 @@ To isolate CPUs on your host system (Ubuntu), you can add the `isolcpus` option 
 
 Check with: `cat /sys/devices/system/cpu/isolated`
 
-```
+```bash
 sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/online 
 0-19
 sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
@@ -152,12 +152,12 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 ```
 
 After taskset on CPU4 with [`qemu_def_5taskset.sh`](../sigmatek/QEMU/qemu_def_5taskset.sh)
-```
+```bash
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    8752   0 start_qemu.sh
    8755   4 qemu-system-x86
 ```
-```
+```bash
 root@sigmatek-core2:~# latency -s -T 60
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
@@ -250,7 +250,7 @@ Do everything in [kernel-patch.md](../sigmatek/latency_reduction/kernel-patch/ke
     - Some kernel threads can run on isolated CPUs because they are not controlled by the normal scheduler. These include the threads you see in your output, such as kthreadd, migration/4, ksoftirqd/4, kworker/4:0-events and others.
     - Interrupts can be handled on isolated CPUs unless they are explicitly redirected with the irqaffinity option.
 
-```
+```bash
 sigma_ibo@pamhal:$ ps -e -o pid,psr,comm | awk '$2 == 4'
       2   4 kthreadd
      18   4 pr/legacy
@@ -288,7 +288,7 @@ sigma_ibo@pamhal:$ ps -e -o pid,psr,comm | awk '$2 == 4'
 ```
 
 The latency is way too unreliable and not realtime.
-```
+```bash
 root@sigmatek-core2:~# latency -s -T 60
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
@@ -375,7 +375,7 @@ RTS|      0.577|      2.428|   5926.355|     928|     0|    00:01:00/00:01:00
 
 
 To see the real-time priorities of all running processes, you can use this command:
-```
+```bash
 ps -eo pid,comm,ni,rtprio,cls
 ```
 
@@ -388,13 +388,12 @@ ssh root@192.168.1.244
 
 
 ## bcc
-```
+```bash
 git clone https://github.com/iovisor/bcc
-
 ```
 
 ## cpufreq
-```
+```bash
 sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 powersave
 powersave

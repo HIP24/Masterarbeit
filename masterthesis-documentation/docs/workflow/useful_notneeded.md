@@ -5,7 +5,7 @@ The -smp option specifies the number of CPUs
 Replace n with the number of CPUs you want to add. For example, if you want to add 4 CPUs, you would use -smp cpus=4.
 
 After making these changes, the specified number of CPUs will be available when you boot your Yocto image with this script. 
-```
+```bash
 exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
 -append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 \
@@ -16,13 +16,13 @@ exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -no-reboot -nographic
 ```
 Check with: `cat /sys/devices/system/cpu/online`
-```
+```bash
 root@sigmatek-core2:~# cat /sys/devices/system/cpu/online
 0-9
 ```
 ## Isolate CPUs with isolcpus
 To use isolcpus in a Yocto image, you need to add it to the kernel command line parameters. In your case, these parameters are specified in the -append option in your QEMU command. Add isolcpus=x,y,z. Replace x,y,z with the CPU cores you want to isolate. For example, if you want to isolate cores 0, 1 and 2, you would use isolcpus=0,1,2.
-```
+```bash
 exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
 -append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 isolcpus=0,1,2" \
@@ -33,7 +33,7 @@ exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -no-reboot -nographic
 ```
 Check with: `cat /sys/devices/system/cpu/isolated`
-```
+```bash
 root@sigmatek-core2:~# cat /sys/devices/system/cpu/isolated
 0-2
 ```
@@ -42,7 +42,7 @@ root@sigmatek-core2:~# cat /sys/devices/system/cpu/isolated
 Start latency and write output to latency_output.txt:
 `latency -T 60 > latency_output.txt 2>&1 &`  
 Get ID of xenomai task: `ps aux | grep latency`
-```
+```bash
 root@sigmatek-core2:~# latency -T 60 > latency_output.txt 2>&1 &
 [1] 557
 root@sigmatek-core2:~# ps aux | grep latency

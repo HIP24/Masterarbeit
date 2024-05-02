@@ -12,7 +12,7 @@
 - [x] trace-cmd and kernelshark with Salamander4 as guest 
 - [x] Used the Xenomai test suite: latency -T 60` 
 - [x] Isolated host CPU for guest
-- [x] Latency got better after [isolation](../general/protocol.md#isolate-cpus-on-host-system)
+- [x] Latency got better after [isolation](../general/protocol.md#isolate-cpus-on-host)
 
 
 ## Missing

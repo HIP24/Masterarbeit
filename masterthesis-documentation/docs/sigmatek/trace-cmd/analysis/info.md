@@ -50,7 +50,7 @@ trace-cmd [COMMAND] ...
 
 
 ## Usage kernelshark
-```
+```bash
 kernelshark # host only  
 kernelshark trace.dat -a trace-Salamander4.dat #host with guest
 ```

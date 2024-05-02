@@ -2,7 +2,7 @@
 
 ## Clone the repo
 The first step is to clone the yocto4/salamander git repo: NOTE: In order to clone all dependent repositories, clone the repo with –recurse-submodules.
-```
+```bash
 git clone --recurse-submodules git@git.sigmatek.at:SIG_SW_BS/salamander/yocto4/salamander.git
 ```
 
@@ -10,13 +10,13 @@ git clone --recurse-submodules git@git.sigmatek.at:SIG_SW_BS/salamander/yocto4/s
 Now you should be left with a subdirectory called salamander.
 
 Note: It is a good idea to do the actual build inside a subdirectory named after the specific architecture (e.g. aarch64). This way the directory structure can be used for multible builds without losing track of the overall picture.
-```
+```bash
 cd salamander
 mkdir core2 && cd core2
 ```
 
 Next we need to initialize the build environment by calling the init.sh script. Example for Salamander:
-```
+```bash
 ../init.sh -b build -m sigmatek-core2 -d salamander
 ```
 Call the init.sh script without parameters to get a full list of options, like how to build Salamander. You can get a full list of options by calling the script without any parameters. There is also stated what to put after -m option for building an arm version. The -b option defines the build output directory (which will be created by the script if it does not exist).
@@ -25,7 +25,7 @@ Call the init.sh script without parameters to get a full list of options, like h
 Now you can run bitbake for building a gecko-image or salamander-image:
 
 To continue the build after an error, start bitbake with -k or –continue.
-```
+```bash
 bitbake salamander-image -k
 ```
 This process can take up to several hours. So you better are not in a hurry.
@@ -41,17 +41,17 @@ If you build locally, you may run into the problem that you system is loaded hea
 
 One solution is to tell yocto to use less threads for the build by adding the following line to ~/some/path/build/conf/local.conf
 
-```
+```bash
 BB_NUMBER_THREADS = "${@oe.utils.cpu_count()//2}"
 ```
 In this example we set the number of threads to half the number of cpu cores on the system. In addition one can also set the number of parallel compilations done by make:
-```
+```bash
 PARALLEL_MAKE = "-j${@oe.utils.cpu_count()//2}"
 ```
 
 ### Add other computers to the mix 
 In `buildconfs/default.conf`
-```
+```bash
 INHERIT += "icecc"
 ICECC_PARALLEL_MAKE = "-j 88"
 ICECC_CARET_WORKAROUND = "1"
@@ -59,7 +59,7 @@ ICECC_DISABLED ??= "0"
 ICECC_RECIPE_DISABLE = ""
 ```
 Patch
-```
+```bash
 cat <<EOF > meta-virtualization/recipes-core/meta/container-dummy-provides.bb
 DUMMYARCH = "container-dummy-provides"
 DUMMYPROVIDES = "\
@@ -76,7 +76,7 @@ Sometimes it happens that servers that hold repos necessary for builds are down.
 
 For this you simply add the following two lines to one of the config files, e.g. site.conf
 
-```
+```bash
 SOURCE_MIRROR_URL ?= "http://osjenkins.lhau.sigaut.org:8080/userContent/downloads/"
 INHERIT += "own-mirrors"
 ```

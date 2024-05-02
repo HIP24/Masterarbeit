@@ -33,7 +33,7 @@ CONFIG_HIST_TRIGGERS=y
 [VirtioVsock](https://wiki.qemu.org/Features/VirtioVsock)
 
 ## bitbake 
-```
+```bash
 ../init.sh -b build -m sigmatek-core2 -d salamander
 bitbake salamander-image -k
 ```
@@ -44,7 +44,7 @@ Add
 `-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \`  
 `-device vhost-vsock-pci,guest-cid=3,id=vsock0 \`
 
-```
+```bash
 #!/bin/sh
 
 if  [ ! -d drive-c/ ]; then
@@ -67,7 +67,7 @@ exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 When you run bitbake xxx, the output of the build process, including any generated .ipk files, is typically stored in the tmp/deploy/ipk/ directory within your build directory1. The exact location can depend on your configuration and the specific recipe you’re building.
 
 The .ipk files are package files used by opkg, a lightweight package management system. These files are created when you build a recipe that includes packaging steps.
-```
+```bash
 cd ~/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64$ scp trace-cmd_2.9.1-r0_core2-64.ipk root@10.30.248.137:/home/root/bb
 opkg install trace-cmd_2.9.1-r0_core2-64.ipk
 ```
@@ -75,7 +75,7 @@ opkg install trace-cmd_2.9.1-r0_core2-64.ipk
 ## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
 
 
-```
+```bash
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -96,7 +96,7 @@ It seems like the SSH host key for the server at 10.30.248.137 has changed, whic
 
 You can resolve this issue by removing the old host key from your known_hosts file. The offending key is on line 12 of the file. You can remove it with the following command:
 
-```
+```bash
 ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "10.30.248.137" # Salzburg
 ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "192.168.1.78" # Wien"
 

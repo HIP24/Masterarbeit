@@ -1,5 +1,5 @@
 ## Without VAPIC
-```
+```bash
 root@sigma-ibo:/home/sigma_ibo# kvmexit 10
 Display kvm exit reasons and statistics for all threads after sleeping 100 secs.
 PID      TID      KVM_EXIT_REASON                     COUNT
@@ -18,7 +18,7 @@ Total: 191 730
 
 ## With enlightment
 -cpu host,hv-passthrough \
-```
+```bash
 Display kvm exit reasons and statistics for all threads after sleeping 100 secs.
 PID      TID      KVM_EXIT_REASON                     COUNT
 158466   158474   EXTERNAL_INTERRUPT                  997     
@@ -35,7 +35,7 @@ Total: 204 606
 
 ## With hlt
 -smp cores=1,threads=1 \
-```
+```bash
 Display kvm exit reasons and statistics for all threads after sleeping 100 secs.
 PID      TID      KVM_EXIT_REASON                     COUNT
 162578   162586   EXTERNAL_INTERRUPT                  1524    
@@ -52,7 +52,7 @@ Total: 204 606
 
 ## kvm off
 -cpu host,kvm=off \
-```
+```bash
 Display kvm exit reasons and statistics for all threads after sleeping 100 secs.
 PID      TID      KVM_EXIT_REASON                     COUNT
 164064   164072   EXTERNAL_INTERRUPT                  1066    
