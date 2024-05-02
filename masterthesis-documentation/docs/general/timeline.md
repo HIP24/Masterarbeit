@@ -52,9 +52,13 @@
 | 16.04.2024 | Updated analyze_trace.py, include in thesis |
 | 17.04.2024 | Describe host and guest tasks |
 | 18.04.2024 | Read 4 papers |
-| 19.04.2024 | Read x papers |
+| 19.04.2024 | Read 5 papers |
 | 22.04.2024 | Boot ubuntu anew |
 | 23.04.2024 | Rebuild workspace |
 | 24.04.2024 | Rebuild workspace, problem_solution |
 | 25.04.2024 | Rebuild workspace, table IRQ CPU |
 | 26.04.2024 | [compare.md](../sigmatek/trace-cmd/analysis/test/compare.md), [ps.sh](../tools/ps/ps-e.sh) |
+| 29.04.2024 | powersave, balanced, performance |
+| 30.04.2024 | merge and failed_reason |
+| 01.05.2024 | Feiertag |
+| 02.05.2024 |  |
