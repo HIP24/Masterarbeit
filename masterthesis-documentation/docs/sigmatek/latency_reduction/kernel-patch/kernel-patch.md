@@ -13,19 +13,19 @@ sudo apt-get purge linux-image-<uname-r>
 ```
 
 Kernel Basic  
-- [Kernel Basics](https://www.youtube.com/watch?v=rTcnTOXf_jM)  
-- [How to remove an old Linux kernel](https://www.youtube.com/watch?v=KIk0GqtzDsc)  
-- [How to Remove Old Kernel in Kali Linux](https://www.youtube.com/watch?v=wOgxZG1imCA)  
+- ✅ [Kernel Basics](https://www.youtube.com/watch?v=rTcnTOXf_jM)  
+- ✅ [How to remove an old Linux kernel](https://www.youtube.com/watch?v=KIk0GqtzDsc)  
+- ✅ [How to Remove Old Kernel in Kali Linux](https://www.youtube.com/watch?v=wOgxZG1imCA)  
 
 Real-time kernel  
 - [Introduction to Realtime Linux](https://www.youtube.com/watch?v=BKkX9WASfpI&list=PLmDQKQxAsgbak5aWa6WDKPvZeLcRKTUDE)  
-- [An introduction to real-time Linux](https://www.youtube.com/watch?v=-wAo6bWh4jM)  
-- [Kernel Recipes 2016 - Understanding a Real-Time System (more than just a kernel) - Steven Rostedt](https://www.youtube.com/watch?v=w3yT8zJe0Uw&list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU)
-- [Ubuntu Pro Realtime Kernel Performance Comparison (2023)](https://www.youtube.com/watch?v=sUDMG6ey9d0)  
-- [2. Kernel Configuration - Building a Custom Linux Kernel](https://www.youtube.com/watch?v=T5SZERvLriA)
+- ✅ [An introduction to real-time Linux](https://www.youtube.com/watch?v=-wAo6bWh4jM)  
+- [Kernel Recipes 2016 - Understanding a Real-Time System (more than just a kernel) - Steven Rostedt](https://www.youtube.com/watch?v=w3yT8zJe0Uw&list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU)  
+- ✅ [Ubuntu Pro Realtime Kernel Performance Comparison (2023)](https://www.youtube.com/watch?v=sUDMG6ey9d0)  
+- [2. Kernel Configuration - Building a Custom Linux Kernel](https://www.youtube.com/watch?v=T5SZERvLriA)  
 
 Patch  
-- [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
+- ✅ [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
 
 ## Kernel Patch Proceedure
 Download [Linux kernel and patch](https://mirrors.edge.kernel.org/pub/linux/kernel/)  
