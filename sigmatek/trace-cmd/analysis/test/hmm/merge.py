@@ -1,4 +1,3 @@
-import sys
 import re
 
 def merge_files(file_a, file_b, output_file):

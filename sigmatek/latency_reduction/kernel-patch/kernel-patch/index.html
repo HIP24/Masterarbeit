@@ -715,62 +715,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#proceedure" class="md-nav__link">
+  <a href="#kernel-patch-proceedure" class="md-nav__link">
     <span class="md-ellipsis">
-      Proceedure
+      Kernel Patch Proceedure
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#problem-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem 1
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#solution-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solution 1
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#problem-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem 2
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#solution-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solution 2
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2794,62 +2743,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#proceedure" class="md-nav__link">
+  <a href="#kernel-patch-proceedure" class="md-nav__link">
     <span class="md-ellipsis">
-      Proceedure
+      Kernel Patch Proceedure
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#problem-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem 1
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#solution-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solution 1
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#problem-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem 2
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#solution-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Solution 2
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2878,9 +2776,27 @@
 
 
 <h1 id="linux-kernel-patch">Linux kernel patch<a class="headerlink" href="#linux-kernel-patch" title="Permanent link">&para;</a></h1>
-<p><a href="https://www.kernel.org/">The Linux Kernel Archives</a><br />
-Youtube: <a href="https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I">Applying the Realtime patch to the Linux kernel</a>  </p>
-<h2 id="proceedure">Proceedure<a class="headerlink" href="#proceedure" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.kernel.org/">The Linux Kernel Archives</a>  </p>
+<p>See all kernels on system
+<div class="highlight"><pre><span></span><code>dpkg --get-selections | grep linux-image
+</code></pre></div>
+Remove unused kernel
+<div class="highlight"><pre><span></span><code>sudo apt remove --purge linux-image-&lt;uname-r&gt;
+sudo apt-get purge linux-image-&lt;uname-r&gt;
+</code></pre></div></p>
+<p>Kernel Basic
+- <a href="https://www.youtube.com/watch?v=rTcnTOXf_jM">Kernel Basics</a><br />
+- <a href="https://www.youtube.com/watch?v=KIk0GqtzDsc">How to remove an old Linux kernel</a><br />
+- <a href="https://www.youtube.com/watch?v=wOgxZG1imCA">How to Remove Old Kernel in Kali Linux</a>  </p>
+<p>Real-time kernel 
+- <a href="https://www.youtube.com/watch?v=BKkX9WASfpI&amp;list=PLmDQKQxAsgbak5aWa6WDKPvZeLcRKTUDE">Introduction to Realtime Linux</a><br />
+- <a href="https://www.youtube.com/watch?v=-wAo6bWh4jM">An introduction to real-time Linux</a><br />
+- <a href="https://www.youtube.com/watch?v=w3yT8zJe0Uw&amp;list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU">Kernel Recipes 2016 - Understanding a Real-Time System (more than just a kernel) - Steven Rostedt</a>
+- <a href="https://www.youtube.com/watch?v=sUDMG6ey9d0">Ubuntu Pro Realtime Kernel Performance Comparison (2023)</a><br />
+- <a href="https://www.youtube.com/watch?v=T5SZERvLriA">2. Kernel Configuration - Building a Custom Linux Kernel</a></p>
+<p>Patch
+- <a href="https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I">Applying the Realtime patch to the Linux kernel</a>  </p>
+<h2 id="kernel-patch-proceedure">Kernel Patch Proceedure<a class="headerlink" href="#kernel-patch-proceedure" title="Permanent link">&para;</a></h2>
 <p>Download <a href="https://mirrors.edge.kernel.org/pub/linux/kernel/">Linux kernel and patch</a><br />
 Gunzip the patch
 <div class="highlight"><pre><span></span><code>gunzip patch-*
@@ -2907,38 +2823,6 @@ This is the output
 <div class="highlight"><pre><span></span><code>$ uname -a
 Linux pamhal 6.8.0-rt7 #1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86_64 x86_64 GNU/Linux
 </code></pre></div></p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="problem-1">Problem 1<a class="headerlink" href="#problem-1" title="Permanent link">&para;</a></h3>
-<p>Fully Preemptible Kernel (RT) not showing up in <a href="../no_fully_rt.png">menuconfig</a>  </p>
-<h3 id="solution-1">Solution 1<a class="headerlink" href="#solution-1" title="Permanent link">&para;</a></h3>
-<p>1) Run <code>make mrproper</code><br />
-2) Then run <code>make menuconfig</code>  </p>
-<p>This is the <a href="../fully_rt.png">output</a><br />
-<a href="https://unix.stackexchange.com/questions/616621/real-time-patch-on-linux-5-9-1-does-not-show-fully-preemptible-option-for-arm64">Source</a></p>
-<hr>
-<p>OR </p>
-<hr>
-
-<p>In <code>arch/Kconfig</code>, search for the entry: <code>ARCH_SUPPORTS_RT</code>. </p>
-<p>Change the entry from</p>
-<p><div class="highlight"><pre><span></span><code>config ARCH_SUPPORTS_RT
-    bool
-</code></pre></div>
-to
-<div class="highlight"><pre><span></span><code>config ARCH_SUPPORTS_RT
-    def_bool y
-</code></pre></div>
-When you now also have the <code>EXPERT</code> (General Setup -&gt; Embedded System) flag enabled you should see the option <code>Fully Preemptible Kernel (Real-Time)</code> under General Setup -&gt; Preemption Model.</p>
-<p><a href="https://unix.stackexchange.com/questions/582075/trouble-selecting-fully-preemptible-kernel-real-time-when-configuring-compil">Source</a></p>
-<h3 id="problem-2">Problem 2<a class="headerlink" href="#problem-2" title="Permanent link">&para;</a></h3>
-<p>No rule to make target 'debian/canonical-certs.pem'</p>
-<h3 id="solution-2">Solution 2<a class="headerlink" href="#solution-2" title="Permanent link">&para;</a></h3>
-<p>If you get the certificate error, execute the following in the root of the kernel source
-<div class="highlight"><pre><span></span><code>scripts/config --disable SYSTEM_TRUSTED_KEYS
-scripts/config --disable SYSTEM_REVOCATION_KEYS
-</code></pre></div>
-Then run make again and it should work!<br />
-<a href="https://stackoverflow.com/questions/67670169/compiling-kernel-gives-error-no-rule-to-make-target-debian-certs-debian-uefi-ce">Source</a></p>
 <h2 id="useful-stuff">Useful stuff<a class="headerlink" href="#useful-stuff" title="Permanent link">&para;</a></h2>
 <p><a href="https://null-src.com/posts/qemu-optimization/post.php">qemu-optimization</a></p>
 

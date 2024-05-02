@@ -2715,6 +2715,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kernel-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel Patch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel Patch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3134,6 +3194,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#kernel-patch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel Patch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel Patch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3272,6 +3392,39 @@ qemu-system-x86_64: -netdev bridge,id=e1000,br=nm-bridge: bridge helper failed
 <div class="highlight"><pre><span></span><code>sudo mkdir /etc/qemu &amp;&amp; cd /etc/qemu 
 echo &quot;allow nm-bridge&quot; | sudo tee bridge.conf &gt; /dev/null
 </code></pre></div>
+<h2 id="kernel-patch">Kernel Patch<a class="headerlink" href="#kernel-patch" title="Permanent link">&para;</a></h2>
+<h3 id="problem-1_3">Problem 1<a class="headerlink" href="#problem-1_3" title="Permanent link">&para;</a></h3>
+<p>Fully Preemptible Kernel (RT) not showing up in <a href="no_fully_rt.png">menuconfig</a>  </p>
+<h3 id="solution-1_2">Solution 1<a class="headerlink" href="#solution-1_2" title="Permanent link">&para;</a></h3>
+<p>1) Run <code>make mrproper</code><br />
+2) Then run <code>make menuconfig</code>  </p>
+<p>This is the <a href="fully_rt.png">output</a><br />
+<a href="https://unix.stackexchange.com/questions/616621/real-time-patch-on-linux-5-9-1-does-not-show-fully-preemptible-option-for-arm64">Source</a></p>
+<hr>
+<p>OR </p>
+<hr>
+
+<p>In <code>arch/Kconfig</code>, search for the entry: <code>ARCH_SUPPORTS_RT</code>. </p>
+<p>Change the entry from</p>
+<p><div class="highlight"><pre><span></span><code>config ARCH_SUPPORTS_RT
+    bool
+</code></pre></div>
+to
+<div class="highlight"><pre><span></span><code>config ARCH_SUPPORTS_RT
+    def_bool y
+</code></pre></div>
+When you now also have the <code>EXPERT</code> (General Setup -&gt; Embedded System) flag enabled you should see the option <code>Fully Preemptible Kernel (Real-Time)</code> under General Setup -&gt; Preemption Model.</p>
+<p><a href="https://unix.stackexchange.com/questions/582075/trouble-selecting-fully-preemptible-kernel-real-time-when-configuring-compil">Source</a></p>
+<h3 id="problem-2_3">Problem 2<a class="headerlink" href="#problem-2_3" title="Permanent link">&para;</a></h3>
+<p>No rule to make target 'debian/canonical-certs.pem'</p>
+<h3 id="solution-2_2">Solution 2<a class="headerlink" href="#solution-2_2" title="Permanent link">&para;</a></h3>
+<p>If you get the certificate error, execute the following in the root of the kernel source
+<div class="highlight"><pre><span></span><code>scripts/config --disable SYSTEM_TRUSTED_KEYS
+scripts/config --disable SYSTEM_REVOCATION_KEYS
+</code></pre></div>
+Then run make again and it should work!<br />
+<a href="https://stackoverflow.com/questions/67670169/compiling-kernel-gives-error-no-rule-to-make-target-debian-certs-debian-uefi-ce">Source</a></p>
+<h2 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 
 
 

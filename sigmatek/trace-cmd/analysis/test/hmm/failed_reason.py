@@ -6,11 +6,14 @@ def count_events(file_name, search_string):
     with open(file_name, 'r') as f:
         lines = f.readlines()
 
+    # Convert search string to lowercase
+    search_string = search_string.lower()
+
     # Regular expression pattern for the expected line format
     pattern = re.compile(r'.*:\s+(\S+):.*' + re.escape(search_string) + r'.*')
 
     # Extract event names from lines that contain the search string
-    events = [pattern.match(line).group(1) for line in lines if search_string in line and pattern.match(line)]
+    events = [pattern.match(line.lower()).group(1) for line in lines if search_string in line.lower() and pattern.match(line.lower())]
 
     # Count the occurrences of each event
     event_counts = Counter(events)
@@ -20,4 +23,4 @@ def count_events(file_name, search_string):
         print(f'Event: {event.rstrip(":")}, Count: {count}')
 
 # Call the function with your file path and search string
-count_events('host_guest_merged.txt', '[FAILED TO PARSE]')
+count_events('host_guest_merged.txt','reason' )
