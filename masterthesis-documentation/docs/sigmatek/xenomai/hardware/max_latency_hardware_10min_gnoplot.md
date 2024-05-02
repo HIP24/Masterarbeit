@@ -1,5 +1,5 @@
 # gnuplot hardware
-```
+```bash
 # Calculate statistics
 stats 'max_latency_hardware_10min.txt' using 2 nooutput
 

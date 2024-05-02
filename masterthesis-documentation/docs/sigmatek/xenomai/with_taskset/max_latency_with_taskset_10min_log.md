@@ -1,6 +1,6 @@
 # Max Latency with taskset 
 
-```
+```bash
 root@sigmatek-core2:~# latency -h -s -T 600 -g max_latency_with_taskset_10min.txt
 == Sampling period: 100 us
 == Test mode: periodic user-mode task
@@ -926,3 +926,4 @@ HSS|    avg|   5999885|      3.398|      1.251
 HSS|    max|       599|     74.015|     26.590
 ---|-----------|-----------|-----------|--------|------|-------------------------
 RTS|      0.969|      3.948|    457.545|      94|     0|    00:10:01/00:10:00
+```

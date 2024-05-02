@@ -1,5 +1,5 @@
 ## kvm_exit_default
-```
+```bash
 Total exits: 14132.
 'APIC_WRITE': 8445 times
 'HLT': 3778 times

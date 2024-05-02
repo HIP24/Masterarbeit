@@ -1,5 +1,5 @@
 ## kvm_exit
-```
+```bash
 Total exits: 1333.
 'MSR_WRITE': 820 times
 'APIC_WRITE': 0 times

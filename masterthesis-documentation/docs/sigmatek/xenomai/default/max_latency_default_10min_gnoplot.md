@@ -1,5 +1,5 @@
 # gnuplot default
-```
+```bash
 # Calculate statistics
 stats 'max_latency_default_10min.txt' using 2 nooutput
 
