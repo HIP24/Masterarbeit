@@ -2778,11 +2778,11 @@
 <h1 id="linux-kernel-patch">Linux kernel patch<a class="headerlink" href="#linux-kernel-patch" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.kernel.org/">The Linux Kernel Archives</a>  </p>
 <p>See all kernels on system
-<div class="highlight"><pre><span></span><code>dpkg --get-selections | grep linux-image
+<div class="highlight"><pre><span></span><code>dpkg<span class="w"> </span>--get-selections<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>linux-image
 </code></pre></div>
 Remove unused kernel
-<div class="highlight"><pre><span></span><code>sudo apt remove --purge linux-image-&lt;uname-r&gt;
-sudo apt-get purge linux-image-&lt;uname-r&gt;
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>--purge<span class="w"> </span>linux-image-&lt;uname-r&gt;
+sudo<span class="w"> </span>apt-get<span class="w"> </span>purge<span class="w"> </span>linux-image-&lt;uname-r&gt;
 </code></pre></div></p>
 <p>Kernel Basic<br />
 - <a href="https://www.youtube.com/watch?v=rTcnTOXf_jM">Kernel Basics</a><br />
@@ -2799,29 +2799,29 @@ sudo apt-get purge linux-image-&lt;uname-r&gt;
 <h2 id="kernel-patch-proceedure">Kernel Patch Proceedure<a class="headerlink" href="#kernel-patch-proceedure" title="Permanent link">&para;</a></h2>
 <p>Download <a href="https://mirrors.edge.kernel.org/pub/linux/kernel/">Linux kernel and patch</a><br />
 Gunzip the patch
-<div class="highlight"><pre><span></span><code>gunzip patch-*
+<div class="highlight"><pre><span></span><code>gunzip<span class="w"> </span>patch-*
 </code></pre></div>
 Patch the kernel source code
-<div class="highlight"><pre><span></span><code>patch -p1 &lt; ../../rt_linux/patch-*
+<div class="highlight"><pre><span></span><code>patch<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../../rt_linux/patch-*
 </code></pre></div>
 Customize the configuration
-<div class="highlight"><pre><span></span><code>sudo make menuconfig
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span>menuconfig
 </code></pre></div>
 Compile the kernel by using multiple cores. $(nproc) returns the number of processing units available. 
-<div class="highlight"><pre><span></span><code>make -j$(nproc)
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
 </code></pre></div>
 Install the kernel and its modules to the appropriate system directories.
-<div class="highlight"><pre><span></span><code>sudo make modules_install install 
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span>modules_install<span class="w"> </span>install<span class="w"> </span>
 </code></pre></div>
 Update the bootloader
-<div class="highlight"><pre><span></span><code>sudo update-grub
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>update-grub
 </code></pre></div>
 Reboot the system
-<div class="highlight"><pre><span></span><code>sudo reboot 
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>reboot<span class="w"> </span>
 </code></pre></div>
 This is the output 
-<div class="highlight"><pre><span></span><code>$ uname -a
-Linux pamhal 6.8.0-rt7 #1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86_64 x86_64 GNU/Linux
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>uname<span class="w"> </span>-a
+Linux<span class="w"> </span>pamhal<span class="w"> </span><span class="m">6</span>.8.0-rt7<span class="w"> </span><span class="c1">#1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86_64 x86_64 GNU/Linux</span>
 </code></pre></div></p>
 <h2 id="useful-stuff">Useful stuff<a class="headerlink" href="#useful-stuff" title="Permanent link">&para;</a></h2>
 <p><a href="https://null-src.com/posts/qemu-optimization/post.php">qemu-optimization</a></p>

@@ -2702,11 +2702,11 @@
 
 
 <h1 id="gnuplot-with-taskset">gnuplot with taskset<a class="headerlink" href="#gnuplot-with-taskset" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code># Calculate statistics
-stats &#39;max_latency_with_taskset_10min.txt&#39; using 2 nooutput
+<div class="highlight"><pre><span></span><code><span class="c1"># Calculate statistics</span>
+stats<span class="w"> </span><span class="s1">&#39;max_latency_with_taskset_10min.txt&#39;</span><span class="w"> </span>using<span class="w"> </span><span class="m">2</span><span class="w"> </span>nooutput
 
-# Plot the data
-plot &#39;max_latency_with_taskset_10min.txt&#39; using 1:2 with linespoints title &#39;Latency Histogram&#39;
+<span class="c1"># Plot the data</span>
+plot<span class="w"> </span><span class="s1">&#39;max_latency_with_taskset_10min.txt&#39;</span><span class="w"> </span>using<span class="w"> </span><span class="m">1</span>:2<span class="w"> </span>with<span class="w"> </span>linespoints<span class="w"> </span>title<span class="w"> </span><span class="s1">&#39;Latency Histogram&#39;</span>
 </code></pre></div>
 <p><img alt="gnuplot_max_latency_with_taskset.png.png" src="../gnuplot_max_latency_with_taskset.png" /></p>
 

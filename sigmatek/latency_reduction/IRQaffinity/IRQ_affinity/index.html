@@ -2988,188 +2988,188 @@
   <h1>IRQ affinity</h1>
 
 <h2 id="select-best-cpu-for-qemu">Select best CPU for QEMU<a class="headerlink" href="#select-best-cpu-for-qemu" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sigma_ibo@pamhal:$ cat /sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_max_freq
-5000000
-5000000
-5000000
-4000000
-4000000
-4000000
-4000000
-4000000
-4000000
-4000000
-4000000
-5000000
-5000000
-5000000
-5200000
-5200000
-5200000
-5200000 -&gt; 17
-5000000
-5000000
+<div class="highlight"><pre><span></span><code>sigma_ibo@pamhal:$<span class="w"> </span>cat<span class="w"> </span>/sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_max_freq
+<span class="m">5000000</span>
+<span class="m">5000000</span>
+<span class="m">5000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">4000000</span>
+<span class="m">5000000</span>
+<span class="m">5000000</span>
+<span class="m">5000000</span>
+<span class="m">5200000</span>
+<span class="m">5200000</span>
+<span class="m">5200000</span>
+<span class="m">5200000</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="m">17</span>
+<span class="m">5000000</span>
+<span class="m">5000000</span>
 </code></pre></div>
 <h2 id="check-which-irqs-use-cpu-x">Check which IRQs use CPU x<a class="headerlink" href="#check-which-irqs-use-cpu-x" title="Permanent link">&para;</a></h2>
 <p><a href="../check_smp_affinity.sh">check_smp_affinity.sh</a>:
-<div class="highlight"><pre><span></span><code>./check_smp_affinity.sh 19
-CPU 19 IRQ affinity:
-0
-2
-3
-4
-5
-6
-7
-10
-11
-13
-15
-131
-172
-188
-189
-192
+<div class="highlight"><pre><span></span><code>./check_smp_affinity.sh<span class="w"> </span><span class="m">19</span>
+CPU<span class="w"> </span><span class="m">19</span><span class="w"> </span>IRQ<span class="w"> </span>affinity:
+<span class="m">0</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+<span class="m">7</span>
+<span class="m">10</span>
+<span class="m">11</span>
+<span class="m">13</span>
+<span class="m">15</span>
+<span class="m">131</span>
+<span class="m">172</span>
+<span class="m">188</span>
+<span class="m">189</span>
+<span class="m">192</span>
 </code></pre></div></p>
 <h2 id="check-the-mask-of-irq">Check the mask of IRQ<a class="headerlink" href="#check-the-mask-of-irq" title="Permanent link">&para;</a></h2>
 <p>The mask for IRQ0 for example would be: 
-<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity
 fffff
 </code></pre></div></p>
 <h2 id="change-permissions-for-the-irqs">Change permissions for the IRQs<a class="headerlink" href="#change-permissions-for-the-irqs" title="Permanent link">&para;</a></h2>
 <p>In order to change the mask, first give permissions:
-<div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/*/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/*/smp_affinity
 </code></pre></div></p>
 <h2 id="change-mask-of-irq">Change Mask of IRQ<a class="headerlink" href="#change-mask-of-irq" title="Permanent link">&para;</a></h2>
 <p>Then change the mask with 
-<div class="highlight"><pre><span></span><code>sudo echo 7ffff &gt; /proc/irq/0/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/0/smp_affinity
 </code></pre></div></p>
 <h2 id="check-again-the-changed-mask-of-irq">Check again the changed mask of IRQ<a class="headerlink" href="#check-again-the-changed-mask-of-irq" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity
 dffff
 </code></pre></div>
 <h2 id="check-again-which-irqs-use-cpu-19">Check again which IRQs use CPU 19<a class="headerlink" href="#check-again-which-irqs-use-cpu-19" title="Permanent link">&para;</a></h2>
 <p>CPU19 is being used by IRQs with <a href="../check_smp_affinity.sh">check_smp_affinity.sh</a> (IRQ0 is not listed anymore): 
-<div class="highlight"><pre><span></span><code>0
-2
-3
-4
-5
-6
-7
-10
-11
-13
-15
-130
-172
-188
-189
-191
+<div class="highlight"><pre><span></span><code><span class="m">0</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+<span class="m">7</span>
+<span class="m">10</span>
+<span class="m">11</span>
+<span class="m">13</span>
+<span class="m">15</span>
+<span class="m">130</span>
+<span class="m">172</span>
+<span class="m">188</span>
+<span class="m">189</span>
+<span class="m">191</span>
 </code></pre></div></p>
 <h2 id="batch-change-permissions">Batch change permissions<a class="headerlink" href="#batch-change-permissions" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo chmod 777 /proc/irq/0/smp_affinity
-sudo chmod 777 /proc/irq/2/smp_affinity
-sudo chmod 777 /proc/irq/3/smp_affinity
-sudo chmod 777 /proc/irq/4/smp_affinity
-sudo chmod 777 /proc/irq/5/smp_affinity
-sudo chmod 777 /proc/irq/6/smp_affinity
-sudo chmod 777 /proc/irq/7/smp_affinity
-sudo chmod 777 /proc/irq/10/smp_affinity
-sudo chmod 777 /proc/irq/11/smp_affinity
-sudo chmod 777 /proc/irq/13/smp_affinity
-sudo chmod 777 /proc/irq/15/smp_affinity
-sudo chmod 777 /proc/irq/130/smp_affinity
-sudo chmod 777 /proc/irq/172/smp_affinity
-sudo chmod 777 /proc/irq/188/smp_affinity
-sudo chmod 777 /proc/irq/189/smp_affinity
-sudo chmod 777 /proc/irq/191/smp_affinity
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/0/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/2/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/3/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/4/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/5/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/6/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/7/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/10/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/11/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/13/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/15/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/130/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/172/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/188/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/189/smp_affinity
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/191/smp_affinity
 </code></pre></div>
 <h2 id="batch-cat-irq-smp_affinity">Batch cat IRQ smp_affinity<a class="headerlink" href="#batch-cat-irq-smp_affinity" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity   # -&gt; fffff
-cat /proc/irq/2/smp_affinity   # -&gt; fffff             
-cat /proc/irq/3/smp_affinity   # -&gt; fffff             
-cat /proc/irq/4/smp_affinity   # -&gt; fffff            
-cat /proc/irq/5/smp_affinity   # -&gt; fffff             
-cat /proc/irq/6/smp_affinity   # -&gt; fffff            
-cat /proc/irq/7/smp_affinity   # -&gt; fffff            
-cat /proc/irq/10/smp_affinity  # -&gt; fffff              
-cat /proc/irq/11/smp_affinity  # -&gt; fffff            
-cat /proc/irq/13/smp_affinity  # -&gt; fffff            
-cat /proc/irq/15/smp_affinity  # -&gt; fffff              
-cat /proc/irq/132/smp_affinity # -&gt; fffff              
-cat /proc/irq/171/smp_affinity # -&gt; 80000              
-cat /proc/irq/188/smp_affinity # -&gt; 80000              
-cat /proc/irq/189/smp_affinity # -&gt; fffff              
-cat /proc/irq/192/smp_affinity # -&gt; fffff              
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff</span>
+cat<span class="w"> </span>/proc/irq/2/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff             </span>
+cat<span class="w"> </span>/proc/irq/3/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff             </span>
+cat<span class="w"> </span>/proc/irq/4/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff            </span>
+cat<span class="w"> </span>/proc/irq/5/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff             </span>
+cat<span class="w"> </span>/proc/irq/6/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff            </span>
+cat<span class="w"> </span>/proc/irq/7/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff            </span>
+cat<span class="w"> </span>/proc/irq/10/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff              </span>
+cat<span class="w"> </span>/proc/irq/11/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff            </span>
+cat<span class="w"> </span>/proc/irq/13/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff            </span>
+cat<span class="w"> </span>/proc/irq/15/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff              </span>
+cat<span class="w"> </span>/proc/irq/132/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
+cat<span class="w"> </span>/proc/irq/171/smp_affinity<span class="w"> </span><span class="c1"># -&gt; 80000              </span>
+cat<span class="w"> </span>/proc/irq/188/smp_affinity<span class="w"> </span><span class="c1"># -&gt; 80000              </span>
+cat<span class="w"> </span>/proc/irq/189/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
+cat<span class="w"> </span>/proc/irq/192/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
 </code></pre></div>
 <h2 id="batch-change-irq-smp_affinity-of-fffff">Batch change IRQ smp_affinity of fffff<a class="headerlink" href="#batch-change-irq-smp_affinity-of-fffff" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo echo 7ffff &gt; /proc/irq/0/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/2/smp_affinity  # stays fffff
-sudo echo 7ffff &gt; /proc/irq/3/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/4/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/5/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/6/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/7/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/10/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/11/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/13/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/15/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/130/smp_affinity
-sudo echo 7ffff &gt; /proc/irq/172/smp_affinity    # stays 80000
-sudo echo 7ffff &gt; /proc/irq/188/smp_affinity    # stays 80000
-sudo echo 7ffff &gt; /proc/irq/189/smp_affinity    # stays fffff
-sudo echo 7ffff &gt; /proc/irq/191/smp_affinity    # stays fffff
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/0/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/2/smp_affinity<span class="w">  </span><span class="c1"># stays fffff</span>
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/3/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/4/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/5/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/6/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/7/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/10/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/11/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/13/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/15/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/130/smp_affinity
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/172/smp_affinity<span class="w">    </span><span class="c1"># stays 80000</span>
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/188/smp_affinity<span class="w">    </span><span class="c1"># stays 80000</span>
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/189/smp_affinity<span class="w">    </span><span class="c1"># stays fffff</span>
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/191/smp_affinity<span class="w">    </span><span class="c1"># stays fffff</span>
 </code></pre></div>
 <h2 id="could-not-be-changed">COULD NOT BE CHANGED<a class="headerlink" href="#could-not-be-changed" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>2
-172
-188
-189
-191
+<div class="highlight"><pre><span></span><code><span class="m">2</span>
+<span class="m">172</span>
+<span class="m">188</span>
+<span class="m">189</span>
+<span class="m">191</span>
 </code></pre></div>
 <h2 id="values">VALUES<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/2/smp_affinity    #-&gt; fffff
-cat /proc/irq/172/smp_affinity  #-&gt; 80000
-cat /proc/irq/188/smp_affinity  #-&gt; 80000
-cat /proc/irq/189/smp_affinity  #-&gt; fffff
-cat /proc/irq/191/smp_affinity  #-&gt; fffff
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/2/smp_affinity<span class="w">    </span><span class="c1">#-&gt; fffff</span>
+cat<span class="w"> </span>/proc/irq/172/smp_affinity<span class="w">  </span><span class="c1">#-&gt; 80000</span>
+cat<span class="w"> </span>/proc/irq/188/smp_affinity<span class="w">  </span><span class="c1">#-&gt; 80000</span>
+cat<span class="w"> </span>/proc/irq/189/smp_affinity<span class="w">  </span><span class="c1">#-&gt; fffff</span>
+cat<span class="w"> </span>/proc/irq/191/smp_affinity<span class="w">  </span><span class="c1">#-&gt; fffff</span>
 </code></pre></div>
 <h2 id="batch-check-permissions">Batch check permissions<a class="headerlink" href="#batch-check-permissions" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>ll /proc/irq/0/smp_affinity
-ll /proc/irq/2/smp_affinity
-ll /proc/irq/3/smp_affinity
-ll /proc/irq/4/smp_affinity
-ll /proc/irq/5/smp_affinity
-ll /proc/irq/6/smp_affinity
-ll /proc/irq/7/smp_affinity
-ll /proc/irq/10/smp_affinity
-ll /proc/irq/11/smp_affinity
-ll /proc/irq/13/smp_affinity
-ll /proc/irq/15/smp_affinity
-ll /proc/irq/131/smp_affinity
-ll /proc/irq/172/smp_affinity
-ll /proc/irq/188/smp_affinity
-ll /proc/irq/189/smp_affinity
-ll /proc/irq/192/smp_affinity
+<div class="highlight"><pre><span></span><code>ll<span class="w"> </span>/proc/irq/0/smp_affinity
+ll<span class="w"> </span>/proc/irq/2/smp_affinity
+ll<span class="w"> </span>/proc/irq/3/smp_affinity
+ll<span class="w"> </span>/proc/irq/4/smp_affinity
+ll<span class="w"> </span>/proc/irq/5/smp_affinity
+ll<span class="w"> </span>/proc/irq/6/smp_affinity
+ll<span class="w"> </span>/proc/irq/7/smp_affinity
+ll<span class="w"> </span>/proc/irq/10/smp_affinity
+ll<span class="w"> </span>/proc/irq/11/smp_affinity
+ll<span class="w"> </span>/proc/irq/13/smp_affinity
+ll<span class="w"> </span>/proc/irq/15/smp_affinity
+ll<span class="w"> </span>/proc/irq/131/smp_affinity
+ll<span class="w"> </span>/proc/irq/172/smp_affinity
+ll<span class="w"> </span>/proc/irq/188/smp_affinity
+ll<span class="w"> </span>/proc/irq/189/smp_affinity
+ll<span class="w"> </span>/proc/irq/192/smp_affinity
 </code></pre></div>
 <h2 id="batch-check-values">Batch check values<a class="headerlink" href="#batch-check-values" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat /proc/irq/0/smp_affinity
-cat /proc/irq/2/smp_affinity
-cat /proc/irq/3/smp_affinity
-cat /proc/irq/4/smp_affinity
-cat /proc/irq/5/smp_affinity
-cat /proc/irq/6/smp_affinity
-cat /proc/irq/7/smp_affinity
-cat /proc/irq/10/smp_affinity
-cat /proc/irq/11/smp_affinity
-cat /proc/irq/13/smp_affinity
-cat /proc/irq/15/smp_affinity
-cat /proc/irq/130/smp_affinity
-cat /proc/irq/172/smp_affinity
-cat /proc/irq/188/smp_affinity
-cat /proc/irq/189/smp_affinity
-cat /proc/irq/191/smp_affinity
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity
+cat<span class="w"> </span>/proc/irq/2/smp_affinity
+cat<span class="w"> </span>/proc/irq/3/smp_affinity
+cat<span class="w"> </span>/proc/irq/4/smp_affinity
+cat<span class="w"> </span>/proc/irq/5/smp_affinity
+cat<span class="w"> </span>/proc/irq/6/smp_affinity
+cat<span class="w"> </span>/proc/irq/7/smp_affinity
+cat<span class="w"> </span>/proc/irq/10/smp_affinity
+cat<span class="w"> </span>/proc/irq/11/smp_affinity
+cat<span class="w"> </span>/proc/irq/13/smp_affinity
+cat<span class="w"> </span>/proc/irq/15/smp_affinity
+cat<span class="w"> </span>/proc/irq/130/smp_affinity
+cat<span class="w"> </span>/proc/irq/172/smp_affinity
+cat<span class="w"> </span>/proc/irq/188/smp_affinity
+cat<span class="w"> </span>/proc/irq/189/smp_affinity
+cat<span class="w"> </span>/proc/irq/191/smp_affinity
 </code></pre></div>
 
 

@@ -2896,22 +2896,22 @@
 <h1 id="build-with-yocto">Build with Yocto<a class="headerlink" href="#build-with-yocto" title="Permanent link">&para;</a></h1>
 <h2 id="clone-the-repo">Clone the repo<a class="headerlink" href="#clone-the-repo" title="Permanent link">&para;</a></h2>
 <p>The first step is to clone the yocto4/salamander git repo: NOTE: In order to clone all dependent repositories, clone the repo with –recurse-submodules.
-<div class="highlight"><pre><span></span><code>git clone --recurse-submodules git@git.sigmatek.at:SIG_SW_BS/salamander/yocto4/salamander.git
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>git@git.sigmatek.at:SIG_SW_BS/salamander/yocto4/salamander.git
 </code></pre></div></p>
 <h2 id="initialize">Initialize<a class="headerlink" href="#initialize" title="Permanent link">&para;</a></h2>
 <p>Now you should be left with a subdirectory called salamander.</p>
 <p>Note: It is a good idea to do the actual build inside a subdirectory named after the specific architecture (e.g. aarch64). This way the directory structure can be used for multible builds without losing track of the overall picture.
-<div class="highlight"><pre><span></span><code>cd salamander
-mkdir core2 &amp;&amp; cd core2
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>salamander
+mkdir<span class="w"> </span>core2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>core2
 </code></pre></div></p>
 <p>Next we need to initialize the build environment by calling the init.sh script. Example for Salamander:
-<div class="highlight"><pre><span></span><code>../init.sh -b build -m sigmatek-core2 -d salamander
+<div class="highlight"><pre><span></span><code>../init.sh<span class="w"> </span>-b<span class="w"> </span>build<span class="w"> </span>-m<span class="w"> </span>sigmatek-core2<span class="w"> </span>-d<span class="w"> </span>salamander
 </code></pre></div>
 Call the init.sh script without parameters to get a full list of options, like how to build Salamander. You can get a full list of options by calling the script without any parameters. There is also stated what to put after -m option for building an arm version. The -b option defines the build output directory (which will be created by the script if it does not exist).</p>
 <h2 id="build-image">Build image<a class="headerlink" href="#build-image" title="Permanent link">&para;</a></h2>
 <p>Now you can run bitbake for building a gecko-image or salamander-image:</p>
 <p>To continue the build after an error, start bitbake with -k or –continue.
-<div class="highlight"><pre><span></span><code>bitbake salamander-image -k
+<div class="highlight"><pre><span></span><code>bitbake<span class="w"> </span>salamander-image<span class="w"> </span>-k
 </code></pre></div>
 This process can take up to several hours. So you better are not in a hurry.</p>
 <p>Afterwards you will find a .lbi-file in the deploy-subdir <code>~/Develop/jenkins/home/buildwithyocto/salamander/core2/build/tmp/deploy/resources/images/sigmatek-core2/</code></p>
@@ -2920,34 +2920,34 @@ This process can take up to several hours. So you better are not in a hurry.</p>
 <h3 id="using-less-cores">Using less cores<a class="headerlink" href="#using-less-cores" title="Permanent link">&para;</a></h3>
 <p>If you build locally, you may run into the problem that you system is loaded heavily by the yocto build. In fact the load can be so heavy that working with your system on other task can become very slow due to lack of responsiveness.</p>
 <p>One solution is to tell yocto to use less threads for the build by adding the following line to ~/some/path/build/conf/local.conf</p>
-<p><div class="highlight"><pre><span></span><code>BB_NUMBER_THREADS = &quot;${@oe.utils.cpu_count()//2}&quot;
+<p><div class="highlight"><pre><span></span><code><span class="nv">BB_NUMBER_THREADS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="p">@oe.utils.cpu_count()//2</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 In this example we set the number of threads to half the number of cpu cores on the system. In addition one can also set the number of parallel compilations done by make:
-<div class="highlight"><pre><span></span><code>PARALLEL_MAKE = &quot;-j${@oe.utils.cpu_count()//2}&quot;
+<div class="highlight"><pre><span></span><code><span class="nv">PARALLEL_MAKE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-j</span><span class="si">${</span><span class="p">@oe.utils.cpu_count()//2</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div></p>
 <h3 id="add-other-computers-to-the-mix">Add other computers to the mix<a class="headerlink" href="#add-other-computers-to-the-mix" title="Permanent link">&para;</a></h3>
 <p>In <code>buildconfs/default.conf</code>
-<div class="highlight"><pre><span></span><code>INHERIT += &quot;icecc&quot;
-ICECC_PARALLEL_MAKE = &quot;-j 88&quot;
-ICECC_CARET_WORKAROUND = &quot;1&quot;
-ICECC_DISABLED ??= &quot;0&quot;
-ICECC_RECIPE_DISABLE = &quot;&quot;
+<div class="highlight"><pre><span></span><code><span class="nv">INHERIT</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s2">&quot;icecc&quot;</span>
+<span class="nv">ICECC_PARALLEL_MAKE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-j 88&quot;</span>
+<span class="nv">ICECC_CARET_WORKAROUND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+ICECC_DISABLED<span class="w"> </span>??<span class="o">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span>
+<span class="nv">ICECC_RECIPE_DISABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 </code></pre></div>
 Patch
-<div class="highlight"><pre><span></span><code>cat &lt;&lt;EOF &gt; meta-virtualization/recipes-core/meta/container-dummy-provides.bb
-DUMMYARCH = &quot;container-dummy-provides&quot;
-DUMMYPROVIDES = &quot;\
-   /bin/sh \
-   /usr/bin/env \
-&quot;
-LICENSE = &quot;MIT&quot;
-EOF
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; meta-virtualization/recipes-core/meta/container-dummy-provides.bb</span>
+<span class="s">DUMMYARCH = &quot;container-dummy-provides&quot;</span>
+<span class="s">DUMMYPROVIDES = &quot;\</span>
+<span class="s">   /bin/sh \</span>
+<span class="s">   /usr/bin/env \</span>
+<span class="s">&quot;</span>
+<span class="s">LICENSE = &quot;MIT&quot;</span>
+<span class="s">EOF</span>
 </code></pre></div></p>
 <h3 id="using-jenkins-as-download-mirror">Using jenkins as download mirror<a class="headerlink" href="#using-jenkins-as-download-mirror" title="Permanent link">&para;</a></h3>
 <p>Sometimes it happens that servers that hold repos necessary for builds are down. In this case it is possible to use the jenkins as a download mirror.</p>
 <p>For this you simply add the following two lines to one of the config files, e.g. site.conf</p>
-<div class="highlight"><pre><span></span><code>SOURCE_MIRROR_URL ?= &quot;http://osjenkins.lhau.sigaut.org:8080/userContent/downloads/&quot;
-INHERIT += &quot;own-mirrors&quot;
+<div class="highlight"><pre><span></span><code>SOURCE_MIRROR_URL<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://osjenkins.lhau.sigaut.org:8080/userContent/downloads/&quot;</span>
+<span class="nv">INHERIT</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s2">&quot;own-mirrors&quot;</span>
 </code></pre></div>
 <h2 id="sigmatek-documentation">Sigmatek Documentation<a class="headerlink" href="#sigmatek-documentation" title="Permanent link">&para;</a></h2>
 <!-- [Build LRT](http://swrtd01.lhau.sigaut.org:8000/docs/rtfm/en/latest/getting_started_at_sigmatek/build_lrt.html#build-lrt-label)-->

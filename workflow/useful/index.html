@@ -3062,8 +3062,8 @@ QEMU settings: <a href="../resources/images/qemu/qemu_settings.png" target="_bla
 <p>git reset --soft HEAD~1</p>
 <h2 id="start_qemush-from-everywhere">start_qemu.sh from everywhere<a class="headerlink" href="#start_qemush-from-everywhere" title="Permanent link">&para;</a></h2>
 <p>Script <a href="../../sigmatek/QEMU/start_qemu.sh">start_qemu.sh</a> needs to be in <code>/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/</code>. 
-<div class="highlight"><pre><span></span><code>sudo nano ~/.bashrc
-export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>~/.bashrc
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
 </code></pre></div></p>
 <h2 id="add-konsole-to-replace-console">Add konsole to replace console<a class="headerlink" href="#add-konsole-to-replace-console" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a><br />
@@ -3092,14 +3092,14 @@ export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/Q
 <p><code>ps -eo pid,psr,comm | grep &lt;name&gt;</code></p>
 <h2 id="limit-wsl2-resources">Limit WSL2 resources<a class="headerlink" href="#limit-wsl2-resources" title="Permanent link">&para;</a></h2>
 <p>Edit the WSL config to limit the memory usage as mentioned here.
-<div class="highlight"><pre><span></span><code>#turn off all wsl instances such as docker-desktop
-wsl --shutdown
-notepad &quot;$env:USERPROFILE/.wslconfig&quot;
+<div class="highlight"><pre><span></span><code><span class="c1">#turn off all wsl instances such as docker-desktop</span>
+wsl<span class="w"> </span>--shutdown
+notepad<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$env</span><span class="s2">:USERPROFILE/.wslconfig&quot;</span>
 </code></pre></div>
 Set the values you want for CPU core and Memory:</p>
-<div class="highlight"><pre><span></span><code>[wsl2]
-memory=3GB   # Limits VM memory in WSL 2 up to 3GB
-processors=2 # Makes the WSL 2 VM use two virtual processors
+<div class="highlight"><pre><span></span><code><span class="o">[</span>wsl2<span class="o">]</span>
+<span class="nv">memory</span><span class="o">=</span>3GB<span class="w">   </span><span class="c1"># Limits VM memory in WSL 2 up to 3GB</span>
+<span class="nv">processors</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="c1"># Makes the WSL 2 VM use two virtual processors</span>
 </code></pre></div>
 
 

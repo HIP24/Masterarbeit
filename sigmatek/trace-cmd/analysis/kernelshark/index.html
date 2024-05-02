@@ -2756,36 +2756,36 @@
 <h2 id="use-kernelshark">Use kernelshark<a class="headerlink" href="#use-kernelshark" title="Permanent link">&para;</a></h2>
 <p><a href="../../../../resources/images/trace-cmd/kernelshark/contains_no_data.png">File trace.dat contains no data</a></p>
 <p>Host only
-<div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>trace-cmd<span class="w"> </span>record<span class="w"> </span>-e<span class="w"> </span>kvm:kvm_entry<span class="w"> </span>-e<span class="w"> </span>kvm:kvm_exit
 </code></pre></div></p>
 <p>Host and Guest track all both
-<div class="highlight"><pre><span></span><code>sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>trace-cmd<span class="w"> </span>record<span class="w"> </span>-e<span class="w"> </span>all<span class="w"> </span>-A<span class="w"> </span>@3:823<span class="w"> </span>--name<span class="w"> </span>Salamander4<span class="w"> </span>-e<span class="w"> </span>all
 </code></pre></div></p>
 <p>Host and Guest track kvm, sched, irq, irq_vectors
-<div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm -e sched -e irq -e irq_vectors -A @3:823 --name Salamander4 -e all ssh root@192.168.51 &#39;ls -lR . &gt; /dev/null&#39;
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>trace-cmd<span class="w"> </span>record<span class="w"> </span>-e<span class="w"> </span>kvm<span class="w"> </span>-e<span class="w"> </span>sched<span class="w"> </span>-e<span class="w"> </span>irq<span class="w"> </span>-e<span class="w"> </span>irq_vectors<span class="w"> </span>-A<span class="w"> </span>@3:823<span class="w"> </span>--name<span class="w"> </span>Salamander4<span class="w"> </span>-e<span class="w"> </span>all<span class="w"> </span>ssh<span class="w"> </span>root@192.168.51<span class="w"> </span><span class="s1">&#39;ls -lR . &gt; /dev/null&#39;</span>
 </code></pre></div></p>
 <p>Host and Guest track kvm_entry and kvm_exit with ssh to guest
-<div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all ssh root@192.168.1.7851 &#39;ls -lR . &gt; /dev/null&#39;
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>trace-cmd<span class="w"> </span>record<span class="w"> </span>-e<span class="w"> </span>kvm:kvm_entry<span class="w"> </span>-e<span class="w"> </span>kvm:kvm_exit<span class="w"> </span>-A<span class="w"> </span>@3:823<span class="w"> </span>--name<span class="w"> </span>Salamander4<span class="w"> </span>-e<span class="w"> </span>all<span class="w"> </span>ssh<span class="w"> </span>root@192.168.1.7851<span class="w"> </span><span class="s1">&#39;ls -lR . &gt; /dev/null&#39;</span>
 </code></pre></div></p>
 <p>Host and Guest track kvm_entry and kvm_exit
-<div class="highlight"><pre><span></span><code>sudo trace-cmd record -e kvm:kvm_entry -e kvm:kvm_exit -A @3:823 --name Salamander4 -e all
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>trace-cmd<span class="w"> </span>record<span class="w"> </span>-e<span class="w"> </span>kvm:kvm_entry<span class="w"> </span>-e<span class="w"> </span>kvm:kvm_exit<span class="w"> </span>-A<span class="w"> </span>@3:823<span class="w"> </span>--name<span class="w"> </span>Salamander4<span class="w"> </span>-e<span class="w"> </span>all
 </code></pre></div></p>
 <p>After trace-cmd raw
-<div class="highlight"><pre><span></span><code>trace-cmd report
+<div class="highlight"><pre><span></span><code>trace-cmd<span class="w"> </span>report
 </code></pre></div></p>
 <p>After trace-cmd Salamander4
-<div class="highlight"><pre><span></span><code>trace-cmd report --cpu 19 &gt; host_report.txt
+<div class="highlight"><pre><span></span><code>trace-cmd<span class="w"> </span>report<span class="w"> </span>--cpu<span class="w"> </span><span class="m">19</span><span class="w"> </span>&gt;<span class="w"> </span>host_report.txt
 </code></pre></div></p>
 <p>After trace-cmd Salamander4
-<div class="highlight"><pre><span></span><code>trace-cmd report -i trace-Salamander4.dat &gt; guest_report.txt
+<div class="highlight"><pre><span></span><code>trace-cmd<span class="w"> </span>report<span class="w"> </span>-i<span class="w"> </span>trace-Salamander4.dat<span class="w"> </span>&gt;<span class="w"> </span>guest_report.txt
 </code></pre></div></p>
 <p>After trace-cmd kernelshark
-<div class="highlight"><pre><span></span><code>sudo trace-cmd convert -i trace.dat -o trace_v6.dat --file-version 6 --compression none
-sudo rm trace.dat
-mv trace_v6.dat trace.dat
-sudo trace-cmd convert -i trace-Salamander4.dat -o trace_v6.dat --file-version 6 --compression none
-sudo rm trace-Salamander4.dat
-mv trace_v6.dat trace-Salamander4.dat
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>trace-cmd<span class="w"> </span>convert<span class="w"> </span>-i<span class="w"> </span>trace.dat<span class="w"> </span>-o<span class="w"> </span>trace_v6.dat<span class="w"> </span>--file-version<span class="w"> </span><span class="m">6</span><span class="w"> </span>--compression<span class="w"> </span>none
+sudo<span class="w"> </span>rm<span class="w"> </span>trace.dat
+mv<span class="w"> </span>trace_v6.dat<span class="w"> </span>trace.dat
+sudo<span class="w"> </span>trace-cmd<span class="w"> </span>convert<span class="w"> </span>-i<span class="w"> </span>trace-Salamander4.dat<span class="w"> </span>-o<span class="w"> </span>trace_v6.dat<span class="w"> </span>--file-version<span class="w"> </span><span class="m">6</span><span class="w"> </span>--compression<span class="w"> </span>none
+sudo<span class="w"> </span>rm<span class="w"> </span>trace-Salamander4.dat
+mv<span class="w"> </span>trace_v6.dat<span class="w"> </span>trace-Salamander4.dat
 kernelshark
 </code></pre></div></p>
 

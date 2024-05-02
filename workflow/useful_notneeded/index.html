@@ -2897,43 +2897,43 @@
 <p>The -smp option specifies the number of CPUs</p>
 <p>Replace n with the number of CPUs you want to add. For example, if you want to add 4 CPUs, you would use -smp cpus=4.</p>
 <p>After making these changes, the specified number of CPUs will be available when you boot your Yocto image with this script. 
-<div class="highlight"><pre><span></span><code>exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
--m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
--append &quot;console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 \
--net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
--fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_&gt;
--drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
--smp cpus=n \
--no-reboot -nographic
+<div class="highlight"><pre><span></span><code><span class="nb">exec</span><span class="w"> </span>qemu-system-x86_64<span class="w"> </span>-M<span class="w"> </span>pc,accel<span class="o">=</span>kvm<span class="w"> </span>-kernel<span class="w"> </span>./bzImage<span class="w"> </span><span class="se">\</span>
+-m<span class="w"> </span><span class="m">2048</span><span class="w"> </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>salamander-image-sigmatek-core2.ext4,format<span class="o">=</span>raw,media<span class="o">=</span>disk<span class="w"> </span><span class="se">\</span>
+-append<span class="w"> </span><span class="s2">&quot;console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 \</span>
+<span class="s2">-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \</span>
+<span class="s2">-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_&gt;</span>
+<span class="s2">-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \</span>
+<span class="s2">-smp cpus=n \</span>
+<span class="s2">-no-reboot -nographic</span>
 </code></pre></div>
 Check with: <code>cat /sys/devices/system/cpu/online</code>
-<div class="highlight"><pre><span></span><code>root@sigmatek-core2:~# cat /sys/devices/system/cpu/online
-0-9
+<div class="highlight"><pre><span></span><code>root@sigmatek-core2:~#<span class="w"> </span>cat<span class="w"> </span>/sys/devices/system/cpu/online
+<span class="m">0</span>-9
 </code></pre></div></p>
 <h2 id="isolate-cpus-with-isolcpus">Isolate CPUs with isolcpus<a class="headerlink" href="#isolate-cpus-with-isolcpus" title="Permanent link">&para;</a></h2>
 <p>To use isolcpus in a Yocto image, you need to add it to the kernel command line parameters. In your case, these parameters are specified in the -append option in your QEMU command. Add isolcpus=x,y,z. Replace x,y,z with the CPU cores you want to isolate. For example, if you want to isolate cores 0, 1 and 2, you would use isolcpus=0,1,2.
-<div class="highlight"><pre><span></span><code>exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
--m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
--append &quot;console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 isolcpus=0,1,2&quot; \
--net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
--fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_&gt;
--drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
--smp cpus=n \
--no-reboot -nographic
+<div class="highlight"><pre><span></span><code><span class="nb">exec</span><span class="w"> </span>qemu-system-x86_64<span class="w"> </span>-M<span class="w"> </span>pc,accel<span class="o">=</span>kvm<span class="w"> </span>-kernel<span class="w"> </span>./bzImage<span class="w"> </span><span class="se">\</span>
+-m<span class="w"> </span><span class="m">2048</span><span class="w"> </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>salamander-image-sigmatek-core2.ext4,format<span class="o">=</span>raw,media<span class="o">=</span>disk<span class="w"> </span><span class="se">\</span>
+-append<span class="w"> </span><span class="s2">&quot;console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 isolcpus=0,1,2&quot;</span><span class="w"> </span><span class="se">\</span>
+-net<span class="w"> </span>nic,model<span class="o">=</span>e1000,netdev<span class="o">=</span>e1000<span class="w"> </span>-netdev<span class="w"> </span>bridge,id<span class="o">=</span>e1000,br<span class="o">=</span>nm-bridge<span class="w"> </span><span class="se">\</span>
+-fsdev<span class="w"> </span>local,security_model<span class="o">=</span>none,id<span class="o">=</span>fsdev0,path<span class="o">=</span>drive-c<span class="w"> </span>-device<span class="w"> </span>virtio-9p-pci,id<span class="o">=</span>fs0,fsdev<span class="o">=</span>fsdev0,mount_&gt;
+-drive<span class="w"> </span><span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>qcow2,file<span class="o">=</span>ovmf.code.qcow2<span class="w"> </span><span class="se">\</span>
+-smp<span class="w"> </span><span class="nv">cpus</span><span class="o">=</span>n<span class="w"> </span><span class="se">\</span>
+-no-reboot<span class="w"> </span>-nographic
 </code></pre></div>
 Check with: <code>cat /sys/devices/system/cpu/isolated</code>
-<div class="highlight"><pre><span></span><code>root@sigmatek-core2:~# cat /sys/devices/system/cpu/isolated
-0-2
+<div class="highlight"><pre><span></span><code>root@sigmatek-core2:~#<span class="w"> </span>cat<span class="w"> </span>/sys/devices/system/cpu/isolated
+<span class="m">0</span>-2
 </code></pre></div></p>
 <h2 id="gid-pid-of-processes">Gid PID Of processes<a class="headerlink" href="#gid-pid-of-processes" title="Permanent link">&para;</a></h2>
 <p>Start latency and write output to latency_output.txt:
 <code>latency -T 60 &gt; latency_output.txt 2&gt;&amp;1 &amp;</code><br />
 Get ID of xenomai task: <code>ps aux | grep latency</code>
-<div class="highlight"><pre><span></span><code>root@sigmatek-core2:~# latency -T 60 &gt; latency_output.txt 2&gt;&amp;1 &amp;
-[1] 557
-root@sigmatek-core2:~# ps aux | grep latency
-root       557  0.0  0.6  14040 12852 ttyS0    SLl  11:34   0:00 latency -T 60
-root       563  0.0  0.0   3256  1148 ttyS0    S+   11:34   0:00 grep latency
+<div class="highlight"><pre><span></span><code>root@sigmatek-core2:~#<span class="w"> </span>latency<span class="w"> </span>-T<span class="w"> </span><span class="m">60</span><span class="w"> </span>&gt;<span class="w"> </span>latency_output.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">557</span>
+root@sigmatek-core2:~#<span class="w"> </span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>latency
+root<span class="w">       </span><span class="m">557</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.6<span class="w">  </span><span class="m">14040</span><span class="w"> </span><span class="m">12852</span><span class="w"> </span>ttyS0<span class="w">    </span>SLl<span class="w">  </span><span class="m">11</span>:34<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>latency<span class="w"> </span>-T<span class="w"> </span><span class="m">60</span>
+root<span class="w">       </span><span class="m">563</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.0<span class="w">   </span><span class="m">3256</span><span class="w">  </span><span class="m">1148</span><span class="w"> </span>ttyS0<span class="w">    </span>S+<span class="w">   </span><span class="m">11</span>:34<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>grep<span class="w"> </span>latency
 </code></pre></div></p>
 <h2 id="assign-tasks-to-the-isolated-cpus">Assign tasks to the isolated CPUs<a class="headerlink" href="#assign-tasks-to-the-isolated-cpus" title="Permanent link">&para;</a></h2>
 <p>To assign these latency tasks to the isolated CPUs, you can use the taskset command with the process ID (PID) of each latency task. For example, if you want to assign the latency task with PID 536 to CPU 1, you would use:</p>

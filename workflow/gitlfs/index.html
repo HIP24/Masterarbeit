@@ -2851,26 +2851,26 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 </code></pre></div>
 <h2 id="step-2-initialize-git-lfs">Step 2: Initialize Git LFS<a class="headerlink" href="#step-2-initialize-git-lfs" title="Permanent link">&para;</a></h2>
 <p>After installation, set up Git LFS for your user account by running:
-<div class="highlight"><pre><span></span><code>git lfs install
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>lfs<span class="w"> </span>install
 </code></pre></div></p>
 <h2 id="step-optional-untrack-the-file-from-git">Step optional: Untrack the file from Git:<a class="headerlink" href="#step-optional-untrack-the-file-from-git" title="Permanent link">&para;</a></h2>
 <p>Use the git rm --cached command to untrack the file1. For example, if your file is named largefile.zip, you would use:
-<div class="highlight"><pre><span></span><code>git rm --cached largefile.zip
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rm<span class="w"> </span>--cached<span class="w"> </span>largefile.zip
 </code></pre></div></p>
 <h2 id="step-3-track-the-large-file-with-git-lfs">Step 3: Track the Large File with Git LFS<a class="headerlink" href="#step-3-track-the-large-file-with-git-lfs" title="Permanent link">&para;</a></h2>
 <p>Before adding and committing the file, you need to tell Git LFS to track it. You can do this with the git lfs track command. For example, if your large file is a .zip file, you would use:
-<div class="highlight"><pre><span></span><code>git lfs track &quot;*.zip&quot;
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>lfs<span class="w"> </span>track<span class="w"> </span><span class="s2">&quot;*.zip&quot;</span>
 </code></pre></div></p>
 <p>Replace *.zip with the type of your large file. If you want to track a specific file, you can replace *.zip with the path to your file.</p>
 <h2 id="step-4-add-and-commit-the-file">Step 4: Add and Commit the File<a class="headerlink" href="#step-4-add-and-commit-the-file" title="Permanent link">&para;</a></h2>
 <p>After tracking the file with Git LFS, you can add it to your Git repository and commit it as usual:
-<div class="highlight"><pre><span></span><code>git add your_large_file.zip
-git commit -m &quot;Add large file&quot;
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>your_large_file.zip
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add large file&quot;</span>
 </code></pre></div></p>
 <p>Replace your_large_file.zip with the path to your large file.</p>
 <h2 id="step-5-push-the-file-to-your-remote-repository">Step 5: Push the File to Your Remote Repository<a class="headerlink" href="#step-5-push-the-file-to-your-remote-repository" title="Permanent link">&para;</a></h2>
 <p>Finally, you can push your changes to your remote repository:
-<div class="highlight"><pre><span></span><code>git push origin main
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
 </code></pre></div>
 Replace main with the name of your branch if it’s not main.</p>
 <p>By following these steps, Git LFS will handle your large files, and you should be able to push them to your remote repository without any issues.</p>

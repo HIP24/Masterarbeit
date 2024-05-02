@@ -2853,58 +2853,58 @@ CONFIG_SYNTH_EVENTS=y<br />
 CONFIG_HIST_TRIGGERS=y  </p>
 <p><a href="https://wiki.qemu.org/Features/VirtioVsock">VirtioVsock</a></p>
 <h2 id="bitbake">bitbake<a class="headerlink" href="#bitbake" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>../init.sh -b build -m sigmatek-core2 -d salamander
-bitbake salamander-image -k
+<div class="highlight"><pre><span></span><code>../init.sh<span class="w"> </span>-b<span class="w"> </span>build<span class="w"> </span>-m<span class="w"> </span>sigmatek-core2<span class="w"> </span>-d<span class="w"> </span>salamander
+bitbake<span class="w"> </span>salamander-image<span class="w"> </span>-k
 </code></pre></div>
 <h2 id="qemu">QEMU<a class="headerlink" href="#qemu" title="Permanent link">&para;</a></h2>
 <p>Add
 <code>-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable" \</code><br />
 <code>-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \</code><br />
 <code>-device vhost-vsock-pci,guest-cid=3,id=vsock0 \</code></p>
-<div class="highlight"><pre><span></span><code>#!/bin/sh
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
 
-if  [ ! -d drive-c/ ]; then
-        echo &quot;Filling drive-c/&quot;
-        mkdir drive-c/
-        tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
-fi
+<span class="k">if</span><span class="w">  </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span>drive-c/<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Filling drive-c/&quot;</span>
+<span class="w">        </span>mkdir<span class="w"> </span>drive-c/
+<span class="w">        </span>tar<span class="w"> </span>-C<span class="w"> </span>drive-c/<span class="w"> </span>-xf<span class="w"> </span>stek-drive-c-image-sigmatek-core2.tar.gz
+<span class="k">fi</span>
 
-exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
--m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
--append &quot;console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable&quot; \
--net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
--fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
--device vhost-vsock-pci,guest-cid=3,id=vsock0 \
--drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
--no-reboot -nographic
+<span class="nb">exec</span><span class="w"> </span>qemu-system-x86_64<span class="w"> </span>-M<span class="w"> </span>pc,accel<span class="o">=</span>kvm<span class="w"> </span>-kernel<span class="w"> </span>./bzImage<span class="w"> </span><span class="se">\</span>
+-m<span class="w"> </span><span class="m">2048</span><span class="w"> </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>salamander-image-sigmatek-core2.ext4,format<span class="o">=</span>raw,media<span class="o">=</span>disk<span class="w"> </span><span class="se">\</span>
+-append<span class="w"> </span><span class="s2">&quot;console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable&quot;</span><span class="w"> </span><span class="se">\</span>
+-net<span class="w"> </span>nic,model<span class="o">=</span>e1000,netdev<span class="o">=</span>e1000<span class="w"> </span>-netdev<span class="w"> </span>bridge,id<span class="o">=</span>e1000,br<span class="o">=</span>nm-bridge<span class="w"> </span><span class="se">\</span>
+-fsdev<span class="w"> </span>local,security_model<span class="o">=</span>none,id<span class="o">=</span>fsdev0,path<span class="o">=</span>drive-c<span class="w"> </span>-device<span class="w"> </span>virtio-9p-pci,id<span class="o">=</span>fs0,fsdev<span class="o">=</span>fsdev0,mount_tag<span class="o">=</span>/mnt/drive-C<span class="w"> </span><span class="se">\</span>
+-device<span class="w"> </span>vhost-vsock-pci,guest-cid<span class="o">=</span><span class="m">3</span>,id<span class="o">=</span>vsock0<span class="w"> </span><span class="se">\</span>
+-drive<span class="w"> </span><span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>qcow2,file<span class="o">=</span>ovmf.code.qcow2<span class="w"> </span><span class="se">\</span>
+-no-reboot<span class="w"> </span>-nographic
 </code></pre></div>
 <h2 id="scp-ipk-to-salamander4-and-install">scp .ipk to Salamander4 and install<a class="headerlink" href="#scp-ipk-to-salamander4-and-install" title="Permanent link">&para;</a></h2>
 <p>When you run bitbake xxx, the output of the build process, including any generated .ipk files, is typically stored in the tmp/deploy/ipk/ directory within your build directory1. The exact location can depend on your configuration and the specific recipe you’re building.</p>
 <p>The .ipk files are package files used by opkg, a lightweight package management system. These files are created when you build a recipe that includes packaging steps.
-<div class="highlight"><pre><span></span><code>cd ~/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64$ scp trace-cmd_2.9.1-r0_core2-64.ipk root@10.30.248.137:/home/root/bb
-opkg install trace-cmd_2.9.1-r0_core2-64.ipk
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/Develop/Yocto_local/salamander/salamander-core2/build/tmp/deploy/ipk/core2-64$<span class="w"> </span>scp<span class="w"> </span>trace-cmd_2.9.1-r0_core2-64.ipk<span class="w"> </span>root@10.30.248.137:/home/root/bb
+opkg<span class="w"> </span>install<span class="w"> </span>trace-cmd_2.9.1-r0_core2-64.ipk
 </code></pre></div></p>
 <h2 id="warning-remote-host-identification-has-changed">WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!<a class="headerlink" href="#warning-remote-host-identification-has-changed" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@<span class="w">    </span>WARNING:<span class="w"> </span>REMOTE<span class="w"> </span>HOST<span class="w"> </span>IDENTIFICATION<span class="w"> </span>HAS<span class="w"> </span>CHANGED!<span class="w">     </span>@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
-Someone could be eavesdropping on you right now (man-in-the-middle attack)!
-It is also possible that a host key has just been changed.
-The fingerprint for the ED25519 key sent by the remote host is
+IT<span class="w"> </span>IS<span class="w"> </span>POSSIBLE<span class="w"> </span>THAT<span class="w"> </span>SOMEONE<span class="w"> </span>IS<span class="w"> </span>DOING<span class="w"> </span>SOMETHING<span class="w"> </span>NASTY!
+Someone<span class="w"> </span>could<span class="w"> </span>be<span class="w"> </span>eavesdropping<span class="w"> </span>on<span class="w"> </span>you<span class="w"> </span>right<span class="w"> </span>now<span class="w"> </span><span class="o">(</span>man-in-the-middle<span class="w"> </span>attack<span class="o">)</span>!
+It<span class="w"> </span>is<span class="w"> </span>also<span class="w"> </span>possible<span class="w"> </span>that<span class="w"> </span>a<span class="w"> </span>host<span class="w"> </span>key<span class="w"> </span>has<span class="w"> </span>just<span class="w"> </span>been<span class="w"> </span>changed.
+The<span class="w"> </span>fingerprint<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>ED25519<span class="w"> </span>key<span class="w"> </span>sent<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>remote<span class="w"> </span>host<span class="w"> </span>is
 SHA256:R1FIDyOY4bzLdNIJ3CUgwFRRzZPiq4dHL/DA5YY3Bw8.
-Please contact your system administrator.
-Add correct host key in /home/sigma_ibo/.ssh/known_hosts to get rid of this message.
-Offending ED25519 key in /home/sigma_ibo/.ssh/known_hosts:12
-  remove with:
-  ssh-keygen -f &quot;/home/sigma_ibo/.ssh/known_hosts&quot; -R &quot;10.30.248.137&quot;
-Host key for 10.30.248.137 has changed and you have requested strict checking.
-Host key verification failed.
+Please<span class="w"> </span>contact<span class="w"> </span>your<span class="w"> </span>system<span class="w"> </span>administrator.
+Add<span class="w"> </span>correct<span class="w"> </span>host<span class="w"> </span>key<span class="w"> </span><span class="k">in</span><span class="w"> </span>/home/sigma_ibo/.ssh/known_hosts<span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>rid<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>message.
+Offending<span class="w"> </span>ED25519<span class="w"> </span>key<span class="w"> </span><span class="k">in</span><span class="w"> </span>/home/sigma_ibo/.ssh/known_hosts:12
+<span class="w">  </span>remove<span class="w"> </span>with:
+<span class="w">  </span>ssh-keygen<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/home/sigma_ibo/.ssh/known_hosts&quot;</span><span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;10.30.248.137&quot;</span>
+Host<span class="w"> </span>key<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.30.248.137<span class="w"> </span>has<span class="w"> </span>changed<span class="w"> </span>and<span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>requested<span class="w"> </span>strict<span class="w"> </span>checking.
+Host<span class="w"> </span>key<span class="w"> </span>verification<span class="w"> </span>failed.
 </code></pre></div>
 It seems like the SSH host key for the server at 10.30.248.137 has changed, which is causing the connection to fail due to strict checking. This could happen for a few reasons, such as the server being reinstalled or the SSH service being reconfigured.</p>
 <p>You can resolve this issue by removing the old host key from your known_hosts file. The offending key is on line 12 of the file. You can remove it with the following command:</p>
-<p><div class="highlight"><pre><span></span><code>ssh-keygen -f &quot;/home/sigma_ibo/.ssh/known_hosts&quot; -R &quot;10.30.248.137&quot; # Salzburg
-ssh-keygen -f &quot;/home/sigma_ibo/.ssh/known_hosts&quot; -R &quot;192.168.1.78&quot; # Wien&quot;
+<p><div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/home/sigma_ibo/.ssh/known_hosts&quot;</span><span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;10.30.248.137&quot;</span><span class="w"> </span><span class="c1"># Salzburg</span>
+ssh-keygen<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/home/sigma_ibo/.ssh/known_hosts&quot;</span><span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;192.168.1.78&quot;</span><span class="w"> </span><span class="c1"># Wien&quot;</span>
 </code></pre></div>
 This will remove the old key for 10.30.248.137 from your known_hosts file. The next time you connect, you should be prompted to accept the new host key.</p>
 
