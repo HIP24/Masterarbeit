@@ -47,7 +47,7 @@ def count_tasks(input_filename):
     base_filename = os.path.splitext(input_filename)[0]
 
     # Use f-string to include the base_filename in the output filename
-    with open(f'results_{base_filename}.md', 'w') as f:
+    with open(f'tasks_{base_filename}.md', 'w') as f:
         # Write the total count of all events to the output file
         f.write(f"Total count of all events: {total_count:,}\n\n".replace(",", ".")) 
 
