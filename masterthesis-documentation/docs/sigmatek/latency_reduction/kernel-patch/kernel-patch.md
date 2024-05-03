@@ -18,9 +18,9 @@ Kernel Basic
 - ✅ [How to Remove Old Kernel in Kali Linux](https://www.youtube.com/watch?v=wOgxZG1imCA)  
 
 Real-time kernel  
-- [Introduction to Realtime Linux](https://www.youtube.com/watch?v=BKkX9WASfpI&list=PLmDQKQxAsgbak5aWa6WDKPvZeLcRKTUDE)  
+- ✅ [Introduction to Realtime Linux](https://www.youtube.com/watch?v=BKkX9WASfpI&list=PLmDQKQxAsgbak5aWa6WDKPvZeLcRKTUDE)  
 - ✅ [An introduction to real-time Linux](https://www.youtube.com/watch?v=-wAo6bWh4jM)  
-- [Kernel Recipes 2016 - Understanding a Real-Time System (more than just a kernel) - Steven Rostedt](https://www.youtube.com/watch?v=w3yT8zJe0Uw&list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU)  
+- ✅ [Kernel Recipes 2016 - Understanding a Real-Time System Steven Rostedt](https://www.youtube.com/watch?v=w3yT8zJe0Uw&list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU)  
 - ✅ [Ubuntu Pro Realtime Kernel Performance Comparison (2023)](https://www.youtube.com/watch?v=sUDMG6ey9d0)  
 - [2. Kernel Configuration - Building a Custom Linux Kernel](https://www.youtube.com/watch?v=T5SZERvLriA)  
 

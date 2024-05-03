@@ -61,4 +61,4 @@
 | 29.04.2024 | powersave, balanced, performance |
 | 30.04.2024 | merge and failed_reason |
 | 01.05.2024 | Feiertag |
-| 02.05.2024 |  |
+| 02.05.2024 | Ubuntu real-time kernel |
