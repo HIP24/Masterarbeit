@@ -5,8 +5,10 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-# Use the command line argument as the directory name
-mkdir $1 
+if [ ! -d $1/ ]; then
+    # Use the command line argument as the directory name
+    mkdir $1 
+fi
 
 trace-cmd report | grep kvm_exit > kvm_exit_count.txt && echo "kvm_exit_count completed"&
 trace-cmd report --cpu 19 > host_report.txt && echo "host_report completed"&
@@ -19,7 +21,9 @@ python analyze_trace.py host_report.txt && echo "analyze_trace for host_report c
 python analyze_trace.py guest_report.txt && echo "analyze_trace for guest_report completed"&
 wait
 # Move and Copy elements in directory 
-mv *.txt *.md *.png $1
+mv *.txt results_guest_report.md results_host_report.md *.png $1
 cp merge.py failed_reason.py start_kernelshark.sh *.dat $1
+cd $1
+python merge.py && echo "host_report and guest_report merged"
 exit 0
 

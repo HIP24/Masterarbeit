@@ -15,7 +15,6 @@ After installation, set up Git LFS for your user account by running:
 git lfs install
 ```
 
-
 ## Step optional: Untrack the file from Git:
 Use the git rm --cached command to untrack the file1. For example, if your file is named largefile.zip, you would use:
 ```bash

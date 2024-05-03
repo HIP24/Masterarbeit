@@ -45,3 +45,8 @@ masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/table_CPU
 masterthesis-documentation/docs/tools/ps/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/tools/ps/**/*.*
+
+# Ignore everything in the directory
+masterthesis-documentation/docs/tools/rt-tester/**/*
+# But do not ignore files (unignore files)
+!masterthesis-documentation/docs/tools/ps/rt-tester/rt-tester/tests/*.*
