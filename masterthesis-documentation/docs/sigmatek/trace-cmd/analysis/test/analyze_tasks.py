@@ -17,7 +17,7 @@ def count_tasks(input_filename):
     with open(input_filename, 'r') as f:
         for line in f:
             # Skip lines that start with "cpus=1" or "cpus=20" or "000:" or "010:"
-            if line.startswith("cpus=1") or line.startswith("cpus=20") or line.startswith("000:") or line.startswith("010:"):
+            if line.startswith("cpus=1") or line.startswith("cpus=2") or line.startswith("cpus=20") or line.startswith("000:") or line.startswith("010:"):
                 continue
 
             # Split the line into words
