@@ -49,7 +49,7 @@ def count_tasks(input_filename):
     # Use f-string to include the base_filename in the output filename
     with open(f'tasks_{base_filename}.md', 'w') as f:
         # Write the total count of all events to the output file
-        f.write(f"Total count of all events: {total_count:,}\n\n".replace(",", ".")) 
+        f.write(f"Total count of all tasks: {total_count:,}\n\n".replace(",", ".")) 
 
         # Write the table headers
         f.write("| Task | PID | Count |\n")
