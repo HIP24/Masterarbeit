@@ -63,4 +63,4 @@
 | 01.05.2024 | Feiertag |
 | 02.05.2024 | Ubuntu real-time kernel |
 | 03.05.2024 | Steven yt, analyze_events and analyze_tasks |
-| 06.05.2024 |  |
+| 06.05.2024 | report_hardware |
