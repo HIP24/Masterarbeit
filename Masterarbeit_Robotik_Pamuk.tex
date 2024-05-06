@@ -203,6 +203,7 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 \clearpage
 
 \chapter{Salamander 4}\label{cha:salamander4}
+This chapter breifly describes the Salamander 4 operating system by SIGMATEK.
 
 Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a}.
 
@@ -214,7 +215,27 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \end{lstlisting}
 \end{minipage}
 
-Xenomai consists of 3 parts. These can be found in the Table \ref{tab:what_is_xenomai}.
+\noindent Salamander 4 is powered by SIGMATEK's CPU and is comprised of the following software modules:
+
+ \begin{itemize}
+	\item \textbf{Operating system}
+	\item \textbf{Loader}
+	\item \textbf{Hardware classes}
+	\item \textbf{Application}
+\end{itemize}
+
+\noindent The interfaces between the individual modules are indicated by an arrow in Figure \ref{fig:lasal_cpu}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
+	\caption[LASAL CPU]{LASAL CPU}
+	\label{fig:lasal_cpu}
+\end{figure}
+\clearpage
+\section{Xenomai}
+
+\noindent Xenomai consists of 3 parts. These can be found in the Table \ref{tab:what_is_xenomai}.
 
 \begin{table}[!h]
 	\centering
@@ -257,9 +278,10 @@ Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten d
 Ein Domainwechsel von Xenomai nach Linux geht relativ einfach. Aber der Wechsel von Linux nach Xenomai braucht Unterstützung, und dafür ist die Hilfe des Gatekeepers notwendig. Das bedeutet, der Gatekeeper hilft einem Task von Linux nach Xenomai zu wechseln.
 
 \clearpage
-\section{Salamander 4 Description}
 
-\subsection{Task priorities}
+
+
+\section{Task priorities}
 Es gibt grundsätzlich 4 Gruppen
 
 \begin{table}[ht]
@@ -277,7 +299,7 @@ Es gibt grundsätzlich 4 Gruppen
 \end{table}
 \clearpage
 
-\subsection{Memory Management}
+\section{Memory Management}
 Es gibt verschiedene Speicherbereiche
 
 Linux/System/Programm Speicher
@@ -298,25 +320,11 @@ App Heap, App Code, …
 	\label{fig:memory_management}
 \end{figure}
 
-
-Eine LASAL CPU besteht aus den folgenden Software-Modulen:
-\begin{itemize}
-	\item Operating system
-	\item Loader
-	\item Hardware-Klassen
-\end{itemize}
-
-Die Schnittstelle zwischen den einzelnen Modulen wird in Abbildung \ref{fig:lasal_cpu} durch einen Pfeil gekennzeichnet.
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
-	\caption[LASAL CPU]{LASAL CPU}
-	\label{fig:lasal_cpu}
-\end{figure}
-
 \clearpage
 
+\chapter{Initial Real-Time Latency}\label{cha:initial-real-time-latency}
+
+\clearpage
 \section{Salamander 4 Bare Metal}
 Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including
 
@@ -432,7 +440,7 @@ Figure \ref{fig:max_latency_vapic} shows latency of QEMU vapic Salamander4.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\columnwidth]{img/max_latency_vapic.png}
-	\caption[Latency taskset]{Latency taskset}
+	\caption[Latency vapic]{Latency vapic}
 	\label{fig:max_latency_vapic}
 \end{figure}
 
@@ -551,12 +559,6 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 
 \end{itemize}
 
-\section{Latency Comparison}
-In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
-
-Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
-
-
 \subsection{Generic Ubuntu}
 
 \subsection{Real-Time Ubuntu}
@@ -564,10 +566,67 @@ Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
 %In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
 
 After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
+
+
+\clearpage
+\section{Latency Comparison}
+In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualisation of Salamander 4 OS to closely match that of the bare metal version.
+
+Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
+
+\clearpage
+\section{KVM exit reasons}\label{sec:kvm_exit_reasons}
+
+\subsection{APIC\_WRITE}
+
+The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. An APIC\_WRITE occurs when a guest operating system attempts to write to the APIC registers. Since the APIC is a physical hardware component, KVM must intercept this operation and cause a VM exit. To avoid this, newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance. 
+
+This can be done by setting the apic flag to 'v' in the VM configuration file.
+
+Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC virtualisation. Comparing this to the previous Figures \ref{fig:kvm_exit_taskset} and \ref{fig:kvm_exits_default}, it can be observed that an APIC\_Write no longer occurs.
+
+
+(URL: \url{https://www.qemu.org/docs/master/system/i386/hyperv.html})
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/kvm_exit_vapic.png}
+	\caption[kvm exits default]{kvm exits default}
+	\label{fig:kvm_exit_vapic}
+\end{figure}
+\clearpage
+
+\clearpage
+\subsection{HLT}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
+\clearpage
+\subsection{EPT\_MISCONFIG}
+\subsubsection{Description}
+\subsubsection{Occurence Reduction}
+\clearpage
+\subsection{PREEMPTION\_TIMER}
+\clearpage
+\subsection{EXTERNAL\_INTERRUPT}
+\clearpage
+\subsection{IO\_INSTRUCTION}
+\clearpage
+\subsection{EOI\_INDUCED}
+\clearpage
+\subsection{EPT\_VIOLATION}
+\clearpage
+\subsection{PAUSE\_INSTRUCTION}
+\clearpage
+\subsection{CPUID}
+\clearpage
+\subsection{MSR\_READ}
 \clearpage
 
 \chapter{Real-Time Performance Optimizations and Latency Reduction}\label{cha:latency_reduction}
 \section{Host OS Optimization}
+
+\subsection{Tasks and Events}
 
 \subsection{CPU governor}
 
@@ -805,74 +864,34 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 
 \section{Guest OS Optimization}
 
+\subsection{Tasks and Events}
+
+
 \section{Virtual Machine Configuration Optimizations}
 
 \clearpage
 
-\section{KVM exit reasons}\label{sec:kvm_exit_reasons}
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={script:qemu_configuration_optimizations}]
+    #!/bin/sh
 
-\subsection{APIC\_WRITE}
-
-The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. An APIC\_WRITE occurs when a guest operating system attempts to write to the APIC registers. Since the APIC is a physical hardware component, KVM must intercept this operation and cause a VM exit. To avoid this, newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance. 
-
-This can be done by setting the apic flag to 'v' in the VM configuration file.
-
-Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC virtualisation. Comparing this to the previous Figures \ref{fig:kvm_exit_taskset} and \ref{fig:kvm_exits_default}, it can be observed that an APIC\_Write no longer occurs.
-
-
-(URL: \url{https://www.qemu.org/docs/master/system/i386/hyperv.html})
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\columnwidth]{img/kvm_exit_vapic.png}
-	\caption[kvm exits default]{kvm exits default}
-	\label{fig:kvm_exit_vapic}
-\end{figure}
-\clearpage
-
-\clearpage
-\subsection{HLT}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{EPT\_MISCONFIG}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{PREEMPTION\_TIMER}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{EXTERNAL\_INTERRUPT}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{IO\_INSTRUCTION}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{EOI\_INDUCED}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{EPT\_VIOLATION}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{PAUSE\_INSTRUCTION}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{CPUID}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-\subsection{MSR\_READ}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
-\clearpage
-
+    if  [ ! -d drive-c/ ]; then
+            echo "Filling drive-c/"
+            mkdir drive-c/
+            tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
+    fi
+    
+    exec  qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+    -m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+    -append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable" \
+    -net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+    -fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
+    -device vhost-vsock-pci,guest-cid=3,id=vsock0 \
+    -drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+    -no-reboot -nographic
+\end{lstlisting}
+\end{minipage}
 
 
 
@@ -891,7 +910,32 @@ The Figure \ref{fig:latency_comparison} below compares non-optimized guest laten
 \clearpage
 
 
-
+\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}
+\cite{Tracecmd}
+\cite{KernelShark}
+\cite{XenomaiXenomai}
+\cite{WelcomeYoctoProject}
+\cite{QEMU}
+\cite{linPerformanceEvaluationXenomai}
+\cite{abediRTNFPredictableLatency2019}
+\cite{broskyShieldedProcessorsGuaranteeing2003}
+\cite{casiniLatencyAnalysisVirtualization2021}
+\cite{cinqueVirtualizingMixedCriticalitySystems2022}
+\cite{garcia-vallsChallengesRealtimeVirtualization2014}
+\cite{guStateoftheArtSurveyRealTime2012}
+\cite{HardRealTime}
+\cite{javierperezHowRealTime2022}
+\cite{kirovaImpactModernVirtualization2019}
+\cite{kiszkaLinuxRealTimeHypervisor}
+\cite{lutsykPipelinedMulticoreMachine2020}
+\cite{malallahComprehensiveStudyKernel2021}
+\cite{masrurVMBasedRealTimeServices2010}
+\cite{mckenneyRealTimeVs}
+\cite{pielAsymmetricSchedulingLoad2006}
+\cite{queirozTestingLimitsGeneralpurpose2023}
+\cite{reghenzaniRealTimeLinuxKernel2020}
+\cite{yoonRealTimePerformanceAnalysis}
+\clearpage
 
 \chapter{Results}\label{cha:results}
 
