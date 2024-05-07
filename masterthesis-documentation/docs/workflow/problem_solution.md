@@ -83,7 +83,7 @@ scp /usr/local/lib64/libtraceevent.so.1 root@"$ip_address":/lib64
 ```
 Now, [trace-cmd version 3.2.0](../resources/images/trace-cmd/trace-cmd_version3.2.0.png) is active and [tracing the guest](../resources/images/trace-cmd/time_sync.png) finally works with `trace-cmd agent` on the guest.
 
-Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis/taskset/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
+Using kernelshark with `kernelshark trace.dat -a trace-Salamander4.dat` or simply [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis/virtualization/taskset/start_kernelshark.sh), we get the expected [visualization](../resources/images/trace-cmd/kernelshark/kernelshark_combo.png). Events of the guest happen between kvm_entry and kvm_exit of the host.
 
 
 

@@ -1,19 +1,8 @@
 ## Tools
-<a href="https://www.trace-cmd.org/" target="_blank">trace-cmd.org</a>  
-<a href="https://kernelshark.org/" target="_blank">kernelshark.org</a>  
+<a href="https://www.trace-cmd.org/" target="_blank">trace-cmd.org</a>
 
 ## Documentation
-<a href="https://trace-cmd.org/Documentation/trace-cmd/" target="_blank">trace-cmd/documentation</a>  
-<a href="https://kernelshark.org/Documentation.html" target="_blank">kernelshark/documentation</a>
-
-<!--
-## All information from LTS README
-- [trace-cmd](../LTS/trace-cmd-v3.2/README.md)
-- [kernel-shark](../LTS/kernel-shark-kernelshark-v2.1.0/README.md)
-- [libtracefs](../LTS/libtracefs-1.8.0/README.md)
-- [libtraceevent](../LTS/libtraceevent-1.8.2/README.md)
-- [libtracecmd](../LTS/trace-cmd-libtracecmd-1.5.1/README.md)
--->
+<a href="https://trace-cmd.org/Documentation/trace-cmd/" target="_blank">trace-cmd/documentation</a>
 
 ## Usage trace-cmd
 trace-cmd [COMMAND] ...
