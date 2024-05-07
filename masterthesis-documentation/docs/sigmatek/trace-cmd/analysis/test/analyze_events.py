@@ -58,7 +58,7 @@ def count_events(input_filename):
         
     # Plotting
     events, counts = zip(*sorted_events)  # Unpack the sorted events and counts
-    plt.figure(figsize=(35, 30))  # Adjust the figure size to better fit the horizontal plot
+    plt.figure(figsize=(40, 60))  # Adjust the figure size to better fit the horizontal plot
     bars = plt.barh(events, counts, color='blue')  # Use barh instead of bar for a horizontal plot
     
     # Labeling the bars with their counts
