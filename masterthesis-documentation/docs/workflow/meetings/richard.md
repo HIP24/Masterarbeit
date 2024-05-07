@@ -150,7 +150,7 @@ MSR_READ
 
 
 
-
+https://www.sigma-star.at/blog/2022/02/linux-proc-prios/
 
 
 ❌✅
