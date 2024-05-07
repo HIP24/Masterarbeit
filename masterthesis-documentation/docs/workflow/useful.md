@@ -104,3 +104,11 @@ Set the values you want for CPU core and Memory:
 memory=3GB   # Limits VM memory in WSL 2 up to 3GB
 processors=2 # Makes the WSL 2 VM use two virtual processors
 ```
+
+
+## Thread priorities
+Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.
+ps reports SCHED_DEADLINE as DLN, SCHED_OTHER as TS, SCHED_BATCH as B, SCHED_IDLE as IDL, SCHED_FIFO as FF and SCHED_RR as RR.
+```
+ps axHo pid,lwp,comm,policy,nice,rtprio
+```
