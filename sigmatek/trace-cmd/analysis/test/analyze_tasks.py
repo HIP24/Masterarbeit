@@ -17,7 +17,7 @@ def count_tasks(input_filename):
     with open(input_filename, 'r') as f:
         for line in f:
             # Skip lines that start with "cpus=1" or "cpus=20" or "000:" or "010:"
-            if line.startswith("cpus=1") or line.startswith("cpus=20") or line.startswith("000:") or line.startswith("010:"):
+            if line.startswith("cpus=1") or line.startswith("cpus=2") or line.startswith("cpus=20") or line.startswith("000:") or line.startswith("010:"):
                 continue
 
             # Split the line into words
@@ -49,7 +49,7 @@ def count_tasks(input_filename):
     # Use f-string to include the base_filename in the output filename
     with open(f'tasks_{base_filename}.md', 'w') as f:
         # Write the total count of all events to the output file
-        f.write(f"Total count of all events: {total_count:,}\n\n".replace(",", ".")) 
+        f.write(f"Total count of all tasks: {total_count:,}\n\n".replace(",", ".")) 
 
         # Write the table headers
         f.write("| Task | PID | Count |\n")
@@ -68,7 +68,7 @@ def count_tasks(input_filename):
         
     # Plotting
     tasks, counts = zip(*sorted_tasks)  # Unpack the sorted tasks and counts
-    plt.figure(figsize=(15, 7))  # Adjust the figure size to better fit the horizontal plot
+    plt.figure(figsize=(15, 10))  # Adjust the figure size to better fit the horizontal plot
     bars = plt.barh(tasks, counts, color='blue')  # Use barh instead of bar for a horizontal plot
     
     # Labeling the bars with their counts
