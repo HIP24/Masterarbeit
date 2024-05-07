@@ -33,7 +33,7 @@ masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/**/*.*
 # Ignore .dat
-masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/*.dat
+masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/**/*.dat
 
 masterthesis-documentation/docs/sigmatek/xenomai/test/*.png
 masterthesis-documentation/docs/sigmatek/xenomai/test/*.txt
