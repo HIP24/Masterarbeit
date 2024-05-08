@@ -11,9 +11,9 @@ if [ ! -d $1/ ]; then
     mkdir $1/tasks $1/events $1/kvm_exits
 fi
 
-trace-cmd report --cpu 19 > host_report.txt && echo "host_report completed"&
-trace-cmd report -i trace-Salamander4.dat > guest_report.txt && echo "guest_report completed"&
-cat host_report.txt | grep kvm_exit > kvm_exit_count.txt && echo "kvm_exit_count completed"&
+trace-cmd report --cpu 19 > host_report.txt && echo "host_report completed"
+trace-cmd report -i trace-Salamander4.dat > guest_report.txt && echo "guest_report completed"
+cat host_report.txt | grep kvm_exit > kvm_exit_count.txt && echo "kvm_exit_count completed"
 # Wait for all background jobs to finish
 wait
 # Now run the Python scripts
