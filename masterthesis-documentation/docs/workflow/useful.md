@@ -110,5 +110,9 @@ processors=2 # Makes the WSL 2 VM use two virtual processors
 Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.
 ps reports SCHED_DEADLINE as DLN, SCHED_OTHER as TS, SCHED_BATCH as B, SCHED_IDLE as IDL, SCHED_FIFO as FF and SCHED_RR as RR.
 ```
-ps axHo pid,lwp,comm,policy,nice,rtprio
+ps axHo psr,pid,lwp,args,policy,nice,rtprio
+```
+All the tasks on CPU 19
+```
+ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$1 == 19'
 ```
