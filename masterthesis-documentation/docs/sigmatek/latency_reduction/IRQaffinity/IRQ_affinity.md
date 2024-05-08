@@ -86,11 +86,11 @@ CPU19 is being used by IRQs with [check_smp_affinity.sh](check_smp_affinity.sh) 
 12
 13
 15
-131
+133
 172
 173
 189
-193
+191
 ```
 
 
@@ -109,11 +109,11 @@ sudo chmod 777 /proc/irq/11/smp_affinity
 sudo chmod 777 /proc/irq/12/smp_affinity
 sudo chmod 777 /proc/irq/13/smp_affinity
 sudo chmod 777 /proc/irq/15/smp_affinity
-sudo chmod 777 /proc/irq/131/smp_affinity
+sudo chmod 777 /proc/irq/133/smp_affinity
 sudo chmod 777 /proc/irq/172/smp_affinity
 sudo chmod 777 /proc/irq/173/smp_affinity
 sudo chmod 777 /proc/irq/189/smp_affinity
-sudo chmod 777 /proc/irq/193/smp_affinity
+sudo chmod 777 /proc/irq/191/smp_affinity
 ```
 
 
@@ -131,11 +131,11 @@ cat /proc/irq/11/smp_affinity  # -> fffff
 cat /proc/irq/12/smp_affinity  # -> fffff            
 cat /proc/irq/13/smp_affinity  # -> fffff              
 cat /proc/irq/15/smp_affinity # -> fffff              
-cat /proc/irq/131/smp_affinity # -> fffff              
+cat /proc/irq/133/smp_affinity # -> fffff              
 cat /proc/irq/172/smp_affinity # -> 80000              
 cat /proc/irq/173/smp_affinity # -> fffff              
 cat /proc/irq/189/smp_affinity # -> 80000  
-cat /proc/irq/193/smp_affinity # -> fffff              
+cat /proc/irq/191/smp_affinity # -> fffff              
 ```
 
 
@@ -153,11 +153,11 @@ sudo echo 7ffff > /proc/irq/11/smp_affinity
 sudo echo 7ffff > /proc/irq/12/smp_affinity
 sudo echo 7ffff > /proc/irq/13/smp_affinity
 sudo echo 7ffff > /proc/irq/15/smp_affinity
-sudo echo 7ffff > /proc/irq/131/smp_affinity    # stays 80000
+sudo echo 7ffff > /proc/irq/133/smp_affinity    # stays 80000
 sudo echo 7ffff > /proc/irq/172/smp_affinity    # stays 80000
 sudo echo 7ffff > /proc/irq/173/smp_affinity    # stays fffff
 sudo echo 7ffff > /proc/irq/189/smp_affinity    # stays fffff
-sudo echo 7ffff > /proc/irq/193/smp_affinity    # stays fffff
+sudo echo 7ffff > /proc/irq/191/smp_affinity    # stays fffff
 ```
 
 ## COULD NOT BE CHANGED
@@ -166,47 +166,14 @@ sudo echo 7ffff > /proc/irq/193/smp_affinity    # stays fffff
 172
 173
 189
-193
+191
 ```
 
 ## VALUES
 ```bash
 cat /proc/irq/2/smp_affinity    #-> fffff
 cat /proc/irq/172/smp_affinity  #-> 80000
-cat /proc/irq/188/smp_affinity  #-> 80000
+cat /proc/irq/173/smp_affinity  #-> 80000
 cat /proc/irq/189/smp_affinity  #-> fffff
 cat /proc/irq/191/smp_affinity  #-> fffff
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
