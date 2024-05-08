@@ -80,3 +80,7 @@ with open("ps-e_amount_group.md", 'w') as file:
     # Write the counts
     for (group_name, task_type), count in sorted_group_counts:
         file.write(f"| {group_name} | {count} |\n")
+             
+# Print a success message
+print("ps-e is successfully saved to ps-e file.")
+
