@@ -3,10 +3,11 @@
         "**/masterthesis-documentation/docs/resources/exe/*": true,
         "**/masterthesis-documentation/docs/resources/images/*": true,
         "**/masterthesis-documentation/docs/resources/scripts/*": true,
-        "**/masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/trace-Salamander4.dat": true,
-        "**/masterthesis-documentation/docs/sigmatek/trace-cmd/analysis/test/trace.dat": true,
-        "**/masterthesis-documentation/docs/sigmatek/trace-cmd/LTS/*": true,
-        "**/masterthesis-documentation/docs/sigmatek/trace-cmd/working_trace-cmd/*": true
+        "**/masterthesis-documentation/docs/sigmatek/trace-cmd/working_trace-cmd/*": true,
+        "**/*.dat": true,
+        "**/*.png": true,
+        "**/*.jpg": true,
+        "**/*.cls": true
     },
     "latex-workshop.latex.recipes": [
         {
