@@ -6,7 +6,7 @@ with open('show_all_threads.txt', 'r') as f:
     data = f.readlines()
 
 # Extract the COMMAND column
-commands = [line.split()[2] for line in data[1:]]
+commands = [line.split()[3] for line in data[1:]]
 
 # Count the occurrences of each command
 command_counts = pd.Series(commands).value_counts().reset_index()
