@@ -66,7 +66,7 @@
 | Friday, 03.05.2024 | Steven yt, analyze_events and analyze_tasks |
 | Monday, 06.05.2024 | report_hardware |
 | Tuesday, 07.05.2024 | Richard prios, [show_all_threads.py](../tools/ps/show_all_threads.py) |
-| Wednesday, 08.05.2024 | |
+| Wednesday, 08.05.2024 | failed_reason include CPU, reorganize |
 | Thursday, 09.05.2024 | Feiertag |
 | Friday, 10.05.2024 | |
 | Monday, 13.05.2024 |  |
