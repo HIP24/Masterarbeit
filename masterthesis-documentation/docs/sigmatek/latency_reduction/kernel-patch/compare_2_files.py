@@ -40,4 +40,4 @@ def compare_files(file1, file2, output_file):
     print(f"Comparison results have been written to {output_file}")
 
 # Call the function with the file names
-compare_files("config-5.15.0-1062-realtime", "config-6.5.0-28-generic", "output_comparison.txt")
+compare_files("config-5.15.0-1062-realtime", "config-6.5.0-28-generic", "config-comparison.txt")
