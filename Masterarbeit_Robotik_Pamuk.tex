@@ -278,9 +278,6 @@ Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten d
 Ein Domainwechsel von Xenomai nach Linux geht relativ einfach. Aber der Wechsel von Linux nach Xenomai braucht Unterstützung, und dafür ist die Hilfe des Gatekeepers notwendig. Das bedeutet, der Gatekeeper hilft einem Task von Linux nach Xenomai zu wechseln.
 
 \clearpage
-
-
-
 \section{Task priorities}
 Es gibt grundsätzlich 4 Gruppen
 
@@ -298,7 +295,6 @@ Es gibt grundsätzlich 4 Gruppen
 	\end{tabular}
 \end{table}
 \clearpage
-
 \section{Memory Management}
 Es gibt verschiedene Speicherbereiche
 
@@ -336,7 +332,6 @@ Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
 	\label{fig:max_latency_hardware}
 \end{figure}
 \clearpage
-
 \section{Salamander 4 Virtualisation}
 In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
 
@@ -560,7 +555,7 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 \end{itemize}
 
 \subsection{Generic Ubuntu}
-
+\clearpage
 \subsection{Real-Time Ubuntu}
 
 %In the idle condition, in order to create such test environment, some non-essential user processes were eliminated. While in the CPU-STRESSED condition, these process are also forcely killed, and we used the stress utility to keep the CPU busy. The commands to kill these processes are written in the test script.
@@ -576,7 +571,6 @@ Vorgehensweise von \cite{linPerformanceEvaluationXenomai}
 
 \clearpage
 \section{KVM exit reasons}\label{sec:kvm_exit_reasons}
-
 \subsection{APIC\_WRITE}
 
 The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. An APIC\_WRITE occurs when a guest operating system attempts to write to the APIC registers. Since the APIC is a physical hardware component, KVM must intercept this operation and cause a VM exit. To avoid this, newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance. 
@@ -599,35 +593,41 @@ Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC vir
 
 \clearpage
 \subsection{HLT}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
+
 \clearpage
 \subsection{EPT\_MISCONFIG}
-\subsubsection{Description}
-\subsubsection{Occurence Reduction}
+
 \clearpage
 \subsection{PREEMPTION\_TIMER}
+
 \clearpage
 \subsection{EXTERNAL\_INTERRUPT}
+
 \clearpage
 \subsection{IO\_INSTRUCTION}
+
 \clearpage
 \subsection{EOI\_INDUCED}
+
 \clearpage
 \subsection{EPT\_VIOLATION}
+
 \clearpage
 \subsection{PAUSE\_INSTRUCTION}
+
 \clearpage
 \subsection{CPUID}
+
 \clearpage
 \subsection{MSR\_READ}
+
 \clearpage
 
 \chapter{Real-Time Performance Optimizations and Latency Reduction}\label{cha:latency_reduction}
 \section{Host OS Optimization}
 
 \subsection{Tasks and Events}
-
+\clearpage
 \subsection{CPU governor}
 
 Figure \ref{fig:power_saver_kvm_exit} shows ...
@@ -859,17 +859,15 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 
 
 \noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
-
+\clearpage
 \subsection{Kernel tuning}
-
+\clearpage
 \section{Guest OS Optimization}
-
+\clearpage
 \subsection{Tasks and Events}
-
+\clearpage
 
 \section{Virtual Machine Configuration Optimizations}
-
-\clearpage
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -892,12 +890,14 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
     -no-reboot -nographic
 \end{lstlisting}
 \end{minipage}
+\clearpage
 
 \chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
 
 \section{VARAN}
-
+\clearpage
 \section{Robotic Application}
+\clearpage
 
 \chapter{To Include}\label{cha:to_include}
 
@@ -962,8 +962,6 @@ The Linux kernel with the EVL interface, which, like Dovetail, enables the kerne
 The libevl library, which provides a user interface to the EVL core, allowing applications to use the real-time capabilities provided by EVL.
 So, while both versions require a Linux kernel with a real-time interface (Dovetail for Xenomai 3, EVL for Xenomai 4), Xenomai 3 uses a real-time core (Cobalt), while Xenomai 4 uses a library (libevl) to provide applications with access to its real-time capabilities.
 \end{comment}
-
-
 \clearpage
 
 \chapter{Discussion}\label{cha:discussion}

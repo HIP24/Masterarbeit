@@ -68,7 +68,7 @@
 | Tuesday, 07.05.2024 | Richard prios, [show_all_threads.py](../tools/ps/show_all_threads.py) |
 | Wednesday, 08.05.2024 | failed_reason include CPU, reorganize |
 | Thursday, 09.05.2024 | Feiertag |
-| Friday, 10.05.2024 | |
+| Friday, 10.05.2024 | compare kernels |
 | Monday, 13.05.2024 |  |
 | Tuesday, 14.05.2024 |  |
 | Wednesday, 15.05.2024 | |

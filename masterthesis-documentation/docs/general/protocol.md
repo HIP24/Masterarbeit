@@ -39,7 +39,7 @@ We test the system using the Xenomai test suite
 - `clocktest -D -T 60` 
 
 ### Out-of-the-box 
-Before taskset with [`qemu_def_4schedstats.sh`](../sigmatek/QEMU/qemu_def_4schedstats.sh)
+Before taskset with [`qemu_def_2nmbridge.sh`](../sigmatek/QEMU/qemu_def_2nmbridge.sh)
 ```bash
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    7295  10 start_qemu.sh
@@ -151,7 +151,7 @@ sigma_ibo@pamhal:~$ cat /sys/devices/system/cpu/isolated
 0-4
 ```
 
-After taskset on CPU4 with [`qemu_def_5taskset.sh`](../sigmatek/QEMU/qemu_def_5taskset.sh)
+After taskset on CPU4 with [`qemu_def_4taskset.sh`](../sigmatek/QEMU/qemu_def_4taskset.sh)
 ```bash
 sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    8752   0 start_qemu.sh
@@ -441,3 +441,6 @@ performance
 performance
 performance
 ```
+
+## boot parameters
+cat /proc/cmdline
