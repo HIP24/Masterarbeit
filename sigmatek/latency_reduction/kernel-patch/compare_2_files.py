@@ -18,21 +18,26 @@ def compare_files(file1, file2, output_file):
 
     # Write the results to the output file
     with open(output_file, 'w') as out:
+        out.write(f"Total common lines: {len(common_lines)}\n")
         out.write("Lines both files have in common:\n")
         for line in common_lines:
             out.write(line + "\n")
+       
 
         out.write("\n" + "#"*90 + "\n" + "#"*90 + "\n" + "#"*90 + "\n")
+        out.write(f"Total lines only in {file1}: {len(lines_only_in_file1)}\n")
         out.write("Lines only " + file1 + " has:\n")
         for line in lines_only_in_file1:
             out.write(line + "\n")
+        
 
         out.write("\n" + "#"*90 + "\n" + "#"*90 + "\n" + "#"*90 + "\n")
+        out.write(f"Total lines only in {file2}: {len(lines_only_in_file2)}\n")
         out.write("Lines only " + file2 + " has:\n")
         for line in lines_only_in_file2:
             out.write(line + "\n")
-
+        
     print(f"Comparison results have been written to {output_file}")
 
 # Call the function with the file names
-compare_files("6.5.0", "6.8.0", "output_comparison.txt")
+compare_files("config-5.15.0-1062-realtime", "config-6.5.0-28-generic", "output_comparison.txt")
