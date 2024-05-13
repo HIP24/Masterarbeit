@@ -34,4 +34,5 @@ cp merge.py failed_reason.py start_kernelshark.sh *.dat $1
 cd $1
 python merge.py && echo "host_report and guest_report merged"
 mv kvm_exit_count.* kvm_exits
+rm merge.py
 exit 0
