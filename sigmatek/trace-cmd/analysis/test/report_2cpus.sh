@@ -25,19 +25,19 @@ python analyze_tasks.py guest_report.txt && echo "analyze_tasks for guest_report
 python analyze_events.py host_report18.txt && echo "analyze_events for host_report18 completed"&
 python analyze_events.py host_report19.txt && echo "analyze_events for host_report19 completed"&
 python analyze_events.py guest_report.txt && echo "analyze_events for guest_report completed"&
-python kvm_exit_count18.py && echo "kvm_exit_count18 plot completed"&
-python kvm_exit_count19.py && echo "kvm_exit_count19 plot completed"&
+python kvm_exit_count.py kvm_exit_count18.txt && echo "kvm_exit_count18 plot completed"&
+python kvm_exit_count.py kvm_exit_count19.txt && echo "kvm_exit_count19 plot completed"&
 wait
 # Move and Copy elements in directory 
 mv *.txt $1/
 mv events_host_report* events_guest_report*  $1/events
 mv tasks_host_report* tasks_guest_report*  $1/tasks
-mv kvm_exit_count.png  $1
+mv kvm_exit_count*.png  $1
 cp merge.py failed_reason.py start_kernelshark.sh *.dat $1
 
 # Merge host and guest report
 cd $1
 #python merge.py && echo "host_report and guest_report merged"
-mv kvm_exit_count.* kvm_exits
+mv kvm_exit_count* kvm_exits
 rm merge.py
 exit 0

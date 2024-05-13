@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import sys  # Import the sys module
+import os  # Import the os module
 
 def count_lines_with_word(file_path, word, total_lines):
     with open(file_path, 'r') as file:
@@ -13,9 +15,8 @@ def count_lines_with_word(file_path, word, total_lines):
     return total_lines, count
 
 # Usage
-file_path = 'kvm_exit_count.txt'  # replace with your file path
+file_path = sys.argv[1]  # Get the file path from command line argument
 total_lines = sum(1 for line in open(file_path))
-#print(f"Total exits: {total_lines}.")
 total = total_lines
 
 words = ['APIC_WRITE', 
@@ -30,44 +31,31 @@ words = ['APIC_WRITE',
          'CPUID',   
          'MSR_READ',
          'MSR_WRITE'
-         ]  # replace with the words you want to search for
+         ]
 
 counts = []
 for word in words:
     total_lines, word_lines = count_lines_with_word(file_path, word, total_lines)
-    #print(f"'{word}': {word_lines} times")
     counts.append((word, word_lines))
 
-# Sort words and counts by count in descending order
 counts.sort(key=lambda x: x[1], reverse=True)
-words, word_counts = zip(*counts)  # unzip the sorted pairs
+words, word_counts = zip(*counts)
 
-# Set the figure size
 plt.figure(figsize=(10, 6))
+bars = plt.bar(words, word_counts, color='blue')
 
-# Plotting
-bars = plt.bar(words, word_counts, color='blue')  # Added color='blue'
-
-# Labeling the bars with their counts
 for bar in bars:
     yval = bar.get_height()
     plt.text(bar.get_x() + bar.get_width()/2, yval + 0.05, yval, ha='center', va='bottom')
 
 plt.xlabel('Reasons')
 plt.ylabel('Count')
-plt.title(f'Exit Reason Count (Total exits: {total})')  # Add total exits to the title
-plt.xticks(rotation=90, fontsize='small')  # Adjust font size for readability
+plt.title(f'Exit Reason Count (Total exits: {total})')
+plt.xticks(rotation=90, fontsize='small')
+plt.subplots_adjust(bottom=0.4)
+plt.ylim([0, max(word_counts)*1.2])
 
-# Adjust bottom margin
-plt.subplots_adjust(bottom=0.4)  # Increase the bottom margin
+# Save the figure with the input file name (without extension) appended to 'kvm_exit_count_'
+filename_without_extension = os.path.splitext(os.path.basename(file_path))[0]
+plt.savefig(f'{filename_without_extension}.png', bbox_inches='tight')
 
-# Set x and y axis lengths
-#plt.xlim([0, len(words)])  # Set x-axis length
-plt.ylim([0, max(word_counts)*1.2])  # Set y-axis length
-
-# Save the figure
-#plt.savefig('../../../../../../img/kvm_exit_count.png', bbox_inches='tight')
-plt.savefig('kvm_exit_count.png', bbox_inches='tight')
-
-# Print a success message
-#print("The plot was successfully saved to kvm_exit_count.png")

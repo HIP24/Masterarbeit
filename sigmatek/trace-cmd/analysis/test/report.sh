@@ -21,7 +21,7 @@ python analyze_tasks.py host_report.txt && echo "analyze_tasks for host_report c
 python analyze_tasks.py guest_report.txt && echo "analyze_tasks for guest_report completed"&
 python analyze_events.py host_report.txt && echo "analyze_events for host_report completed"&
 python analyze_events.py guest_report.txt && echo "analyze_events for guest_report completed"&
-python kvm_exit_count.py && echo "kvm_exit_count plot completed"&
+python kvm_exit_count.py kvm_exit_count.txt && echo "kvm_exit_count plot completed"&
 wait
 # Move and Copy elements in directory 
 mv *.txt $1/
