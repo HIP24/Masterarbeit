@@ -27,7 +27,7 @@ if [ -f "/proc/irq/$IRQ/smp_affinity" ]; then
     # Sort the array
     IFS=$'\n' sorted=($(sort -n <<<"${CPUs[*]}"))
     # Print the IRQ number
-    echo "IRQ $IRQ is being used by:"
+    echo "IRQ $IRQ is being used by CPU:"
     # Print the sorted CPU numbers on separate lines
     for cpu in "${sorted[@]}"; do
         echo "$cpu"
