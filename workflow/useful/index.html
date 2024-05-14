@@ -599,6 +599,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../../sigmatek/latency_reduction/IRQaffinity/irqs1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Irqs1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/latency_reduction/IRQaffinity/irqs_without_cpu13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Irqs without cpu13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../sigmatek/latency_reduction/IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
         
   
@@ -5026,7 +5068,7 @@ All the tasks on CPU 13
 </code></pre></div>
 All rt processes
 <div class="highlight"><pre><span></span><code>ps axHo psr,pid,lwp,args,policy,nice,rtprio | grep -P &#39;\s[0-9]+\s*$&#39;
-ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;$NF ~ /^[0-9]+$/&#39; 
+ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;$NF ~ /^[0-9]+$/&#39; | sort -k4,4 -V &gt; rt_processes.txt
 </code></pre></div></p>
 
 

@@ -1,8 +1,24 @@
+ 12    2600    2829 /snap/snapd-desktop-integra B     0      0
+  9    1968    2005 /usr/bin/gnome-shell        B    19      0
+ 11    1438    1488 /usr/bin/pipewire           RR    -     20
+  0    1439    1481 /usr/bin/pipewire-media-ses RR    -     20
+ 10    1440    2052 /usr/bin/pulseaudio --daemo RR    -      5
+  1    1440    2635 /usr/bin/pulseaudio --daemo RR    -      5
+  1    1440    2656 /usr/bin/pulseaudio --daemo RR    -      5
+  1    1440    5759 /usr/bin/pulseaudio --daemo RR    -      5
+  2    1440    2554 /usr/bin/pulseaudio --daemo RR    -      5
+  9    1440    2437 /usr/bin/pulseaudio --daemo RR    -      5
+  9    1440    5760 /usr/bin/pulseaudio --daemo RR    -      5
+  4    1468    1474 /usr/libexec/rtkit-daemon   RR    -     99
+  0    2685    2737 /usr/libexec/tracker-miner- IDL   -      0
+ 10    2685    2744 /usr/libexec/tracker-miner- IDL   -      0
+ 11    2685    2685 /usr/libexec/tracker-miner- IDL   -      0
+  1    2685    2746 /usr/libexec/tracker-miner- IDL   -      0
+  6    2685    2738 /usr/libexec/tracker-miner- IDL   -      0
+  9    2685    2856 /usr/libexec/tracker-miner- IDL   -      0
+  1    2327  121032 /usr/libexec/xdg-desktop-po B    19      0
+  9    2327    2408 /usr/libexec/xdg-desktop-po B    19      0
   0      20      20 [idle_inject/0]             FF    -     50
- 10      96      96 [idle_inject/10]            FF    -     50
- 11     104     104 [idle_inject/11]            FF    -     50
- 12     112     112 [idle_inject/12]            FF    -     50
- 13     120     120 [idle_inject/13]            FF    -     50
   1      24      24 [idle_inject/1]             FF    -     50
   2      32      32 [idle_inject/2]             FF    -     50
   3      40      40 [idle_inject/3]             FF    -     50
@@ -12,14 +28,27 @@
   7      72      72 [idle_inject/7]             FF    -     50
   8      80      80 [idle_inject/8]             FF    -     50
   9      88      88 [idle_inject/9]             FF    -     50
+ 10      96      96 [idle_inject/10]            FF    -     50
+ 11     104     104 [idle_inject/11]            FF    -     50
+ 12     112     112 [idle_inject/12]            FF    -     50
+ 13     120     120 [idle_inject/13]            FF    -     50
+ 10     226     226 [irq/1-i8042]               FF    -     50
+ 11     227     227 [irq/8-rtc0]                FF    -     50
+  1     186     186 [irq/9-acpi]                FF    -     50
+  3     329     329 [irq/16-i801_smb]           FF    -     50
+  2     316     316 [irq/26-intel_is]           FF    -     50
+  7     390     390 [irq/27-i2c_desi]           FF    -     50
+  7     334     334 [irq/27-idma64.0]           FF    -     50
+  1     395     395 [irq/40-i2c_desi]           FF    -     50
+  1     393     393 [irq/40-idma64.1]           FF    -     50
   2     211     211 [irq/122-PCIe PM]           FF    -     50
   3     212     212 [irq/123-PCIe PM]           FF    -     50
   4     213     213 [irq/124-PCIe PM]           FF    -     50
-  5     215     215 [irq/125-pciehp]            FF    -     50
   5     214     214 [irq/125-PCIe PM]           FF    -     50
+  5     215     215 [irq/125-pciehp]            FF    -     50
   5     216     216 [irq/125-s-pcieh]           FF    -     50
-  6     218     218 [irq/126-pciehp]            FF    -     50
   6     217     217 [irq/126-PCIe PM]           FF    -     50
+  6     218     218 [irq/126-pciehp]            FF    -     50
   6     219     219 [irq/126-s-pcieh]           FF    -     50
   7     220     220 [irq/127-PCIe PM]           FF    -     50
   9     221     221 [irq/129-pciehp]            FF    -     50
@@ -29,9 +58,9 @@
   6     333     333 [irq/132-thunder]           FF    -     50
   1     352     352 [irq/134-nvme0q0]           FF    -     50
   2     327     327 [irq/135-xhci_hc]           FF    -     50
-  0    1323    1323 [irq/139-enp0s31]           FF    -     50
+  3    1323    1323 [irq/139-enp0s31]           FF    -     50
   3     368     368 [irq/150-nvme1q0]           FF    -     50
-  3     345     345 [irq/151-xhci_hc]           FF    -     50
+  0     345     345 [irq/151-xhci_hc]           FF    -     50
   0     353     353 [irq/152-nvme0q1]           FF    -     50
   1     354     354 [irq/153-nvme0q2]           FF    -     50
   2     355     355 [irq/154-nvme0q3]           FF    -     50
@@ -50,7 +79,6 @@
   0     369     369 [irq/167-nvme1q1]           FF    -     50
   1     370     370 [irq/168-nvme1q2]           FF    -     50
   2     371     371 [irq/169-nvme1q3]           FF    -     50
-  3     329     329 [irq/16-i801_smb]           FF    -     50
   3     372     372 [irq/170-nvme1q4]           FF    -     50
   4     373     373 [irq/171-nvme1q5]           FF    -     50
   5     374     374 [irq/172-nvme1q6]           FF    -     50
@@ -62,22 +90,10 @@
  11     380     380 [irq/178-nvme1q1]           FF    -     50
  12     381     381 [irq/179-nvme1q1]           FF    -     50
  13     382     382 [irq/180-nvme1q1]           FF    -     50
-  0     396     396 [irq/181-VEN_06C]           FF    -     50
+  6     396     396 [irq/181-VEN_06C]           FF    -     50
   2     606     606 [irq/182-mei_me]            FF    -     50
   7    5748    5748 [irq/187-snd_hda]           FF    -     50
- 10     226     226 [irq/1-i8042]               FF    -     50
-  2     316     316 [irq/26-intel_is]           FF    -     50
-  7     390     390 [irq/27-i2c_desi]           FF    -     50
-  7     334     334 [irq/27-idma64.0]           FF    -     50
-  1     395     395 [irq/40-i2c_desi]           FF    -     50
-  1     393     393 [irq/40-idma64.1]           FF    -     50
- 11     227     227 [irq/8-rtc0]                FF    -     50
-  1     186     186 [irq/9-acpi]                FF    -     50
   0      19      19 [irq_work/0]                FF    -      1
- 10      97      97 [irq_work/10]               FF    -      1
- 11     105     105 [irq_work/11]               FF    -      1
- 12     113     113 [irq_work/12]               FF    -      1
- 13     121     121 [irq_work/13]               FF    -      1
   1      25      25 [irq_work/1]                FF    -      1
   2      33      33 [irq_work/2]                FF    -      1
   3      41      41 [irq_work/3]                FF    -      1
@@ -87,11 +103,11 @@
   7      73      73 [irq_work/7]                FF    -      1
   8      81      81 [irq_work/8]                FF    -      1
   9      89      89 [irq_work/9]                FF    -      1
+ 10      97      97 [irq_work/10]               FF    -      1
+ 11     105     105 [irq_work/11]               FF    -      1
+ 12     113     113 [irq_work/12]               FF    -      1
+ 13     121     121 [irq_work/13]               FF    -      1
   0      18      18 [migration/0]               FF    -     99
- 10      98      98 [migration/10]              FF    -     99
- 11     106     106 [migration/11]              FF    -     99
- 12     114     114 [migration/12]              FF    -     99
- 13     122     122 [migration/13]              FF    -     99
   1      26      26 [migration/1]               FF    -     99
   2      34      34 [migration/2]               FF    -     99
   3      42      42 [migration/3]               FF    -     99
@@ -101,12 +117,12 @@
   7      74      74 [migration/7]               FF    -     99
   8      82      82 [migration/8]               FF    -     99
   9      90      90 [migration/9]               FF    -     99
+ 10      98      98 [migration/10]              FF    -     99
+ 11     106     106 [migration/11]              FF    -     99
+ 12     114     114 [migration/12]              FF    -     99
+ 13     122     122 [migration/13]              FF    -     99
   4      16      16 [rcub/0]                    FF    -      1
   0      17      17 [rcuc/0]                    FF    -      1
- 10      99      99 [rcuc/10]                   FF    -      1
- 11     107     107 [rcuc/11]                   FF    -      1
- 12     115     115 [rcuc/12]                   FF    -      1
- 13     123     123 [rcuc/13]                   FF    -      1
   1      27      27 [rcuc/1]                    FF    -      1
   2      35      35 [rcuc/2]                    FF    -      1
   3      43      43 [rcuc/3]                    FF    -      1
@@ -116,24 +132,9 @@
   7      75      75 [rcuc/7]                    FF    -      1
   8      83      83 [rcuc/8]                    FF    -      1
   9      91      91 [rcuc/9]                    FF    -      1
- 10      15      15 [rcu_preempt]               FF    -      1
- 12    2600    2829 /snap/snapd-desktop-integra B     0      0
-  9    1968    2005 /usr/bin/gnome-shell        B    19      0
-  0    1439    1481 /usr/bin/pipewire-media-ses RR    -     20
- 11    1438    1488 /usr/bin/pipewire           RR    -     20
- 10    1440    2052 /usr/bin/pulseaudio --daemo RR    -      5
-  1    1440    2635 /usr/bin/pulseaudio --daemo RR    -      5
-  1    1440    2656 /usr/bin/pulseaudio --daemo RR    -      5
-  1    1440    5759 /usr/bin/pulseaudio --daemo RR    -      5
-  2    1440    2554 /usr/bin/pulseaudio --daemo RR    -      5
-  9    1440    2437 /usr/bin/pulseaudio --daemo RR    -      5
-  9    1440    5760 /usr/bin/pulseaudio --daemo RR    -      5
-  0    1468    1474 /usr/libexec/rtkit-daemon   RR    -     99
-  0    2685    2737 /usr/libexec/tracker-miner- IDL   -      0
- 10    2685    2744 /usr/libexec/tracker-miner- IDL   -      0
- 11    2685    2685 /usr/libexec/tracker-miner- IDL   -      0
-  1    2685    2746 /usr/libexec/tracker-miner- IDL   -      0
-  8    2685    2738 /usr/libexec/tracker-miner- IDL   -      0
-  9    2685    2856 /usr/libexec/tracker-miner- IDL   -      0
-  9    2327    2408 /usr/libexec/xdg-desktop-po B    19      0
+ 10      99      99 [rcuc/10]                   FF    -      1
+ 11     107     107 [rcuc/11]                   FF    -      1
+ 12     115     115 [rcuc/12]                   FF    -      1
+ 13     123     123 [rcuc/13]                   FF    -      1
+  0      15      15 [rcu_preempt]               FF    -      1
   9     203     203 [watchdogd]                 FF    -     50

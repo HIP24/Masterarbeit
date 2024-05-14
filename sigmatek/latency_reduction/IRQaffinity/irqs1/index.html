@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../../../noapic/tasks/tasks_host_report/">
+        <link rel="prev" href="../IRQ_affinity/">
       
       
-        <link rel="next" href="../events_host_report/">
+        <link rel="next" href="../irqs_without_cpu13/">
       
       
-      <link rel="icon" href="../../../../../../../img/uni.png">
+      <link rel="icon" href="../../../../img/uni.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
     
     
       
-        <title>Events guest report - Masterthesis Documentation</title>
+        <title>Irqs1 - Masterthesis Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.66ac8b77.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -85,9 +85,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../../.." title="Masterthesis Documentation" class="md-header__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+    <a href="../../../.." title="Masterthesis Documentation" class="md-header__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
       
-  <img src="../../../../../../../img/uni.png" alt="logo">
+  <img src="../../../../img/uni.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Events guest report
+              Irqs1
             
           </span>
         </div>
@@ -179,9 +179,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../../.." title="Masterthesis Documentation" class="md-nav__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+    <a href="../../../.." title="Masterthesis Documentation" class="md-nav__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
       
-  <img src="../../../../../../../img/uni.png" alt="logo">
+  <img src="../../../../img/uni.png" alt="logo">
 
     </a>
     Masterthesis Documentation
@@ -196,7 +196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -216,7 +216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../test/" class="md-nav__link">
+      <a href="../../../../test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -271,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../general/checklist/" class="md-nav__link">
+      <a href="../../../../general/checklist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -292,7 +292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../general/components/" class="md-nav__link">
+      <a href="../../../../general/components/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -313,7 +313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../general/documentations/" class="md-nav__link">
+      <a href="../../../../general/documentations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -334,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../general/protocol/" class="md-nav__link">
+      <a href="../../../../general/protocol/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -355,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../general/timeline/" class="md-nav__link">
+      <a href="../../../../general/timeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../QEMU/nmbridge/" class="md-nav__link">
+      <a href="../../../QEMU/nmbridge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -481,17 +481,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -505,7 +507,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             Latency reduction
@@ -519,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../latency_reduction/latency_reduction_steps/" class="md-nav__link">
+      <a href="../../latency_reduction_steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -537,17 +539,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
@@ -561,7 +565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2_2">
             <span class="md-nav__icon md-icon"></span>
             IRQaffinity
@@ -575,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../latency_reduction/IRQaffinity/IRQ_affinity/" class="md-nav__link">
+      <a href="../IRQ_affinity/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -593,10 +597,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../../../latency_reduction/IRQaffinity/irqs1/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -605,6 +616,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -617,7 +629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../latency_reduction/IRQaffinity/irqs_without_cpu13/" class="md-nav__link">
+      <a href="../irqs_without_cpu13/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -638,7 +650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../latency_reduction/IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
+      <a href="../table_CPU_IRQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -702,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../latency_reduction/kernel-patch/kernel-patch/" class="md-nav__link">
+      <a href="../../kernel-patch/kernel-patch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -774,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../salamander4/bash_commands/" class="md-nav__link">
+      <a href="../../../salamander4/bash_commands/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -795,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../salamander4/build_LRT/" class="md-nav__link">
+      <a href="../../../salamander4/build_LRT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -816,7 +828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../salamander4/build_with_yocto/" class="md-nav__link">
+      <a href="../../../salamander4/build_with_yocto/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -842,19 +854,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
           
           <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
@@ -868,7 +878,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             Trace cmd
@@ -882,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../kernelshark/" class="md-nav__link">
+      <a href="../../../trace-cmd/kernelshark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -903,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../kvm_exits_description/" class="md-nav__link">
+      <a href="../../../trace-cmd/kvm_exits_description/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -924,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../trace-cmd/" class="md-nav__link">
+      <a href="../../../trace-cmd/trace-cmd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -942,19 +952,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
         
           
           <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
@@ -968,7 +976,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_4">
             <span class="md-nav__icon md-icon"></span>
             Analysis
@@ -1052,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hardware/events/events_report_cpu0/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/hardware/events/events_report_cpu0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1073,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hardware/events/events_report_cpu1/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/hardware/events/events_report_cpu1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1137,7 +1145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hardware/tasks/tasks_report_cpu0/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/hardware/tasks/tasks_report_cpu0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1158,7 +1166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../hardware/tasks/tasks_report_cpu1/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/hardware/tasks/tasks_report_cpu1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1192,19 +1200,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2" >
         
           
           <label class="md-nav__link" for="__nav_4_4_4_2" id="__nav_4_4_4_2_label" tabindex="0">
@@ -1218,7 +1224,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_4_2">
             <span class="md-nav__icon md-icon"></span>
             Test
@@ -1302,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../fullparam/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/fullparam/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1323,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../fullparam/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/fullparam/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1387,7 +1393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../fullparam/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/fullparam/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1408,7 +1414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../fullparam/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/fullparam/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1515,7 +1521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../idlepoll/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/idlepoll/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1536,7 +1542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../idlepoll/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/idlepoll/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1600,7 +1606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../idlepoll/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/idlepoll/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1621,7 +1627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../idlepoll/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/idlepoll/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1728,7 +1734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noapic/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noapic/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1749,7 +1755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noapic/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noapic/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1813,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noapic/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noapic/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1834,7 +1840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noapic/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noapic/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1868,19 +1874,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2_4" >
         
           
           <label class="md-nav__link" for="__nav_4_4_4_2_4" id="__nav_4_4_4_2_4_label" tabindex="0">
@@ -1894,7 +1898,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_4_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_4_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_4_2_4">
             <span class="md-nav__icon md-icon"></span>
             Nohlt
@@ -1905,19 +1909,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2_4_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2_4_1" >
         
           
           <label class="md-nav__link" for="__nav_4_4_4_2_4_1" id="__nav_4_4_4_2_4_1_label" tabindex="0">
@@ -1931,7 +1933,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_4_4_4_2_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="6" aria-labelledby="__nav_4_4_4_2_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_4_2_4_1">
             <span class="md-nav__icon md-icon"></span>
             Events
@@ -1942,17 +1944,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../trace-cmd/analysis/test/nohlt/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1961,7 +1956,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1974,7 +1968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/nohlt/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2038,7 +2032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/nohlt/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2059,7 +2053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/nohlt/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2166,7 +2160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noparam/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noparam/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2187,7 +2181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noparam/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noparam/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2251,7 +2245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noparam/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noparam/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2272,7 +2266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../noparam/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/test/noparam/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2352,7 +2346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/compare/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/compare/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2408,7 +2402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/balanced/results_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/balanced/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2429,7 +2423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/balanced/results_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/balanced/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2493,7 +2487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/default/kvm_exit_default_results/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/default/kvm_exit_default_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2592,7 +2586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/normal/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/normal/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2613,7 +2607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/normal/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/normal/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2677,7 +2671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/normal/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/normal/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2698,7 +2692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/normal/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/normal/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2770,7 +2764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/performance/results_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/performance/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2791,7 +2785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/performance/results_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/performance/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2855,7 +2849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/power_saver/results_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/power_saver/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2876,7 +2870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/power_saver/results_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/power_saver/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2975,7 +2969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2996,7 +2990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3060,7 +3054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3081,7 +3075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3188,7 +3182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time-irq/events/events_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time-irq/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3209,7 +3203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time-irq/events/events_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time-irq/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3273,7 +3267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time-irq/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time-irq/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3294,7 +3288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/real-time-irq/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/real-time-irq/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3366,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/taskset/kvm_exit_taskset_results/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/taskset/kvm_exit_taskset_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3430,7 +3424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../virtualization/vapic/kvm_exit_vapic_results/" class="md-nav__link">
+      <a href="../../../trace-cmd/analysis/virtualization/vapic/kvm_exit_vapic_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3510,7 +3504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+      <a href="../../../trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3582,7 +3576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/clocktest/" class="md-nav__link">
+      <a href="../../../xenomai/clocktest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3603,7 +3597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/latency/" class="md-nav__link">
+      <a href="../../../xenomai/latency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3624,7 +3618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/switchtest/" class="md-nav__link">
+      <a href="../../../xenomai/switchtest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3645,7 +3639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/xenomai-system-tools/" class="md-nav__link">
+      <a href="../../../xenomai/xenomai-system-tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3701,7 +3695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3722,7 +3716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3786,7 +3780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3807,7 +3801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3871,7 +3865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3892,7 +3886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3956,7 +3950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+      <a href="../../../xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3977,7 +3971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
+      <a href="../../../xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4049,7 +4043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../yocto/after_bitbake/" class="md-nav__link">
+      <a href="../../../yocto/after_bitbake/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4120,7 +4114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../tools/show_process/" class="md-nav__link">
+      <a href="../../../../tools/show_process/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4141,7 +4135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../tools/tools/" class="md-nav__link">
+      <a href="../../../../tools/tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4197,7 +4191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../tools/bcc/bcc_tests/" class="md-nav__link">
+      <a href="../../../../tools/bcc/bcc_tests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4218,7 +4212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../tools/bcc/install_bcc/" class="md-nav__link">
+      <a href="../../../../tools/bcc/install_bcc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4282,7 +4276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../tools/rt-tester/" class="md-nav__link">
+      <a href="../../../../tools/rt-tester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4353,7 +4347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/gitlfs/" class="md-nav__link">
+      <a href="../../../../workflow/gitlfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4374,7 +4368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/gittutorial/" class="md-nav__link">
+      <a href="../../../../workflow/gittutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4395,7 +4389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/most_popular_paths/" class="md-nav__link">
+      <a href="../../../../workflow/most_popular_paths/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4416,7 +4410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/problem_solution/" class="md-nav__link">
+      <a href="../../../../workflow/problem_solution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4437,7 +4431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/useful/" class="md-nav__link">
+      <a href="../../../../workflow/useful/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4458,7 +4452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/useful_links/" class="md-nav__link">
+      <a href="../../../../workflow/useful_links/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4479,7 +4473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/useful_notneeded/" class="md-nav__link">
+      <a href="../../../../workflow/useful_notneeded/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4500,7 +4494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/vscode/" class="md-nav__link">
+      <a href="../../../../workflow/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4556,7 +4550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/meetings/richard/" class="md-nav__link">
+      <a href="../../../../workflow/meetings/richard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4577,7 +4571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../workflow/meetings/wober/" class="md-nav__link">
+      <a href="../../../../workflow/meetings/wober/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4637,531 +4631,91 @@
                   
 
 
-  <h1>Events guest report</h1>
+  <h1>Irqs1</h1>
 
-<p>Total count of all events: 209.553</p>
-<table>
-<thead>
-<tr>
-<th>Event</th>
-<th>Count</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>rcu_utilization</td>
-<td>15.312</td>
-</tr>
-<tr>
-<td>cobalt_trace_pid</td>
-<td>9.741</td>
-</tr>
-<tr>
-<td>cobalt_timer_start</td>
-<td>7.585</td>
-</tr>
-<tr>
-<td>sched_switch</td>
-<td>7.302</td>
-</tr>
-<tr>
-<td>irq_handler_entry</td>
-<td>7.144</td>
-</tr>
-<tr>
-<td>irq_handler_exit</td>
-<td>7.144</td>
-</tr>
-<tr>
-<td>kfree</td>
-<td>6.666</td>
-</tr>
-<tr>
-<td>cobalt_tick_shot</td>
-<td>6.605</td>
-</tr>
-<tr>
-<td>kmalloc</td>
-<td>6.544</td>
-</tr>
-<tr>
-<td>cpu_idle</td>
-<td>5.540</td>
-</tr>
-<tr>
-<td>tlb_flush</td>
-<td>5.332</td>
-</tr>
-<tr>
-<td>hrtimer_cancel</td>
-<td>4.822</td>
-</tr>
-<tr>
-<td>hrtimer_start</td>
-<td>4.822</td>
-</tr>
-<tr>
-<td>x86_fpu_regs_deactivated</td>
-<td>4.633</td>
-</tr>
-<tr>
-<td>sys_exit</td>
-<td>4.515</td>
-</tr>
-<tr>
-<td>sys_enter</td>
-<td>4.515</td>
-</tr>
-<tr>
-<td>cobalt_schedule</td>
-<td>4.207</td>
-</tr>
-<tr>
-<td>cobalt_switch_context</td>
-<td>4.206</td>
-</tr>
-<tr>
-<td>sched_waking</td>
-<td>4.188</td>
-</tr>
-<tr>
-<td>sched_wakeup</td>
-<td>4.188</td>
-</tr>
-<tr>
-<td>cobalt_head_sysentry</td>
-<td>4.149</td>
-</tr>
-<tr>
-<td>sched_stat_runtime</td>
-<td>3.826</td>
-</tr>
-<tr>
-<td>sched_stat_wait</td>
-<td>3.556</td>
-</tr>
-<tr>
-<td>irq_pipeline_entry</td>
-<td>3.525</td>
-</tr>
-<tr>
-<td>irq_pipeline_exit</td>
-<td>3.525</td>
-</tr>
-<tr>
-<td>cobalt_head_sysexit</td>
-<td>3.371</td>
-</tr>
-<tr>
-<td>x86_fpu_regs_activated</td>
-<td>3.293</td>
-</tr>
-<tr>
-<td>local_timer_entry</td>
-<td>2.846</td>
-</tr>
-<tr>
-<td>local_timer_exit</td>
-<td>2.846</td>
-</tr>
-<tr>
-<td>cobalt_timer_stop</td>
-<td>2.651</td>
-</tr>
-<tr>
-<td>write_msr</td>
-<td>2.260</td>
-</tr>
-<tr>
-<td>cobalt_timer_expire</td>
-<td>2.224</td>
-</tr>
-<tr>
-<td>rseq_update</td>
-<td>2.219</td>
-</tr>
-<tr>
-<td>cobalt_thread_resume</td>
-<td>2.106</td>
-</tr>
-<tr>
-<td>cobalt_thread_suspend</td>
-<td>2.106</td>
-</tr>
-<tr>
-<td>workqueue_queue_work</td>
-<td>1.927</td>
-</tr>
-<tr>
-<td>workqueue_activate_work</td>
-<td>1.927</td>
-</tr>
-<tr>
-<td>workqueue_execute_start</td>
-<td>1.927</td>
-</tr>
-<tr>
-<td>workqueue_execute_end</td>
-<td>1.926</td>
-</tr>
-<tr>
-<td>sched_stat_sleep</td>
-<td>1.834</td>
-</tr>
-<tr>
-<td>tick_stop</td>
-<td>1.769</td>
-</tr>
-<tr>
-<td>virtio_transport_alloc_pkt</td>
-<td>1.633</td>
-</tr>
-<tr>
-<td>mm_page_alloc</td>
-<td>1.546</td>
-</tr>
-<tr>
-<td>mm_page_free</td>
-<td>1.533</td>
-</tr>
-<tr>
-<td>hrtimer_expire_entry</td>
-<td>1.440</td>
-</tr>
-<tr>
-<td>hrtimer_expire_exit</td>
-<td>1.440</td>
-</tr>
-<tr>
-<td>cobalt_fd_ioctl</td>
-<td>1.325</td>
-</tr>
-<tr>
-<td>hrtimer_init</td>
-<td>1.103</td>
-</tr>
-<tr>
-<td>sched_stat_blocked</td>
-<td>913</td>
-</tr>
-<tr>
-<td>cobalt_synch_flush</td>
-<td>890</td>
-</tr>
-<tr>
-<td>cobalt_fd_recvmsg</td>
-<td>883</td>
-</tr>
-<tr>
-<td>cobalt_synch_sleepon</td>
-<td>883</td>
-</tr>
-<tr>
-<td>cobalt_shadow_gorelax</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_lostage_request</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_lostage_wakeup</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_shadow_relaxed</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_root_sysentry</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_shadow_gohard</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_shadow_hardened</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_synch_try_acquire</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_root_sysexit</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_synch_release</td>
-<td>778</td>
-</tr>
-<tr>
-<td>cobalt_synch_wakeup</td>
-<td>495</td>
-</tr>
-<tr>
-<td>cobalt_driver_event_signal</td>
-<td>445</td>
-</tr>
-<tr>
-<td>cobalt_driver_event_pulse</td>
-<td>445</td>
-</tr>
-<tr>
-<td>cobalt_thread_wait_period</td>
-<td>445</td>
-</tr>
-<tr>
-<td>cobalt_fd_ioctl_status</td>
-<td>442</td>
-</tr>
-<tr>
-<td>cobalt_synch_forget</td>
-<td>388</td>
-</tr>
-<tr>
-<td>cobalt_fd_recvmsg_status</td>
-<td>388</td>
-</tr>
-<tr>
-<td>cobalt_fd_sendmsg</td>
-<td>385</td>
-</tr>
-<tr>
-<td>timer_cancel</td>
-<td>315</td>
-</tr>
-<tr>
-<td>softirq_raise</td>
-<td>314</td>
-</tr>
-<tr>
-<td>softirq_entry</td>
-<td>314</td>
-</tr>
-<tr>
-<td>softirq_exit</td>
-<td>314</td>
-</tr>
-<tr>
-<td>timer_start</td>
-<td>313</td>
-</tr>
-<tr>
-<td>timer_expire_entry</td>
-<td>306</td>
-</tr>
-<tr>
-<td>timer_expire_exit</td>
-<td>306</td>
-</tr>
-<tr>
-<td>timer_init</td>
-<td>222</td>
-</tr>
-<tr>
-<td>sys_enter_splice</td>
-<td>204</td>
-</tr>
-<tr>
-<td>sys_exit_splice</td>
-<td>204</td>
-</tr>
-<tr>
-<td>sys_enter_pselect6</td>
-<td>104</td>
-</tr>
-<tr>
-<td>sys_exit_pselect6</td>
-<td>103</td>
-</tr>
-<tr>
-<td>kmem_cache_free</td>
-<td>82</td>
-</tr>
-<tr>
-<td>fib_table_lookup</td>
-<td>66</td>
-</tr>
-<tr>
-<td>mmap_lock_start_locking</td>
-<td>64</td>
-</tr>
-<tr>
-<td>mmap_lock_acquire_returned</td>
-<td>64</td>
-</tr>
-<tr>
-<td>mmap_lock_released</td>
-<td>64</td>
-</tr>
-<tr>
-<td>page_fault_user</td>
-<td>62</td>
-</tr>
-<tr>
-<td>kmem_cache_alloc</td>
-<td>58</td>
-</tr>
-<tr>
-<td>sched_process_wait</td>
-<td>45</td>
-</tr>
-<tr>
-<td>kmalloc_node</td>
-<td>38</td>
-</tr>
-<tr>
-<td>napi_gro_receive_entry</td>
-<td>35</td>
-</tr>
-<tr>
-<td>napi_gro_receive_exit</td>
-<td>35</td>
-</tr>
-<tr>
-<td>netif_receive_skb</td>
-<td>35</td>
-</tr>
-<tr>
-<td>consume_skb</td>
-<td>35</td>
-</tr>
-<tr>
-<td>napi_poll</td>
-<td>34</td>
-</tr>
-<tr>
-<td>neigh_update</td>
-<td>31</td>
-</tr>
-<tr>
-<td>neigh_update_done</td>
-<td>31</td>
-</tr>
-<tr>
-<td>virtio_transport_recv_pkt</td>
-<td>30</td>
-</tr>
-<tr>
-<td>mm_lru_insertion</td>
-<td>15</td>
-</tr>
-<tr>
-<td>mm_compaction_kcompactd_sleep</td>
-<td>9</td>
-</tr>
-<tr>
-<td>9p_protocol_dump</td>
-<td>8</td>
-</tr>
-<tr>
-<td>sys_enter_newfstatat</td>
-<td>6</td>
-</tr>
-<tr>
-<td>sys_exit_newfstatat</td>
-<td>6</td>
-</tr>
-<tr>
-<td>sys_enter_read</td>
-<td>5</td>
-</tr>
-<tr>
-<td>sys_exit_read</td>
-<td>5</td>
-</tr>
-<tr>
-<td>sys_enter_rt_sigaction</td>
-<td>4</td>
-</tr>
-<tr>
-<td>sys_exit_rt_sigaction</td>
-<td>4</td>
-</tr>
-<tr>
-<td>9p_client_req</td>
-<td>4</td>
-</tr>
-<tr>
-<td>9p_client_res</td>
-<td>4</td>
-</tr>
-<tr>
-<td>sys_enter_openat</td>
-<td>3</td>
-</tr>
-<tr>
-<td>sys_exit_openat</td>
-<td>3</td>
-</tr>
-<tr>
-<td>page_fault_kernel</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_enter_close</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_exit_close</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_enter_pipe2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_exit_pipe2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_enter_fcntl</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_exit_fcntl</td>
-<td>2</td>
-</tr>
-<tr>
-<td>sys_exit_write</td>
-<td>1</td>
-</tr>
-<tr>
-<td>sys_exit_clone</td>
-<td>1</td>
-</tr>
-<tr>
-<td>sys_enter_set_robust_list</td>
-<td>1</td>
-</tr>
-<tr>
-<td>sys_exit_set_robust_list</td>
-<td>1</td>
-</tr>
-<tr>
-<td>sys_enter_accept</td>
-<td>1</td>
-</tr>
-<tr>
-<td>sys_exit_accept</td>
-<td>1</td>
-</tr>
-<tr>
-<td>qdisc_dequeue</td>
-<td>1</td>
-</tr>
-<tr>
-<td>read_msr</td>
-<td>1</td>
-</tr>
-<tr>
-<td>sys_enter_write</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
+<p>Before having cleared IRQs from CPU 13 
+<div class="highlight"><pre><span></span><code>cat /proc/interrupts
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      CPU12      CPU13      
+   1:          0          0          0          0          0          0          0          0          0          0      19309          0          0          0  IR-IO-APIC    1-edge      i8042
+   8:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-IO-APIC    8-edge      rtc0
+   9:          0      11814          0          0          0          0          0          0          0          0          0          0          0          0  IR-IO-APIC    9-fasteoi   acpi
+  14:          0          0          0          0          0          0          0          0          0          0          0          0     452146          0  IR-IO-APIC   14-fasteoi   INTC1055:00
+  16:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-IO-APIC   16-fasteoi   i801_smbus
+  19:          7          0          0          0          0          0          0          3          0          0          0          0          0          0  IR-IO-APIC   19-fasteoi 
+  26:          0          0       4516          0          0          0          0          0          0          0          0          0          0        422  IR-IO-APIC   26-fasteoi   intel_ish_ipc
+  27:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-IO-APIC   27-fasteoi   idma64.0, i2c_designware.0
+  40:          0   10752888          0          0          0          0          0          0          0          0          0          0        436          0  IR-IO-APIC   40-fasteoi   idma64.1, i2c_designware.1
+ 120:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  DMAR-MSI    0-edge      dmar0
+ 121:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  DMAR-MSI    1-edge      dmar1
+ 122:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 16384-edge      PCIe PME
+ 123:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 98304-edge      PCIe PME
+ 124:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 102400-edge      PCIe PME
+ 125:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 114688-edge      PCIe PME, pciehp
+ 126:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 116736-edge      PCIe PME, pciehp
+ 127:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 475136-edge      PCIe PME
+ 129:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 2686976-edge      pciehp
+ 130:          0         18          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 60817408-edge      rtsx_pci
+ 131:          0          0          0          0          0      12311          0          0          0          0          0          0          0          0  IR-PCI-MSI 217088-edge      thunderbolt
+ 132:          0          0          0          0          0          0      12311          0          0          0          0          0          0          0  IR-PCI-MSI 217089-edge      thunderbolt
+ 134:          0          1          0          0          0          0          0          0          0         32          0          0          0          0  IR-PCI-MSI 1048576-edge      nvme0q0
+ 135:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 212992-edge      xhci_hcd
+ 139:       1450         75        408        495        571        670          0          0          0         10        375        725        905          0  IR-PCI-MSI 520192-edge      enp0s31f6
+ 150:          0          0          0          1          0          0          0          0          0          0         33          0          0          0  IR-PCI-MSI 1572864-edge      nvme1q0
+ 151:     124400          0          9     396673        916       8006          0          0       6666          0          0          0          0          0  IR-PCI-MSI 327680-edge      xhci_hcd
+ 152:      96366          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1048577-edge      nvme0q1
+ 153:          0     104918          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1048578-edge      nvme0q2
+ 154:          0          0      99756          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1048579-edge      nvme0q3
+ 155:          0          0          0     100280          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1048580-edge      nvme0q4
+ 156:          0          0          0          0     122165          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1048581-edge      nvme0q5
+ 157:          0          0          0          0          0     123954          0          0          0          0          0          0          0          0  IR-PCI-MSI 1048582-edge      nvme0q6
+ 158:          0          0          0          0          0          0      40358          0          0          0          0          0          0          0  IR-PCI-MSI 1048583-edge      nvme0q7
+ 159:          0          0          0          0          0          0          0      27860          0          0          0          0          0          0  IR-PCI-MSI 1048584-edge      nvme0q8
+ 160:          0          0          0          0          0          0          0          0      25796          0          0          0          0          0  IR-PCI-MSI 1048585-edge      nvme0q9
+ 161:          0          0          0          0          0          0          0          0          0      23860          0          0          0          0  IR-PCI-MSI 1048586-edge      nvme0q10
+ 162:          0          0          0          0          0          0          0          0          0          0      22513          0          0          0  IR-PCI-MSI 1048587-edge      nvme0q11
+ 163:          0          0          0          0          0          0          0          0          0          0          0      21208          0          0  IR-PCI-MSI 1048588-edge      nvme0q12
+ 164:          0          0          0          0          0          0          0          0          0          0          0          0      20633          0  IR-PCI-MSI 1048589-edge      nvme0q13
+ 165:          0          0          0          0          0          0          0          0          0          0          0          0          0        915  IR-PCI-MSI 1048590-edge      nvme0q14
+ 166:      28456       1200    1171186       1125        649      14526          0          0          0          0          0      47561          0          0  IR-PCI-MSI 3145728-edge      xhci_hcd
+ 167:         20          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572865-edge      nvme1q1
+ 168:          0         12          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572866-edge      nvme1q2
+ 169:          0          0         38          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572867-edge      nvme1q3
+ 170:          0          0          0         38          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572868-edge      nvme1q4
+ 171:          0          0          0          0         65          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572869-edge      nvme1q5
+ 172:          0          0          0          0          0         67          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572870-edge      nvme1q6
+ 173:          0          0          0          0          0          0         21          0          0          0          0          0          0          0  IR-PCI-MSI 1572871-edge      nvme1q7
+ 174:          0          0          0          0          0          0          0         22          0          0          0          0          0          0  IR-PCI-MSI 1572872-edge      nvme1q8
+ 175:          0          0          0          0          0          0          0          0         28          0          0          0          0          0  IR-PCI-MSI 1572873-edge      nvme1q9
+ 176:          0          0          0          0          0          0          0          0          0          6          0          0          0          0  IR-PCI-MSI 1572874-edge      nvme1q10
+ 177:          0          0          0          0          0          0          0          0          0          0        108          0          0          0  IR-PCI-MSI 1572875-edge      nvme1q11
+ 178:          0          0          0          0          0          0          0          0          0          0          0         59          0          0  IR-PCI-MSI 1572876-edge      nvme1q12
+ 179:          0          0          0          0          0          0          0          0          0          0          0          0         65          0  IR-PCI-MSI 1572877-edge      nvme1q13
+ 180:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI 1572878-edge      nvme1q14
+ 181:          0          0          0          0          0          0          0          0          0          0          0          0     452146          0  INTC1055:00  327  VEN_06CB:00
+ 182:          0          0         16          0          0          0          0          0          0          0          0          0          0         58  IR-PCI-MSI 360448-edge      mei_me
+ 183:          0          0          0          0          0          0          0          0          0          0          0          0          0          0  als-dev0       als_consumer0
+ 187:          0          0          0          0          0          0          0        317          0          0          0          0          0          0  IR-PCI-MSI 514048-edge      snd_hda_intel:card0
+ NMI:         71        142        227        236        101         92         58         49         45         41         41         38         86       1523   Non-maskable interrupts
+ LOC:    2520020    2845998    3878408    4378251    4144648    4006858    2473139    1946408    1645980    1418209    1507656    1386311    1356306    2883073   Local timer interrupts
+ SPU:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Spurious interrupts
+ PMI:         71        142        227        236        101         92         58         49         45         41         41         38         86       1523   Performance monitoring interrupts
+ IWI:      55977      29721      87850     115503      88726      74493      35478      25545      20509      16631      17628      15284      20174          8   IRQ work interrupts
+ RTR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   APIC ICR read retries
+ RES:     120042     244333     108169     115419     167112     156467     211124     162484     146131     150739     153694     193125     357759      66661   Rescheduling interrupts
+ CAL:     293083     264059     489445     529908     427216     339166     241785     189781     176399     150903     141844     133108     121233     141731   Function call interrupts
+ TLB:     168267     158135     211607     211632     189948     177720     159490     138424     130736     124237     117690     110943      95719     102571   TLB shootdowns
+ TRM:     311850     311683     317693     346089     312264     312196     311671     311671     311671     311671     311670     311670     311668     311670   Thermal event interrupts
+ THR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Threshold APIC interrupts
+ DFR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Deferred Error APIC interrupts
+ MCE:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Machine check exceptions
+ MCP:         37         38         38         38         38         38         38         38         38         38         38         38         38         38   Machine check polls
+ ERR:          0
+ MIS:          0
+ PIN:        261        282       6069       8798        609        421        260        113         55         58         29         32         38       2516   Posted-interrupt notification event
+ NPI:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Nested posted-interrupt event
+ PIW:          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Posted-interrupt wakeup event
+</code></pre></div></p>
 
 
 
@@ -5208,10 +4762,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../../../..", "features": [], "search": "../../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
       
     
   </body>

@@ -569,6 +569,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#check-cpu-maxmhz-minmhz-current-mhz" class="md-nav__link">
+    <span class="md-ellipsis">
+      check cpu MAXMHZ, MINMHZ, CURRENT MHZ
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -808,6 +817,48 @@
   
   <span class="md-ellipsis">
     IRQ affinity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/latency_reduction/IRQaffinity/irqs1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Irqs1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/latency_reduction/IRQaffinity/irqs_without_cpu13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Irqs without cpu13
   </span>
   
 
@@ -4983,6 +5034,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#check-cpu-maxmhz-minmhz-current-mhz" class="md-nav__link">
+    <span class="md-ellipsis">
+      check cpu MAXMHZ, MINMHZ, CURRENT MHZ
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5441,6 +5501,24 @@ To automate this process open `crontab -e` and enter
 -   Disabling these processes usually involves consulting with the documentations of your Linux distribution of choice.
 </code></pre></div>
 <p>There are other configurations that may be relevant depending on your use case, some of which are documented in <a href="https://www.youtube.com/watch?v=NrjXEaTSyrw">this talk</a> and <a href="https://www.youtube.com/watch?v=w3yT8zJe0Uw">this other talk</a>. Additionally, quality-of-life configurations, such the variables in /etc/security/limits.conf, may need to be tuned as well. I encourage the reader to look at pre-made distributions such as the <a href="https://github.com/ros-realtime/ros-realtime-rpi4-image">ROS2 real-time Raspberry Pi image</a> (which I incidentally also worked on) for more inspiration. Although providing a complete checklist for system configuration is outside the scope of this post (if it is even possible), I included an non-exhaustive checklist <a href="https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#appendix-hardware-and-os-configuration-checklist">at the bottom of this post</a> as a starting point.</p>
+<h2 id="check-cpu-maxmhz-minmhz-current-mhz">check cpu MAXMHZ, MINMHZ, CURRENT MHZ<a class="headerlink" href="#check-cpu-maxmhz-minmhz-current-mhz" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$ lscpu --all --extended
+CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
+  0    0      0    0 0:0:0:0          yes 5000,0000 400,0000 2900.000
+  1    0      0    1 4:4:1:0          yes 5000,0000 400,0000 2900.000
+  2    0      0    2 8:8:2:0          yes 5200,0000 400,0000 2900.000
+  3    0      0    3 12:12:3:0        yes 5200,0000 400,0000 4174.117
+  4    0      0    4 16:16:4:0        yes 5000,0000 400,0000 2900.000
+  5    0      0    5 20:20:5:0        yes 5000,0000 400,0000 2900.000
+  6    0      0    6 24:24:6:0        yes 4000,0000 400,0000 2926.742
+  7    0      0    7 25:25:6:0        yes 4000,0000 400,0000 2900.000
+  8    0      0    8 26:26:6:0        yes 4000,0000 400,0000 2900.000
+  9    0      0    9 27:27:6:0        yes 4000,0000 400,0000 2900.000
+ 10    0      0   10 28:28:7:0        yes 4000,0000 400,0000 3332.776
+ 11    0      0   11 29:29:7:0        yes 4000,0000 400,0000 2900.000
+ 12    0      0   12 30:30:7:0        yes 4000,0000 400,0000 2900.000
+ 13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
+</code></pre></div>
 
 
 
