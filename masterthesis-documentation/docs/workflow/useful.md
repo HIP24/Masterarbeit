@@ -112,7 +112,14 @@ ps reports SCHED_DEADLINE as DLN, SCHED_OTHER as TS, SCHED_BATCH as B, SCHED_IDL
 ```
 ps axHo psr,pid,lwp,args,policy,nice,rtprio
 ```
-All the tasks on CPU 19
+All the tasks on CPU 13
 ```
-ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$1 == 19'
+ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$1 == 13'
 ```
+All rt processes
+```
+ps axHo psr,pid,lwp,args,policy,nice,rtprio | grep -P '\s[0-9]+\s*$'
+ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$NF ~ /^[0-9]+$/' | sort -k4,4 -V > rt_processes.txt
+```
+
+

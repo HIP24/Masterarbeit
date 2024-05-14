@@ -23,6 +23,8 @@ Real-time kernel
 - ✅ [Kernel Recipes 2016 - Understanding a Real-Time System Steven Rostedt](https://www.youtube.com/watch?v=w3yT8zJe0Uw&list=PLwTK7uwfVP9cINa54L2ID3DNLv29RwdnU)  
 - ✅ [Ubuntu Pro Realtime Kernel Performance Comparison (2023)](https://www.youtube.com/watch?v=sUDMG6ey9d0)  
 - [2. Kernel Configuration - Building a Custom Linux Kernel](https://www.youtube.com/watch?v=T5SZERvLriA)  
+- [A Checklist for Writing Linux Real-Time Applications](https://www.youtube.com/watch?v=NrjXEaTSyrw)
+- [Finding Sources of Latency on your Linux System - Steven Rostedt, VMware](https://www.youtube.com/watch?v=Tkra8g0gXAU)
 
 Patch  
 - ✅ [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
@@ -64,4 +66,5 @@ Linux pamhal 6.8.0-rt7 #1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86
 ```
 
 ## Useful stuff
-[qemu-optimization](https://null-src.com/posts/qemu-optimization/post.php)
+[qemu-optimization](https://null-src.com/posts/qemu-optimization/post.php)  
+[Real-time programming with Linux](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html)

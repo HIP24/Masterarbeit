@@ -392,55 +392,95 @@ ssh root@192.168.1.244
 git clone https://github.com/iovisor/bcc
 ```
 
-## cpufreq
-```bash
-sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-powersave
-
-sigma_ibo@sigma-ibo:~$ echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-performance
-
-sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-performance
-```
-
 ## boot parameters
 cat /proc/cmdline
+
+
+## Configuring the system for real-time
+
+For now, PREEMPT\_RT is a set of patches that is supposed to be applied on top of mainline Linux. Most Linux distributions do not build it by default, and you will most likely have to do it yourself [[3]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f4). How this can be done falls outside the scope of this post, but there are plenty of [guides](https://docs.ros.org/en/foxy/Tutorials/Building-Realtime-rt_preempt-kernel-for-ROS-2.html) out there. Hopefully in the near future, all of PREEMPT\_RT's functionality will be merged in to mainline, and Linux distributions will provide RT-enabled kernels out-of-the-box.
+
+Once you successfully compiled the RT kernel, the default hardware and OS configurations are usually not tuned correctly for RT. The following hardware and OS configurations should likely always be checked and tuned:
+
+### Disable [simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading) (SMT, also referred to as hyper-threading for Intel CPUs)
+    -   SMT improves the performance of the CPU but decreases the determinism, thus introducing latency. How this works is outside the scope of this post. As of this writing, it is recommended for SMT to be disabled [[4]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f5).
+    -   SMT is usually configured on the BIOS/UEFI level. How this is done varies depending on the system.  
+[disable_txt.jpg](../resources/images/bios/disable_txt.jpg)  
+[disable_hyperthreading.jpg](../resources/images/bios/disable_hyperthreading.jpg)
+
+### Disable [dynamic frequency scaling](https://wiki.archlinux.org/title/CPU_frequency_scaling)
+    -   Modern CPUs ramp down their clock frequencies while idling and ramp up when there is load. This introduces unpredictability as it causes the performance of the CPU to vary with time. Anecdotally, I have noticed an order of magnitude higher worst-case latency when frequency scaling is on compared to when it is off.
+    ```
+    sigma_ibo@sigma-ibo:~/Downloads$ for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo "performance" | sudo tee $i; done
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    performance
+    ```
+    To automate this process open `crontab -e` and enter
+    ```
+    @reboot for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo 'performance' | sudo tee $i; done
+    ```
+    -   How this can be turned off varies per system. Usually this involves configuring both the BIOS/UEFI and Linux (usually by selecting the performance CPU frequency governor).
+### Disable [RT throttling](https://wiki.linuxfoundation.org/realtime/documentation/technical_basics/sched_rt_throttling)
+    -   Before the widespread availability of multicore systems, if an RT process uses up all of the available CPU time, it can cause the entire system to hang. This is because the Linux scheduler will not run a non-RT process if the RT process continuously hogs the CPU. To avoid this kind of system lockup, especially on desktop-oriented systems where any process can request to be RT, the Linux kernel has a feature to throttle RT processes if it uses 0.95 s out of every 1 s of CPU time. This is done by pausing the process for the last 0.05 s and thus may result in deadline misses during the moments when the process is paused [[5]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f6).
+    -   This can be turned off by writing the value \-1 to the file `/proc/sys/kernel/sched_rt_runtime_us` on every system boot.
+
+
+        To permanently disable real-time (RT) throttling, you can add the following line to your `/etc/sysctl.conf` file:
+
+        1. Open the `/etc/sysctl.conf` file in a text editor. You might need to use \`sudo\` to edit this file.
+        ```bash  
+        sudo nano /etc/sysctl.conf  
+        ```
+        2. Add the following line to the end of the file:
+        ```bash  
+        kernel.sched_rt_runtime_us = -1  
+        ```
+        3. Save the file and exit the editor.
+        4. To load the new configuration, run the following command:
+
+        ```bash  
+        sudo sysctl -p  
+        ```
+
+        This will apply the change immediately and also preserve it across reboots.  
+
+### Check and make sure no unexpected RT processes are running on your system
+    -   Sometimes, the base OS can spawn a high-priority RT process on boot as a part of some functionalities it provides. If these functionalities are not needed, it is advisable to disable the offending RT process. Near the end of this post, I will provide an example for this.
+    -   Sometimes, the kernel can be configured with such a process. See documentation on the kernel build variables CONFIG\_LOCKUP\_DETECTOR and CONFIG\_DETECT\_HUNG\_TASK.
+    -   Disabling these processes usually involves consulting with the documentations of your Linux distribution of choice.
+
+There are other configurations that may be relevant depending on your use case, some of which are documented in [this talk](https://www.youtube.com/watch?v=NrjXEaTSyrw) and [this other talk](https://www.youtube.com/watch?v=w3yT8zJe0Uw). Additionally, quality-of-life configurations, such the variables in /etc/security/limits.conf, may need to be tuned as well. I encourage the reader to look at pre-made distributions such as the [ROS2 real-time Raspberry Pi image](https://github.com/ros-realtime/ros-realtime-rpi4-image) (which I incidentally also worked on) for more inspiration. Although providing a complete checklist for system configuration is outside the scope of this post (if it is even possible), I included an non-exhaustive checklist [at the bottom of this post](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#appendix-hardware-and-os-configuration-checklist) as a starting point.
+
+
+
+## check cpu MAXMHZ, MINMHZ, CURRENT MHZ 
+```
+$ lscpu --all --extended
+CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
+  0    0      0    0 0:0:0:0          yes 5000,0000 400,0000 2900.000
+  1    0      0    1 4:4:1:0          yes 5000,0000 400,0000 2900.000
+  2    0      0    2 8:8:2:0          yes 5200,0000 400,0000 2900.000
+  3    0      0    3 12:12:3:0        yes 5200,0000 400,0000 4174.117
+  4    0      0    4 16:16:4:0        yes 5000,0000 400,0000 2900.000
+  5    0      0    5 20:20:5:0        yes 5000,0000 400,0000 2900.000
+  6    0      0    6 24:24:6:0        yes 4000,0000 400,0000 2926.742
+  7    0      0    7 25:25:6:0        yes 4000,0000 400,0000 2900.000
+  8    0      0    8 26:26:6:0        yes 4000,0000 400,0000 2900.000
+  9    0      0    9 27:27:6:0        yes 4000,0000 400,0000 2900.000
+ 10    0      0   10 28:28:7:0        yes 4000,0000 400,0000 3332.776
+ 11    0      0   11 29:29:7:0        yes 4000,0000 400,0000 2900.000
+ 12    0      0   12 30:30:7:0        yes 4000,0000 400,0000 2900.000
+ 13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
+```

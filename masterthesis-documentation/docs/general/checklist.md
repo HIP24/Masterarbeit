@@ -19,3 +19,17 @@
 - [ ] Inspect kvm_exit reasons
 - [ ] Analyze Host and Guest Processes
 - [ ] 
+
+
+## Appendix: Hardware and OS configuration checklist
+This serves as a non-exhaustive starting point on the things to check for the hardware and OS. The list is constructed based on my survey of the literature (mostly conference talks, with some internet articles). Remember to always validate the final scheduling latency with something like cyclictest!
+
+- [x] [Disable SMT](protocol.md#disable-simultaneous-multithreading-smt-also-referred-to-as-hyper-threading-for-intel-cpus)
+- [x] [Disable dynamic frequency scaling](protocol.md/#disable-dynamic-frequency-scaling)
+- [] Check for the presence of system management interrupts; if possible, consult with the hardware vendor (remember to always verify their claims)
+- [] Understand the NUMA of the computer and minimize cross-node memory access within the RT process
+- [x] [Disable RT throttling](protocol.md#disable-rt-throttling)
+- [x] Disable any unneeded RT services/daemons already running on the OS
+- [x] Possibly setup isolcpu (or use cgroups to accomplish the same thing)
+- [] Look into kernel configurations that may affect RT performance such as CONFIG_LOCKUP_DETECTOR, CONFIG_DETECT_HUNG_TASK, CONFIG_NO_HZ, CONFIG_HZ_*, CONFIG_NO_HZ_FULL, and possibly more.
+- [] Configure the memory lock and rtprio permissions in /etc/security/limits.d.
