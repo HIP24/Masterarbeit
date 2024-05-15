@@ -67,4 +67,3 @@ Linux pamhal 6.8.0-rt7 #1 SMP PREEMPT_RT Mon Mar 11 13:12:31 CET 2024 x86_64 x86
 
 ## Useful stuff
 [qemu-optimization](https://null-src.com/posts/qemu-optimization/post.php)  
-[Real-time programming with Linux](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html)
