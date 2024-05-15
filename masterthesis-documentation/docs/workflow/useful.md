@@ -53,12 +53,13 @@ Script [start_qemu.sh](../sigmatek/QEMU/start_qemu.sh) needs to be in `/home/sig
 sudo nano ~/.bashrc
 export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/QEMU/
 ```
+
 ## Add konsole to replace console
 <a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a>  
 <a href="https://askubuntu.com/questions/1351228/change-default-terminal-with-right-click-option-open-in-terminal-in-file-manag" target="_blank">Change default terminal with right-click option "Open in Terminal" in file manager</a>
 
 
-## ssh ohne Passwort
+## SSH ohne Passwort
 Um eine SSH-Verbindung von Ihrem Host-Computer zu Ihrem Gast-Computer (oder Server) herzustellen, können Sie die folgenden Schritte ausführen:
 
 1. **Generieren Sie ein SSH-Schlüsselpaar auf Ihrem Host-Computer**. Sie können dies mit dem Befehl `ssh-keygen` tun. Sie werden aufgefordert, ein Passwort einzugeben, aber Sie können einfach Enter drücken, um kein Passwort zu setzen (obwohl dies aus Sicherheitsgründen nicht empfohlen wird).
@@ -105,6 +106,31 @@ memory=3GB   # Limits VM memory in WSL 2 up to 3GB
 processors=2 # Makes the WSL 2 VM use two virtual processors
 ```
 
+## Connect to hardware Salamander 4
+ssh root@192.168.1.244
+
+## Boot parameters
+cat /proc/cmdline
+
+## Check cpu MAXMHZ, MINMHZ, CURRENT MHZ 
+```
+$ lscpu --all --extended
+CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
+  0    0      0    0 0:0:0:0          yes 5000,0000 400,0000 2900.000
+  1    0      0    1 4:4:1:0          yes 5000,0000 400,0000 2900.000
+  2    0      0    2 8:8:2:0          yes 5200,0000 400,0000 2900.000
+  3    0      0    3 12:12:3:0        yes 5200,0000 400,0000 4174.117
+  4    0      0    4 16:16:4:0        yes 5000,0000 400,0000 2900.000
+  5    0      0    5 20:20:5:0        yes 5000,0000 400,0000 2900.000
+  6    0      0    6 24:24:6:0        yes 4000,0000 400,0000 2926.742
+  7    0      0    7 25:25:6:0        yes 4000,0000 400,0000 2900.000
+  8    0      0    8 26:26:6:0        yes 4000,0000 400,0000 2900.000
+  9    0      0    9 27:27:6:0        yes 4000,0000 400,0000 2900.000
+ 10    0      0   10 28:28:7:0        yes 4000,0000 400,0000 3332.776
+ 11    0      0   11 29:29:7:0        yes 4000,0000 400,0000 2900.000
+ 12    0      0   12 30:30:7:0        yes 4000,0000 400,0000 2900.000
+ 13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
+```
 
 ## Thread priorities
 Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.

@@ -12,8 +12,8 @@
 - [x] trace-cmd and kernelshark with Salamander4 as guest 
 - [x] Used the Xenomai test suite: latency -T 60` 
 - [x] Isolated host CPU for guest
-- [x] Latency got better after [isolation](../general/protocol.md#isolate-cpus-on-host)
-
+- [x] Latency got better after [isolation](../general/protocol.md#max-latency-with-taskset)
+- [x] Latency got much better after [rt-patch](../general/protocol.md#max-latency-with-rt)
 
 ## Missing
 - [ ] Inspect kvm_exit reasons
@@ -24,9 +24,9 @@
 ## Appendix: Hardware and OS configuration checklist
 This serves as a non-exhaustive starting point on the things to check for the hardware and OS. The list is constructed based on my survey of the literature (mostly conference talks, with some internet articles). Remember to always validate the final scheduling latency with something like cyclictest!
 
-- [x] [Disable SMT](protocol.md#disable-simultaneous-multithreading-smt-also-referred-to-as-hyper-threading-for-intel-cpus)
+- [x] [Disable SMT](protocol.md#disable-simultaneous-multithreading)
 - [x] [Disable dynamic frequency scaling](protocol.md/#disable-dynamic-frequency-scaling)
-- [] Check for the presence of system management interrupts; if possible, consult with the hardware vendor (remember to always verify their claims)
+- [x] Check for the presence of system management interrupts; if possible, consult with the hardware vendor (remember to always verify their claims)
 - [] Understand the NUMA of the computer and minimize cross-node memory access within the RT process
 - [x] [Disable RT throttling](protocol.md#disable-rt-throttling)
 - [x] Disable any unneeded RT services/daemons already running on the OS

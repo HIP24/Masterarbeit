@@ -1,4 +1,4 @@
-# Max Latency rt
+# Max Latency with rt
 
 ```bash
 root@sigmatek-core2:~# latency -T 600

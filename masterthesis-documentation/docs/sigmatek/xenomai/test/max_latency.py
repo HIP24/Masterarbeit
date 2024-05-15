@@ -35,7 +35,7 @@ plt.ylim([0, 100])
 
 # Save the plot to a file
 plt.savefig("test_max_latency.png")
-#plt.savefig("../../../../../img/max_latency_default.png")
+#plt.savefig("../../../../../../img/test_max_latency.png")
 
 # Print a success message
 print("The plot was successfully saved to test_max_latency.png")
