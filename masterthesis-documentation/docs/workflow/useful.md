@@ -121,5 +121,7 @@ All rt processes
 ps axHo psr,pid,lwp,args,policy,nice,rtprio | grep -P '\s[0-9]+\s*$'
 ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$NF ~ /^[0-9]+$/' | sort -k4,4 -V > rt_processes.txt
 ```
-
-
+Set all threads of a process to a real-time priority
+```
+ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
+```

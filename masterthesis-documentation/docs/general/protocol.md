@@ -484,3 +484,27 @@ CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
  12    0      0   12 30:30:7:0        yes 4000,0000 400,0000 2900.000
  13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
 ```
+
+## Reduced latency to Max latency: 32.216us
+- Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/default/grub`
+  ```
+  GRUB_CMDLINE_LINUX="isolcpus=13 rcu_nocbs=13"
+  ```
+- Suppress rcu cpu stall
+  ```
+  echo 1 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_suppress
+  ```
+- Maybe?
+  ```
+  echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
+  ```
+- Start QEMU [normally with idle=poll](../sigmatek/QEMU/qemu_def_5idle=poll.sh)  
+- Give all QEMU threads rt-priority
+  ```
+  ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
+  ```
+- Kill all running user processes
+- Trace latency 
+  ```
+  latency -h -s -T 600 -g max_latency_rt.txt
+  ```

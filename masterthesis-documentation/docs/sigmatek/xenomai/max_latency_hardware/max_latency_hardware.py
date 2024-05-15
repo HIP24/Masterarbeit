@@ -27,7 +27,7 @@ plt.ylabel('Latency [µs]')
 
 # Set the x and y axis limits
 plt.xlim([0, 600])
-plt.ylim([0, 15])
+plt.ylim([0, 40])
 
 # Save the plot to a file
 plt.savefig("max_latency_hardware.png")

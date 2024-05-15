@@ -118,39 +118,30 @@ sudo echo dffff > /proc/irq/*/smp_affinity
 results_guest_report.txt  
 results_host_report.txt
 
-
-
-
-## Richard Meeting xx.xx.2024
-
-### Host optimization
-- BIOS Settings?
-- NUMA Affinity
-- Memory Tuning
-    - Preallocated Memory
-    - Hugepages
-- Linux Process Scheduler Tuning (chrt)
-- Linux Kernel Tuning (Preempt_RT)
-
-https://null-src.com/posts/qemu-optimization/post.php
-https://askubuntu.com/questions/1021748/set-cpu-governor-to-performance-in-18-04
-
-APIC_Write
-HLT
-EPT_MISCONFIG
-PREEMPTION_TIMER
-EXTERNAL_INTERRUPT
-IO_INSTRUCTION
-EOI_INDUCED
-EPT_VIOLATION
-PAUSE_INSTRUCTION
-CPUID
-MSR_READ
-
-
-
-
 https://www.sigma-star.at/blog/2022/02/linux-proc-prios/
+
+## Richard Meeting 15.05.2024
+
+Richard Weinberger
+13:12
+lstopo
+aus paket hwloc
+Richard Weinberger
+13:34
+https://docs.kernel.org/trace/ftrace.html#latency-tracing-and-events
+Richard Weinberger
+13:37
+https://access.redhat.com/documentation/de-de/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/latency_tracing_using_trace-cmd
+Richard Weinberger
+13:38
+"trace-cmd latency tracer"
+Richard Weinberger
+13:49
+CONFIG_RCU_CPU_STALL_TIMEOUT
+Richard Weinberger
+13:52
+https://wiki.linuxfoundation.org/realtime/documentation/technical_details/rcu
+
 
 
 ❌✅
