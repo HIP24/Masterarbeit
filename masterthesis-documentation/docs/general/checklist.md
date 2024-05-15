@@ -23,6 +23,7 @@
 
 
 ## Appendix: Hardware and OS configuration checklist
+[Real-time programming with Linux](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html)  
 This serves as a non-exhaustive starting point on the things to check for the hardware and OS. The list is constructed based on my survey of the literature (mostly conference talks, with some internet articles). Remember to always validate the final scheduling latency with something like cyclictest!
 
 - [x] [Disable SMT](protocol.md#disable-simultaneous-multithreading)
