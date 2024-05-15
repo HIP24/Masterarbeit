@@ -132,6 +132,7 @@ https://docs.kernel.org/trace/ftrace.html#latency-tracing-and-events
 Richard Weinberger
 13:37
 https://access.redhat.com/documentation/de-de/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/latency_tracing_using_trace-cmd
+https://access.redhat.com/documentation/de-de/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/using_the_ftrace_utility_for_tracing_latencies
 Richard Weinberger
 13:38
 "trace-cmd latency tracer"
