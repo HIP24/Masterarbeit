@@ -71,6 +71,6 @@
 | Friday, 10.05.2024 | compare kernels |
 | Monday, 13.05.2024 | compare config, qemu test with 2 cpus |
 | Tuesday, 14.05.2024 | Hardware and OS configuration checklist |
-| Wednesday, 15.05.2024 | FINALLY [LATENCY REDUCED](../sigmatek/xenomai/rt/max_latency_rt_10min_log.md) WITH [STATS](../sigmatek/xenomai/rt/test_max_latency_statistics.txt) and [PLOT](../sigmatek/xenomai/rt/test_max_latency.png) |
+| Wednesday, 15.05.2024 | FINALLY [LATENCY REDUCED](../sigmatek/xenomai/max_latency_rt/max_latency_rt_10min_log.md) WITH [STATS](../sigmatek/xenomai/max_latency_rt/test_max_latency_statistics.txt) and [PLOT](../sigmatek/xenomai/max_latency_rt/test_max_latency.png) |
 | Thursday, 16.05.2024 |  |
 | Friday, 17.05.2024 | |
