@@ -12,5 +12,5 @@ bitbake salamander-image -k
 
 ## trace-cmd analysis
 ```bash
-cd /home/sigma_ibo/Desktop/Masterarbeit/documentation/trace-cmd/analysis/
+cd /home/sigma_ibo/Desktop/Masterarbeit/documentation/trace-cmd/
 ```

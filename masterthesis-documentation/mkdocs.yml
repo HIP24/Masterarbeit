@@ -29,7 +29,7 @@ plugins:
         - themes.md
         - "*.tmp"
         - "*.gz"
-        - "*sigmatek/trace-cmd/analysis/test/twocpus/*"
+        - "*sigmatek/trace-cmd/test_trace-cmd/twocpus/*"
       regex:
         - '.*.(tmp|bin|tar)$'
   - search
