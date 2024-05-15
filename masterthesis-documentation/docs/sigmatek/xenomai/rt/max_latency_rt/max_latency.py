@@ -34,14 +34,14 @@ plt.xlim([0, 600])
 plt.ylim([0, 40])
 
 # Save the plot to a file
-plt.savefig("test_max_latency.png")
-#plt.savefig("../../../../../img/max_latency_default.png")
+plt.savefig("test_max_latency_rt.png")
+#plt.savefig("../../../../../../img/max_latency_rt.png")
 
 # Print a success message
 print("The plot was successfully saved to test_max_latency.png")
 
 # Write the statistics to a file
-with open('test_max_latency_statistics.txt', 'w') as f:
+with open('max_latency_rt_statistics.txt', 'w') as f:
     f.write(f"Average latency: {round(average_y, 2)}us\n") 
     f.write(f"Max latency: {max_y}us\n")
     f.write(f"Min latency: {min_y}us\n")
@@ -49,7 +49,7 @@ with open('test_max_latency_statistics.txt', 'w') as f:
      
     
 # Print a success message
-print("The statistics were successfully written to test_max_latency_statistics.txt")
+print("The statistics were successfully written to max_latency_rt_statistics.txt")
 
 
 

@@ -82,3 +82,5 @@ dos2unix <file>
 ## Stress the CPUs
 stress -c $(nproc)
 
+### Ubuntu VM on virtual machine manager
+After giving the VM [access to the vsocket](../resources/images/protocol/virtm_cid.png), and installing trace-cmd along with dependancies<!--[dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)-->, run [`trace-cmd agent`](../resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../sigmatek/trace-cmd/analysis/virtualization/taskset/start_kernelshark.sh), we can view [KVM Combo plots](../resources/images/protocol/kvm_combo_plots.png)
