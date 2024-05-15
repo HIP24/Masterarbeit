@@ -3835,7 +3835,7 @@
             
   
   <span class="md-ellipsis">
-    Vapic
+    Max latency rt
   </span>
   
 
@@ -3844,6 +3844,134 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Max latency rt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency rt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_8" id="__nav_4_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Test
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Test
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/test/dmesg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dmesg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_9" id="__nav_4_5_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Vapic
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_9">
             <span class="md-nav__icon md-icon"></span>
             Vapic
           </label>
@@ -3913,10 +4041,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_4_5_8" id="__nav_4_5_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5_10" id="__nav_4_5_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3927,8 +4055,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_8">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_10">
             <span class="md-nav__icon md-icon"></span>
             With taskset
           </label>
@@ -5069,6 +5197,9 @@ All the tasks on CPU 13
 All rt processes
 <div class="highlight"><pre><span></span><code>ps axHo psr,pid,lwp,args,policy,nice,rtprio | grep -P &#39;\s[0-9]+\s*$&#39;
 ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;$NF ~ /^[0-9]+$/&#39; | sort -k4,4 -V &gt; rt_processes.txt
+</code></pre></div>
+Set all threads of a process to a real-time priority
+<div class="highlight"><pre><span></span><code>ps -T -p $(pgrep -f &quot;qemu-system-x86_64 -M pc,ac&quot;) | awk &#39;{print $2}&#39; | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 </code></pre></div></p>
 
 

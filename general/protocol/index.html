@@ -578,6 +578,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reduced-latency-to-max-latency-32216us" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduced latency to Max latency: 32.216us
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4069,7 +4078,7 @@
             
   
   <span class="md-ellipsis">
-    Vapic
+    Max latency rt
   </span>
   
 
@@ -4078,6 +4087,134 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Max latency rt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency rt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_8" id="__nav_4_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Test
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Test
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/test/dmesg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dmesg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_9" id="__nav_4_5_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Vapic
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_9">
             <span class="md-nav__icon md-icon"></span>
             Vapic
           </label>
@@ -4147,10 +4284,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_4_5_8" id="__nav_4_5_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5_10" id="__nav_4_5_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4161,8 +4298,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_8">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_10">
             <span class="md-nav__icon md-icon"></span>
             With taskset
           </label>
@@ -5043,6 +5180,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reduced-latency-to-max-latency-32216us" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduced latency to Max latency: 32.216us
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5519,6 +5665,26 @@ CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
  12    0      0   12 30:30:7:0        yes 4000,0000 400,0000 2900.000
  13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
 </code></pre></div>
+<h2 id="reduced-latency-to-max-latency-32216us">Reduced latency to Max latency: 32.216us<a class="headerlink" href="#reduced-latency-to-max-latency-32216us" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add <code>rcu_nocbs=13</code> as boot parameter for CPU offloading in <code>sudo nano /etc/default/grub</code>
+  <div class="highlight"><pre><span></span><code>GRUB_CMDLINE_LINUX=&quot;isolcpus=13 rcu_nocbs=13&quot;
+</code></pre></div></li>
+<li>Suppress rcu cpu stall
+  <div class="highlight"><pre><span></span><code>echo 1 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_suppress
+</code></pre></div></li>
+<li>Maybe?
+  <div class="highlight"><pre><span></span><code>echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
+</code></pre></div></li>
+<li>Start QEMU <a href="../../sigmatek/QEMU/qemu_def_5idle%3Dpoll.sh">normally with idle=poll</a>  </li>
+<li>Give all QEMU threads rt-priority
+  <div class="highlight"><pre><span></span><code>ps -T -p $(pgrep -f &quot;qemu-system-x86_64 -M pc,ac&quot;) | awk &#39;{print $2}&#39; | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
+</code></pre></div></li>
+<li>Kill all running user processes</li>
+<li>Trace latency 
+  <div class="highlight"><pre><span></span><code>latency -h -s -T 600 -g max_latency_rt.txt
+</code></pre></div></li>
+</ul>
 
 
 

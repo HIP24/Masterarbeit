@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../../latency_reduction_steps/">
+        <link rel="prev" href="../../max_latency_rt/max_latency_rt_10min_log/">
       
       
-        <link rel="next" href="../irqs1/">
+        <link rel="next" href="../../vapic/max_latency_vapic_10min_gnoplot/">
       
       
       <link rel="icon" href="../../../../img/uni.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>IRQ affinity - Masterthesis Documentation</title>
+        <title>Dmesg - Masterthesis Documentation</title>
       
     
     
@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#select-best-cpu-for-qemu" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -109,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              IRQ affinity
+              Dmesg
             
           </span>
         </div>
@@ -486,19 +481,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -512,7 +505,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             Latency reduction
@@ -526,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../latency_reduction_steps/" class="md-nav__link">
+      <a href="../../../latency_reduction/latency_reduction_steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -544,19 +537,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
         
           
           <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
@@ -570,7 +561,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2_2">
             <span class="md-nav__icon md-icon"></span>
             IRQaffinity
@@ -581,28 +572,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    IRQ affinity
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../latency_reduction/IRQaffinity/IRQ_affinity/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -611,132 +584,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#select-best-cpu-for-qemu" class="md-nav__link">
-    <span class="md-ellipsis">
-      Select best CPU for QEMU
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-which-irqs-use-cpu-x" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check which IRQs use CPU x
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-mask-of-irq" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the mask of IRQ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-permissions-for-the-irqs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change permissions for the IRQs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-mask-of-irq" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change Mask of IRQ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-again-the-changed-mask-of-irq" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check again the changed mask of IRQ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-again-which-irqs-use-cpu-19" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check again which IRQs use CPU 19
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#batch-change-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch change permissions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#batch-cat-irq-smp_affinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch cat IRQ smp_affinity
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#batch-change-irq-smp_affinity-of-fffff" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch change IRQ smp_affinity of fffff
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#could-not-be-changed" class="md-nav__link">
-    <span class="md-ellipsis">
-      COULD NOT BE CHANGED
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#values" class="md-nav__link">
-    <span class="md-ellipsis">
-      VALUES
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -749,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../irqs1/" class="md-nav__link">
+      <a href="../../../latency_reduction/IRQaffinity/irqs1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -770,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../irqs_without_cpu13/" class="md-nav__link">
+      <a href="../../../latency_reduction/IRQaffinity/irqs_without_cpu13/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -791,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../table_CPU_IRQ/" class="md-nav__link">
+      <a href="../../../latency_reduction/IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -855,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kernel-patch/kernel-patch/" class="md-nav__link">
+      <a href="../../../latency_reduction/kernel-patch/kernel-patch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3679,17 +3526,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
         
           
           <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
@@ -3703,7 +3552,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             Xenomai
@@ -3717,7 +3566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/clocktest/" class="md-nav__link">
+      <a href="../../clocktest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3738,7 +3587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/latency/" class="md-nav__link">
+      <a href="../../latency/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3759,7 +3608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/switchtest/" class="md-nav__link">
+      <a href="../../switchtest/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3780,7 +3629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/xenomai-system-tools/" class="md-nav__link">
+      <a href="../../xenomai-system-tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3836,7 +3685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
+      <a href="../../default/max_latency_default_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3857,7 +3706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
+      <a href="../../default/max_latency_default_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3921,7 +3770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
+      <a href="../../hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3942,7 +3791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
+      <a href="../../hardware/max_latency_hardware_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4006,7 +3855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
+      <a href="../../max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4032,17 +3881,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" checked>
         
           
           <label class="md-nav__link" for="__nav_4_5_8" id="__nav_4_5_8_label" tabindex="0">
@@ -4056,7 +3907,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_5_8">
             <span class="md-nav__icon md-icon"></span>
             Test
@@ -4067,10 +3918,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../xenomai/test/dmesg/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -4079,6 +3937,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -4134,7 +3993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+      <a href="../../vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4155,7 +4014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+      <a href="../../vapic/max_latency_vapic_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4219,7 +4078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+      <a href="../../with_taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4240,7 +4099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xenomai/with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
+      <a href="../../with_taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4887,122 +4746,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#select-best-cpu-for-qemu" class="md-nav__link">
-    <span class="md-ellipsis">
-      Select best CPU for QEMU
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-which-irqs-use-cpu-x" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check which IRQs use CPU x
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-mask-of-irq" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the mask of IRQ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-permissions-for-the-irqs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change permissions for the IRQs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#change-mask-of-irq" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change Mask of IRQ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-again-the-changed-mask-of-irq" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check again the changed mask of IRQ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-again-which-irqs-use-cpu-19" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check again which IRQs use CPU 19
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#batch-change-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch change permissions
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#batch-cat-irq-smp_affinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch cat IRQ smp_affinity
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#batch-change-irq-smp_affinity-of-fffff" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch change IRQ smp_affinity of fffff
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#could-not-be-changed" class="md-nav__link">
-    <span class="md-ellipsis">
-      COULD NOT BE CHANGED
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#values" class="md-nav__link">
-    <span class="md-ellipsis">
-      VALUES
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -5016,160 +4759,93 @@
                   
 
 
-  <h1>IRQ affinity</h1>
+  <h1>Dmesg</h1>
 
-<h2 id="select-best-cpu-for-qemu">Select best CPU for QEMU<a class="headerlink" href="#select-best-cpu-for-qemu" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sigma_ibo@pamhal:$<span class="w"> </span>cat<span class="w"> </span>/sys/devices/system/cpu/cpu*/cpufreq/cpuinfo_max_freq
-<span class="m">5000000</span>
-<span class="m">5000000</span>
-<span class="m">5000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">4000000</span>
-<span class="m">5000000</span>
-<span class="m">5000000</span>
-<span class="m">5000000</span>
-<span class="m">5200000</span>
-<span class="m">5200000</span>
-<span class="m">5200000</span>
-<span class="m">5200000</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="m">17</span>
-<span class="m">5000000</span>
-<span class="m">5000000</span>
+<p>After 180 seconds -&gt; overrun in QEMU
+``
+sigma_ibo@sigma-ibo:~$ sudo dmesg
+<div class="highlight"><pre><span></span><code>Result
 </code></pre></div>
-<h2 id="check-which-irqs-use-cpu-x">Check which IRQs use CPU x<a class="headerlink" href="#check-which-irqs-use-cpu-x" title="Permanent link">&para;</a></h2>
-<p><a href="../check_smp_affinity.sh">check_smp_affinity.sh</a>:
-<div class="highlight"><pre><span></span><code>./check_smp_affinity.sh<span class="w"> </span><span class="m">19</span>
-CPU<span class="w"> </span><span class="m">19</span><span class="w"> </span>IRQ<span class="w"> </span>affinity:
-<span class="m">0</span>
-<span class="m">2</span>
-<span class="m">3</span>
-<span class="m">4</span>
-<span class="m">5</span>
-<span class="m">6</span>
-<span class="m">7</span>
-<span class="m">10</span>
-<span class="m">11</span>
-<span class="m">13</span>
-<span class="m">15</span>
-<span class="m">131</span>
-<span class="m">172</span>
-<span class="m">188</span>
-<span class="m">189</span>
-<span class="m">192</span>
-</code></pre></div></p>
-<h2 id="check-the-mask-of-irq">Check the mask of IRQ<a class="headerlink" href="#check-the-mask-of-irq" title="Permanent link">&para;</a></h2>
-<p>The mask for IRQ0 for example would be: 
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity
-fffff
-</code></pre></div></p>
-<h2 id="change-permissions-for-the-irqs">Change permissions for the IRQs<a class="headerlink" href="#change-permissions-for-the-irqs" title="Permanent link">&para;</a></h2>
-<p>In order to change the mask, first give permissions:
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/*/smp_affinity
-</code></pre></div></p>
-<h2 id="change-mask-of-irq">Change Mask of IRQ<a class="headerlink" href="#change-mask-of-irq" title="Permanent link">&para;</a></h2>
-<p>Then change the mask with 
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/0/smp_affinity
-</code></pre></div></p>
-<h2 id="check-again-the-changed-mask-of-irq">Check again the changed mask of IRQ<a class="headerlink" href="#check-again-the-changed-mask-of-irq" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity
-dffff
-</code></pre></div>
-<h2 id="check-again-which-irqs-use-cpu-19">Check again which IRQs use CPU 19<a class="headerlink" href="#check-again-which-irqs-use-cpu-19" title="Permanent link">&para;</a></h2>
-<p>CPU19 is being used by IRQs with <a href="../check_smp_affinity.sh">check_smp_affinity.sh</a> (IRQ0 is not listed anymore): 
-<div class="highlight"><pre><span></span><code><span class="m">0</span>
-<span class="m">2</span>
-<span class="m">3</span>
-<span class="m">4</span>
-<span class="m">5</span>
-<span class="m">6</span>
-<span class="m">7</span>
-<span class="m">10</span>
-<span class="m">11</span>
-<span class="m">12</span>
-<span class="m">13</span>
-<span class="m">15</span>
-<span class="m">133</span>
-<span class="m">172</span>
-<span class="m">173</span>
-<span class="m">189</span>
-<span class="m">191</span>
-</code></pre></div></p>
-<h2 id="batch-change-permissions">Batch change permissions<a class="headerlink" href="#batch-change-permissions" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/0/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/2/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/3/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/4/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/5/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/6/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/7/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/10/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/11/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/12/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/13/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/15/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/133/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/172/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/173/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/189/smp_affinity
-sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/proc/irq/191/smp_affinity
-</code></pre></div>
-<h2 id="batch-cat-irq-smp_affinity">Batch cat IRQ smp_affinity<a class="headerlink" href="#batch-cat-irq-smp_affinity" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/0/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff</span>
-cat<span class="w"> </span>/proc/irq/2/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff             </span>
-cat<span class="w"> </span>/proc/irq/3/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff             </span>
-cat<span class="w"> </span>/proc/irq/4/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff            </span>
-cat<span class="w"> </span>/proc/irq/5/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff             </span>
-cat<span class="w"> </span>/proc/irq/6/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff            </span>
-cat<span class="w"> </span>/proc/irq/7/smp_affinity<span class="w">   </span><span class="c1"># -&gt; fffff            </span>
-cat<span class="w"> </span>/proc/irq/10/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff              </span>
-cat<span class="w"> </span>/proc/irq/11/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff            </span>
-cat<span class="w"> </span>/proc/irq/12/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff            </span>
-cat<span class="w"> </span>/proc/irq/13/smp_affinity<span class="w">  </span><span class="c1"># -&gt; fffff              </span>
-cat<span class="w"> </span>/proc/irq/15/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
-cat<span class="w"> </span>/proc/irq/133/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
-cat<span class="w"> </span>/proc/irq/172/smp_affinity<span class="w"> </span><span class="c1"># -&gt; 80000              </span>
-cat<span class="w"> </span>/proc/irq/173/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
-cat<span class="w"> </span>/proc/irq/189/smp_affinity<span class="w"> </span><span class="c1"># -&gt; 80000  </span>
-cat<span class="w"> </span>/proc/irq/191/smp_affinity<span class="w"> </span><span class="c1"># -&gt; fffff              </span>
-</code></pre></div>
-<h2 id="batch-change-irq-smp_affinity-of-fffff">Batch change IRQ smp_affinity of fffff<a class="headerlink" href="#batch-change-irq-smp_affinity-of-fffff" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/0/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/2/smp_affinity<span class="w">  </span><span class="c1"># stays fffff</span>
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/3/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/4/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/5/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/6/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/7/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/10/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/11/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/12/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/13/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/15/smp_affinity
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/133/smp_affinity<span class="w">    </span><span class="c1"># stays 80000</span>
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/172/smp_affinity<span class="w">    </span><span class="c1"># stays 80000</span>
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/173/smp_affinity<span class="w">    </span><span class="c1"># stays fffff</span>
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/189/smp_affinity<span class="w">    </span><span class="c1"># stays fffff</span>
-sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>7ffff<span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/191/smp_affinity<span class="w">    </span><span class="c1"># stays fffff</span>
-</code></pre></div>
-<h2 id="could-not-be-changed">COULD NOT BE CHANGED<a class="headerlink" href="#could-not-be-changed" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="m">2</span>
-<span class="m">172</span>
-<span class="m">173</span>
-<span class="m">189</span>
-<span class="m">191</span>
-</code></pre></div>
-<h2 id="values">VALUES<a class="headerlink" href="#values" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/proc/irq/2/smp_affinity<span class="w">    </span><span class="c1">#-&gt; fffff</span>
-cat<span class="w"> </span>/proc/irq/172/smp_affinity<span class="w">  </span><span class="c1">#-&gt; 80000</span>
-cat<span class="w"> </span>/proc/irq/173/smp_affinity<span class="w">  </span><span class="c1">#-&gt; 80000</span>
-cat<span class="w"> </span>/proc/irq/189/smp_affinity<span class="w">  </span><span class="c1">#-&gt; fffff</span>
-cat<span class="w"> </span>/proc/irq/191/smp_affinity<span class="w">  </span><span class="c1">#-&gt; fffff</span>
-</code></pre></div>
+[ 1713.125529] rcu: INFO: rcu_preempt self-detected stall on CPU
+[ 1713.125531] rcu:     13-....: (1 GPs behind) idle=763/1/0x4000000000000000 softirq=0/0 fqs=96965 
+[ 1713.125534]  (t=195012 jiffies g=160309 q=122071)
+[ 1713.125536] NMI backtrace for cpu 13
+[ 1713.125537] CPU: 13 PID: 4606 Comm: qemu-system-x86 Not tainted 5.15.0-1063-realtime #71-Ubuntu
+[ 1713.125538] Hardware name: Dell Inc. Precision 3581/0V8YXF, BIOS 1.12.0 03/11/2024
+[ 1713.125539] Call Trace:
+[ 1713.125540]  <IRQ>
+[ 1713.125542]  show_stack+0x52/0x5c
+[ 1713.125546]  dump_stack_lvl+0x4a/0x63
+[ 1713.125549]  dump_stack+0x10/0x16
+[ 1713.125550]  nmi_cpu_backtrace.cold+0x4d/0x92
+[ 1713.125551]  ? __wake_up_klogd.part.0+0x64/0xd0
+[ 1713.125554]  ? lapic_can_unplug_cpu+0xd0/0xd0
+[ 1713.125555]  nmi_trigger_cpumask_backtrace+0x148/0x160
+[ 1713.125558]  arch_trigger_cpumask_backtrace+0x19/0x20
+[ 1713.125558]  rcu_dump_cpu_stacks+0x115/0x1b0
+[ 1713.125561]  print_cpu_stall.cold+0x44/0xe7
+[ 1713.125562]  ? account_guest_time+0xc8/0x160
+[ 1713.125564]  check_cpu_stall+0x1d8/0x270
+[ 1713.125565]  rcu_pending+0x45/0x1c0
+[ 1713.125566]  ? __this_cpu_preempt_check+0x13/0x20
+[ 1713.125568]  rcu_sched_clock_irq+0x66/0x1d0
+[ 1713.125569]  update_process_times+0xa5/0xe0
+[ 1713.125597]  tick_sched_handle+0x29/0x70
+[ 1713.125598]  tick_sched_timer+0x7b/0xa0
+[ 1713.125600]  ? tick_sched_do_timer+0xd0/0xd0
+[ 1713.125601]  __hrtimer_run_queues+0x129/0x370
+[ 1713.125603]  hrtimer_interrupt+0x118/0x250
+[ 1713.125604]  __sysvec_apic_timer_interrupt+0x8f/0x1f0
+[ 1713.125606]  sysvec_apic_timer_interrupt+0xab/0xd0
+[ 1713.125608]  </IRQ>
+[ 1713.125608]  <TASK>
+[ 1713.125609]  asm_sysvec_apic_timer_interrupt+0x1b/0x20
+[ 1713.125611] RIP: 0010:vmx_do_interrupt_nmi_irqoff+0x10/0x20 [kvm_intel]
+[ 1713.125620] Code: 41 5b 41 5a 41 59 41 58 5e 5f 5a 59 58 5d e9 77 d1 61 e6 0f 1f 80 00 00 00 00 55 48 89 e5 48 83 e4 f0 6a 18 55 9c 6a 10 ff d7 &lt;0f&gt; 1f 00 48 89 ec 5d e9 54 d1 61 e6 0f 1f 40 00 0f 1f 44 00 00 55
+[ 1713.125622] RSP: 0018:ffffb5d304213c78 EFLAGS: 00000082
+[ 1713.125623] RAX: 000000000000000d RBX: ffff9796c94b8000 RCX: 000000000000440a
+[ 1713.125624] RDX: ffffffff00000000 RSI: ffffffffc0c0c734 RDI: ffffffffa7000eb0
+[ 1713.125625] RBP: ffffb5d304213c78 R08: 0000000000000000 R09: 0000000000000401
+[ 1713.125626] R10: 0000000000000000 R11: 0000000000000000 R12: ffffffffa7000eb0
+[ 1713.125626] R13: 0000000000000000 R14: 00000498e9d90a8a R15: ffff9796c94b8000
+[ 1713.125627]  ? asm_sysvec_spurious_apic_interrupt+0x20/0x20
+[ 1713.125629]  ? asm_sysvec_spurious_apic_interrupt+0x20/0x20
+[ 1713.125632]  ? __this_cpu_preempt_check+0x13/0x20
+[ 1713.125633]  vmx_handle_exit_irqoff+0x1a4/0x320 [kvm_intel]
+[ 1713.125638]  vcpu_enter_guest+0x7ff/0x11b0 [kvm]
+[ 1713.125674]  ? __this_cpu_preempt_check+0x13/0x20
+[ 1713.125675]  ? trace_preempt_on+0x29/0x100
+[ 1713.125677]  vcpu_run+0x62/0x2c0 [kvm]
+[ 1713.125702]  ? fpu_swap_kvm_fpstate+0x79/0x160
+[ 1713.125704]  kvm_arch_vcpu_ioctl_run+0xd7/0x5a0 [kvm]
+[ 1713.125728]  kvm_vcpu_ioctl+0x29e/0x760 [kvm]
+[ 1713.125747]  ? debug_smp_processor_id+0x17/0x20
+[ 1713.125748]  ? user_return_notifier_unregister+0x42/0x90
+[ 1713.125751]  ? trace_preempt_on+0x29/0x100
+[ 1713.125754]  ? fire_user_return_notifiers+0x6d/0xd0
+[ 1713.125760]  ? __fget_light+0xad/0x140
+[ 1713.125762]  __x64_sys_ioctl+0x92/0xd0
+[ 1713.125764]  x64_sys_call+0x1e5f/0x1fa0
+[ 1713.125766]  do_syscall_64+0x56/0xb0
+[ 1713.125768]  ? do_syscall_64+0x63/0xb0
+[ 1713.125769]  ? debug_smp_processor_id+0x17/0x20
+[ 1713.125770]  ? fpregs_assert_state_consistent+0x2a/0x50
+[ 1713.125772]  ? exit_to_user_mode_prepare+0x42/0xf0
+[ 1713.125773]  ? syscall_exit_to_user_mode+0x2d/0x50
+[ 1713.125774]  ? do_syscall_64+0x63/0xb0
+[ 1713.125776]  ? do_syscall_64+0x63/0xb0
+[ 1713.125777]  ? do_syscall_64+0x63/0xb0
+[ 1713.125778]  entry_SYSCALL_64_after_hwframe+0x67/0xd1
+[ 1713.125780] RIP: 0033:0x7f057c3c294f
+[ 1713.125781] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 &lt;41&gt; 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+[ 1713.125782] RSP: 002b:00007f057a215460 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 1713.125784] RAX: ffffffffffffffda RBX: 000000000000ae80 RCX: 00007f057c3c294f
+[ 1713.125784] RDX: 0000000000000000 RSI: 000000000000ae80 RDI: 000000000000000b
+[ 1713.125785] RBP: 0000556735fad3c0 R08: 0000556734ca3f10 R09: 00000000ffffffff
+[ 1713.125786] R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000000000
+[ 1713.125786] R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+[ 1713.125788]  </TASK>
+```</p>
 
 
 
