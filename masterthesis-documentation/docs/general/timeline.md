@@ -31,7 +31,7 @@
 | Friday, 15.03.2024 | Timer 1000Hz|
 | Monday, 18.03.2024 | kernel_processes.md, kernelshark, start thesis|
 | Tuesday, 19.03.2024 | Added [Zotero](https://guides.library.iit.edu/c.php?g=720120&p=6296986), [Ubuntu Pro](https://ubuntu.com/pro/dashboard) and [Ubuntu PREEMPT_RT](https://ubuntu.com/blog/real-time-ubuntu-released)|
-| Wednesday, 20.03.2024 | kvm_exit reasons [plot](../sigmatek/trace-cmd/analysis/virtualization/taskset/kvm_exits_taskset.png) |
+| Wednesday, 20.03.2024 | kvm_exit reasons [plot](../sigmatek/trace-cmd/virtualization/taskset/kvm_exits_taskset.png) |
 | Thursday, 21.03.2024 | gitlfs and settings.json, plot with and without taskset, write more thesis |
 | Friday, 22.03.2024 | Literature paper search |
 | Monday, 25.03.2024 | Start masterthesis |
@@ -58,7 +58,7 @@
 | Tuesday, 23.04.2024 | Rebuild workspace |
 | Wednesday, 24.04.2024 | Rebuild workspace, problem_solution |
 | Thursday, 25.04.2024 | Rebuild workspace, table IRQ CPU |
-| Friday, 26.04.2024 | [compare.md](../sigmatek/trace-cmd/analysis/virtualization/compare.md), [ps.sh](../tools/ps/ps-e.sh) |
+| Friday, 26.04.2024 | [compare.md](../sigmatek/trace-cmd/virtualization/compare.md), [ps.sh](../tools/ps/ps-e.sh) |
 | Monday, 29.04.2024 | powersave, balanced, performance |
 | Tuesday, 30.04.2024 | merge and failed_reason |
 | Wednesday, 01.05.2024 | Feiertag |
