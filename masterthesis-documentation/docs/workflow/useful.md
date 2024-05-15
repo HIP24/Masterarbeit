@@ -135,6 +135,13 @@ CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
  13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
 ```
 
+## See threads of a task
+```bash
+sigma_ibo@sigma-ibo:~$ ls /proc/464458/task | wc -l
+6
+sigma_ibo@sigma-ibo:~$ top -H -p 464458
+```
+
 ## Thread priorities
 Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.
 ps reports SCHED_DEADLINE as DLN, SCHED_OTHER as TS, SCHED_BATCH as B, SCHED_IDLE as IDL, SCHED_FIFO as FF and SCHED_RR as RR.
