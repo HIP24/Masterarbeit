@@ -13,11 +13,12 @@
 - [x] Used the Xenomai test suite: latency -T 60` 
 - [x] Isolated host CPU for guest
 - [x] Latency got better after [isolation](../general/protocol.md#max-latency-with-taskset)
+- [x] Analyze Host and Guest Processes
 - [x] Latency got much better after [rt-patch](../general/protocol.md#max-latency-with-rt)
+
 
 ## Missing
 - [ ] Inspect kvm_exit reasons
-- [ ] Analyze Host and Guest Processes
 - [ ] 
 
 
