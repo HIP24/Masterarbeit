@@ -15,6 +15,10 @@ sudo kvmexit 2 > kvmexit.log
 ```
 
 ## [rt-tester](https://github.com/AgileDevArt/rt-tester)
+Clone rt-tester
+```bash
+git clone https://github.com/AgileDevArt/rt-tester
+```
 ```bash
 g++ rt-tester -o rt-tester 
 ./rt-tester
