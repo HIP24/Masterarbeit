@@ -1,4 +1,3 @@
-
 ## Add more CPUs to QEMU virtual machine with -smp option 
 The -smp option specifies the number of CPUs
 
