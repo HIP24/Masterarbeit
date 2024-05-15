@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../../QEMU/nmbridge/">
+        <link rel="prev" href="../../sigmatek/yocto/after_bitbake/">
       
       
-        <link rel="next" href="../IRQaffinity/IRQ_affinity/">
+        <link rel="next" href="../tools/">
       
       
-      <link rel="icon" href="../../../img/uni.png">
+      <link rel="icon" href="../../img/uni.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
     
     
       
-        <title>Latency reduction steps - Masterthesis Documentation</title>
+        <title>NONkernel threads - Masterthesis Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#steps-for-latency-reduction" class="md-skip">
+        <a href="#cpu-dependant-kernel-threads" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Masterthesis Documentation" class="md-header__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+    <a href="../.." title="Masterthesis Documentation" class="md-header__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
       
-  <img src="../../../img/uni.png" alt="logo">
+  <img src="../../img/uni.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Latency reduction steps
+              NONkernel threads
             
           </span>
         </div>
@@ -184,9 +184,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Masterthesis Documentation" class="md-nav__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+    <a href="../.." title="Masterthesis Documentation" class="md-nav__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
       
-  <img src="../../../img/uni.png" alt="logo">
+  <img src="../../img/uni.png" alt="logo">
 
     </a>
     Masterthesis Documentation
@@ -201,7 +201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -221,7 +221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/" class="md-nav__link">
+      <a href="../../test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -276,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/checklist/" class="md-nav__link">
+      <a href="../../general/checklist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -297,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/components/" class="md-nav__link">
+      <a href="../../general/components/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -318,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/documentations/" class="md-nav__link">
+      <a href="../../general/documentations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -339,7 +339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/protocol/" class="md-nav__link">
+      <a href="../../general/protocol/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -360,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general/timeline/" class="md-nav__link">
+      <a href="../../general/timeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -385,19 +385,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -411,7 +409,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Sigmatek
@@ -460,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../QEMU/nmbridge/" class="md-nav__link">
+      <a href="../../sigmatek/QEMU/nmbridge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -486,36 +484,34 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Latency reduction
+    Salamander4
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
-            Latency reduction
+            Salamander4
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -523,99 +519,60 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Latency reduction steps
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/bash_commands/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Latency reduction steps
+    Bash commands
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#steps-for-latency-reduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for latency reduction
-    </span>
-  </a>
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/build_LRT/" class="md-nav__link">
+        
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      defconfig
-    </span>
-  </a>
+  <span class="md-ellipsis">
+    Build LRT - Salamander 3 Terminal
+  </span>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cpu-isolation" class="md-nav__link">
-    <span class="md-ellipsis">
-      CPU isolation
-    </span>
-  </a>
+
+      </a>
+    </li>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#smp_affinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      smp_affinity
-    </span>
-  </a>
+
+              
+            
+              
+                
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enable-apicv" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enable APICV
-    </span>
-  </a>
   
-</li>
-      
-    </ul>
   
-</nav>
-      
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/build_with_yocto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build with Yocto
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -635,10 +592,66 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Latency reduction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Latency reduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/salamander4/latency_reduction/NONlatency_reduction_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NONlatency reduction steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4_2" id="__nav_4_2_4_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -649,8 +662,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_2_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4_2">
             <span class="md-nav__icon md-icon"></span>
             IRQaffinity
           </label>
@@ -663,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IRQaffinity/IRQ_affinity/" class="md-nav__link">
+      <a href="../../sigmatek/salamander4/latency_reduction/IRQaffinity/IRQ_affinity/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -684,7 +697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IRQaffinity/irqs1/" class="md-nav__link">
+      <a href="../../sigmatek/salamander4/latency_reduction/IRQaffinity/irqs1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -705,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IRQaffinity/irqs_without_cpu13/" class="md-nav__link">
+      <a href="../../sigmatek/salamander4/latency_reduction/IRQaffinity/irqs_without_cpu13/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -726,7 +739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
+      <a href="../../sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -762,10 +775,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4_3" >
         
           
-          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2_4_3" id="__nav_4_2_4_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -776,8 +789,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_2_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4_3">
             <span class="md-nav__icon md-icon"></span>
             Kernel patch
           </label>
@@ -790,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kernel-patch/kernel-patch/" class="md-nav__link">
+      <a href="../../sigmatek/salamander4/latency_reduction/kernel-patch/kernel-patch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -799,6 +812,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -841,7 +862,7 @@
             
   
   <span class="md-ellipsis">
-    Salamander4
+    Trace cmd
   </span>
   
 
@@ -850,112 +871,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
-            <span class="md-nav__icon md-icon"></span>
-            Salamander4
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../salamander4/bash_commands/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Bash commands
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../salamander4/build_LRT/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build LRT - Salamander 3 Terminal
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../salamander4/build_with_yocto/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Build with Yocto
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Trace cmd
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             Trace cmd
           </label>
@@ -968,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/kernelshark/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/kernelshark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -989,11 +904,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/kvm_exits_description/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/kvm_exits/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Kvm exits description
+    Kvm exits
   </span>
   
 
@@ -1010,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/trace-cmd/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/trace-cmd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1038,10 +953,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1052,8 +967,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_4">
             <span class="md-nav__icon md-icon"></span>
             Hardware
           </label>
@@ -1073,10 +988,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_4_1" id="__nav_4_4_4_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_4_1" id="__nav_4_3_4_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1087,8 +1002,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_4_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_4_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -1101,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/hardware/events/events_report_cpu0/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/hardware/events/events_report_cpu0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1122,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/hardware/events/events_report_cpu1/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/hardware/events/events_report_cpu1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1158,10 +1073,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_4_2" id="__nav_4_4_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_4_2" id="__nav_4_3_4_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1172,8 +1087,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_4_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_4_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -1186,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/hardware/tasks/tasks_report_cpu0/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/hardware/tasks/tasks_report_cpu0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1207,7 +1122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/hardware/tasks/tasks_report_cpu1/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/hardware/tasks/tasks_report_cpu1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1251,10 +1166,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5" id="__nav_4_3_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1265,8 +1180,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5">
             <span class="md-nav__icon md-icon"></span>
             Test trace cmd
           </label>
@@ -1286,10 +1201,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_1" id="__nav_4_4_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_1" id="__nav_4_3_5_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1300,8 +1215,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_1">
             <span class="md-nav__icon md-icon"></span>
             Fullparam
           </label>
@@ -1321,10 +1236,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_1_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_1_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_1_1" id="__nav_4_4_5_1_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_1_1" id="__nav_4_3_5_1_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1335,8 +1250,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_1_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_1_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_1_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -1349,7 +1264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/fullparam/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/fullparam/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1370,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/fullparam/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/fullparam/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1406,10 +1321,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_1_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_1_2" id="__nav_4_4_5_1_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_1_2" id="__nav_4_3_5_1_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1420,8 +1335,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_1_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_1_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_1_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -1434,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/fullparam/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/fullparam/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1455,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/fullparam/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/fullparam/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1499,10 +1414,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_2" id="__nav_4_4_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_2" id="__nav_4_3_5_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1513,8 +1428,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_2">
             <span class="md-nav__icon md-icon"></span>
             Idlepoll
           </label>
@@ -1534,10 +1449,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_2_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_2_1" id="__nav_4_4_5_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_2_1" id="__nav_4_3_5_2_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1548,8 +1463,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_2_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_2_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -1562,7 +1477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/idlepoll/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/idlepoll/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1583,7 +1498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/idlepoll/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/idlepoll/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1619,10 +1534,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_2_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_2_2" id="__nav_4_4_5_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_2_2" id="__nav_4_3_5_2_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1633,8 +1548,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_2_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_2_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -1647,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/idlepoll/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/idlepoll/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1668,7 +1583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/idlepoll/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/idlepoll/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1712,10 +1627,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_3" id="__nav_4_4_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_3" id="__nav_4_3_5_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1726,8 +1641,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_3">
             <span class="md-nav__icon md-icon"></span>
             Noapic
           </label>
@@ -1747,10 +1662,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_3_1" id="__nav_4_4_5_3_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_3_1" id="__nav_4_3_5_3_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1761,8 +1676,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_3_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_3_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -1775,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noapic/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noapic/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1796,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noapic/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noapic/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1832,10 +1747,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_3_2" id="__nav_4_4_5_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_3_2" id="__nav_4_3_5_3_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1846,8 +1761,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_3_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_3_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -1860,7 +1775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noapic/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noapic/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1881,7 +1796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noapic/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noapic/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1925,10 +1840,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_4" id="__nav_4_4_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_4" id="__nav_4_3_5_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1939,8 +1854,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_4">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_4">
             <span class="md-nav__icon md-icon"></span>
             Nohlt
           </label>
@@ -1960,10 +1875,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_4_1" id="__nav_4_4_5_4_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_4_1" id="__nav_4_3_5_4_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1974,8 +1889,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_4_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_4_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -1988,7 +1903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/nohlt/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/nohlt/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2009,7 +1924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/nohlt/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/nohlt/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2045,10 +1960,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_4_2" id="__nav_4_4_5_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_4_2" id="__nav_4_3_5_4_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2059,8 +1974,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_4_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_4_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_4_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -2073,7 +1988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/nohlt/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/nohlt/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2094,7 +2009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/nohlt/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/nohlt/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2138,10 +2053,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_5" id="__nav_4_4_5_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_5" id="__nav_4_3_5_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2152,8 +2067,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_5_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_5">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_5">
             <span class="md-nav__icon md-icon"></span>
             Noparam
           </label>
@@ -2173,10 +2088,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_5_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_5_1" id="__nav_4_4_5_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_5_1" id="__nav_4_3_5_5_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2187,8 +2102,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_5_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_5_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -2201,7 +2116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noparam/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noparam/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2222,7 +2137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noparam/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noparam/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2258,10 +2173,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5_5_2" id="__nav_4_4_5_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_5_5_2" id="__nav_4_3_5_5_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2272,8 +2187,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_5_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5_5_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_5_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5_5_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -2286,7 +2201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noparam/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noparam/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2307,7 +2222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/test_trace-cmd/noparam/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/test_trace-cmd/noparam/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2359,10 +2274,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6" id="__nav_4_3_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2373,8 +2288,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6">
             <span class="md-nav__icon md-icon"></span>
             Virtualization
           </label>
@@ -2387,7 +2302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/compare/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/compare/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2415,10 +2330,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_2" id="__nav_4_4_6_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_2" id="__nav_4_3_6_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2429,8 +2344,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_2">
             <span class="md-nav__icon md-icon"></span>
             Balanced
           </label>
@@ -2443,7 +2358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/balanced/results_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/balanced/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2464,7 +2379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/balanced/results_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/balanced/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2500,10 +2415,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_3" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_3" id="__nav_4_4_6_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_3" id="__nav_4_3_6_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2514,8 +2429,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_3">
             <span class="md-nav__icon md-icon"></span>
             Default
           </label>
@@ -2528,7 +2443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/default/kvm_exit_default_results/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/default/kvm_exit_default_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2564,10 +2479,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_4" id="__nav_4_4_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_4" id="__nav_4_3_6_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2578,8 +2493,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_4">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_4">
             <span class="md-nav__icon md-icon"></span>
             Normal
           </label>
@@ -2599,10 +2514,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_4_1" id="__nav_4_4_6_4_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_4_1" id="__nav_4_3_6_4_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2613,8 +2528,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_6_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_4_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_6_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_4_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -2627,7 +2542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/normal/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/normal/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2648,7 +2563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/normal/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/normal/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2684,10 +2599,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_4_2" id="__nav_4_4_6_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_4_2" id="__nav_4_3_6_4_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2698,8 +2613,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_6_4_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_4_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_6_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_4_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -2712,7 +2627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/normal/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/normal/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2733,7 +2648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/normal/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/normal/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2777,10 +2692,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_5" id="__nav_4_4_6_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_5" id="__nav_4_3_6_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2791,8 +2706,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_5">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_5">
             <span class="md-nav__icon md-icon"></span>
             Performance
           </label>
@@ -2805,7 +2720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/performance/results_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/performance/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2826,7 +2741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/performance/results_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/performance/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2862,10 +2777,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_6" id="__nav_4_4_6_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_6" id="__nav_4_3_6_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2876,8 +2791,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_6">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_6">
             <span class="md-nav__icon md-icon"></span>
             Power saver
           </label>
@@ -2890,7 +2805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/power_saver/results_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/power_saver/results_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2911,7 +2826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/power_saver/results_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/power_saver/results_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2947,10 +2862,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_7" id="__nav_4_4_6_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_7" id="__nav_4_3_6_7_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2961,8 +2876,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_7">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_7">
             <span class="md-nav__icon md-icon"></span>
             Real time
           </label>
@@ -2982,10 +2897,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_7_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_7_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_7_1" id="__nav_4_4_6_7_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_7_1" id="__nav_4_3_6_7_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2996,8 +2911,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_6_7_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_7_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_6_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_7_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -3010,7 +2925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3031,7 +2946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3067,10 +2982,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_7_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_7_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_7_2" id="__nav_4_4_6_7_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_7_2" id="__nav_4_3_6_7_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3081,8 +2996,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_6_7_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_7_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_6_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_7_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -3095,7 +3010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3116,7 +3031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3160,10 +3075,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_8" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_8" id="__nav_4_4_6_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_8" id="__nav_4_3_6_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3174,8 +3089,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_8">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_8">
             <span class="md-nav__icon md-icon"></span>
             Real time irq
           </label>
@@ -3195,10 +3110,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_8_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_8_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_8_1" id="__nav_4_4_6_8_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_8_1" id="__nav_4_3_6_8_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3209,8 +3124,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_6_8_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_8_1">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_6_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_8_1">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -3223,7 +3138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time-irq/events/events_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time-irq/events/events_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3244,7 +3159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time-irq/events/events_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time-irq/events/events_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3280,10 +3195,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_8_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_8_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_8_2" id="__nav_4_4_6_8_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_8_2" id="__nav_4_3_6_8_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3294,8 +3209,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_4_6_8_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_8_2">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_6_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_8_2">
             <span class="md-nav__icon md-icon"></span>
             Tasks
           </label>
@@ -3308,7 +3223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time-irq/tasks/tasks_guest_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time-irq/tasks/tasks_guest_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3329,7 +3244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/real-time-irq/tasks/tasks_host_report/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/real-time-irq/tasks/tasks_host_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3373,10 +3288,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_9" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_9" id="__nav_4_4_6_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_9" id="__nav_4_3_6_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3387,8 +3302,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_9">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_9">
             <span class="md-nav__icon md-icon"></span>
             Taskset
           </label>
@@ -3401,7 +3316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/taskset/kvm_exit_taskset_results/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/taskset/kvm_exit_taskset_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3437,10 +3352,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_6_10" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6_10" id="__nav_4_4_6_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_6_10" id="__nav_4_3_6_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3451,8 +3366,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_6_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6_10">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_6_10">
             <span class="md-nav__icon md-icon"></span>
             Vapic
           </label>
@@ -3465,7 +3380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/virtualization/vapic/kvm_exit_vapic_results/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/virtualization/vapic/kvm_exit_vapic_results/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3509,10 +3424,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_7" id="__nav_4_4_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3_7" id="__nav_4_3_7_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3523,8 +3438,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_7">
             <span class="md-nav__icon md-icon"></span>
             Working trace cmd
           </label>
@@ -3537,11 +3452,606 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+      <a href="../../sigmatek/trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Reinstall trace cmd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xenomai
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Xenomai
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/clocktest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    clocktest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/switchtest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    switchtest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/xenomai-system-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xenomai system tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Default
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Default
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot default
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency default
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_7" id="__nav_4_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Rt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/rt/dmesg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dmesg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_7_2" id="__nav_4_4_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Max latency rt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Max latency rt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with rt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_8" id="__nav_4_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_9" id="__nav_4_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Vapic
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Vapic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot vapic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency vapic
   </span>
   
 
@@ -3588,7 +4098,7 @@
             
   
   <span class="md-ellipsis">
-    Xenomai
+    Yocto
   </span>
   
 
@@ -3597,601 +4107,6 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_5">
-            <span class="md-nav__icon md-icon"></span>
-            Xenomai
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/clocktest/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    clocktest
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/latency/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    latency
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/switchtest/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    switchtest
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/xenomai-system-tools/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Xenomai system tools
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5_5" id="__nav_4_5_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Default
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_5">
-            <span class="md-nav__icon md-icon"></span>
-            Default
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/default/max_latency_default_10min_gnoplot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    gnuplot default
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/default/max_latency_default_10min_log/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Max Latency default
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5_6" id="__nav_4_5_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Hardware
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_6">
-            <span class="md-nav__icon md-icon"></span>
-            Hardware
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    gnuplot hardware
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/hardware/max_latency_hardware_10min_log/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Max Latency hardware
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5_7" id="__nav_4_5_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Rt
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_7">
-            <span class="md-nav__icon md-icon"></span>
-            Rt
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/rt/dmesg/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Dmesg
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_7_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5_7_2" id="__nav_4_5_7_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Max latency rt
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_7_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_7_2">
-            <span class="md-nav__icon md-icon"></span>
-            Max latency rt
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/rt/max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Max Latency with rt
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5_8" id="__nav_4_5_8_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Taskset
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_8">
-            <span class="md-nav__icon md-icon"></span>
-            Taskset
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/taskset/max_latency_with_taskset_10min_gnoplot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    gnuplot with taskset
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/taskset/max_latency_with_taskset_10min_log/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Max Latency with taskset
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_5_9" id="__nav_4_5_9_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Vapic
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_9">
-            <span class="md-nav__icon md-icon"></span>
-            Vapic
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/vapic/max_latency_vapic_10min_gnoplot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    gnuplot vapic
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../xenomai/vapic/max_latency_vapic_10min_log/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Max Latency vapic
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Yocto
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             Yocto
           </label>
@@ -4204,7 +4119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../yocto/after_bitbake/" class="md-nav__link">
+      <a href="../../sigmatek/yocto/after_bitbake/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4237,17 +4152,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -4261,7 +4178,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Tools
@@ -4272,18 +4189,63 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../tools/show_process/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    NONkernel threads
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Show process
+    NONkernel threads
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cpu-dependant-kernel-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU dependant kernel threads
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4296,7 +4258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tools/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4352,7 +4314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tools/bcc/bcc_tests/" class="md-nav__link">
+      <a href="../bcc/bcc_tests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4373,7 +4335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tools/bcc/install_bcc/" class="md-nav__link">
+      <a href="../bcc/install_bcc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4437,7 +4399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tools/rt-tester/" class="md-nav__link">
+      <a href="../rt-tester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4508,7 +4470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/gitlfs/" class="md-nav__link">
+      <a href="../../workflow/gitlfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4529,28 +4491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/gittutorial/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Git Tutorial
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../workflow/most_popular_paths/" class="md-nav__link">
+      <a href="../../workflow/most_popular_paths/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4571,7 +4512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/problem_solution/" class="md-nav__link">
+      <a href="../../workflow/problem_solution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4592,7 +4533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/useful/" class="md-nav__link">
+      <a href="../../workflow/useful/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4613,7 +4554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/useful_links/" class="md-nav__link">
+      <a href="../../workflow/useful_links/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4634,7 +4575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/useful_notneeded/" class="md-nav__link">
+      <a href="../../workflow/useful_notneeded/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4655,7 +4596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/vscode/" class="md-nav__link">
+      <a href="../../workflow/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4683,10 +4624,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
         
           
-          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4697,8 +4638,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
             <span class="md-nav__icon md-icon"></span>
             Meetings
           </label>
@@ -4711,7 +4652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/meetings/richard/" class="md-nav__link">
+      <a href="../../workflow/meetings/richard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4732,7 +4673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workflow/meetings/wober/" class="md-nav__link">
+      <a href="../../workflow/meetings/wober/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4786,45 +4727,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#steps-for-latency-reduction" class="md-nav__link">
+  <a href="#cpu-dependant-kernel-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps for latency reduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      defconfig
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cpu-isolation" class="md-nav__link">
-    <span class="md-ellipsis">
-      CPU isolation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#smp_affinity" class="md-nav__link">
-    <span class="md-ellipsis">
-      smp_affinity
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enable-apicv" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enable APICV
+      CPU dependant kernel threads
     </span>
   </a>
   
@@ -4845,63 +4750,43 @@
                   
 
 
-  <h1>Latency reduction steps</h1>
+  <h1>NONkernel threads</h1>
 
-<h2 id="steps-for-latency-reduction">Steps for latency reduction<a class="headerlink" href="#steps-for-latency-reduction" title="Permanent link">&para;</a></h2>
-<h2 id="defconfig">defconfig<a class="headerlink" href="#defconfig" title="Permanent link">&para;</a></h2>
-<p>CONFIG_PARAVIRT=y
-CONFIG_KVM_GUEST=y
-CONFIG_X86_IOAT_VAPIC_BROKEN_CTL=y
-CONFIG_MTRR_SANITIZER=y
-CONFIG_ARCH_CPUIDLE_HALTPOLL=y
-CONFIG_HUGETLBFS=y</p>
-<h2 id="cpu-isolation">CPU isolation<a class="headerlink" href="#cpu-isolation" title="Permanent link">&para;</a></h2>
-<p><strong>CPU isolation</strong> in Ubuntu involves restricting certain CPUs from the scheduler to enhance performance or achieve real-time behavior. Let's explore a few methods for achieving this:</p>
-<ol>
-<li>
-<p><strong><code>isolcpus</code> Boot Parameter</strong>:</p>
-<ul>
-<li>The <code>isolcpus</code> boot parameter allows you to isolate one or more CPUs from the scheduler. Once a CPU is isolated, the scheduler won't schedule any user-space threads on it.</li>
-<li>However, you'll need to manually assign processes to the isolated CPU using CPU affinity system calls or the <code>numactl</code> command.</li>
-</ul>
-</li>
-<li>
-<p><strong><code>tuned-profiles-realtime</code></strong>:</p>
-<ul>
-<li>The <code>tuned-profiles-realtime</code> package provides a way to isolate CPUs for latency-sensitive workloads.</li>
-<li>Isolating CPUs generally involves:<ul>
-<li>Removing all user-space threads.</li>
-<li>Removing unbound kernel threads (bound kernel threads are tied to specific CPUs and cannot be moved).</li>
-<li>Modifying the <code>/proc/irq/N/smp_affinity</code> property of each Interrupt Request (IRQ) number N in the system.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>tuned-profiles-cpu-partitioning</code></strong>:</p>
-<ul>
-<li>This profile partitions system CPUs into isolated and housekeeping CPUs.</li>
-<li>Isolated CPUs experience reduced jitter and fewer interruptions by the kernel, making them suitable for real-time tasks.</li>
-</ul>
-</li>
-<li>
-<p><strong>Third-Party Tools</strong>:</p>
-<ul>
-<li>Consider using tools like <strong><code>cpuset</code></strong> or <strong><code>tuna</code></strong>:<ul>
-<li><strong><code>cpuset</code></strong>: Allows you to create CPU sets (cpusets) and move tasks (threads or processes) into specific cpusets. You can shield CPUs from the scheduler by moving tasks into an isolated cpuset.</li>
-<li><strong><code>tuna</code></strong>: Dynamically isolates a CPU core and moves processes running on that core to neighboring CPUs. You can use <code>tuna</code> to isolate a CPU core in real-time.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="smp_affinity">smp_affinity<a class="headerlink" href="#smp_affinity" title="Permanent link">&para;</a></h2>
-<p>cat /proc/irq/0/smp_affinity
-sudo chmod 777 /proc/irq/0/smp_affinity
-sudo echo dffff &gt; /proc/irq/0/smp_affinity</p>
-<h2 id="enable-apicv">Enable APICV<a class="headerlink" href="#enable-apicv" title="Permanent link">&para;</a></h2>
-<p>/sys/module/kvm_intel/parameters/enable_apicv</p>
-<p>-cpu host,hv-passthrough \</p>
+<h2 id="cpu-dependant-kernel-threads">CPU dependant kernel threads<a class="headerlink" href="#cpu-dependant-kernel-threads" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Thread</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ksoftirqd</td>
+<td>20</td>
+</tr>
+<tr>
+<td>rcuc</td>
+<td>20</td>
+</tr>
+<tr>
+<td>migration</td>
+<td>20</td>
+</tr>
+<tr>
+<td>irq_work</td>
+<td>20</td>
+</tr>
+<tr>
+<td>idle_inject</td>
+<td>20</td>
+</tr>
+<tr>
+<td>cpuhp</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -4948,10 +4833,10 @@ sudo echo dffff &gt; /proc/irq/0/smp_affinity</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
       
     
   </body>
