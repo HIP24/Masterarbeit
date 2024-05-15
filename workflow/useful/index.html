@@ -4738,6 +4738,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#check-cpu-maxmhz-minmhz-current-mhz" class="md-nav__link">
+    <span class="md-ellipsis">
+      check cpu MAXMHZ, MINMHZ, CURRENT MHZ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#thread-priorities" class="md-nav__link">
     <span class="md-ellipsis">
       Thread priorities
@@ -5079,6 +5088,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#check-cpu-maxmhz-minmhz-current-mhz" class="md-nav__link">
+    <span class="md-ellipsis">
+      check cpu MAXMHZ, MINMHZ, CURRENT MHZ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#thread-priorities" class="md-nav__link">
     <span class="md-ellipsis">
       Thread priorities
@@ -5185,6 +5203,24 @@ Set the values you want for CPU core and Memory:</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>wsl2<span class="o">]</span>
 <span class="nv">memory</span><span class="o">=</span>3GB<span class="w">   </span><span class="c1"># Limits VM memory in WSL 2 up to 3GB</span>
 <span class="nv">processors</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="c1"># Makes the WSL 2 VM use two virtual processors</span>
+</code></pre></div>
+<h2 id="check-cpu-maxmhz-minmhz-current-mhz">check cpu MAXMHZ, MINMHZ, CURRENT MHZ<a class="headerlink" href="#check-cpu-maxmhz-minmhz-current-mhz" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>$ lscpu --all --extended
+CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
+  0    0      0    0 0:0:0:0          yes 5000,0000 400,0000 2900.000
+  1    0      0    1 4:4:1:0          yes 5000,0000 400,0000 2900.000
+  2    0      0    2 8:8:2:0          yes 5200,0000 400,0000 2900.000
+  3    0      0    3 12:12:3:0        yes 5200,0000 400,0000 4174.117
+  4    0      0    4 16:16:4:0        yes 5000,0000 400,0000 2900.000
+  5    0      0    5 20:20:5:0        yes 5000,0000 400,0000 2900.000
+  6    0      0    6 24:24:6:0        yes 4000,0000 400,0000 2926.742
+  7    0      0    7 25:25:6:0        yes 4000,0000 400,0000 2900.000
+  8    0      0    8 26:26:6:0        yes 4000,0000 400,0000 2900.000
+  9    0      0    9 27:27:6:0        yes 4000,0000 400,0000 2900.000
+ 10    0      0   10 28:28:7:0        yes 4000,0000 400,0000 3332.776
+ 11    0      0   11 29:29:7:0        yes 4000,0000 400,0000 2900.000
+ 12    0      0   12 30:30:7:0        yes 4000,0000 400,0000 2900.000
+ 13    0      0   13 31:31:7:0        yes 4000,0000 400,0000 3218.336
 </code></pre></div>
 <h2 id="thread-priorities">Thread priorities<a class="headerlink" href="#thread-priorities" title="Permanent link">&para;</a></h2>
 <p>Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.
