@@ -143,6 +143,7 @@ sigma_ibo@sigma-ibo:~$ top -H -p 464458
 ```
 
 ## Thread priorities
+[Set / Manipulate Real Time Attributes of a Linux Process](https://www.cyberciti.biz/faq/howto-set-real-time-scheduling-priority-process)  
 Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.
 ps reports SCHED_DEADLINE as DLN, SCHED_OTHER as TS, SCHED_BATCH as B, SCHED_IDLE as IDL, SCHED_FIFO as FF and SCHED_RR as RR.
 ```
@@ -161,4 +162,3 @@ Set all threads of a process to a real-time priority
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 ```
-
