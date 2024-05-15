@@ -112,6 +112,9 @@ ssh root@192.168.1.244
 ## Boot parameters
 cat /proc/cmdline
 
+## Stress the CPUs
+stress -c $(nproc)
+
 ## Check cpu MAXMHZ, MINMHZ, CURRENT MHZ 
 ```
 $ lscpu --all --extended
@@ -151,3 +154,4 @@ Set all threads of a process to a real-time priority
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 ```
+

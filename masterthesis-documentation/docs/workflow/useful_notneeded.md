@@ -20,6 +20,7 @@ Check with: `cat /sys/devices/system/cpu/online`
 root@sigmatek-core2:~# cat /sys/devices/system/cpu/online
 0-9
 ```
+
 ## Isolate CPUs with isolcpus
 To use isolcpus in a Yocto image, you need to add it to the kernel command line parameters. In your case, these parameters are specified in the -append option in your QEMU command. Add isolcpus=x,y,z. Replace x,y,z with the CPU cores you want to isolate. For example, if you want to isolate cores 0, 1 and 2, you would use isolcpus=0,1,2.
 ```bash
@@ -78,9 +79,6 @@ dos2unix <file>
 ## Configure ip addresses 
 [Configure PC](../resources/images/configure_ip/ip_static_connection_ubuntu.png) to `10.10.1.1`.   
 [Salamander Gateway](../resources/images/configure_ip/ip_list_ubuntu.png) set to `10.10.1.229`
-
-## Stress the CPUs
-stress -c $(nproc)
 
 ### Ubuntu VM on virtual machine manager
 After giving the VM [access to the vsocket](../resources/images/protocol/virtm_cid.png), and installing trace-cmd along with dependancies<!--[dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)-->, run [`trace-cmd agent`](../resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../sigmatek/trace-cmd/virtualization/taskset/start_kernelshark.sh), we can view [KVM Combo plots](../resources/images/protocol/kvm_combo_plots.png)

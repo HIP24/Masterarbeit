@@ -39,8 +39,8 @@ masterthesis-documentation/docs/sigmatek/trace-cmd/virtualization/**/*.dat
 masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/*.png
 masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/*.txt
 
-masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/*.log
-masterthesis-documentation/docs/sigmatek/latency_reduction/IRQaffinity/table_CPU_IRQ.md
+masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/*.log
+masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md
 
 # Ignore everything in the directory
 masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/**/*
