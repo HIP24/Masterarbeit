@@ -92,7 +92,7 @@ sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
 
 ### Max Latency with rt
 #### Enable Preempt_RT Kernel
-Either do everything in [kernel-patch.md](../sigmatek/latency_reduction/kernel-patch/kernel-patch.md) to patch the kernel and enable Fully Preemptible Kernel (RT).  
+Either do everything in [kernel-patch.md](../sigmatek/salamander4/latency_reduction/kernel-patch/kernel-patch.md) to patch the kernel and enable Fully Preemptible Kernel (RT).  
 Or simply [enable Ubuntu Pro's real-time kernel](https://ubuntu.com/blog/real-time-ubuntu-released).
 
 !!! info
@@ -186,7 +186,7 @@ sudo sysctl -p
 There are other configurations that may be relevant depending on your use case, some of which are documented in [this talk](https://www.youtube.com/watch?v=NrjXEaTSyrw) and [this other talk](https://www.youtube.com/watch?v=w3yT8zJe0Uw). Additionally, quality-of-life configurations, such the variables in /etc/security/limits.conf, may need to be tuned as well. I encourage the reader to look at pre-made distributions such as the [ROS2 real-time Raspberry Pi image](https://github.com/ros-realtime/ros-realtime-rpi4-image) (which I incidentally also worked on) for more inspiration. Although providing a complete checklist for system configuration is outside the scope of this post (if it is even possible), I included an non-exhaustive checklist [at the bottom of this post](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#appendix-hardware-and-os-configuration-checklist) as a starting point.
 
 ##### IRQ affinity
-Remove all possible IRQs from isolated CPU with [remove_irqs_from_CPU.sh](../sigmatek/latency_reduction/IRQaffinity/remove_irqs_from_CPU.sh). Check with [table_CPU_IRQ.md](../sigmatek/latency_reduction/IRQaffinity/table_CPU_IRQ.md) and cat `/proc/interrupts`.
+Remove all possible IRQs from isolated CPU with [remove_irqs_from_CPU.sh](../sigmatek/salamander4/latency_reduction/IRQaffinity/remove_irqs_from_CPU.sh). Check with [table_CPU_IRQ.md](../sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md) and cat `/proc/interrupts`.
 
 ##### RCU CPU offloading
 Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/default/grub`

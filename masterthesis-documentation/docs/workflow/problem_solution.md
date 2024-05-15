@@ -154,13 +154,13 @@ echo "allow nm-bridge" | sudo tee bridge.conf > /dev/null
 
 ## Kernel Patch
 ### Problem 1
-Fully Preemptible Kernel (RT) not showing up in [menuconfig](../sigmatek/latency_reduction/kernel-patch/no_fully_rt.png)  
+Fully Preemptible Kernel (RT) not showing up in [menuconfig](../sigmatek/salamander4/latency_reduction/kernel-patch/no_fully_rt.png)  
 
 ### Solution 1
 1) Run `make mrproper`  
 2) Then run `make menuconfig`  
 
-This is the [output](../sigmatek/latency_reduction/kernel-patch/fully_rt.png)  
+This is the [output](../sigmatek/salamander4/latency_reduction/kernel-patch/fully_rt.png)  
 [Source](https://unix.stackexchange.com/questions/616621/real-time-patch-on-linux-5-9-1-does-not-show-fully-preemptible-option-for-arm64)
 
 <hr>
