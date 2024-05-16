@@ -35,3 +35,13 @@ This serves as a non-exhaustive starting point on the things to check for the ha
 - [x] Possibly setup isolcpu (or use cgroups to accomplish the same thing)
 - [] Look into kernel configurations that may affect RT performance such as CONFIG_LOCKUP_DETECTOR, CONFIG_DETECT_HUNG_TASK, CONFIG_NO_HZ, CONFIG_HZ_*, CONFIG_NO_HZ_FULL, and possibly more.
 - [] Configure the memory lock and rtprio permissions in /etc/security/limits.d.
+
+
+
+from Paper Virt. mixed...
+
+Instead, the PREEMPT RT
+patch provides several mechanisms like high-resolution timers,
+threaded interrupt handlers, priority inheritance implementa-
+tion, Preemptible Read-Copy-Update (RCU), real-time sched-
+ulers, and a memory allocator.
