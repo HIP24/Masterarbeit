@@ -1,6 +1,6 @@
 ## KVM Exit Reasons
-| Exit Reason         | Description                                               | Frequency     |
-|---------------------|-----------------------------------------------------------|---------------|
+| Exit Reason         | Description                                                    |
+|---------------------|-----------------------------------------------------------|
 | APIC_WRITE          | Triggered when the guest writes to its Advanced Programmable Interrupt Controller (APIC).                                     | 
 | EXTERNAL_INTERRUPT  | Triggered when an external hardware interrupt occurs, usually caused by hardware devices signaling the host’s CPU.            |
 | HLT                 | Triggered when the guest executes the HLT instruction, halting the CPU until the next external interrupt is fired.            | 
@@ -27,12 +27,11 @@
 
 In the context of APIC virtualization, the APIC (Advanced Programmable Interrupt Controller) is virtualized by the hypervisor. This means that when the guest tries to interact with the APIC, it’s actually interacting with a virtual representation of the APIC provided by the hypervisor. This allows the hypervisor to maintain control over the hardware and manage the delivery of interrupts to the guests.
 
-https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2018/08/29/apicv
-https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2020/09/10/kvm-performance-1  
-https://terenceli.github.io/
+[terenceli.github](https://terenceli.github.io/)  
+[terenceli.github/apicv](https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2018/08/29/apicv)  
+[terenceli.github/kvm-performance](https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2020/09/10/kvm-performance-1)  
+[Intel APIC Virtualization Technology](https://edc.intel.com/content/www/us/en/design/ipla/software-development-platforms/client/platforms/alder-lake-desktop/12th-generation-intel-core-processors-datasheet-volume-1-of-2/002/intel-apic-virtualization-technology-intel-apicv/)
 
-https://edc.intel.com/content/www/us/en/design/ipla/software-development-platforms/client/platforms/alder-lake-desktop/12th-generation-intel-core-processors-datasheet-volume-1-of-2/002/intel-apic-virtualization-technology-intel-apicv/
 
-
-## APIC Virtualization (APICv)
+#### APIC Virtualization (APICv)
 Newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance.
