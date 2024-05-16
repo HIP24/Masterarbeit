@@ -1,4 +1,4 @@
- ```
+```
  sudo rm /usr/local/bin/trace-cmd
  sudo rm /usr/bin/trace-cmd
  sudo rm /usr/local/lib64/libtracefs.so.1
