@@ -28,6 +28,8 @@ Real-time kernel
 
 Patch  
 - ✅ [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
+- [Tuning a real-time kernel](https://ubuntu.com/blog/real-time-kernel-tuning)  
+
 
 ## Kernel Patch Proceedure
 Download [Linux kernel and patch](https://mirrors.edge.kernel.org/pub/linux/kernel/)  
@@ -37,7 +39,7 @@ gunzip patch-*
 ```
 Patch the kernel source code
 ```bash
-patch -p1 < ../../rt_linux/patch-*
+patch -R -p1 < ../patch-*
 ```  
 Customize the configuration
 ```bash

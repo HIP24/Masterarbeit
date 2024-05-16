@@ -8,7 +8,7 @@
 % 1) Mit \documentclass[..] einstellen: Master- oder Bachelorarbeit, Studiengang und Sprache
 % 2) Mit \newcommand{\FHTWCitationType}.. Zitierstandard festlegen (wird in der Regel vom Studiengang vorgegeben - bitte erfragen)
 % 3) Deckblatt, Kurzfassung, etc. ausfüllen
-% 4) und die Arbeit schreiben (die verwendeten Literaturquellen in Literatur.bib eintragen)
+% 4) und die Arbeit schreiben (die verwendeten Literaturquellen in Literature.bib eintragen)
 %
 % Getestet mit TeXstudio mit Zeichenkodierung ISO-8859-1 (=ansinew/latin1) und MikTex unter Windows
 % Zu beachten ist, dass die Kodierung der Datei mit der Kodierung des paketes inputenc zusammen passt!
@@ -30,7 +30,7 @@
 % Hier biblatex & Biber konfigurieren; Vergessen Sie nicht, dass Sie biber verwenden müssen um eine Bibliothek zu erzeugen
 %
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
-\addbibresource{Literatur.bib}
+\addbibresource{Literature.bib}
 %
 % Bei Bedarf bitte hier die Syntax-Highlightings anpassen
 %
@@ -623,8 +623,10 @@ Figure \ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC vir
 
 \clearpage
 
-\chapter{Real-Time Performance Optimizations and Latency Reduction}\label{cha:latency_reduction}
-\section{Host OS Optimization}
+\chapter{Real-Time Performance Tuning}\label{cha:real-time_tuning}
+\section{BIOS Configurations}
+\section{Kernel Configurations} 
+\section{Host OS Configurations}
 \subsection{Tasks and Events}
 \clearpage
 \subsection{CPU governor}
@@ -857,15 +859,14 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 
 \noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
 \clearpage
-\subsection{Kernel tuning}
+\subsection{Real-time patch}
 \clearpage
-
-\section{Guest OS Optimization}
+\section{QEMU-KVM Configurations}
+\section{Guest OS Configurations}
 \clearpage
 \subsection{Tasks and Events}
 \clearpage
 
-\section{Virtual Machine Configuration Optimizations}
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -889,6 +890,9 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 \end{lstlisting}
 \end{minipage}
 \clearpage
+
+Configurations for guest OS in the real-time VM .......................................................... 13
+
 
 \chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
 
