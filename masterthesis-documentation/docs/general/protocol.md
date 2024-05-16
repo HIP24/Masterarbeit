@@ -86,7 +86,7 @@ sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
    8752   0 start_qemu.sh
    8755   4 qemu-system-x86
 ```
-[latency -h -s -T 600 -g max_latency_with_taskset_10min.txt](../sigmatek/xenomai/taskset/max_latency_with_taskset_10min_log.md)
+[latency -h -s -T 600 -g max_latency_with_taskset_10min.txt](../sigmatek/xenomai/taskset/max_latency_taskset_10min_log.md)
 
 > lat worst reduced from 4070.018 to [457.545](../sigmatek/xenomai/taskset/max_latency_taskset/max_latency_taskset.png) with [stats](../sigmatek/xenomai/taskset/max_latency_taskset/max_latency_taskset_statistics.txt)
 

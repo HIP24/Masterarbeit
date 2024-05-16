@@ -740,20 +740,20 @@ The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_latency_hardware}
 	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
 
-Figure \ref{fig:gnuplot_max_max_latency_default}
+Figure \ref{fig:gnuplot_max_latency_default}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/default/gnuplot_max_latency_default.png}
 	\caption[gnuplot latency no taskset]{gnuplot latency no taskset}
-	\label{fig:gnuplot_max_max_latency_default}
+	\label{fig:gnuplot_max_latency_default}
 \end{figure}
 
-Figure \ref{fig:gnuplot_max_latency_with_taskset}
+Figure \ref{fig:gnuplot_max_latency_taskset}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/with_taskset/gnuplot_max_latency_with_taskset.png}
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/taskset/gnuplot_max_latency_taskset.png}
 	\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
-	\label{fig:gnuplot_max_latency_with_taskset}
+	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}
 
 Figure \ref{fig:gnuplot_max_latency_vapic}
@@ -900,8 +900,6 @@ Output \ref{output:irq_affinity} shows the output of the script above for CPU 19
 \chapter{To Include}\label{cha:to_include}
 
 The Figure \ref{fig:latency_comparison} below compares non-optimized guest latency with optimized guest latency and includes optimized bare-metal latency as a reference. The data shows that a 40\% reduction in QD1 latency is achievable through system tuning.
-
-
 
 \begin{figure}[H]
 	\centering
