@@ -1,4 +1,4 @@
-# Useful VSCode stuff
+# VSCode
 
 | command    | Description |
 |------------|-------|

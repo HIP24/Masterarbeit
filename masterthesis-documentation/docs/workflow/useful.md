@@ -1,3 +1,5 @@
+# Useful Stuff
+
 ## Symbolic Link to Windows Folder
 `ln -s /media/sigma_ibo/Windows/Dokumente\ und\ Einstellungen/Pamibr/Desktop/Masterarbeit/ /home/sigma_ibo/Desktop/`  
 <a href="https://www.howtogeek.com/287014/how-to-create-and-use-symbolic-links-aka-symlinks-on-linux/" target="_blank">Symbolic Link to Windows Folder</a>
@@ -39,13 +41,6 @@ To stop being prompted to unlock the ‘default’ keyring on boot, set a blank 
 
 ## See how many cores you have
 `nproc` or `cat /proc/cpuinfo | grep processor | wc -l` or `cat /proc/cpuinfo | grep 'core id'` or `lscpu`
-
-## Untrack files to be ignored named “documentation/test” in git:
-`git rm --cached documentation/test`  
-<a href="https://kinsta.com/knowledgebase/gitignore-not-working/" target="_blank">How To Fix Gitignore Not Working</a>
-
-## Remove a commit but keep the changes in your working directory
-git reset --soft HEAD~1
 
 ## start_qemu.sh from everywhere
 Script [start_qemu.sh](../sigmatek/QEMU/start_qemu.sh) needs to be in `/home/sigma_ibo/Desktop/Masterarbeit/masterthesis-documentation/QEMU/`. 
@@ -143,6 +138,7 @@ sigma_ibo@sigma-ibo:~$ top -H -p 464458
 ```
 
 ## Thread priorities
+
 [Set / Manipulate Real Time Attributes of a Linux Process](https://www.cyberciti.biz/faq/howto-set-real-time-scheduling-priority-process)  
 Full list of all threads on the system with process id, thread id, short name, scheduling policy, nice value and realtime-priority.
 ps reports SCHED_DEADLINE as DLN, SCHED_OTHER as TS, SCHED_BATCH as B, SCHED_IDLE as IDL, SCHED_FIFO as FF and SCHED_RR as RR.
@@ -162,3 +158,89 @@ Set all threads of a process to a real-time priority
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 ```
+
+## Useful Not needed
+
+### Add more CPUs to QEMU virtual machine with -smp option 
+The -smp option specifies the number of CPUs
+
+Replace n with the number of CPUs you want to add. For example, if you want to add 4 CPUs, you would use -smp cpus=4.
+
+After making these changes, the specified number of CPUs will be available when you boot your Yocto image with this script. 
+```bash
+exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 \
+-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_>
+-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+-smp cpus=n \
+-no-reboot -nographic
+```
+Check with: `cat /sys/devices/system/cpu/online`
+```bash
+root@sigmatek-core2:~# cat /sys/devices/system/cpu/online
+0-9
+```
+
+### Isolate CPUs in QEMU with isolcpus
+To use isolcpus in a Yocto image, you need to add it to the kernel command line parameters. In your case, these parameters are specified in the -append option in your QEMU command. Add isolcpus=x,y,z. Replace x,y,z with the CPU cores you want to isolate. For example, if you want to isolate cores 0, 1 and 2, you would use isolcpus=0,1,2.
+```bash
+exec qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 isolcpus=0,1,2" \
+-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_>
+-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+-smp cpus=n \
+-no-reboot -nographic
+```
+Check with: `cat /sys/devices/system/cpu/isolated`
+```bash
+root@sigmatek-core2:~# cat /sys/devices/system/cpu/isolated
+0-2
+```
+
+### Gid PID Of processes
+Start latency and write output to latency_output.txt:
+`latency -T 60 > latency_output.txt 2>&1 &`  
+Get ID of xenomai task: `ps aux | grep latency`
+```bash
+root@sigmatek-core2:~# latency -T 60 > latency_output.txt 2>&1 &
+[1] 557
+root@sigmatek-core2:~# ps aux | grep latency
+root       557  0.0  0.6  14040 12852 ttyS0    SLl  11:34   0:00 latency -T 60
+root       563  0.0  0.0   3256  1148 ttyS0    S+   11:34   0:00 grep latency
+```
+
+### Assign tasks to the isolated CPUs 
+To assign these latency tasks to the isolated CPUs, you can use the taskset command with the process ID (PID) of each latency task. For example, if you want to assign the latency task with PID 536 to CPU 1, you would use:
+
+`taskset -pc x abc`
+
+Remember to replace abc with the actual PID of the latency task. You can repeat this process for each latency task and each isolated CPU.
+
+
+### Kill processes 
+Kill processes with `kill x`
+
+
+### ^M error message
+The error message you're seeing is typically caused by a mismatch in line endings. Scripts that have been edited or created on Windows use a different line ending (`\r\n`) than Unix/Linux (`\n`). The `^M` in the error message is a visual representation of `\r` (carriage return), which is not expected or understood by the Linux shell.
+
+You can convert the line endings of your script to the Unix format using a tool like `dos2unix`. Here's how you can do it:
+
+```bash
+sudo apt-get install dos2unix  # Install dos2unix tool
+dos2unix <file>
+```
+
+### Split too long Prompt
+[ChatGPT PROMPTs Splitter](https://chatgpt-prompt-splitter.jjdiaz.dev/)
+
+### Configure ip addresses 
+[Configure PC](../resources/images/configure_ip/ip_static_connection_ubuntu.png) to `10.10.1.1`.   
+[Salamander Gateway](../resources/images/configure_ip/ip_list_ubuntu.png) set to `10.10.1.229`
+
+### Ubuntu VM on virtual machine manager
+After giving the VM [access to the vsocket](../resources/images/protocol/virtm_cid.png), and installing trace-cmd along with dependancies<!--[dependancies](../salamander4/trace-cmd/LTS/trace-cmd-v3.2/README.md)-->, run [`trace-cmd agent`](../resources/images/protocol/trace-cmd_agent.png). Now, the guest is able to negotiate with host about [timestamp synchronization](../resources/images/protocol/negotiated_with_guest.png). After running [`./start_kernelshark.sh`](../sigmatek/trace-cmd/virtualization/taskset/start_kernelshark.sh), we can view [KVM Combo plots](../resources/images/protocol/kvm_combo_plots.png)
