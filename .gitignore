@@ -26,7 +26,7 @@ Masterarbeit_Robotik_Pamuk.log
 masterthesis-documentation/site/
 masterthesis-documentation/docs/Masterarbeit_Robotik_Pamuk.pdf
 Masterarbeit_Robotik_Pamuk.pdf
-papers (delete)/
+papers-delete/
 
 # Ignore everything in the directory
 masterthesis-documentation/docs/sigmatek/trace-cmd/test_trace-cmd/**/*
