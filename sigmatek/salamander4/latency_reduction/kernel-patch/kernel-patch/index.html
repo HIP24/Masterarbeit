@@ -4739,14 +4739,15 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>purge<span class="w">
 - <a href="https://www.youtube.com/watch?v=NrjXEaTSyrw">A Checklist for Writing Linux Real-Time Applications</a>
 - <a href="https://www.youtube.com/watch?v=Tkra8g0gXAU">Finding Sources of Latency on your Linux System - Steven Rostedt, VMware</a></p>
 <p>Patch<br />
-- ✅ <a href="https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I">Applying the Realtime patch to the Linux kernel</a>  </p>
+- ✅ <a href="https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I">Applying the Realtime patch to the Linux kernel</a><br />
+- <a href="https://ubuntu.com/blog/real-time-kernel-tuning">Tuning a real-time kernel</a>  </p>
 <h2 id="kernel-patch-proceedure">Kernel Patch Proceedure<a class="headerlink" href="#kernel-patch-proceedure" title="Permanent link">&para;</a></h2>
 <p>Download <a href="https://mirrors.edge.kernel.org/pub/linux/kernel/">Linux kernel and patch</a><br />
 Gunzip the patch
 <div class="highlight"><pre><span></span><code>gunzip<span class="w"> </span>patch-*
 </code></pre></div>
 Patch the kernel source code
-<div class="highlight"><pre><span></span><code>patch<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../../rt_linux/patch-*
+<div class="highlight"><pre><span></span><code>patch<span class="w"> </span>-R<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../patch-*
 </code></pre></div>
 Customize the configuration
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span>menuconfig
