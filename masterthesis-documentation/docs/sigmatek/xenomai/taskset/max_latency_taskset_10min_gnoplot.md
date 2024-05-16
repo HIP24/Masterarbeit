@@ -7,4 +7,4 @@ stats 'max_latency_with_taskset_10min.txt' using 2 nooutput
 plot 'max_latency_with_taskset_10min.txt' using 1:2 with linespoints title 'Latency Histogram'
 ```
 
-![gnuplot_max_latency_with_taskset.png.png](gnuplot_max_latency_with_taskset.png)
+![gnuplot_max_latency_taskset.png.png](gnuplot_max_latency_taskset.png)
