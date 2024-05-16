@@ -121,7 +121,6 @@ Or simply [enable Ubuntu Pro's real-time kernel](https://ubuntu.com/blog/real-ti
 To see the real-time priorities of all running processes, have a look at [thread priorities](../workflow/useful.md#thread-priorities).
 
 #### Configuring the system for real-time
-
 For now, PREEMPT\_RT is a set of patches that is supposed to be applied on top of mainline Linux. Most Linux distributions do not build it by default, and you will most likely have to do it yourself [[3]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f4). How this can be done falls outside the scope of this post, but there are plenty of [guides](https://docs.ros.org/en/foxy/Tutorials/Building-Realtime-rt_preempt-kernel-for-ROS-2.html) out there. Hopefully in the near future, all of PREEMPT\_RT's functionality will be merged in to mainline, and Linux distributions will provide RT-enabled kernels out-of-the-box.
 
 Once you successfully compiled the RT kernel, the default hardware and OS configurations are usually not tuned correctly for RT. The following hardware and OS configurations should likely always be checked and tuned:
