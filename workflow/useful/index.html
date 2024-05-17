@@ -4693,6 +4693,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-suite-rt-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test suite: rt-tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#useful-not-needed" class="md-nav__link">
     <span class="md-ellipsis">
       Useful Not needed
@@ -5117,6 +5126,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-suite-rt-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test suite: rt-tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#useful-not-needed" class="md-nav__link">
     <span class="md-ellipsis">
       Useful Not needed
@@ -5349,6 +5367,19 @@ ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;$NF ~ /^[0-9]+$/&#39; | s
 </code></pre></div>
 Set all threads of a process to a real-time priority
 <div class="highlight"><pre><span></span><code>ps -T -p $(pgrep -f &quot;qemu-system-x86_64 -M pc,ac&quot;) | awk &#39;{print $2}&#39; | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
+</code></pre></div></p>
+<h2 id="test-suite-rt-tests">Test suite: rt-tests<a class="headerlink" href="#test-suite-rt-tests" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.opensourceforu.com/2021/05/an-analysis-of-the-real-time-performance-of-linux-kernels/">An Analysis of the Real-Time Performance of Linux Kernels</a>
+The rt-tests test suite contains programs to test various real-time Linux features; more details are available <a href="https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/rt-tests">here</a>. The step-by-step procedure to install the rt-tests suite from the source is given below.</p>
+<p>First, you need to install the libraries:
+<div class="highlight"><pre><span></span><code>sudo apt-get install build-essential libnuma-dev
+</code></pre></div></p>
+<p>Next, clone the code and build from the source:
+<div class="highlight"><pre><span></span><code>git clone git://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git
+cd rt-tests
+git checkout stable/v1.0
+make all
+make install
 </code></pre></div></p>
 <h2 id="useful-not-needed">Useful Not needed<a class="headerlink" href="#useful-not-needed" title="Permanent link">&para;</a></h2>
 <h3 id="add-more-cpus-to-qemu-virtual-machine-with-smp-option">Add more CPUs to QEMU virtual machine with -smp option<a class="headerlink" href="#add-more-cpus-to-qemu-virtual-machine-with-smp-option" title="Permanent link">&para;</a></h3>
