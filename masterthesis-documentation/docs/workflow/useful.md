@@ -159,6 +159,24 @@ Set all threads of a process to a real-time priority
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 ```
 
+## Test suite: rt-tests
+[An Analysis of the Real-Time Performance of Linux Kernels](https://www.opensourceforu.com/2021/05/an-analysis-of-the-real-time-performance-of-linux-kernels/)
+The rt-tests test suite contains programs to test various real-time Linux features; more details are available [here](https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/rt-tests). The step-by-step procedure to install the rt-tests suite from the source is given below.
+
+First, you need to install the libraries:
+```
+sudo apt-get install build-essential libnuma-dev
+```
+
+Next, clone the code and build from the source:
+```
+git clone git://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git
+cd rt-tests
+git checkout stable/v1.0
+make all
+make install
+```
+
 ## Useful Not needed
 
 ### Add more CPUs to QEMU virtual machine with -smp option 
