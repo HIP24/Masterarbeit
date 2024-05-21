@@ -200,6 +200,26 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 \bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{XenomaiXenomai}.
 
+
+
+\begin{table}[h]
+	\centering
+	\caption[Testbed Configuration]{Testbed Configuration}
+	\label{tab:testbed_configuration}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{CPU} & i7-8665U quad core, 1.9 GHz \\ \hline
+	\textbf{Memory} & 2x SO-DIMM DDR4-2400/2133 MHZ, 64GB \\ \hline
+	\textbf{GPU} & Integrated GPU \\ \hline
+	\textbf{BIOS} & Version WL37R107 \\ \hline
+	\textbf{OS} & Ubuntu 18.04 \\
+	\hline
+	\end{tabular}}
+	\end{table}
+	
+
 \clearpage
 
 \chapter{Salamander 4}\label{cha:salamander4}

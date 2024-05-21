@@ -134,7 +134,7 @@ CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
 ```bash
 sigma_ibo@sigma-ibo:~$ ls /proc/464458/task | wc -l
 6
-sigma_ibo@sigma-ibo:~$ top -H -p 464458
+sigma_ibo@sigma-ibo:~$ htop -H -p 464458
 ```
 
 ## Thread priorities
@@ -157,6 +157,10 @@ ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$NF ~ /^[0-9]+$/' | sort -k4,
 Set all threads of a process to a real-time priority
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
+```
+watch it
+```
+watch -c -d -n 1 'ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '\''$1 == 13'\'''
 ```
 
 ## Test suite: rt-tests
