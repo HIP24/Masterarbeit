@@ -28,7 +28,6 @@ Real-time kernel
 
 Patch  
 - ✅ [Applying the Realtime patch to the Linux kernel](https://www.youtube.com/watch?v=RSfMxKuyB7Ihttps://www.youtube.com/watch?v=RSfMxKuyB7I)  
-- [Tuning a real-time kernel](https://ubuntu.com/blog/real-time-kernel-tuning)  
 
 
 ## Kernel Patch Proceedure
