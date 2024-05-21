@@ -5350,7 +5350,7 @@ CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE    MAXMHZ   MINMHZ      MHZ
 <h2 id="see-threads-of-a-task">See threads of a task<a class="headerlink" href="#see-threads-of-a-task" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>sigma_ibo@sigma-ibo:~$<span class="w"> </span>ls<span class="w"> </span>/proc/464458/task<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 <span class="m">6</span>
-sigma_ibo@sigma-ibo:~$<span class="w"> </span>top<span class="w"> </span>-H<span class="w"> </span>-p<span class="w"> </span><span class="m">464458</span>
+sigma_ibo@sigma-ibo:~$<span class="w"> </span>htop<span class="w"> </span>-H<span class="w"> </span>-p<span class="w"> </span><span class="m">464458</span>
 </code></pre></div>
 <h2 id="thread-priorities">Thread priorities<a class="headerlink" href="#thread-priorities" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.cyberciti.biz/faq/howto-set-real-time-scheduling-priority-process">Set / Manipulate Real Time Attributes of a Linux Process</a><br />
@@ -5367,6 +5367,9 @@ ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;$NF ~ /^[0-9]+$/&#39; | s
 </code></pre></div>
 Set all threads of a process to a real-time priority
 <div class="highlight"><pre><span></span><code>ps -T -p $(pgrep -f &quot;qemu-system-x86_64 -M pc,ac&quot;) | awk &#39;{print $2}&#39; | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
+</code></pre></div>
+watch it
+<div class="highlight"><pre><span></span><code>watch -c -d -n 1 &#39;ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;\&#39;&#39;$1 == 13&#39;\&#39;&#39;&#39;
 </code></pre></div></p>
 <h2 id="test-suite-rt-tests">Test suite: rt-tests<a class="headerlink" href="#test-suite-rt-tests" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.opensourceforu.com/2021/05/an-analysis-of-the-real-time-performance-of-linux-kernels/">An Analysis of the Real-Time Performance of Linux Kernels</a>
