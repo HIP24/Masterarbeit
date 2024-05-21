@@ -30,6 +30,7 @@ plugins:
         - "*.tmp"
         - "*.gz"
         - "*sigmatek/trace-cmd/test_trace-cmd/twocpus/*"
+        - "*linux_kernels/*"
       regex:
         - '.*.(tmp|bin|tar)$'
   - search

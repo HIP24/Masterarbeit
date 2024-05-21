@@ -57,3 +57,5 @@ masterthesis-documentation/docs/tools/ps/**/*
 masterthesis-documentation/docs/tools/rt-tester/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/tools/ps/rt-tester/rt-tester/tests/*.*
+
+masterthesis-documentation/docs/linux_kernels
