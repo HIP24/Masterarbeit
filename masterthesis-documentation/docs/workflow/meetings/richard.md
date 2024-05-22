@@ -150,7 +150,11 @@ https://wiki.linuxfoundation.org/realtime/documentation/technical_details/rcu
 - Kernel parameters
     - CONFIG_RCU_CPU_STALL_TIMEOUT
     - CONFIG_PREEMPT_RCU=y
-    -
+    - CONFIG_LOCKUP_DETECTOR
+    - CONFIG_DETECT_HUNG_TASK
+    - CONFIG_NO_HZ
+    - CONFIG_HZ_*
+    - CONFIG_NO_HZ_FULL
 
 
 ❌✅
