@@ -400,33 +400,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#kernel-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kernel Configurations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#host-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Host Configurations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qemu-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      QEMU Configurations
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -724,11 +697,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sigmatek/salamander4/latency_reduction/NONlatency_reduction_steps/" class="md-nav__link">
+      <a href="../../sigmatek/salamander4/latency_reduction/latency_reduction_steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    NONlatency reduction steps
+    Latency reduction steps
   </span>
   
 
@@ -4951,33 +4924,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#kernel-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Kernel Configurations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#host-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Host Configurations
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qemu-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      QEMU Configurations
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5021,102 +4967,6 @@ Since your system has only one NUMA node, all memory access is local, and you do
 <p>The value “10” is a relative measure. It doesn’t represent an absolute time or delay, but serves as a reference point for comparing memory access latencies within the system. When comparing this to the latency of accessing memory on other nodes (in a multi-node system), a lower value would indicate lower latency.</p>
 <p>So, when it says the distance from node 0 to itself is 10, it means that the latency for accessing local memory is set as the baseline reference value of 10. If there were other nodes, their distances would be compared to this baseline to determine whether accessing memory on those nodes would be faster or slower.</p>
 <p>In a single-node system like yours, this value doesn’t have much practical impact since all memory access is local. But in a multi-node system, understanding these distances can be crucial for optimizing performance and minimizing latency.</p>
-<h2 id="kernel-configurations">Kernel Configurations<a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>GRUB_CMDLINE_LINUX=&quot;isolcpus=4 rcu_nocbs=4 nohz_full=4 default_hugepagesz=1G hugepagesz=1G hugepages=8 intel_iommu=on rdt=l3cat nmi_watchdog=0 idle=poll clocksource=tsc tsc=reliable noht audit=0 skew_tick=1 intel_pstate=disable intel.max_cstate=0 intel_idle.max_cstate=0 processor.max_cstate=0 processor_idle.max_cstate=0 nosoftlockup nohz=on no_timer_check nospectre_v2 spectre_v2_user=off kvm.kvmclock_periodic_sync=N kvm_intel.ple_gap=0 irqaffinity=0&quot;
-</code></pre></div>
-<h2 id="host-configurations">Host Configurations<a class="headerlink" href="#host-configurations" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p><strong>Set CPU Affinity for systemd services</strong>:
-   Open <code>/etc/systemd/system.conf</code> with a text editor (like nano or vi) with root privileges:
-   <div class="highlight"><pre><span></span><code>sudo nano /etc/systemd/system.conf
-</code></pre></div>
-   Find the line that starts with <code>#CPUAffinity=</code> and change it to <code>CPUAffinity=0</code>. Save and close the file.</p>
-</li>
-<li>
-<p><strong>Cache Isolation for CPU and GPU</strong>:</p>
-<p>To perform cache isolation for CPU and GPU, you can use the Linux <code>resctrl</code> interface. Here are the general steps:</p>
-<ul>
-<li>
-<p><strong>Enable the resctrl filesystem</strong>: This is usually done by adding <code>resctrl</code> to your kernel command line. You can do this by editing your bootloader configuration. For GRUB, you would edit <code>/etc/default/grub</code> and add <code>resctrl</code> to the <code>GRUB_CMDLINE_LINUX_DEFAULT</code> line, then update GRUB with <code>sudo update-grub</code> and reboot.</p>
-</li>
-<li>
-<p><strong>Create a resctrl group</strong>: Resctrl groups are used to apply different policies to different sets of processes. You can create a new group like this:
-   <div class="highlight"><pre><span></span><code>sudo mkdir /sys/fs/resctrl/mygroup
-</code></pre></div>
-   Replace <code>mygroup</code> with the name you want to use for the group.</p>
-</li>
-<li>
-<p><strong>Assign CPUs to the group</strong>: You can assign CPUs to the group by writing to the <code>cpus</code> file in the group's directory. For example, to assign CPUs 0 and 1 to <code>mygroup</code>, you would do:
-   <div class="highlight"><pre><span></span><code>echo 0-1 | sudo tee /sys/fs/resctrl/mygroup/cpus
-</code></pre></div></p>
-</li>
-<li><strong>Set the cache allocation for the group</strong>: You can set the cache allocation by writing to the <code>schemata</code> file in the group's directory. The exact value will depend on your specific needs and system configuration. Here's an example that sets 50% of the L3 cache for code (C) and data (D) on socket 0 to <code>mygroup</code>:
-   <div class="highlight"><pre><span></span><code>echo &quot;L3:0=ff00ff;1=ff00ff&quot; | sudo tee /sys/fs/resctrl/mygroup/schemata
-</code></pre></div></li>
-<li><strong>Assign tasks to the group</strong>: Finally, you can assign tasks (processes or threads) to the group by writing their PID to the <code>tasks</code> file in the group's directory. For example, to assign a task with PID 12345 to <code>mygroup</code>, you would do:
-   <div class="highlight"><pre><span></span><code>echo 12345 | sudo tee /sys/fs/resctrl/mygroup/tasks
-</code></pre></div></li>
-</ul>
-</li>
-<li>
-<p><strong>Set CPU Affinity of IRQ thread to CPU 0</strong>:
-   First, find the process ID (PID) of the IRQ thread for NVME:
-   <div class="highlight"><pre><span></span><code>ps -e | grep &#39;irq/.*nvme&#39;
-</code></pre></div>
-   Then, use the <code>taskset</code> command to set the CPU affinity of this thread to CPU 0. Replace <code>&lt;pid&gt;</code> with the PID from the previous command:
-   <div class="highlight"><pre><span></span><code>sudo taskset -a -p -c 0 &lt;pid&gt;
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Set Device Driver Work Queue to CPU 0</strong>:
-   <div class="highlight"><pre><span></span><code>echo 1 | sudo tee /sys/devices/virtual/workqueue/cpumask
-echo 1 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Disable Machine Check</strong>:
-   <div class="highlight"><pre><span></span><code>echo 0 | sudo tee /sys/devices/system/machinecheck/machinecheck0/check_interval
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Stop Certain Services</strong>:
-   <div class="highlight"><pre><span></span><code>sudo systemctl stop irqbalance.service
-sudo systemctl stop thermald.service
-sudo systemctl stop wpa_supplicant.service
-</code></pre></div></p>
-</li>
-</ol>
-<h2 id="qemu-configurations">QEMU Configurations<a class="headerlink" href="#qemu-configurations" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p><strong>Tune lapic timer advance</strong>:
-   You can set the value of the lapic timer advance to 7500 with this command:
-   <div class="highlight"><pre><span></span><code>echo 7500 | sudo tee /sys/module/kvm/parameters/lapic_timer_advance_ns
-</code></pre></div>
-   This value might be different for different chips.</p>
-</li>
-<li>
-<p><strong>Set QEMU options for real-time VM</strong>:
-   You can set several options when starting your QEMU virtual machine to improve real-time performance. Here are some examples:</p>
-</li>
-<li><code>-realtime mlock=on</code>: This option locks the memory of the VM to avoid swapping and lazy allocation.</li>
-<li><code>-balloon none</code>: This option disables the balloon driver, which can free and return memory to the host OS.</li>
-<li>
-<p><code>-mem-prealloc -mem-path /dev/hugepages/</code>: These options enable the use of hugepages, which can reduce TLB misses and improve performance.</p>
-</li>
-<li>
-<p><strong>Set CPU affinity and scheduling policy of QEMU CPU threads</strong>:
-   You can set the CPU affinity of the QEMU CPU threads to specific CPUs (in this case, CPUs 2 and 3) and set the scheduling policy to FIFO with the highest priority. You'll need to find the PIDs of the QEMU CPU threads first. Once you have the PIDs, you can use the <code>taskset</code> and <code>chrt</code> commands to set the CPU affinity and scheduling policy. Replace <code>&lt;pid&gt;</code> with the PID of the thread:
-   <div class="highlight"><pre><span></span><code>sudo taskset -a -p -c 2,3 &lt;pid&gt;
-sudo chrt -f -p 99 &lt;pid&gt;
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Passthrough PCI devices into the VM</strong>:
-   If you need to passthrough PCI devices into the VM, you can do so using the <code>-device vfio-pci,host=xx:xx.x</code> option when starting your QEMU virtual machine. Replace <code>xx:xx.x</code> with the PCI address of the device you want to passthrough.</p>
-</li>
-</ol>
 
 
 
