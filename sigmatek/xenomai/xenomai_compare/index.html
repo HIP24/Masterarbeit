@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#salamander-4-hardware-on-cp-841" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3635,6 +3640,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Xenomai compare
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3644,6 +3660,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#salamander-4-hardware-on-cp-841" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salamander 4 Hardware on CP 841
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#salamander-4-default-yocto-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salamander 4 Default Yocto Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-taskset-c-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      After taskset -c 13
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-preempt_rt-patch-and-kernel-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      After PREEMPT_RT Patch and Kernel Tuning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-bios-settings-und-kernel-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      After BIOS settings und Kernel Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-host-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Host Configurations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-qemu-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      After QEMU Configurations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4851,6 +4947,77 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#salamander-4-hardware-on-cp-841" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salamander 4 Hardware on CP 841
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#salamander-4-default-yocto-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salamander 4 Default Yocto Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-taskset-c-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      After taskset -c 13
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-preempt_rt-patch-and-kernel-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      After PREEMPT_RT Patch and Kernel Tuning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-bios-settings-und-kernel-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      After BIOS settings und Kernel Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-host-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Host Configurations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#after-qemu-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      After QEMU Configurations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4866,92 +5033,65 @@
 
   <h1>Xenomai compare</h1>
 
-<!DOCTYPE html>
-<html>
-<body>
-
-<div style="display: flex; justify-content: space-around;">
-  <div style="width: 48%;">
-    <h3>Salamander 4 Hardware on CP 841</h3>
-    <img src="hardware/max_latency_hardware/max_latency_hardware.png" alt="Hardware" style="width:100%;">
-    Average latency: 4.06us<br>
-    Max latency: 10.709us<br>
-    Min latency: 2.817us<br>
-    Standard Deviation: 0.85us<br>
-  </div>
-  <div style="width: 48%;">
-    <h3>Salamander 4 Default Yocto Build</h3>
-    <img src="default/max_latency_default/max_latency_default.png" alt="Default" style="width:100%;">
-    Average latency: 174.5us<br>
-    Max latency: 4070.018us<br>
-    Min latency: 6.963us<br>
-    Standard Deviation: 359.27us<br>
-  </div>
-</div>
-
-<br>
-<hr>
-<br>
-
-<div style="display: flex; justify-content: space-around;">
-  <div style="width: 48%;">
-    <h3>After taskset -c 13</h3>
-    <img src="taskset/max_latency_taskset/max_latency_taskset.png" alt="Taskset" style="width:100%;">
-    Average latency: 74.78us<br>
-    Max latency: 457.545us<br>
-    Min latency: 14.113us<br>
-    Standard Deviation: 29.43us<br>
-  </div>
-  <div style="width: 48%;">
-    <h3>After PREEMPT_RT Patch and Kernel Tuning</h3>
-    <img src="rt/max_latency_rt/max_latency_rt.png" alt="RT" style="width:100%;">
-    Average latency: 17.68us <br>
-    Max latency: 32.216us<br>
-    Min latency: 8.005us<br>
-    Standard Deviation: 6.1us<br>
-  </div>
-</div>
-
-<br>
-<hr>
-<br>
-
-<div style="display: flex; justify-content: space-around;">
-  <div style="width: 48%;">
-   <h3>After BIOS settings und Kernel Parameters</h3>
-    <img src="rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png" alt="RT" style="width:100%;">
-    Average latency: 14.0us<br>
-    Max latency: 21.694us<br>
-    Min latency: 6.351us<br>
-    Standard Deviation: 1.44us<br>
-  </div>
-  <div style="width: 48%;">
-    <h3>After Host Configurations </h3>
-    <img src="rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png" alt="RT" style="width:100%;">
-    Average latency: 12.61us<br>
-    Max latency: 17.041us<br>
-    Min latency: 7.872us<br>
-    Standard Deviation: 1.8us<br>
-  </div>
-</div>
-
-<br>
-<hr>
-<br>
-
-<div style="display: flex; justify-content: space-around;">
-  <div style="width: 48%;">
-    <h3>After QEMU Configurations</h3>
-    <img src="rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png" alt="RT" style="width:100%;">
-    Average latency: 16.26us<br>
-    Max latency: 17.134us<br>
-    Min latency: 14.532us<br>
-    Standard Deviation: 0.3us<br>
-  </div>
-</div>
-
-</body>
-</html>
+<h2 id="salamander-4-hardware-on-cp-841">Salamander 4 Hardware on CP 841<a class="headerlink" href="#salamander-4-hardware-on-cp-841" title="Permanent link">&para;</a></h2>
+<p><img alt="Hardware" src="../hardware/max_latency_hardware/max_latency_hardware.png" /></p>
+<ul>
+<li>Average latency: 4.06us</li>
+<li>Max latency: 10.709us</li>
+<li>Min latency: 2.817us</li>
+<li>Standard Deviation: 0.85us</li>
+</ul>
+<h2 id="salamander-4-default-yocto-build">Salamander 4 Default Yocto Build<a class="headerlink" href="#salamander-4-default-yocto-build" title="Permanent link">&para;</a></h2>
+<p><img alt="Default" src="../default/max_latency_default/max_latency_default.png" /></p>
+<ul>
+<li>Average latency: 174.5us</li>
+<li>Max latency: 4070.018us</li>
+<li>Min latency: 6.963us</li>
+<li>Standard Deviation: 359.27us</li>
+</ul>
+<hr />
+<h2 id="after-taskset-c-13">After taskset -c 13<a class="headerlink" href="#after-taskset-c-13" title="Permanent link">&para;</a></h2>
+<p><img alt="Taskset" src="../taskset/max_latency_taskset/max_latency_taskset.png" /></p>
+<ul>
+<li>Average latency: 74.78us</li>
+<li>Max latency: 457.545us</li>
+<li>Min latency: 14.113us</li>
+<li>Standard Deviation: 29.43us</li>
+</ul>
+<h2 id="after-preempt_rt-patch-and-kernel-tuning">After PREEMPT_RT Patch and Kernel Tuning<a class="headerlink" href="#after-preempt_rt-patch-and-kernel-tuning" title="Permanent link">&para;</a></h2>
+<p><img alt="RT" src="../rt/max_latency_rt/max_latency_rt.png" /></p>
+<ul>
+<li>Average latency: 17.68us</li>
+<li>Max latency: 32.216us</li>
+<li>Min latency: 8.005us</li>
+<li>Standard Deviation: 6.1us</li>
+</ul>
+<hr />
+<h2 id="after-bios-settings-und-kernel-parameters">After BIOS settings und Kernel Parameters<a class="headerlink" href="#after-bios-settings-und-kernel-parameters" title="Permanent link">&para;</a></h2>
+<p><img alt="rt_kernelparam" src="../rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png" /></p>
+<ul>
+<li>Average latency: 14.0us</li>
+<li>Max latency: 21.694us</li>
+<li>Min latency: 6.351us</li>
+<li>Standard Deviation: 1.44us</li>
+</ul>
+<h2 id="after-host-configurations">After Host Configurations<a class="headerlink" href="#after-host-configurations" title="Permanent link">&para;</a></h2>
+<p><img alt="rt_kernelparam_host" src="../rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png" /></p>
+<ul>
+<li>Average latency: 12.61us</li>
+<li>Max latency: 17.041us</li>
+<li>Min latency: 7.872us</li>
+<li>Standard Deviation: 1.8us</li>
+</ul>
+<hr />
+<h2 id="after-qemu-configurations">After QEMU Configurations<a class="headerlink" href="#after-qemu-configurations" title="Permanent link">&para;</a></h2>
+<p><img alt="rt_kernelparam_host_qemu" src="../rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png" /></p>
+<ul>
+<li>Average latency: 16.26us</li>
+<li>Max latency: 17.134us</li>
+<li>Min latency: 14.532us</li>
+<li>Standard Deviation: 0.3us</li>
+</ul>
 
 
 
