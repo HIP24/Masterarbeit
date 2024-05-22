@@ -40,7 +40,7 @@
 
 ---
 
-## After BIOS settings und Kernel Parameters
+## After BIOS settings and Kernel Parameters
 
 ![rt_kernelparam](rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png)
 
