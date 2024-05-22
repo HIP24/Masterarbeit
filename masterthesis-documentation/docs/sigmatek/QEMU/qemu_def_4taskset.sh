@@ -6,7 +6,7 @@ if  [ ! -d drive-c/ ]; then
         tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
 fi
 
-exec taskset -c 19 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+exec taskset -c 13 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 -m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
 -append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable" \
 -net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
