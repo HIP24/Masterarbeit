@@ -113,7 +113,7 @@ Or simply [enable Ubuntu Pro's real-time kernel](https://ubuntu.com/blog/real-ti
 
 [latency -T 600](../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_10min_log.md)
 
-> lat worst reduced from 457.545 to [32.216](../sigmatek/xenomai/rt/max_latency_rt/test_max_latency.png) with [stats](../sigmatek/xenomai/rt/max_latency_rt/test_max_latency_statistics.txt)
+> lat worst reduced from 457.545 to [32.216](../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt.png) with [stats](../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_statistics.txt)
 
 #### Realtime priority
 
@@ -180,7 +180,7 @@ kernel.sched_rt_runtime_us = -1
 sudo sysctl -p  
 ```
 
-        This will apply the change immediately and also preserve it across reboots.  
+This will apply the change immediately and also preserve it across reboots.  
 
 ##### Check and make sure no unexpected RT processes are running on your system
 -   Sometimes, the base OS can spawn a high-priority RT process on boot as a part of some functionalities it provides. If these functionalities are not needed, it is advisable to disable the offending RT process. Near the end of this post, I will provide an example for this.
@@ -208,7 +208,7 @@ Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/defau
   echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
   ```
 
-##### Start QEMU normally with idle=poll  
+##### Start QEMU normally and give all QEMU threads rt-priority
 Start QEMU [normally with idle=poll](../sigmatek/QEMU/qemu_def_5idle=poll.sh). Give all QEMU threads rt-priority.
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
@@ -216,8 +216,19 @@ ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n 
 
 ##### Kill all running user processes
 Make sure there is no other running process
+```
+sudo kill <pid>
+``` 
 
 ##### Trace latency 
-  ```
-  latency -h -s -T 600 -g max_latency_rt.txt
-  ```
+```
+latency -h -s -T 600 -g max_latency_rt.txt
+```
+
+##### Third process is for latency minimization
+```
+13    2972    2972 qemu-system-x86_64 -M pc,ac FF    -     98
+13    2972    2976 qemu-system-x86_64 -M pc,ac FF    -     98
+13    2972    3292 qemu-system-x86_64 -M pc,ac FF    -     90
+13    2972    8699 qemu-system-x86_64 -M pc,ac FF    -     95
+```

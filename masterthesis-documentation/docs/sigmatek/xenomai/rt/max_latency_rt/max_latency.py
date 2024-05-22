@@ -34,11 +34,11 @@ plt.xlim([0, 600])
 plt.ylim([0, 40])
 
 # Save the plot to a file
-plt.savefig("test_max_latency_rt.png")
+plt.savefig("max_latency_rt.png")
 #plt.savefig("../../../../../../img/max_latency_rt.png")
 
 # Print a success message
-print("The plot was successfully saved to test_max_latency.png")
+print("The plot was successfully saved to max_latency_rt.png")
 
 # Write the statistics to a file
 with open('max_latency_rt_statistics.txt', 'w') as f:

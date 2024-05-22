@@ -143,5 +143,14 @@ Richard Weinberger
 https://wiki.linuxfoundation.org/realtime/documentation/technical_details/rcu
 
 
+## Richard Meeting xx.xx.2024
+
+- QEMU different threads
+- cat /proc/interrupts
+- Kernel parameters
+    - CONFIG_RCU_CPU_STALL_TIMEOUT
+    - CONFIG_PREEMPT_RCU=y
+    -
+
 
 ❌✅
