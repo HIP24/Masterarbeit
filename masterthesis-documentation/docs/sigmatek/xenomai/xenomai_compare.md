@@ -1,3 +1,5 @@
+# Salamander 4 latency comparisons
+
 ## Salamander 4 Hardware on CP 841
 
 ![Hardware](hardware/max_latency_hardware/max_latency_hardware.png)
