@@ -4,7 +4,7 @@
 
 <div style="display: flex; justify-content: space-around;">
   <div style="width: 48%;">
-    <h3>Salamander 4 Hardware auf CP 841</h3>
+    <h3>Salamander 4 Hardware on CP 841</h3>
     <img src="hardware/max_latency_hardware/max_latency_hardware.png" alt="Hardware" style="width:100%;">
     Average latency: 4.06us<br>
     Max latency: 10.709us<br>
@@ -21,9 +21,13 @@
   </div>
 </div>
 
+<br>
+<hr>
+<br>
+
 <div style="display: flex; justify-content: space-around;">
   <div style="width: 48%;">
-    <h3>Nach taskset -c 13</h3>
+    <h3>After taskset -c 13</h3>
     <img src="taskset/max_latency_taskset/max_latency_taskset.png" alt="Taskset" style="width:100%;">
     Average latency: 74.78us<br>
     Max latency: 457.545us<br>
@@ -31,12 +35,50 @@
     Standard Deviation: 29.43us<br>
   </div>
   <div style="width: 48%;">
-    <h3>Nach PREEMPT_RT Patch und Kernel Tuning</h3>
+    <h3>After PREEMPT_RT Patch and Kernel Tuning</h3>
     <img src="rt/max_latency_rt/max_latency_rt.png" alt="RT" style="width:100%;">
     Average latency: 17.68us <br>
     Max latency: 32.216us<br>
     Min latency: 8.005us<br>
     Standard Deviation: 6.1us<br>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div style="display: flex; justify-content: space-around;">
+  <div style="width: 48%;">
+   <h3>After BIOS settings und Kernel Parameters</h3>
+    <img src="rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png" alt="RT" style="width:100%;">
+    Average latency: 14.0us<br>
+    Max latency: 21.694us<br>
+    Min latency: 6.351us<br>
+    Standard Deviation: 1.44us<br>
+  </div>
+  <div style="width: 48%;">
+    <h3>After Host Configurations </h3>
+    <img src="rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png" alt="RT" style="width:100%;">
+    Average latency: 12.61us<br>
+    Max latency: 17.041us<br>
+    Min latency: 7.872us<br>
+    Standard Deviation: 1.8us<br>
+  </div>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div style="display: flex; justify-content: space-around;">
+  <div style="width: 48%;">
+    <h3>After QEMU Configurations</h3>
+    <img src="rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png" alt="RT" style="width:100%;">
+    Average latency: 16.26us<br>
+    Max latency: 17.134us<br>
+    Min latency: 14.532us<br>
+    Standard Deviation: 0.3us<br>
   </div>
 </div>
 
