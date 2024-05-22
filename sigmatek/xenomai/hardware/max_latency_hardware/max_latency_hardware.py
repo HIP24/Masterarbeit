@@ -10,11 +10,13 @@ y = [3.436,4.195,3.439,6.839,4.187,4.019,4.185,3.529,7.143,3.678,3.900,3.836,3.6
 max_y = np.max(y)
 min_y = np.min(y)
 std_y = np.std(y)
+average_y = np.mean(y) 
 
 # Print the statistics
 print(f"Max: {max_y}")
 print(f"Min: {min_y}")
 print(f"Standard Deviation: {round(std_y, 2)}")
+print(f"Average: {round(average_y, 2)}") 
 
 # Create the plot
 plt.figure(figsize=(10, 6))
@@ -38,9 +40,10 @@ print("The plot was successfully saved to max_latency_hardware.png")
 
 # Write the statistics to a file
 with open('max_latency_hardware_statistics.txt', 'w') as f:
-    f.write(f"Max: {max_y}\n")
-    f.write(f"Min: {min_y}\n")
-    f.write(f"Standard Deviation: {std_y}\n")
+    f.write(f"Average latency: {round(average_y, 2)}us\n") 
+    f.write(f"Max latency: {max_y}us\n")
+    f.write(f"Min latency: {min_y}us\n")
+    f.write(f"Standard Deviation: {round(std_y, 2)}us\n")
 
 # Print a success message
 print("The statistics were successfully written to max_latency_hardware_statistics.txt")

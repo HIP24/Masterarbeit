@@ -1,3 +1,4 @@
-Max: 457.545
-Min: 14.113
-Standard Deviation: 29.4310449990495
+Average latency: 74.78us
+Max latency: 457.545us
+Min latency: 14.113us
+Standard Deviation: 29.43us

@@ -570,9 +570,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#start-qemu-normally-with-idlepoll" class="md-nav__link">
+  <a href="#start-qemu-normally-and-give-all-qemu-threads-rt-priority" class="md-nav__link">
     <span class="md-ellipsis">
-      Start QEMU normally with idle=poll
+      Start QEMU normally and give all QEMU threads rt-priority
     </span>
   </a>
   
@@ -591,6 +591,15 @@
   <a href="#trace-latency" class="md-nav__link">
     <span class="md-ellipsis">
       Trace latency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#third-process-is-for-latency-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Third process is for latency minimization
     </span>
   </a>
   
@@ -3874,6 +3883,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../sigmatek/xenomai/xenomai_compare/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xenomai compare
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -3882,10 +3912,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3896,8 +3926,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_5">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
             <span class="md-nav__icon md-icon"></span>
             Default
           </label>
@@ -3967,10 +3997,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_7" id="__nav_4_4_7_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3981,8 +4011,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_7">
             <span class="md-nav__icon md-icon"></span>
             Hardware
           </label>
@@ -4052,10 +4082,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_8" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_7" id="__nav_4_4_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_8" id="__nav_4_4_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4066,8 +4096,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_8">
             <span class="md-nav__icon md-icon"></span>
             Rt
           </label>
@@ -4108,10 +4138,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_7_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_8_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_7_2" id="__nav_4_4_7_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_8_2" id="__nav_4_4_8_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4122,8 +4152,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_7_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_7_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_8_2">
             <span class="md-nav__icon md-icon"></span>
             Max latency rt
           </label>
@@ -4180,10 +4210,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_9" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_8" id="__nav_4_4_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_9" id="__nav_4_4_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4194,8 +4224,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_8">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_9">
             <span class="md-nav__icon md-icon"></span>
             Taskset
           </label>
@@ -4265,10 +4295,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_10" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_9" id="__nav_4_4_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_10" id="__nav_4_4_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4279,8 +4309,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_9">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_10">
             <span class="md-nav__icon md-icon"></span>
             Vapic
           </label>
@@ -5069,9 +5099,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#start-qemu-normally-with-idlepoll" class="md-nav__link">
+  <a href="#start-qemu-normally-and-give-all-qemu-threads-rt-priority" class="md-nav__link">
     <span class="md-ellipsis">
-      Start QEMU normally with idle=poll
+      Start QEMU normally and give all QEMU threads rt-priority
     </span>
   </a>
   
@@ -5090,6 +5120,15 @@
   <a href="#trace-latency" class="md-nav__link">
     <span class="md-ellipsis">
       Trace latency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#third-process-is-for-latency-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Third process is for latency minimization
     </span>
   </a>
   
@@ -5238,7 +5277,7 @@ Or simply <a href="https://ubuntu.com/blog/real-time-ubuntu-released">enable Ubu
 </div>
 <p><a href="../../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_10min_log/">latency -T 600</a></p>
 <blockquote>
-<p>lat worst reduced from 457.545 to <a href="../../sigmatek/xenomai/rt/max_latency_rt/test_max_latency.png">32.216</a> with <a href="../../sigmatek/xenomai/rt/max_latency_rt/test_max_latency_statistics.txt">stats</a></p>
+<p>lat worst reduced from 457.545 to <a href="../../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt.png">32.216</a> with <a href="../../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_statistics.txt">stats</a></p>
 </blockquote>
 <h4 id="realtime-priority">Realtime priority<a class="headerlink" href="#realtime-priority" title="Permanent link">&para;</a></h4>
 <div class="admonition danger">
@@ -5296,8 +5335,7 @@ To permanently disable real-time (RT) throttling, you can add the following line
 </ol>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sysctl<span class="w"> </span>-p<span class="w">  </span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>    This will apply the change immediately and also preserve it across reboots.
-</code></pre></div>
+<p>This will apply the change immediately and also preserve it across reboots.  </p>
 <h5 id="check-and-make-sure-no-unexpected-rt-processes-are-running-on-your-system">Check and make sure no unexpected RT processes are running on your system<a class="headerlink" href="#check-and-make-sure-no-unexpected-rt-processes-are-running-on-your-system" title="Permanent link">&para;</a></h5>
 <ul>
 <li>Sometimes, the base OS can spawn a high-priority RT process on boot as a part of some functionalities it provides. If these functionalities are not needed, it is advisable to disable the offending RT process. Near the end of this post, I will provide an example for this.</li>
@@ -5317,14 +5355,22 @@ To permanently disable real-time (RT) throttling, you can add the following line
 <h5 id="maybe">Maybe?<a class="headerlink" href="#maybe" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
 </code></pre></div>
-<h5 id="start-qemu-normally-with-idlepoll">Start QEMU normally with idle=poll<a class="headerlink" href="#start-qemu-normally-with-idlepoll" title="Permanent link">&para;</a></h5>
+<h5 id="start-qemu-normally-and-give-all-qemu-threads-rt-priority">Start QEMU normally and give all QEMU threads rt-priority<a class="headerlink" href="#start-qemu-normally-and-give-all-qemu-threads-rt-priority" title="Permanent link">&para;</a></h5>
 <p>Start QEMU <a href="../../sigmatek/QEMU/qemu_def_5idle%3Dpoll.sh">normally with idle=poll</a>. Give all QEMU threads rt-priority.
 <div class="highlight"><pre><span></span><code>ps -T -p $(pgrep -f &quot;qemu-system-x86_64 -M pc,ac&quot;) | awk &#39;{print $2}&#39; | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
 </code></pre></div></p>
 <h5 id="kill-all-running-user-processes">Kill all running user processes<a class="headerlink" href="#kill-all-running-user-processes" title="Permanent link">&para;</a></h5>
-<p>Make sure there is no other running process</p>
+<p>Make sure there is no other running process
+<div class="highlight"><pre><span></span><code>sudo kill &lt;pid&gt;
+</code></pre></div></p>
 <h5 id="trace-latency">Trace latency<a class="headerlink" href="#trace-latency" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>latency -h -s -T 600 -g max_latency_rt.txt
+</code></pre></div>
+<h5 id="third-process-is-for-latency-minimization">Third process is for latency minimization<a class="headerlink" href="#third-process-is-for-latency-minimization" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>13    2972    2972 qemu-system-x86_64 -M pc,ac FF    -     98
+13    2972    2976 qemu-system-x86_64 -M pc,ac FF    -     98
+13    2972    3292 qemu-system-x86_64 -M pc,ac FF    -     90
+13    2972    8699 qemu-system-x86_64 -M pc,ac FF    -     95
 </code></pre></div>
 
 
