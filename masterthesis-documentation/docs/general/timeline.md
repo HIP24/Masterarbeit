@@ -71,10 +71,10 @@
 | Friday, 10.05.2024 | compare kernels |
 | Monday, 13.05.2024 | compare config, qemu test with 2 cpus |
 | Tuesday, 14.05.2024 | Hardware and OS configuration checklist |
-| Wednesday, 15.05.2024 | FINALLY [LATENCY REDUCED](../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_10min_log.md) WITH [STATS](../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt_statistics.txt) and [PLOT](../sigmatek/xenomai/rt/max_latency_rt/max_latency_rt.png) |
+| Wednesday, 15.05.2024 | FINALLY [LATENCY REDUCED](../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt_10min_log.md) WITH [STATS](../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt_statistics.txt) and [PLOT](../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt.png) |
 | Thursday, 16.05.2024 | reorganize, papers and configs |
 | Friday, 17.05.2024 | real-time-kernel-tuning websites |
 | Monday, 20.05.2024 | Feiertag |
 | Tuesday, 21.05.2024 | read 3 papers, [compare_2_files.py](../sigmatek/salamander4/latency_reduction/kernel-patch/compare_2_files.py) |
-| Wednesday, 22.05.2024 | Configure like [RT_Performance_Tuning_Best_Practice](../../../papers/RT_Performance_Tuning_Best_Practice_KVM_VM_rev1p0.pdf), results in [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md) |
+| Wednesday, 22.05.2024 | Configure like Intels RT_Performance_Tuning_Best_Practice_KVM_VM.pdf, results in [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md) |
 | Thursday, 23.05.2024 | |

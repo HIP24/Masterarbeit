@@ -2,7 +2,7 @@
 
 ## Salamander 4 Hardware on CP 841
 
-![Hardware](hardware/max_latency_hardware/max_latency_hardware.png)
+![Hardware](0hardware/max_latency_hardware/max_latency_hardware.png)
 
 - Average latency: 4.06us
 - Max latency: 10.709us
@@ -11,7 +11,7 @@
 
 ## Salamander 4 Default Yocto Build
 
-![Default](default/max_latency_default/max_latency_default.png)
+![Default](1default/max_latency_default/max_latency_default.png)
 
 - Average latency: 174.5us
 - Max latency: 4070.018us
@@ -22,7 +22,7 @@
 
 ## After taskset -c 13
 
-![Taskset](taskset/max_latency_taskset/max_latency_taskset.png)
+![Taskset](2taskset/max_latency_taskset/max_latency_taskset.png)
 
 - Average latency: 74.78us
 - Max latency: 457.545us
@@ -31,7 +31,7 @@
 
 ## After PREEMPT_RT Patch and Kernel Tuning
 
-![RT](rt/max_latency_rt/max_latency_rt.png)
+![RT](3rt/max_latency_rt/max_latency_rt.png)
 
 - Average latency: 17.68us
 - Max latency: 32.216us
@@ -42,7 +42,7 @@
 
 ## After BIOS settings and Kernel Parameters
 
-![rt_kernelparam](rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png)
+![rt_kernelparam](4rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png)
 
 - Average latency: 14.0us
 - Max latency: 21.694us
@@ -51,7 +51,7 @@
 
 ## After Host Configurations
 
-![rt_kernelparam_host](rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png)
+![rt_kernelparam_host](5rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png)
 
 - Average latency: 12.61us
 - Max latency: 17.041us
@@ -62,7 +62,7 @@
 
 ## After QEMU Configurations
 
-![rt_kernelparam_host_qemu](rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png)
+![rt_kernelparam_host_qemu](6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png)
 
 - Average latency: 16.26us
 - Max latency: 17.134us
