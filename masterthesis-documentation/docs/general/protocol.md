@@ -99,8 +99,7 @@ sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
 [Paravirtualized KVM features](https://www.qemu.org/docs/master/system/i386/kvm-pv.html)  
 
 #### Enable Preempt_RT Kernel
-Either do everything in [kernel-patch.md](../sigmatek/salamander4/latency_reduction/kernel-patch/kernel-patch.md) to patch the kernel and enable Fully Preemptible Kernel (RT).  
-Or simply [enable Ubuntu Pro's real-time kernel](https://ubuntu.com/blog/real-time-ubuntu-released).
+Either do everything in [kernel-patch.md](../sigmatek/salamander4/latency_reduction/kernel-patch/kernel-patch.md#kernel-patch-proceedure) to patch the kernel and enable [Fully Preemptible Kernel (RT)](../resources/images/kernel-patch/fully_rt.png), or simply [enable Ubuntu Pro's real-time kernel](../resources/images/ubuntu-pro.png), [here](https://ubuntu.com/blog/real-time-ubuntu-released).
 
 !!! info
     Before the isolation of CPU x, both kernel threads and user processes were running on this CPU. The user processes included various applications such as msedge, code, bash and qemu-system-x86.

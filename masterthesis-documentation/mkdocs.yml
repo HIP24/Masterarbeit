@@ -31,6 +31,14 @@ plugins:
         - "*.gz"
         - "*sigmatek/trace-cmd/test_trace-cmd/twocpus/*"
         - "*linux_kernels/*"
+        #- "*sigmatek/xenomai/vapic/*.md"
+        #- "*sigmatek/xenomai/0hardware/*.md"
+        #- "*sigmatek/xenomai/1default/*.md"
+        #- "*sigmatek/xenomai/2taskset/*.md"
+        #- "*sigmatek/xenomai/*r*/*.md"
+        - "*sigmatek/xenomai/xenomai_suite/*"
+        - "*resources/pdfs/papers/papers.md*"
+
       regex:
         - '.*.(tmp|bin|tar)$'
   - search
