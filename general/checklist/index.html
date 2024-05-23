@@ -4980,10 +4980,14 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Latency got better after <a href="../protocol/#max-latency-with-taskset">isolation</a></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Analyze Host and Guest Processes</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Latency got much better after <a href="../protocol/#max-latency-with-rt">rt-patch</a></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Latency got even better after Intels RT_Performance_Tuning_Best_Practice_KVM_VM.pdf <a href="../../sigmatek/xenomai/xenomai_compare/"></a></li>
 </ul>
 <h2 id="missing">Missing<a class="headerlink" href="#missing" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Inspect kvm_exit reasons</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Adapt QEMU script to work with chrt</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> </li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> </li>
 </ul>
 <h2 id="appendix-hardware-and-os-configuration-checklist">Appendix: Hardware and OS configuration checklist<a class="headerlink" href="#appendix-hardware-and-os-configuration-checklist" title="Permanent link">&para;</a></h2>
@@ -4999,6 +5003,8 @@ This serves as a non-exhaustive starting point on the things to check for the ha
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Possibly setup isolcpu (or use cgroups to accomplish the same thing)</li>
 <li>[] Look into kernel configurations that may affect RT performance such as CONFIG_LOCKUP_DETECTOR, CONFIG_DETECT_HUNG_TASK, CONFIG_NO_HZ, CONFIG_HZ_*, CONFIG_NO_HZ_FULL, and possibly more.</li>
 <li>[] Configure the memory lock and rtprio permissions in /etc/security/limits.d.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Do the <a href="../../sigmatek/salamander4/latency_reduction/latency_reduction_steps/">latency_reduction_steps.md</a></li>
+<li>[]</li>
 </ul>
 
 
