@@ -9,6 +9,8 @@
 - Min latency: 2.817us
 - Standard Deviation: 0.85us
 
+---
+
 ## Salamander 4 Default Yocto Build
 
 ![Default](1default/max_latency_default/max_latency_default.png)
@@ -28,6 +30,8 @@
 - Max latency: 457.545us
 - Min latency: 14.113us
 - Standard Deviation: 29.43us
+
+---
 
 ## After PREEMPT_RT Patch and Kernel Tuning
 
@@ -49,6 +53,8 @@
 - Min latency: 6.351us
 - Standard Deviation: 1.44us
 
+---
+
 ## After Host Configurations
 
 ![rt_kernelparam_host](5rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png)
@@ -68,3 +74,5 @@
 - Max latency: 17.134us
 - Min latency: 14.532us
 - Standard Deviation: 0.3us
+
+---
