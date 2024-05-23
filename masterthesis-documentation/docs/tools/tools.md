@@ -19,6 +19,7 @@ Clone rt-tester
 ```bash
 git clone https://github.com/AgileDevArt/rt-tester
 ```
+Execute rt-tester
 ```bash
 g++ rt-tester -o rt-tester 
 ./rt-tester
