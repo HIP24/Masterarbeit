@@ -8,14 +8,13 @@
 - [x] Configured bridge for QEMU
 - [x] Connected LasalClass2 with [Salamander 4]
 - [x] Enabled access to the vsocket for guest
-- [x] trace-cmd and kernelshark worked for Ubuntu VM
 - [x] trace-cmd and kernelshark with Salamander4 as guest 
 - [x] Used the Xenomai test suite: latency -T 60` 
 - [x] Isolated host CPU for guest
 - [x] Latency got better after [isolation](../general/protocol.md#max-latency-with-taskset)
 - [x] Analyze Host and Guest Processes
 - [x] Latency got much better after [rt-patch](../general/protocol.md#max-latency-with-rt)
-- [x] Latency got even better after Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf): [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md)
+- [x] Latency got even better after Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf): [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md)
 
 ## Missing
 - [ ] Inspect kvm_exit reasons

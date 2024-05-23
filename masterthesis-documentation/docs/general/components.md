@@ -3,9 +3,6 @@
 ## Angabe  
 [Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die Einhaltung der Echtzeit](../resources/pdfs/MA/MA_Pamuk.pdf)
 
-## Setup  
-[Bash commands](../sigmatek/salamander4/bash_commands.md)
-
 ## Yocto-Umgebung  
 [Build with Yocto](../sigmatek/salamander4/build_with_yocto.md)
 
@@ -16,11 +13,9 @@
 [Preempt_rt.png](../resources/images/info/preempt_rt.png)  
 [Xenomai.png](../resources/images/info/xenomai.png)
 
-
 ## Lasal CLass 
 [Lasal Class 2 english](../resources/pdfs/Sigmatek/LasalClass2/LasalClass2_eng.pdf)  
 [Lasal Class 2 deutsch](../resources/pdfs/Sigmatek/LasalClass2/LasalClass2.pdf)
-
 
 ## QEMU  
 <a href="https://www.qemu.org/docs/master/" target="_blank">QEMU documentation</a>

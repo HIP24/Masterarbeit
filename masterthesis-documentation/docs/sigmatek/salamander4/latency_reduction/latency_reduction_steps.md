@@ -22,8 +22,8 @@ GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocbs=4 nohz_full=4 default_hugepagesz=1G hug
 ##### Disable [simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading)
     -   SMT improves the performance of the CPU but decreases the determinism, thus introducing latency. How this works is outside the scope of this post. As of this writing, it is recommended for SMT to be disabled [[4]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f5).
     -   SMT is usually configured on the BIOS/UEFI level. How this is done varies depending on the system.  
-[disable_txt.jpg](../resources/images/bios/disable_txt.jpg)  
-[disable_hyperthreading.jpg](../resources/images/bios/disable_hyperthreading.jpg)
+[disable_txt.jpg](../../../resources/images/bios/disable_txt.jpg)  
+[disable_hyperthreading.jpg](../../../resources/images/bios/disable_hyperthreading.jpg)
 
 ##### Disable [dynamic frequency scaling](https://wiki.archlinux.org/title/CPU_frequency_scaling)
     -   Modern CPUs ramp down their clock frequencies while idling and ramp up when there is load. This introduces unpredictability as it causes the performance of the CPU to vary with time. Anecdotally, I have noticed an order of magnitude higher worst-case latency when frequency scaling is on compared to when it is off.
@@ -79,7 +79,7 @@ This will apply the change immediately and also preserve it across reboots.
 There are other configurations that may be relevant depending on your use case, some of which are documented in [this talk](https://www.youtube.com/watch?v=NrjXEaTSyrw) and [this other talk](https://www.youtube.com/watch?v=w3yT8zJe0Uw). Additionally, quality-of-life configurations, such the variables in /etc/security/limits.conf, may need to be tuned as well. I encourage the reader to look at pre-made distributions such as the [ROS2 real-time Raspberry Pi image](https://github.com/ros-realtime/ros-realtime-rpi4-image) (which I incidentally also worked on) for more inspiration. Although providing a complete checklist for system configuration is outside the scope of this post (if it is even possible), I included an non-exhaustive checklist [at the bottom of this post](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#appendix-hardware-and-os-configuration-checklist) as a starting point.
 
 ##### IRQ affinity
-Remove all possible IRQs from isolated CPU with [remove_irqs_from_CPU.sh](../sigmatek/salamander4/latency_reduction/IRQaffinity/remove_irqs_from_CPU.sh). Check with [table_CPU_IRQ.md](../sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md) and cat `/proc/interrupts`.
+Remove all possible IRQs from isolated CPU with [remove_irqs_from_CPU.sh](../../../sigmatek/salamander4/latency_reduction/IRQaffinity/remove_irqs_from_CPU.sh). Check with [table_CPU_IRQ.md](../../../sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md) and cat `/proc/interrupts`.
 
 ##### RCU CPU offloading
 Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/default/grub`
@@ -98,7 +98,7 @@ Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/defau
   ```
 
 ##### Start QEMU normally and give all QEMU threads rt-priority
-Start QEMU [normally with idle=poll](../sigmatek/QEMU/qemu_def_5idle=poll.sh). Give all QEMU threads rt-priority.
+Start QEMU [normally with idle=poll](../../../sigmatek/QEMU/qemu_def_5idle=poll.sh). Give all QEMU threads rt-priority.
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
 ```
