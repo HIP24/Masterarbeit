@@ -36,7 +36,7 @@ plugins:
         #- "*sigmatek/xenomai/1default/*.md"
         #- "*sigmatek/xenomai/2taskset/*.md"
         #- "*sigmatek/xenomai/*r*/*.md"
-        - "*sigmatek/xenomai/xenomai_suite/*"
+        #- "*sigmatek/xenomai/xenomai_suite/*"
         - "*resources/pdfs/papers/papers.md*"
 
       regex:
