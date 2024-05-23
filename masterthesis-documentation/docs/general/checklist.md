@@ -15,10 +15,13 @@
 - [x] Latency got better after [isolation](../general/protocol.md#max-latency-with-taskset)
 - [x] Analyze Host and Guest Processes
 - [x] Latency got much better after [rt-patch](../general/protocol.md#max-latency-with-rt)
-
+- [x] Latency got even better after Intels RT_Performance_Tuning_Best_Practice_KVM_VM.pdf [](../sigmatek/xenomai/xenomai_compare.md)
 
 ## Missing
 - [ ] Inspect kvm_exit reasons
+- [ ] Adapt QEMU script to work with chrt
+- [ ] 
+- [ ] 
 - [ ] 
 
 
@@ -35,3 +38,5 @@ This serves as a non-exhaustive starting point on the things to check for the ha
 - [x] Possibly setup isolcpu (or use cgroups to accomplish the same thing)
 - [] Look into kernel configurations that may affect RT performance such as CONFIG_LOCKUP_DETECTOR, CONFIG_DETECT_HUNG_TASK, CONFIG_NO_HZ, CONFIG_HZ_*, CONFIG_NO_HZ_FULL, and possibly more.
 - [] Configure the memory lock and rtprio permissions in /etc/security/limits.d.
+- [x] Do the [latency_reduction_steps.md](../sigmatek/salamander4/latency_reduction/latency_reduction_steps.md)
+- []
