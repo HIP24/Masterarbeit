@@ -22,7 +22,7 @@
 
 ---
 
-## After taskset -c 13
+## After taskset -c 4
 
 ![Taskset](2taskset/max_latency_taskset/max_latency_taskset.png)
 
@@ -33,7 +33,7 @@
 
 ---
 
-## After PREEMPT_RT Patch and Kernel Tuning
+## After [PREEMPT_RT Patch](../../general/protocol.md#enable-preempt_rt-kernel) and [Kernel Tuning](../salamander4/latency_reduction/latency_reduction_steps.md#according-to-real-time-programming-with-linux) 
 
 ![RT](3rt/max_latency_rt/max_latency_rt.png)
 
@@ -44,7 +44,7 @@
 
 ---
 
-## After BIOS settings and Kernel Parameters
+## After [BIOS Configurations](../salamander4/latency_reduction/latency_reduction_steps.md#bios-configurations) and [Kernel Configurations](../salamander4/latency_reduction/latency_reduction_steps.md#kernel-configurations)
 
 ![rt_kernelparam](4rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png)
 
@@ -55,7 +55,7 @@
 
 ---
 
-## After Host Configurations
+## After [Host Configurations](../salamander4/latency_reduction/latency_reduction_steps.md#host-configurations)
 
 ![rt_kernelparam_host](5rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png)
 
@@ -66,7 +66,7 @@
 
 ---
 
-## After QEMU Configurations
+## After [QEMU Configurations](../salamander4/latency_reduction/latency_reduction_steps.md#qemu-configurations)
 
 ![rt_kernelparam_host_qemu](6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png)
 

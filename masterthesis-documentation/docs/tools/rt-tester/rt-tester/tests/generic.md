@@ -1,3 +1,4 @@
+```
 sigma_ibo@sigma-ibo:~$ sudo rt-tester -p 0.1
                               
   ____ _____   _            _            
@@ -42,3 +43,4 @@ sigma_ibo@sigma-ibo:~$ sudo rt-tester -p 0.1
 [13:40:35] delay: 0.1841ms task: 0.0013ms
 [13:40:37] delay: 0.1040ms task: 0.0007ms
 [13:40:38] delay: 0.0012ms task: 0.0006ms^C
+```

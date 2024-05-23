@@ -1,3 +1,4 @@
+```
 sigma_ibo@sigma-ibo:~$ sudo rt-tester -p 0.1
                               
   ____ _____   _            _            
@@ -13,3 +14,4 @@ sigma_ibo@sigma-ibo:~$ sudo rt-tester -p 0.1
  console refresh rate: 5 Hz
 
 [13:47:20] delay: 0.0047ms task: 0.0046ms^C
+``
