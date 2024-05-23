@@ -4,9 +4,6 @@ Instead, the PREEMPT RT
 patch provides several mechanisms like high-resolution timers, threaded interrupt handlers, priority inheritance implementation, Preemptible Read-Copy-Update (RCU), real-time schedulers, and a memory allocator.
 
 
-
-
-
 ## NUMA
 
 ```
