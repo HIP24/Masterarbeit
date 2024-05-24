@@ -77,4 +77,5 @@
 | Monday, 20.05.2024 | Feiertag |
 | Tuesday, 21.05.2024 | read 3 papers, [compare_2_files.py](../sigmatek/salamander4/latency_reduction/kernel-patch/compare_2_files.py) |
 | Wednesday, 22.05.2024 | Configure like Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf), results in [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md) |
-| Thursday, 23.05.2024 | |
+| Thursday, 23.05.2024 | reorganize, test Salamander 4 |
+| Friday, 24.05.2024 |  |

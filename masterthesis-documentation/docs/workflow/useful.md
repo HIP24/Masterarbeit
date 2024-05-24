@@ -160,7 +160,7 @@ ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n 
 ```
 watch it
 ```
-watch -c -d -n 1 'ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '\''$1 == 13'\'''
+watch -d -c -n 1 "ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '\$1 == 4'"
 ```
 
 ## Test suite: rt-tests

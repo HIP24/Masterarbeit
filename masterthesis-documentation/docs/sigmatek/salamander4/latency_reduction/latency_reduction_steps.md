@@ -118,7 +118,7 @@ sudo kill <pid>
    ```
    sudo nano /etc/systemd/system.conf
    ```
-   Find the line that starts with `#CPUAffinity=` and change it to `CPUAffinity=0`. Save and close the file.
+   Find the line that starts with `#CPUAffinity=` and change it to `CPUAffinity=0 1 2 3 5 6 7 8 9 10 11 12 13`. Save and close the file.
 
 #### Cache Isolation for CPU and GPU
    
@@ -203,3 +203,6 @@ sudo kill <pid>
 ```
 latency -h -s -T 600 -g max_latency_rt.txt
 ```
+
+
+
