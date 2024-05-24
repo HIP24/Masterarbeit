@@ -76,3 +76,14 @@
 - Standard Deviation: 0.3us
 
 ---
+
+## After tasket -c 4,5
+
+![rt_kernelparam_host_qemu_2cpus](7rt_kernelparam_host_qemu_2cpus/max_latency_rt_kernelparam_host_qemu_2cpus/max_latency_rt_kernelparam_host_qemu_2cpus.png)
+
+- Average latency: 19.44us
+- Max latency: 47.075us
+- Min latency: 12.327us
+- Standard Deviation: 3.92us
+
+---
