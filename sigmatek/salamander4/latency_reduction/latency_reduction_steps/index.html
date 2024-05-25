@@ -5890,29 +5890,29 @@ To permanently disable real-time (RT) throttling, you can add the following line
 </code></pre></div>
    Find the line that starts with <code>#CPUAffinity=</code> and change it to <code>CPUAffinity=0 1 2 3 5 6 7 8 9 10 11 12 13</code>. Save and close the file.</p>
 <h4 id="cache-isolation-for-cpu-and-gpu">Cache Isolation for CPU and GPU<a class="headerlink" href="#cache-isolation-for-cpu-and-gpu" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>To perform cache isolation for CPU and GPU, you can use the Linux `resctrl` interface. Here are the general steps:
-
-- **Enable the resctrl filesystem**: This is usually done by adding `resctrl` to your kernel command line. You can do this by editing your bootloader configuration. For GRUB, you would edit `/etc/default/grub` and add `resctrl` to the `GRUB_CMDLINE_LINUX_DEFAULT` line, then update GRUB with `sudo update-grub` and reboot.
-
-- **Create a resctrl group**: Resctrl groups are used to apply different policies to different sets of processes. You can create a new group like this:
-   ```
-   sudo mkdir /sys/fs/resctrl/mygroup
-   ```
-   Replace `mygroup` with the name you want to use for the group.
-
-- **Assign CPUs to the group**: You can assign CPUs to the group by writing to the `cpus` file in the group&#39;s directory. For example, to assign CPUs 0 and 1 to `mygroup`, you would do:
-   ```
-   echo 0-1 | sudo tee /sys/fs/resctrl/mygroup/cpus
-   ```
-- **Set the cache allocation for the group**: You can set the cache allocation by writing to the `schemata` file in the group&#39;s directory. The exact value will depend on your specific needs and system configuration. Here&#39;s an example that sets 50% of the L3 cache for code (C) and data (D) on socket 0 to `mygroup`:
-   ```
-   echo &quot;L3:0=ff00ff;1=ff00ff&quot; | sudo tee /sys/fs/resctrl/mygroup/schemata
-   ```
-- **Assign tasks to the group**: Finally, you can assign tasks (processes or threads) to the group by writing their PID to the `tasks` file in the group&#39;s directory. For example, to assign a task with PID 12345 to `mygroup`, you would do:
-   ```
-   echo 12345 | sudo tee /sys/fs/resctrl/mygroup/tasks
-   ```
+<p>To perform cache isolation for CPU and GPU, you can use the Linux <code>resctrl</code> interface. Here are the general steps:</p>
+<ul>
+<li>
+<p><strong>Enable the resctrl filesystem</strong>: This is usually done by adding <code>resctrl</code> to your kernel command line. You can do this by editing your bootloader configuration. For GRUB, you would edit <code>/etc/default/grub</code> and add <code>resctrl</code> to the <code>GRUB_CMDLINE_LINUX_DEFAULT</code> line, then update GRUB with <code>sudo update-grub</code> and reboot.</p>
+</li>
+<li>
+<p><strong>Create a resctrl group</strong>: Resctrl groups are used to apply different policies to different sets of processes. You can create a new group like this:
+      <div class="highlight"><pre><span></span><code>sudo mkdir /sys/fs/resctrl/mygroup
 </code></pre></div>
+      Replace <code>mygroup</code> with the name you want to use for the group.</p>
+</li>
+<li>
+<p><strong>Assign CPUs to the group</strong>: You can assign CPUs to the group by writing to the <code>cpus</code> file in the group's directory. For example, to assign CPUs 0 and 1 to <code>mygroup</code>, you would do:
+       <div class="highlight"><pre><span></span><code>echo 0-1 | sudo tee /sys/fs/resctrl/mygroup/cpus
+</code></pre></div></p>
+</li>
+<li><strong>Set the cache allocation for the group</strong>: You can set the cache allocation by writing to the <code>schemata</code> file in the group's directory. The exact value will depend on your specific needs and system configuration. Here's an example that sets 50% of the L3 cache for code (C) and data (D) on socket 0 to <code>mygroup</code>:
+       <div class="highlight"><pre><span></span><code>echo &quot;L3:0=ff00ff;1=ff00ff&quot; | sudo tee /sys/fs/resctrl/mygroup/schemata
+</code></pre></div></li>
+<li><strong>Assign tasks to the group</strong>: Finally, you can assign tasks (processes or threads) to the group by writing their PID to the <code>tasks</code> file in the group's directory. For example, to assign a task with PID 12345 to <code>mygroup</code>, you would do:
+       <div class="highlight"><pre><span></span><code>echo 12345 | sudo tee /sys/fs/resctrl/mygroup/tasks
+</code></pre></div></li>
+</ul>
 <h5 id="set-cpu-affinity-of-irq-thread-to-cpu-0">Set CPU Affinity of IRQ thread to CPU 0<a class="headerlink" href="#set-cpu-affinity-of-irq-thread-to-cpu-0" title="Permanent link">&para;</a></h5>
 <p>First, find the process ID (PID) of the IRQ thread for NVME:
    <div class="highlight"><pre><span></span><code>ps -e | grep &#39;irq/.*nvme&#39;
