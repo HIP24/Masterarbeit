@@ -1,7 +1,7 @@
 # Open the file in write mode
 with open("print_numbers.txt", "w") as file:
     # Write numbers from 1 to 600
-    for number in range(1, 2427):
+    for number in range(1, 95661):
         file.write(str(number) + "\n")
 
 # Print a success message

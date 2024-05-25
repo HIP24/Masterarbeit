@@ -98,7 +98,7 @@ Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/defau
   ```
 
 ##### Start QEMU normally and give all QEMU threads rt-priority
-Start QEMU [normally with idle=poll](../../../sigmatek/QEMU/qemu_def_5idle=poll.sh). Give all QEMU threads rt-priority.
+Start QEMU [normally with idle=poll](../../../sigmatek/QEMU/qemu_def_5idle=poll_hugepages.sh). Give all QEMU threads rt-priority.
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
 ```
@@ -122,25 +122,25 @@ sudo kill <pid>
 
 #### Cache Isolation for CPU and GPU
    
-    To perform cache isolation for CPU and GPU, you can use the Linux `resctrl` interface. Here are the general steps:
+   To perform cache isolation for CPU and GPU, you can use the Linux `resctrl` interface. Here are the general steps:
 
-    - **Enable the resctrl filesystem**: This is usually done by adding `resctrl` to your kernel command line. You can do this by editing your bootloader configuration. For GRUB, you would edit `/etc/default/grub` and add `resctrl` to the `GRUB_CMDLINE_LINUX_DEFAULT` line, then update GRUB with `sudo update-grub` and reboot.
+   - **Enable the resctrl filesystem**: This is usually done by adding `resctrl` to your kernel command line. You can do this by editing your bootloader configuration. For GRUB, you would edit `/etc/default/grub` and add `resctrl` to the `GRUB_CMDLINE_LINUX_DEFAULT` line, then update GRUB with `sudo update-grub` and reboot.
 
-    - **Create a resctrl group**: Resctrl groups are used to apply different policies to different sets of processes. You can create a new group like this:
-       ```
-       sudo mkdir /sys/fs/resctrl/mygroup
-       ```
-       Replace `mygroup` with the name you want to use for the group.
+   - **Create a resctrl group**: Resctrl groups are used to apply different policies to different sets of processes. You can create a new group like this:
+      ```
+      sudo mkdir /sys/fs/resctrl/mygroup
+      ```
+      Replace `mygroup` with the name you want to use for the group.
 
-    - **Assign CPUs to the group**: You can assign CPUs to the group by writing to the `cpus` file in the group's directory. For example, to assign CPUs 0 and 1 to `mygroup`, you would do:
+   - **Assign CPUs to the group**: You can assign CPUs to the group by writing to the `cpus` file in the group's directory. For example, to assign CPUs 0 and 1 to `mygroup`, you would do:
        ```
        echo 0-1 | sudo tee /sys/fs/resctrl/mygroup/cpus
        ```
-    - **Set the cache allocation for the group**: You can set the cache allocation by writing to the `schemata` file in the group's directory. The exact value will depend on your specific needs and system configuration. Here's an example that sets 50% of the L3 cache for code (C) and data (D) on socket 0 to `mygroup`:
+   - **Set the cache allocation for the group**: You can set the cache allocation by writing to the `schemata` file in the group's directory. The exact value will depend on your specific needs and system configuration. Here's an example that sets 50% of the L3 cache for code (C) and data (D) on socket 0 to `mygroup`:
        ```
        echo "L3:0=ff00ff;1=ff00ff" | sudo tee /sys/fs/resctrl/mygroup/schemata
        ```
-    - **Assign tasks to the group**: Finally, you can assign tasks (processes or threads) to the group by writing their PID to the `tasks` file in the group's directory. For example, to assign a task with PID 12345 to `mygroup`, you would do:
+   - **Assign tasks to the group**: Finally, you can assign tasks (processes or threads) to the group by writing their PID to the `tasks` file in the group's directory. For example, to assign a task with PID 12345 to `mygroup`, you would do:
        ```
        echo 12345 | sudo tee /sys/fs/resctrl/mygroup/tasks
        ```
