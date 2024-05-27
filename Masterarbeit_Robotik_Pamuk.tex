@@ -151,15 +151,12 @@ In today's industrial production and automation, robot systems are well establis
 \section{Application Context}
 This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 %This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used. 
-SIGMATEK uses its own customized Linux distribution to be run on their self-manufactured CPUs, namely Salamander 4. This operating system employs hard real-time with latency requirements between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal CPUs. Salamander 4 is virtualized through a third party service, QEMU. The details of this operating system are explained in chapter \ref{cha:salamander4}.
+SIGMATEK uses its own customized Linux distribution, namely Salamander 4, to be run on their self-manufactured CPUs. Salamander 4 system employs hard real-time with Xenomai 3 and requires a worst latency value between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal. Salamander 4 is built with Yocto and virtualized through QEMU/KVM. The details of this operating system are explained in chapter \ref{cha:salamander4}. Sections \ref{sec:salamander4-bare-metal} and \ref{sec:salamander4-bare-metal}  demonstrate the inital real-time latency values gathered for bare metal and virtualisation. 
 
-
-
-\clearpage
 \section{State of the art}
-\clearpage
+
 \section{Problem and task definition}
-\clearpage
+
 \section{Objective}
 
 The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment.
@@ -198,7 +195,7 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 \bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool \cite{KernelShark}. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed.
 
-\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{XenomaiXenomai}.
+\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai 3 introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times \cite{XenomaiXenomai}.
 
 
 
@@ -223,111 +220,37 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 \clearpage
 
 \chapter{Salamander 4}\label{cha:salamander4}
-This chapter breifly describes the Salamander 4 operating system by SIGMATEK.
-
-Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a}.
+This chapter briefly describes the Salamander 4 operating system by SIGMATEK. Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a_virt}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-	\begin{lstlisting}[name={System information},label={output:uname_a}]
+	\begin{lstlisting}[name={System information},label={output:uname_a_virt}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
 \end{minipage}
 
-\noindent Salamander 4 is powered by SIGMATEK's CPU and is comprised of the following software modules:
+\noindent Salamander 4 is powered by SIGMATEK's CP 841 \cite{CPUEinheitenSIGMATEK} and is comprised of the following software modules:
 
  \begin{itemize}
-	\item \textbf{Operating system}
-	\item \textbf{Loader}
-	\item \textbf{Hardware classes}
-	\item \textbf{Application}
+	\item \textbf{Operating system}: The operating system in a LASAL CPU manages the hardware and software resources of the system. It is provided in a completely PC-compatible manner, working with a standard PC BIOS.
+	\item \textbf{Loader}: The loader is a part of the operating system that is responsible for loading programs from executables into memory, preparing them for execution and then executing them.
+	\item \textbf{Hardware classes}: Hardware classes in LASAL represent the different types of hardware components that can be controlled by the LASAL CPU. They provide a way to organize and manage the hardware components in a modular and reusable manner. The graphical hardware editor in LASAL allows for a true-to-detail simulation of the actual hardware.
+	\item \textbf{Application}: Applications are developed using LASAL CLASS 2 \cite{EngineeringToolLASAL}, a solution for automation tasks that supports object-oriented programming and design in compliance with IEC 61131-3.
 \end{itemize}
 
+
+\clearpage
 \noindent The interfaces between the individual modules are indicated by an arrow in Figure \ref{fig:lasal_cpu}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
-	\caption[LASAL CPU]{LASAL CPU}
+	\includegraphics[width=0.6\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
+	\caption[Structure of Salamander 4 CPU]{Structure of Salamander 4 CPU}
 	\label{fig:lasal_cpu}
 \end{figure}
-\clearpage
-\section{Xenomai}
 
-\noindent Xenomai consists of 3 parts. These can be found in the Table \ref{tab:what_is_xenomai}.
-
-\begin{table}[!h]
-	\centering
-	\caption[Xenomai architecture]{Xenomai architecture}
-	\label{tab:what_is_xenomai}
-	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
-	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
-		\begin{tabular}{|c|p{0.6\textwidth}|}
-			\hline
-			\textbf{Teil}  & \textbf{Beschreibung}                                                                  \\ \hline
-			i-pipe         & Kernelerweiterung für das Domain-Konzept                                               \\ \hline
-			Xenomai Kernel & Benutzt die i-pipe, und hängt sich als root-Domain ein                                 \\ \hline
-			Xenomai User   & Programme (LRT) verwenden diese Bibliothek, um Xenomai Funktionen verwenden zu können. \\ \hline
-		\end{tabular}}
-\end{table}
-
-
-\noindent Xenomai beruht auf einem Domain-Konzept, das bedeutet, dass alle IRQ an die erste Domain gesendet werden. (root – Domain / Xenomai)
-Nur wenn diese nichts mehr zu tun hat, dann darf die 2. Domain arbeiten.
-Das bedeutet, erst wenn alle Xenomai Task in einem Wartezustand sind, arbeiten die Linux-Tasks.
-
-\noindent In der Regel unterbricht der Prozessor beim IRQ-Handling seine aktuellen Aktivitäten, um einen Interrupt zu bearbeiten, während die IRQ-Behandlung von Xenomai einen Interrupt-Pipeline-Mechanismus verwendet, der das gleichzeitige Abrufen und Vorbereiten eines anderen Interrupts ermöglicht, während ein Interrupt bearbeitet wird, was die Leistung verbessert und die Latenzzeit verringert.
-
-\noindent Was Xenomai4 von seinem Vorgänger Xenomai3 unterscheidet, ist die vollständige Neugestaltung der Ausführungsphase mit hoher Priorität. Dies geschah aus Gründen der Portabilität und Wartungsfreundlichkeit: I-pipe - die zweite Iteration der ursprünglichen Adeos-Interrupt-Pipeline - wurde vollständig durch Dovetail ersetzt.
-
-\begin{table}[H]
-	\centering
-	\caption[Domain specific functions]{Domain specific functions}
-	\label{tab:domain_specific_functions}
-	\begin{tabular}{|c|c|}
-		\hline
-		\textbf{Xenomai spezifische Funktionen} & \textbf{Linux spezifische Funktionen} \\ \hline
-		Tasks                                   & Dateizugriffe                         \\ \hline
-		Mutexes, Semaphoren, Events             & Netzwerk                              \\ \hline
-	\end{tabular}
-\end{table}
-
-
-\noindent Ein Aufruf dieser Funktionen erfordert die entsprechende Domain. Wenn der Task in der falschen Domain läuft, dann wird ein Domain-Wechsel forciert.
-Ein Domainwechsel von Xenomai nach Linux geht relativ einfach. Aber der Wechsel von Linux nach Xenomai braucht Unterstützung, und dafür ist die Hilfe des Gatekeepers notwendig. Das bedeutet, der Gatekeeper hilft einem Task von Linux nach Xenomai zu wechseln.
-
-\clearpage
-\section{Task priorities}
-Es gibt grundsätzlich 4 Gruppen
-
-\begin{table}[ht]
-	\centering
-	\caption{Overview of the priority groups and their relationships}
-	\label{tab:priorities}
-	\begin{tabular}{|c|c|}
-		\hline
-		\textbf{Prioritätsgruppe}    & \textbf{Bereich} \\ \hline
-		Xenomai Priorität            & 0 bis 99         \\ \hline
-		Linux RT Priorität           & 1 bis 99         \\ \hline
-		Linux (Nice Level) Priorität & -20 bis 19       \\ \hline
-		RTK Priorität                & 0 bis 14         \\ \hline
-	\end{tabular}
-\end{table}
-\clearpage
-\section{Memory Management}
-Es gibt verschiedene Speicherbereiche
-
-Linux/System/Programm Speicher
-Der Speicher, den Linux und Programme belegt haben.
-Dieser Speicher ist intern in viele Teile aufgeteilt. (DMA, …)
-
-LRT-Heap Speicher
-Speicher den der LRT verwendet, oder welcher über ein CIL Funktionen
-angefordert wird.
-
-App Heap, App Code, …
-
+\noindent For the sake of completeness, figure \ref{fig:memory_management} displays the memory management of Salamander 4. LRT stands for Lasal Runtime and creates an execution environment where applications developed using the LASAL Class 2 can run, providing defined real-time functions, data types, and other constructs tailored for real-time programming.
 
 \begin{figure}[H]
 	\centering
@@ -337,12 +260,46 @@ App Heap, App Code, …
 \end{figure}
 
 \clearpage
+\section{Xenomai}
+\noindent Xenomai 3 is a real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in figure \ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{img/x3-cobalt-interfaces.png}
+	\caption[Xenomai Cobalt interfaces]{Xenomai Cobalt interfaces}
+	\label{fig:cobalt}
+\end{figure}
+
+\bigskip \noindent  The second approach, called Mercury and shown in figure \ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT extension to augment the mainline kernel's real-time responsiveness and minimize jitter, but this isn't mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{img/x3-mercury-interfaces.png}
+	\caption[Xenomai Mercury interfaces]{Xenomai Mercury interfaces}
+	\label{fig:mercury}
+\end{figure}
+
+\noindent Salamander 4 uses the Cobalt real-time core with the Dovetail extension, which allows the kernel to handle real-time tasks with low latency.
+
+\clearpage
 
 \chapter{Initial Real-Time Latency}\label{cha:initial-real-time-latency}
 
+
+
 \clearpage
-\section{Salamander 4 Bare Metal}
-Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system, including
+\section{Salamander 4 Bare Metal}\label{sec:salamander4-bare-metal}
+Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a_hw}.
+
+\vspace{1em}
+\begin{minipage}{0.95\columnwidth}
+	\begin{lstlisting}[name={System information},label={output:uname_a_hw}]
+root@sigmatek-core2:~# uname -a 
+Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
+\end{lstlisting}
+\end{minipage}
+
 
 Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
 \begin{figure}[H]
@@ -352,7 +309,7 @@ Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
 	\label{fig:max_latency_hardware}
 \end{figure}
 \clearpage
-\section{Salamander 4 Virtualisation}
+\section{Salamander 4 Virtualisation}\label{sec:salamander4-virtualisation}
 In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
 
 \vspace{1em}
@@ -754,7 +711,7 @@ Figure \ref{fig:performance_kvm_guest} shows ...
 The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_latency_hardware}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/hardware/gnuplot_max_latency_hardware.png}
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/0hardware/gnuplot_max_latency_hardware.png}
 	\caption[gnuplot latency hardware]{gnuplot latency hardware}
 	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
@@ -762,7 +719,7 @@ The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_latency_hardware}
 Figure \ref{fig:gnuplot_max_latency_default}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/default/gnuplot_max_latency_default.png}
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/1default/gnuplot_max_latency_default.png}
 	\caption[gnuplot latency no taskset]{gnuplot latency no taskset}
 	\label{fig:gnuplot_max_latency_default}
 \end{figure}
@@ -770,7 +727,7 @@ Figure \ref{fig:gnuplot_max_latency_default}
 Figure \ref{fig:gnuplot_max_latency_taskset}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/taskset/gnuplot_max_latency_taskset.png}
+	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/2taskset/gnuplot_max_latency_taskset.png}
 	\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
 	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}

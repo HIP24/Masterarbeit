@@ -158,7 +158,7 @@ Set all threads of a process to a real-time priority
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 ```
-watch it
+Watch it
 ```
 watch -d -c -n 1 "ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '\$1 == 4'"
 ```
