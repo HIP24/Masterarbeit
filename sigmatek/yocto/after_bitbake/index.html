@@ -5330,7 +5330,7 @@ CONFIG_HIST_TRIGGERS=y  </p>
 bitbake<span class="w"> </span>salamander-image<span class="w"> </span>-k
 </code></pre></div>
 <h2 id="qemu-script">QEMU script<a class="headerlink" href="#qemu-script" title="Permanent link">&para;</a></h2>
-<p><a href="../QEMU/qemu_def_5idle=poll.sh">qemu_def_5idle=poll.sh</a></p>
+<p><a href="../../QEMU/qemu_def_5idle%3Dpoll_hugepages.sh">qemu_def_5idle=poll.sh</a></p>
 <h2 id="scp-ipk-to-salamander4-and-install">scp .ipk to Salamander4 and install<a class="headerlink" href="#scp-ipk-to-salamander4-and-install" title="Permanent link">&para;</a></h2>
 <p>When you run bitbake xxx, the output of the build process, including any generated .ipk files, is typically stored in the tmp/deploy/ipk/ directory within your build directory1. The exact location can depend on your configuration and the specific recipe you’re building.</p>
 <p>The .ipk files are package files used by opkg, a lightweight package management system. These files are created when you build a recipe that includes packaging steps.
