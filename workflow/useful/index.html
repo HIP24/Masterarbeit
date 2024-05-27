@@ -5901,7 +5901,7 @@ ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;$NF ~ /^[0-9]+$/&#39; | s
 Set all threads of a process to a real-time priority
 <div class="highlight"><pre><span></span><code>ps -T -p $(pgrep -f &quot;qemu-system-x86_64 -M pc,ac&quot;) | awk &#39;{print $2}&#39; | tail -n +2 | xargs -I {} sudo chrt -f -p 10 {}
 </code></pre></div>
-watch it
+Watch it
 <div class="highlight"><pre><span></span><code>watch -d -c -n 1 &quot;ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk &#39;\$1 == 4&#39;&quot;
 </code></pre></div></p>
 <h2 id="test-suite-rt-tests">Test suite: rt-tests<a class="headerlink" href="#test-suite-rt-tests" title="Permanent link">&para;</a></h2>
