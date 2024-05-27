@@ -78,4 +78,9 @@
 | Tuesday, 21.05.2024 | read 3 papers, [compare_2_files.py](../sigmatek/salamander4/latency_reduction/kernel-patch/compare_2_files.py) |
 | Wednesday, 22.05.2024 | Configure like Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf), results in [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md) |
 | Thursday, 23.05.2024 | reorganize, test Salamander 4 |
-| Friday, 24.05.2024 |  |
+| Friday, 24.05.2024 | QEMU with 2 CPUs |
+| Monday, 27.05.2024 | Write thesis |
+| Tuesday, 28.05.2024 |  |
+| Wednesday, 29.05.2024 |  |
+| Thursday, 30.05.2024 |  |
+| Friday, 31.05.2024 |  |
