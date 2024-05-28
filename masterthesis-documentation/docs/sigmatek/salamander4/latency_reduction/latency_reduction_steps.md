@@ -20,8 +20,8 @@ GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocbs=4 nohz_full=4 default_hugepagesz=1G hug
 ### According to [Real-time programming with Linux](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f4)
 
 ##### Disable [simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading)
-    -   SMT improves the performance of the CPU but decreases the determinism, thus introducing latency. How this works is outside the scope of this post. As of this writing, it is recommended for SMT to be disabled [[4]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f5).
-    -   SMT is usually configured on the BIOS/UEFI level. How this is done varies depending on the system.  
+   -   SMT improves the performance of the CPU but decreases the determinism, thus introducing latency. How this works is outside the scope of this post. As of this writing, it is recommended for SMT to be disabled [[4]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f5).
+   -   SMT is usually configured on the BIOS/UEFI level. How this is done varies depending on the system.  
 [disable_txt.jpg](../../../resources/images/bios/disable_txt.jpg)  
 [disable_hyperthreading.jpg](../../../resources/images/bios/disable_hyperthreading.jpg)
 
@@ -203,6 +203,3 @@ sudo kill <pid>
 ```
 latency -h -s -T 600 -g max_latency_rt.txt
 ```
-
-
-

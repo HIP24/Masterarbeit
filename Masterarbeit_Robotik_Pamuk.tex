@@ -101,7 +101,8 @@ Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzei
 Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von
 Roboteranwendungen verbessern kann}
 \schlagworte{Schlagwort1, Schlagwort2, Schlagwort3, Schlagwort4}
-\outline{Abstract}
+\outline{Sections \ref{sec:salamander4-bare-metal} and \ref{sec:salamander4-virtualisation}  demonstrate the inital real-time latency values gathered for bare metal and virtualisation. 
+}
 \keywords{Echtzeit, Virtualisierung, Xenomai, VARAN}
 %\acknowledgements{\blindtext}
 
@@ -151,7 +152,7 @@ In today's industrial production and automation, robot systems are well establis
 \section{Application Context}
 This master's thesis was written at SIGMATEK GmbH \& Co KG \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 %This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used. 
-SIGMATEK uses its own customized Linux distribution, namely Salamander 4, to be run on their self-manufactured CPUs. Salamander 4 system employs hard real-time with Xenomai 3 and requires a worst latency value between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal. Salamander 4 is built with Yocto and virtualized through QEMU/KVM. The details of this operating system are explained in chapter \ref{cha:salamander4}. Sections \ref{sec:salamander4-bare-metal} and \ref{sec:salamander4-bare-metal}  demonstrate the inital real-time latency values gathered for bare metal and virtualisation. 
+SIGMATEK uses its own customized Linux distribution, namely Salamander 4, to be run on their self-manufactured CPUs. Salamander 4 system employs hard real-time with Xenomai 3 and requires a worst latency value between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal. Salamander 4 is built with Yocto and virtualized through QEMU/KVM. The details of this operating system are explained in chapter \ref{cha:salamander4}. 
 
 \section{State of the art}
 
@@ -216,13 +217,12 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 	\end{tabular}}
 	\end{table}
 	
-
 \clearpage
 
 \chapter{Salamander 4}\label{cha:salamander4}
 This chapter briefly describes the Salamander 4 operating system by SIGMATEK. 
 
-\section{General}
+\section{Structure}
 \noindent Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment \cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a_virt}.
 
 \vspace{1em}
@@ -248,12 +248,13 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
+	\includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
 	\caption[Structure of Salamander 4 CPU]{Structure of Salamander 4 CPU}
 	\label{fig:lasal_cpu}
 \end{figure}
 
-\noindent For the sake of completeness, figure \ref{fig:memory_management} displays the memory management of Salamander 4. LRT stands for Lasal Runtime and creates an execution environment where applications developed using the LASAL Class 2 can run, providing defined real-time functions, data types, and other constructs tailored for real-time programming.
+\section{Memory Management}
+\noindent For the sake of completeness, Figure \ref{fig:memory_management} displays the memory management of Salamander 4. LRT stands for Lasal Runtime and creates an execution environment where applications developed using the LASAL Class 2 can run, providing defined real-time functions, data types, and other constructs tailored for real-time programming.
 
 \begin{figure}[H]
 	\centering
@@ -264,7 +265,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \clearpage
 \section{Xenomai}
-\noindent Xenomai 3 is a real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in figure \ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
+\noindent Xenomai 3 is a real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in Figure \ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
 
 \begin{figure}[H]
 	\centering
@@ -273,7 +274,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 	\label{fig:cobalt}
 \end{figure}
 
-\bigskip \noindent  The second approach, called Mercury and shown in figure \ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT extension to augment the mainline kernel's real-time responsiveness and minimize jitter, but this isn't mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses. 
+\bigskip \noindent  The second approach, called Mercury and shown in Figure \ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT extension to augment the mainline kernel's real-time responsiveness and minimize jitter, but this isn't mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses. 
 
 
 \begin{figure}[H]
@@ -289,29 +290,54 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \chapter{Initial Real-Time Latency}\label{cha:initial-real-time-latency}
 
+As a starting point, initial latency values of both the bare metal and virtualization versions were measured with the latency tool of the xenomai tool suite. Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. Salamander 4 virtualisation refers to a virtual version of the Salamander 4 hardware platform, achieved through QEMU/KVM. Sections \ref{sec:salamander4-bare-metal} and \ref{sec:salamander4-virtualisation} specify the details of the measurements for both versions. In the further course, the aim was to bring the latency values of the virtualization closer to those of the hardware. 
 
-
-\clearpage
 \section{Salamander 4 Bare Metal}\label{sec:salamander4-bare-metal}
-Salamander 4 Bare Metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. The output of the command \texttt{uname -a} can be observed in code \ref{output:uname_a_hw}.
+The output of the command \texttt{uname -a} for Salamander 4 bare metal is shown in code \ref{output:uname_a_hw}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-	\begin{lstlisting}[name={System information},label={output:uname_a_hw}]
+	\begin{lstlisting}[name={Salamander 4 bare metal system information},label={output:uname_a_hw}]
 root@sigmatek-core2:~# uname -a 
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
 \end{minipage}
 
+\noindent As a reference point, the latency program was executed on Salamander 4 bare metal for a duration of 10 minutes. The complete command used was \texttt{latency -h -s -T 600}. Figure \ref{fig:max_latency_hardware} shows the gathered latency values in microseconds.
 
-Figure \ref{fig:max_latency_hardware} shows latency of hardware Salamander4.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/max_latency_hardware.png}
+	\includegraphics[width=1.0\columnwidth]{img/max_latency_hardware.png}
 	\caption[Latency hardware]{Latency hardware}
 	\label{fig:max_latency_hardware}
 \end{figure}
+
+Figure \ref{fig:gnuplot_max_latency_hardware} depicts the variation in latency over the course of said time. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/0hardware/gnuplot_max_latency_hardware.png}
+	\caption[gnuplot latency hardware]{gnuplot latency hardware}
+	\label{fig:gnuplot_max_latency_hardware}
+\end{figure}
+
 \clearpage
+
+\noindent The statistics obtained from this measurement are provided in Table \ref{tab:latency_statistics}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|}\hline
+	\textbf{Statistic} & \textbf{Value (in \textmu s)} \\\hline
+	Average Latency & 4.06 \\\hline
+	Maximum Latency & 10.71 \\\hline
+	Minimum Latency & 2.82 \\\hline
+	Standard Deviation & 0.85 \\\hline
+	\end{tabular}
+	\caption{Latency Statistics in microseconds}
+	\label{tab:latency_statistics}
+	\end{table}
+
 \section{Salamander 4 Virtualisation}\label{sec:salamander4-virtualisation}
 In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developped using Yocto, an open source project that allows customised Linux distributions to be created for embedded systems \cite{WelcomeYoctoProject}. The virtualisation runs in a QEMU environment, which is an open source tool for hardware virtualisation \cite{QEMU}. With the help of the script depicted in code \ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. Upon generating the necessary files, Yocto generates a QEMU folder with the following components shown in code \ref{lst:ls}.
 
@@ -330,6 +356,18 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \end{minipage}
 
 
+Here is a description of the used components:
+\begin{itemize}
+	\item \textbf{bzImage}: Compressed Linux kernel image, loaded by QEMU at system start.
+	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU, enables UEFI boot process.
+	\item \textbf{qemu\_def.sh}: Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS.
+	\item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script.
+	\item \textbf{drive-c}: Directory serving as C drive for QEMU system, created and filled by qemu\_def.sh script.
+	\item \textbf{salamander-image-sigmatek-core2.ext4}: Root file system for Salamander 4 OS, used as hard drive for QEMU system.
+	\item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage.
+\end{itemize}
+
+\noindent The inital QEMU script after the custom Yocto build and the starting point for this work is shown in Code \ref{script:qemu_def}. This script will be adjusted in the course of this thesis in order to accompany real-time performance tunings.   
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -352,17 +390,8 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
     -no-reboot -nographic
 \end{lstlisting}
 \end{minipage}
-\clearpage
-Here is a description of the used components:
-\begin{itemize}
-	\item \textbf{bzImage}: Compressed Linux kernel image, loaded by QEMU at system start.
-	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU, enables UEFI boot process.
-	\item \textbf{qemu\_def.sh}: Shell script, starts QEMU with correct parameters to boot Salamamder 4 OS.
-	\item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Archive containing files for C drive, unpacked and copied to drive-c/ directory by qemu\_def.sh script.
-	\item \textbf{drive-c}: Directory serving as C drive for QEMU system, created and filled by qemu\_def.sh script.
-	\item \textbf{salamander-image-sigmatek-core2.ext4}: Root file system for Salamander 4 OS, used as hard drive for QEMU system.
-	\item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging, contains debugging symbols not present in bzImage.
-\end{itemize}
+
+
 
 %   \begin{table}[ht]
 %       \centering
@@ -390,10 +419,8 @@ Here is a description of the used components:
 %   
 %   \end{table}
 
-\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is noted bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU.
-
-
-Figure \ref{fig:max_latency_default} shows latency of QEMU default Salamander4.
+\clearpage
+\noindent Measuring the latency of the Salamander 4 virtualization with the default QEMU script in Code \ref{script:qemu_def} and no further adjustments for 10 minutes, the following latency values in Figure \ref{fig:max_latency_default} were collected. 
 
 \begin{figure}[H]
 	\centering
@@ -401,6 +428,10 @@ Figure \ref{fig:max_latency_default} shows latency of QEMU default Salamander4.
 	\caption[Latency no taskset]{Latency no taskset}
 	\label{fig:max_latency_default}
 \end{figure}
+
+
+
+\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is not bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU \cite{maPerformanceTuningKVMbased}.
 
 
 Figure \ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
@@ -420,7 +451,7 @@ Figure \ref{fig:max_latency_vapic} shows latency of QEMU vapic Salamander4.
 \end{figure}
 
 
-\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exit_taskset} were obtained. Additionally, table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
+\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure \ref{fig:kvm_exit_taskset} were obtained. Additionally, Table \ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
 
 
 \begin{table}[H]
@@ -525,7 +556,7 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 \noindent In the following, the host and guest tasks along with their impact on system latency are briefly described. 
 
 \begin{itemize} 
-	\item \textbf{qemu-system-x86}: Part of the QEMU process and specifically, this task emulates x86 systems. In table \ref{tab:results_host_report}, it occurs four times under different PIDs, hence there are four threads of it.
+	\item \textbf{qemu-system-x86}: Part of the QEMU process and specifically, this task emulates x86 systems. In Table \ref{tab:results_host_report}, it occurs four times under different PIDs, hence there are four threads of it.
 	\item \textbf{<idle>}: This represents the idle time of the CPU, hence it is not being used by any process, allowing to save power. The system halts until the next interrupt, which could be a timer interrupt, I/O interrupt, etc.
 	\item \textbf{vhost}: A kernel module which improves virtual input/output (virtio) performance by handling virtqueues in the kernel, thereby reducing context switches and system calls. 
 	\item \textbf{kworker/19:1}: A kernel worker thread created by the Linux kernel, kworker/19:1 performs work in response to system events. The number after the slash and colon indicate the CPU core and internal ID of the worker thread, respectively. 
@@ -535,6 +566,10 @@ Figure \ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CP
 \end{itemize}
 
 \subsection{Generic Ubuntu}
+
+
+
+
 \clearpage
 \subsection{Real-Time Ubuntu}
 
@@ -689,14 +724,6 @@ Figure \ref{fig:performance_kvm_guest} shows ...
 \end{comment}
 
 \noindent In the process of analyzing the \texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the \texttt{APIC\_WRITE} and \texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included \texttt{EXTERNAL\_INTERRUPT} and \texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as \texttt{EPT\_MISCONFIG} and \texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like \texttt{PAUSE\_INSTRUCTION}, \texttt{EPT\_VIOLATION}, \texttt{EOI\_INDUCED}, \texttt{MSR\_READ}, and \texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
-
-The gnuplot latency is visible in Figure \ref{fig:gnuplot_max_latency_hardware}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/0hardware/gnuplot_max_latency_hardware.png}
-	\caption[gnuplot latency hardware]{gnuplot latency hardware}
-	\label{fig:gnuplot_max_latency_hardware}
-\end{figure}
 
 Figure \ref{fig:gnuplot_max_latency_default}
 \begin{figure}[H]
@@ -864,6 +891,29 @@ The Figure \ref{fig:latency_comparison} below compares non-optimized guest laten
 \clearpage
 
 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|p{0.1\textwidth}|p{0.45\textwidth}|p{0.45\textwidth}|}
+	\hline
+	\textbf{Number} & \textbf{Book} & \textbf{Citation} \\
+	\hline
+	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\hline
+	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\hline
+	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\hline
+	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\hline
+	\end{tabular}
+	\caption{Your Caption}
+	\label{tab:my_label}
+	\end{table}
+	
+
+
+
+
 \cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}
 \cite{Tracecmd}
 \cite{KernelShark}
@@ -873,6 +923,7 @@ The Figure \ref{fig:latency_comparison} below compares non-optimized guest laten
 \cite{WelcomeYoctoProject}
 \cite{QEMU}
 \cite{linPerformanceEvaluationXenomai}
+\cite{maPerformanceTuningKVMbased}
 \cite{broskyShieldedProcessorsGuaranteeing2003}
 \cite{cinqueVirtualizingMixedCriticalitySystems2022}
 \cite{garcia-vallsChallengesRealtimeVirtualization2014}
@@ -893,6 +944,7 @@ The Figure \ref{fig:latency_comparison} below compares non-optimized guest laten
 \cite{adamRealTimePerformanceResponse2021}
 \cite{deoliveiraDemystifyingRealTimeLinux}
 \cite{RealTimePerformanceTuning2022}
+
 \clearpage
 
 \chapter{Results}\label{cha:results}

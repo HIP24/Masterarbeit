@@ -143,7 +143,7 @@ Richard Weinberger
 https://wiki.linuxfoundation.org/realtime/documentation/technical_details/rcu
 
 
-## Richard Meeting xx.xx.2024
+## Richard Meeting 28.05.2024
 
 - QEMU different threads
 - cat /proc/interrupts
@@ -155,6 +155,10 @@ https://wiki.linuxfoundation.org/realtime/documentation/technical_details/rcu
     - CONFIG_NO_HZ
     - CONFIG_HZ_*
     - CONFIG_NO_HZ_FULL
+-  2 CPUs? smp
+
+
+
 
 
 ❌✅
