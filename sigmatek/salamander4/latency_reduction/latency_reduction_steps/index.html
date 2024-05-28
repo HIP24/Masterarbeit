@@ -5810,11 +5810,12 @@
 <h2 id="host-configurations">Host Configurations<a class="headerlink" href="#host-configurations" title="Permanent link">&para;</a></h2>
 <h3 id="according-to-real-time-programming-with-linux">According to <a href="https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f4">Real-time programming with Linux</a><a class="headerlink" href="#according-to-real-time-programming-with-linux" title="Permanent link">&para;</a></h3>
 <h5 id="disable-simultaneous-multithreading">Disable <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">simultaneous multithreading</a><a class="headerlink" href="#disable-simultaneous-multithreading" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code>-   SMT improves the performance of the CPU but decreases the determinism, thus introducing latency. How this works is outside the scope of this post. As of this writing, it is recommended for SMT to be disabled [[4]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f5).
--   SMT is usually configured on the BIOS/UEFI level. How this is done varies depending on the system.
-</code></pre></div>
-<p><a href="../../../../resources/images/bios/disable_txt.jpg">disable_txt.jpg</a><br />
-<a href="../../../../resources/images/bios/disable_hyperthreading.jpg">disable_hyperthreading.jpg</a></p>
+<ul>
+<li>SMT improves the performance of the CPU but decreases the determinism, thus introducing latency. How this works is outside the scope of this post. As of this writing, it is recommended for SMT to be disabled <a href="https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f5">[4]</a>.</li>
+<li>SMT is usually configured on the BIOS/UEFI level. How this is done varies depending on the system.<br />
+<a href="../../../../resources/images/bios/disable_txt.jpg">disable_txt.jpg</a><br />
+<a href="../../../../resources/images/bios/disable_hyperthreading.jpg">disable_hyperthreading.jpg</a></li>
+</ul>
 <h5 id="disable-dynamic-frequency-scaling">Disable <a href="https://wiki.archlinux.org/title/CPU_frequency_scaling">dynamic frequency scaling</a><a class="headerlink" href="#disable-dynamic-frequency-scaling" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>-   Modern CPUs ramp down their clock frequencies while idling and ramp up when there is load. This introduces unpredictability as it causes the performance of the CPU to vary with time. Anecdotally, I have noticed an order of magnitude higher worst-case latency when frequency scaling is on compared to when it is off.
 ```
