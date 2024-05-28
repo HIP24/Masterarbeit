@@ -23,7 +23,7 @@ plt.figure(figsize=(10, 6))
 plt.plot(x, y,'-', color='blue')
 
 # Set the title and labels
-plt.title('Latency of Operating System')
+#plt.title('Latency of Operating System')
 plt.xlabel('Time [s]')
 plt.ylabel('Latency [µs]')
 
@@ -41,8 +41,8 @@ print("The plot was successfully saved to max_latency_hardware.png")
 # Write the statistics to a file
 with open('max_latency_hardware_statistics.txt', 'w') as f:
     f.write(f"Average latency: {round(average_y, 2)}us\n") 
-    f.write(f"Max latency: {max_y}us\n")
-    f.write(f"Min latency: {min_y}us\n")
+    f.write(f"Max latency: {round(max_y, 2)}us\n")
+    f.write(f"Min latency: {round(min_y, 2)}us\n")
     f.write(f"Standard Deviation: {round(std_y, 2)}us\n")
 
 # Print a success message
