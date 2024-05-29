@@ -4753,27 +4753,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    rt-tester
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -4786,10 +4765,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_4_2" id="__nav_5_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4800,8 +4779,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_4_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4_1">
             <span class="md-nav__icon md-icon"></span>
             Rt tester
           </label>
@@ -4823,10 +4802,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_2_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_4_2_1" id="__nav_5_4_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4_1_1" id="__nav_5_4_1_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4837,8 +4816,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_4_2_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_5_4_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4_1_1">
             <span class="md-nav__icon md-icon"></span>
             Tests
           </label>
@@ -5190,19 +5169,22 @@
 
   <h1>Preempt rt</h1>
 
-<p>```
-sigma_ibo@sigma-ibo:~$ sudo rt-tester -p 0.1</p>
-<p>____ _____   _            _          <br />
- |  _ _   <em>| | |</em> ___  <strong><em>| |_ ___ _ __ 
- | |<em>) || |   | <strong>/ _ \/ __| __/ _  '</strong>|
- |  _ &lt; | |   | ||  __/_</em>  ||  <strong>/ | <br />
- |<em>| _|</em>|    ___</strong>||</em></strong>/_<em>___|</em>|    ver: 1.0                                       </p>
-<p>scheduler policy: SCHED_FIFO
- priority: 80</p>
-<p>period: 0.1000 ms <br />
- console refresh rate: 5 Hz</p>
-<p>[13:47:20] delay: 0.0047ms task: 0.0046ms^C
-``</p>
+<div class="highlight"><pre><span></span><code>sigma_ibo@sigma-ibo:~$ sudo rt-tester -p 0.1
+
+  ____ _____   _            _            
+ |  _ \_   _| | |_ ___  ___| |_ ___ _ __ 
+ | |_) || |   | __/ _ \/ __| __/ _ \ &#39;__|
+ |  _ &lt; | |   | ||  __/\__ \ ||  __/ |   
+ |_| \_\|_|    \__\___||___/\__\___|_|    ver: 1.0                                       
+
+ scheduler policy: SCHED_FIFO
+ priority: 80
+
+ period: 0.1000 ms   
+ console refresh rate: 5 Hz
+
+[13:47:20] delay: 0.0047ms task: 0.0046ms^C
+</code></pre></div>
 
 
 
