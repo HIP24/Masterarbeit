@@ -159,6 +159,8 @@ https://wiki.linuxfoundation.org/realtime/documentation/technical_details/rcu
 
 
 
-
+RT_Performance_Tuning_Best_Practice_KVM_VM.pdf
+results in xenomai_compare.md
+QEMU with 2 CPUs
 
 ❌✅

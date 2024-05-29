@@ -80,7 +80,7 @@
 | Thursday, 23.05.2024 | reorganize, test Salamander 4 |
 | Friday, 24.05.2024 | QEMU with 2 CPUs |
 | Monday, 27.05.2024 | Write thesis |
-| Tuesday, 28.05.2024 |  |
-| Wednesday, 29.05.2024 |  |
+| Tuesday, 28.05.2024 | Write thesis |
+| Wednesday, 29.05.2024 | Write thesis |
 | Thursday, 30.05.2024 |  |
 | Friday, 31.05.2024 |  |

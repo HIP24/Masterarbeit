@@ -146,7 +146,7 @@ sudo kill <pid>
        ```
 
 
-##### Set CPU Affinity of IRQ thread to CPU 0
+#### Set CPU Affinity of IRQ thread to CPU 0
    First, find the process ID (PID) of the IRQ thread for NVME:
    ```
    ps -e | grep 'irq/.*nvme'
