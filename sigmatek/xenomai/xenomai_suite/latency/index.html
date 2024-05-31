@@ -5505,81 +5505,280 @@
 </table>
 <p><br></p>
 <h2 id="output-latency-t-60">Output: <code>latency -T 60</code><a class="headerlink" href="#output-latency-t-60" title="Permanent link">&para;</a></h2>
-<p>root@sigmatek-core2:/usr/sbin# latency -T 60<br />
-== Sampling period: 100 us<br />
-== Test mode: periodic user-mode task<br />
-== All results in microseconds<br />
-warming up...<br />
-|RTT|  00:00:01  (periodic user-mode task, 100 us period, priority 99)|||||||
-|RTH|----lat min|----lat avg|----lat max|-overrun|---msw|---lat best|--lat worst|
-|---|-----------|-----------|-----------|--------|------|-----------|-----------|
-|RTD|      1.681|      3.422|     90.929|       0|     0|      1.681|     90.929|
-|RTD|      2.223|      3.203|     20.304|       0|     0|      1.681|     90.929|
-|RTD|      2.317|      3.364|     23.173|       0|     0|      1.681|     90.929|
-|RTD|      1.821|      3.333|    169.908|       1|     0|      1.681|    169.908|
-|RTD|      1.644|      3.092|     23.484|       1|     0|      1.644|    169.908|
-|RTD|      1.770|      3.182|    169.126|       2|     0|      1.644|    169.908|
-|RTD|      1.807|      3.241|    158.419|       4|     0|      1.644|    169.908|
-|RTD|      1.908|      3.248|    229.944|      11|     0|      1.644|    229.944|
-|RTD|      2.196|      3.239|    135.810|      11|     0|      1.644|    229.944|
-|RTD|      1.782|      3.222|    186.953|      13|     0|      1.644|    229.944|
-|RTD|      2.107|      3.147|    146.794|      14|     0|      1.644|    229.944|
-|RTD|      1.702|      3.136|     21.972|      14|     0|      1.644|    229.944|
-|RTD|      1.663|      3.237|    107.455|      15|     0|      1.644|    229.944|
-|RTD|      1.579|      3.248|    171.420|      17|     0|      1.579|    229.944|
-|RTD|      1.973|      3.278|     32.868|      17|     0|      1.579|    229.944|
-|RTD|      2.494|      3.394|    375.502|      26|     0|      1.579|    375.502|
-|RTD|      2.009|      3.287|     82.024|      26|     0|      1.579|    375.502|
-|RTD|      2.066|      3.250|    260.630|      28|     0|      1.579|    375.502|
-|RTD|      2.155|      3.211|    234.989|      31|     0|      1.579|    375.502|
-|RTD|      1.850|      3.938|    220.307|      36|     0|      1.579|    375.502|
-|RTD|      1.807|      3.236|    221.417|      39|     0|      1.579|    375.502|
-|RTT|  00:00:22  (periodic user-mode task, 100 us period, priority 99)|||||||
-|RTH|----lat min|----lat avg|----lat max|-overrun|---msw|---lat best|--lat worst|
-|RTD|      2.542|      3.196|     26.265|      39|     0|      1.579|    375.502|
-|RTD|      1.865|      3.158|    194.683|      40|     0|      1.579|    375.502|
-|RTD|      1.641|      3.137|     23.661|      40|     0|      1.579|    375.502|
-|RTD|      1.574|      3.260|     23.995|      40|     0|      1.574|    375.502|
-|RTD|      2.029|      3.185|     87.024|      40|     0|      1.574|    375.502|
-|RTD|      2.534|      3.130|    106.408|      41|     0|      1.574|    375.502|
-|RTD|      1.960|      3.149|     28.831|      41|     0|      1.574|    375.502|
-|RTD|      1.755|      3.435|     30.206|      41|     0|      1.574|    375.502|
-|RTD|      2.683|      4.089|    197.988|      42|     0|      1.574|    375.502|
-|RTD|      1.747|      3.323|    179.669|      44|     0|      1.574|    375.502|
-|RTD|      2.077|      3.183|     69.423|      44|     0|      1.574|    375.502|
-|RTD|      1.803|      3.114|     62.567|      44|     0|      1.574|    375.502|
-|RTD|      1.799|      3.278|     76.858|      44|     0|      1.574|    375.502|
-|RTD|      1.928|      3.124|     21.726|      44|     0|      1.574|    375.502|
-|RTD|      2.025|      3.159|     48.561|      44|     0|      1.574|    375.502|
-|RTD|      2.037|      3.153|     23.673|      44|     0|      1.574|    375.502|
-|RTD|      1.593|      3.140|     25.701|      44|     0|      1.574|    375.502|
-|RTD|      1.846|      3.340|    110.855|      45|     0|      1.574|    375.502|
-|RTD|      2.818|      4.665|    223.871|      50|     0|      1.574|    375.502|
-|RTD|      2.209|      3.514|    110.917|      51|     0|      1.574|    375.502|
-|RTD|      1.848|      3.599|    127.239|      52|     0|      1.574|    375.502|
-|RTT|  00:00:43  (periodic user-mode task, 100 us period, priority 99)|||||||
-|RTH|----lat min|----lat avg|----lat max|-overrun|---msw|---lat best|--lat worst|
-|RTD|      2.443|      3.525|     84.411|      52|     0|      1.574|    375.502|
-|RTD|      2.028|      3.201|    257.087|      55|     0|      1.574|    375.502|
-|RTD|      1.861|      3.137|    240.561|      58|     0|      1.574|    375.502|
-|RTD|      1.755|      3.186|    167.924|      59|     0|      1.574|    375.502|
-|RTD|      1.731|      3.264|    180.382|      62|     0|      1.574|    375.502|
-|RTD|      1.706|      3.206|    107.250|      63|     0|      1.574|    375.502|
-|RTD|      1.722|      3.171|     24.803|      63|     0|      1.574|    375.502|
-|RTD|      1.719|      3.191|    135.390|      65|     0|      1.574|    375.502|
-|RTD|      1.913|      3.203|    166.808|      66|     0|      1.574|    375.502|
-|RTD|      1.630|      3.146|     19.869|      66|     0|      1.574|    375.502|
-|RTD|      2.341|      3.145|     19.776|      66|     0|      1.574|    375.502|
-|RTD|      2.023|      3.176|     86.029|      66|     0|      1.574|    375.502|
-|RTD|      1.830|      3.167|     22.296|      66|     0|      1.574|    375.502|
-|RTD|      1.732|      3.308|    174.504|      70|     0|      1.574|    375.502|
-|RTD|      1.973|      3.482|    204.055|      79|     0|      1.574|    375.502|
-|RTD|      1.888|      3.256|    207.476|      80|     0|      1.574|    375.502|
-|RTD|      1.838|      3.142|    160.382|      81|     0|      1.574|    375.502|
-|---|-----------|-----------|-----------|--------|------|-------------------------
-|RTS|      1.574|      3.290|    375.502|      81|     0|    00:01:00/00:01:00||</p>
+<p>root@sigmatek-core2:~# latency -h -t 1 -T 5
+== Sampling period: 100 us
+== Test mode: in-kernel periodic task
+== All results in microseconds
+warming up...
+RTT|  00:00:01  (in-kernel periodic task, 100 us period, priority 99)
+|         | lat min | lat avg | lat max | overrun | msw | lat best | lat worst |
+|---------|---------|---------|---------|---------|-----|----------|-----------|
+| <strong>RTD</strong> | 1.485   | 2.709   | 83.739  | 0       | 0   | 1.485    | 83.739    |
+| <strong>RTD</strong> | 2.616   | 2.703   | 34.086  | 0       | 0   | 1.485    | 83.739    |
+| <strong>RTD</strong> | 2.616   | 2.721   | 86.141  | 0       | 0   | 1.485    | 86.141    |
+| <strong>RTD</strong> | 2.276   | 2.711   | 63.901  | 0       | 0   | 1.485    | 86.141    |
+| <strong>RTS</strong> | 1.485   | 2.711   | 86.141  | 0       | 0   | 00:00:05/00:00:05 |   |</p>
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>range</th>
+<th>samples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HSD</strong></td>
+<td>min</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>1 - 2</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>2 - 3</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>HSD</strong></td>
+<td>avg</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>1 - 2</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>2 - 3</td>
+<td>49391</td>
+</tr>
+<tr>
+<td></td>
+<td>3 - 4</td>
+<td>437</td>
+</tr>
+<tr>
+<td></td>
+<td>4 - 5</td>
+<td>35</td>
+</tr>
+<tr>
+<td></td>
+<td>5 - 6</td>
+<td>12</td>
+</tr>
+<tr>
+<td></td>
+<td>6 - 7</td>
+<td>9</td>
+</tr>
+<tr>
+<td></td>
+<td>7 - 8</td>
+<td>42</td>
+</tr>
+<tr>
+<td></td>
+<td>9 - 10</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>10 - 11</td>
+<td>7</td>
+</tr>
+<tr>
+<td></td>
+<td>11 - 12</td>
+<td>6</td>
+</tr>
+<tr>
+<td></td>
+<td>12 - 13</td>
+<td>8</td>
+</tr>
+<tr>
+<td></td>
+<td>13 - 14</td>
+<td>6</td>
+</tr>
+<tr>
+<td></td>
+<td>14 - 15</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>15 - 16</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>17 - 18</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>18 - 19</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>20 - 21</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>21 - 22</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>26 - 27</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>27 - 28</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>28 - 29</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>29 - 30</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>32 - 33</td>
+<td>2</td>
+</tr>
+<tr>
+<td></td>
+<td>33 - 34</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>34 - 35</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>35 - 36</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>63 - 64</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>83 - 84</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>86 - 87</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>HSD</strong></td>
+<td>max</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>34 - 35</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>63 - 64</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>83 - 84</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>86 - 87</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>samples</th>
+<th>average</th>
+<th>stddev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HSS</strong></td>
+<td>min</td>
+<td>4</td>
+<td>1.750</td>
+</tr>
+<tr>
+<td><strong>HSS</strong></td>
+<td>avg</td>
+<td>49978</td>
+<td>2.034</td>
+</tr>
+<tr>
+<td><strong>HSS</strong></td>
+<td>max</td>
+<td>4</td>
+<td>66.500</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>RTS</th>
+<th>1.485</th>
+<th>2.711</th>
+<th>86.141</th>
+<th>0</th>
+<th>0</th>
+<th>00:00:05/00:00:05</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="explanation">Explanation<a class="headerlink" href="#explanation" title="Permanent link">&para;</a></h2>
-<p>The test ran for 60 seconds (-T 60). The minimum latency (lat min) was 1.574 microseconds, the average latency (lat avg) was 3.290 microseconds, and the maximum latency (lat max) was 375.502 microseconds. There were 81 overruns and 0 mode switches.</p>
+<p>The test ran for 5 seconds (-T 5).<br />
+The minimum latency (lat min) was 1.485 microseconds,<br />
+the average latency (lat avg) was 2.711 microseconds with 49978 samples,<br />
+and the maximum latency (lat max) was 86.141 microseconds.<br />
+There were 0 overruns and 0 mode switches.</p>
 
 
 
