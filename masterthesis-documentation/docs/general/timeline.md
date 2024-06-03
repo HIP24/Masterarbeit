@@ -83,4 +83,9 @@
 | Tuesday, 28.05.2024 | Write thesis |
 | Wednesday, 29.05.2024 | Write thesis |
 | Thursday, 30.05.2024 | Feiertag |
-| Friday, 31.05.2024 |  |
+| Friday, 31.05.2024 | Write thesis |
+| Monday, 03.06.2024 | change latency from 300 to 10000 |
+| Tuesday, 04.06.2024 |  |
+| Wednesday, 05.06.2024 |  |
+| Thursday, 06.06.2024 |  |
+| Friday, 07.06.2024 |  |
