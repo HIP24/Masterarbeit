@@ -1,0 +1,4 @@
+Average latency: 17.68us
+Max latency: 32.216us
+Min latency: 8.005us
+Standard Deviation: 6.1us

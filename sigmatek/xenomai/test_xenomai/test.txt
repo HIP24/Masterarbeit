@@ -1,0 +1,1 @@
+latency -s -g testnow.txt -T 600

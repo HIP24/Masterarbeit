@@ -4249,27 +4249,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../test_xenomai/test/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Test
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -5090,11 +5069,21 @@
 
 
 <h1 id="gnuplot-with-taskset">gnuplot with taskset<a class="headerlink" href="#gnuplot-with-taskset" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1"># Calculate statistics</span>
-stats<span class="w"> </span><span class="s1">&#39;max_latency_with_taskset_10min.txt&#39;</span><span class="w"> </span>using<span class="w"> </span><span class="m">2</span><span class="w"> </span>nooutput
+<div class="highlight"><pre><span></span><code><span class="c1"># Set output to a PNG file</span>
+<span class="nb">set</span><span class="w"> </span>terminal<span class="w"> </span>pngcairo<span class="w"> </span>enhanced<span class="w"> </span>font<span class="w"> </span><span class="s1">&#39;Arial,10&#39;</span><span class="w"> </span>size<span class="w"> </span><span class="m">1024</span>,768
+<span class="nb">set</span><span class="w"> </span>output<span class="w"> </span><span class="s1">&#39;gnuplot_max_latency_taskset.png&#39;</span>
+<span class="nb">set</span><span class="w"> </span>encoding<span class="w"> </span>utf8
 
-<span class="c1"># Plot the data</span>
-plot<span class="w"> </span><span class="s1">&#39;max_latency_with_taskset_10min.txt&#39;</span><span class="w"> </span>using<span class="w"> </span><span class="m">1</span>:2<span class="w"> </span>with<span class="w"> </span>linespoints<span class="w"> </span>title<span class="w"> </span><span class="s1">&#39;Latency Histogram&#39;</span>
+<span class="c1"># Set the title and labels</span>
+<span class="c1">#set title &quot;Latency Distribution&quot;</span>
+<span class="nb">set</span><span class="w"> </span>xlabel<span class="w"> </span><span class="s1">&#39;Time in {/Symbol=9 m}s&#39;</span>
+<span class="nb">set</span><span class="w"> </span>ylabel<span class="w"> </span><span class="s2">&quot;Frequency&quot;</span>
+
+<span class="c1"># Calculate statistics</span>
+stats<span class="w"> </span><span class="s1">&#39;max_latency_taskset_10min.txt&#39;</span><span class="w"> </span>using<span class="w"> </span><span class="m">2</span><span class="w"> </span>nooutput
+
+<span class="c1"># Plot the data with thicker lines</span>
+plot<span class="w"> </span><span class="s1">&#39;max_latency_taskset_10min.txt&#39;</span><span class="w"> </span>using<span class="w"> </span><span class="m">1</span>:2<span class="w"> </span>with<span class="w"> </span>linespoints<span class="w"> </span>linewidth<span class="w"> </span><span class="m">2</span><span class="w"> </span>title<span class="w"> </span><span class="s1">&#39;&#39;</span>
 </code></pre></div>
 <p><img alt="gnuplot_max_latency_taskset.png.png" src="../gnuplot_max_latency_taskset.png" /></p>
 
