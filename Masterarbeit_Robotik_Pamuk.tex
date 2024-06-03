@@ -280,7 +280,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \clearpage
 \section{Xenomai}
-\noindent Xenomai 3 is a real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in Figure \ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
+\noindent Xenomai 3 \cite{XenomaiXenomai} is a real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in Figure \ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
 
 \begin{figure}[H]
 	\centering
@@ -444,13 +444,12 @@ Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency wi
 	\label{tab:x}
 	\begin{tabular}{|c|c|}\hline
 	\textbf{Statistic} & \textbf{Value (in \textmu s)} \\\hline
-	Average Latency & 174.5us \\\hline
-	Maximum Latency & 4070.02us \\\hline
-	Minimum Latency & 6.96us \\\hline
-	Standard Deviation & 359.27us \\\hline
+	Average Latency & 46.22us \\\hline
+	Maximum Latency & 707.62us \\\hline
+	Minimum Latency & 15.59us \\\hline
+	Standard Deviation & 52.13us \\\hline
 	\end{tabular}
 	\end{table}
-
 \clearpage
 
 \chapter{Real-Time Performance Tuning}\label{cha:real-time_tuning}

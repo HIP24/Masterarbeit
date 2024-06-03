@@ -38,7 +38,7 @@ plugins:
         #- "*sigmatek/xenomai/*r*/*.md"
         #- "*sigmatek/xenomai/xenomai_suite/*"
         - "*resources/pdfs/papers/papers.md*"
-
+        - "*sigmatek/xenomai/xenomai_suite/sigmatek-salamander-glibc-x86_64-salamander-image-core2-64-toolchain-09.07.120_RC2.sh"
       regex:
         - '.*.(tmp|bin|tar)$'
   - search
