@@ -98,7 +98,7 @@ Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/defau
   ```
 
 ##### Start QEMU normally and give all QEMU threads rt-priority
-Start QEMU [normally with idle=poll](../../../sigmatek/QEMU/qemu_def_5idle=poll_hugepages.sh). Give all QEMU threads rt-priority.
+Start QEMU [normally with idle=poll](../../../sigmatek/QEMU/qemu_def_3hugepages_cmdline.sh). Give all QEMU threads rt-priority.
 ```
 ps -T -p $(pgrep -f "qemu-system-x86_64 -M pc,ac") | awk '{print $2}' | tail -n +2 | xargs -I {} sudo chrt -r -p 99 {}
 ```
