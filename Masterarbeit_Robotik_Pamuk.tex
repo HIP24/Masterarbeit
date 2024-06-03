@@ -46,6 +46,10 @@
 \sethlcolor{blue}
 \setcounter{secnumdepth}{3} % in text 
 \setcounter{tocdepth}{3} % contents
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{rotating}
+
 
 %
 % Platzierungsoptionen 
@@ -513,9 +517,9 @@ The kernel command-line parameters [6] are shown in Code \ref{script:kernel_cli}
 \section{Host OS Configurations}
 \subsection{CPU isolation}
 
-However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU \cite{maPerformanceTuningKVMbased}. 
+Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section \ref{sec:irq_handling}. 
 
-Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section \ref{sec:irq_handling}. Output \ref{output:pse} shows the user and kernel tasks that run on CPU 19. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
+For CPU isolation, the \texttt{isolcpus} function was used to isolate a peroformance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks or processes. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU \cite{maPerformanceTuningKVMbased}. Output \ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -527,16 +531,16 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 		4      39      39 [idle_inject/4]             FF    -     50
 		4      40      40 [migration/4]               FF    -     99
 		4      41      41 [ksoftirqd/4]               TS    0      -
-		4      42      42 [kworker/4:0-events]        TS    0      -
 		4      43      43 [kworker/4:0H-events_highpr TS  -20      -
 		4     505     505 [irq/189-iwlwifi:queue_1]   FF    -     50
 		4     519     519 [irq/203-iwlwifi:exception] FF    -     50
-		4    3008    3008 [kworker/4:1H]              TS  -20      -
-		4    3022    3022 [kworker/4:2-rcu_gp]        TS    0      -	  
+		4    3008    3008 [kworker/4:1H-kblockd]      TS  -20      -
+		4  177779  177779 [kworker/4:2-events]        TS    0      -
+		4  448807  448807 [kworker/4:1-events]        TS    0      -		
 \end{lstlisting}
 \end{minipage}
 \subsection{Interrupt Requests Handling}\label{sec:irq_handling}
-Once the CPUs were isolated, Interrupt Requests Handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPUs. This was done by manipulating a file in the proc filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 20 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be FFFFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4.
+Once the CPUs were isolated, Interrupt Requests handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPU. This was done by manipulating a file in the \texttt{proc} filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 14 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be 3FFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4. 
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
