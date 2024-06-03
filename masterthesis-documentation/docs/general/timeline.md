@@ -82,5 +82,5 @@
 | Monday, 27.05.2024 | Write thesis |
 | Tuesday, 28.05.2024 | Write thesis |
 | Wednesday, 29.05.2024 | Write thesis |
-| Thursday, 30.05.2024 |  |
+| Thursday, 30.05.2024 | Feiertag |
 | Friday, 31.05.2024 |  |
