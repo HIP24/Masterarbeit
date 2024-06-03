@@ -323,7 +323,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/max_latency_hardware.png}
-	\caption[Latency hardware]{Latency hardware}
+	\caption[Latency in hardware]{Latency in hardware}
 	\label{fig:max_latency_hardware}
 \end{figure}
 
@@ -332,7 +332,7 @@ Figure \ref{fig:gnuplot_max_latency_hardware} depicts the variation in latency o
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/0hardware/gnuplot_max_latency_hardware.png}
-	\caption[gnuplot latency hardware]{gnuplot latency hardware}
+	\caption[Variation in latency of hardware]{Variation in latency of hardware}
 	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
 
@@ -421,16 +421,16 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\columnwidth]{img/max_latency_default.png}
-	\caption[Latency no taskset]{Latency no taskset}
+	\caption[Latency with default settings]{Latency with default settings}
 	\label{fig:max_latency_default}
 \end{figure}
 
-Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency over the course of said time. 
+Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency with default settings over the course of said time. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/1default/gnuplot_max_latency_default.png}
-	\caption[gnuplot latency hardware]{gnuplot latency hardware}
+	\caption[Variation in latency with default settings]{Variation in latency with default settings}
 	\label{fig:gnuplot_max_latency_default}
 \end{figure}
 
@@ -455,6 +455,8 @@ Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency ov
 
 \chapter{Real-Time Performance Tuning}\label{cha:real-time_tuning}
 \section{BIOS Configurations}
+BIOS is firmware used to perform hardware initialization during the booting process. Some BIOS settings can have a significant impact on the real-time performance of the system [2]. The configurations in Table 4 are tuned for real-time performance.
+
 \begin{table}[h]
 	\centering
 	\caption{BIOS Configurations}
@@ -473,8 +475,7 @@ Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency ov
 	VT-d & Enabled \\
 	\hline
 	\end{tabular}
-	\end{table}
-	
+	\end{table}	
 \section{Kernel Configurations}
 
 The kernel command-line parameters [6] are shown in Code \ref{script:kernel_cli} below. Some of them are essential for real-time performance.
@@ -506,11 +507,10 @@ The kernel command-line parameters [6] are shown in Code \ref{script:kernel_cli}
 	\item \textbf{nosoftlockup}: Disables the soft lockup detector.
 	\item \textbf{nohz=on}: Enables tickless operation system-wide.
 	\item \textbf{no\_timer\_check}: Disables the check for broken timer interrupt sources.
-	\item \textbf{nospectre\_v2 spectre\_v2\_user=off}: Disables mitigations for the Spectre v2 vulnerability.
+	\item \textbf{nospectre\_v2, spectre\_v2\_user=off}: Disables mitigations for the Spectre v2 vulnerability.
 	\item \textbf{kvm.kvmclock\_periodic\_sync=N, kvm\_intel.ple\_gap=0}: These are KVM (Kernel-based Virtual Machine) related parameters.
 	\item \textbf{irqaffinity=0}: Sets the default IRQ affinity.
 \end{itemize}
-
 \section{Host OS Configurations}
 \subsection{CPU isolation}
 
@@ -536,7 +536,6 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 		4    3022    3022 [kworker/4:2-rcu_gp]        TS    0      -	  
 \end{lstlisting}
 \end{minipage}
-
 \subsection{Interrupt Requests Handling}\label{sec:irq_handling}
 Once the CPUs were isolated, Interrupt Requests Handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPUs. This was done by manipulating a file in the proc filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 20 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be FFFFF. The script in code \ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4.
 
@@ -601,9 +600,6 @@ Once the CPUs were isolated, Interrupt Requests Handling was the next step. Inte
 \end{minipage}
 
 \noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
-
-\subsection{Disable simultaneous multithreading}
-Disable
 \subsection{Disable dynamic frequency scaling}
 \subsection{Disable RT throttling}
 \subsection{No unexpected RT processes are running on your system}
@@ -611,7 +607,7 @@ Disable
 \subsection{RCU CPU offloading}
 \subsection{Suppress rcu cpu stall}
 \subsection{Maybe?}
-\subsection{Start QEMU normally and give all QEMU threads rt-priority}
+\subsection{Start QEMU normally and give all QEMU threads rt-priority} 
 \subsection{Kill all running user processes}
 \subsection{Set CPU Affinity for systemd services}
 \subsection{Cache Isolation for CPU and GPU}
@@ -619,17 +615,14 @@ Disable
 \subsection{Set Device Driver Work Queue to CPU 0}
 \subsection{Disable Machine Check}
 \subsection{Stop Certain Services}
-  
 \section{QEMU-KVM Configurations}
 \subsection{Tune lapic timer advance}
 \subsection{Set QEMU options for real-time VM}
 \subsection{Set CPU affinity and scheduling policy of QEMU CPU threads}
 \subsection{Passthrough PCI devices into the VM}
 
-\section{Guest OS Configurations}
-
 \clearpage
-
+\section{Guest OS Configurations}
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualisation},label={script:qemu_configuration_optimizations}]
@@ -651,9 +644,6 @@ Disable
     -no-reboot -nographic
 \end{lstlisting}
 \end{minipage}
-\clearpage
-
-
 \clearpage
 
 \chapter{KVM exit reasons}\label{cha:kvm_exit_reasons}
