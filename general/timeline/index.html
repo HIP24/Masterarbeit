@@ -1,0 +1,820 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="My awesome docs">
+      
+      
+        <meta name="author" content="Halil Pamuk">
+      
+      
+      
+        <link rel="prev" href="../protocol/">
+      
+      
+      
+      <link rel="icon" href="../../img/robot2.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Timeline - Masterthesis Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#timeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Masterthesis Documentation" class="md-header__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+      
+  <img src="../../img/robot2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Masterthesis Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Timeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Masterthesis Documentation" class="md-nav__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+      
+  <img src="../../img/robot2.png" alt="logo">
+
+    </a>
+    Masterthesis Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checklist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentations_and_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../draft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Draft
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protocol/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Timeline
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="timeline">Timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Log</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thursday, 08.02.2024</td>
+<td><a href="../resources/images/dual_boot/grub.jpg">Dual boot</a> Windows and Ubuntu</td>
+</tr>
+<tr>
+<td>Friday, 09.02.2024</td>
+<td>Booted <a href="../resources/images/yocto/sigmatek_login.png">Salamander 4</a> on Ubuntu</td>
+</tr>
+<tr>
+<td>Monday, 12.02.2024</td>
+<td>Connected Salamander 4 with <a href="../resources/images/yocto/ssh.png">SSH</a></td>
+</tr>
+<tr>
+<td>Tuesday, 13.02.2024</td>
+<td>Connected Salamander 4 with Lasal Class 2 (Christian) after configuring bridge</td>
+</tr>
+<tr>
+<td>Wednesday, 14.02.2024</td>
+<td>Installed <a href="../resources/images/lasal/class2/windows_vm.png">Windows VM on Ubuntu</a>, installed <a href="../resources/images/lasal/class2/lasalclass2.png">Lasal Class 2 on Windows VM</a>, connected with <a href="../resources/images/lasal/class2/lasalclass2_connected.png">Salamander 4</a></td>
+</tr>
+<tr>
+<td>Thursday, 15.02.2024</td>
+<td>Run <a href="../resources/images/lasal/class2/pumpcontrol.png">pumpcontrol example</a> successfully</td>
+</tr>
+<tr>
+<td>Friday, 16.02.2024</td>
+<td>Increased virtual CPU in Windows</td>
+</tr>
+<tr>
+<td>Monday, 19.02.2024</td>
+<td><a href="../sigmatek/xenomai/xenomai_suite/xenomai-system-tools.md">Xenomai-system-tools</a></td>
+</tr>
+<tr>
+<td>Tuesday, 20.02.2024</td>
+<td>KernelShark</td>
+</tr>
+<tr>
+<td>Wednesday, 21.02.2024</td>
+<td>Local Yocto Build finally done</td>
+</tr>
+<tr>
+<td>Thursday, 22.02.2024</td>
+<td><a href="../resources/images/trace-cmd/trace-cmd_agent_host_guest.png">trace-cmd agent</a> on guest communicates with host</td>
+</tr>
+<tr>
+<td>Friday, 23.02.2024</td>
+<td>Teammeeting and Germany</td>
+</tr>
+<tr>
+<td>Monday, 26.02.2024</td>
+<td>after_bitbake, kernelshark, paths</td>
+</tr>
+<tr>
+<td>Tuesday, 27.02.2024</td>
+<td>Isolate CPUs on host system and let guest run on it</td>
+</tr>
+<tr>
+<td>Wednesday, 28.02.2024</td>
+<td>Host-Guest <a href="../resources/images/protocol/negotiated_with_guest.png">timestamp sync</a> works with VM, can view <a href="../resources/images/protocol/kvm_combo_plots_vis.png">KVM Combo plots</a>, does still not work with Salamander4</td>
+</tr>
+<tr>
+<td>Thursday, 29.02.2024</td>
+<td>useful_links and search_for_x.py</td>
+</tr>
+<tr>
+<td>Friday, 01.03.2024</td>
+<td>checklist.md, nmbridge.md, understand nmbridge</td>
+</tr>
+<tr>
+<td>Monday, 04.03.2024</td>
+<td>Finally: Negotiated kvm time sync protocol with guest Salamander4</td>
+</tr>
+<tr>
+<td>Tuesday, 05.03.2024</td>
+<td>lat worst reduced from 374.075 to 87.379</td>
+</tr>
+<tr>
+<td>Wednesday, 06.03.2024</td>
+<td>Add documentation local server</td>
+</tr>
+<tr>
+<td>Thursday, 07.03.2024</td>
+<td>Start Salamander4 CPU with <a href="../resources/images/yocto/icecc.png">icecc</a></td>
+</tr>
+<tr>
+<td>Friday, 08.03.2024</td>
+<td>Merge master and readme</td>
+</tr>
+<tr>
+<td>Monday, 11.03.2024</td>
+<td><a href="../resources/images/kernel-patch/uname.png">Kernel patch</a>, richard meeting and settings.json</td>
+</tr>
+<tr>
+<td>Tuesday, 12.03.2024</td>
+<td>real time priorities with chrt -f 50, no success</td>
+</tr>
+<tr>
+<td>Wednesday, 13.03.2024</td>
+<td>Preventing kernel tasks from being scheduled on CPU4</td>
+</tr>
+<tr>
+<td>Thursday, 14.03.2024</td>
+<td>irq.md</td>
+</tr>
+<tr>
+<td>Friday, 15.03.2024</td>
+<td>Timer 1000Hz</td>
+</tr>
+<tr>
+<td>Monday, 18.03.2024</td>
+<td>kernel_processes.md, kernelshark, start thesis</td>
+</tr>
+<tr>
+<td>Tuesday, 19.03.2024</td>
+<td>Added <a href="https://guides.library.iit.edu/c.php?g=720120&amp;p=6296986">Zotero</a>, <a href="https://ubuntu.com/pro/dashboard">Ubuntu Pro</a> and <a href="https://ubuntu.com/blog/real-time-ubuntu-released">Ubuntu PREEMPT_RT</a></td>
+</tr>
+<tr>
+<td>Wednesday, 20.03.2024</td>
+<td>kvm_exit reasons <a href="../sigmatek/trace-cmd/virtualization/taskset/kvm_exits_taskset.png">plot</a></td>
+</tr>
+<tr>
+<td>Thursday, 21.03.2024</td>
+<td>gitlfs and settings.json, plot with and without taskset, write more thesis</td>
+</tr>
+<tr>
+<td>Friday, 22.03.2024</td>
+<td>Literature paper search</td>
+</tr>
+<tr>
+<td>Monday, 25.03.2024</td>
+<td>Start masterthesis</td>
+</tr>
+<tr>
+<td>Tuesday, 26.03.2024</td>
+<td>Write masterthesis</td>
+</tr>
+<tr>
+<td>Wednesday, 27.03.2024</td>
+<td>Write masterthesis</td>
+</tr>
+<tr>
+<td>Thursday, 28.03.2024</td>
+<td>Write masterthesis</td>
+</tr>
+<tr>
+<td>Friday, 29.03.2024</td>
+<td>Write masterthesis</td>
+</tr>
+<tr>
+<td>Monday, 01.04.2024</td>
+<td>Ostern</td>
+</tr>
+<tr>
+<td>Tuesday, 02.04.2024</td>
+<td>bcc tool</td>
+</tr>
+<tr>
+<td>Wednesday, 03.04.2024</td>
+<td>Write masterthesis APIC_WRITE</td>
+</tr>
+<tr>
+<td>Thursday, 04.04.2024</td>
+<td>defconfig, vapic</td>
+</tr>
+<tr>
+<td>Friday, 05.04.2024</td>
+<td>check_smp_affinity and check_CPU_IRQ_usage</td>
+</tr>
+<tr>
+<td>Monday, 08.04.2024</td>
+<td>kvm_exit_vapic_results</td>
+</tr>
+<tr>
+<td>Tuesday, 09.04.2024</td>
+<td>trace-cmd report analysis</td>
+</tr>
+<tr>
+<td>Wednesday, 10.04.2024</td>
+<td>getconf _NPROCESSORS_CONF</td>
+</tr>
+<tr>
+<td>Thursday, 11.04.2024</td>
+<td>Richard Meeting</td>
+</tr>
+<tr>
+<td>Friday, 12.04.2024</td>
+<td>Spec</td>
+</tr>
+<tr>
+<td>Monday, 15.04.2024</td>
+<td>report.sh</td>
+</tr>
+<tr>
+<td>Tuesday, 16.04.2024</td>
+<td>Updated analyze_trace.py, include in thesis</td>
+</tr>
+<tr>
+<td>Wednesday, 17.04.2024</td>
+<td>Describe host and guest tasks</td>
+</tr>
+<tr>
+<td>Thursday, 18.04.2024</td>
+<td>Read 4 papers</td>
+</tr>
+<tr>
+<td>Friday, 19.04.2024</td>
+<td>Read 5 papers</td>
+</tr>
+<tr>
+<td>Monday, 22.04.2024</td>
+<td>Boot ubuntu anew</td>
+</tr>
+<tr>
+<td>Tuesday, 23.04.2024</td>
+<td>Rebuild workspace</td>
+</tr>
+<tr>
+<td>Wednesday, 24.04.2024</td>
+<td>Rebuild workspace, problem_solution</td>
+</tr>
+<tr>
+<td>Thursday, 25.04.2024</td>
+<td>Rebuild workspace, table IRQ CPU</td>
+</tr>
+<tr>
+<td>Friday, 26.04.2024</td>
+<td><a href="../sigmatek/trace-cmd/virtualization/compare.md">compare.md</a>, <a href="../tools/ps/ps-e.sh">ps.sh</a></td>
+</tr>
+<tr>
+<td>Monday, 29.04.2024</td>
+<td>powersave, balanced, performance</td>
+</tr>
+<tr>
+<td>Tuesday, 30.04.2024</td>
+<td>merge and failed_reason</td>
+</tr>
+<tr>
+<td>Wednesday, 01.05.2024</td>
+<td>Feiertag</td>
+</tr>
+<tr>
+<td>Thursday, 02.05.2024</td>
+<td>Ubuntu real-time kernel</td>
+</tr>
+<tr>
+<td>Friday, 03.05.2024</td>
+<td>Steven yt, analyze_events and analyze_tasks</td>
+</tr>
+<tr>
+<td>Monday, 06.05.2024</td>
+<td>report_hardware</td>
+</tr>
+<tr>
+<td>Tuesday, 07.05.2024</td>
+<td>Richard prios, <a href="../tools/ps/show_all_threads.py">show_all_threads.py</a></td>
+</tr>
+<tr>
+<td>Wednesday, 08.05.2024</td>
+<td>failed_reason include CPU, reorganize</td>
+</tr>
+<tr>
+<td>Thursday, 09.05.2024</td>
+<td>Feiertag</td>
+</tr>
+<tr>
+<td>Friday, 10.05.2024</td>
+<td>compare kernels</td>
+</tr>
+<tr>
+<td>Monday, 13.05.2024</td>
+<td>compare config, qemu test with 2 cpus</td>
+</tr>
+<tr>
+<td>Tuesday, 14.05.2024</td>
+<td>Hardware and OS configuration checklist</td>
+</tr>
+<tr>
+<td>Wednesday, 15.05.2024</td>
+<td>FINALLY <a href="../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt_10min_log.md">LATENCY REDUCED</a> WITH <a href="../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt_statistics.txt">STATS</a> and <a href="../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt.png">PLOT</a></td>
+</tr>
+<tr>
+<td>Thursday, 16.05.2024</td>
+<td>reorganize, papers and configs</td>
+</tr>
+<tr>
+<td>Friday, 17.05.2024</td>
+<td>real-time-kernel-tuning websites</td>
+</tr>
+<tr>
+<td>Monday, 20.05.2024</td>
+<td>Feiertag</td>
+</tr>
+<tr>
+<td>Tuesday, 21.05.2024</td>
+<td>read 3 papers, <a href="../sigmatek/salamander4/latency_reduction/kernel-patch/compare_2_files.py">compare_2_files.py</a></td>
+</tr>
+<tr>
+<td>Wednesday, 22.05.2024</td>
+<td>Configure like Intels <a href="../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf">RT_Performance_Tuning_Best_Practice_KVM_VM.pdf</a>, results in <a href="../sigmatek/xenomai/xenomai_compare.md">xenomai_compare.md</a></td>
+</tr>
+<tr>
+<td>Thursday, 23.05.2024</td>
+<td>reorganize, test Salamander 4</td>
+</tr>
+<tr>
+<td>Friday, 24.05.2024</td>
+<td>QEMU with 2 CPUs</td>
+</tr>
+<tr>
+<td>Monday, 27.05.2024</td>
+<td>Write thesis</td>
+</tr>
+<tr>
+<td>Tuesday, 28.05.2024</td>
+<td>Write thesis</td>
+</tr>
+<tr>
+<td>Wednesday, 29.05.2024</td>
+<td>Write thesis</td>
+</tr>
+<tr>
+<td>Thursday, 30.05.2024</td>
+<td>Feiertag</td>
+</tr>
+<tr>
+<td>Friday, 31.05.2024</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>
