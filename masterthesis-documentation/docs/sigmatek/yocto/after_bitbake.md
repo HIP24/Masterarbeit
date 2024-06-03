@@ -39,7 +39,7 @@ bitbake salamander-image -k
 ```
 
 ## QEMU script
-[qemu_def_5idle=poll.sh](../QEMU/qemu_def_5idle=poll_hugepages.sh)
+[qemu_def_3hugepages_cmdline.sh](../QEMU/qemu_def_3hugepages_cmdline.sh)
 
 ## scp .ipk to Salamander4 and install
 When you run bitbake xxx, the output of the build process, including any generated .ipk files, is typically stored in the tmp/deploy/ipk/ directory within your build directory1. The exact location can depend on your configuration and the specific recipe you’re building.
