@@ -14,7 +14,7 @@ set ylabel "Frequency"
 stats 'max_latency_hardware_10min.txt' using 2 nooutput
 
 # Plot the data with thicker lines
-plot 'max_latency_hardware_10min.txt' using 1:2 with linespoints linewidth 3 title ''
+plot 'max_latency_hardware_10min.txt' using 1:2 with linespoints linewidth 2 title ''
 ```
 
 ![gnuplot_max_latency_hardware.png](gnuplot_max_latency_hardware.png)
