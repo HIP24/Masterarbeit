@@ -28,25 +28,18 @@ masterthesis-documentation/docs/Masterarbeit_Robotik_Pamuk.pdf
 Masterarbeit_Robotik_Pamuk.pdf
 papers-delete/
 
+# Ignore .dat
+**/*.dat
+
 # Ignore everything in the directory
 masterthesis-documentation/docs/sigmatek/trace-cmd/test_trace-cmd/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/sigmatek/trace-cmd/test_trace-cmd/**/*.*
-# Ignore .dat
-masterthesis-documentation/docs/sigmatek/trace-cmd/test_trace-cmd/*.dat
-masterthesis-documentation/docs/sigmatek/trace-cmd/virtualization/**/*.dat
-
-masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/*.png
-masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/*.txt
-
-masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/*.log
-masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md
 
 # Ignore everything in the directory
 masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/sigmatek/xenomai/test_xenomai/**/*.*
-
 
 # Ignore everything in the directory
 masterthesis-documentation/docs/tools/ps/**/*
@@ -58,6 +51,6 @@ masterthesis-documentation/docs/tools/rt-tester/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/tools/ps/rt-tester/rt-tester/tests/*.*
 
+masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md
 masterthesis-documentation/docs/linux_kernels
-
 **/sigmatek-salamander-glibc-x86_64-salamander-image-core2-64-toolchain-09.07.120_RC2.sh
