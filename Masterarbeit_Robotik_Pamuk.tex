@@ -342,12 +342,12 @@ Figure \ref{fig:gnuplot_max_latency_hardware} depicts the variation in latency o
 
 \clearpage
 
-\noindent The statistics obtained from this measurement are provided in Table \ref{tab:latency_statistics}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
+\noindent The statistics obtained from this measurement are provided in Table \ref{tab:latency_statistics_bare_metal}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
 
 \begin{table}[h]
 	\centering
-	\caption{Latency Statistics in microseconds}
-	\label{tab:latency_statistics}
+	\caption{Latency statistics of Salamander 4 bare metal in microseconds}
+	\label{tab:latency_statistics_bare_metal}
 	\begin{tabular}{|c|c|}\hline
 	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
 	Average Latency & 4.06 \\\hline
@@ -443,12 +443,12 @@ Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency ov
 	\label{fig:gnuplot_max_latency_default}
 \end{figure}
 
-\noindent The statistics obtained from this measurement are provided in Table \ref{tab:x}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
+\noindent The statistics obtained from this measurement are provided in Table \ref{tab:latency_statistics_virt}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
 
 \begin{table}[h]
 	\centering
-	\caption{Latency Statistics default in microseconds}
-	\label{tab:x}
+	\caption{Latency statistics of default Salamander 4 virtualization in microseconds}
+	\label{tab:latency_statistics_virt}
 	\begin{tabular}{|c|c|}\hline
 	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
 	Average Latency & 46.22 \\\hline
@@ -466,7 +466,7 @@ Figure \ref{fig:gnuplot_max_latency_default} depicts the variation in latency ov
 \clearpage
 \chapter{Real-Time Performance Tuning}\label{cha:real-time_tuning}
 \section{BIOS Configurations}
-BIOS is firmware used to perform hardware initialization during the booting process. Some BIOS settings can have a significant impact on the real-time performance of the system [2]. The configurations in Table 4 are tuned for real-time performance.
+BIOS is firmware used to perform hardware initialization during the booting process. Some BIOS settings can have a significant impact on the real-time performance of the system. The configurations in Table 4 are tuned for real-time performance.
 
 \begin{table}[h]
 	\centering
@@ -489,7 +489,7 @@ BIOS is firmware used to perform hardware initialization during the booting proc
 	\end{table}	
 \section{Kernel Configurations}
 
-The kernel command-line parameters [6] are shown in Code \ref{script:kernel_cli} below. Some of them are essential for real-time performance.
+The kernel command-line parameters are shown in Code \ref{script:kernel_cli} below. Some of them are essential for real-time performance.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}

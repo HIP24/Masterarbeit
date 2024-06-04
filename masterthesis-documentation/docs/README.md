@@ -18,10 +18,10 @@ Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
     Diese Masterarbeit wird täglich aktualisiert. Zu einem späteren Zeitpunkt kann mehr Inhalt vorhanden sein.
 
 <div id="page-wrapper">
-  <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Fortschritt</a>
- der Masterarbeit:<b> </b> </div> 
+  <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Status</a>
+ der Masterarbeit:<b> Fortgeschritten</b> </div> 
   <div class="meter animate">
-    <span style="width: 35%"><span></span></span>
+    <span style="width: 45%"><span></span></span>
   </div> 
   <!--<div class="meter orange nostripes">
     <span style="width: 33.3%"></span>
