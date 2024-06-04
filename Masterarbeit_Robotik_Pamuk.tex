@@ -492,20 +492,16 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\hline
 	\end{tabular}}
 	\end{table}	
-
+	
 	\noindent In the following, these settings along with their impact on system latency are briefly described. 
 
 	\begin{itemize}
-		\item \textbf{Hyper Threading}: Explain
-		\item \textbf{Intel SpeedStep}: Explain
-		\item \textbf{Intel® Speed Shift Technology}: Explain
-		\item \textbf{C States}: Explain
-		\item \textbf{VT-d}: Explain
+		\item \textbf{Hyper Threading}: Hyper-Threading allows CPUs to process two threads simultaneously instead of just one. When it is enabled on the host, this allows the parallelisation of tasks and increases performance. However, in a real-time system like the guest Salamander 4, this can lead to increased latencies due to contention between threads. In order to ensure more deterministic behavior in the guest, it is disabled on the host.
+		\item \textbf{Intel SpeedStep}: This technology dynamically adjusts the clock speed of the CPU based on workload. These dynamic changes can lead to unpredictable latencies in a real-time system. It is also disabled on the host to maintain a constant CPU speed.
+		\item \textbf{Intel® Speed Shift Technology}: Similar to SpeedStep, Speed Shift allows the processor to directly control its frequency and voltage. This can lead to unpredictable latencies, too. Hence, it is also disabled on the host.
+		\item \textbf{C States}: These are low-power idle states where the clock frequency and voltage of the CPU are reduced. Transitioning between C-states can cause variable latencies. To prevent this from happening, C-states are disabled on the host.
+		\item \textbf{VT-d}: Direct access to physical devices from within virtual machines is possible when VT-d is enabled on the host. This can help reduce latencies associated with I/O operations in the virtual machine. It is therefore enabled on the host.
 	\end{itemize}
-
-
-
-\clearpage
 
 \section{Kernel Configurations}
 
