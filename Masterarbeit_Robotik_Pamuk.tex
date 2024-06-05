@@ -376,7 +376,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \noindent With the help of the script depicted in code~\ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. The following is a description of the components used for the virtualization of Salamander 4:
 \begin{itemize}
-	\item \textbf{bzImage}: Compressed Linux kernel image that is loaded by QEMU at system start. "bz" stands for big-zipped.
+	\item \textbf{bzImage}: Compressed Linux kernel image that is loaded by QEMU at system start. ``bz`` stands for big-zipped.
 	\item \textbf{drive-c}: Directory serving as C drive for QEMU system, created and filled by qemu\_def.sh script.
 	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU that enables UEFI boot process. \texttt{OVMF} stands for Open Virtual Machine Firmware, \texttt{qcow2} is a format for disk image files used by QEMU, it stands for "QEMU Copy On Write version 2".
 	\item \textbf{qemu\_def.sh}: Shell script that starts QEMU with required parameters to boot Salamamder 4 OS. It is described in Code~\ref{script:qemu_def}.
@@ -510,40 +510,50 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
 	\begin{lstlisting}[name={Kernel Configuration},label={script:kernel_cli}]
-		GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocbs=4 nohz_full=4 default_hugepagesz=1G hugepagesz=1G hugepages=8 intel_iommu=on rdt=l3cat nmi_watchdog=0 idle=poll clocksource=tsc tsc=reliable noht audit=0 skew_tick=1 intel_pstate=disable intel.max_cstate=0 intel_idle.max_cstate=0 processor.max_cstate=0 processor_idle.max_cstate=0 nosoftlockup nohz=on no_timer_check nospectre_v2 spectre_v2_user=off kvm.kvmclock_periodic_sync=N kvm_intel.ple_gap=0 irqaffinity=0"
+		GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocbs=4 nohz_full=4 default_hugepagesz=1G hugepagesz=1G hugepages=8 intel_iommu=on rdt=l3cat nmi_watchdog=0 idle=poll clocksource=tsc tsc=reliable audit=0 skew_tick=1 intel_pstate=disable intel.max_cstate=0 intel_idle.max_cstate=0 processor.max_cstate=0 processor_idle.max_cstate=0 nosoftlockup nohz=on no_timer_check nospectre_v2 spectre_v2_user=off kvm.kvmclock_periodic_sync=N kvm_intel.ple_gap=0 irqaffinity=0"
 \end{lstlisting}
 \end{minipage}
 
 \noindent In the following, these settings along with their impact on system latency are briefly described. 
 
 \begin{itemize}
-	\item \textbf{isolcpus=4}: This isolates CPU 4 from the general scheduler, meaning no process will be scheduled to run on this CPU unless it is explicitly assigned.
-	\item \textbf{rcu\_nocbs=4}: Moves the RCU (Read-Copy-Update) callback handling off of CPU 4.
-	\item \textbf{nohz\_full=4}: Makes CPU 4 tickless, reducing the timer interrupts and thus can improve performance for specific applications.
-	\item \textbf{default\_hugepagesz=1G, hugepagesz=1G, hugepages=8}: Sets the default huge page size to 1GB, and reserves 8 huge pages at boot.
-	\item \textbf{intel\_iommu=on}: Enables Intel's IOMMU (Input/Output Memory Management Unit) for hardware that supports it.
-	\item \textbf{rdt=l3cat}: Enables the L3 Cache Allocation Technology.
-	\item \textbf{nmi\_watchdog=0}: Disables the NMI watchdog, which can free up a bit of system resources.
-	\item \textbf{idle=poll}: Changes the idle loop of the CPU to actively poll.
-	\item \textbf{clocksource=tsc, tsc=reliable}: Sets the clocksource to TSC (Time Stamp Counter) and marks it as reliable.
-	\item \textbf{noht}: Disables Hyper-Threading.
-	\item \textbf{audit=0}: Disables the Linux audit system.
-	\item \textbf{skew\_tick=1}: Enables a mode to reduce timer interrupt overhead.
-	\item \textbf{intel\_pstate=disable}: Disables the intel\_pstate driver.
-	\item \textbf{intel.max\_cstate=0, intel\_idle.max\_cstate=0, processor.max\_cstate=0, processor\_idle.max\_cstate=0}: Disables deeper C-states, which can help reduce latency.
-	\item \textbf{nosoftlockup}: Disables the soft lockup detector.
-	\item \textbf{nohz=on}: Enables tickless operation system-wide.
-	\item \textbf{no\_timer\_check}: Disables the check for broken timer interrupt sources.
-	\item \textbf{nospectre\_v2, spectre\_v2\_user=off}: Disables mitigations for the Spectre v2 vulnerability.
-	\item \textbf{kvm.kvmclock\_periodic\_sync=N, kvm\_intel.ple\_gap=0}: These are KVM (Kernel-based Virtual Machine) related parameters.
-	\item \textbf{irqaffinity=0}: Sets the default IRQ affinity.
+	\item \textbf{isolcpus=4}: Isolates CPU 4 from the general scheduler, meaning no process will be scheduled to run on this CPU unless it is explicitly assigned. CPU isolation is explained in detail in section \ref{sec:cpu_isolation}.
+	\item \textbf{rcu\_nocbs=4}: The Linux kernel uses a synchronization mechanism called RCU, or Read-Copy-Update. It lets writers update the data in a way that guarantees readers will always see the same version while enabling multiple readers to access shared data without locks. The RCU subsystem uses callback functions that need to be invoked once readers are done with the data they accessed. By default, these callbacks are handled by the CPUs that executed the read-side critical sections. This parameter offloads RCU callback handling from CPU 4 to other CPUs. CPU 4 remains dedicated to high-priority tasks which helps in reducing latency.
+	\item \textbf{nohz\_full=4}: Makes CPU core 4 "tickless", meaning the kernel tries to avoid sending periodic scheduling-clock interrupts to the CPU when there are no runnable tasks. This lowers latency by reducing unnecessary wake-ups but may increase power consumption because the CPU is not able to enter a low-power state when idle. Additionally, timer interrupts cannot be fully eliminated because certain events, such as incoming interrupts or task activations, can still cause the kernel to send timer interrupts to the tickless CPU.	
+	\item \textbf{default\_hugepagesz=1G, hugepagesz=1G, hugepages=8}: Huge pages are large contiguous areas of memory that can be used by applications and the kernel, instead of the traditional 4KB small pages. The default huge page size is set to 1GB, and 8 huge pages of 1GB size are reserved at boot. This pre-allocation makes sure that these large memory regions are available to be used by the kernel or applications, without having to dynamically allocate and potentially fail.
+	\item \textbf{intel\_iommu=on}: Enables Intel's IOMMU (Input/Output Memory Management Unit), which connects a Direct Memory Access (DMA)-capable I/O bus, such as graphics cards and network adapters, to the main memory. It can enhance device performance by allowing these devices to directly access and use memory, which is especially helpful when these devices are virtualized.
+	\item \textbf{rdt=l3cat}: Activates the L3 Cache Allocation Technology (L3 CAT) feature of Intel’s Resource Director Technology (RDT). Unlike L1 and L2 caches, where each core has its fixed capacity, L3 cache is a shared pool among multiple cores. L3 CAT is a mechanism that controls the amount of L3 cache that a process can use. By controlling cache allocation, it can prevent a single process from monopolizing the L3 cache, which is particularly beneficial in virtualized environments, where multiple virtual machines share the same physical host.
+\begin{comment}
+\item \textbf{nmi\_watchdog=0}: Disables the NMI watchdog, which can free up a bit of system resources.
+\end{comment}
+\item \textbf{idle=poll}: Changes the CPU’s idle loop behavior to active polling. Instead of entering a low-power state when idle, the CPU continuously polls for new 
+tasks. This can reduce task start latency in real-time systems, but it increases power consumption.
+\begin{comment}
+\item \textbf{clocksource=tsc, tsc=reliable}: Sets the clocksource to TSC (Time Stamp Counter) and marks it as reliable.
+\end{comment}
+	\item \textbf{audit=0}: Disables the Linux audit system. When it is enabled, it generates log entries for security-relevant events, which is a slow operation since they are written to disk. If there are a large number of such events, the audit system can consume significant CPU time and I/O bandwidth which could lead to higher latency.
+\begin{comment}
+\item \textbf{skew\_tick=1}: Enables a mode to reduce timer interrupt overhead.
+\item \textbf{intel\_pstate=disable}: Disables the intel\_pstate driver.
+\item \textbf{intel.max\_cstate=0, intel\_idle.max\_cstate=0, processor.max\_cstate=0, processor\_idle.max\_cstate=0}: Disables deeper C-states, which can help reduce latency.
+\end{comment}
+	\item \textbf{nosoftlockup}: Disables the soft lockup detector in the Linux kernel. A soft lockup is when a CPU is busy executing kernel code for a long period of time without giving other tasks a chance to run. Especially threads with SCHED\_FIFO policy occupy the CPU for an extensive duration. This is detected and reported by the soft lockup detector, hence it is disabled to prevent these unnecessary warnings.
+\begin{comment}
+\item \textbf{nohz=on}: Enables tickless operation system-wide.
+\item \textbf{no\_timer\_check}: Disables the check for broken timer interrupt sources.
+\item \textbf{nospectre\_v2, spectre\_v2\_user=off}: Disables mitigations for the Spectre v2 vulnerability.
+\item \textbf{kvm.kvmclock\_periodic\_sync=N, kvm\_intel.ple\_gap=0}: These are KVM (Kernel-based Virtual Machine) related parameters.
+\end{comment}
+	\item \textbf{irqaffinity=0}: Sets the default Interrupt Request affinity to none. This means that no CPU core is preferred over another for handling IRQs. Instead, it lets the operating system decide how to distribute these IRQs across all the CPUs. 	
+
 \end{itemize}
+
 \section{Host OS Configurations}
-\subsection{CPU isolation}
+\subsection{CPU isolation}\label{sec:cpu_isolation}
 
 Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section~\ref{sec:irq_handling}. 
 
-For CPU isolation, the \texttt{isolcpus} function was used to isolate a peroformance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks or processes. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}. Output~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
+For CPU isolation, the \texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks or processes. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}. Output~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -564,7 +574,7 @@ For CPU isolation, the \texttt{isolcpus} function was used to isolate a peroform
 \end{lstlisting}
 \end{minipage}
 \subsection{Interrupt Requests Handling}\label{sec:irq_handling}
-Once the CPUs were isolated, Interrupt Requests handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to 'interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPU. This was done by manipulating a file in the \texttt{proc} filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 14 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be 3FFF. The script in code~\ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4. 
+Once the CPUs were isolated, Interrupt Requests handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to `interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPU. This was done by manipulating a file in the \texttt{proc} filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 14 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be 3FFF. The script in code~\ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4. 
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -602,29 +612,6 @@ Once the CPUs were isolated, Interrupt Requests handling was the next step. Inte
 \end{lstlisting}
 \end{minipage}
 
-\vspace{1em}
-\begin{minipage}{0.95\columnwidth}
-\begin{lstlisting}[name={Output of smp_affinity for CPU 19},label={output:irq_affinity}, breaklines=true]
-	sigma_ibo@sigma-ibo:~$ ./check_smp_affinity.sh 19
-	CPU 19 IRQ affinity:
-	0
-	2
-	3
-	4
-	5
-	6
-	7
-	10
-	11
-	13
-	15
-	131
-	172
-	188
-	189
-	195
-\end{lstlisting}
-\end{minipage}
 
 \noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
 \subsection{Disable dynamic frequency scaling}
@@ -650,27 +637,7 @@ Once the CPUs were isolated, Interrupt Requests handling was the next step. Inte
 
 \clearpage
 \section{Guest OS Configurations}
-\vspace{1em}
-\begin{minipage}{\linewidth}
-	\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualization},label={script:qemu_configuration_optimizations}]
-    #!/bin/sh
 
-    if  [ ! -d drive-c/ ]; then
-            echo "Filling drive-c/"
-            mkdir drive-c/
-            tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
-    fi
-    
-    exec  qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
-    -m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
-    -append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable" \
-    -net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
-    -fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
-    -device vhost-vsock-pci,guest-cid=3,id=vsock0 \
-    -drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
-    -no-reboot -nographic
-\end{lstlisting}
-\end{minipage}
 \clearpage
 
 \chapter{KVM exit reasons}\label{cha:kvm_exit_reasons}
