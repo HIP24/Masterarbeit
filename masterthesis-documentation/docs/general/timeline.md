@@ -85,7 +85,7 @@
 | Thursday, 30.05.2024 | Feiertag |
 | Friday, 31.05.2024 | Write thesis |
 | Monday, 03.06.2024 | change latency from 300 to 10000 |
-| Tuesday, 04.06.2024 |  |
+| Tuesday, 04.06.2024 | Write thesis, \[DRAFT\] chapter 4 and BIOS configuration finished  |
 | Wednesday, 05.06.2024 |  |
 | Thursday, 06.06.2024 |  |
 | Friday, 07.06.2024 |  |
