@@ -20,7 +20,7 @@ print(f"Average: {round(average_y, 2)}")
 
 # Create the plot
 plt.figure(figsize=(10, 6))
-plt.plot(x, y,'-', color='blue')
+plt.plot(x, y,'-', color='purple')
 
 # Set the title and labels
 #plt.title('Latency of Operating System')

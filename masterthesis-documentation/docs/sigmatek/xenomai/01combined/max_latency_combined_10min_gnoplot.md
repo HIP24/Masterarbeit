@@ -1,8 +1,8 @@
-# gnuplot hardware
+# gnuplot combined
 ```bash
 # Set output to a PNG file
 set terminal pngcairo enhanced font 'Arial,12' size 1024,768
-set output 'gnuplot_max_latency_hardware.png'
+set output 'gnuplot_combined_max_latency.png'
 set encoding utf8
 
 # Set the title and labels
@@ -25,8 +25,9 @@ set mytics 1
 set grid ytics
 set grid xtics
 
-# Plot the data with thicker lines
-plot 'max_latency_hardware_10min.txt' using 1:2 with lines linewidth 3 linecolor rgb "#800080" title ''
+# Plot the data with thicker lines and different colors
+plot '../0hardware/max_latency_hardware_10min.txt' using 1:2 with lines linewidth 3 linecolor rgb "#800080" title 'Hardware', \
+     '../1default/max_latency_default_10min.txt' using 1:2 with lines linewidth 3 linecolor rgb "blue" title 'Virtualization'
 ```
 
-![gnuplot_max_latency_hardware.png](gnuplot_max_latency_hardware.png)
+![gnuplot_combined_max_latency.png](gnuplot_combined_max_latency.png)

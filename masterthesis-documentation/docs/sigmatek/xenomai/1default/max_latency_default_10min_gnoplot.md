@@ -26,7 +26,7 @@ set grid ytics
 set grid xtics
 
 # Plot the data with thicker lines
-plot 'max_latency_default_10min.txt' using 1:2 with lines linewidth 3 title ''
+plot 'max_latency_default_10min.txt' using 1:2 with lines linewidth 3 linecolor rgb "blue" title ''
 ```
 
 ![gnuplot_max_latency_default.png](gnuplot_max_latency_default.png)
