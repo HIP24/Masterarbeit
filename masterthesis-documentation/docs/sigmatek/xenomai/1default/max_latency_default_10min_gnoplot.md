@@ -13,8 +13,17 @@ set ylabel "Frequency"
 # Set the range for the x axis
 set xrange [0:1000] # replace 1000 with 800 if you want the range to be until 800
 
-# Set the x axis to logarithmic scale
+# Set the x and y axes to logarithmic scale
 set logscale x
+set logscale y
+
+# Remove minor ticks on the axes
+set mxtics 1
+set mytics 1
+
+# Add grid lines for axes
+set grid ytics
+set grid xtics
 
 # Plot the data with thicker lines
 plot 'max_latency_default_10min.txt' using 1:2 with lines linewidth 3 title ''
