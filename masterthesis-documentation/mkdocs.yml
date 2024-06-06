@@ -16,8 +16,8 @@ theme:
   palette:
     primary: blue
     scheme: slate
-  logo: 'img/robot2.png'
-  favicon: 'img/robot2.png'
+  logo: 'resources/mkdocs/robot2.png'
+  favicon: 'resources/mkdocs/robot2.png'
 #extra_css:
 #  - css/extra.css
 #extra_javascript:

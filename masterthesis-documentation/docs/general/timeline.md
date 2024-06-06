@@ -86,6 +86,6 @@
 | Friday, 31.05.2024 | Write thesis |
 | Monday, 03.06.2024 | change latency from 300 to 10000 |
 | Tuesday, 04.06.2024 | Write thesis, \[DRAFT\] chapter 4 and BIOS configuration finished  |
-| Wednesday, 05.06.2024 |  |
+| Wednesday, 05.06.2024 | Write thesis, \[DRAFT\] Kernel Configurations 10/19 finished |
 | Thursday, 06.06.2024 |  |
 | Friday, 07.06.2024 |  |

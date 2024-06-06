@@ -51,6 +51,6 @@ masterthesis-documentation/docs/tools/rt-tester/**/*
 # But do not ignore files (unignore files)
 !masterthesis-documentation/docs/tools/ps/rt-tester/rt-tester/tests/*.*
 
+masterthesis-documentation/docs/sigmatek/salamander4/linux_kernels/
 masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.md
-masterthesis-documentation/docs/linux_kernels
 **/sigmatek-salamander-glibc-x86_64-salamander-image-core2-64-toolchain-09.07.120_RC2.sh
