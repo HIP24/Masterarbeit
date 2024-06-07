@@ -227,7 +227,7 @@ The system configuration is shown in Table~\ref{tab:testbed_configuration}
 	\end{tabular}}
 	\end{table}
 
-\noindent Figure~\ref{fig:lstopo} is the output of the \texttt{lstopo} command and visualizes the hardware nodes of the system, including CPU cores, caches, memory, and I/O devices. 
+\noindent Figure~\ref{fig:lstopo} is the output of the ~\texttt{lstopo} command and visualizes the hardware nodes of the system, including CPU cores, caches, memory, and I/O devices. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/lstopo.png}
@@ -242,7 +242,7 @@ The system configuration is shown in Table~\ref{tab:testbed_configuration}
 This chapter briefly describes the Salamander 4 operating system by SIGMATEK. 
 
 \section{Structure}
-\noindent Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment~\cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command \texttt{uname -a} can be observed in code~\ref{output:uname_a_virt}.
+\noindent Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment~\cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command ~\texttt{uname -a} can be observed in code~\ref{output:uname_a_virt}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -313,7 +313,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 As a starting point, initial latency values of both the bare metal and virtualization versions were measured with the latency tool of the xenomai tool suite. Salamander 4 bare metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. Salamander 4 virtualization refers to a virtual version of the Salamander 4 hardware platform, achieved through QEMU/KVM. Sections~\ref{sec:salamander4-bare-metal} and~\ref{sec:salamander4-virtualization} specify the details of the measurements for both versions. In the further course, the aim was to bring the latency values of the virtualization closer to those of the hardware and guarantee deterministic and reliable behavior. 
 
 \section{Salamander 4 Bare Metal}\label{sec:salamander4-bare-metal}
-The output of the command \texttt{uname -a} for Salamander 4 bare metal is shown in code~\ref{output:uname_a_hw}.
+The output of the command ~\texttt{uname -a} for Salamander 4 bare metal is shown in code~\ref{output:uname_a_hw}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -323,7 +323,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \end{lstlisting}
 \end{minipage}
 
-\noindent As a reference point, the latency program was executed on Salamander 4 bare metal for a duration of 10 minutes. The complete command used was \texttt{latency -h -g gnuplot.txt -T 600}, which runs the latency measurement tool for 600 seconds and prints histograms of min, avg, max latencies in a Gnuplot-compatible format to the file \texttt{gnuplot.txt}. Figure~\ref{fig:max_latency_hardware} shows the gathered latency values in microseconds.
+\noindent As a reference point, the latency program was executed on Salamander 4 bare metal for a duration of 10 minutes. The complete command used was ~\texttt{latency -h -g gnuplot.txt -T 600}, which runs the latency measurement tool for 600 seconds and prints histograms of min, avg, max latencies in a Gnuplot-compatible format to the file ~\texttt{gnuplot.txt}. Figure~\ref{fig:max_latency_hardware} shows the gathered latency values in microseconds.
 
 \begin{figure}[H]
 	\centering
@@ -378,10 +378,10 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \begin{itemize}
 	\item \textbf{bzImage}: Compressed Linux kernel image that is loaded by QEMU at system start. ``bz`` stands for big-zipped.
 	\item \textbf{drive-c}: Directory serving as C drive for QEMU system, created and filled by qemu\_def.sh script.
-	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU that enables UEFI boot process. \texttt{OVMF} stands for Open Virtual Machine Firmware, \texttt{qcow2} is a format for disk image files used by QEMU, it stands for "QEMU Copy On Write version 2".
+	\item \textbf{ovmf.code.qcow2}: Firmware file for QEMU that enables UEFI boot process. ~\texttt{OVMF} stands for Open Virtual Machine Firmware, ~\texttt{qcow2} is a format for disk image files used by QEMU, it stands for "QEMU Copy On Write version 2".
 	\item \textbf{qemu\_def.sh}: Shell script that starts QEMU with required parameters to boot Salamamder 4 OS. It is described in Code~\ref{script:qemu_def}.
-	\item \textbf{salamander-image-sigmatek-core2.ext4}: Disk image of the Salamander 4 OS for the Sigmatek Core 2 platform. It uses the \texttt{ext4} file system and serves as the root file system in the QEMU virtual machine, acting as the virtual hard drive.
-	\item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Compressed tarball containing a pre-configured environment for the Salamander 4 OS. It is unpacked and sets up the \texttt{drive-c/} directory with system and log files in the \texttt{qemu\_def.sh} script. 
+	\item \textbf{salamander-image-sigmatek-core2.ext4}: Disk image of the Salamander 4 OS for the Sigmatek Core 2 platform. It uses the ~\texttt{ext4} file system and serves as the root file system in the QEMU virtual machine, acting as the virtual hard drive.
+	\item \textbf{stek-drive-c-image-sigmatek-core2.tar.gz}: Compressed tarball containing a pre-configured environment for the Salamander 4 OS. It is unpacked and sets up the ~\texttt{drive-c/} directory with system and log files in the ~\texttt{qemu\_def.sh} script. 
 	\item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging.
 \end{itemize}
 
@@ -415,7 +415,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \end{lstlisting}
 \end{minipage}
 
-\noindent This script is run on a generic Ubuntu 22.04.4 system, as mentioned previously in chapter~\ref{cha:methodology}. The kernel version and other details are presented in Code~\ref{output:uname_a_ub}, using the \texttt{uname -a} command.
+\noindent This script is run on a generic Ubuntu 22.04.4 system, as mentioned previously in chapter~\ref{cha:methodology}. The kernel version and other details are presented in Code~\ref{output:uname_a_ub}, using the ~\texttt{uname -a} command.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -476,7 +476,7 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 
 In this chapter, the significant initial gap in latency statistics between the virtualized system and the bare metal system is tackled. For this reason, an extensive tuning process is carried out. This involves configurations spanning the BIOS, kernel, host OS, QEMU-KVM virtualization layer, and the Salamander 4 OS itself. The individual configurations will be discussed in detail and the modifications will be justified with a clear explanation. The goal is to bring the latency of the virtualized system closer to that of the bare metal system, thereby ensuring deterministic behavior under real-time constraints.
 
-\section{BIOS Configurations}
+\section{BIOS Configurations}\label{sec:bios_configurations}
 
 BIOS stands for Basic Input/Output System. It abstracts the hardware and enables basic functions of a computer during the booting process, such as starting the operating system and loading other software. Since the BIOS is embedded very deep, its configuration can significantly influence the real-time performance of the system. Table~\ref{tab:bios_configuration} illustrates the specific BIOS settings that have been adjusted for the purpose of real-time performance. 
 
@@ -513,7 +513,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 		\item \textbf{VT-d}: Direct access to physical devices from within virtual machines is possible when VT-d is enabled on the host. This can help reduce latencies associated with I/O operations in the virtual machine. It is therefore enabled on the host.
 	\end{itemize}
 
-\section{Kernel Configurations}
+\section{Kernel Configurations}\label{sec:kernel_configurations}
 
 The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} below. Some of them are essential for real-time performance.
 
@@ -527,7 +527,7 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 \noindent In the following, these settings along with their impact on system latency are briefly described. 
 
 \begin{itemize}
-	\item \textbf{isolcpus=4}: Isolates CPU 4 from the general scheduler, meaning no process will be scheduled to run on this CPU unless it is explicitly assigned. CPU isolation is explained in detail in section \ref{sec:cpu_isolation}.
+	\item \textbf{isolcpus=4}: Isolates CPU 4 from the general scheduler, meaning no process will be scheduled to run on this CPU unless it is explicitly assigned. CPU isolation is explained in detail in section \ref{subsec:cpu_isolation}.
 	\item \textbf{rcu\_nocbs=4}: The Linux kernel uses a synchronization mechanism called RCU, or Read-Copy-Update. It lets writers update the data in a way that guarantees readers will always see the same version while enabling multiple readers to access shared data without locks. The RCU subsystem uses callback functions that need to be invoked once readers are done with the data they accessed. By default, these callbacks are handled by the CPUs that executed the read-side critical sections. This parameter offloads RCU callback handling from CPU 4 to other CPUs. CPU 4 remains dedicated to high-priority tasks which helps in reducing latency.
 	\item \textbf{nohz\_full=4}: Makes CPU core 4 "tickless", meaning the kernel tries to avoid sending periodic scheduling-clock interrupts to the CPU when there are no runnable tasks. This lowers latency by reducing unnecessary wake-ups but may increase power consumption because the CPU is not able to enter a low-power state when idle. Additionally, timer interrupts cannot be fully eliminated because certain events, such as incoming interrupts or task activations, can still cause the kernel to send timer interrupts to the tickless CPU.	
 	\item \textbf{nohz=on}: Sets all CPUs to tickless mode system-wide.
@@ -545,15 +545,15 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 	\item \textbf{no\_timer\_check}: Disables the check for broken timer interrupt sources. Broken timer interrupt sources are problems with hardware or software that prevent timer interrupts from working as intended. Such a timer may not generate interrupts at the expected rate or at all. The kernel skips the checks for these broken timer interrupt sources, which can cause unnecessary overhead in a real-time system where every CPU cycle counts.
 	\item \textbf{nospectre\_v2, spectre\_v2\_user=off}: These parameters disable mitigations for the Spectre v2 vulnerability. Spectre v2 is a hardware vulnerability that affects many modern microprocessors and can allow malicious programs to access sensitive data they are not supposed to. While this is necessary for security, it has an impact on performance and should be turned off in controlled environments where the risk of exploitation is low.
 	\item \textbf{kvm.kvmclock\_periodic\_sync=N, kvm\_intel.ple\_gap=0}: These are KVM (Kernel-based Virtual Machine) related parameters. They disable the periodic synchronization of the kvmclock and set the gap between PLE (Pause Loop Exiting) events to 0. The kvmclock is a paravirtualized clock source provided by KVM to its guest OS and disabling this reduces latency introduced by clock synchronization. By setting the gap to 0, the virtual machine exits the pause loop immediately, which can reduce latency in spinlock-intensive workloads.
-	\item \textbf{irqaffinity=0}: Sets the default Interrupt Request affinity to none. This means that no CPU core is preferred over another for handling IRQs. Instead, it lets the operating system decide how to distribute these IRQs across all the CPUs. Section \ref{sec:irq_handling} dives deeper into Interrupt Request affinity.
+	\item \textbf{irqaffinity=0}: Sets the default Interrupt Request affinity to none. This means that no CPU core is preferred over another for handling IRQs. Instead, it lets the operating system decide how to distribute these IRQs across all the CPUs. Section \ref{subsec:irq_handling} dives deeper into Interrupt Request affinity.
 \end{itemize}
 
-\section{Host OS Configurations}
-\subsection{CPU isolation}\label{sec:cpu_isolation}
+\section{Host OS Configurations}\label{sec:host_configurations}
+\subsection{CPU isolation}\label{subsec:cpu_isolation}
 
-Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the \texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section~\ref{sec:irq_handling}. 
+Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. Also, modifying the ~\texttt{proc/irq/IRQ\_NUMBER/smp\_affinity} property of each Interrupt IRQ\_NUMBER in the system is part of this process, as described later in section~\ref{subsec:irq_handling}. 
 
-\noindent For CPU isolation, the \texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks or processes. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}. Output~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few critical kernel threads that are tied to this CPU still take CPU time.
+\noindent For CPU isolation, the ~\texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks or processes. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}. Output~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -565,71 +565,158 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 		4      39      39 [idle_inject/4]             FF    -     50
 		4      40      40 [migration/4]               FF    -     99
 		4      41      41 [ksoftirqd/4]               TS    0      -
-		4      43      43 [kworker/4:0H-events_highpr TS  -20      -
-		4     505     505 [irq/189-iwlwifi:queue_1]   FF    -     50
-		4     519     519 [irq/203-iwlwifi:exception] FF    -     50
-		4    3008    3008 [kworker/4:1H-kblockd]      TS  -20      -
-		4  177779  177779 [kworker/4:2-events]        TS    0      -
-		4  448807  448807 [kworker/4:1-events]        TS    0      -		
+		4      42      42 [kworker/4:0-events]        TS    0      -
+		4      43      43 [kworker/4:0H-kblockd]      TS  -20      -
+		4     153     153 [kworker/4:1-events]        TS    0      -
+		4   81649   81649 qemu-system-x86_64 -M pc,ac TS    0      -
+		4   81649   81654 qemu-system-x86_64 -M pc,ac TS    0      -
+		4   81649   81676 qemu-system-x86_64 -M pc,ac TS    0      -
+		4   81649   81702 qemu-system-x86_64 -M pc,ac TS    0      -
+		4   81649   82185 qemu-system-x86_64 -M pc,ac TS    0      -
+		4   81649   82187 qemu-system-x86_64 -M pc,ac TS    0      -
+		4   82134   82134 [kworker/4:1H-kblockd]      TS  -20      -
 \end{lstlisting}
 \end{minipage}
-\subsection{Interrupt Requests Handling}\label{sec:irq_handling}
-Once the CPUs were isolated, Interrupt Requests handling was the next step. Interrupt Requests are used to send a signal to the CPU, prompting it to `interrupt' its current task and divert its attention to another task. This allows hardware devices to communicate with the CPU through frequent context switches, which can lead to performance degradation, especially in high-performance computing or real-time scenarios. To mitigate this, the IRQs needed to be removed from the isolated CPU. This was done by manipulating a file in the \texttt{proc} filesystem, namely \texttt{/proc/irq/<IRQ>/smp\_affinity}. The value in the \texttt{smp\_affinity} file is a bitmask in hexadecimal format. Each bit in this mask corresponds to a CPU in the system. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the significance increases towards the left until CPU19. In a system with 14 CPUs, if every CPU was reserved for one IRQ, the value for \texttt{smp\_affinity} would be 3FFF. The script in code~\ref{script:smp_affinity} was written to check and log the distribution of Interrupt Requests across each CPU in Salamander 4. 
+\subsection{Interrupt Affinity}\label{subsec:irq_handling}
+Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. The ~\texttt{/proc/interrupts} file can be monitored using the command ~\texttt{watch -d -c cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the ~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the ~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU13). When there are 14 CPUs available, the default value for ~\texttt{smp\_affinity} would be 3FFF. Removing CPU4 out of this bitmask would be setting bit five to zero, resulting in 3FEF (11 1111 1110 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU. By changing the values of the ~\texttt{smp\_affinity} files, the assignment of IRQs to CPUs is controlled. However, as the proc filesystem resets to its default state after each reboot, manually changing numerous IRQ files is tedious and time-consuming. This process was automated using the shell script in Code~\ref{script:change_smp_affinity}, which is executed after every reboot.
+
+
+
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
-	\begin{lstlisting}[name={Check distribution of Interrupt Requests across each CPU},label={script:smp_affinity}]
+	\begin{lstlisting}[name={Check distribution of interrupt requests across each CPU},label={script:smp_affinity}]
+		import os
+		import pandas as pd
+		from tabulate import tabulate
+		
+		# Get the number of CPUs
+		num_cpus = os.cpu_count()
+		
+		# Initialize a dictionary to store the CPUs for each IRQ
+		irqs = {}
+		
+		# Iterate over each IRQ
+		for irq in os.listdir('/proc/irq'):
+			# Check if the smp_affinity file exists for this IRQ
+			if os.path.isfile(f'/proc/irq/{irq}/smp_affinity'):
+				# Read the current smp_affinity
+				with open(f'/proc/irq/{irq}/smp_affinity', 'r') as f:
+					affinity = int(f.read().strip(), 16)
+				# Initialize an empty list to store the CPUs for this IRQ
+				cpus = []
+				# Iterate over each CPU
+				for cpu in range(num_cpus):
+					# Check if the bit for the current CPU is set
+					if ((affinity & (1 << cpu)) != 0):
+						# Add the CPU to the list for this IRQ
+						cpus.append(cpu)
+				# Sort the list of CPUs
+				cpus.sort()
+				# Add the list of CPUs to the dictionary for this IRQ
+				irqs[irq] = cpus
+		
+		# Create a DataFrame to store the table
+		df = pd.DataFrame(index=sorted(irqs.keys(), key=int), columns=range(num_cpus))
+		
+		# Fill the DataFrame with 'x' where a CPU is assigned to an IRQ
+		for irq, cpus in irqs.items():
+			for cpu in cpus:
+				df.loc[irq, cpu] = 'x'
+		
+		# Replace NaN values with empty strings
+		df.fillna('', inplace=True)
+		
+		# Print the table in pipe format
+		print(tabulate(df, headers='keys', tablefmt='pipe', showindex=True))
+		
+		# Convert the DataFrame to a markdown table
+		markdown_table = df.to_markdown()
+		
+		# Write the markdown table to a file
+		with open('table_CPU_IRQ.md', 'w') as f:
+			f.write(markdown_table)
+\end{lstlisting}
+\end{minipage}
+
+\vspace{1em}
+\begin{minipage}{0.95\columnwidth}
+	\begin{lstlisting}[name={Change IRQ assignment of a CPU},label={script:change_smp_affinity}]
 		#!/bin/bash
+
 		# Check if a command-line argument is provided
 		if [ -z "$1" ]; then
 			echo "Please provide a CPU number as a command-line argument."
 			exit 1
 		fi
+		
 		# Get the CPU number from the command-line argument
 		CPU=$1
-		# Initialize an empty array to store the IRQ numbers
-		IRQs=()
-		for IRQ in /proc/irq/*; do
-			if [ -f "$IRQ/smp_affinity" ]; then
-				# Read the current smp_affinity
-				AFFINITY=$(cat "$IRQ/smp_affinity")
-				# Check if the bit for the current CPU is set
-				if (( (0x$AFFINITY & (1 << CPU)) != 0 )); then
-					# Add the IRQ number to the array
-					IRQs+=("${IRQ#/proc/irq/}")
-				fi
+		
+		# Define the mask values
+		declare -A mask_values
+		mask_values=( [0]="3ffe" [1]="3ffd" [2]="3ffb" [3]="3ff7" [4]="3fef" [5]="3fdf" [6]="3fbf" [7]="3f7f" [8]="3eff" [9]="3dff" [10]="3bff" [11]="37ff" [12]="2fff" [13]="17ff")
+		
+		# Run the check_smp_affinity.sh script and get the IRQs
+		IRQs=$(./check_smp_affinity.sh $CPU | grep -o '[0-9]\+')
+		
+		# Initialize an empty array to store the IRQs that could not be removed
+		failed_IRQs=()
+		# Initialize an empty array to store the IRQs that were successfully removed
+		succeeded_IRQs=()
+		
+		# Loop over the IRQs
+		for IRQ in $IRQs; do
+			# Try to change the smp_affinity
+			echo ${mask_values[$CPU]} | sudo tee /proc/irq/$IRQ/smp_affinity > /dev/null 2>&1
+			# If the command failed, add the IRQ to the failed_IRQs array
+			if [ $? -ne 0 ]; then
+				failed_IRQs+=($IRQ)
+			else
+				succeeded_IRQs+=($IRQ)
 			fi
 		done
-		# Sort the array
-		IFS=$'\n' sorted=($(sort -n <<<"${IRQs[*]}"))
-		# Print the CPU number
-		echo "CPU $CPU IRQ affinity:"
-		# Print the sorted IRQ numbers on separate lines
-		for irq in "${sorted[@]}"; do
-			echo "$irq"
-		done
 		
+		# Check if there were any failed IRQs
+		if [ ${#failed_IRQs[@]} -ne 0 ]; then
+			echo "IRQs ${failed_IRQs[@]} could not be removed from CPU $CPU."
+		fi
+		
+		# Check if there were any successful IRQs
+		if [ ${#succeeded_IRQs[@]} -ne 0 ]; then
+			# Remove the first entry from the succeeded_IRQs array
+			succeeded_IRQs=("${succeeded_IRQs[@]:1}")
+			echo "IRQs ${succeeded_IRQs[@]} were removed from CPU $CPU."
+		fi		
 \end{lstlisting}
 \end{minipage}
-
-
-\noindent By changing the values of the \texttt{smp\_affinity} files of the respective IRQs, the assignment of IRQs was controlled so that they would not be handled by the isolated CPU. This reduced the interruptions caused by IRQs and the isolated CPUs were able to focus more on their assigned tasks.
-\subsection{Disable dynamic frequency scaling}
 \subsection{Disable RT throttling}
-\subsection{No unexpected RT processes are running on your system}
-\subsection{IRQ affinity}
-\subsection{RCU CPU offloading}
+If a real-time task consumes 100\% of the CPU time, the system may become unresponsive as a whole. This happens because an RT process is constantly using the CPU and the Linux scheduler will not schedule other non-RT processes in the meantime. To prevent complete system lockups, the kernel has a function to throttle RT processes if they consume 0.95 seconds out of every 1 second of CPU time. It does this by pausing the process for the remaining 0.05 seconds, which is not desired because this could result in missed deadlines. RT throttling can be disabled by  writing the value -1 to the ~\texttt{/proc/sys/kernel/sched\_rt\_runtime\_us} file. This change also needs to be made permanent because the proc filesystem resets to its default state after each reboot. For this purpose, the line ~\texttt{kernel.sched\_rt\_runtime\_us = -1} can be appended to the end of the ~\texttt{/etc/sysctl.conf} file, which is read at boot time and used to configure kernel parameters. This reduces the potential for missed deadlines. 
+\subsection{No unexpected RT processes}
+It is important that there are no other unexpected real time processes running on the system. A high priority RT process could occasionally be created by the host operating system at boot, hence disabling the offending RT process is advised if it is not needed. The process of disabling these RT processes is usually described in the documentation for the chosen Linux distribution.
 \subsection{Suppress rcu cpu stall}
+As already mentioned in section \ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. A stall occurs when an RCU read-side critical section runs for an extended period of time, preventing the RCU grace period from completing. By writing 1 to the \texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file, these warnings are suppressed. This helps eliminate potential interruptions and CPU load that are caused by these warnings, thereby reduce the potential for increased latency. This setting is also not persistent across reboots, so the command needs to be added to a startup script. 
 \subsection{Maybe?}
+
 \subsection{Start QEMU normally and give all QEMU threads rt-priority} 
-\subsection{Kill all running user processes}
-\subsection{Set CPU Affinity for systemd services}
+
 \subsection{Cache Isolation for CPU and GPU}
+
 \subsection{Set CPU Affinity of IRQ thread to CPU 0}
+
 \subsection{Set Device Driver Work Queue to CPU 0}
-\subsection{Disable Machine Check}
+
+\subsection{Set CPU Affinity for systemd services}
+
 \subsection{Stop Certain Services}
-\section{QEMU-KVM Configurations}
+
+\subsection{Disable Machine Check}
+
+There are other configurations that may be relevant depending on your use case, some of which are documented in [this talk](https://www.youtube.com/watch?v=NrjXEaTSyrw) and [this other talk](https://www.youtube.com/watch?v=w3yT8zJe0Uw). Additionally, quality-of-life configurations, such the variables in /etc/security/limits.conf, may need to be tuned as well.
+
+\clearpage
+
+\section{QEMU-KVM Configurations}\label{sec:guest_configurations}
 \subsection{Tune lapic timer advance}
 \subsection{Set QEMU options for real-time VM}
 \subsection{Set CPU affinity and scheduling policy of QEMU CPU threads}
@@ -691,7 +778,7 @@ Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 	\label{fig:max_latency_taskset}
 \end{figure}
 
-\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and \texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of \texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for \texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed \texttt{kvm\_exit} events.
+\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and ~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of ~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for ~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed ~\texttt{kvm\_exit} events.
 
 \begin{table}[H]
 	\centering
@@ -716,7 +803,7 @@ Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 \end{table}
 
 \clearpage
-Figure~\ref{fig:kvm_exit_taskset} shows \texttt{kvm\_exit} frequency with CPU islation.
+Figure~\ref{fig:kvm_exit_taskset} shows ~\texttt{kvm\_exit} frequency with CPU islation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/kvm_exits_taskset.png}
@@ -724,7 +811,7 @@ Figure~\ref{fig:kvm_exit_taskset} shows \texttt{kvm\_exit} frequency with CPU is
 	\label{fig:kvm_exit_taskset}
 \end{figure}
 
-Figure~\ref{fig:kvm_exits_default} shows \texttt{kvm\_exit} frequency without CPU islation.
+Figure~\ref{fig:kvm_exits_default} shows ~\texttt{kvm\_exit} frequency without CPU islation.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/kvm_exits_default.png}
@@ -927,9 +1014,9 @@ The Figure~\ref{fig:latency_comparison} below compares non-optimized guest laten
 	\end{figure}
 	\clearpage
 	
-	\noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer \texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a \texttt{kvm\_exit} and kvm\_entry.
+	\noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer ~\texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a ~\texttt{kvm\_exit} and kvm\_entry.
 	
-	\noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in \texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
+	\noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in ~\texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
 	
 	Figure~\ref{fig:gnuplot_max_latency_default}
 	\begin{figure}[H]
@@ -955,13 +1042,13 @@ The Figure~\ref{fig:latency_comparison} below compares non-optimized guest laten
 		\label{fig:gnuplot_max_latency_vapic}
 	\end{figure}
 
-	\noindent In the process of analyzing the \texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the \texttt{APIC\_WRITE} and \texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included \texttt{EXTERNAL\_INTERRUPT} and \texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as \texttt{EPT\_MISCONFIG} and \texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like \texttt{PAUSE\_INSTRUCTION}, \texttt{EPT\_VIOLATION}, \texttt{EOI\_INDUCED}, \texttt{MSR\_READ}, and \texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
+	\noindent In the process of analyzing the ~\texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the ~\texttt{APIC\_WRITE} and ~\texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included ~\texttt{EXTERNAL\_INTERRUPT} and ~\texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as ~\texttt{EPT\_MISCONFIG} and ~\texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like ~\texttt{PAUSE\_INSTRUCTION}, ~\texttt{EPT\_VIOLATION}, ~\texttt{EOI\_INDUCED}, ~\texttt{MSR\_READ}, and ~\texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
 
 	The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. An APIC\_WRITE occurs when a guest operating system attempts to write to the APIC registers. Since the APIC is a physical hardware component, KVM must intercept this operation and cause a VM exit. To avoid this, newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance. 
 
 This can be done by setting the apic flag to 'v' in the VM configuration file.
 
-Figure~\ref{fig:kvm_exit_vapic} shows \texttt{kvm\_exit} frequency with APIC virtualization. Comparing this to the previous Figures~\ref{fig:kvm_exit_taskset} and~\ref{fig:kvm_exits_default}, it can be observed that an APIC\_Write no longer occurs.
+Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC virtualization. Comparing this to the previous Figures~\ref{fig:kvm_exit_taskset} and~\ref{fig:kvm_exits_default}, it can be observed that an APIC\_Write no longer occurs.
 
 
 \begin{figure}[H]
