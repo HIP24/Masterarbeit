@@ -1,0 +1,76 @@
+irq 151 -> taskset -p 361 
+irq 153 -> taskset -p 362 
+irq 154 -> taskset -p 363 
+irq 155 -> taskset -p 364 
+irq 156 -> taskset -p 365 
+irq 157 -> taskset -p 366 a
+irq 158 -> taskset -p 367
+irq 159 -> taskset -p 368
+irq 160 -> taskset -p 369
+irq 161 -> taskset -p 370
+irq 162 -> taskset -p 371
+irq 163 -> taskset -p 372 
+irq 164 -> taskset -p 373
+irq 165 -> taskset -p 374
+irq 166 -> taskset -p 375
+irq 152 -> taskset -p 379
+irq 168 -> taskset -p 380
+irq 169 -> taskset -p 381
+irq 170 -> taskset -p 382
+irq 171 -> taskset -p 383
+irq 172 -> taskset -p 384 a
+irq 173 -> taskset -p 385
+irq 174 -> taskset -p 386
+irq 175 -> taskset -p 387
+irq 176 -> taskset -p 388
+irq 177 -> taskset -p 389
+irq 178 -> taskset -p 390
+irq 179 -> taskset -p 391
+irq 180 -> taskset -p 392
+irq 181 -> taskset -p 393 
+
+------------------------------------
+
+pid 379's current affinity mask: 1
+pid 380's current affinity mask: 1
+pid 362's current affinity mask: 1
+
+pid 381's current affinity mask: 2
+pid 363's current affinity mask: 2
+
+pid 382's current affinity mask: 4
+pid 361's current affinity mask: 4
+pid 364's current affinity mask: 4
+
+pid 383's current affinity mask: 8
+pid 365's current affinity mask: 8
+
+pid 384's current affinity mask: 10
+pid 366's current affinity mask: 10
+
+pid 385's current affinity mask: 20
+pid 367's current affinity mask: 20
+
+pid 386's current affinity mask: 40
+pid 368's current affinity mask: 40
+
+pid 369's current affinity mask: 80
+pid 387's current affinity mask: 80
+
+pid 388's current affinity mask: 100
+pid 370's current affinity mask: 100
+
+pid 389's current affinity mask: 200
+pid 371's current affinity mask: 200
+
+pid 390's current affinity mask: 400
+pid 372's current affinity mask: 400
+
+pid 373's current affinity mask: 800
+pid 391's current affinity mask: 800
+
+pid 392's current affinity mask: 1000
+pid 374's current affinity mask: 1000
+
+pid 375's current affinity mask: 2000
+pid 393's current affinity mask: 2000
