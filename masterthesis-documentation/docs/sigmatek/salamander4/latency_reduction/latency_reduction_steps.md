@@ -87,12 +87,12 @@ Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/defau
   GRUB_CMDLINE_LINUX="isolcpus=13 rcu_nocbs=13"
   ```
 
-##### Suppress rcu cpu stall
+##### rcu_cpu_stall_suppress
   ```
   echo 1 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_suppress
   ```
 
-##### Maybe?
+##### rcu_cpu_stall_timeout
   ```
   echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
   ```
