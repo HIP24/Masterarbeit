@@ -87,15 +87,16 @@ Add `rcu_nocbs=13` as boot parameter for CPU offloading in `sudo nano /etc/defau
   GRUB_CMDLINE_LINUX="isolcpus=13 rcu_nocbs=13"
   ```
 
-##### rcu_cpu_stall_suppress
+##### [RCU CPU Stall Warnings](https://www.kernel.org/doc/html/latest/RCU/stallwarn.html#config-rcu-cpu-stall-timeout)
+  Wait until issuing an RCU CPU stall warning. 
+  ```
+  echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
+  ```
+  Stall-warning messages may be enabled and disabled completely via
   ```
   echo 1 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_suppress
   ```
 
-##### rcu_cpu_stall_timeout
-  ```
-  echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
-  ```
 
 ##### Start QEMU normally and give all QEMU threads rt-priority
 Start QEMU [normally with idle=poll](../../../sigmatek/QEMU/qemu_def_3hugepages_cmdline.sh). Give all QEMU threads rt-priority.
