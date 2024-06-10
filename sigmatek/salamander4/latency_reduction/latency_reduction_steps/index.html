@@ -790,18 +790,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#suppress-rcu-cpu-stall" class="md-nav__link">
+  <a href="#rcu_cpu_stall_suppress" class="md-nav__link">
     <span class="md-ellipsis">
-      Suppress rcu cpu stall
+      rcu_cpu_stall_suppress
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#maybe" class="md-nav__link">
+  <a href="#rcu_cpu_stall_timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      Maybe?
+      rcu_cpu_stall_timeout
     </span>
   </a>
   
@@ -5527,18 +5527,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#suppress-rcu-cpu-stall" class="md-nav__link">
+  <a href="#rcu_cpu_stall_suppress" class="md-nav__link">
     <span class="md-ellipsis">
-      Suppress rcu cpu stall
+      rcu_cpu_stall_suppress
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#maybe" class="md-nav__link">
+  <a href="#rcu_cpu_stall_timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      Maybe?
+      rcu_cpu_stall_timeout
     </span>
   </a>
   
@@ -5816,10 +5816,10 @@ To permanently disable real-time (RT) throttling, you can add the following line
 <p>Add <code>rcu_nocbs=13</code> as boot parameter for CPU offloading in <code>sudo nano /etc/default/grub</code>
   <div class="highlight"><pre><span></span><code>GRUB_CMDLINE_LINUX=&quot;isolcpus=13 rcu_nocbs=13&quot;
 </code></pre></div></p>
-<h5 id="suppress-rcu-cpu-stall">Suppress rcu cpu stall<a class="headerlink" href="#suppress-rcu-cpu-stall" title="Permanent link">&para;</a></h5>
+<h5 id="rcu_cpu_stall_suppress">rcu_cpu_stall_suppress<a class="headerlink" href="#rcu_cpu_stall_suppress" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>echo 1 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_suppress
 </code></pre></div>
-<h5 id="maybe">Maybe?<a class="headerlink" href="#maybe" title="Permanent link">&para;</a></h5>
+<h5 id="rcu_cpu_stall_timeout">rcu_cpu_stall_timeout<a class="headerlink" href="#rcu_cpu_stall_timeout" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>echo 200 | sudo tee /sys/module/rcupdate/parameters/rcu_cpu_stall_timeout
 </code></pre></div>
 <h5 id="start-qemu-normally-and-give-all-qemu-threads-rt-priority">Start QEMU normally and give all QEMU threads rt-priority<a class="headerlink" href="#start-qemu-normally-and-give-all-qemu-threads-rt-priority" title="Permanent link">&para;</a></h5>
