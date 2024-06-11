@@ -209,7 +209,7 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 The system configuration is shown in Table~\ref{tab:testbed_configuration}
 
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\caption[System configuration]{System configuration}
 	\label{tab:testbed_configuration}
@@ -333,17 +333,20 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_statistics_bare_metal}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
 
-\begin{table}[h]
+
+\begin{table}[H]
 	\centering
 	\caption{Latency statistics of Salamander 4 bare metal in microseconds}
 	\label{tab:latency_statistics_bare_metal}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 	\begin{tabular}{|c|c|}\hline
 	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
 	Average Latency & 4.06 \\\hline
 	Maximum Latency & 10.71 \\\hline
 	Minimum Latency & 2.82 \\\hline
 	Standard Deviation & 0.85 \\\hline
-	\end{tabular}
+	\end{tabular}}
 	\end{table}
 
 \noindent Figure~\ref{fig:gnuplot_max_latency_hardware} depicts the variation in latency over the course of said time. Since the data varies strongly, a logarithmic scale was used for both axes.
@@ -435,17 +438,19 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_statistics_virt}. It gives an overview of the average, maximum, minimum latency, and the standard deviation of the latency values in microseconds. 
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\caption{Latency statistics of default Salamander 4 virtualization in microseconds}
 	\label{tab:latency_statistics_virt}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 	\begin{tabular}{|c|c|}\hline
 	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
 	Average Latency & 46.22 \\\hline
 	Maximum Latency & 707.62 \\\hline
 	Minimum Latency & 15.59 \\\hline
 	Standard Deviation & 52.13 \\\hline
-	\end{tabular}
+	\end{tabular}}
 	\end{table}
 
 \noindent Figure~\ref{fig:gnuplot_max_latency_default} depicts the variation in latency over the course of said time with default settings. 
@@ -479,7 +484,7 @@ In this chapter, the significant initial gap in latency statistics between the v
 
 BIOS stands for Basic Input/Output System. It abstracts the hardware and enables basic functions of a computer during the booting process, such as starting the operating system and loading other software. Since the BIOS is embedded very deep, its configuration can significantly influence the real-time performance of the system. Table~\ref{tab:bios_configuration} illustrates the specific BIOS settings that have been adjusted for the purpose of real-time performance. 
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\caption{BIOS Configurations}
 	\label{tab:bios_configuration}
@@ -575,9 +580,7 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 \end{lstlisting}
 \end{minipage}
 \subsection{Interrupt Affinity}\label{subsec:irq_handling}
-Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. The ~\texttt{/proc/interrupts} file can be monitored using the command ~\texttt{watch -d -c cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the ~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the ~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU13). When there are 14 CPUs available, the default value for ~\texttt{smp\_affinity} would be 3FFF. Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 3FEF (11 1111 1110 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU. By changing the values of the ~\texttt{smp\_affinity} files, the assignment of IRQs to CPUs is controlled. However, as the proc filesystem resets to its default state after each reboot, manually changing numerous IRQ files is tedious and time-consuming. This process was automated using the shell script in Code~\ref{script:change_smp_affinity}, which is executed after every reboot.
-
-Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Express, a type of SSD storage) can be set away from CPU 4 to avoid impacting real-time workloads running on CPU 4. This can be done through finding out the respective process IDs through \texttt{ps -e | grep 'irq/.*nvme'} and then executing \texttt{sudo taskset -a -p -c 0 <PID>} with the PID obtained from the previous command.
+Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. The ~\texttt{/proc/interrupts} file can be monitored using the command ~\texttt{watch -d -c cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the ~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the ~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU13). When there are 14 CPUs available, the default value for ~\texttt{smp\_affinity} would be 3FFF. Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 3FEF (11 1111 1110 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU. By changing the values of the ~\texttt{smp\_affinity} files, the assignment of IRQs to CPUs is controlled. However, as the proc filesystem resets to its default state after each reboot, manually changing numerous IRQ files is tedious and time-consuming. This process was automated using the shell script in Code~\ref{script:change_smp_affinity}, which is executed after every reboot. Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Express, a type of SSD storage) can be set away from CPU 4 to avoid impacting real-time workloads. This can be done through finding out the respective process IDs through \texttt{ps -e | grep 'irq/.*nvme'} and then executing \texttt{sudo taskset -a -p -c 0 <PID>}.
 
 
 \vspace{1em}
@@ -692,30 +695,53 @@ If a real-time task consumes 100\% of the CPU time, the system may become unresp
 \subsection{Disable RCU CPU stall warnings}
 As already mentioned in section \ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the  ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
 \subsection{RT-priority} 
+Having a real-time kernel itself is a crucial part of achieving deterministic behavior, but not enough to take full advantage of the real-time capabilities. One key aspect of this are real-time priorities, thoroughly explained by Richard Weinberger in~\cite{LinuxProcessPriorities}. In essence, Table \ref{tab:scheduling_priorities} lists minimum and maximum priorities for different scheduling policies in Linux.
+
+\begin{table}[H]
+	\centering
+	\caption{Minimum and maximum priorities for different scheduling policies}
+	\label{tab:scheduling_priorities}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|l|l|l|}
+	\hline
+	\textbf{Scheduling Policy} & \textbf{Min Priority} & \textbf{Max Priority} \\ \hline
+	SCHED\_OTHER               & 0                     & 0                     \\ \hline
+	SCHED\_FIFO                & 1                     & 99                    \\ \hline
+	SCHED\_RR                  & 1                     & 99                    \\ \hline
+	SCHED\_BATCH               & 0                     & 0                     \\ \hline
+	SCHED\_IDLE                & 0                     & 0                     \\ \hline
+	SCHED\_DEADLINE            & 0                     & 0                     \\ \hline
+	\end{tabular}}
+	\end{table}
+	
+\noindent \texttt{SCHED\_FIFO} allows deterministic, high-priority execution of critical tasks without being preempted by lower-priority processes. The virtual machine can either be started with \texttt{chrt -f <PRIO>} or adjusted at a later point with \texttt{chrt -f <PRIO> <PID>}. 
+
 \subsection{No unexpected RT processes}
 It is important that there are no other unexpected real time processes running on the system. A high priority RT process could occasionally be created by the host operating system at boot, hence disabling the offending RT process is advised if it is not needed. The process of disabling these RT processes is usually described in the documentation for the chosen Linux distribution.
-\subsection{Set CPU Affinity of IRQ thread to CPU 0}
-
-
-\subsection{Set Device Driver Work Queue to CPU 0}
-
-
-
+\subsection{Set Device Driver Work Queue}
+The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask}.
 \subsection{Stop Certain Services}
+Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{table:stop_servies} can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means they will not be able to interrupt the CPU with their tasks.
 
+\begin{table}[H]
+	\centering
+	\caption{Description of Services}
+	\label{table:stop_servies}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Service} & \textbf{Description} \\
+	\hline
+	irqbalance.service & Distributes hardware interrupts across CPUs \\\hline
+	thermald.service & A daemon that prevents overheating \\\hline
+	wpa\_supplicant.service & A service for wireless network devices \\
+	\hline
+	\end{tabular}}
+	\end{table}
 \subsection{Disable Machine Check}
-
-There are other configurations that may be relevant depending on your use case, some of which are documented in [this talk](https://www.youtube.com/watch?v=NrjXEaTSyrw) and [this other talk](https://www.youtube.com/watch?v=w3yT8zJe0Uw). Additionally, quality-of-life configurations, such the variables in /etc/security/limits.conf, may need to be tuned as well.
-
-
-
-``korrekt''
-
-\enquote{This LaTeX.}
-
-
-
-\clearpage
+Machine checks report hardware errors and these checks can cause interruptions and increase latency. Hence it is best to disable them in real-time scenarios by writing a ``0'' to the \texttt{/sys/devices/system/machinecheck/machinecheck0/check\_interval} file.
 
 \section{QEMU-KVM Configurations}\label{sec:guest_configurations}
 \subsection{Tune lapic timer advance}
@@ -724,9 +750,11 @@ There are other configurations that may be relevant depending on your use case, 
 \subsection{Passthrough PCI devices into the VM}
 
 \clearpage
+
 \section{Guest OS Configurations}
 
-\clearpage
+\section{Other configurations}
+There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in \cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. \cite{HOWTOBuildRTapplication} and \cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
 
 \chapter{KVM exit reasons}\label{cha:kvm_exit_reasons}
 
@@ -753,6 +781,10 @@ There are other configurations that may be relevant depending on your use case, 
 \begin{comment}
 
 \chapter{To Include}\label{cha:to_include}
+``korrekt''
+
+\enquote{This LaTeX.}
+
 \section{Latency Comparison}
 In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualization of Salamander 4 OS to closely match that of the bare metal version.
 
@@ -823,7 +855,7 @@ Figure~\ref{fig:kvm_exits_default} shows ~\texttt{kvm\_exit} frequency without C
 \clearpage
 
 
-\begin{table}[h!]
+\begin{table}[H]
 	\centering
 	\begin{minipage}{.5\textwidth}
 	\centering
@@ -903,7 +935,7 @@ The Figure~\ref{fig:latency_comparison} below compares non-optimized guest laten
 \clearpage
 
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\begin{tabular}{|p{0.1\textwidth}|p{0.45\textwidth}|p{0.45\textwidth}|}
 	\hline
