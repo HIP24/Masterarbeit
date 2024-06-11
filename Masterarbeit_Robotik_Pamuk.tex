@@ -146,7 +146,7 @@ Roboteranwendungen verbessern kann}
 %- Anhang (optional)
 
 \chapter{Introduction}\label{cha:introduction}
-In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Traditional operating systems, such as Windows or Linux, are often not suitable for these types of real-time requirements as they cannot guarantee deterministic execution times. Therefore, real-time operating systems are required that are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes.
+In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Traditional operating systems, such as Windows or Ubuntu, are often not suitable for these types of real-time requirements as they cannot guarantee deterministic execution times. Therefore, real-time operating systems are required that are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes.
 
 \bigskip \noindent The core component of an RTOS that enables real-time capabilities is the kernel. The kernel is responsible for managing system resources, scheduling tasks, and ensuring deterministic behavior. It employs preemptive scheduling mechanisms to allow high-priority tasks to preempt lower-priority tasks, ensuring that time-critical tasks are not delayed. The kernel also implements priority-based scheduling algorithms, such as Rate Monotonic Scheduling (RMS) or Earliest Deadline First (EDF), to schedule tasks based on their priorities and timing constraints. Additionally, RTOS kernels are designed to minimize interrupt latency, which is crucial for real-time applications that require immediate response to external events.
 
@@ -158,7 +158,7 @@ In today's industrial production and automation, robot systems are well establis
 \section{Application Context}
 This master's thesis was written at SIGMATEK GmbH \& Co KG~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 %This section provides necessary information about the starting point and boundary conditions of the thesis, as the work should be reproducible with the means used. 
-SIGMATEK uses its own customized Linux distribution, namely Salamander 4, to be run on their self-manufactured CPUs. Salamander 4 system employs hard real-time with Xenomai 3 and requires a worst latency value between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal. Salamander 4 is built with Yocto and virtualized through QEMU/KVM. The details of this operating system are explained in chapter~\ref{cha:salamander4}. 
+SIGMATEK uses its own customized Linux distribution, namely Salamander 4, to be run on their self-manufactured CPUs. Salamander 4 system employs hard real-time with Xenomai 3 and requires a worst latency value between 20 and 50 \textmu s. The goal is to virtualize Salamander 4 and approach the performance of bare metal. Salamander 4 is built with Yocto and virtualized through Quick Emulator/Kernel-based Virtual Machine (QEMU/KVM). The details of this operating system are explained in chapter~\ref{cha:salamander4}. 
 
 \section{State of the art}
 
@@ -198,11 +198,11 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 \end{comment}
 
-\bigskip \noindent Trace-cmd was used for tracing the Linux kernel. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency~\cite{Tracecmd}.
+\bigskip \noindent Trace-cmd can be used for tracing the Linux kernel~\cite{Tracecmd}. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency.
 
 \bigskip \noindent The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool~\cite{KernelShark}. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed.
 
-\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel. It enables low-latency and deterministic execution of time-critical tasks. Xenomai 3 introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times~\cite{XenomaiXenomai}.
+\bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel~\cite{XenomaiXenomai}. It enables low-latency and deterministic execution of time-critical tasks. Xenomai 3 introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times.
 
 \clearpage 
 
@@ -262,7 +262,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 
 \clearpage
-\noindent The interfaces between the individual modules are indicated by an arrow in Figure~\ref{fig:lasal_cpu}.
+\noindent These modules and the interfaces (indicated by an arrow) between them are shown in Figure~\ref{fig:lasal_cpu}.
 
 \begin{figure}[H]
 	\centering
@@ -289,7 +289,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\columnwidth]{img/x3-cobalt-interfaces.png}
-	\caption[Xenomai Cobalt interfaces]{Xenomai Cobalt interfaces}
+	\caption[Xenomai Cobalt interfaces]{Xenomai Cobalt interfaces~\cite{XenomaiXenomai}}
 	\label{fig:cobalt}
 \end{figure}
 
@@ -299,7 +299,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\columnwidth]{img/x3-mercury-interfaces.png}
-	\caption[Xenomai Mercury interfaces]{Xenomai Mercury interfaces}
+	\caption[Xenomai Mercury interfaces]{Xenomai Mercury interfaces~\cite{XenomaiXenomai}}
 	\label{fig:mercury}
 \end{figure}
 
@@ -312,7 +312,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 As a starting point, initial latency values of both the bare metal and virtualization versions were measured with the latency tool of the xenomai tool suite. Salamander 4 bare metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. Salamander 4 virtualization refers to a virtual version of the Salamander 4 hardware platform, achieved through QEMU/KVM. Sections~\ref{sec:salamander4-bare-metal} and~\ref{sec:salamander4-virtualization} specify the details of the measurements for both versions. In the further course, the aim was to bring the latency values of the virtualization closer to those of the hardware and guarantee deterministic and reliable behavior. 
 
 \section{Salamander 4 Bare Metal}\label{sec:salamander4-bare-metal}
-The output of the command ~\texttt{uname -a} for Salamander 4 bare metal is shown in code~\ref{output:uname_a_hw}.
+The output of the command ~\texttt{uname -a} for Salamander 4 bare metal is shown in Code~\ref{output:uname_a_hw}.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -360,7 +360,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 
 \section{Salamander 4 Virtualization}\label{sec:salamander4-virtualization}
-In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developed using Yocto, an open-source project that allows customised Linux distributions to be created for embedded systems~\cite{WelcomeYoctoProject}. Upon generating the necessary files, Yocto provides a QEMU folder with the following components shown in code~\ref{lst:ls}. QEMU is the environment in which the virtualization runs, as it is an open-source tool for hardware virtualization~\cite{QEMU}.
+In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developed using Yocto, an open-source project that allows customised Linux distributions to be created for embedded systems~\cite{WelcomeYoctoProject}. Upon generating the necessary files, Yocto provides a QEMU folder with the following components shown in Code~\ref{lst:ls}. QEMU is the environment in which the virtualization runs, as it is an open-source tool for hardware virtualization~\cite{QEMU}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -376,7 +376,8 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
     \end{lstlisting}
 \end{minipage}
 
-\noindent With the help of the script depicted in code~\ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. The following is a description of the components used for the virtualization of Salamander 4:
+\noindent With the help of the script depicted in Code~\ref{script:qemu_def}, Salamander 4 is started together with the necessary hardware components in the QEMU environment. This makes it possible to run Salamander 4 on a variety of host systems, regardless of the specific hardware of the host. The following is a description of the components used for the virtualization of Salamander 4.
+\clearpage
 \begin{itemize}
 	\item \textbf{bzImage}: Compressed Linux kernel image that is loaded by QEMU at system start. ``bz`` stands for big-zipped.
 	\item \textbf{drive-c}: Directory serving as C drive for QEMU system, created and filled by qemu\_def.sh script.
@@ -453,6 +454,8 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 	\end{tabular}}
 	\end{table}
 
+\clearpage
+
 \noindent Figure~\ref{fig:gnuplot_max_latency_default} depicts the variation in latency over the course of said time with default settings. 
 
 \begin{figure}[H]
@@ -478,7 +481,7 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 
 \chapter{Real-Time Performance Tuning}\label{cha:real-time_tuning}
 
-In this chapter, the significant initial gap in latency statistics between the virtualized system and the bare metal system is tackled. For this reason, an extensive tuning process is carried out. This involves configurations spanning the BIOS, kernel, host OS, QEMU-KVM virtualization layer, and the Salamander 4 OS itself. The individual configurations will be discussed in detail and the modifications will be justified with a clear explanation. The goal is to bring the latency of the virtualized system closer to that of the bare metal system, thereby ensuring deterministic behavior under real-time constraints.
+In this chapter, the significant initial gap in latency statistics between the virtualized system and the bare metal system is tackled. For this reason, an extensive tuning process is carried out. This involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The individual configurations will be discussed in detail and the modifications will be justified with a clear explanation. The goal is to bring the latency of the virtualized system closer to that of the bare metal system, thereby ensuring deterministic behavior under real-time constraints.
 
 \section{BIOS Configurations}\label{sec:bios_configurations}
 
@@ -519,7 +522,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \section{Kernel Configurations}\label{sec:kernel_configurations}
 
-The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} below. Some of them are essential for real-time performance.
+The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} below. 
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -553,6 +556,7 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 \end{itemize}
 
 \section{Host OS Configurations}\label{sec:host_configurations}
+The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and reduce latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest OS is provided.
 \subsection{CPU affinity and isolation}\label{subsec:cpu_isolation}
 
 Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. For CPU isolation, the ~\texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}, including systemd services. To prevent systemd services from running on an isolated CPU, the CPU affinity can be set the with line \texttt{CPUAffinity=0 1 2 3 5 6 7 8 9 10 11 12 13} in the \texttt{/etc/systemd/system.conf} file to indicate the CPUs that systemd-services are allowed to run on. Every CPU other than the isolated CPU 4 is allowed. Output~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
@@ -690,10 +694,6 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 		fi		
 \end{lstlisting}
 \end{minipage}
-\subsection{Disable RT throttling}
-If a real-time task consumes 100\% of the CPU time, the system may become unresponsive as a whole. This happens because an RT process is constantly using the CPU and the Linux scheduler will not schedule other non-RT processes in the meantime. To prevent complete system lockups, the kernel has a function to throttle RT processes if they consume 0.95 seconds out of every 1 second of CPU time. It does this by pausing the process for the remaining 0.05 seconds, which is not desired because this could result in missed deadlines. RT throttling can be disabled by  writing the value -1 to the ~\texttt{/proc/sys/kernel/sched\_rt\_runtime\_us} file. This change also needs to be made permanent because the proc filesystem resets to its default state after each reboot. For this purpose, the line ~\texttt{kernel.sched\_rt\_runtime\_us = -1} can be appended to the end of the ~\texttt{/etc/sysctl.conf} file, which is read at boot time and used to configure kernel parameters. This reduces the potential for missed deadlines. 
-\subsection{Disable RCU CPU stall warnings}
-As already mentioned in section \ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the  ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
 \subsection{RT-priority} 
 Having a real-time kernel itself is a crucial part of achieving deterministic behavior, but not enough to take full advantage of the real-time capabilities. One key aspect of this are real-time priorities, thoroughly explained by Richard Weinberger in~\cite{LinuxProcessPriorities}. In essence, Table \ref{tab:scheduling_priorities} lists minimum and maximum priorities for different scheduling policies in Linux.
 
@@ -715,19 +715,20 @@ Having a real-time kernel itself is a crucial part of achieving deterministic be
 	\end{tabular}}
 	\end{table}
 	
-\noindent \texttt{SCHED\_FIFO} allows deterministic, high-priority execution of critical tasks without being preempted by lower-priority processes. The virtual machine can either be started with \texttt{chrt -f <PRIO>} or adjusted at a later point with \texttt{chrt -f <PRIO> <PID>}. 
-
-\subsection{No unexpected RT processes}
-It is important that there are no other unexpected real time processes running on the system. A high priority RT process could occasionally be created by the host operating system at boot, hence disabling the offending RT process is advised if it is not needed. The process of disabling these RT processes is usually described in the documentation for the chosen Linux distribution.
+\noindent \texttt{SCHED\_FIFO} allows deterministic, high-priority execution of critical tasks without being preempted by lower-priority processes. The virtual machine can either be started with \texttt{chrt -f <PRIO>} or adjusted at a later point with \texttt{chrt -f <PRIO> <PID>}. It is also important that there are no other unexpected real time processes running on the system concurrently.
+\subsection{Disable RT throttling}
+If a real-time task consumes 100\% of the CPU time, the system may become unresponsive as a whole. This happens because an RT process is constantly using the CPU and the Linux scheduler will not schedule other non-RT processes in the meantime. To prevent complete system lockups, the kernel has a function to throttle RT processes if they consume 0.95 seconds out of every 1 second of CPU time. It does this by pausing the process for the remaining 0.05 seconds, which is not desired because this could result in missed deadlines. RT throttling can be disabled by  writing the value -1 to the ~\texttt{/proc/sys/kernel/sched\_rt\_runtime\_us} file. This change also needs to be made permanent because the proc filesystem resets to its default state after each reboot. For this purpose, the line ~\texttt{kernel.sched\_rt\_runtime\_us = -1} can be appended to the end of the ~\texttt{/etc/sysctl.conf} file, which is read at boot time and used to configure kernel parameters. This reduces the potential for missed deadlines. 
 \subsection{Set Device Driver Work Queue}
 The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask}.
+\subsection{Disable RCU CPU stall warnings}
+As already mentioned in section \ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the  ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
 \subsection{Stop Certain Services}
-Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{table:stop_servies} can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means they will not be able to interrupt the CPU with their tasks.
+Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{tab:stop_servies} can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means they will not be able to interrupt the CPU with their tasks.
 
 \begin{table}[H]
 	\centering
 	\caption{Description of Services}
-	\label{table:stop_servies}
+	\label{tab:stop_servies}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 	\begin{tabular}{|l|l|}
@@ -743,21 +744,73 @@ Services like irqbalance.service, thermald.service, and wpa\_supplicant.service,
 \subsection{Disable Machine Check}
 Machine checks report hardware errors and these checks can cause interruptions and increase latency. Hence it is best to disable them in real-time scenarios by writing a ``0'' to the \texttt{/sys/devices/system/machinecheck/machinecheck0/check\_interval} file.
 
-\section{QEMU-KVM Configurations}\label{sec:guest_configurations}
-\subsection{Tune lapic timer advance}
-\subsection{Set QEMU options for real-time VM}
-\subsection{Set CPU affinity and scheduling policy of QEMU CPU threads}
-\subsection{Passthrough PCI devices into the VM}
+\section{QEMU/KVM Configurations}\label{sec:guest_configurations}
+KVM allows the guest OS to run directly on the hardware, bypassing the need for traditional emulation which can introduce delays. QEMU, when used with KVM, provides hardware-assisted virtualization, which also lowers latency in the guest OS.
 
-\clearpage
+\subsection{Tune lapic timer advance}
+The Local Advanced Programmable Interrupt Controller (LAPIC) is a built-in timer that handles the delivery of interrupts to the CPU.
+It generates interrupts at a rate. This rate can be tuned in the \texttt{/sys/module/kvm/parameters/lapic\_timer\_advance\_ns} file to reduce the frequency of interrupts and therefore decrease the latency of the guest VM. The default value is ``-1'', which means that the kernel will automatically calculate an appropriate advance for the timer. Here, it is set to the value ``7500''. Hence,the timer interrupt will be delivered 7500 nanoseconds earlier than it is actually due. This gives the VM more time to handle it.
+
+\subsection{Set QEMU options for real-time VM}
+QEMU provides several options that can be used to improve the real-time performance of the guest VM. Table \ref{tab:qemu_options} briefly explains these options.
+
+\begin{table}[H]
+    \centering
+    \caption{QEMU options for real-time performance}
+    \label{tab:qemu_options}
+    \setlength{\tabcolsep}{0.5em} % for the horizontal padding
+    {\renewcommand{\arraystretch}{1.2}% for the vertical padding
+    \begin{tabular}{|p{6.5cm}|p{8cm}|}
+    \hline
+    \textbf{QEMU Option} & \textbf{Description} \\\hline
+    \texttt{-object memory-backend-ram,}\newline\texttt{id=ram0,size=4G,prealloc=on} & Locks the memory of the VM to 4GB and prevents \newline it from being swapped out to disk \\\hline
+    \texttt{-mem-prealloc} \newline \texttt{-mem-path /dev/hugepages/} & Enables the use of hugepages and improves \newline memory access \\\hline
+    \end{tabular}}
+    \end{table}
+
+\noindent Code \ref{script:qemu_def_tuned} shows the final QEMU script used to start the Salamander 4 virtualization, including these options.
+
+	\vspace{1em}
+	\begin{minipage}{\linewidth}
+		\begin{lstlisting}[name={Tuned QEMU script for starting Salamander 4 virtualization},label={script:qemu_def_tuned}]
+		#!/bin/sh
+
+		if  [ ! -d drive-c/ ]; then
+				echo "Filling drive-c/"
+				mkdir drive-c/
+				tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
+		fi
+			
+		exec taskset -c 4 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+		-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+		-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 threadirqs" \
+		-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+		-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
+		-device vhost-vsock-pci,guest-cid=3,id=vsock0 \
+		-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+		-cpu host,hv-passthrough \
+		-object memory-backend-ram,id=ram0,size=4G,prealloc=on \
+		-mem-prealloc -mem-path /dev/hugepages \
+		-no-reboot -nographic
+	\end{lstlisting}
+	\end{minipage}
 
 \section{Guest OS Configurations}
 
 \section{Other configurations}
 There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in \cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. \cite{HOWTOBuildRTapplication} and \cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
 
-\chapter{KVM exit reasons}\label{cha:kvm_exit_reasons}
+\clearpage
 
+\chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
+
+\section{VARAN}
+\section{Robotic Application}
+\clearpage
+
+\begin{comment}
+
+\chapter{KVM exit reasons}\label{cha:kvm_exit_reasons}
 \section{APIC\_WRITE}
 \section{HLT}
 \section{EPT\_MISCONFIG}
@@ -769,16 +822,6 @@ There are other configurations that may be relevant depending on the case. Linux
 \section{PAUSE\_INSTRUCTION}
 \section{CPUID}
 \section{MSR\_READ}
-
-\clearpage
-
-\chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
-
-\section{VARAN}
-\section{Robotic Application}
-\clearpage
-
-\begin{comment}
 
 \chapter{To Include}\label{cha:to_include}
 ``korrekt''
@@ -1103,15 +1146,26 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{WelcomeYoctoProject}
 ~\cite{QEMU}
 ~\cite{maPerformanceTuningKVMbased}
-~\cite{linPerformanceEvaluationXenomai}
+~\cite{LinuxProcessPriorities}
+~\cite{kernelrecipesKernelRecipes20162016}
+~\cite{thelinuxfoundationFindingSourcesLatency2020}
+~\cite{thelinuxfoundationChecklistWritingLinux2020}
+~\cite{HOWTOBuildRTapplication}
+~\cite{RealtimeProgrammingLinux}
+~\cite{KVMQemuVirtualization}
+~\cite{RealTimePerformanceTuning2022}
+~\cite{adamPerformanceAssessmentLinux2021}
+~\cite{adamRealTimePerformanceResponse2021}
 ~\cite{broskyShieldedProcessorsGuaranteeing2003}
 ~\cite{cinqueVirtualizingMixedCriticalitySystems2022}
+~\cite{deoliveiraDemystifyingRealTimeLinux}
 ~\cite{garcia-vallsChallengesRealtimeVirtualization2014}
 ~\cite{guStateoftheArtSurveyRealTime2012}
 ~\cite{HardRealTime}
 ~\cite{javierperezHowRealTime2022}
 ~\cite{kirovaImpactModernVirtualization2019}
 ~\cite{kiszkaLinuxRealTimeHypervisor}
+~\cite{linPerformanceEvaluationXenomai}
 ~\cite{lutsykPipelinedMulticoreMachine2020}
 ~\cite{malallahComprehensiveStudyKernel2021}
 ~\cite{masrurVMBasedRealTimeServices2010}
@@ -1120,10 +1174,6 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{queirozTestingLimitsGeneralpurpose2023}
 ~\cite{reghenzaniRealTimeLinuxKernel2020}
 ~\cite{yoonRealTimePerformanceAnalysis}
-~\cite{adamPerformanceAssessmentLinux2021}
-~\cite{adamRealTimePerformanceResponse2021}
-~\cite{deoliveiraDemystifyingRealTimeLinux}
-~\cite{RealTimePerformanceTuning2022}
 ~\clearpage
 
 \begin{comment}
