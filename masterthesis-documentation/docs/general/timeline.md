@@ -88,8 +88,8 @@
 | Tuesday, 04.06.2024 | Write thesis, \[DRAFT\] chapter 4 and BIOS configuration finished  |
 | Wednesday, 05.06.2024 | Write thesis, \[DRAFT\] Kernel Configurations 10/19 finished |
 | Thursday, 06.06.2024 | Write thesis, \[DRAFT\] Kernel Configurations 16/19 finished |
-| Friday, 07.06.2024 | \[DRAFT\] Host Configurations 5/11 finished |
-| Monday, 08.06.2024 |  |
+| Friday, 07.06.2024 | \[DRAFT\] Host Configurations 5/10 finished |
+| Monday, 08.06.2024 | 15 hours latency test |
 | Tuesday, 09.06.2024 |   |
 | Wednesday, 10.06.2024 |  |
 | Thursday, 11.06.2024 |  |

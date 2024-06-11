@@ -548,7 +548,7 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 \end{itemize}
 
 \section{Host OS Configurations}\label{sec:host_configurations}
-\subsection{CPU isolation}\label{subsec:cpu_isolation}
+\subsection{CPU affinity and isolation}\label{subsec:cpu_isolation}
 
 Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. For CPU isolation, the ~\texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}, including systemd services. To prevent systemd services from running on an isolated CPU, the CPU affinity can be set the with line \texttt{CPUAffinity=0 1 2 3 5 6 7 8 9 10 11 12 13} in the \texttt{/etc/systemd/system.conf} file to indicate the CPUs that systemd-services are allowed to run on. Every CPU other than the isolated CPU 4 is allowed. Output~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
 
@@ -577,7 +577,7 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 \subsection{Interrupt Affinity}\label{subsec:irq_handling}
 Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. The ~\texttt{/proc/interrupts} file can be monitored using the command ~\texttt{watch -d -c cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the ~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the ~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU13). When there are 14 CPUs available, the default value for ~\texttt{smp\_affinity} would be 3FFF. Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 3FEF (11 1111 1110 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU. By changing the values of the ~\texttt{smp\_affinity} files, the assignment of IRQs to CPUs is controlled. However, as the proc filesystem resets to its default state after each reboot, manually changing numerous IRQ files is tedious and time-consuming. This process was automated using the shell script in Code~\ref{script:change_smp_affinity}, which is executed after every reboot.
 
-
+Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Express, a type of SSD storage) can be set away from CPU 4 to avoid impacting real-time workloads running on CPU 4. This can be done through finding out the respective process IDs through \texttt{ps -e | grep 'irq/.*nvme'} and then executing \texttt{sudo taskset -a -p -c 0 <PID>} with the PID obtained from the previous command.
 
 
 \vspace{1em}
@@ -695,6 +695,7 @@ As already mentioned in section \ref{sec:kernel_configurations}, the Linux kerne
 \subsection{No unexpected RT processes}
 It is important that there are no other unexpected real time processes running on the system. A high priority RT process could occasionally be created by the host operating system at boot, hence disabling the offending RT process is advised if it is not needed. The process of disabling these RT processes is usually described in the documentation for the chosen Linux distribution.
 \subsection{Set CPU Affinity of IRQ thread to CPU 0}
+
 
 \subsection{Set Device Driver Work Queue to CPU 0}
 
