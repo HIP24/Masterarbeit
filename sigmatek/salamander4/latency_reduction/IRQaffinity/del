@@ -29,70 +29,6 @@ irq 179 -> taskset -p 393
 irq 180 -> taskset -p 394   
 irq 181 -> taskset -p 395     
 
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
 ------------------------------------
 
 pid 379's current affinity mask: 1
@@ -138,3 +74,7 @@ pid 374's current affinity mask: 1000
 
 pid 375's current affinity mask: 2000
 pid 393's current affinity mask: 2000
+
+------------------------------------------
+
+
