@@ -4,6 +4,7 @@
   <li><a href="https://docs.yoctoproject.org/" target="_blank">Yocto Project</a></li>
   <li><a href="https://www.qemu.org/docs/master/" target="_blank">QEMU</a></li>
   <li><a href="https://www.qemu.org/docs/master/system/i386/kvm-pv.html" target="_blank">Paravirtualized KVM features</a></li>
+  <li><a href="https://www.qemu.org/docs/master/system/i386/hyperv.html" target="_blank">Hyper-V Enlightments</a></li>
   <li><a href="https://manpages.debian.org/jessie/qemu-system-x86/qemu-system-x86_64.1.en.html" target="_blank">QEMU options</a></li>
   <li><a href="https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html?highlight=kernel%20parameters" target="_blank">Kernel Parameters</a></li>
   <li><a href="https://xenomai.org/" target="_blank">Xenomai</a></li>
