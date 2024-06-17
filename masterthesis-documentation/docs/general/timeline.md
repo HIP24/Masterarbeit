@@ -89,8 +89,17 @@
 | Wednesday, 05.06.2024 | Write thesis, \[DRAFT\] Kernel Configurations 10/19 finished |
 | Thursday, 06.06.2024 | Write thesis, \[DRAFT\] Kernel Configurations 16/19 finished |
 | Friday, 07.06.2024 | \[DRAFT\] Host Configurations 5/10 finished |
-| Monday, 08.06.2024 | 15 hours latency test |
-| Tuesday, 09.06.2024 |   |
-| Wednesday, 10.06.2024 |  |
-| Thursday, 11.06.2024 |  |
-| Friday, 12.06.2024 | |
+| Monday, 10.06.2024 | 15 hours latency test |
+| Tuesday, 11.06.2024 | Lasal Class 2 test  |
+| Wednesday, 12.06.2024 | Lasal Class 2 etxra test |
+| Thursday, 13.06.2024 | Lasal Class 2 more extra |
+| Friday, 14.06.2024 | Lasal Class 2 more extra |
+| Monday, 17.06.2024 | Dirk Geschwindner, Motoren angesteuert|
+| Tuesday, 18.06.2024 | |
+| Wednesday, 19.06.2024 | |
+| Thursday, 20.06.2024 | |
+| Friday, 21.06.2024 | |
+
+
+
+
