@@ -15,13 +15,16 @@
 - [x] Analyze Host and Guest Processes
 - [x] Latency got much better after [rt-patch](../general/protocol.md#max-latency-with-rt)
 - [x] Latency got even better after Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf): [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md)
+- [x] a
+- [x] b
+
 
 ## Missing
-- [ ] Inspect kvm_exit reasons
-- [ ] Adapt QEMU script to work with chrt
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Move robot motors
+- [ ] Robotic application 
+- [ ] Test latency with hardware and virtualization 
+- [ ] c
+- [ ] d
 
 
 ## Appendix: Hardware and OS configuration checklist
