@@ -95,11 +95,15 @@
 | Thursday, 13.06.2024 | Lasal Class 2 more extra |
 | Friday, 14.06.2024 | Lasal Class 2 more extra |
 | Monday, 17.06.2024 | Dirk Geschwindner, Motoren angesteuert|
-| Tuesday, 18.06.2024 | |
-| Wednesday, 19.06.2024 | |
-| Thursday, 20.06.2024 | |
-| Friday, 21.06.2024 | |
-
+| Tuesday, 18.06.2024 | reorganize |
+| Wednesday, 19.06.2024 | 6 dof robot, arduino |
+| Thursday, 20.06.2024 | i/o modules lasal class 2, pwm, osci |
+| Friday, 21.06.2024 | FINALLY moved 2 motors of mini robot with lasal class 2 with voltage divider |
+| Monday, 24.06.2024 | |
+| Tuesday, 25.06.2024 |  |
+| Wednesday, 26.06.2024 | |
+| Thursday, 27.06.2024 |  |
+| Friday, 28.06.2024 |  |
 
 
 
