@@ -204,3 +204,18 @@ sudo kill <pid>
 ```
 latency -h -s -T 600 -g max_latency_rt.txt
 ```
+
+## Latency reduction guides and resources
+[Technical details of the real-time preemption](https://wiki.linuxfoundation.org/realtime/documentation/technical_details/start)  
+[RT-Tests](https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/rt-tests)  
+[HOWTO: Build an RT-application](https://archive.kernel.org/oldwiki/rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application.html)  
+[Tuning a real-time kernel](https://ubuntu.com/blog/real-time-kernel-tuning)  
+[Paravirtualized KVM features](https://www.qemu.org/docs/master/system/i386/kvm-pv.html)  
+[KVM/Qemu Virtualization Tuning Guide](https://www.intel.com/content/www/us/en/developer/articles/guide/kvm-tuning-guide-on-xeon-based-systems.html)  
+[Latency tracing and events](https://docs.kernel.org/trace/ftrace.html#latency-tracing-and-events)  
+[Tuning a real-time ubuntu pro kernel](https://ubuntu.com/blog/real-time-kernel-tuning)  
+[Using the ftrace Utility for Tracing Latencies](https://docs.redhat.com/de/documentation/red_hat_enterprise_linux_for_real_time/7/html/tuning_guide/using_the_ftrace_utility_for_tracing_latencies)  
+[Optimizing for Real Time for low latency operation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/8/html/optimizing_rhel_8_for_real_time_for_low_latency_operation/scheduling-problems-on-the-real-time-kernel-and-solutions_optimizing-rhel8-for-real-time-for-low-latency-operation)  
+[Virtualization Tuning and Optimization Guide](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html-single/virtualization_tuning_and_optimization_guide/index)  
+[LOW LATENCY STORAGE OPTIMIZATIONS FOR PROXMOX, KVM, & QEMU](https://kb.blockbridge.com/technote/proxmox-tuning-low-latency-storage/)  
+[Real-time programming with Linux (2022)](https://shuhaowu.com/blogseries.html#rt-linux-programming)  
