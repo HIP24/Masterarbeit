@@ -90,14 +90,6 @@ sigma_ibo@pamhal:$ ps -eo pid,psr,comm | grep qemu
 
 > lat worst reduced from 4070.018 to [457.545](../sigmatek/xenomai/2taskset/max_latency_taskset/max_latency_taskset.png) with [stats](../sigmatek/xenomai/2taskset/max_latency_taskset/max_latency_taskset_statistics.txt)
 
-### Max Latency with rt
-
-[Technical details of the real-time preemption](https://wiki.linuxfoundation.org/realtime/documentation/technical_details/start)  
-[RT-Tests](https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/rt-tests)  
-[HOWTO: Build an RT-application](https://archive.kernel.org/oldwiki/rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application.html)  
-[Tuning a real-time kernel](https://ubuntu.com/blog/real-time-kernel-tuning)  
-[Paravirtualized KVM features](https://www.qemu.org/docs/master/system/i386/kvm-pv.html)  
-
 #### Enable Preempt_RT Kernel
 Either do everything in [kernel-patch.md](../sigmatek/salamander4/latency_reduction/kernel-patch/kernel-patch.md#kernel-patch-proceedure) to patch the kernel and enable [Fully Preemptible Kernel (RT)](../resources/images/kernel-patch/fully_rt.png), or simply [enable Ubuntu Pro's real-time kernel](../resources/images/ubuntu-pro.png), [here](https://ubuntu.com/blog/real-time-ubuntu-released).
 

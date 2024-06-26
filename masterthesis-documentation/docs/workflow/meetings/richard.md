@@ -163,4 +163,13 @@ RT_Performance_Tuning_Best_Practice_KVM_VM.pdf
 results in xenomai_compare.md
 QEMU with 2 CPUs
 
+
+## Richard Meeting xx.xx.2024
+
+- PCV522 in QEMU? 
+- Lasal Class only CPU or I/O?
+
+
+
+
 ❌✅
