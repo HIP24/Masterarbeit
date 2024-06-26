@@ -168,7 +168,7 @@ QEMU with 2 CPUs
 
 - PCV522 in QEMU? 
 - Lasal Class only CPU or I/O?
-
+- PLC trace view?
 
 
 
