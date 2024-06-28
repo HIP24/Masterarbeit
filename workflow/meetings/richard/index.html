@@ -5565,9 +5565,11 @@ results in xenomai_compare.md
 QEMU with 2 CPUs</p>
 <h2 id="richard-meeting-xxxx2024">Richard Meeting xx.xx.2024<a class="headerlink" href="#richard-meeting-xxxx2024" title="Permanent link">&para;</a></h2>
 <ul>
-<li>PCV522 in QEMU? </li>
-<li>Lasal Class only CPU or I/O?</li>
-<li>PLC trace view?</li>
+<li>PCV522 in QEMU? -&gt; entweder unsichere pci pasthrough oder sichere IO-MMU und dann evt konfigurieren und checken mit ./LRTTool.exe -fpgainfo</li>
+<li>Lasal Class only CPU or I/O for robot? -&gt; robot</li>
+<li>PLC trace view? -&gt;M debug, ich brauch eher messaufbau für zeit zwischen sensortrigger und programmzeit feststellen -&gt; osci -&gt; wann hat varan reagiert?</li>
+<li>Wenn Lasal Class 2 läuft, kann ich latency ausführen? -&gt; hat nix damit zu tun</li>
+<li>RT oder Cyclic tasks</li>
 </ul>
 <p>❌✅</p>
 
