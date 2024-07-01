@@ -50,7 +50,17 @@ export PATH=$PATH:/home/sigma_ibo/Desktop/Masterarbeit/documentation/resources/Q
 ```
 
 ## Add konsole to replace console
-<a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a>  
+<a href="https://github.com/Stunkymonkey/nautilus-open-any-terminal" target="_blank">nautilus-open-any-terminal</a>
+```
+sudo apt install python3-nautilus python3-pip gir1.2-gtk-4.0
+pip install nautilus-open-any-terminal
+nautilus -q
+sudo apt remove nautilus-extension-gnome-terminal
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal konsole
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+```
 <a href="https://askubuntu.com/questions/1351228/change-default-terminal-with-right-click-option-open-in-terminal-in-file-manag" target="_blank">Change default terminal with right-click option "Open in Terminal" in file manager</a>
 
 
