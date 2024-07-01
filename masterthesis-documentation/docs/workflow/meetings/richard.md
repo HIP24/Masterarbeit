@@ -166,10 +166,11 @@ QEMU with 2 CPUs
 
 ## Richard Meeting xx.xx.2024
 
-- PCV522 in QEMU? 
-- Lasal Class only CPU or I/O?
-- PLC trace view?
-
+- PCV522 in QEMU? -> entweder unsichere pci pasthrough oder sichere IO-MMU und dann evt konfigurieren und checken mit ./LRTTool.exe -fpgainfo
+- Lasal Class only CPU or I/O for robot? -> robot
+- PLC trace view? ->M debug, ich brauch eher messaufbau für zeit zwischen sensortrigger und programmzeit feststellen -> osci -> wann hat varan reagiert?
+- Wenn Lasal Class 2 läuft, kann ich latency ausführen? -> hat nix damit zu tun
+- RT oder Cyclic tasks
 
 
 ❌✅
