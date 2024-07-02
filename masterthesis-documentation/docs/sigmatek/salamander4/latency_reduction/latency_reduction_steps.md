@@ -50,7 +50,7 @@ GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocb_poll rcu_nocbs=4 nohz_full=4 default_hug
     ```
     -   How this can be turned off varies per system. Usually this involves configuring both the BIOS/UEFI and Linux (usually by selecting the performance CPU frequency governor).
 
-##### Disable [RT throttling](https://wiki.linuxfoundation.org/realtime/documentation/technical_basics/sched_rt_throttling)
+##### Disable [RT throttling](https://wiki.linuxfoundation.org/realtime/documentation/technical_basics/sched_rt_throttling) and timer migration
 Before the widespread availability of multicore systems, if an RT process uses up all of the available CPU time, it can cause the entire system to hang. This is because the Linux scheduler will not run a non-RT process if the RT process continuously hogs the CPU. To avoid this kind of system lockup, especially on desktop-oriented systems where any process can request to be RT, the Linux kernel has a feature to throttle RT processes if it uses 0.95 s out of every 1 s of CPU time. This is done by pausing the process for the last 0.05 s and thus may result in deadline misses during the moments when the process is paused [[5]](https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f6). This can be turned off by writing the value \-1 to the file `/proc/sys/kernel/sched_rt_runtime_us` on every system boot.  
 To permanently disable real-time (RT) throttling, you can add the following line to your `/etc/sysctl.conf` file:
 
@@ -61,6 +61,7 @@ sudo nano /etc/sysctl.conf
 2. Add the following line to the end of the file:
 ```bash  
 kernel.sched_rt_runtime_us = -1  
+kernel.timer_migration = 0
 ```
 3. Save the file and exit the editor.
 4. To load the new configuration, run the following command:
@@ -70,6 +71,8 @@ sudo sysctl -p
 ```
 
 This will apply the change immediately and also preserve it across reboots.  
+
+
 
 ##### Check and make sure no unexpected RT processes are running on your system
 -   Sometimes, the base OS can spawn a high-priority RT process on boot as a part of some functionalities it provides. If these functionalities are not needed, it is advisable to disable the offending RT process. Near the end of this post, I will provide an example for this.
