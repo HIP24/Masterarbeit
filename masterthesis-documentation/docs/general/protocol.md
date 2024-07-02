@@ -133,3 +133,10 @@ Once you successfully compiled the RT kernel, the default hardware and OS config
 
 [Salamander 4 latency comparison](../sigmatek/xenomai/xenomai_compare.md)  
 
+
+
+
+lspci -v
+lspci -nn
+sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new_id'
+lspci -v
