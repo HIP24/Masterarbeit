@@ -103,7 +103,16 @@
 | Tuesday, 25.06.2024 | Lasal Class 2 with robot |
 | Wednesday, 26.06.2024 | Lasal Class 2 with robot |
 | Thursday, 27.06.2024 | Richard meeting |
-| Friday, 28.06.2024 |  |
-
-
-
+| Friday, 28.06.2024 | reorganize |
+| Monday, 01.07.2024 | New PC setup, yocto build, QEMU test |
+| Tuesday, 02.07.2024 | FINALLY virtualized hardware setup |
+| Wednesday, 03.07.2024 | Frei |
+| Thursday, 04.07.2024 | Frei |
+| Friday, 05.07.2024 | Frei |
+| Monday, 08.07.2024 | Frei |
+| Tuesday, 09.07.2024 | Frei |
+| Wednesday, 10.07.2024 | Frei |
+| Thursday, 11.07.2024 | Frei |
+| Friday, 12.07.2024 | Frei |
+| Monday, 15.07.2024 | FINALLY resolved Varan Manager Error, DMA Error and moved robot with Salamander Virtualization  |
+| Tuesday, 16.07.2024 |  |
