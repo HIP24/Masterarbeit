@@ -185,8 +185,6 @@ When you now also have the `EXPERT` (General Setup -> Embedded System) flag enab
 [Source](https://unix.stackexchange.com/questions/582075/trouble-selecting-fully-preemptible-kernel-real-time-when-configuring-compil
 )
 
-
-
 ### Problem 2
 No rule to make target 'debian/canonical-certs.pem'
 
@@ -199,4 +197,20 @@ scripts/config --disable SYSTEM_REVOCATION_KEYS
 Then run make again and it should work!  
 [Source](https://stackoverflow.com/questions/67670169/compiling-kernel-gives-error-no-rule-to-make-target-debian-certs-debian-uefi-ce)
 
-## 
+## Lasal Class 2 Virtualization
+
+### Problem 1
+Varan Manager Error when connecting to virtualization and VI and PW022. No Voltage output
+
+### Solution 1
+Tools > Advanced Debug Tools > Remote CLI  
+set maintimer 10000  
+VaranManagerTime = 10000000
+
+### Problem 2
+DMA Error
+
+### Solution 2
+[PayloadFrame = 2](../resources/images/lasal/class2/move_robot_virt.png)
+
+
