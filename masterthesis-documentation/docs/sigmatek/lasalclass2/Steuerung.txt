@@ -1,0 +1,34 @@
+
+
+FUNCTION VIRTUAL GLOBAL Steuerung::Init
+    if _FirstScan = TRUE then
+      cPeriodeDuration_ch1.Write (20000);
+      cPeriodeDuration_ch2.Write (20000);
+      cPWMOnTime_ch1.Write (700);
+      cPWMOnTime_ch2.Write (700);
+      angle := 1;
+    end_if;
+END_FUNCTION
+
+
+FUNCTION VIRTUAL GLOBAL Steuerung::RtWork
+	VAR_INPUT
+		EAX 	: UDINT;
+	END_VAR
+	VAR_OUTPUT
+		state (EAX) 	: UDINT;
+	END_VAR
+  
+  
+  if ontime700=1 then
+    cPWMOnTime_ch1.Write (700);
+  end_if;
+  
+  if ontime900=1 then
+    cPWMOnTime_ch1.Write (900);
+  end_if;
+
+	state := READY;
+
+END_FUNCTION
+
