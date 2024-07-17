@@ -77,7 +77,6 @@ You can resolve this issue by removing the old host key from your known_hosts fi
 ```bash
 ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "10.30.248.137" # Salzburg
 ssh-keygen -f "/home/sigma_ibo/.ssh/known_hosts" -R "192.168.1.78" # Wien
-
 ```
 This will remove the old key for 10.30.248.137 from your known_hosts file. The next time you connect, you should be prompted to accept the new host key.
 
