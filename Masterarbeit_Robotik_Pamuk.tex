@@ -806,9 +806,44 @@ There are other configurations that may be relevant depending on the case. Linux
 \clearpage
 
 \chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
+This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings. Additionally, these results are contrasted with the latency of Salamander 4 running on bare metal hardware to understand how closely the performance of the virtualized system can match that of the bare metal system. The experimental setup includes a six-axis mini-robot, illustrated in figure \ref{fig:mini_robot}.
 
-\section{VARAN}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{img/experiment/mini_robot.jpg}
+	\caption[Mini-robot of the experiment]{Mini-robot of the experiment}
+	\label{fig:mini_robot}
+\end{figure}
+
+\noindent In order to move this robot, it needs to get signals  
+The program is written in Lasal Class 2 and will be applied to all three versions to measure the reaction time of the robot to the specific commands.  
+
+\ref{fig:hardware_tree}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{img/experiment/hardware_tree.png}
+	\caption[Hardware tree]{Hardware tree}
+	\label{fig:hardware_tree}
+\end{figure}
+
+
+\ref{fig:virt_tree}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{img/experiment/virt_tree.png}
+	\caption[Virt tree]{Virt tree}
+	\label{fig:virt_tree}
+\end{figure}
+
+
+\begin{comment}
+	https://www.sigmatek-automation.com/en/products/accessories/controls-hmis/pcv-522/
+\end{comment}
+
+
 \section{Robotic Application}
+
 \clearpage
 
 \begin{comment}
