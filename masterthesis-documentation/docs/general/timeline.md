@@ -115,4 +115,10 @@
 | Thursday, 11.07.2024 | Frei |
 | Friday, 12.07.2024 | Frei |
 | Monday, 15.07.2024 | FINALLY resolved Varan Manager Error, DMA Error and moved robot with Salamander Virtualization  |
-| Tuesday, 16.07.2024 |  |
+| Monday, 16-19.07.2024 | Sigmatek Work - ixagent |
+| Monday, 22.07.2024 | Krankenstand |
+| Tuesday, 23.07.2024 | Krankenstand |
+| Wednesday, 24.07.2024 | Krankenstand |
+| Thursday, 25.07.2024 | Krankenstand |
+| Friday, 26.07.2024 | Krankenstand |
+| Tuesday, 29.07.2024 | Sigmatek Work - ip_fallback and start third ticket |
