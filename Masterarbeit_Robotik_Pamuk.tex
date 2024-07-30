@@ -288,7 +288,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/x3-cobalt-interfaces.png}
+	\includegraphics[width=0.5\columnwidth]{img/x3-cobalt-interfaces.png}
 	\caption[Xenomai Cobalt interfaces]{Xenomai Cobalt interfaces~\cite{XenomaiXenomai}}
 	\label{fig:cobalt}
 \end{figure}
@@ -298,7 +298,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/x3-mercury-interfaces.png}
+	\includegraphics[width=0.5\columnwidth]{img/x3-mercury-interfaces.png}
 	\caption[Xenomai Mercury interfaces]{Xenomai Mercury interfaces~\cite{XenomaiXenomai}}
 	\label{fig:mercury}
 \end{figure}
@@ -801,46 +801,79 @@ QEMU provides several options that can be used to improve the real-time performa
 \section{Guest OS Configurations}
 
 \section{Other configurations}
-There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in \cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. \cite{HOWTOBuildRTapplication} and \cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
+There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in~\cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software.~\cite{HOWTOBuildRTapplication} and~\cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
 
 \clearpage
 
 \chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
-This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings. Additionally, these results are contrasted with the latency of Salamander 4 running on bare metal hardware to understand how closely the performance of the virtualized system can match that of the bare metal system. The experimental setup includes a six-axis mini-robot, illustrated in figure \ref{fig:mini_robot}.
+This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings. Additionally, these results are contrasted with the latency of Salamander 4 running on bare metal hardware to understand how closely the performance of the virtualization can match that of the bare metal. The experimental setup includes a six-axis mini-robot, illustrated in Figure \ref{fig:mini_robot}. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/experiment/mini_robot.jpg}
+	\includegraphics[width=0.45\columnwidth]{img/experiment/mini_robot.jpg}
 	\caption[Mini-robot of the experiment]{Mini-robot of the experiment}
 	\label{fig:mini_robot}
 \end{figure}
 
-\noindent In order to move this robot, it needs to get signals  
-The program is written in Lasal Class 2 and will be applied to all three versions to measure the reaction time of the robot to the specific commands.  
-
-\ref{fig:hardware_tree}
+\noindent The drive system of the robot arm consists of six MG996R digital servo motors~\cite{MG996RServoMotor}, equipped with a metal gearbox. The motor is able to rotate in a range of approximately 180 degrees and its position can be controlled with a high degree of accuracy. Each servo motor has three wires that need to be connected as shown in Figure \ref{fig:motor_wires}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/experiment/hardware_tree.png}
+	\includegraphics[width=0.45\columnwidth]{img/experiment/motor_wires.png}
+	\caption[MG996R Servo Motor]{MG996R Servo Motor~\cite{MG996RServoMotor}}
+	\label{fig:motor_wires}
+\end{figure}
+
+\noindent To drive the motor, it has to be powered using the red and brown wires and can be controlled by sending PWM signals to the orange wire. In this experiment, this PWM signal is generated by the proprietary PW 022 pulse width module of Sigmatek~\cite{DigitalOutputSIGMATEK}. Its connector layout is illustrated in Figure \ref{fig:pw022_connectors}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\columnwidth]{img/experiment/pw022_connectors.png}
+	\caption[PW 022 pulse width module connector layout]{PW 022 pulse width module connector layout~\cite{DigitalOutputSIGMATEK}}
+	\label{fig:pw022_connectors}
+\end{figure}
+
+\noindent The module has two +24 V switching PWM outputs with an adjustable frequency for controlling inductive loads. Since the mentioned servo motors operate between 4.8 volts and 7.2 volts~\cite{MG996RServoMotor}, this voltage needed to be reduced through resistors before supplying it to a servo motor. For this purpose, two resistors with resistances of 2500 kiloohms and 1000 kiloohms were connected in series. The voltage across each resistor is calculated using Ohm's law, which is given by equation \ref{eq:ohms_law} below.
+\begin{equation}
+	\label{eq:ohms_law}
+	V = I \cdot R
+\end{equation}	
+In this equation, \(V\) represents the voltage across the resistor, \(I\) is the current flowing through the resistor, and \(R\) is the resistance of the resistor. The resulting voltages across the resistors are as follows:
+\begin{itemize}
+\item The voltage across the 2.5 kiloohm resistor is approximately 17.14 volts.
+\item The voltage across the 1 kiloohm resistor is approximately 6.86 volts. This voltage was then supplied to the control wire of servo motor 1 of the mini-robot.
+\end{itemize}
+
+\noindent Connecting a second servo motor of the mini-robot means repeating the process of reducing the voltage through resistors for the second PWM output of the PW 022 module.
+
+
+
+
+
+
+
+\noindent The program was written in Lasal Class 2 and will be applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the specific commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment. 
+
+\subsection{Setup of Hardware Salamander 4}
+
+In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 module is directly mounted on the CPU via the S-DIAS bus~\cite{SDIASSIGMATEK} and communicates over the hard real-time capable Ethernet VARAN with 100 Mbit/s. The setup is visible on Figure \ref{fig:hardware_tree}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\columnwidth]{img/experiment/hardware_tree.png}
 	\caption[Hardware tree]{Hardware tree}
 	\label{fig:hardware_tree}
 \end{figure}
 
+\subsection{Setup of QEMU Salamander 4}
+To connect QEMU with the PWM module, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK} needed to be plugged into the working station PC. An additional Varan Connection module VI 021~\cite{InterfacesSplittersSIGMATEK} was required to connect the PCV 522 module to the PW 022 module that generates the signal to move the mini-robot. This setup is depicted in Figure \ref{fig:virt_tree}.
 
-\ref{fig:virt_tree}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/experiment/virt_tree.png}
-	\caption[Virt tree]{Virt tree}
+	\includegraphics[width=0.5\columnwidth]{img/experiment/virt_tree.png}
+	\caption[Virtualization tree]{Virtualization tree}
 	\label{fig:virt_tree}
 \end{figure}
-
-
-\begin{comment}
-	https://www.sigmatek-automation.com/en/products/accessories/controls-hmis/pcv-522/
-\end{comment}
-
 
 \section{Robotic Application}
 
@@ -1192,6 +1225,11 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{RealtimeProgrammingLinux}
 ~\cite{KVMQemuVirtualization}
 ~\cite{RealTimePerformanceTuning2022}
+~\cite{MG996RServoMotor}
+~\cite{DigitalOutputSIGMATEK}
+~\cite{SDIASSIGMATEK}
+~\cite{ControlsHMIsSIGMATEK}
+~\cite{InterfacesSplittersSIGMATEK}
 ~\cite{adamPerformanceAssessmentLinux2021}
 ~\cite{adamRealTimePerformanceResponse2021}
 ~\cite{broskyShieldedProcessorsGuaranteeing2003}
@@ -1212,7 +1250,8 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{queirozTestingLimitsGeneralpurpose2023}
 ~\cite{reghenzaniRealTimeLinuxKernel2020}
 ~\cite{yoonRealTimePerformanceAnalysis}
-~\clearpage
+~\cite{CPUUnitsSIGMATEK}
+\clearpage
 
 \begin{comment}
 
