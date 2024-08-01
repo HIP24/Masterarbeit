@@ -766,7 +766,7 @@ QEMU provides several options that can be used to improve the real-time performa
     \begin{tabular}{|p{6.5cm}|p{8cm}|}
     \hline
     \textbf{QEMU Option} & \textbf{Description} \\\hline
-    \texttt{-object memory-backend-ram,}\newline\texttt{id=ram0,size=4G,prealloc=on} & Locks the memory of the VM to 4GB and prevents \newline it from being swapped out to disk \\\hline
+    \texttt{-object memory-backend-ram,}\newline\texttt{id=ram0,size=4G,prealloc=on} & Locks the memory of the VM to 4GB and prevents it from being swapped out to disk \\\hline
     \texttt{-mem-prealloc} \newline \texttt{-mem-path /dev/hugepages/} & Enables the use of hugepages and improves \newline memory access \\\hline
     \end{tabular}}
     \end{table}
@@ -791,7 +791,6 @@ QEMU provides several options that can be used to improve the real-time performa
 		-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
 		-device vhost-vsock-pci,guest-cid=3,id=vsock0 \
 		-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
-		-cpu host,hv-passthrough \
 		-object memory-backend-ram,id=ram0,size=4G,prealloc=on \
 		-mem-prealloc -mem-path /dev/hugepages \
 		-no-reboot -nographic
@@ -799,6 +798,12 @@ QEMU provides several options that can be used to improve the real-time performa
 	\end{minipage}
 
 \section{Guest OS Configurations}
+
+
+
+
+
+
 
 \section{Other configurations}
 There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in~\cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software.~\cite{HOWTOBuildRTapplication} and~\cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
@@ -844,19 +849,23 @@ In this equation, \(V\) represents the voltage across the resistor, \(I\) is the
 \item The voltage across the 1 kiloohm resistor is approximately 6.86 volts. This voltage was then supplied to the control wire of servo motor 1 of the mini-robot.
 \end{itemize}
 
-\noindent Connecting a second servo motor of the mini-robot means repeating the process of reducing the voltage through resistors for the second PWM output of the PW 022 module.
+\noindent Connecting a second servo motor of the mini-robot means repeating the process of reducing the voltage through resistors for the second PWM output of the PW 022 module. The connection between the PW 022 module and the motor of the mini-robot is demonstrated in Figure \ref{fig:pw022_minirobot_connection}.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{img/experiment/pw022_minirobot.png}
+	\caption[Connection between PW 022 and mini-robot]{Connection between PW 022 and mini-robot~\cite{MG996RDigitalServo}}
+	\label{fig:pw022_minirobot_connection}
+\end{figure}
 
+\begin{comment}
+	battery -> https://www.flaticon.com/de/kostenloses-icon/autobatterie_4238252?related_id=4238254
+\end{comment}
 
-
-
-
-
-\noindent The program was written in Lasal Class 2 and will be applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the specific commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment. 
+\noindent The program was written in Lasal Class 2 and was applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the specific commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment. 
 
 \subsection{Setup of Hardware Salamander 4}
-
-In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 module is directly mounted on the CPU via the S-DIAS bus~\cite{SDIASSIGMATEK} and communicates over the hard real-time capable Ethernet VARAN with 100 Mbit/s. The setup is visible on Figure \ref{fig:hardware_tree}
+In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 module is directly mounted on the CPU via the S-DIAS bus and communicates over the hard real-time capable Ethernet VARAN with 100 Mbit/s~\cite{SDIASSIGMATEK}. The setup is visible on Figure \ref{fig:hardware_tree}.
 
 \begin{figure}[H]
 	\centering
@@ -866,7 +875,34 @@ In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU
 \end{figure}
 
 \subsection{Setup of QEMU Salamander 4}
-To connect QEMU with the PWM module, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK} needed to be plugged into the working station PC. An additional Varan Connection module VI 021~\cite{InterfacesSplittersSIGMATEK} was required to connect the PCV 522 module to the PW 022 module that generates the signal to move the mini-robot. This setup is depicted in Figure \ref{fig:virt_tree}.
+In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM module. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needed to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID 5112 and device ID 2200.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}. 
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\begin{lstlisting}[name={Include PCI in QEMU script for Salamander 4 virtualization},label={script:qemu_def_pci}]
+	#!/bin/sh
+
+	if  [ ! -d drive-c/ ]; then
+			echo "Filling drive-c/"
+			mkdir drive-c/
+			tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
+	fi
+		
+	exec taskset -c 4 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+	-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+	-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 threadirqs" \
+	-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+	-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
+	-device vhost-vsock-pci,guest-cid=3,id=vsock0 \
+	-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+	-object memory-backend-ram,id=ram0,size=4G,prealloc=on \
+	-mem-prealloc -mem-path /dev/hugepages \
+	-device vfio-pci,host=03:00.0 \
+	-no-reboot -nographic
+\end{lstlisting}
+\end{minipage}
+
+\noindent An additional Varan Connection module VI 021~\cite{InterfacesSplittersSIGMATEK} was required to enable the connection between the PCV 522 module and the PW 022 module that generates the signal to move the mini-robot. This setup is depicted in Figure \ref{fig:virt_tree}.
 
 \begin{figure}[H]
 	\centering
@@ -875,6 +911,9 @@ To connect QEMU with the PWM module, the PCV 522 VARAN Manager PCI Insert Card~\
 	\label{fig:virt_tree}
 \end{figure}
 
+\noindent Essentially, the CP 841 CPU is being emulated by the VCPU functionality of QEMU, allowing the PCV 522 VARAN Manager PCI Insert Card and the Varan Connection module VI 021 to interact as if they were communicating with a physical CPU unit.
+
+\clearpage
 \section{Robotic Application}
 
 \clearpage
