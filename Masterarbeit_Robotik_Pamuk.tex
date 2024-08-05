@@ -483,6 +483,10 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 
 In this chapter, the significant initial gap in latency statistics between the virtualized system and the bare metal system is tackled. For this reason, an extensive tuning process is carried out. This involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The individual configurations will be discussed in detail and the modifications will be justified with a clear explanation. The goal is to bring the latency of the virtualized system closer to that of the bare metal system, thereby ensuring deterministic behavior under real-time constraints.
 
+\bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the preempt-rt patch \cite{RealtimePreempt_rt_versionsWiki} to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event \cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and make the system more predictable, which are crucial for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling \cite{rostedtInternalsRTPatch}. 
+
+\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time” \cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. After each tuning, the latency test of Xenomai will be executed to evaluate the improved latency of the system.
+
 \section{BIOS Configurations}\label{sec:bios_configurations}
 
 BIOS stands for Basic Input/Output System. It abstracts the hardware and enables basic functions of a computer during the booting process, such as starting the operating system and loading other software. Since the BIOS is embedded very deep, its configuration can significantly influence the real-time performance of the system. Table~\ref{tab:bios_configuration} illustrates the specific BIOS settings that have been adjusted for the purpose of real-time performance. 
@@ -519,6 +523,9 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 		\item \textbf{C States}: These are low-power idle states where the clock frequency and voltage of the CPU are reduced. Transitioning between C-states can cause variable latencies. To prevent this from happening, C-states are disabled on the host.
 		\item \textbf{VT-d}: Direct access to physical devices from within virtual machines is possible when VT-d is enabled on the host. This can help reduce latencies associated with I/O operations in the virtual machine. It is therefore enabled on the host.
 	\end{itemize}
+
+
+After the BIOS configurations, 
 
 \section{Kernel Configurations}\label{sec:kernel_configurations}
 
@@ -925,20 +932,6 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 \clearpage
 
 \begin{comment}
-
-\chapter{KVM exit reasons}\label{cha:kvm_exit_reasons}
-\section{APIC\_WRITE}
-\section{HLT}
-\section{EPT\_MISCONFIG}
-\section{PREEMPTION\_TIMER}
-\section{EXTERNAL\_INTERRUPT}
-\section{IO\_INSTRUCTION}
-\section{EOI\_INDUCED}
-\section{EPT\_VIOLATION}
-\section{PAUSE\_INSTRUCTION}
-\section{CPUID}
-\section{MSR\_READ}
-
 \chapter{To Include}\label{cha:to_include}
 ``korrekt''
 
@@ -948,7 +941,7 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualization of Salamander 4 OS to closely match that of the bare metal version.
 
 Vorgehensweise von~\cite{linPerformanceEvaluationXenomai}
-\section{else}
+\section{Latency vapic}
 Figure~\ref{fig:max_latency_vapic} shows latency of QEMU vapic Salamander4.
 \begin{figure}[H]
 	\centering
@@ -961,7 +954,7 @@ After analyzing the inital latency of both versions, Trace-cmd and Kernelshark w
 
 \noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is not bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level.
 
-
+\section{Latency taskset}
 Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 \begin{figure}[H]
 	\centering
@@ -972,6 +965,7 @@ Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
 
 \noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the kvm\_entry and ~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of ~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for ~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed ~\texttt{kvm\_exit} events.
 
+\section{kvm exits}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|l|p{0.62\textwidth}|}
@@ -1014,6 +1008,7 @@ Figure~\ref{fig:kvm_exits_default} shows ~\texttt{kvm\_exit} frequency without C
 \clearpage
 
 
+\section{Host and Guest tasks}
 \begin{table}[H]
 	\centering
 	\begin{minipage}{.5\textwidth}
@@ -1094,130 +1089,33 @@ The Figure~\ref{fig:latency_comparison} below compares non-optimized guest laten
 \clearpage
 
 
+\section{Citation table}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|p{0.1\textwidth}|p{0.45\textwidth}|p{0.45\textwidth}|}
 	\hline
 	\textbf{Number} & \textbf{Book} & \textbf{Citation} \\
 	\hline
-	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\cite{maPerformanceTuningKVMbased} & book & citation \\
 	\hline
-	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\cite{maPerformanceTuningKVMbased} & book & citation \\
 	\hline
-	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\cite{maPerformanceTuningKVMbased} & book & citation \\
 	\hline
-	\cite{maPerformanceTuningKVMbased} & Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System & It means that all threads, except for some per-core kernel threads, were prevented from running on the second processor core. \\
+	\cite{maPerformanceTuningKVMbased} & book & citation \\
 	\hline
 	\end{tabular}
 	\caption{Your Caption}
 	\label{tab:my_label}
 	\end{table}
-	
-	Figure~\ref{fig:power_saver_kvm_exit} shows ...
 
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/power_saver/kvm_exit_count.png}
-		\caption[power\_saver kvm\_exit\_count]{power\_saver kvm\_exit\_count}
-		\label{fig:power_saver_kvm_exit}
-	\end{figure}
-	\clearpage
-	
-	Figure~\ref{fig:power_saver_kvm_host} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/power_saver/results_host_report.png}
-		\caption[power\_saver host report]{power\_saver host report}
-		\label{fig:power_saver_kvm_host}
-	\end{figure}
-	\clearpage
-	
-	Figure~\ref{fig:power_saver_kvm_guest} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/power_saver/results_guest_report.png}
-		\caption[power\_saver guest report]{power\_saver guest report}
-		\label{fig:power_saver_kvm_guest}
-	\end{figure}
-	\clearpage
-	
-	Figure~\ref{fig:balanced_kvm_exit} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/balanced/kvm_exit_count.png}
-		\caption[balanced kvm\_exit\_count]{balanced kvm\_exit\_count}
-		\label{fig:balanced_kvm_exit}
-	\end{figure}
-	\clearpage
-	
-	Figure~\ref{fig:balanced_kvm_host} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/balanced/results_host_report.png}
-		\caption[balanced host report]{balanced host report}
-		\label{fig:balanced_kvm_host}
-	\end{figure}
-	\clearpage
-	
-	Figure~\ref{fig:balanced_kvm_guest} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/balanced/results_guest_report.png}
-		\caption[balanced guest report]{balanced guest report}
-		\label{fig:balanced_kvm_guest}
-	\end{figure}
-	\clearpage
-	
-	
-	
-	Figure~\ref{fig:performance_kvm_exit} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/performance/kvm_exit_count.png}
-		\caption[performance \_exit\_count]{performance \_exit\_count}
-		\label{fig:performance_kvm_exit}
-	\end{figure}
-	\clearpage
-	
-	
-	Figure~\ref{fig:performance_kvm_host} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/performance/results_host_report.png}
-		\caption[performance host report]{performance host report}
-		\label{fig:performance_kvm_host}
-	\end{figure}
-	\clearpage
-	
-	Figure~\ref{fig:performance_kvm_guest} shows ...
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1.0\columnwidth]{img/performance/results_guest_report.png}
-		\caption[balanced guest report]{balanced guest report}
-		\label{fig:performance_kvm_guest}
-	\end{figure}
-	\clearpage
 	
 	\noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer ~\texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a ~\texttt{kvm\_exit} and kvm\_entry.
 	
 	\noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in ~\texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
+
 	
-	Figure~\ref{fig:gnuplot_max_latency_default}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/1default/gnuplot_max_latency_default.png}
-		\caption[gnuplot latency no taskset]{gnuplot latency no taskset}
-		\label{fig:gnuplot_max_latency_default}
-	\end{figure}
-	
+\section{gnuplot latency with taskset}
 	Figure~\ref{fig:gnuplot_max_latency_taskset}
 	\begin{figure}[H]
 		\centering
@@ -1225,33 +1123,11 @@ The Figure~\ref{fig:latency_comparison} below compares non-optimized guest laten
 		\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
 		\label{fig:gnuplot_max_latency_taskset}
 	\end{figure}
-	
-	Figure~\ref{fig:gnuplot_max_latency_vapic}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.8\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/vapic/gnuplot_max_latency_vapic.png}
-		\caption[gnuplot latency with taskset]{gnuplot latency with taskset}
-		\label{fig:gnuplot_max_latency_vapic}
-	\end{figure}
 
 	\noindent In the process of analyzing the ~\texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the ~\texttt{APIC\_WRITE} and ~\texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included ~\texttt{EXTERNAL\_INTERRUPT} and ~\texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as ~\texttt{EPT\_MISCONFIG} and ~\texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like ~\texttt{PAUSE\_INSTRUCTION}, ~\texttt{EPT\_VIOLATION}, ~\texttt{EOI\_INDUCED}, ~\texttt{MSR\_READ}, and ~\texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
 
-	The Advanced Programmable Interrupt Controller (APIC) is responsible for the distribution of interrupts in x86 and Itanium-based computer systems. An APIC\_WRITE occurs when a guest operating system attempts to write to the APIC registers. Since the APIC is a physical hardware component, KVM must intercept this operation and cause a VM exit. To avoid this, newer Intel processors offer hardware virtualization of the Advanced Programmable Interrupt Controller (APICv). APICv improves virtualized AMD64 and Intel 64 guest performance by allowing the guest to directly access the APIC, dramatically cutting down interrupt latencies and the number of virtual machine exits caused by the APIC. This feature is used by default in newer Intel processors and improves I/O performance. 
-
-This can be done by setting the apic flag to 'v' in the VM configuration file.
-
-Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC virtualization. Comparing this to the previous Figures~\ref{fig:kvm_exit_taskset} and~\ref{fig:kvm_exits_default}, it can be observed that an APIC\_Write no longer occurs.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\columnwidth]{img/kvm_exit_vapic.png}
-	\caption[kvm exits default]{kvm exits default}
-	\label{fig:kvm_exit_vapic}
-\end{figure}
-
+\clearpage
 \end{comment}
-
 \chapter{Results}\label{cha:results}
 ~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}
 ~\cite{Tracecmd}
@@ -1261,6 +1137,10 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{EngineeringToolLASAL}
 ~\cite{WelcomeYoctoProject}
 ~\cite{QEMU}
+~\cite{RealtimePreempt_rt_versionsWiki}
+~\cite{RealtimeKernelPatchset}
+~\cite{rostedtInternalsRTPatch}
+~\cite{WhatRealtimeLinux}
 ~\cite{maPerformanceTuningKVMbased}
 ~\cite{LinuxProcessPriorities}
 ~\cite{kernelrecipesKernelRecipes20162016}
@@ -1272,6 +1152,7 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{RealTimePerformanceTuning2022}
 ~\cite{MG996RServoMotor}
 ~\cite{DigitalOutputSIGMATEK}
+~\cite{MG996RDigitalServo}
 ~\cite{SDIASSIGMATEK}
 ~\cite{ControlsHMIsSIGMATEK}
 ~\cite{InterfacesSplittersSIGMATEK}
@@ -1296,26 +1177,6 @@ Figure~\ref{fig:kvm_exit_vapic} shows ~\texttt{kvm\_exit} frequency with APIC vi
 ~\cite{reghenzaniRealTimeLinuxKernel2020}
 ~\cite{yoonRealTimePerformanceAnalysis}
 ~\cite{CPUUnitsSIGMATEK}
-\clearpage
-
-\begin{comment}
-
-VARAN-Bus PCV-521\newline
-Windows\newline
-Ubuntu\newline
-WSL\newline\newline\newline
-
-
-
-In Xenomai 3, you need:
-
-The Linux kernel with the Dovetail interface, which allows the kernel to handle real-time tasks with low latency.
-The Cobalt real-time core, which is responsible for scheduling and executing real-time tasks.
-In Xenomai 4, you need:
-The Linux kernel with the EVL interface, which, like Dovetail, enables the kernel to handle real-time tasks with low latency.
-The libevl library, which provides a user interface to the EVL core, allowing applications to use the real-time capabilities provided by EVL.
-So, while both versions require a Linux kernel with a real-time interface (Dovetail for Xenomai 3, EVL for Xenomai 4), Xenomai 3 uses a real-time core (Cobalt), while Xenomai 4 uses a library (libevl) to provide applications with access to its real-time capabilities.
-\end{comment}
 \clearpage
 
 \chapter{Discussion}\label{cha:discussion}
