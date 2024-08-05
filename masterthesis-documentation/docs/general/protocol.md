@@ -136,6 +136,7 @@ Once you successfully compiled the RT kernel, the default hardware and OS config
 
 
 ## PCI initalization
+sudo modprobe vfio-pci
 lspci -v
 lspci -nn
 sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new_id'
