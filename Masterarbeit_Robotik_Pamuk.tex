@@ -432,7 +432,7 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\columnwidth]{img/max_latency_default.png}
+	\includegraphics[width=1.0\columnwidth]{img/max_latency_default.png}
 	\caption[Latency with default settings]{Latency with default settings}
 	\label{fig:max_latency_default}
 \end{figure}
@@ -525,7 +525,29 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\end{itemize}
 
 
-After the BIOS configurations, 
+After the BIOS configurations, Figure \ref{fig:max_latency_rt}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt.png}
+	\caption[After BIOS configurations]{After BIOS configurations}
+	\label{fig:max_latency_rt}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption[Latency statistics of Salamander 4 after BIOS configurations]{Latency statistics of Salamander 4 virtualization after BIOS configurations in microseconds}
+	\label{tab:latency_statistics_virt}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c|}\hline
+	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
+	Average Latency & 17.68 \\\hline
+	Maximum Latency & 32.21 \\\hline
+	Minimum Latency & 8.005 \\\hline
+	Standard Deviation & 6.1 \\\hline
+	\end{tabular}}
+	\end{table}
 
 \section{Kernel Configurations}\label{sec:kernel_configurations}
 
@@ -562,6 +584,32 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 	\item \textbf{kvm.kvmclock\_periodic\_sync=N, kvm\_intel.ple\_gap=0}: These are KVM (Kernel-based Virtual Machine) related parameters. They disable the periodic synchronization of the kvmclock and set the gap between PLE (Pause Loop Exiting) events to 0. The kvmclock is a paravirtualized clock source provided by KVM to its guest OS and disabling this reduces latency introduced by clock synchronization. By setting the gap to 0, the virtual machine exits the pause loop immediately, which can reduce latency in spinlock-intensive workloads.
 	\item \textbf{irqaffinity=0}: Sets the default Interrupt Request affinity to none. This means that no CPU core is preferred over another for handling IRQs. Instead, it lets the operating system decide how to distribute these IRQs across all the CPUs. Section \ref{subsec:irq_handling} dives deeper into Interrupt Request affinity.
 \end{itemize}
+
+After the Kernel configurations, Figure \ref{fig:max_latency_rt_kernelparam}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/4rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png}
+	\caption[After Kernel configurations]{After Kernel configurations}
+	\label{fig:max_latency_rt_kernelparam}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption[Latency statistics of Salamander 4 after Kernel configurations]{Latency statistics of Salamander 4 virtualization after Kernel configurations in microseconds}
+	\label{tab:latency_statistics_virt}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c|}\hline
+	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
+	Average Latency & 14.00 \\\hline
+	Maximum Latency & 21.694 \\\hline
+	Minimum Latency & 6.351 \\\hline
+	Standard Deviation & 1.44 \\\hline
+	\end{tabular}}
+	\end{table}
+
+
 
 \section{Host OS Configurations}\label{sec:host_configurations}
 The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and reduce latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest OS is provided.
@@ -760,6 +808,31 @@ Machine checks report hardware errors and these checks can cause interruptions a
 \subsection{Boot into text-based environment}
 The Graphical User Interface (GUI) consumes great amounts of system resources. It often runs different background processes that are not essential for real-time systems and hence increase latency. These resources can be freed up by switching to a text-based environment. This way, processing power and memory can be allocated to critical real-time tasks which in turn can lead to lower latency and deterministic behavior. The command \texttt{systemctl set-default multi-user.target} and a following reboot allow for booting into a text-based environment. For the sake of completeness, the graphical interface can be brought back through the command \texttt{systemctl set-default graphical.target} and a following reboot.
 
+After the Host configurations, Figure \ref{fig:max_latency_rt_kernelparam_host}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/5rt_kernelparam_host/max_latency_rt_kernelparam_host/max_latency_rt_kernelparam_host.png}
+	\caption[After Host configurations]{After Host configurations}
+	\label{fig:max_latency_rt_kernelparam_host}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption[Latency statistics of Salamander 4 after Host configurations]{Latency statistics of Salamander 4 virtualization after Host configurations in microseconds}
+	\label{tab:latency_statistics_virt}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c|}\hline
+	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
+	Average Latency & 12.61 \\\hline
+	Maximum Latency & 17.041 \\\hline
+	Minimum Latency & 7.872 \\\hline
+	Standard Deviation & 1.8 \\\hline
+	\end{tabular}}
+	\end{table}
+
+
 \section{QEMU/KVM Configurations}\label{sec:guest_configurations}
 KVM allows the guest OS to run directly on the hardware, bypassing the need for traditional emulation which can introduce delays. QEMU, when used with KVM, provides hardware-assisted virtualization, which also lowers latency in the guest OS.
 
@@ -810,12 +883,33 @@ QEMU provides several options that can be used to improve the real-time performa
 	\end{lstlisting}
 	\end{minipage}
 
+
+	After the QEMU configurations, Figure \ref{fig:max_latency_rt_kernelparam_host_qemu}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu.png}
+		\caption[After QEMU configurations]{After QEMU configurations}
+		\label{fig:max_latency_rt_kernelparam_host_qemu}
+	\end{figure}
+
+	\begin{table}[H]
+		\centering
+		\caption[Latency statistics of Salamander 4 after QEMU configurations]{Latency statistics of Salamander 4 virtualization after QEMU configurations in microseconds}
+		\label{tab:latency_statistics_virt}
+		\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+		{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|c|c|}\hline
+		\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
+		Average Latency & 16.26 \\\hline
+		Maximum Latency & 17.134 \\\hline
+		Minimum Latency & 14.532 \\\hline
+		Standard Deviation & 0.3 \\\hline
+		\end{tabular}}
+		\end{table}
+
+
 \section{Guest OS Configurations}
-
-
-
-
-
 
 
 \section{Other configurations}
@@ -1216,10 +1310,10 @@ The Figure~\ref{fig:latency_comparison} below compares non-optimized guest laten
 %
 \clearpage
 \appendix
-
+\begin{comment}
 \chapter{Anhang A}
 \clearpage
-
 \chapter{Anhang B}
+\end{comment}
 
 \end{document}
