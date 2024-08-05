@@ -4442,7 +4442,8 @@ sigma_ibo@pamhal:~$<span class="w"> </span>cat<span class="w"> </span>/sys/devic
 </code></pre></div>
 <p><a href="../../sigmatek/xenomai/xenomai_compare/">Salamander 4 latency comparison</a>  </p>
 <h2 id="pci-initalization">PCI initalization<a class="headerlink" href="#pci-initalization" title="Permanent link">&para;</a></h2>
-<p>lspci -v
+<p>sudo modprobe vfio-pci
+lspci -v
 lspci -nn
 sudo sh -c 'echo "5112 2200" &gt; /sys/bus/pci/drivers/vfio-pci/new_id'
 lspci -v</p>
