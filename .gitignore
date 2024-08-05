@@ -1,3 +1,4 @@
+Masterarbeit_Robotik_Pamuk.log
 *.aux
 *.bbl
 *.bcf
@@ -6,11 +7,11 @@
 *.blg
 *.lof
 .log
-Masterarbeit_Robotik_Pamuk.log
 *.lol
 *.lot
 *.toc
 *.synctex.gz
+*.synctex(busy)
 *.run.xml
 *.idx
 *.ind
