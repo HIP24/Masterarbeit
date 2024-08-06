@@ -164,7 +164,7 @@ results in xenomai_compare.md
 QEMU with 2 CPUs
 
 
-## Richard Meeting xx.xx.2024
+## Richard Meeting 27.06.2024
 
 - PCV522 in QEMU? -> entweder unsichere pci pasthrough oder sichere IO-MMU und dann evt konfigurieren und checken mit ./LRTTool.exe -fpgainfo
 - Lasal Class only CPU or I/O for robot? -> robot
