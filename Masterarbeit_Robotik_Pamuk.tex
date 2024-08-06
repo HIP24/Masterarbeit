@@ -309,7 +309,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \chapter{Initial Real-Time Latency}\label{cha:initial-real-time-latency}
 
-As a starting point, initial latency values of both the bare metal and virtualization versions were measured with the latency tool of the xenomai tool suite. Salamander 4 bare metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. Salamander 4 virtualization refers to a virtual version of the Salamander 4 hardware platform, achieved through QEMU/KVM. Sections~\ref{sec:salamander4-bare-metal} and~\ref{sec:salamander4-virtualization} specify the details of the measurements for both versions. In the further course, the aim was to bring the latency values of the virtualization closer to those of the hardware and guarantee deterministic and reliable behavior. 
+As a starting point, initial latency values of both the bare metal and virtualization versions were measured with the \texttt{latency} tool of the xenomai tool suite. Salamander 4 bare metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. Salamander 4 virtualization refers to a virtual version of the Salamander 4 hardware platform, achieved through QEMU/KVM. Sections~\ref{sec:salamander4-bare-metal} and~\ref{sec:salamander4-virtualization} specify the details of the measurements for both versions. In the further course, the aim was to bring the latency values of the virtualization closer to those of the hardware and guarantee deterministic and reliable behavior. 
 
 \section{Salamander 4 Bare Metal}\label{sec:salamander4-bare-metal}
 The output of the command~\texttt{uname -a} for Salamander 4 bare metal is shown in Code~\ref{output:uname_a_hw}.
@@ -454,8 +454,6 @@ Linux sigma-ibo 6.5.0-35-generic #35~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 
 	\end{tabular}}
 	\end{table}
 
-\clearpage
-
 \noindent Figure~\ref{fig:gnuplot_max_latency_default} depicts the variation in latency over the course of said time with default settings. 
 
 \begin{figure}[H]
@@ -485,7 +483,45 @@ In this chapter, the significant initial gap in latency statistics between the v
 
 \bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the preempt-rt patch~\cite{RealtimePreempt_rt_versionsWiki} to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event~\cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and make the system more predictable, which are crucial for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling~\cite{rostedtInternalsRTPatch}. 
 
-\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. After each tuning, the latency test of Xenomai will be executed to evaluate the improved latency of the system.
+\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. The very first step in this regard is the isolation of a CPU to dedicate it solely to the desired real-time task. CPU isolation and affinity will be covered in detail later in section~\ref{subsec:cpu_isolation}, but its impact will be briefly demonstrated here. 
+
+
+Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/max_latency_taskset.png}
+	\caption[Latency taskset]{Latency taskset}
+	\label{fig:max_latency_taskset}
+\end{figure}
+
+
+After each tuning, the latency test of Xenomai will be executed to evaluate the improved latency of the system. 
+
+\textcolor{red}{After Article, Figure \ref{fig:max_latency_rt}}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt.png}
+	\caption[After Article configurations]{After Article configurations}
+	\label{fig:max_latency_rt}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption[Latency statistics of Salamander 4 after BIOS configurations]{Latency statistics of Salamander 4 virtualization after BIOS configurations in microseconds}
+	\label{tab:latency_statistics_virt}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+	\begin{tabular}{|c|c|}\hline
+	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
+	Average Latency & 17.68 \\\hline
+	Maximum Latency & 32.21 \\\hline
+	Minimum Latency & 8.005 \\\hline
+	Standard Deviation & 6.1 \\\hline
+	\end{tabular}}
+	\end{table}
+
+
 
 \section{BIOS Configurations}\label{sec:bios_configurations}
 
@@ -525,29 +561,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\end{itemize}
 
 
-\textcolor{red}{After the BIOS configurations, Figure \ref{fig:max_latency_rt}}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt.png}
-	\caption[After BIOS configurations]{After BIOS configurations}
-	\label{fig:max_latency_rt}
-\end{figure}
-
-\begin{table}[H]
-	\centering
-	\caption[Latency statistics of Salamander 4 after BIOS configurations]{Latency statistics of Salamander 4 virtualization after BIOS configurations in microseconds}
-	\label{tab:latency_statistics_virt}
-	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
-	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
-	\begin{tabular}{|c|c|}\hline
-	\textbf{Statistic} & \textbf{Value (\textmu s)} \\\hline
-	Average Latency & 17.68 \\\hline
-	Maximum Latency & 32.21 \\\hline
-	Minimum Latency & 8.005 \\\hline
-	Standard Deviation & 6.1 \\\hline
-	\end{tabular}}
-	\end{table}
 
 \section{Kernel Configurations}\label{sec:kernel_configurations}
 
@@ -585,12 +599,12 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 	\item \textbf{irqaffinity=0}: Sets the default Interrupt Request affinity to none. This means that no CPU core is preferred over another for handling IRQs. Instead, it lets the operating system decide how to distribute these IRQs across all the CPUs. Section \ref{subsec:irq_handling} dives deeper into Interrupt Request affinity.
 \end{itemize}
 
-\textcolor{red}{After the Kernel configurations, Figure \ref{fig:max_latency_rt_kernelparam}}
+\textcolor{red}{After the BIOS and Kernel configurations, Figure \ref{fig:max_latency_rt_kernelparam}}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/4rt_kernelparam/max_latency_rt_kernelparam/max_latency_rt_kernelparam.png}
-	\caption[After Kernel configurations]{After Kernel configurations}
+	\caption[After BIOS and Kernel configurations]{After BIOS and Kernel configurations}
 	\label{fig:max_latency_rt_kernelparam}
 \end{figure}
 
@@ -639,6 +653,36 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 		4   82134   82134 [kworker/4:1H-kblockd]      TS  -20      -
 \end{lstlisting}
 \end{minipage}
+\subsection{KVM entry and KVM exit}\label{subsec:kvm_entry_exit}
+\textcolor{red}{\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates CPUs from the scheduler, meaning that user-space processes won't be scheduled on these CPUs, but kernel tasks and interrupts can still utilize the CPU.This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the~\texttt{kvm\_entry} and~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest's ability to run continuously, thereby increasing the virtualization latency.}
+
+\textcolor{red}{To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed~\texttt{kvm\_exit} events.}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|p{0.62\textwidth}|}
+		\hline
+		\textbf{Exit Reason} & \textbf{Description}                                     \\ \hline
+		APIC\_WRITE          & Triggered when the guest writes to its APIC.             \\ \hline
+		EXTERNAL\_INTERRUPT  & Triggered by external hardware interrupts.               \\ \hline
+		HLT                  & Triggered when the guest executes the HLT instruction.   \\ \hline
+		EPT\_MISCONFIG       & Triggered by a misconfiguration in the EPT.              \\ \hline
+		PREEMPTION\_TIMER    & Triggered when the host's preemption timer expires.      \\ \hline
+		PAUSE\_INSTRUCTION   & Triggered when the PAUSE instruction is executed.        \\ \hline
+		EPT\_VIOLATION       & Triggered by a violation of the EPT permission settings. \\ \hline
+		IO\_INSTRUCTION      & Triggered when the guest executes an I/O instruction.    \\ \hline
+		EOI\_INDUCED         & Triggered when an EOI signal is sent to the APIC.        \\ \hline
+		MSR\_READ            & Triggered when the guest reads from a MSR.               \\ \hline
+		CPUID                & Triggered when the guest executes the CPUID instruction. \\ \hline
+	\end{tabular}
+	\caption{Description of kvm\_exit reasons}
+	\label{tab:kvm_exit}
+\end{table}
+
+\textcolor{red}{\noindent In the process of analyzing the~\texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the~\texttt{APIC\_WRITE} and~\texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included~\texttt{EXTERNAL\_INTERRUPT} and~\texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as~\texttt{EPT\_MISCONFIG} and~\texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like~\texttt{PAUSE\_INSTRUCTION},~\texttt{EPT\_VIOLATION},~\texttt{EOI\_INDUCED},~\texttt{MSR\_READ}, and~\texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.}
+
+\textcolor{red}{\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is not bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on the user level. Without CPU isolation, context switches take place at the operating system level and not at the hypervisor level. This explains why there are fewer~\texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at the operating system level generally take longer than a~\texttt{kvm\_exit} and ~\texttt{kvm\_entry}. When the CPU was dedicated to the QEMU process, on the other hand, there was a significant increase in~\texttt{kvm\_exit} events. This is because every context switch takes place at the hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.}
+
 \subsection{Interrupt Affinity}\label{subsec:irq_handling}
 Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. The~\texttt{/proc/interrupts} file can be monitored using the command~\texttt{watch -d -n 1 cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU13). When there are 14 CPUs available, the default value for~\texttt{smp\_affinity} would be 3FFF. Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 3FEF (11 1111 1110 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU. By changing the values of the~\texttt{smp\_affinity} files, the assignment of IRQs to CPUs is controlled. 
 
@@ -1025,63 +1069,17 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 
 \clearpage
 
-
+\begin{comment}
 \chapter{To Include}\label{cha:to_include}
+
 ``korrekt''
 
 \noindent \enquote{This LaTeX.}
 
-\section{Latency Comparison}
-In the initial phase, a comparative latency analysis was conducted between the hardware version and the virtualized version of Salamander 4. For this purpose, the latency tool of the Xenomai test suite was used. The latency was measured under two conditions, idle and CPU-stressed. The goal was to optimize the latency of the virtualization of Salamander 4 OS to closely match that of the bare metal version.
+The latency was measured under two conditions, idle and CPU-stressed. Vorgehensweise von~\cite{linPerformanceEvaluationXenomai}
 
-Vorgehensweise von~\cite{linPerformanceEvaluationXenomai}
-
-
+\section{Trace-cmd and Kernelshark}
 After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
-
-\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is not bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on user level.
-
-\noindent Without CPU isolation, context switches take place at operating system level and not at hypervisor level. This explains why there are fewer~\texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at operating system level generally take longer than a~\texttt{kvm\_exit} and kvm\_entry.
-	
-\noindent When the CPU was dedicated to the QEMU process, on the other hand,there was a significant increase in~\texttt{kvm\_exit} events. This is because every context switch takes place at hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.
-
-\section{Latency taskset}
-Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\columnwidth]{img/max_latency_taskset.png}
-	\caption[Latency taskset]{Latency taskset}
-	\label{fig:max_latency_taskset}
-\end{figure}
-
-\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU. This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the~\texttt{kvm\_entry} and~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest\'s ability to run continuously, thereby increasing the virtualization latency. To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed~\texttt{kvm\_exit} events.
-
-\section{kvm exits}
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|p{0.62\textwidth}|}
-		\hline
-		\textbf{Exit Reason} & \textbf{Description}                                     \\
-		\hline
-		APIC\_WRITE          & Triggered when the guest writes to its APIC.             \\ \hline
-		EXTERNAL\_INTERRUPT  & Triggered by external hardware interrupts.               \\ \hline
-		HLT                  & Triggered when the guest executes the HLT instruction.   \\ \hline
-		EPT\_MISCONFIG       & Triggered by a misconfiguration in the EPT.              \\ \hline
-		PREEMPTION\_TIMER    & Triggered when the host's preemption timer expires.      \\ \hline
-		PAUSE\_INSTRUCTION   & Triggered when the PAUSE instruction is executed.        \\ \hline
-		EPT\_VIOLATION       & Triggered by a violation of the EPT permission settings. \\ \hline
-		IO\_INSTRUCTION      & Triggered when the guest executes an I/O instruction.    \\ \hline
-		EOI\_INDUCED         & Triggered when an EOI signal is sent to the APIC.        \\ \hline
-		MSR\_READ            & Triggered when the guest reads from a MSR.               \\ \hline
-		CPUID                & Triggered when the guest executes the CPUID instruction. \\ \hline
-	\end{tabular}
-	\caption{Description of kvm\_exit reasons}
-	\label{tab:kvm_exit}
-\end{table}
-
-\noindent In the process of analyzing the~\texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the~\texttt{APIC\_WRITE} and~\texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included~\texttt{EXTERNAL\_INTERRUPT} and~\texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as~\texttt{EPT\_MISCONFIG} and~\texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like~\texttt{PAUSE\_INSTRUCTION},~\texttt{EPT\_VIOLATION},~\texttt{EOI\_INDUCED},~\texttt{MSR\_READ}, and~\texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.
-
-\clearpage
 
 \section{Host and Guest tasks}
 \begin{table}[H]
@@ -1175,6 +1173,7 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 	\label{tab:my_label}
 	\end{table}
 \clearpage
+\end{comment}
 
 \chapter{Results}\label{cha:results}
 ~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}
