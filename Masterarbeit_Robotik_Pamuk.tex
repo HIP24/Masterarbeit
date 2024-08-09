@@ -962,7 +962,7 @@ There are other configurations that may be relevant depending on the case. Linux
 \clearpage
 
 \chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
-This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings. Additionally, these results are contrasted with the latency of Salamander 4 running on bare metal hardware to understand how closely the performance of the virtualization can match that of the bare metal. The experimental setup includes a six-axis mini-robot, illustrated in Figure \ref{fig:mini_robot}. 
+This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings with the latency of Salamander 4 running on bare metal hardware. This comparison is done with the aid of a program that will be explained shortly. The goal is to understand how closely the performance of the virtualization can match that of the bare metal. The experimental setup includes a six-axis mini-robot, illustrated in Figure \ref{fig:mini_robot}. 
 
 \begin{figure}[H]
 	\centering
@@ -1034,12 +1034,12 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 	#!/bin/sh
 
 	if  [ ! -d drive-c/ ]; then
-			echo "Filling drive-c/"
-			mkdir drive-c/
-			tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
+					echo "Filling drive-c/"
+					mkdir drive-c/
+					tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
 	fi
 		
-	exec taskset -c 4 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+	exec taskset -c 4-5 chrt -f 99 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 	-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
 	-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 threadirqs" \
 	-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
