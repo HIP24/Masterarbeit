@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<DataAnalyser
+	VerSet        = "0.01"
+	Samplerate    = "10000"
+	DA_Type       = "0"
+	MaxMemTime    = "0"
+	MaxMem        = "20"
+	TimeRangeStr  = "1000 ms"
+	TimeOffsetStr = "0 ms"
+	StepSize      = "1"
+	StepSizeStr   = "1 ms"
+	TimeRange     = "1000"
+	TimeOffset    = "0"
+	ScreenView    = "TREND">
+	<DA_TriggerStart Active="false" Type="Start" Condition="Greater or Equal">
+	</DA_TriggerStart>
+	<DA_TriggerStop Active="false" Type="Stop" Condition="Greater or Equal">
+	</DA_TriggerStop>
+	<DA_Channels>
+		<DA_Channel
+			Name          = "Steuerung1.AverageLatency_ns"
+			Type          = "REAL"
+			ChannelInfo   = "Steuerung1.AverageLatency_ns"
+			ChannelSize   = "4"
+			BitIndex      = "0"
+			Color         = "886118"
+			Active        = "true"
+			LimitHi       = "300"
+			LimitLo       = "0"
+			IsServer      = "false"
+			ChannelMemOff = "192">
+		</DA_Channel>
+	</DA_Channels>
+	<DA_AuxLines>
+	</DA_AuxLines>
+</DataAnalyser>
