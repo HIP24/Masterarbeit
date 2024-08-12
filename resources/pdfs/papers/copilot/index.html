@@ -1,0 +1,4313 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="My awesome docs">
+      
+      
+        <meta name="author" content="Halil Pamuk">
+      
+      
+      
+        <link rel="prev" href="../../../../general/timeline/">
+      
+      
+        <link rel="next" href="../../../../sigmatek/QEMU/nmbridge/">
+      
+      
+      <link rel="icon" href="../../../mkdocs/robot2.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+    
+    
+      
+        <title>Copilot - Masterthesis Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.10ba22f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Masterthesis Documentation" class="md-header__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+      
+  <img src="../../../mkdocs/robot2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Masterthesis Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Copilot
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Masterthesis Documentation" class="md-nav__button md-logo" aria-label="Masterthesis Documentation" data-md-component="logo">
+      
+  <img src="../../../mkdocs/robot2.png" alt="logo">
+
+    </a>
+    Masterthesis Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../todo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Masterarbeit TODO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            General
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general/checklist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checklist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general/documentations_and_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general/draft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Draft
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general/protocol/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protocol
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general/timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pdfs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Pdfs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_1" id="__nav_5_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Papers
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Papers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Copilot
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sigmatek
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Sigmatek
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    QEMU
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            QEMU
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/QEMU/nmbridge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nmbridge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Salamander4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Salamander4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/bash_commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bash commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/build_LRT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build LRT - Salamander 3 Terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/build_with_yocto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build with Yocto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2_4" id="__nav_6_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Latency reduction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Latency reduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/latency_reduction/latency_reduction_steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latency reduction steps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2_4_2" id="__nav_6_2_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    IRQaffinity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            IRQaffinity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/latency_reduction/IRQaffinity/IRQ_affinity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IRQ affinity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    table CPU IRQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2_4_3" id="__nav_6_2_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kernel patch
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_2_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kernel patch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/salamander4/latency_reduction/kernel-patch/kernel-patch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux kernel patch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Trace cmd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            Trace cmd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/kernelshark/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kernelshark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/kvm_exits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kvm exits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/trace-cmd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trace cmd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_4" id="__nav_6_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_4_1" id="__nav_6_3_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/hardware/events/events_report_cpu0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events report cpu0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/hardware/events/events_report_cpu1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events report cpu1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_4_2" id="__nav_6_3_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tasks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/hardware/tasks/tasks_report_cpu0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks report cpu0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/hardware/tasks/tasks_report_cpu1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks report cpu1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5" id="__nav_6_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Virtualization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Virtualization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/compare/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compare
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_2" id="__nav_6_3_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Balanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Balanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/balanced/results_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Results guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/balanced/results_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Results host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_3" id="__nav_6_3_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Default
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Default
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/default/kvm_exit_default_results/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kvm exit default results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_4" id="__nav_6_3_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Normal
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Normal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_4_1" id="__nav_6_3_5_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_6_3_5_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/normal/events/events_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/normal/events/events_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_4_2" id="__nav_6_3_5_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tasks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_6_3_5_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/normal/tasks/tasks_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/normal/tasks/tasks_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_5" id="__nav_6_3_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Performance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Performance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/performance/results_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Results guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/performance/results_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Results host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_6" id="__nav_6_3_5_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Power saver
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Power saver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/power_saver/results_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Results guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/power_saver/results_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Results host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_7" id="__nav_6_3_5_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Real time
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            Real time
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_7_1" id="__nav_6_3_5_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_6_3_5_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time/events/events_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time/events/events_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_7_2" id="__nav_6_3_5_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tasks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_6_3_5_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time/tasks/tasks_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time/tasks/tasks_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_8" id="__nav_6_3_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Real time irq
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Real time irq
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_8_1" id="__nav_6_3_5_8_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Events
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_6_3_5_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time-irq/events/events_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time-irq/events/events_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Events host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_8_2" id="__nav_6_3_5_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tasks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_6_3_5_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time-irq/tasks/tasks_guest_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks guest report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/real-time-irq/tasks/tasks_host_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tasks host report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_9" id="__nav_6_3_5_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            Taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/taskset/kvm_exit_taskset_results/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kvm exit taskset results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_5_10" id="__nav_6_3_5_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Vapic
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_3_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            Vapic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/virtualization/vapic/kvm_exit_vapic_results/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kvm exit vapic results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3_6" id="__nav_6_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Working trace cmd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Working trace cmd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/trace-cmd/working_trace-cmd/reinstall_trace-cmd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reinstall trace cmd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xenomai
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            Xenomai
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/install_xenomai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install xenomai
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/xenomai_compare/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Salamander 4 latency comparisons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_3" id="__nav_6_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01combined
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            01combined
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/01combined/max_latency_combined_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot combined
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_4" id="__nav_6_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    0hardware
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            0hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/0hardware/max_latency_hardware_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/0hardware/max_latency_hardware_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_5" id="__nav_6_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1default
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            1default
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/1default/max_latency_default_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot default
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/1default/max_latency_default_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency default
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_6" id="__nav_6_4_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2taskset
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            2taskset
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/2taskset/max_latency_taskset_10min_gnoplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/2taskset/max_latency_taskset_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_7" id="__nav_6_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3rt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            3rt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/3rt/dmesg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dmesg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_7_2" id="__nav_6_4_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Max latency rt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_6_4_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Max latency rt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/3rt/max_latency_rt/max_latency_rt_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with rt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_8" id="__nav_6_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4rt kernelparam
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            4rt kernelparam
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/4rt_kernelparam/max_latency_rt_kernelparam_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with rt_kernelparam
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_9" id="__nav_6_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5rt kernelparam host
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            5rt kernelparam host
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/5rt_kernelparam_host/max_latency_rt_kernelparam_host_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with rt_kernelparam_host
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_10" id="__nav_6_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6rt kernelparam host qemu
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            6rt kernelparam host qemu
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with rt_kernelparam_host
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_11" id="__nav_6_4_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7rt kernelparam host qemu 2cpus
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            7rt kernelparam host qemu 2cpus
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/7rt_kernelparam_host_qemu_2cpus/max_latency_rt_kernelparam_host_qemu_2cpus_10min_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Max Latency with rt_kernelparam_host_2cpus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_12" id="__nav_6_4_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Test xenomai
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            Test xenomai
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/test_xenomai/gnup_temp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gnuplot with taskset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4_13" id="__nav_6_4_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xenomai suite
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            Xenomai suite
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/xenomai_suite/clocktest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    clocktest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/xenomai_suite/latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/xenomai_suite/switchtest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    switchtest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/xenomai/xenomai_suite/xenomai-system-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xenomai system tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Yocto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            Yocto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../sigmatek/yocto/after_bitbake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    After bitbake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/NONkernel_threads/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NONkernel threads
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bcc
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bcc
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/bcc/bcc_tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bcc tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/bcc/install_bcc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install bcc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rt tester
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Rt tester
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rt tester
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Rt tester
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4_1_1" id="__nav_7_4_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Tests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/rt-tester/rt-tester/tests/generic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/rt-tester/rt-tester/tests/preempt_rt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preempt rt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workflow
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/problem_solution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Problem solution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/useful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful Stuff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Meetings
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Meetings
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/meetings/rauh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rauh Fragen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/meetings/richard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Richard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../workflow/meetings/wober/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wober
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Copilot</h1>
+
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Demystifying the Real-Time Linux Scheduling Latency” by Daniel Bristot de Oliveira and colleagues explores the intricacies of Linux as a real-time operating system, specifically focusing on the PREEMPT_RT variant. The authors critique the traditional cyclictest tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. To address these issues, the paper leverages the Thread Synchronization Model of Linux to derive a set of properties and rules that define the kernel’s behavior from a scheduling perspective12. This model helps in establishing a sound bound to the scheduling latency by considering all possible sources of delays in synchronization events34. The authors also introduce an efficient tracing method to observe kernel events with minimal overhead, resulting in a practical tool for deriving reliable scheduling latency bounds5. The paper concludes with an experimental analysis comparing cyclictest and the proposed method, demonstrating that the latter can find sound bounds faster and with acceptable overheads6. This work contributes significantly to the understanding and improvement of real-time performance in Linux systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{The white paper, “Real-Time Performance Tuning Best Practice Guidelines for KVM-Based Virtual Machines,” provides comprehensive guidelines for optimizing real-time performance in KVM-based virtual machines on Intel Architecture (IA) platforms1. It begins by explaining the importance of real-time systems, which must respond to events within strict time constraints, and the relevance of tuning these systems for applications running in virtual machines (VMs), particularly in the manufacturing sector2. The document details the testbed configuration used for performance evaluation, including an industrial PC based on the Intel Whiskey Lake-U platform with specific BIOS, kernel, and host configurations3. Key BIOS settings such as disabling Hyper-Threading and Intel SpeedStep, and enabling Intel VMX and VT-d, are recommended to enhance real-time performance. Kernel configurations include using a real-time kernel, setting specific kernel parameters, and isolating CPUs for real-time workloads. Host configurations involve setting CPU affinity for system services, cache isolation, and disabling certain services like irqbalance and thermald. The paper also outlines QEMU-KVM configurations, such as tuning lapic timer advance and setting CPU affinity for QEMU threads. For the guest OS in the real-time VM, similar configurations to the host are recommended, with additional tuning for sched_rt_runtime_us. The performance evaluation section describes a rigorous testing process, including running heavy workloads alongside the real-time VM, which demonstrated significantly enhanced real-time performance with latency in the range of tens of microseconds4. The document concludes that the described tuning methods effectively improve real-time performance for KVM-based VMs, even under heavy workloads5.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System” explores the integration of real-time operating systems (RTOS) with general-purpose operating systems (GPOS) using Kernel-Based Virtual Machine (KVM) technology. The authors, Ruhui Ma, Fanfu Zhou, Erzhou Zhu, and Haibing Guan, propose an embedded real-time virtualization architecture that combines VxWorks (RTOS) and Linux (GPOS) on a multi-core platform1. This architecture aims to address issues such as responsiveness, system performance, and CPU resource utilization. The paper details several performance tuning methods, including CPU shielding, prioritization, and a novel co-scheduling algorithm, to achieve sub-millisecond interrupt response latency on the guest VxWorks2. Experimental results demonstrate that these tuning methods significantly improve real-time responsiveness and system performance. The study concludes that with careful system setups, such as applying RT patches and real-time tunings on the host Linux, the proposed architecture is suitable for certain embedded real-time scenarios34. The work is supported by various Chinese national foundations and highlights the potential of virtualization technology in enhancing the capabilities of embedded systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper "‘Real Time’ vs. ‘Real Fast’: How to Choose?"1 by Paul E. McKenney from IBM Linux Technology Center explores the distinction between real-time and real-fast computing in the context of Linux systems. It provides a comprehensive analysis to help developers make informed design choices between achieving quick start times (real-time) and fast completion times (real-fast)2. The paper uses two example applications: an embedded fuel-injection system and a Linux kernel build, to illustrate the differences3. The fuel-injection scenario, which requires precise timing, benefits from real-time Linux, while the kernel build, which prioritizes throughput, performs better on non-real-time Linux. The paper discusses factors influencing the choice, such as workload duration, CPU utilization, and memory usage. It also addresses the overheads associated with real-time Linux, including increased locking and interrupt handling costs45. The conclusion emphasizes using the right tool for the job and suggests ongoing work to reduce the performance penalty of real-time Linux, potentially making it suitable for a broader range of workloads6.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Real-Time Performance Analysis in Linux-Based Robotic Systems” by Hobin Yoon, Jungmoo Song, and Jamee Lee from Samsung Advanced Institute of Technology explores the feasibility of using real-time flavored Linux for controlling complex humanoid robots1. The authors emphasize the importance of precise control periods for mobile and humanoid robots, which require timely responses to external stimuli to maintain balance and smooth operation. The study introduces the adoption of EtherCAT technology for real-time communication among distributed devices, highlighting its flexible topology, simple configuration, and cost-effectiveness2. The paper details the design and implementation of the Robot Control Kernel Subsystem (RCKS), which integrates EtherCAT master and slave devices, and discusses various real-time performance tunings applied to the Linux kernel to achieve deterministic timing. Experimental results demonstrate that with appropriate real-time tunings, including CPU shielding, memory locking, and spinning nanosleep, Linux can meet the stringent timing requirements of robotic systems, achieving control periods within acceptable limits even under heavy system load. The authors conclude that Linux, with its real-time enhancements, is a viable solution for deploying in advanced robotic systems, offering both real-time capabilities and the benefits of a general-purpose OS3.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Performance Evaluation of Xenomai 3” by Ching-Chun (Jim) Huang, Chan-Hsiang Lin, and Che-Kang Wu, presents an in-depth analysis of Xenomai 3, a real-time framework for Linux. Xenomai 3 operates either as a dual-kernel system alongside Linux or natively over mainline Linux kernels, enhanced by PREEMPT RT for stricter response times1. The study evaluates Xenomai 3’s performance, particularly in dual-kernel configuration, using ARM Cortex-A series benchmarks. The authors highlight Xenomai 3’s optimizations in RTOS API emulation, thread-to-thread communications, and reduced overhead. The paper compares Xenomai 3 with its predecessor, Xenomai 2, and the PREEMPT RT-enhanced Linux kernel, demonstrating superior maximum response times to external interrupts in dual-kernel setups. The study employs BeagleBone Black hardware and various kernel configurations to measure latencies under idle and CPU-stressed conditions2. Results indicate that Xenomai 3 generally outperforms Xenomai 2 and PREEMPT RT, except for a slight degradation in timer-IRQ latency under stress. The paper concludes that Xenomai 3 offers significant improvements in real-time performance and flexibility, making it a robust choice for real-time applications.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Performance Analysis Towards a KVM-Based Embedded Real-Time Virtualization Architecture” explores the challenges and solutions associated with integrating real-time operating systems (RTOS) with general-purpose operating systems (GPOS) in embedded systems using virtualization technology. The authors propose an architecture based on the Kernel-Based Virtual Machine (KVM) that combines VxWorks (an RTOS) and Linux (a GPOS) on a multi-core platform12. The primary focus is on evaluating how KVM affects the interrupt-response times of VxWorks when running as a guest OS3. The study highlights the shift from single-core to multi-core processors in embedded systems and the need for legacy RTOS to adapt to multi-core environments4. The paper discusses hardware-assisted virtualization, particularly Intel’s VT technology, and the implementation of KVM as a hypervisor within the Linux kernel. Through experimental setups and performance tuning methods like prioritization and CPU shielding, the authors demonstrate that sub-millisecond interrupt response latency can be achieved, making the proposed architecture suitable for certain embedded real-time applications5. The results indicate that with careful system configurations, KVM can effectively support real-time performance requirements in embedded systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Performance Analysis Towards a KVM-Based Embedded Real-Time Virtualization Architecture” explores the challenges and solutions associated with integrating real-time operating systems (RTOS) with general-purpose operating systems (GPOS) on multi-core processors in embedded systems. The authors propose an architecture based on the Kernel-Based Virtual Machine (KVM) that combines VxWorks (an RTOS) and Linux (a GPOS) to leverage the benefits of both systems. The study focuses on evaluating the impact of KVM on the interrupt-response times of VxWorks when running as a guest OS. By applying real-time performance tuning methods on the host Linux, the authors demonstrate that sub-millisecond interrupt response latency can be achieved, making the architecture suitable for certain embedded real-time scenarios. The paper also discusses hardware-assisted virtualization, the role of KVM as a hypervisor, and the experimental setup used to measure the performance impacts. The results indicate that with appropriate system configurations, such as prioritization and CPU shielding, the proposed architecture can effectively meet real-time performance requirements.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Real-time capabilities in the standard Linux Kernel: How to enable and use them?” explores the transformation of the Linux operating system into a real-time system using the PREEMPT-RT patches1. Originally designed as a general-purpose OS, Linux has gained popularity in real-time applications due to its low cost and open-source nature2. The authors discuss the importance of real-time systems, which must meet strict temporal requirements to ensure system correctness. They differentiate between hard and soft real-time systems, emphasizing that Linux, with the PREEMPT-RT patch, can achieve soft real-time performance3. The PREEMPT-RT patch, maintained by Ingo Molnar and Thomas Gleixner, allows almost the entire kernel to be preempted, enhancing its real-time capabilities4. Key kernel configurations and runtime precautions are highlighted to maintain real-time performance. The paper concludes that while Linux can achieve real-time performance, it is still not as deterministic as commercial real-time operating systems like QNX and Windows CE5. However, with proper configuration, Linux can be a viable option for real-time applications.}</p>
+<p>\bigskip \noindent \textcolor{red}{This paper presents a modular platform for industrial automation that leverages open-source components to run both non-critical activities and real-time control tasks on the same hardware, thereby reducing overall hardware costs. The platform uses a hypervisor to provide isolation, allowing concurrent execution of real-time control code and design tools. The authors detail the software architecture, including the hypervisor and Real-Time Operating System (RTOS), and discuss the necessary extensions for practical application. They address the challenge of interference on shared hardware resources, which can degrade real-time performance. The paper also includes experimental results demonstrating the platform’s effectiveness and performance. The authors highlight the benefits of using open-source software to avoid expensive commercial solutions and emphasize the importance of multi-core processors and hardware-assisted virtualization in industrial automation. The work is supported by the European Commission through the I-MECH ECSEL project.}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\bigskip \noindent \textcolor{red}{Shielded Processors: Guaranteeing Sub-millisecond Response in Standard Linux by Steve Brosky and Steve Rotolo of Concurrent Computer Corporation explores the implementation and benefits of shielded processors in RedHawk Linux for real-time applications. The paper highlights the limitations of standard Linux in providing deterministic performance due to networking and graphics activities. Shielded CPUs, a model developed over a decade of experience, offload operating system overhead to a subset of CPUs, ensuring more deterministic execution and interrupt response times. The authors describe the modifications made to the Linux kernel, including CPU affinity settings and the disabling of local timer interrupts, to create a shielded environment. Benchmark tests demonstrate significant improvements in execution determinism and interrupt response times, with jitter reduced to 1.87\% on shielded CPUs compared to 26.17\% on standard Linux. The paper concludes that shielded processors can guarantee interrupt response times of less than 30 microseconds, even under heavy system load, making them suitable for applications with hard real-time deadlines. The work underscores the potential of using commodity operating systems like Linux for high-performance real-time applications by leveraging shielded processors.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Real-Time Performance and Response Latency Measurements of Linux Kernels on Single-Board Computers” by George K. Adam from the CSLab Computer Systems Laboratory, University of Thessaly, investigates the real-time performance of Linux kernels with the PREEMPT_RT patch on embedded devices like the BeagleBoard and Raspberry Pi1. The research focuses on measuring latencies in real-time applications at both user and kernel space using newly developed software modules tailored for these experiments2. The study highlights that the PREEMPT_RT patch significantly improves the real-time performance of Linux kernels, reducing worst-case latencies to around 160 µs, making these systems more suitable for real-time applications3. The methodology involves response and periodic task models, and the results suggest that the proposed measurement approach can be applied to other Linux-based platforms4. The paper also discusses the challenges and solutions encountered during the experiments, emphasizing the importance of real-time capabilities in embedded systems for applications ranging from consumer electronics to industrial automation.}</p>
+<p>\bigskip \noindent \textcolor{red}{Asymmetric Scheduling and Load Balancing for Real-Time on Linux SMP
+Authors: Eric Piel, Philippe Marquet, Julien Soula, and Jean-Luc Dekeyser12
+The paper presents ARTiS, a real-time extension of the GNU/Linux scheduler designed for SMP (Symmetric Multi-Processors) systems3. ARTiS aims to guarantee the preemption of processors for real-time tasks by assigning specific processors to these tasks4. This system ensures low latency by migrating non-preemptible tasks away from real-time processors5. ARTiS also incorporates load-balancing strategies to fully utilize SMP systems without wasting resources. The implementation of ARTiS involves modifications to the Linux scheduler, resulting in significant improvements in latency compared to the standard Linux scheduler6. The paper details the performance evaluation of ARTiS, highlighting its ability to maintain low interrupt latency even under high system load, making it suitable for hard real-time applications. The authors propose further enhancements, including the integration of real-time scheduling policies like EDF (Earliest Deadline First) and RM (Rate Monotonic)7.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: A Comprehensive Study of Kernel (Issues and Concepts) in Different Operating Systems12
+Authors: Hayfaa Subhi Malallah, Subhi R. M. Zeebaree, Rizgar R. Zebari, Mohammed A. M. Sadeeq, Zainab Salih Ageed, Ibrahim Mahmood Ibrahim, Hajar Maseeh Yasin, Karwan Jameel Merceedi
+Summary: This paper provides an in-depth comparative analysis of various operating systems (OS) focusing on their kernels, which are the core components managing system resources and providing essential services. The study examines the strengths and limitations of popular OS such as iOS, Android, Mac, Windows, and Linux3. It highlights that Linux, Android, and Windows 10 are particularly noted for their stability, compatibility, and reliability4. The paper discusses the evolution of OS kernels, including microkernels, monolithic kernels, and hybrid kernels, and their respective advantages and challenges. It also addresses modern developments in OS technology, such as multicore processors, cloud computing, and the Internet of Things (IoT), and their impact on kernel design and performance. The authors emphasize the importance of security in kernel development, noting that vulnerabilities can lead to significant system compromises. The paper concludes with a discussion on the future directions of OS kernel research and development, advocating for continuous improvement in performance, security, and adaptability to emerging technologies.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: Testing the limits of general-purpose hypervisors for real-time control systems
+Authors: Rui Queiroz, Tiago J. Cruz, Paulo Simões (University of Coimbra)
+Summary: This paper explores the feasibility of using general-purpose off-the-shelf hypervisors to virtualize real-time control systems within the context of Industry 4.0. The authors address the need for flexibility, security, and resilience in automation infrastructures while maintaining real-time requirements. They discuss the potential benefits of virtualizing servers and control devices in Industrial and Automation Control Systems (IACS), but also highlight the challenges due to the focus of general-purpose hypervisors on maximizing throughput, often at the expense of determinism and increased latency.
+The paper presents an empirical evaluation of various hypervisors, concluding that while some are capable of handling typical real-time workloads, this capability cannot be generalized to all types of real-time systems. The authors provide a comprehensive analysis of cyber-physical systems (CPS), control devices, and real-time systems, including their latency and jitter requirements. They also delve into the specifics of real-time operating systems (RTOS) and mixed-criticality systems, and review different virtualization techniques, comparing commercial off-the-shelf hypervisors with real-time hypervisors.
+The study emphasizes the importance of ensuring both spatial and temporal isolation in virtualized environments to maintain predictable real-time performance. It also discusses the role of scheduling policies in real-time applications and the challenges of I/O sharing between multiple virtual machines. The authors conclude that while general-purpose hypervisors show promise, further research and development are needed to fully realize their potential in real-time control systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{“Testing the limits of general-purpose hypervisors for real-time control systems” by Rui Queiroz, Tiago J. Cruz, and Paulo Simões from the University of Coimbra:
+With the advent of Industry 4.0, there is a growing need for flexibility, security, and resilience in industrial automation infrastructures while maintaining real-time requirements. This paper explores the feasibility of using general-purpose off-the-shelf hypervisors to virtualize cyber-physical systems’ servers and control devices. The authors, Rui Queiroz, Tiago J. Cruz, and Paulo Simões, present an empirical evaluation of these hypervisors, focusing on their ability to handle real-time workloads. The study highlights the challenges posed by the need for determinism and low latency, which are often compromised by hypervisors designed to maximize throughput. The paper concludes that while some hypervisors can manage typical real-time workloads, this capability is not universal across all types of real-time systems. The research underscores the importance of understanding the limits and capabilities of conventional hypervisors to ensure they meet the specific requirements of industrial automation control systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: A State-of-the-Art Survey on Real-Time Issues in Embedded Systems Virtualization
+Authors: Zonghua Gu and Qingling Zhao
+Summary: This paper provides a comprehensive survey on real-time issues in virtualization for embedded systems, authored by Zonghua Gu and Qingling Zhao. Virtualization, widely accepted in server and cloud computing, has been increasingly applied to embedded systems with stringent timing constraints. The paper discusses various virtualization systems, including KVM, Xen, and L4, and their applications in embedded systems such as avionics, industrial automation, and mobile phones. It highlights the importance of real-time performance, security, and dependability in these systems. The survey covers different types of virtualization, including Type-1 (bare-metal) and Type-2 (hosted) virtualization, as well as full and para-virtualization. It also addresses specific real-time issues like scheduling, partitioning, and the Lock-Holder Preemption problem. The paper concludes with a discussion on the future directions and challenges in the field of real-time virtualization for embedded systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: How Real (Time) Are Virtual PLCs?1
+Authors: Diogenes Javier Perez, Josef Waltl, Laurin Prenzel, Sebastian Steinhorst
+This paper explores the concept of virtual programmable logic controllers (vPLCs) as a solution to the limitations of traditional hardware-based PLCs in industrial automation. The authors argue that hardware PLCs are costly to maintain and lack the flexibility and scalability needed for modern applications, especially those involving artificial intelligence and machine learning2. The proposed vPLC operates on a commercial off-the-shelf (COTS) server using a real-time hypervisor, which allows it to manage multiple virtual machines and handle resource-intensive tasks efficiently34.
+The paper details the architecture of the vPLC, which includes a real-time operating system and a hypervisor to ensure low latency and deterministic behavior. The authors conducted various tests to compare the performance of vPLCs with traditional SoftPLCs, focusing on metrics such as cycle time, jitter, and response time. The results indicate that vPLCs can achieve performance on par with traditional PLCs for applications requiring response times below 10 milliseconds5. The study concludes that while further improvements are needed, vPLCs offer significant advantages in terms of flexibility, scalability, and cost-efficiency for future industrial systems6.}</p>
+<p>\bigskip \noindent \textcolor{red}{Impact of Modern Virtualization Methods on Timing Precision and Performance of High-Speed Applications
+Authors: Veronika Kirova, Kirill Karpov, Eduard Siemens, Irina Zander, Oksana Vasylenko, Dmitry Kachan, Sergii Maksymov
+This research investigates the precision of timing methods and their efficiency in various virtual environments, focusing on their impact on high-speed network applications. The study examines how timer hardware is shared among CPU- and I/O-bound tasks on both virtualized and bare operating systems. By replacing timing methods within an application for estimating available path bandwidth, the authors analyze the impact on estimation accuracy. The findings highlight that timer overhead and precision are crucial for high-performance network applications, with low-precision timing methods leading to degradation in virtual environments. The paper confirms that using precise timing operations and AvB estimation methods can overcome inefficiencies in standard time-related operations. The research evaluates five different virtual environments to determine the most optimal for high-speed network applications, providing a comprehensive analysis of the impact of virtualization on timing precision and performance.}</p>
+<p>\bigskip \noindent \textcolor{red}{“Real Time Operating Systems: A Complete Overview” by Mrinal Parikshit Chandane:
+The paper “Real Time Operating Systems: A Complete Overview” by Mrinal Parikshit Chandane provides an in-depth examination of Real Time Operating Systems (RTOS) and their critical role in embedded systems, particularly in telecommunication applications such as telephony, navigation, and military signaling systems. RTOS is essential for applications that require strict deadline constraints and the ability to handle multiple tasks simultaneously1. The paper highlights the key features of RTOS, including timing considerations, task prioritization, and communication and synchronization between tasks2.
+The document delves into various design aspects necessary for developing an RTOS, such as task management, multitasking, context switching, task priority, and kernel functions3. It explains how tasks are created, prioritized, and managed within an RTOS, emphasizing the importance of efficient CPU utilization and the prevention of data corruption through mutual exclusion. The paper also discusses the implementation of RTOS, covering topics like programming language selection, task stack management, and the initialization process.
+Furthermore, the paper presents a practical example of designing and implementing an RTOS for a Philips 8052 microcontroller, demonstrating the application of theoretical concepts in real-world scenarios. The successful implementation of applications such as a column controller, digital calculator, and dancing LEDs showcases the versatility and effectiveness of RTOS in managing complex embedded systems4.
+Overall, the paper provides a comprehensive overview of RTOS, offering valuable insights into its architecture, design, and implementation, making it a significant contribution to the field of embedded systems5.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper “Challenges in Real-Time Virtualization and Predictable Cloud Computing” explores the integration of real-time systems with cloud computing and virtualization technologies. The authors, Marisol García-Valls, Tommaso Cucinotta, and Chenyang Lu, identify the significant technical challenges in supporting real-time applications within cloud environments1. They highlight that while cloud computing offers benefits such as reduced operational costs, server consolidation, and elastic resource provisioning, it struggles to meet the demands of soft real-time applications like online video streaming, cloud-based gaming, and telecommunication management2. These applications require predictable performance in open, shared, and virtualized environments3.
+The paper discusses the evolution of cloud computing, emphasizing the shift from local computing resources to distributed cloud-based models. It outlines the benefits of virtualization, including functional execution isolation, easier management, and the coexistence of legacy and new applications4. However, the authors note that the multi-tenant nature of cloud computing introduces challenges in providing stable and predictable performance due to resource sharing among multiple virtual machines (VMs).
+The authors delve into various virtualization techniques, such as full virtualization, hardware-assisted virtualization, para-virtualization, OS-level virtualization, and application-level virtualization, each with its performance characteristics and suitability for real-time applications. They also address the importance of real-time scheduling and resource management in virtualized environments, highlighting the need for hierarchical scheduling and the role of real-time hypervisors.
+The paper concludes by presenting potential future research directions to enhance the predictability and performance of cloud-based real-time applications, emphasizing the need for improved resource management frameworks and real-time virtualization techniques.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “VM-Based Real-Time Services for Automotive Control Applications” is authored by Alejandro Masrur, Sebastian Drossler, Thomas Pfeuffer, and Samarjit Chakraborty. It explores the use of Virtual Machines (VMs) to provide real-time services in automotive control applications12. The authors utilize the Xen hypervisor to design a real-time control loop on top of a virtualization layer3. They first analyze a typical Xen configuration and identify issues when used for real-time applications4. The paper highlights that the SEDF (Simple Earliest Deadline First) scheduler in Xen can be improved with minimal modifications to enhance worst-case performance5. To further reduce latency and jitter, the authors propose a new scheduler for Xen that prioritizes real-time VMs using a fixed-priority policy6. This approach ensures that timing constraints in automotive control applications are met7. The paper includes extensive experiments to illustrate the effectiveness of the proposed solutions.}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>\bigskip \noindent \textcolor{red}{Title: Hard Real Time Linux* Using Xenomai* on Intel® Multi-Core Processors12
+Author: Amarpreet Singh Ugal, BIOS/Firmware Engineer, Intel Corporation
+Summary: This document explores the implementation of hard real-time capabilities in Linux using Xenomai on Intel® multi-core processors. Traditional Linux is not a hard real-time operating system because it cannot guarantee that tasks will meet strict deadlines34. To address this, the document discusses the use of a high-priority real-time kernel that runs between the hardware and standard Linux. This real-time kernel executes real-time tasks and suspends normal Linux processes during this period56. The real-time scheduler treats the standard Linux kernel as an idle task, allowing real-time tasks to preempt normal processes78. Xenomai, which uses an interrupt pipeline from the ADEOS project, is highlighted as a solution for managing interrupts and ensuring minimal latency and jitter. The document also covers the installation and configuration of Xenomai on CentOS 5.2, including kernel patching and testing with various tools like switchbench, switchtest, cyclictest, clocktest, and latency. The detailed steps and configurations provided aim to help developers achieve hard real-time performance on Intel® Core™ i7 multi-core processors.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: Performance Assessment of Linux Kernels with PREEMPT_RT on ARM-Based Embedded Devices
+Authors: George K. Adam, Nikos Petrellis, Lambros T. Doulos
+Summary: This research investigates the real-time performance of Linux kernels and distributions with the PREEMPT_RT real-time patch on ARM-based embedded devices, specifically BeagleBoard and Raspberry Pi. The study aims to provide novel insights into Linux real-time performance by evaluating various metrics such as response latency, periodic task execution, and maximum sustained frequency using heuristic methods and the cyclictest benchmark tool. The authors introduce a new response task model and develop specific software measurement modules to assess the performance.
+The results demonstrate that the PREEMPT_RT patch significantly improves real-time performance compared to default Linux kernels, particularly in reducing worst-case latencies. This makes ARM-based devices running Linux with PREEMPT_RT more suitable for time-sensitive embedded control systems. The research also highlights the growing use of Linux in embedded systems for real-time applications, driven by its open-source nature, performance, and adaptability to various hardware systems. The methodology and findings of this study could be applied to other Linux-based real-time platforms, contributing to the broader field of real-time systems research.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: Real-Time I/O System for Many-core Embedded Systems 1 Author: Zhe Jiang
+In this thesis, Zhe Jiang addresses the critical need for time predictability in modern real-time embedded systems, particularly focusing on I/O operations. The proposed solution, BlueIO, is a hardware-implemented real-time I/O virtualization system designed to meet the requirements of predictability, timing accuracy, enhanced performance, scalability, parallel access, and isolation simultaneously2. BlueIO integrates key functionalities of I/O virtualization and low-layer I/O drivers through the Virtualized Complicated Device Controller (VCDC) and a clock cycle-level timing-accurate I/O controller, the GPIO Command Processor (GPIOCP)3. This system supports abstract virtualized access to I/O devices from the software domain, providing isolation and concurrent access to I/O operations, thereby improving performance45. The thesis also introduces BlueVisor, a scalable real-time hardware hypervisor built upon BlueIO, enabling predictable virtualization on CPU, memory, and I/O, along with fast interrupt handling and inter-virtual machine communication67. The work demonstrates significant improvements in I/O performance and low running costs across different operating systems, with a hardware consumption analysis showing linear scalability with the number of CPUs and I/O devices.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: Real-Time Operating Systems1
+Author: Jiacun Wang, Monmouth University
+Summary: This chapter provides an in-depth overview of Real-Time Operating Systems (RTOS), which are crucial for embedded systems requiring timely and predictable responses. The chapter begins by outlining the main functions of general-purpose operating systems, such as process management, memory management, interrupts management, multitasking, file system management, and I/O management. It then delves into the specific characteristics of RTOS kernels, emphasizing the need for predictable timing behavior, priority scheduling, intertask communication, and resource sharing. The chapter also discusses clocks and timers, asynchronous I/O, and memory locking as essential features of RTOS. Finally, it provides examples of widely used RTOS products, including LynxOS, OSE, QNX, VxWorks, and Windows Embedded Compact, highlighting their unique features and applications in various industries such as aerospace, automotive, and telecommunications.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: Real-Time Scheduling: From Hard to Soft Real-Time Systems1
+Authors: Giuseppe Lipari (Université de Lille) and Luigi Palopoli (Università di Trento)
+Summary: This paper explores the evolution of real-time systems, traditionally divided into hard real-time and soft real-time categoriesHard real-time systems are critical, where missing a deadline can lead to catastrophic consequences, such as in automotive brake systems2. Soft real-time systems, on the other hand, aim to optimize the quality of service, like multimedia players that can tolerate occasional delays without severe impact.
+The authors argue that the boundary between these two categories is becoming increasingly blurred. They introduce the concept of time-predictability and criticality to understand the origins of real-time deadlines. The paper presents the resource reservation framework as a method for scheduling both hard and soft real-time tasks. This framework enhances system robustness and resource utilization by isolating the temporal behavior of tasks.
+The paper also discusses the Constant Bandwidth Server (CBS) algorithm, which integrates with the EDF scheduler to manage execution budgets and periods, ensuring temporal isolation3. The authors highlight the importance of designing systems that remain consistent even when deadlines are missed, emphasizing the need for robust software development practices.
+In conclusion, the paper demonstrates how resource reservation techniques can be applied to classical control systems, improving performance and robustness4. The authors provide a comprehensive overview of existing techniques and tools for soft real-time scheduling and analysis, making a strong case for the integration of these methods in modern real-time systems5.}</p>
+<p>\bigskip \noindent \textcolor{red}{The paper titled “Performance analysis of real-time and general-purpose operating systems for path planning of the multi-robot systems” by Seçkin Canbaz and Gökhan Erdemir explores the performance differences between real-time operating systems (RTOS) and general-purpose operating systems (GPOS) in the context of multi-robot systems. The study focuses on two Linux distributions, Ubuntu and Pardus, and evaluates their effectiveness as both GPOS and RTOS for path planning tasks12. The authors highlight the critical distinction between GPOS and RTOS, emphasizing that RTOS can preempt low-priority tasks with high-priority ones, even during kernel calls, which is not possible in GPOS.
+The research involves using the turtlesim simulation environment to perform path tracking tasks with robot groups of varying sizes. The experiments compare CPU usage and processing times across the different operating systems. Results indicate that Ubuntu GPOS generally outperforms other configurations in terms of lower CPU usage and shorter processing times3. However, RTOS configurations, while slower, offer higher system security and reduced error margins due to their strict time management.
+The study concludes that while GPOS may be preferable for performance-centric applications, RTOS is essential for tasks with high time dependency. The authors suggest that the choice between GPOS and RTOS should consider factors such as potential failure conditions, process security, and processing time requirements. This research provides valuable insights into the suitability of different operating systems for multi-robot applications, contributing to the broader field of robotics and autonomous systems.}</p>
+<p>\bigskip \noindent \textcolor{red}{Title: The Real-Time Linux Kernel: A Survey on PREEMPT_RT12
+Authors: Federico Reghenzani, Giuseppe Massari, and William Fornaciari from Politecnico di Milano3
+Summary: This survey explores the evolution and current state of the PREEMPT_RT patch for the Linux kernel, which aims to enhance the real-time capabilities of Linux. The authors discuss the increasing demand for real-time applications and the challenges posed by using Commercial-Off-The-Shelf (COTS) hardware in such environments. The PREEMPT_RT patch modifies the existing Linux kernel to improve predictability and reduce latencies, making it suitable for real-time applications. The survey covers various approaches to real-time Linux, including cokernel approaches like RTLinux, Xenomai, and RTAI, and compares them with the PREEMPT_RT patch4. The authors highlight the benefits of using Linux in real-time systems, such as the availability of rich hardware support and a well-established programming environment. They also discuss the challenges of integrating real-time capabilities into a general-purpose operating system and the ongoing efforts to address these issues. The survey concludes with an overview of industrial and scientific use cases that have benefited from the PREEMPT_RT patch, emphasizing its significance in fields like aerospace, automotive, and high-performance computing.}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      
+    
+  </body>
+</html>
