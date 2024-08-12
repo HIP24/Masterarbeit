@@ -187,9 +187,6 @@
 	<ObjectFiles_Arm>
 		<File Path=".\Class\SigCLib\cObjLib.lba"/>
 	</ObjectFiles_Arm>
-	<LibraryFiles>
-		<File Path=".\Hardware\Hardware.lcp"/>
-	</LibraryFiles>
 	<Options>
 		<Target UseFPU="true">
 		</Target>
