@@ -14,18 +14,18 @@
 [Xenomai.png](../resources/images/info/xenomai.png)
 
 ## Lasal CLass 
-[Lasal Class 2 english](../resources/pdfs/sigmatek/LasalClass2.pdf)  
+[Lasal Class 2 english](../resources/pdfs/sigmatek/LasalClass2_eng.pdf)  
 
 ## QEMU  
 <a href="https://www.qemu.org/docs/master/" target="_blank">QEMU documentation</a>
 
 ## PCV-522  
 PCI-Einsteckmodul, das als Schnittstelle zwischen einem PC und dem VARAN-Bus dient  
-[PCV 522.pdf](../resources/pdfs/sigmatek/PCV-522.pdf)  
+[PCV 522.pdf](../resources/pdfs/sigmatek/PCV-522_eng.pdf)  
 
 ## PW 022
 PWM-Modul  
-[PW 022.pdf](../resources/pdfs/sigmatek/PW-022.pdf)  
+[PW 022.pdf](../resources/pdfs/sigmatek/PW-022_eng.pdf)  
 [Sigmatek: PW 022](https://www.sigmatek-automation.com/de/produkte/io-systeme/s-dias/digital-ausgang/pw-022/)
 
 ## Robot

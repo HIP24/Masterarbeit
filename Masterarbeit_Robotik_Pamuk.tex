@@ -50,12 +50,19 @@
 \usepackage{pdflscape}
 \usepackage{rotating}
 
+\hypersetup{
+    colorlinks=true, % Aktiviert farbige Links
+    linkcolor={rgb,255:red,0;green,0;blue,255}, % Interne Links (z.B. Sections)
+    citecolor=orange, % Zitate
+    urlcolor={rgb,255:red,128;green,0;blue,128} % URLs
+}
+
 %
 % Platzierungsoptionen 
 %
 \usepackage[final]{listings}
 \lstset{captionpos=b, numberbychapter=false,caption=\lstname,frame=single, numbers=left, stepnumber=1, numbersep=2pt, xleftmargin=15pt, framexleftmargin=15pt, numberstyle=\tiny, tabsize=3, columns=fixed, basicstyle={\fontfamily{pcr}\selectfont\footnotesize}, keywordstyle=\bfseries, commentstyle={\color[gray]{0.33}\itshape}, stringstyle=\color[gray]{0.25}, breaklines, breakatwhitespace, breakautoindent}
-\lstloadlanguages{[ANSI]C, C++, [gnu]make, gnuplot, Matlab}
+\lstloadlanguages{[ANSI]C, C++, python, [gnu]make, gnuplot, Matlab}
 
 %Formatieren des Quellcodeverzeichnisses
 \makeatletter
@@ -99,7 +106,7 @@ Einhaltung der Echtzeit}
 %\secondsupervisor[Begutachterinnen]{Titel Vorname Name, Titel}
 \place{Wien}
 \kurzfassung{Erstellung einer Echtzeit-Robotersteuerungsplattform unter Verwendung von Salamander OS, Xenomai, QEMU
-und PCV-521 in der Yocto-Umgebung. Die Plattform basiert auf Salamander OS und nutzt Xenomai für Echtzeit-
+und PCV-522 in der Yocto-Umgebung. Die Plattform basiert auf Salamander OS und nutzt Xenomai für Echtzeit-
 Funktionen. Dazu muss im ersten Schritt die Virtualisierungsplattform evaluiert werden. (QEMU, Hyper-V, Virtual
 Box, etc.) Als weiterer Schritt folgt die Anbindung eines Roboters über eine VARAN-Bus Schnittstelle. Das
 gesamte System wird in der Yocto-Umgebung erstellt und konfiguriert.
@@ -146,33 +153,78 @@ Roboteranwendungen verbessern kann}
 %- Anhang (optional)
 
 \chapter{Introduction}\label{cha:introduction}
-In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Modern operating systems nowadays are categorized into two types:  general-purpose operating systems (GPOS) and real-time operating systems (RTOS). The key difference is whether the system is time-critical or not~\cite{canbazPerformanceAnalysisRealtime2022}. In a traditional GPOS, such as Windows or Linux-based distributions, a high-priority task cannot interrupt a kernel operation, which makes them not suitable for real-time requirements, as they cannot guarantee deterministic execution times. However, in an RTOS, a high-priority process can interrupt a lower-priority task, even if it is in the middle of a kernel operation. RTOS are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes. Many Linux distributions can function as both GPOS and RTOS with kernel modifications. 
-
-\section{Real-Time Operating Systems}
-\bigskip \noindent The RTOS structure is visualized in Figure~\ref{fig:rtos_structure}.The core component of an RTOS that enables real-time capabilities is the kernel. It is responsible for managing system resources, scheduling tasks, and ensuring deterministic behavior. It employs preemptive scheduling mechanisms to allow high-priority tasks to preempt lower-priority tasks, ensuring that time-critical tasks are not delayed. Additionally, RTOS kernels are designed to allocate and manage memory resources efficiently and minimize interrupt latency, which is crucial for real-time applications that require immediate response to external events~\cite{wangRealtimeEmbeddedSystems2017}. 
+In today's industrial production and automation, robot systems are well established and of crucial importance. Robots must react to their environment and perform time-critical tasks within strict time constraints. Delays or errors can have catastrophic consequences in some cases. Modern operating systems nowadays are categorized into two types:  general-purpose operating systems (GPOS) and real-time operating systems (RTOS). The key difference is whether the system is time-critical or not~\cite{canbazPerformanceAnalysisRealtime2022}. In a traditional GPOS, such as Windows or Linux-based distributions, a high-priority task cannot interrupt a kernel operation, as illustrated in Figure \ref{fig:kernel_generic}. This makes them not suitable for real-time requirements, as they cannot guarantee deterministic execution times. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{img/rtos_structure.png}
+	\includegraphics[width=0.75\columnwidth]{img/introduction/kernel_generic.png}
+	\caption[Non-preemptible kernel]{Non-preemptible kernel \cite{WhatRealtimeLinuxa}}
+	\label{fig:kernel_generic}
+\end{figure}
+
+\noindent However, in an RTOS, a high-priority process can interrupt a lower-priority task, even if it is in the middle of a kernel operation, as shown in Figure \ref{fig:kernel_rt} RTOS are specifically designed to react to events within fixed time limits and prioritise the execution of high-priority processes. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{img/introduction/kernel_rt.png}
+	\caption[Non-preemptible kernel]{Non-preemptible kernel \cite{WhatRealtimeLinuxa}}
+	\label{fig:kernel_rt}
+\end{figure}
+
+\noindent Many Linux distributions can function as both GPOS and RTOS with kernel modifications. 
+
+\section{Real-Time Operating Systems}
+\noindent The RTOS structure is visualized in Figure~\ref{fig:rtos_structure}.The core component of an RTOS that enables real-time capabilities is the kernel. It is responsible for managing system resources, scheduling tasks, and ensuring deterministic behavior. It employs preemptive scheduling mechanisms to allow high-priority tasks to preempt lower-priority tasks, ensuring that time-critical tasks are not delayed. Additionally, RTOS kernels are designed to allocate and manage memory resources efficiently and minimize interrupt latency, which is crucial for real-time applications that require immediate response to external events~\cite{wangRealtimeEmbeddedSystems2017}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.50\columnwidth]{img/introduction/rtos_structure.png}
 	\caption[RTOS Structure]{RTOS Structure~\cite{wangRealtimeEmbeddedSystems2017}}
 	\label{fig:rtos_structure}
 \end{figure}
 
-\bigskip \noindent In these real-time operating system, task scheduling is based on so-called priority-based preemptive scheduling~\cite{buttazzoHardRealtimeComputing2024}. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Preemptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognizes that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed. 
+\noindent In these real-time operating system, task scheduling is based on so-called priority-based preemptive scheduling~\cite{buttazzoHardRealtimeComputing2024}. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Preemptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognizes that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed. 
 
 \bigskip \noindent Real-time systems are usually classified as either soft or hard real-time systems ~\cite{lipariRealTimeSchedulingHard}. The difference lies exclusively in the consequences of a violation of the time limits. Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality.
 
-\clearpage
+\section{Application Context}
 
-\section{Application context and boundaries}
+This section briefly defines the context and scope within which this master's thesis was composed, highlighting the specific contributions and requirements set by SIGMATEK GmbH \& Co KG~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 
-This section defines the boundary conditions within which this master's thesis was composed. This work was written at SIGMATEK GmbH \& Co KG~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}, a company that researches, develops, produces, and distributes automation technology for industrial machinery and plant engineering. SIGMATEK uses its own custom Linux-based operating system, to be run on their self-manufactured CPUs. This operating system will be referred to as Salamander 4 in this work. The details of this OS are explained in chapter~\ref{cha:salamander4}. Salamander 4 was created with Yocto~\cite{WelcomeYoctoProject}, an open source project that helps develop custom Linux-based systems, as discussed in Section~\ref{sec:yocto}. Salamander 4 is virtualized through Quick emulator (QEMU), an open-source emulator and virtualizer that allows to run different operating systems on a computer, as described in Section~\ref{sec:qemu}. Salamander 4 employs hard real-time with Xenomai 3~\cite{XenomaiXenomai}, a real-time framework for Linux that enables deterministic and low-latency performance, detailed in Section~\ref{sec:xenomai}. The goal is to virtualize Salamander 4 and approach the performance of bare metal through real-time performance tunings, as shown in chapter~\ref{cha:real-time_tuning}, focussing on latency requirements set by SIGMATEK.  
+\begin{itemize}
+	\item This work was written at SIGMATEK GmbH \& Co KG, a company that researches, develops, produces, and distributes automation technology for industrial machinery and plant engineering. SIGMATEK uses its own custom Linux-based operating system, to be run on their self-manufactured CPUs. This operating system will be referred to as ``Salamander 4'' in this work. The details of Salamander 4 are explained in chapter~\ref{cha:salamander4}. 
+	\item Salamander 4 was created with Yocto~\cite{WelcomeYoctoProject}, an open-source project that helps develop custom Linux-based systems. Yocto is discussed in Section~\ref{sec:yocto}. 
+	\item Salamander 4 is virtualized through Quick emulator (QEMU), an open-source emulator and virtualizer that allows to run different operating systems on a computer QEMU is described in Section~\ref{sec:qemu}.
+	\item Salamander 4 employs hard real-time with Xenomai 3~\cite{XenomaiXenomai}, a real-time framework for Linux that enables deterministic and low-latency performance. Xenomai 3 is detailed in Section~\ref{sec:xenomai}. 
+	\item The goal is to virtualize Salamander 4 and approach the performance of bare metal through real-time performance tunings, focussing on latency requirements set by SIGMATEK. 
+	These modifications are subject of chapter~\ref{cha:real-time_tuning}.
+	\item SIGMATEK uses the VARAN bus for communication between machines and systems, a real-time Ethernet network that was specially developed for industrial automation. Its operating principle is outlined in Section \ref{sec:varan}. 
+	\item For the purpose of replacing the physical CPU, SIGMATEK provided a PCI Insert Card module PCV 522, that was plugged into the PC, as explained in Section \ref{sec:setup_experiment_virtualized}. This component could then be used to communicate with the Input/Output peripherals, just like the physical CPU could when the I/O modules were attached to it. Subsequently, the PCV 522 module of SIGMATEK was connected with the Pulse Width Module PW 022 of SIGMATEK over the VARAN bus and the VI 021 module of SIGMATEK serving as the power supply. 
+	\item The robotic application from chapter \ref{cha:robotic_application} was written in Lasal Class 2, an object oriented programming tool of SIGMATEK with client-server technology and graphic representation. 
+	\end{itemize}
 
-\section{State of the art}
+\section{State of the Art}
 
-\section{Problem and task definition}
+\subsection{Virtualization}
+Yocto primarily uses 
+
+At the beginning of the work, a detailed analysis of the individual virtualization options of Salamander 4 was carried out. In particular, the virtualization performance of Ubuntu 22.04, Windows 10 and WSL under QEMU was compared.
+
+\subsection{Real-time Kernel}
+\subsection{}
+
+
+\section{Problem and Task Definition}
+
+
 
 \section{Objective}
+
+The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-522 in the Yocto environment.
+
+
+\clearpage
+
 
 \chapter{Theoretical Foundations}
 \section{Yocto}\label{sec:yocto}
@@ -180,35 +232,28 @@ This section defines the boundary conditions within which this master's thesis w
 \section{QEMU}\label{sec:qemu}
 
 \section{Xenomai}\label{sec:xenomai}
-\noindent Xenomai 3~\cite{XenomaiXenomai} is a real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in Figure~\ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
+\noindent Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offers two paths to real-time performance. The first approach supplements the Linux kernel with a compact real-time core dubbed Cobalt, demonstrated in Figure~\ref{fig:cobalt}. Cobalt runs side-by-side with Linux, but it handles all time-critical activities like interrupt processing and real-time thread scheduling with higher priority than the regular kernel activities. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\columnwidth]{img/x3-cobalt-interfaces.png}
+	\includegraphics[width=0.5\columnwidth]{img/introduction/xenomai/x3-cobalt-interfaces.png}
 	\caption[Xenomai Cobalt interfaces]{Xenomai Cobalt interfaces~\cite{XenomaiXenomai}}
 	\label{fig:cobalt}
 \end{figure}
 
-\bigskip \noindent  The second approach, called Mercury and shown in Figure~\ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT extension to augment the mainline kernel's real-time responsiveness and minimize jitter, but this isn't mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses. 
+\noindent  The second approach, called Mercury and shown in Figure~\ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT extension to augment the mainline kernel's real-time responsiveness and minimize jitter, but this isn't mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses. 
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\columnwidth]{img/x3-mercury-interfaces.png}
+	\includegraphics[width=0.5\columnwidth]{img/introduction/xenomai/x3-mercury-interfaces.png}
 	\caption[Xenomai Mercury interfaces]{Xenomai Mercury interfaces~\cite{XenomaiXenomai}}
 	\label{fig:mercury}
 \end{figure}
 
 \noindent Salamander 4 uses the Cobalt real-time core with the Dovetail extension, which allows the kernel to handle real-time tasks with low latency.
 
-\clearpage
-
-
-The main objective of this work is to create a real-time robot control platform that integrates Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+\section{VARAN-Bus}\label{sec:varan}
 
 \section{Salamander 4}\label{cha:salamander4}
 This chapter briefly describes the Salamander 4 operating system by SIGMATEK. 
@@ -233,8 +278,6 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 	\item \textbf{Application}: Applications are developed using LASAL CLASS 2~\cite{EngineeringToolLASAL}, a solution for automation tasks that supports object-oriented programming and design in compliance with IEC 61131-3.
 \end{itemize}
 
-
-\clearpage
 \noindent These modules and the interfaces (indicated by an arrow) between them are shown in Figure~\ref{fig:lasal_cpu}.
 
 \begin{figure}[H]
@@ -254,42 +297,20 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 	\label{fig:memory_management}
 \end{figure}
 
-\clearpage
 
-\section{VARAN-Bus}
+
+
+\clearpage
 
 \chapter{Related Work}\label{cha:related_work}
 
 
-
-
+\clearpage
 
 
 \chapter{Methodology}\label{cha:methodology}
 
 This section describes in detail all the theoretical concepts and boundary conditions as well as practical methods that contributed to achieving the objectives of this master's thesis.
-
-
-\begin{comment}
-
-Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
-
-First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualization platform is selected.
-
-
-After the selection of the virtualization platform, the robot control platform is implemented. This step includes the installation and configuration of Salamander OS, Xenomai, QEMU and PCV-521 in the Yocto environment. Once the platform has been implemented, the robot is connected via a VARAN bus interface. Finally, the platform is evaluated to determine how the integration of real-time functions and efficient communication systems improves the response time and reliability of robot applications.
-
-- Evaluation der Virtualisierungsplattform:
-Ich werde verschiedene Virtualisierungsplattformen wie QEMU, Hyper-V, Virtual Box usw. evaluieren. Dies ist ein wichtiger Schritt, um die beste Plattform für meine Anforderungen zu finden.
-
-- Erstellung und Konfiguration des Systems in der Yocto-Umgebung:
-Ich werde das Yocto-Framework verwenden, um mein Embedded Linux System zu erstellen und zu konfigurieren. Yocto bietet viele Tools und Funktionen, die mir bei der Erstellung und Konfiguration meines Systems helfen können.
-
-
-- Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:
-Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus Schnittstelle verwenden, um eine schnelle und zuverlässige Kommunikation zwischen dem Roboter und dem Steuerungssystem zu gewährleisten.
-
-\end{comment}
 
 \bigskip \noindent Trace-cmd can be used for tracing the Linux kernel~\cite{Tracecmd}. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency.
 
@@ -297,10 +318,7 @@ Ich plane, einen Roboter in mein System zu integrieren. Ich werde eine VARAN-Bus
 
 \bigskip \noindent Real-time operating system capabilities were provided by Xenomai, which is real-time development framework that extends the Linux kernel~\cite{XenomaiXenomai}. It enables low-latency and deterministic execution of time-critical tasks. Xenomai 3 introduces a dual-kernel approach with a real-time kernel coexisting alongside Linux. A key utility within the Xenomai suite is the latency tool, which benchmarks the timer latency - the time it takes for the kernel to respond to timer interrupts or task activations. The tool creates real-time tasks or interrupt handlers and measures the latency between expected and actual execution times.
 
-\clearpage 
-
 The system configuration is shown in Table~\ref{tab:testbed_configuration}
-
 
 \begin{table}[H]
 	\centering
@@ -326,7 +344,6 @@ The system configuration is shown in Table~\ref{tab:testbed_configuration}
 	\caption[Hardware topology]{Hardware topology}
 	\label{fig:lstopo}
 \end{figure}
-
 
 \clearpage
 
@@ -650,7 +667,7 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 
 \section{Host OS Configurations}\label{sec:host_configurations}
 The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and reduce latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest OS is provided.
-\subsection{CPU affinity and isolation}\label{subsec:cpu_isolation}
+\subsection{CPU affinity and Isolation}\label{subsec:cpu_isolation}
 
 Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. For CPU isolation, the~\texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}, including systemd services. To prevent systemd services from running on an isolated CPU, the CPU affinity can be set the with line \texttt{CPUAffinity=0 1 2 3 5 6 7 8 9 10 11 12 13} in the \texttt{/etc/systemd/system.conf} file to indicate the CPUs that systemd-services are allowed to run on. Every CPU other than the isolated CPU 4 is allowed. Code~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
 
@@ -676,7 +693,7 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 		4   82134   82134 [kworker/4:1H-kblockd]      TS  -20      -
 \end{lstlisting}
 \end{minipage}
-\subsection{KVM entry and KVM exit}\label{subsec:kvm_entry_exit}
+\subsection{KVM Entry and KVM Exit}\label{subsec:kvm_entry_exit}
 \textcolor{red}{\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates CPUs from the scheduler, meaning that user-space processes won't be scheduled on these CPUs, but kernel tasks and interrupts can still utilize the CPU.This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the~\texttt{kvm\_entry} and~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest's ability to run continuously, thereby increasing the virtualization latency.}
 
 \textcolor{red}{To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed~\texttt{kvm\_exit} events.}
@@ -820,7 +837,7 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 		fi		
 \end{lstlisting}
 \end{minipage}
-\subsection{RT-priority} 
+\subsection{RT-Priority} 
 Having a real-time kernel itself is a crucial part of achieving deterministic behavior, but not enough to take full advantage of the real-time capabilities. One key aspect of this are real-time priorities, thoroughly explained by Richard Weinberger in~\cite{LinuxProcessPriorities}. In essence, Table~\ref{tab:scheduling_priorities} lists minimum and maximum priorities for different scheduling policies in Linux.
 
 \begin{table}[H]
@@ -842,13 +859,13 @@ Having a real-time kernel itself is a crucial part of achieving deterministic be
 	\end{table}
 	
 \noindent \texttt{SCHED\_FIFO} allows deterministic, high-priority execution of critical tasks without being preempted by lower-priority processes. The virtual machine can either be started with \texttt{chrt -f <PRIO>} or adjusted at a later point with \texttt{chrt -f <PRIO> <PID>}. It is also important that there are no other unexpected real time processes running on the system concurrently.
-\subsection{Disable RT throttling}
+\subsection{Disable RT Throttling}
 If a real-time task consumes 100\% of the CPU time, the system may become unresponsive as a whole. This happens because an RT process is constantly using the CPU and the Linux scheduler will not schedule other non-RT processes in the meantime. To prevent complete system lockups, the kernel has a function to throttle RT processes if they consume 0.95 seconds out of every 1 second of CPU time. It does this by pausing the process for the remaining 0.05 seconds, which is not desired because this could result in missed deadlines. RT throttling can be disabled by  writing the value -1 to the~\texttt{/proc/sys/kernel/sched\_rt\_runtime\_us} file. This change also needs to be made permanent because the proc filesystem resets to its default state after each reboot. For this purpose, the line~\texttt{kernel.sched\_rt\_runtime\_us = -1} can be appended to the end of the~\texttt{/etc/sysctl.conf} file, which is read at boot time and used to configure kernel parameters. This reduces the potential for missed deadlines. 
-\subsection{Disable timer migration}
+\subsection{Disable Timer Migration}
 Timer migration allows timers to be moved from one CPU to another, which means the kernel can balance load across multiple CPUs. In a real-time system, this can introduce latency and jitter. To disable timer migration, the value ``0'' needs to be written to the~\texttt{/proc/sys/kernel/timer\_migration} file. This change also needs to be made permanent by writing the line~\texttt{kernel.timer\_migration = 0} to the~\texttt{/etc/sysctl.conf} file. This reduces the amount of context switches and interrupts.
 \subsection{Set Device Driver Work Queue}
 The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask}.
-\subsection{Disable RCU CPU stall warnings}
+\subsection{Disable RCU CPU Stall Warnings}
 As already mentioned in section~\ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
 \subsection{Stop Certain Services}
 Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{tab:stop_servies} can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means they will not be able to interrupt the CPU with their tasks.
@@ -903,11 +920,11 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 \section{QEMU/KVM Configurations}\label{sec:guest_configurations}
 KVM allows the guest OS to run directly on the hardware, bypassing the need for traditional emulation which can introduce delays. QEMU, when used with KVM, provides hardware-assisted virtualization, which also lowers latency in the guest OS.
 
-\subsection{Tune lapic timer advance}
+\subsection{Tune LAPIC Timer Advance}
 The Local Advanced Programmable Interrupt Controller (LAPIC) is a built-in timer that handles the delivery of interrupts to the CPU.
 It generates interrupts at a rate. This rate can be tuned in the \texttt{/sys/module/kvm/parameters/lapic\_timer\_advance\_ns} file to reduce the frequency of interrupts and therefore decrease the latency of the guest VM. The default value is ``-1'', which means that the kernel will automatically calculate an appropriate advance for the timer. Here, it is set to the value ``7500''. Hence,the timer interrupt will be delivered 7500 nanoseconds earlier than it is actually due. This gives the VM more time to handle it.
 
-\subsection{Set QEMU options for real-time VM}
+\subsection{Set QEMU Options for real-time VM}
 QEMU provides several options that can be used to improve the real-time performance of the guest VM. Table~\ref{tab:qemu_options} briefly explains these options.
 
 \begin{table}[H]
@@ -979,12 +996,12 @@ QEMU provides several options that can be used to improve the real-time performa
 \section{Guest OS Configurations}
 
 
-\section{Other configurations}
+\section{Other Configurations}
 There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in~\cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. ~\cite{HOWTOBuildRTapplication} and~\cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
 
 \clearpage
 
-\chapter{Real-Time Robotic Application}\label{cha:real-time-testing}
+\chapter{Real-Time Robotic Application}\label{cha:robotic_application}
 This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings with the latency of Salamander 4 running on bare metal hardware. This comparison is done with the aid of a program that will be explained shortly. The goal is to understand how closely the performance of the virtualization can match that of the bare metal. The experimental setup includes a six-axis mini-robot, illustrated in Figure~\ref{fig:mini_robot}. 
 
 \begin{figure}[H]
@@ -1038,7 +1055,7 @@ In this equation, \(V\) represents the voltage across the resistor, \(I\) is the
 
 \noindent The program was written in Lasal Class 2 and was applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the specific commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment. 
 
-\subsection{Setup of Hardware Salamander 4}
+\section{Setup of Hardware Salamander 4}
 In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 module is directly mounted on the CPU via the S-DIAS bus and communicates over the hard real-time capable Ethernet VARAN with 100 Mbit/s~\cite{SDIASSIGMATEK}. The setup is visible on Figure~\ref{fig:hardware_tree}.
 
 \begin{figure}[H]
@@ -1048,7 +1065,7 @@ In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU
 	\label{fig:hardware_tree}
 \end{figure}
 
-\subsection{Setup of QEMU Salamander 4}
+\section{Setup of QEMU Salamander 4}\label{sec:setup_experiment_virtualized}
 In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM module. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needed to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID 5112 and device ID 2200.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}. 
 
 \vspace{1em}
