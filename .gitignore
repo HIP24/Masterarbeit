@@ -58,3 +58,6 @@ masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffini
 
 # Ignore everything in the directory
 masterthesis-documentation/docs/sigmatek/lasalclass2/
+
+# Ignore everything in the directory
+trash/
