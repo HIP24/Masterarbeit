@@ -203,25 +203,71 @@ This section briefly defines the context and scope within which this master's th
 	\item The robotic application from chapter \ref{cha:robotic_application} was written in Lasal Class 2, an object oriented programming tool of SIGMATEK with client-server technology and graphic representation. 
 	\end{itemize}
 
-\section{State of the Art}
+\section{Related Work and State of the Art}
 
-\subsection{Virtualization}
+\begin{comment}
 Yocto primarily uses 
 
 At the beginning of the work, a detailed analysis of the individual virtualization options of Salamander 4 was carried out. 
 
-
 In particular, the virtualization performance of Ubuntu 22.04, Windows 10 and WSL under QEMU was compared.
+\end{comment}
 
-\subsection{Real-time Kernel}
+This master’s thesis builds upon a number of previous studies in the field of virtualization of real-time systems and the inherent latency. In this section, the most influential studies are presented and their relevance to the work is addressed.
 
-\subsection{Related Work}
+\bigskip \noindent \citeauthor{perneelRealtimeCapabilitiesStandard2015} \cite{perneelRealtimeCapabilitiesStandard2015} mention in their work that Linux was initially developed as a general purpose operating system without real-time applications in mind. 
+They talk about the evolution of real-time behavior in the standard Linux kernel and state that it has recently gained popularity among the real-time community, largely due to its open-source nature and stability. The authors explain how to transform Linux into a real-time operating system by implementing the PREEMPT-RT patches. The paper also emphasizes some kernel configurations that ensure that the system's real-time behavior is preserved during runtime. Even though these modifications to the kernel enable soft real-time performance, the authors underline the fundamental rule in real-time software, that latency improvements have a negative impact on throughput and kernel performance. This is due to the added overhead of the \texttt{CONFIG\_PREEMPT\_RT} option. They concluded with their Linux build and a testing application that Linux can be a viable option for real-time applications, if it is correctly configured.
 
-\bigskip \noindent \textcolor{red}{The paper titled “Demystifying the Real-Time Linux Scheduling Latency” by Daniel Bristot de Oliveira and colleagues explores the intricacies of Linux as a real-time operating system, specifically focusing on the PREEMPT\_RT variant. The authors critique the traditional cyclictest tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. To address these issues, the paper leverages the Thread Synchronization Model of Linux to derive a set of properties and rules that define the kernel’s behavior from a scheduling perspective12. This model helps in establishing a sound bound to the scheduling latency by considering all possible sources of delays in synchronization events34. The authors also introduce an efficient tracing method to observe kernel events with minimal overhead, resulting in a practical tool for deriving reliable scheduling latency bounds5. The paper concludes with an experimental analysis comparing cyclictest and the proposed method, demonstrating that the latter can find sound bounds faster and with acceptable overheads6. This work contributes significantly to the understanding and improvement of real-time performance in Linux systems.}
+\bigskip \noindent In the course of writing this thesis, the white paper "Real-Time Performance Tuning Best Practice Guidelines for KVM-Based Virtual Machines" \cite{RealTimePerformanceTuning2022} by Intel has been instrumental. Given that the working computer used for this work is equipped with an Intel processor, the guidelines presented in this document were particularly relevant and valuable for optimizing real-time performance in KVM-based virtual machines. Chapter \ref{cha:real-time_tuning} contains an extensive tuning process, which involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The document concludes that the described tuning methods effectively improve real-time performance for KVM-based VMs, even under heavy workloads.
 
-\bigskip \noindent \textcolor{red}{The white paper, “Real-Time Performance Tuning Best Practice Guidelines for KVM-Based Virtual Machines,” provides comprehensive guidelines for optimizing real-time performance in KVM-based virtual machines on Intel Architecture (IA) platforms1. It begins by explaining the importance of real-time systems, which must respond to events within strict time constraints, and the relevance of tuning these systems for applications running in virtual machines (VMs), particularly in the manufacturing sector2. The document details the testbed configuration used for performance evaluation, including an industrial PC based on the Intel Whiskey Lake-U platform with specific BIOS, kernel, and host configurations3. Key BIOS settings such as disabling Hyper-Threading and Intel SpeedStep, and enabling Intel VMX and VT-d, are recommended to enhance real-time performance. Kernel configurations include using a real-time kernel, setting specific kernel parameters, and isolating CPUs for real-time workloads. Host configurations involve setting CPU affinity for system services, cache isolation, and disabling certain services like irqbalance and thermald. The paper also outlines QEMU-KVM configurations, such as tuning lapic timer advance and setting CPU affinity for QEMU threads. For the guest OS in the real-time VM, similar configurations to the host are recommended, with additional tuning for sched\_rt\_runtime\_us. The performance evaluation section describes a rigorous testing process, including running heavy workloads alongside the real-time VM, which demonstrated significantly enhanced real-time performance with latency in the range of tens of microseconds4. The document concludes that the described tuning methods effectively improve real-time performance for KVM-based VMs, even under heavy workloads5.}
+\bigskip \noindent \citeauthor{maPerformanceTuningKVMbased} \cite{maPerformanceTuningKVMbased} describe in their work how KVM impacts the real-time performance, which has helped this work gain insight into the base overhead of virtualization. 
+When a physical interrupt occurs while the guest RTOS is running, there are at least six stages that need to be traversed before the interrupt can be delivered to the guest RTOS. Once the interrupt is delivered to the guest RTOS, it incurs additional latency since there is also the time between when an interrupt is recognized and the first instruction of the corresponding interrupt service routine (ISR) of the guest OS is started. These stages are the primary sources of latencies caused by KVM and depicted in Figure \ref{fig:six_stages_kvm}
 
-\bigskip \noindent \textcolor{red}{The paper titled “Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System” explores the integration of real-time operating systems (RTOS) with general-purpose operating systems (GPOS) using Kernel-Based Virtual Machine (KVM) technology. The authors, Ruhui Ma, Fanfu Zhou, Erzhou Zhu, and Haibing Guan, propose an embedded real-time virtualization architecture that combines VxWorks (RTOS) and Linux (GPOS) on a multi-core platform1. This architecture aims to address issues such as responsiveness, system performance, and CPU resource utilization. The paper details several performance tuning methods, including CPU shielding, prioritization, and a novel co-scheduling algorithm, to achieve sub-millisecond interrupt response latency on the guest VxWorks2. Experimental results demonstrate that these tuning methods significantly improve real-time responsiveness and system performance. The study concludes that with careful system setups, such as applying RT patches and real-time tunings on the host Linux, the proposed architecture is suitable for certain embedded real-time scenarios34. The work is supported by various Chinese national foundations and highlights the potential of virtualization technology in enhancing the capabilities of embedded systems.}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{img/six_stages_kvm.png}
+	\caption[Six stages for the delivery of the interrupt to the guest]{Six stages for the delivery of the interrupt to the guest, followed by the guest IRT \cite{maPerformanceTuningKVMbased}}
+	\label{fig:six_stages_kvm}
+\end{figure}
+
+Each of these stages is breifly described below:
+
+\begin{enumerate}
+    \item \textbf{Guest Code}: The guest OS is executing its normal operations.
+    \item \textbf{Interrupt Happens}
+    \item \textbf{VM Exit}: The host processes the VM exit, which involves handling the interrupt.
+    \item \textbf{After VM Exit}: The host performs necessary operations after the VM exit.
+    \item \textbf{Host ISR}: The host executes its ISR to handle the interrupt.
+    \item \textbf{Host Scheduling}: The host schedules the guest VM to resume execution.
+    \item \textbf{Before VM Entry}: The host prepares to re-enter the guest VM.
+    \item \textbf{VM Entry}: The host completes the process of re-entering the guest VM.
+    \item \textbf{Guest IRT}: The guest OS starts executing the ISR to handle the interrupt.
+\end{enumerate}
+
+
+\begin{comment}
+and then apply real-time tunings on the host Linux and analyze 
+how they can ease certain latencies incurred by harmful workloads.
+
+here are two approaches to raising the priority of the guest RTOS process, specifically I/O thread and VCPU threads. On one hand, there is a Linux system call sched_ 
+setscheduler() that can be invoked by KVM to set priority when creating those threads. 
+On the other, Linux shell provides a command chrt that can be used by users to change 
+priority after start-up.
+\end{comment}
+
+
+
+
+\bigskip \noindent
+\textcolor{red}{"Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System”}
+\textcolor{red}{explores the integration of real-time operating systems (RTOS) with general-purpose operating systems (GPOS) using Kernel-Based Virtual Machine (KVM) technology. The authors, Ruhui Ma, Fanfu Zhou, Erzhou Zhu, and Haibing Guan, propose an embedded real-time virtualization architecture that combines VxWorks (RTOS) and Linux (GPOS) on a multi-core platform1. This architecture aims to address issues such as responsiveness, system performance, and CPU resource utilization. The paper details several performance tuning methods, including CPU shielding, prioritization, and a novel co-scheduling algorithm, to achieve sub-millisecond interrupt response latency on the guest VxWorks2. Experimental results demonstrate that these tuning methods significantly improve real-time responsiveness and system performance. The study concludes that with careful system setups, such as applying RT patches and real-time tunings on the host Linux, the proposed architecture is suitable for certain embedded real-time scenarios34. The work is supported by various Chinese national foundations and highlights the potential of virtualization technology in enhancing the capabilities of embedded systems.}
+
+\clearpage
+
+\textcolor{red}{"Demystifying the Real-Time Linux Scheduling Latency”}
+\bigskip \noindent \textcolor{red}{Daniel Bristot de Oliveira and colleagues \cite{deoliveiraDemystifyingRealTimeLinux} explores the intricacies of Linux as a real-time operating system, specifically focusing on the PREEMPT\_RT variant. The authors critique the traditional cyclictest tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. To address these issues, the paper leverages the Thread Synchronization Model of Linux to derive a set of properties and rules that define the kernel’s behavior from a scheduling perspective12. This model helps in establishing a sound bound to the scheduling latency by considering all possible sources of delays in synchronization events34. The authors also introduce an efficient tracing method to observe kernel events with minimal overhead, resulting in a practical tool for deriving reliable scheduling latency bounds5. The paper concludes with an experimental analysis comparing cyclictest and the proposed method, demonstrating that the latter can find sound bounds faster and with acceptable overheads6. This work contributes significantly to the understanding and improvement of real-time performance in Linux systems.}
+
+
 
 \bigskip \noindent \textcolor{red}{The paper "‘Real Time’ vs. ‘Real Fast’: How to Choose?"1 by Paul E. McKenney from IBM Linux Technology Center explores the distinction between real-time and real-fast computing in the context of Linux systems. It provides a comprehensive analysis to help developers make informed design choices between achieving quick start times (real-time) and fast completion times (real-fast)2. The paper uses two example applications: an embedded fuel-injection system and a Linux kernel build, to illustrate the differences3. The fuel-injection scenario, which requires precise timing, benefits from real-time Linux, while the kernel build, which prioritizes throughput, performs better on non-real-time Linux. The paper discusses factors influencing the choice, such as workload duration, CPU utilization, and memory usage. It also addresses the overheads associated with real-time Linux, including increased locking and interrupt handling costs45. The conclusion emphasizes using the right tool for the job and suggests ongoing work to reduce the performance penalty of real-time Linux, potentially making it suitable for a broader range of workloads6.}
 
@@ -230,10 +276,6 @@ In particular, the virtualization performance of Ubuntu 22.04, Windows 10 and WS
 \bigskip \noindent \textcolor{red}{The paper titled “Performance Evaluation of Xenomai 3” by Ching-Chun (Jim) Huang, Chan-Hsiang Lin, and Che-Kang Wu, presents an in-depth analysis of Xenomai 3, a real-time framework for Linux. Xenomai 3 operates either as a dual-kernel system alongside Linux or natively over mainline Linux kernels, enhanced by PREEMPT RT for stricter response times1. The study evaluates Xenomai 3’s performance, particularly in dual-kernel configuration, using ARM Cortex-A series benchmarks. The authors highlight Xenomai 3’s optimizations in RTOS API emulation, thread-to-thread communications, and reduced overhead. The paper compares Xenomai 3 with its predecessor, Xenomai 2, and the PREEMPT RT-enhanced Linux kernel, demonstrating superior maximum response times to external interrupts in dual-kernel setups. The study employs BeagleBone Black hardware and various kernel configurations to measure latencies under idle and CPU-stressed conditions2. Results indicate that Xenomai 3 generally outperforms Xenomai 2 and PREEMPT RT, except for a slight degradation in timer-IRQ latency under stress. The paper concludes that Xenomai 3 offers significant improvements in real-time performance and flexibility, making it a robust choice for real-time applications.}
 
 \bigskip \noindent \textcolor{red}{The paper titled “Performance Analysis Towards a KVM-Based Embedded Real-Time Virtualization Architecture” explores the challenges and solutions associated with integrating real-time operating systems (RTOS) with general-purpose operating systems (GPOS) in embedded systems using virtualization technology. The authors propose an architecture based on the Kernel-Based Virtual Machine (KVM) that combines VxWorks (an RTOS) and Linux (a GPOS) on a multi-core platform12. The primary focus is on evaluating how KVM affects the interrupt-response times of VxWorks when running as a guest OS3. The study highlights the shift from single-core to multi-core processors in embedded systems and the need for legacy RTOS to adapt to multi-core environments4. The paper discusses hardware-assisted virtualization, particularly Intel’s VT technology, and the implementation of KVM as a hypervisor within the Linux kernel. Through experimental setups and performance tuning methods like prioritization and CPU shielding, the authors demonstrate that sub-millisecond interrupt response latency can be achieved, making the proposed architecture suitable for certain embedded real-time applications5. The results indicate that with careful system configurations, KVM can effectively support real-time performance requirements in embedded systems.}
-
-\bigskip \noindent \textcolor{red}{The paper titled “Performance Analysis Towards a KVM-Based Embedded Real-Time Virtualization Architecture” explores the challenges and solutions associated with integrating real-time operating systems (RTOS) with general-purpose operating systems (GPOS) on multi-core processors in embedded systems. The authors propose an architecture based on the Kernel-Based Virtual Machine (KVM) that combines VxWorks (an RTOS) and Linux (a GPOS) to leverage the benefits of both systems. The study focuses on evaluating the impact of KVM on the interrupt-response times of VxWorks when running as a guest OS. By applying real-time performance tuning methods on the host Linux, the authors demonstrate that sub-millisecond interrupt response latency can be achieved, making the architecture suitable for certain embedded real-time scenarios. The paper also discusses hardware-assisted virtualization, the role of KVM as a hypervisor, and the experimental setup used to measure the performance impacts. The results indicate that with appropriate system configurations, such as prioritization and CPU shielding, the proposed architecture can effectively meet real-time performance requirements.}
-
-\bigskip \noindent \textcolor{red}{The paper titled “Real-time capabilities in the standard Linux Kernel: How to enable and use them?” explores the transformation of the Linux operating system into a real-time system using the PREEMPT-RT patches1. Originally designed as a general-purpose OS, Linux has gained popularity in real-time applications due to its low cost and open-source nature2. The authors discuss the importance of real-time systems, which must meet strict temporal requirements to ensure system correctness. They differentiate between hard and soft real-time systems, emphasizing that Linux, with the PREEMPT-RT patch, can achieve soft real-time performance3. The PREEMPT-RT patch, maintained by Ingo Molnar and Thomas Gleixner, allows almost the entire kernel to be preempted, enhancing its real-time capabilities4. Key kernel configurations and runtime precautions are highlighted to maintain real-time performance. The paper concludes that while Linux can achieve real-time performance, it is still not as deterministic as commercial real-time operating systems like QNX and Windows CE5. However, with proper configuration, Linux can be a viable option for real-time applications.}
 
 \bigskip \noindent \textcolor{red}{This paper presents a modular platform for industrial automation that leverages open-source components to run both non-critical activities and real-time control tasks on the same hardware, thereby reducing overall hardware costs. The platform uses a hypervisor to provide isolation, allowing concurrent execution of real-time control code and design tools. The authors detail the software architecture, including the hypervisor and Real-Time Operating System (RTOS), and discuss the necessary extensions for practical application. They address the challenge of interference on shared hardware resources, which can degrade real-time performance. The paper also includes experimental results demonstrating the platform’s effectiveness and performance. The authors highlight the benefits of using open-source software to avoid expensive commercial solutions and emphasize the importance of multi-core processors and hardware-assisted virtualization in industrial automation. The work is supported by the European Commission through the I-MECH ECSEL project.}
 
@@ -1322,6 +1364,9 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 \end{comment}
 
 \chapter{Results}\label{cha:results}
+
+Online
+
 ~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}
 ~\cite{Tracecmd}
 ~\cite{KernelShark}
@@ -1334,7 +1379,6 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 ~\cite{RealtimeKernelPatchset}
 ~\cite{rostedtInternalsRTPatch}
 ~\cite{WhatRealtimeLinux}
-~\cite{maPerformanceTuningKVMbased}
 ~\cite{LinuxProcessPriorities}
 ~\cite{kernelrecipesKernelRecipes20162016}
 ~\cite{thelinuxfoundationFindingSourcesLatency2020}
@@ -1342,34 +1386,49 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 ~\cite{HOWTOBuildRTapplication}
 ~\cite{RealtimeProgrammingLinux}
 ~\cite{KVMQemuVirtualization}
-~\cite{RealTimePerformanceTuning2022}
 ~\cite{MG996RServoMotor}
 ~\cite{DigitalOutputSIGMATEK}
 ~\cite{MG996RDigitalServo}
 ~\cite{SDIASSIGMATEK}
 ~\cite{ControlsHMIsSIGMATEK}
 ~\cite{InterfacesSplittersSIGMATEK}
-~\cite{adamPerformanceAssessmentLinux2021}
-~\cite{adamRealTimePerformanceResponse2021}
-~\cite{broskyShieldedProcessorsGuaranteeing2003}
-~\cite{cinqueVirtualizingMixedCriticalitySystems2022}
+~\cite{lutsykPipelinedMulticoreMachine2020}
+~\cite{CPUUnitsSIGMATEK}
+
+
+\noindent Papers
+
+~\cite{RealTimePerformanceTuning2022}
+~\cite{maPerformanceTuningKVMbased}
+~\cite{kiszkaLinuxRealTimeHypervisor}
 ~\cite{deoliveiraDemystifyingRealTimeLinux}
-~\cite{garcia-vallsChallengesRealtimeVirtualization2014}
+~\cite{mckenneyRealTimeVs}
+~\cite{yoonRealTimePerformanceAnalysis}
+~\cite{huang2015performance}
+~\cite{junzhangPerformanceAnalysisKVMBased2010}
+~\cite{perneelRealtimeCapabilitiesStandard2015}
+~\cite{scordinoRealTimeVirtualizationIndustrial2020}
+
+~\cite{broskyShieldedProcessorsGuaranteeing2003}
+~\cite{adamRealTimePerformanceResponse2021}
+~\cite{pielAsymmetricSchedulingLoad2006}
+~\cite{malallahComprehensiveStudyKernel2021}
+~\cite{queirozTestingLimitsGeneralpurpose2023}
+~\cite{cinqueVirtualizingMixedCriticalitySystems2022}
 ~\cite{guStateoftheArtSurveyRealTime2012}
-~\cite{HardRealTime}
 ~\cite{javierperezHowRealTime2022}
 ~\cite{kirovaImpactModernVirtualization2019}
-~\cite{kiszkaLinuxRealTimeHypervisor}
-~\cite{huang2015performance}
-~\cite{lutsykPipelinedMulticoreMachine2020}
-~\cite{malallahComprehensiveStudyKernel2021}
+~\cite{REALTIMEOPERATING}
+~\cite{garcia-vallsChallengesRealtimeVirtualization2014}
 ~\cite{masrurVMBasedRealTimeServices2010}
-~\cite{mckenneyRealTimeVs}
-~\cite{pielAsymmetricSchedulingLoad2006}
-~\cite{queirozTestingLimitsGeneralpurpose2023}
+
+~\cite{HardRealTime}
+~\cite{adamPerformanceAssessmentLinux2021}
+~\cite{jiangRealTimeSystemManycore}
+~\cite{wangRealtimeEmbeddedSystems2017}
+~\cite{lipariRealTimeSchedulingHard}
+~\cite{canbazPerformanceAnalysisRealtime2022}
 ~\cite{reghenzaniRealTimeLinuxKernel2020}
-~\cite{yoonRealTimePerformanceAnalysis}
-~\cite{CPUUnitsSIGMATEK}
 \clearpage
 
 \chapter{Discussion}\label{cha:discussion}
