@@ -49,6 +49,10 @@
 \usepackage{longtable}
 \usepackage{pdflscape}
 \usepackage{rotating}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\usepackage[none]{hyphenat}
 
 \hypersetup{
     colorlinks=true, % Aktiviert farbige Links
@@ -187,20 +191,21 @@ In today's industrial production and automation, robot systems are well establis
 
 \bigskip \noindent Real-time systems are usually classified as either soft or hard real-time systems ~\cite{lipariRealTimeSchedulingHard}. The difference lies exclusively in the consequences of a violation of the time limits. Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality.
 
-\section{Application Context}
+\section{Application Context}\label{sec:application_context}
 
 This section briefly defines the context and scope within which this master's thesis was composed, highlighting the specific contributions and requirements set by SIGMATEK GmbH \& Co KG~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 
 \begin{itemize}
-	\item This work was written at SIGMATEK GmbH \& Co KG, a company that researches, develops, produces, and distributes automation technology for industrial machinery and plant engineering. SIGMATEK uses its own custom Linux-based operating system, to be run on their self-manufactured CPUs. This operating system will be referred to as ``Salamander 4'' in this work. The details of Salamander 4 are explained in chapter~\ref{cha:salamander4}. 
+	\item This work was written at SIGMATEK GmbH \& Co KG, a company that researches, develops, produces, and distributes automation technology for industrial machinery and plant engineering. SIGMATEK uses its own custom Linux-based operating system, to be run on their self-manufactured CPUs. This operating system will be referred to as ``Salamander 4'' in this work. The details of Salamander 4 are explained in Chapter~\ref{cha:salamander4}. 
 	\item Salamander 4 was created with Yocto~\cite{WelcomeYoctoProject}, an open-source project that helps develop custom Linux-based systems. Yocto is discussed in Section~\ref{sec:yocto}. 
 	\item Salamander 4 is virtualized through Quick emulator (QEMU), an open-source emulator and virtualizer that allows to run different operating systems on a computer QEMU is described in Section~\ref{sec:qemu}.
 	\item Salamander 4 employs hard real-time with Xenomai 3~\cite{XenomaiXenomai}, a real-time framework for Linux that enables deterministic and low-latency performance. Xenomai 3 is detailed in Section~\ref{sec:xenomai}. 
 	\item The goal is to virtualize Salamander 4 and approach the performance of bare metal through real-time performance tunings, focussing on latency requirements set by SIGMATEK. 
-	These modifications are subject of chapter~\ref{cha:real-time_tuning}.
+	These modifications are subject of Chapter~\ref{cha:real-time_tuning}.
+	\item The latency tool of the Xenomai suite to measure the scheduling latency of the real-time OS was suggested to use by SIGMATEK. 
 	\item SIGMATEK uses the VARAN bus for communication between machines and systems, a real-time Ethernet network that was specially developed for industrial automation. Its operating principle is outlined in Section \ref{sec:varan}. 
 	\item For the purpose of replacing the physical CPU, SIGMATEK provided a PCI Insert Card module PCV 522, that was plugged into the PC, as explained in Section \ref{sec:setup_experiment_virtualized}. This component could then be used to communicate with the Input/Output peripherals, just like the physical CPU could when the I/O modules were attached to it. Subsequently, the PCV 522 module of SIGMATEK was connected with the Pulse Width Module PW 022 of SIGMATEK over the VARAN bus and the VI 021 module of SIGMATEK serving as the power supply. 
-	\item The robotic application from chapter \ref{cha:robotic_application} was written in Lasal Class 2, an object oriented programming tool of SIGMATEK with client-server technology and graphic representation. 
+	\item The robotic application from Chapter \ref{cha:robotic_application} was written in Lasal Class 2, an object oriented programming tool of SIGMATEK with client-server technology and graphic representation. 
 	\end{itemize}
 
 \section{Related Work and State of the Art}
@@ -220,64 +225,57 @@ They talk about the evolution of real-time behavior in the standard Linux kernel
 
 \bigskip \noindent In the course of writing this thesis, the white paper "Real-Time Performance Tuning Best Practice Guidelines for KVM-Based Virtual Machines" \cite{RealTimePerformanceTuning2022} by Intel has been instrumental. Given that the working computer used for this work is equipped with an Intel processor, the guidelines presented in this document were particularly relevant and valuable for optimizing real-time performance in KVM-based virtual machines. Chapter \ref{cha:real-time_tuning} contains an extensive tuning process, which involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The document concludes that the described tuning methods effectively improve real-time performance for KVM-based VMs, even under heavy workloads.
 
-\bigskip \noindent \citeauthor{maPerformanceTuningKVMbased} \cite{maPerformanceTuningKVMbased} describe in their work how KVM impacts the real-time performance, which has helped this work gain insight into the base overhead of virtualization. 
-When a physical interrupt occurs while the guest RTOS is running, there are at least six stages that need to be traversed before the interrupt can be delivered to the guest RTOS. Once the interrupt is delivered to the guest RTOS, it incurs additional latency since there is also the time between when an interrupt is recognized and the first instruction of the corresponding interrupt service routine (ISR) of the guest OS is started. These stages are the primary sources of latencies caused by KVM and depicted in Figure \ref{fig:six_stages_kvm}
+\bigskip \noindent \citeauthor{yoonRealTimePerformanceAnalysis} \cite{yoonRealTimePerformanceAnalysis} use some of these real-time tunings in their research, including CPU shielding, memory locking, and spinning nanosleep, for controlling humanoid robots equipped with around 60 servo motors and sensors. They implement EtherCAT for real-time communication of distributed devices whereas this thesis uses Varan. The authors highlight the importance of timely data processing in robots that collect data from their environment and respond accordingly through their sensors and actuators. The authors conclude with an experiment that their robotic system could achieve deterministic control of actuators and sensors even under heavy system load through the use of Linux with the real-time preemption patch. Their research has similarities to this master's thesis in terms of real-time tunings for robot control. However, this thesis includes also the virtualization aspect that is central. 
+
+\bigskip \noindent Virtualization offers the great benefit of reducing overall hardware costs, since all non-critical activities and real-time control tasks can run on the same hardware. \citeauthor{scordinoRealTimeVirtualizationIndustrial2020} \cite{scordinoRealTimeVirtualizationIndustrial2020} take advantage of this, but also address the challenge of interference on shared hardware resources, which can degrade real-time performance. 
+
+\bigskip \noindent \citeauthor{maPerformanceTuningKVMbased} \cite{maPerformanceTuningKVMbased} \cite{junzhangPerformanceAnalysisKVMBased2010} describe in their work how KVM impacts the real-time performance, which has helped this work gain insight into the base overhead of virtualization. When a physical interrupt occurs while the guest RTOS is running, there are at least six stages that need to be traversed before the interrupt can be delivered to the guest RTOS. Once the interrupt is delivered to the guest RTOS, it incurs additional latency, called Interrupt Routine Time (IRT), since there is also the time between when an interrupt is recognized and the first instruction of the corresponding interrupt service routine (ISR) of the guest OS is started. These stages are the primary sources of latencies caused by KVM, they are breifly described in Figure \ref{fig:kvm_stages}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/six_stages_kvm.png}
-	\caption[Six stages for the delivery of the interrupt to the guest]{Six stages for the delivery of the interrupt to the guest, followed by the guest IRT \cite{maPerformanceTuningKVMbased}}
-	\label{fig:six_stages_kvm}
+	\begin{tikzpicture}[node distance = 0.45cm, auto,
+		block/.style={
+			rectangle,
+			draw,
+			fill=blue!20, 
+			text width=35em, 
+			rounded corners, 
+			minimum height=3.5em,
+			align=center,
+			inner xsep=2em,
+			inner ysep=0.5em 
+		},
+		line/.style={draw, -latex'}
+	]
+		% Place nodes
+		\node [block] (init) {\textbf{Guest Code}\\ The guest OS is executing its normal operations.};
+		\node [block, below=of init] (vmexit) {\textbf{VM Exit}\\ External interrupt triggers VM exit. Hardware stores interrupt info in VMCS.};
+		\node [block, below=of vmexit] (aftervmexit) {\textbf{After VM Exit}\\ Control returns to kernel space. KVM retrieves interrupt info from VMCS,\\ marks it as pending for guest.};
+		\node [block, below=of aftervmexit] (hostisr) {\textbf{Host ISR}\\ Host Linux handles the interrupt.};
+		\node [block, below=of hostisr] (hostscheduling) {\textbf{Host Scheduling}\\ Host kernel invokes scheduler. Ideally, guest RTOS process isn't preempted.};
+		\node [block, below=of hostscheduling] (beforevmentry) {\textbf{Before VM Entry}\\ KVM's kernel module prepares for VM entry. Detects pending interrupt,\\ injects virtual interrupt into guest by writing to VMCS.};
+		\node [block, below=of beforevmentry] (vmentry) {\textbf{VM Entry}\\ Hardware emulates conventional interrupt handling for guest based on VMCS info.};
+		\node [block, below=of vmentry] (guestirt) {\textbf{Guest IRT}\\ Guest's interrupt handler is invoked to service the interrupt.};
+		% Draw edges
+		\path [line] (init) -- (vmexit);
+		\path [line] (vmexit) -- (aftervmexit);
+		\path [line] (aftervmexit) -- (hostisr);
+		\path [line] (hostisr) -- (hostscheduling);
+		\path [line] (hostscheduling) -- (beforevmentry);
+		\path [line] (beforevmentry) -- (vmentry);
+		\path [line] (vmentry) -- (guestirt);
+	\end{tikzpicture}
+	\caption{Flowchart of operations in a virtualized environment}
+	\label{fig:kvm_stages}
 \end{figure}
 
-Each of these stages is breifly described below:
+\noindent The paper also details several performance tuning methods, including CPU shielding and prioritization, which have been applied in this work.
 
-\begin{enumerate}
-    \item \textbf{Guest Code}: The guest OS is executing its normal operations.
-    \item \textbf{Interrupt Happens}
-    \item \textbf{VM Exit}: The host processes the VM exit, which involves handling the interrupt.
-    \item \textbf{After VM Exit}: The host performs necessary operations after the VM exit.
-    \item \textbf{Host ISR}: The host executes its ISR to handle the interrupt.
-    \item \textbf{Host Scheduling}: The host schedules the guest VM to resume execution.
-    \item \textbf{Before VM Entry}: The host prepares to re-enter the guest VM.
-    \item \textbf{VM Entry}: The host completes the process of re-entering the guest VM.
-    \item \textbf{Guest IRT}: The guest OS starts executing the ISR to handle the interrupt.
-\end{enumerate}
+\bigskip \noindent \citeauthor{kiszkaLinuxRealTimeHypervisor} \cite{kiszkaLinuxRealTimeHypervisor} specifically focuses on Linux as a hypervisor and analyzes its real-time capabilities when using KVM and QEMU. Most importantly for this master's thesis, the author warns of starvation when the priorities of QEMU’s threads are raised and lifted into a real-time scheduling class. Starvation is when a process does not get the resources it needs for a long time because the resources are being allocated to other processes. A way to reduce this risk is by not using more virtual CPUs (VCPUs) than there are actual processor cores. Moreover, Linux has a feature that can limit how much CPU time all real-time tasks can use in the host system, which was an important information for the real-time tunings of this thesis later.
 
+\bigskip \noindent \citeauthor{mckenneyRealTimeVs} \cite{mckenneyRealTimeVs} addresses the overheads associated with real-time Linux when using KVM and QEMU. The author lists several sources of overhead, including memory locking to avoid page-fault latencies, increased overhead of locking and interrupts due to more-aggressive preemption, threaded interrupts that permit long-running interrupt handlers to be preempted by high-priority real-time processes, real-time task scheduling that requires global scheduling, high-resolution timers for tens-of-microseconds accuracy and precision, and preemptible RCU which has slightly higher read-side overhead than Classic RCU. These information helped understand the trade-offs involved in real-time Linux systems.
 
-\begin{comment}
-and then apply real-time tunings on the host Linux and analyze 
-how they can ease certain latencies incurred by harmful workloads.
-
-here are two approaches to raising the priority of the guest RTOS process, specifically I/O thread and VCPU threads. On one hand, there is a Linux system call sched_ 
-setscheduler() that can be invoked by KVM to set priority when creating those threads. 
-On the other, Linux shell provides a command chrt that can be used by users to change 
-priority after start-up.
-\end{comment}
-
-
-
-
-\bigskip \noindent
-\textcolor{red}{"Performance Tuning Towards a KVM-based Embedded Real-Time Virtualization System”}
-\textcolor{red}{explores the integration of real-time operating systems (RTOS) with general-purpose operating systems (GPOS) using Kernel-Based Virtual Machine (KVM) technology. The authors, Ruhui Ma, Fanfu Zhou, Erzhou Zhu, and Haibing Guan, propose an embedded real-time virtualization architecture that combines VxWorks (RTOS) and Linux (GPOS) on a multi-core platform1. This architecture aims to address issues such as responsiveness, system performance, and CPU resource utilization. The paper details several performance tuning methods, including CPU shielding, prioritization, and a novel co-scheduling algorithm, to achieve sub-millisecond interrupt response latency on the guest VxWorks2. Experimental results demonstrate that these tuning methods significantly improve real-time responsiveness and system performance. The study concludes that with careful system setups, such as applying RT patches and real-time tunings on the host Linux, the proposed architecture is suitable for certain embedded real-time scenarios34. The work is supported by various Chinese national foundations and highlights the potential of virtualization technology in enhancing the capabilities of embedded systems.}
-
-\clearpage
-
-\textcolor{red}{"Demystifying the Real-Time Linux Scheduling Latency”}
-\bigskip \noindent \textcolor{red}{Daniel Bristot de Oliveira and colleagues \cite{deoliveiraDemystifyingRealTimeLinux} explores the intricacies of Linux as a real-time operating system, specifically focusing on the PREEMPT\_RT variant. The authors critique the traditional cyclictest tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. To address these issues, the paper leverages the Thread Synchronization Model of Linux to derive a set of properties and rules that define the kernel’s behavior from a scheduling perspective12. This model helps in establishing a sound bound to the scheduling latency by considering all possible sources of delays in synchronization events34. The authors also introduce an efficient tracing method to observe kernel events with minimal overhead, resulting in a practical tool for deriving reliable scheduling latency bounds5. The paper concludes with an experimental analysis comparing cyclictest and the proposed method, demonstrating that the latter can find sound bounds faster and with acceptable overheads6. This work contributes significantly to the understanding and improvement of real-time performance in Linux systems.}
-
-
-
-\bigskip \noindent \textcolor{red}{The paper "‘Real Time’ vs. ‘Real Fast’: How to Choose?"1 by Paul E. McKenney from IBM Linux Technology Center explores the distinction between real-time and real-fast computing in the context of Linux systems. It provides a comprehensive analysis to help developers make informed design choices between achieving quick start times (real-time) and fast completion times (real-fast)2. The paper uses two example applications: an embedded fuel-injection system and a Linux kernel build, to illustrate the differences3. The fuel-injection scenario, which requires precise timing, benefits from real-time Linux, while the kernel build, which prioritizes throughput, performs better on non-real-time Linux. The paper discusses factors influencing the choice, such as workload duration, CPU utilization, and memory usage. It also addresses the overheads associated with real-time Linux, including increased locking and interrupt handling costs45. The conclusion emphasizes using the right tool for the job and suggests ongoing work to reduce the performance penalty of real-time Linux, potentially making it suitable for a broader range of workloads6.}
-
-\bigskip \noindent \textcolor{red}{The paper titled “Real-Time Performance Analysis in Linux-Based Robotic Systems” by Hobin Yoon, Jungmoo Song, and Jamee Lee from Samsung Advanced Institute of Technology explores the feasibility of using real-time flavored Linux for controlling complex humanoid robots1. The authors emphasize the importance of precise control periods for mobile and humanoid robots, which require timely responses to external stimuli to maintain balance and smooth operation. The study introduces the adoption of EtherCAT technology for real-time communication among distributed devices, highlighting its flexible topology, simple configuration, and cost-effectiveness2. The paper details the design and implementation of the Robot Control Kernel Subsystem (RCKS), which integrates EtherCAT master and slave devices, and discusses various real-time performance tunings applied to the Linux kernel to achieve deterministic timing. Experimental results demonstrate that with appropriate real-time tunings, including CPU shielding, memory locking, and spinning nanosleep, Linux can meet the stringent timing requirements of robotic systems, achieving control periods within acceptable limits even under heavy system load. The authors conclude that Linux, with its real-time enhancements, is a viable solution for deploying in advanced robotic systems, offering both real-time capabilities and the benefits of a general-purpose OS3.}
-
-\bigskip \noindent \textcolor{red}{The paper titled “Performance Evaluation of Xenomai 3” by Ching-Chun (Jim) Huang, Chan-Hsiang Lin, and Che-Kang Wu, presents an in-depth analysis of Xenomai 3, a real-time framework for Linux. Xenomai 3 operates either as a dual-kernel system alongside Linux or natively over mainline Linux kernels, enhanced by PREEMPT RT for stricter response times1. The study evaluates Xenomai 3’s performance, particularly in dual-kernel configuration, using ARM Cortex-A series benchmarks. The authors highlight Xenomai 3’s optimizations in RTOS API emulation, thread-to-thread communications, and reduced overhead. The paper compares Xenomai 3 with its predecessor, Xenomai 2, and the PREEMPT RT-enhanced Linux kernel, demonstrating superior maximum response times to external interrupts in dual-kernel setups. The study employs BeagleBone Black hardware and various kernel configurations to measure latencies under idle and CPU-stressed conditions2. Results indicate that Xenomai 3 generally outperforms Xenomai 2 and PREEMPT RT, except for a slight degradation in timer-IRQ latency under stress. The paper concludes that Xenomai 3 offers significant improvements in real-time performance and flexibility, making it a robust choice for real-time applications.}
-
-\bigskip \noindent \textcolor{red}{The paper titled “Performance Analysis Towards a KVM-Based Embedded Real-Time Virtualization Architecture” explores the challenges and solutions associated with integrating real-time operating systems (RTOS) with general-purpose operating systems (GPOS) in embedded systems using virtualization technology. The authors propose an architecture based on the Kernel-Based Virtual Machine (KVM) that combines VxWorks (an RTOS) and Linux (a GPOS) on a multi-core platform12. The primary focus is on evaluating how KVM affects the interrupt-response times of VxWorks when running as a guest OS3. The study highlights the shift from single-core to multi-core processors in embedded systems and the need for legacy RTOS to adapt to multi-core environments4. The paper discusses hardware-assisted virtualization, particularly Intel’s VT technology, and the implementation of KVM as a hypervisor within the Linux kernel. Through experimental setups and performance tuning methods like prioritization and CPU shielding, the authors demonstrate that sub-millisecond interrupt response latency can be achieved, making the proposed architecture suitable for certain embedded real-time applications5. The results indicate that with careful system configurations, KVM can effectively support real-time performance requirements in embedded systems.}
-
-\bigskip \noindent \textcolor{red}{This paper presents a modular platform for industrial automation that leverages open-source components to run both non-critical activities and real-time control tasks on the same hardware, thereby reducing overall hardware costs. The platform uses a hypervisor to provide isolation, allowing concurrent execution of real-time control code and design tools. The authors detail the software architecture, including the hypervisor and Real-Time Operating System (RTOS), and discuss the necessary extensions for practical application. They address the challenge of interference on shared hardware resources, which can degrade real-time performance. The paper also includes experimental results demonstrating the platform’s effectiveness and performance. The authors highlight the benefits of using open-source software to avoid expensive commercial solutions and emphasize the importance of multi-core processors and hardware-assisted virtualization in industrial automation. The work is supported by the European Commission through the I-MECH ECSEL project.}
+\bigskip \noindent \citeauthor{deoliveiraDemystifyingRealTimeLinux} \cite{deoliveiraDemystifyingRealTimeLinux} critique the traditional \texttt{cyclictest} tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. This is the main reason why this tool was not used to measure the scheduling latency in this work. Instead, the \texttt{latency} tool was used,as was determined in Chapter \ref{sec:application_context} . 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -365,7 +363,7 @@ Authors: Federico Reghenzani, Giuseppe Massari, and William Fornaciari from Poli
 Summary: This survey explores the evolution and current state of the PREEMPT\_RT patch for the Linux kernel, which aims to enhance the real-time capabilities of Linux. The authors discuss the increasing demand for real-time applications and the challenges posed by using Commercial-Off-The-Shelf (COTS) hardware in such environments. The PREEMPT\_RT patch modifies the existing Linux kernel to improve predictability and reduce latencies, making it suitable for real-time applications. The survey covers various approaches to real-time Linux, including cokernel approaches like RTLinux, Xenomai, and RTAI, and compares them with the PREEMPT\_RT patch4. The authors highlight the benefits of using Linux in real-time systems, such as the availability of rich hardware support and a well-established programming environment. They also discuss the challenges of integrating real-time capabilities into a general-purpose operating system and the ongoing efforts to address these issues. The survey concludes with an overview of industrial and scientific use cases that have benefited from the PREEMPT\_RT patch, emphasizing its significance in fields like aerospace, automotive, and high-performance computing.}
 
 
-
+\bigskip \noindent \textcolor{red}{The paper titled “Performance Evaluation of Xenomai 3” by Ching-Chun (Jim) Huang, Chan-Hsiang Lin, and Che-Kang Wu, presents an in-depth analysis of Xenomai 3, a real-time framework for Linux. Xenomai 3 operates either as a dual-kernel system alongside Linux or natively over mainline Linux kernels, enhanced by PREEMPT RT for stricter response times1. The study evaluates Xenomai 3’s performance, particularly in dual-kernel configuration, using ARM Cortex-A series benchmarks. The authors highlight Xenomai 3’s optimizations in RTOS API emulation, thread-to-thread communications, and reduced overhead. The paper compares Xenomai 3 with its predecessor, Xenomai 2, and the PREEMPT RT-enhanced Linux kernel, demonstrating superior maximum response times to external interrupts in dual-kernel setups. The study employs BeagleBone Black hardware and various kernel configurations to measure latencies under idle and CPU-stressed conditions2. Results indicate that Xenomai 3 generally outperforms Xenomai 2 and PREEMPT RT, except for a slight degradation in timer-IRQ latency under stress. The paper concludes that Xenomai 3 offers significant improvements in real-time performance and flexibility, making it a robust choice for real-time applications.}
 
 
 \section{Problem and Task Definition}
@@ -582,7 +580,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \end{comment}
 
 
-\noindent The inital QEMU script after the custom Yocto build and the starting point for this work is shown in Code~\ref{script:qemu_def}. This script is used to start QEMU with required parameters to boot Salamamder 4 OS. It will be adjusted in chapter~\ref{cha:real-time_tuning} in order to accompany real-time performance tunings. 
+\noindent The inital QEMU script after the custom Yocto build and the starting point for this work is shown in Code~\ref{script:qemu_def}. This script is used to start QEMU with required parameters to boot Salamamder 4 OS. It will be adjusted in Chapter~\ref{cha:real-time_tuning} in order to accompany real-time performance tunings. 
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -606,7 +604,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \end{lstlisting}
 \end{minipage}
 
-\noindent This script is run on a generic Ubuntu 22.04.4 system, as mentioned previously in chapter~\ref{cha:methodology}. The kernel version and other details are presented in Code~\ref{output:uname_a_ub}, using the~\texttt{uname -a} command.
+\noindent This script is run on a generic Ubuntu 22.04.4 system, as mentioned previously in Chapter~\ref{cha:methodology}. The kernel version and other details are presented in Code~\ref{output:uname_a_ub}, using the~\texttt{uname -a} command.
 
 \vspace{1em}
 \begin{minipage}{0.95\columnwidth}
@@ -671,7 +669,7 @@ In this chapter, the significant initial gap in latency statistics between the v
 
 \bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the preempt-rt patch~\cite{RealtimePreempt_rt_versionsWiki} to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event~\cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and make the system more predictable, which are crucial for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling~\cite{rostedtInternalsRTPatch}. 
 
-\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. The very first step in this regard is the isolation of a CPU to dedicate it solely to the desired real-time task. CPU isolation and affinity will be covered in detail later in section~\ref{subsec:cpu_isolation}, but its impact will be briefly demonstrated here. 
+\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. The very first step in this regard is the isolation of a CPU to dedicate it solely to the desired real-time task. CPU isolation and affinity will be covered in detail later in Section~\ref{subsec:cpu_isolation}, but its impact will be briefly demonstrated here. 
 
 
 Figure~\ref{fig:max_latency_taskset} shows latency of QEMU taskset Salamander4.
@@ -697,7 +695,7 @@ After each tuning, the latency test of Xenomai will be executed to evaluate the 
 \begin{table}[H]
 	\centering
 	\caption[Latency statistics of Salamander 4 after BIOS configurations]{Latency statistics of Salamander 4 virtualization after BIOS configurations in microseconds}
-	\label{tab:latency_statistics_virt}
+	\label{tab:latency_statistics_bios}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 	\begin{tabular}{|c|c|}\hline
@@ -748,7 +746,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 		\item \textbf{VT-d}: Direct access to physical devices from within virtual machines is possible when VT-d is enabled on the host. This can help reduce latencies associated with I/O operations in the virtual machine. It is therefore enabled on the host.
 	\end{itemize}
 
-
+	
 
 
 \section{Kernel Configurations}\label{sec:kernel_configurations}
@@ -765,7 +763,7 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 \noindent In the following, these settings along with their impact on system latency are briefly described. 
 
 \begin{itemize}
-	\item \textbf{isolcpus=4}: Isolates CPU 4 from the general scheduler, meaning no process will be scheduled to run on this CPU unless it is explicitly assigned. CPU isolation is explained in detail in section~\ref{subsec:cpu_isolation}.
+	\item \textbf{isolcpus=4}: Isolates CPU 4 from the general scheduler, meaning no process will be scheduled to run on this CPU unless it is explicitly assigned. CPU isolation is explained in detail in Section~\ref{subsec:cpu_isolation}.
 	\item \textbf{rcu\_nocbs=4}: The Linux kernel uses a synchronization mechanism called RCU, or Read-Copy-Update. It lets writers update the data in a way that guarantees readers will always see the same version while enabling multiple readers to access shared data without locks. The RCU subsystem uses callback functions that need to be invoked once readers are done with the data they accessed. By default, these callbacks are handled by the CPUs that executed the read-side critical sections. This parameter offloads RCU callback handling from CPU 4 to other CPUs. CPU 4 remains dedicated to high-priority tasks which helps in reducing latency.
 	\item \textbf{rcu\_nocb\_poll}: This is used together with \texttt{rcu\_nocbs} and causes the system to actively poll for RCU callbacks to invoke, instead of waiting for the next RCU grace period. This reduces latency.
 	\item \textbf{nohz\_full=4}: Makes CPU core 4 ``tickless'', meaning the kernel tries to avoid sending periodic scheduling-clock interrupts to the CPU when there are no runnable tasks. This lowers latency by reducing unnecessary wake-ups but may increase power consumption because the CPU is not able to enter a low-power state when idle. Additionally, timer interrupts cannot be fully eliminated because certain events, such as incoming interrupts or task activations, can still cause the kernel to send timer interrupts to the tickless CPU.	
@@ -799,7 +797,7 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 \begin{table}[H]
 	\centering
 	\caption[Latency statistics of Salamander 4 after Kernel configurations]{Latency statistics of Salamander 4 virtualization after Kernel configurations in microseconds}
-	\label{tab:latency_statistics_virt}
+	\label{tab:latency_statistics_kernel}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 	\begin{tabular}{|c|c|}\hline
@@ -1014,7 +1012,7 @@ Timer migration allows timers to be moved from one CPU to another, which means t
 \subsection{Set Device Driver Work Queue}
 The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask}.
 \subsection{Disable RCU CPU Stall Warnings}
-As already mentioned in section~\ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
+As already mentioned in Section~\ref{sec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
 \subsection{Stop Certain Services}
 Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{tab:stop_servies} can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means they will not be able to interrupt the CPU with their tasks.
 
@@ -1052,7 +1050,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 \begin{table}[H]
 	\centering
 	\caption[Latency statistics of Salamander 4 after Host configurations]{Latency statistics of Salamander 4 virtualization after Host configurations in microseconds}
-	\label{tab:latency_statistics_virt}
+	\label{tab:latency_statistics_host}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 	\begin{tabular}{|c|c|}\hline
@@ -1128,7 +1126,7 @@ QEMU provides several options that can be used to improve the real-time performa
 	\begin{table}[H]
 		\centering
 		\caption[Latency statistics of Salamander 4 after QEMU configurations]{Latency statistics of Salamander 4 virtualization after QEMU configurations in microseconds}
-		\label{tab:latency_statistics_virt}
+		\label{tab:latency_statistics_qemu}
 		\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 		{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 		\begin{tabular}{|c|c|}\hline
@@ -1435,6 +1433,10 @@ Online
 \clearpage
 
 \chapter{Summary and Outlook}\label{cha:summary_and_outlook}
+\section{Trace-cmd \& Kernelshark}
+
+
+
 %
 % Hier beginnen die Verzeichnisse.
 %
