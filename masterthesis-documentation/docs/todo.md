@@ -3,10 +3,7 @@
 - [ ] **1 Introduction**
   - [x] 1.1 Real-Time Operating Systems
   - [x] 1.2 Application Context
-  - [ ] 1.3 State of the Art
-    - [ ] 1.3.1 Virtualization
-    - [ ] 1.3.2 Real-time Kernel
-    - [ ] 1.3.3 Related Work
+  - [ ] 1.3 State of the Art and Related Work
   - [ ] 1.4 Problem and Task Definition
   - [ ] 1.5 Objective
 - [ ] **2 Theoretical Foundations**
