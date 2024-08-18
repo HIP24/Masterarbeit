@@ -1,18 +1,17 @@
 # Rauh Fragen
 
 ## Feedback
-- Declaration: Anführungszeichen weg 
-- Einleitung: mehrere Quellen, Nicht nur Absätze zitieren, Namen vielleicht -> Standards, Paper
-- Abstract: keine Quellen
-- Abkürzungen
-- Methodology: In der Gegenwart
-- u name 
-- Code beschreiben, formatieren
-- Literaturverzeichnis vervollständigen
-- Chapter 3 in Methodology
-- New Chapter 3 "Implementation"
-    - Initial
-    - Real Time 
+- ❎ Declaration: Anführungszeichen weg 
+- ✅ Einleitung: mehrere Quellen, Nicht nur Absätze zitieren
+- ✅ Chapter Salamander 4 in Methodology
+- ✅ New Chapter 3 "Implementation", 1. Initial, 2. Tunings 
+- ❌ Abkürzungen
+- ❌ u name 
+- ❌ Code beschreiben, formatieren
+- ❌ Literaturverzeichnis vervollständigen
+- ⌛ Abstract: keine Quellen
+- ⌛ Methodology: In der Gegenwart
+
 
 
 ## Bewertung
