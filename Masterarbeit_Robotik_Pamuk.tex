@@ -399,7 +399,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \section{Initial Situation}\label{sec:starting_situation}
 As a starting point, initial latency values of both the bare metal and virtualization versions were measured with the \texttt{latency} tool of the xenomai tool suite. Salamander 4 bare metal refers to the proprietary hardware of SIGMATEK used to employ the custom operating system. Salamander 4 virtualization refers to a virtual version of the Salamander 4 hardware platform, achieved through QEMU/KVM. Sections~\ref{sec:salamander4-bare-metal} and~\ref{sec:salamander4-virtualization} specify the details of the measurements for both versions. In the further course, the aim was to bring the latency values of the virtualization closer to those of the hardware and guarantee deterministic and reliable behavior.
 
-\subsection{Salamander 4 Bare Metal}\label{sec:salamander4-bare-metal}
+\subsection{Salamander 4 Bare Metal}\label{subsec:salamander4-bare-metal}
 The output of the command~\texttt{uname -a} for Salamander 4 bare metal is shown in Code~\ref{output:uname_a_hw}.
 
 \vspace{1em}
@@ -446,7 +446,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
 
-\subsection{Salamander 4 Virtualization}\label{sec:salamander4-virtualization}
+\subsection{Salamander 4 Virtualization}\label{subsec:salamander4-virtualization}
 In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. It was developed using Yocto, an open-source project that allows customised Linux distributions to be created for embedded systems. Upon generating the necessary files, Yocto provides a QEMU folder with the following components shown in Code~\ref{lst:ls}. QEMU is the environment in which the virtualization runs, as it is an open-source tool for hardware virtualization~\cite{QEMU}.
 
 \vspace{1em}
@@ -607,9 +607,7 @@ After each tuning, the latency test of Xenomai is executed to evaluate the impro
 		\end{tabular}}
 \end{table}
 
-
-
-\subsection{BIOS Configurations}\label{sec:bios_configurations}
+\subsection{BIOS Configurations}\label{subsec:bios_configurations}
 
 BIOS stands for Basic Input/Output System. It abstracts the hardware and enables basic functions of a computer during the booting process, such as starting the operating system and loading other software. Since the BIOS is embedded very deep, its configuration can significantly influence the real-time performance of the system. Table~\ref{tab:bios_configuration} illustrates the specific BIOS settings that have been adjusted for the purpose of real-time performance.
 
@@ -646,7 +644,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\item \textbf{VT-d}: Direct access to physical devices from within virtual machines is possible when VT-d is enabled on the host. This can help reduce latencies associated with I/O operations in the virtual machine. It is therefore enabled on the host.
 \end{itemize}
 
-\subsection{Kernel Configurations}\label{sec:kernel_configurations}
+\subsection{Kernel Configurations}\label{subsec:kernel_configurations}
 
 The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} below.
 
@@ -706,9 +704,9 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 		\end{tabular}}
 \end{table}
 
-\subsection{Host OS Configurations}\label{sec:host_configurations}
+\subsection{Host OS Configurations}\label{subsec:host_configurations}
 The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and reduce latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest OS is provided.
-\subsubsection{CPU affinity and Isolation}\label{subsec:cpu_isolation}
+\subsubsection{CPU affinity and Isolation}\label{subsubsec:cpu_isolation}
 
 Isolating CPUs involves removing all user-space threads and unbound kernel threads since bound kernel threads are tied to specific CPUs and hence cannot be moved. For CPU isolation, the~\texttt{isolcpus} function was used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}, including systemd services. To prevent systemd services from running on an isolated CPU, the CPU affinity can be set the with line \texttt{CPUAffinity=0 1 2 3 5 6 7 8 9 10 11 12 13} in the \texttt{/etc/systemd/system.conf} file to indicate the CPUs that systemd-services are allowed to run on. Every CPU other than the isolated CPU 4 is allowed. Code~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
 
@@ -734,7 +732,7 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 		4   82134   82134 [kworker/4:1H-kblockd]      TS  -20      -
 \end{lstlisting}
 \end{minipage}
-\subsubsection{KVM Entry and KVM Exit}\label{subsec:kvm_entry_exit}
+\subsubsection{KVM Entry and KVM Exit}\label{subsubsec:kvm_entry_exit}
 \textcolor{red}{\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates CPUs from the scheduler, meaning that user-space processes won't be scheduled on these CPUs, but kernel tasks and interrupts can still utilize the CPU.This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the~\texttt{kvm\_entry} and~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest's ability to run continuously, thereby increasing the virtualization latency.}
 
 \textcolor{red}{To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed~\texttt{kvm\_exit} events.}
@@ -764,7 +762,7 @@ Isolating CPUs involves removing all user-space threads and unbound kernel threa
 
 \textcolor{red}{\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is not bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on the user level. Without CPU isolation, context switches take place at the operating system level and not at the hypervisor level. This explains why there are fewer~\texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at the operating system level generally take longer than a~\texttt{kvm\_exit} and ~\texttt{kvm\_entry}. When the CPU was dedicated to the QEMU process, on the other hand, there was a significant increase in~\texttt{kvm\_exit} events. This is because every context switch takes place at the hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.}
 
-\subsubsection{Interrupt Affinity}\label{subsec:irq_handling}
+\subsubsection{Interrupt Affinity}\label{subsubsec:irq_handling}
 Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. The~\texttt{/proc/interrupts} file can be monitored using the command~\texttt{watch -d -n 1 cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU13). When there are 14 CPUs available, the default value for~\texttt{smp\_affinity} would be 3FFF. Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 3FEF (11 1111 1110 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU. By changing the values of the~\texttt{smp\_affinity} files, the assignment of IRQs to CPUs is controlled.
 
 
@@ -957,7 +955,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 		\end{tabular}}
 \end{table}
 
-\subsection{QEMU/KVM Configurations}\label{sec:guest_configurations}
+\subsection{QEMU/KVM Configurations}\label{subsec:guest_configurations}
 KVM allows the guest OS to run directly on the hardware, bypassing the need for traditional emulation which can introduce delays. QEMU, when used with KVM, provides hardware-assisted virtualization, which also lowers latency in the guest OS.
 
 \subsubsection{Tune LAPIC Timer Advance}
@@ -1103,7 +1101,7 @@ In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU
 	\label{fig:hardware_tree}
 \end{figure}
 
-\subsection{Setup of QEMU Salamander 4}\label{sec:setup_experiment_virtualized}
+\subsection{Setup of QEMU Salamander 4}\label{subsec:setup_experiment_virtualized}
 In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM module. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needed to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID 5112 and device ID 2200.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}.
 
 \vspace{1em}
