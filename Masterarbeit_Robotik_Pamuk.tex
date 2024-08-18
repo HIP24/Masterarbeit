@@ -475,12 +475,6 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 	\item \textbf{vmlinux}: Uncompressed Linux kernel image, typically used for debugging.
 \end{itemize}
 
-
-\begin{comment}
-https://www.baeldung.com/linux/kernel-images
-\end{comment}
-
-
 \noindent The inital QEMU script after the custom Yocto build and the starting point for this work is shown in Code~\ref{script:qemu_def}. This script is used to start QEMU with required parameters to boot Salamamder 4 OS. It will be adjusted in Chapter~\ref{sec:real-time_tunings} in order to accompany real-time performance tunings.
 
 \vspace{1em}
@@ -1084,10 +1078,6 @@ In this equation, \(V\) represents the voltage across the resistor, \(I\) is the
 	\caption[Connection between PW 022 and mini-robot]{Connection between PW 022 and mini-robot~\cite{MG996RDigitalServo}}
 	\label{fig:pw022_minirobot_connection}
 \end{figure}
-
-\begin{comment}
-battery -> https://www.flaticon.com/de/kostenloses-icon/autobatterie_4238252?related_id=4238254
-\end{comment}
 
 \noindent The program was written in Lasal Class 2 and was applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the specific commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment.
 
