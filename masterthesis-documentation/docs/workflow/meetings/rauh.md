@@ -30,3 +30,7 @@
 
 ## Fragen
 - [ ] The goal was it to? 
+- ""
+- \texttt{}
+- host OS or oper. sy
+- illustrate count
