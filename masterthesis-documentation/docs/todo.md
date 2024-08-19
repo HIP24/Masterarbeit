@@ -1,56 +1,81 @@
 # Masterarbeit TODO
 
-- [ ] **1 Introduction**
-  - [x] 1.1 Real-Time Operating Systems
-  - [x] 1.2 Application Context
-  - [ ] 1.3 State of the Art and Related Work
-  - [ ] 1.4 Problem and Task Definition
-  - [ ] 1.5 Objective
-- [ ] **2 Theoretical Foundations**
-  - [ ] 2.1 Yocto
-  - [ ] 2.2 QEMU
-  - [💪] 2.3 Xenomai
-  - [ ] 2.4 VARAN-Bus
-  - [💪] 2.5 Salamander 4
-    - [💪] 2.5.1 Structure
-    - [💪] 2.5.2 Memory Management
-- [ ] **3 Related Work**
-- [ ] **4 Methodology**
-- [💪] **5 Initial Real-Time Latency**
-  - [💪] 5.1 Salamander 4 Bare Metal
-  - [💪] 5.2 Salamander 4 Virtualization
-- [💪] **6 Real-Time Performance Tuning**
-  - [💪] 6.1 BIOS Configurations
-  - [💪] 6.2 Kernel Configurations
-  - [💪] 6.3 Host OS Configurations
-    - [💪] 6.3.1 CPU affinity and Isolation
-    - [💪] 6.3.2 KVM Entry and KVM Exit
-    - [💪] 6.3.3 Interrupt Affinity
-    - [💪] 6.3.4 RT-Priority
-    - [💪] 6.3.5 Disable RT Throttling
-    - [💪] 6.3.6 Disable Timer Migration
-    - [💪] 6.3.7 Set Device Driver Work Queue
-    - [💪] 6.3.8 Disable RCU CPU Stall Warnings
-    - [💪] 6.3.9 Stop Certain Services
-    - [💪] 6.3.10 Disable Machine Check
-    - [💪] 6.3.11 Boot into text-based environment
-  - [💪] 6.4 QEMU/KVM Configurations
-    - [💪] 6.4.1 Tune LAPIC Timer Advance
-    - [💪] 6.4.2 Set QEMU Options for real-time VM
-  - [ ] 6.5 Guest OS Configurations
-  - [💪] 6.6 Other Configurations
-- [💪] **7 Real-Time Robotic Application**
-  - [💪] 7.1 Setup of Hardware Salamander 4
-  - [💪] 7.2 Setup of QEMU Salamander 4
-  - [💪] 7.3 Robotic Application
-- [ ] **8 Results**
-- [ ] **9 Discussion**
-- [ ] **10 Summary and Outlook**
-- [💪] **Bibliography**
-- [💪] **List of Figures**
-- [💪] **List of Tables**
-- [💪] **List of Code**
-- [💪] **List of Abbreviations**
+Kurzfassung
+
+## 0. Initial
+- [✅] Declaration
+- [❌] Kurzfassung
+- [❌] Abstract
+
+## 1. Introduction
+- [✅] 1.1 Real-Time Operating Systems
+- [✅] 1.2 Application Context
+- [✅] 1.3 Related Work and State of the Art
+- [✅] 1.4 Problem and Task Definition
+- [🔜] 1.5 Objective
+
+## 2. Methodology
+- [❌] 2.1 Yocto
+- [❌] 2.2 QEMU
+- [💪] 2.3 Xenomai
+- [❌] 2.4 VARAN-Bus
+- [💪] 2.5 Salamander 4
+  - [💪] 2.5.1 Structure
+  - [💪] 2.5.2 Memory Management
+
+## 3. Implementation
+- [💪] 3.1 Initial Situation
+  - [💪] 3.1.1 Salamander 4 Bare Metal
+  - [💪] 3.1.2 Salamander 4 Virtualization
+- [❌] 3.2 Real-Time Performance Tuning
+  - [💪] 3.2.1 BIOS Configurations
+  - [💪] 3.2.2 Kernel Configurations
+  - [💪] 3.2.3 Host OS Configurations
+    - [💪] 3.2.3.1 CPU affinity and Isolation
+    - [💪] 3.2.3.2 KVM Entry and KVM Exit
+    - [💪] 3.2.3.3 Interrupt Affinity
+    - [💪] 3.2.3.4 RT-Priority
+    - [💪] 3.2.3.5 Disable RT Throttling
+    - [💪] 3.2.3.6 Disable Timer Migration
+    - [💪] 3.2.3.7 Set Device Driver Work Queue
+    - [💪] 3.2.3.8 Disable RCU CPU Stall Warnings
+    - [💪] 3.2.3.9 Stop Certain Services
+    - [💪] 3.2.3.10 Disable Machine Check
+    - [💪] 3.2.3.11 Boot into text-based environment
+  - [💪] 3.2.4 QEMU/KVM Configurations
+    - [💪] 3.2.4.1 Tune LAPIC Timer Advance
+    - [💪] 3.2.4.2 Set QEMU Options for real-time VM
+  - [❌] 3.2.5 Guest OS Configurations
+  - [💪] 3.2.6 Other Configurations
+- [❌] 3.3 Real-Time Robotic Application
+  - [💪] 3.3.1 Setup of Hardware Salamander 4
+  - [💪] 3.3.2 Setup of QEMU Salamander 4
+  - [❌] 3.3.3 Robotic Application
+
+## 4. Results
+- [❌] Results
+
+## 5. Discussion
+- [❌] Discussion
+
+## 6. Summary and Outlook
+- [❌] Summary and Outlook
+  - [❌] 6.1 Trace-cmd & Kernelshark
+
+## Bibliography
+- [⌛] Bibliography
+
+## List of Figures
+- [⌛] List of Figures
+
+## List of Tables
+- [⌛] List of Tables
+
+## List of Code
+- [⌛] List of Code
+
+## List of Abbreviations
+- [⌛] List of Abbreviations
 
 
 
@@ -60,8 +85,7 @@
 
 
 
-
-    Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
+Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
 
 First, a comprehensive literature review is conducted to understand the current trends and challenges in real-time robot control. Based on the literature study, a suitable virtualization platform is selected.
 

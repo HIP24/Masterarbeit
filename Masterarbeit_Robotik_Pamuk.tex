@@ -201,7 +201,7 @@ This section briefly defines the context and scope within which this master's th
 	\item Salamander 4 employs hard real-time with Xenomai 3~\cite{XenomaiXenomai}, a real-time framework for Linux that enables deterministic and low-latency performance. Xenomai 3 is detailed in Section~\ref{sec:xenomai}.
 	\item The goal is to virtualize Salamander 4 and approach the performance of bare metal through real-time performance tunings, focussing on latency requirements set by SIGMATEK.
 	      These modifications are subject of Chapter~\ref{sec:real-time_tunings}.
-	\item The latency tool of the Xenomai suite to measure the scheduling latency of the real-time OS was suggested to use by SIGMATEK.
+	\item The \texttt{latency} tool of the Xenomai suite to measure the scheduling latency of the real-time OS was suggested to use by SIGMATEK. The goal was set to achieving latency values below 50 microseconds in the period of the measuremenet.  
 	\item SIGMATEK uses the VARAN bus for communication between machines and systems, a real-time Ethernet network that was specially developed for industrial automation. Its operating principle is outlined in Section \ref{sec:varan}.
 	\item For the purpose of replacing the physical CPU, SIGMATEK provided a PCI Insert Card module PCV 522, that was plugged into the PC, as explained in Subsection \ref{subsec:setup_experiment_virtualized}. This component could then be used to communicate with the Input/Output peripherals, just like the physical CPU could when the I/O modules were attached to it. Subsequently, the PCV 522 module of SIGMATEK was connected with the Pulse Width Module PW 022 of SIGMATEK over the VARAN bus and the VI 021 module of SIGMATEK serving as the power supply.
 	\item The robotic application from Chapter \ref{sec:robotic_application} was written in Lasal Class 2, an object oriented programming tool of SIGMATEK with client-server technology and graphic representation.
@@ -276,9 +276,10 @@ As stated previously, virtualization of real-time systems has many advantages in
 \bigskip \noindent Virtualization promises to overcome these challenges \cite{queirozContainerbasedVirtualizationRealtime2024} \cite{bhardwajVirtualizationCloudComputing2021} \cite{cinqueEvaluatingVirtualizationFog2023}. However, virtualization also has its own challenges and pitfalls. The additional layers of abstraction can lead to increased overhead and latency \cite{casiniLatencyAnalysisVirtualization2021} \cite{zhangEvaluatingOptimizingVirtualization2010}. This is not desired and can be particularly problematic for real-time systems that require strict timing constraints. Making sure that tasks run predictably and on time in a virtualized environment, can be challenging. The hypervisor and other virtual components can cause variations in how long tasks take to execute \cite{garcia-vallsChallengesRealtimeVirtualization2014}. When there are multiple virtual machines (VM) sharing the same physical resources, the VMs can affect each other's performance and consequently violate real-time constraints \cite{queirozContainerbasedVirtualizationRealtime2024}.
 
 \bigskip \noindent In this master’s thesis, the task is the virtualization of a real-time operating system to control a robot, with a focus on compliance with real-time determinism. Chapter \ref{cha:methodology} explains in detail the procedure, how this was tackled.  As already established in Section~\ref{sec:application_context}, Salamander 4 is built with Yocto, employs hard real-time with Xenomai 3 and virtualized through QEMU/KVM. The initial latency values are measured with the \texttt{latency} program of the Xenomai tool suite. The initial situation is described in Section \ref{sec:starting_situation}. In a nutshell, there is a significant initial gap in latency statistics between the virtualized Salamander 4 and the Salamander 4 on bare metal. For this reason, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS (guest) itself. The individual configurations are discussed in detail in Chapter \ref{sec:real-time_tunings} and the modifications are justified with a clear explanation.
-
+\clearpage
 \section{Objective}
-The goal is to bring the latency of the virtualized Salamander 4 closer to that of the bare metal system, thereby ensuring deterministic behavior under real-time constraints. Section \ref{sec:starting_situation} outlines the initial situation of this master's thesis and serves as the foundation for the real-time performance tunings discussed in Chapter \ref{sec:real-time_tunings}. To determine and validate the performance of the tunings, we use the \texttt{latency} tool. 
+The goal is to bring the latency of the virtualized Salamander 4 closer to that of the hardware, thereby ensuring deterministic behavior under real-time constraints. Section \ref{sec:starting_situation} outlines the initial situation of this master's thesis and serves as the foundation for the real-time performance tunings discussed in Section \ref{sec:real-time_tunings}. To determine and validate the performance of the tunings, the \texttt{latency} tool is used, as stated in Section \ref{sec:application_context}. The objective is to achieve latency values below 50 microseconds during the measurement period through real-time tunings. On top of that, a robotic application demonstrates and validates that the tunings ensure in a practical scenario taht the operating system meets the required real-time performance criteria and constraints.
+\clearpage
 
 \chapter{Methodology}\label{cha:methodology}
 
@@ -1278,6 +1279,7 @@ Online
 ~\cite{CPUUnitsSIGMATEK}
 
 \noindent Papers
+
 ~\cite{canbazPerformanceAnalysisRealtime2022}
 ~\cite{malallahComprehensiveStudyKernel2021}
 ~\cite{wangRealtimeEmbeddedSystems2017}
