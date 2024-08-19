@@ -37,11 +37,7 @@ plugins:
         #- "*sigmatek/xenomai/2taskset/*.md"
         #- "*sigmatek/xenomai/*r*/*.md"
         #- "*sigmatek/xenomai/xenomai_suite/*"
-<<<<<<< HEAD
         - "*resources/pdfs/papers/papers.md*"
-=======
-        #- "*resources/pdfs/papers/papers.md*"
->>>>>>> 8e1f6b1ba6647c8c60afb2b1fb0858fe0f405051
         - "*sigmatek/xenomai/xenomai_suite/sigmatek-salamander-glibc-x86_64-salamander-image-core2-64-toolchain-09.07.120_RC2.sh*"        
       regex:
         - '.*.(tmp|bin|tar)$'
