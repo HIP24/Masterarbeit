@@ -28,6 +28,7 @@ masterthesis-documentation/site/
 masterthesis-documentation/docs/Masterarbeit_Robotik_Pamuk.pdf
 Masterarbeit_Robotik_Pamuk.pdf
 papers-delete/
+else/
 
 # Ignore .dat
 **/*.dat

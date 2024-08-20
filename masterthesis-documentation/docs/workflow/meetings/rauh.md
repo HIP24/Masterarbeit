@@ -14,23 +14,26 @@
 
 
 ## Bewertung
-- [❌] Thema in bearbeitbare Form
-- [❌] Lösungsansatz
-- [❌] Beschreibung der Methode
-- [❌] Ergebnis und Diskussion
-- [❌] Eigenständigkeit/Kommunikation 
-- [❌] Struktur 
-- [❌] Stil: Rechtschreibung/Grammatik
-- [❌] Form
-- [❌] Richtiges zitieren 
-- [❌] Relevanz der Literatur (SOA)
-
-
-
+- [?] Thema in bearbeitbare Form
+- [?] Lösungsansatz
+- [?] Beschreibung der Methode
+- [?] Ergebnis und Diskussion
+- [?] Eigenständigkeit/Kommunikation 
+- [?] Struktur 
+- [?] Stil: Rechtschreibung/Grammatik
+- [?] Form
+- [?] Richtiges zitieren 
+- [?] Relevanz der Literatur (SOA)
 
 ## Fragen
-- [ ] The goal was it to? 
-- ""
-- \texttt{}
-- host OS or oper. sy
-- illustrate count
+- The goal was it to? 
+
+
+## Finetuning
+- [❌] Captions of tables & figures & codes
+- [❌] Abstand zu table and figure and code mit \bigskip oder \vspace
+- [❌] "" pr enquote
+- [❌] \texttt{}
+- [❌] host OS or oper. sy first time oper
+- [❌] illustrate count
+- [❌] groß und klein schreibung in tabellen
