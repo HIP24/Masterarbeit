@@ -392,29 +392,66 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 
 \section{QEMU}\label{sec:qemu}
 
-
-
-
+QEMU is an open-source emulator and virtualizer that allows to run operating systems and programs for one machine on a different machine. It can emulate different hardware architectures and is used in this thesis to emulate Salamander 4. When QEMU is used together with Kernel-based Virtual Machine (KVM), it can provide near-native performance by running code directly on the host CPU. The QEMU script used to emulate Salamander 4 and the meaning of the options are described in detail in Subsection \ref{subsec:salamander4-virtualization}.
 
 \section{Trace-cmd}\label{sec:trace-cmd}
-Trace-cmd can be used for tracing the Linux kernel~\cite{Tracecmd}. It can record various kernel events such as interrupts, scheduler decisions, file system activity, function calls in real time. Trace-cmd helped in getting detailed insights into system behaviour and identify reasons for latency.
+\texttt{Trace-cmd}~\cite{Tracecmd} is the front-end tool of the \texttt{ftrace} tool that is built inside the Linux kernel and used for tracing the Linux kernel. \texttt{Trace-cmd} can record detailed reports of kernel events such as interrupts, scheduler decisions, function calls, and custom events in real time. It is easier with this tool to enable and disable tracing, set filters, and view results. \texttt{Trace-cmd} helped debugging and identifying the reasons for latency in Salamander 4 to continuously improve its real-time performance and determinism. A very practical aspect of \texttt{trace-cmd} is that the guest can be traced from the host. For this purpose, the guest needs to be configured up with \texttt{vsocks}, which are a virtual socket that enable direct communication between the host and guest. To enable vsockets and tracing, the guest kernel requires the following configurations, according to Linux developer and maintainer Steve Rostedt~\cite{rostedtTracecmdHostGuest}. 
+\bigskip
+\begin{lstlisting}[language=bash, caption={Kernel Configuration for vsocks and tracing}, label={lst:kernel-config}]
+	# Vsockets settings
+	CONFIG_VSOCKETS=m
+	CONFIG_VHOST_VSOCK=m
+	CONFIG_VIRTIO_VSOCKETS=m
+	CONFIG_VIRTIO_VSOCKETS_COMMON=m
+	CONFIG_VSOCKETS_DIAG=m
+	CONFIG_VSOCKETS_LOOPBACK=m
+	# Tracing settings
+	CONFIG_TRACING=y
+	CONFIG_FTRACE=y
+	CONFIG_FUNCTION_TRACER=y
+	CONFIG_FUNCTION_GRAPH_TRACER=y
+	CONFIG_DYNAMIC_FTRACE=y
+	CONFIG_DYNAMIC_FTRACE_WITH_REGS=y
+	CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y
+	CONFIG_DYNAMIC_FTRACE_WITH_ARGS=y
+	CONFIG_SCHED_TRACER=y
+	CONFIG_FTRACE_SYSCALLS=y
+	CONFIG_TRACER_SNAPSHOT=y
+	CONFIG_KPROBE_EVENTS=y
+	CONFIG_UPROBE_EVENTS=y
+	CONFIG_BPF_EVENTS=y
+	CONFIG_DYNAMIC_EVENTS=y
+	CONFIG_PROBE_EVENTS=y
+	CONFIG_SYNTH_EVENTS=y
+	CONFIG_HIST_TRIGGERS=y
+	\end{lstlisting}
 
-\section{Kernelshark}\label{sec:kernelshark}
-The data that was recorded by trace-cmd was then fed into Kernelshark, which is a graphical front-end tool~\cite{KernelShark}. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitated the process of identifying patterns and correlations between events. By further filtering the displayed events according to specific criteria such as processes, event types or time ranges, the latency issues were analyzed.
+	\clearpage
+
+	\noindent After compiling the kernel with the additional settings aboce, the guest needs access to the vsocket. In QEMU, the line \texttt{-device vhost-vsock-pci,guest-cid=3,id=vsock0} was added. This command configures a virtual socket (vsock) device in QEMU, assigning the guest a unique Context Identifier (CID) of 3 for direct communication with the host. The CID can be chosen as desired. Once the guest is booted with vhost enabled, the \texttt{sudo trace-cmd agent} command can be run.  The agent now listens to connections on port 823 by default with the specified CID, 3 in this case. The host can trace itself and the guest from this moment going forward. For example, \texttt{sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all} records all events from the host and guest. \texttt{sudo trace-cmd record -e kvm:kvm\_entry -e kvm:kvm\_exit -A @3:823 --name Salamander4 -e all} traces onkly the \texttt{kvm\_entry} and \texttt{kvm\_exit} events of the host along with the exit reasons and all guest events. As a last example, \texttt{sudo trace-cmd record -e kvm -e sched -e irq -e -A @3:823 --name Salamander4 -e all} enables tracing of KVM, scheduling, and interrupt events on the host, for capturing the KVM events that manage the guest, scheduling activities, and interrupt handling respectively.
+
+	\section{Kernelshark}\label{sec:kernelshark}
+Viewing the tracing data that was recorded with \texttt{trace-cmd} on a text-based file can be laborious. A better way of analyzing the data is done through \texttt{KernelShark}~\cite{KernelShark}, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitates the process of identifying patterns and correlations between events. The latency issues can be analyzed by further filtering the displayed events according to processes, event types or time ranges. After the recording, \texttt{trace-cmd} gernerates a host \texttt{trace.dat} file and a guest \texttt{trace-Salamander4.dat} file, which in this case can be loaded into \texttt{KernelShark} with the command \texttt{kernelshark trace.dat -a trace-Salamander4.dat}. Once both files are loaded, the trace data can be visually inspected. All the current CPUs for both the host and the guest can be turned off, and the KVM Combo plots menu can be selected to view the guest vCPUs plotted on top of the host threads that run them, as depicted in Figure~\ref{fig:kernelshark_combo}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{img/kernelshark_combo.png}
+	\caption[Guest vCPUs plotted on top of host threads in KernelShark]{Guest vCPUs plotted on top of host threads in KernelShark}
+	\label{fig:kernelshark_combo}
+\end{figure}
 
 \section{VARAN-Bus}\label{sec:varan}
 
+VARAN is a real-time Ethernet bus designed for industrial automation, capable of connecting larger systems and machines with smaller components and sensors in hard real-time. This bus operates on the manager/client principle, where each network includes a manager and one or more subordinate clients. Multiple VARAN networks can be linked together into a single synchronized network using a higher-level VARAN manager. The jitter between these systems is kept below 100 ns. This synchronization between systens and their data exchange is illustrated in Figure~\ref{fig:multiple_varans}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{img/multiple_varans.png}
+	\caption[Synchronization between Systems and their Data Exchange]{Synchronization between Systems and their Data Exchange}
+	\label{fig:multiple_varans}
+\end{figure}
 
-
-
-
-
-
-
-
-
-
+\clearpage
 
 \chapter{Implementation}
 
