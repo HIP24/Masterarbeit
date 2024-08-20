@@ -35,5 +35,6 @@
 - [❌] "" pr enquote
 - [❌] \texttt{}
 - [❌] host OS or oper. sy first time oper
-- [❌] illustrate count
-- [❌] groß und klein schreibung in tabellen
+- [❌] illustrated, depicted, shown count
+- [❌] groß und klein schreibung in  tables & figures & codes
+

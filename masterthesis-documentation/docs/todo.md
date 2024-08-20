@@ -25,9 +25,9 @@
 - [✅] 2.8 VARAN-Bus
 
 ### 3. Implementation
-- [💪] 3.1 Initial Situation
-  - [💪] 3.1.1 Salamander 4 Bare Metal
-  - [💪] 3.1.2 Salamander 4 Virtualization
+- [✅] 3.1 Initial Situation
+  - [✅] 3.1.1 Salamander 4 Bare Metal
+  - [✅] 3.1.2 Salamander 4 Virtualization
 - [💪] 3.2 Real-Time Performance Tuning
   - [💪] 3.2.1 BIOS Configurations
   - [💪] 3.2.2 Kernel Configurations
@@ -87,7 +87,7 @@
 | Day       | Task                                                                 |
 |-----------|----------------------------------------------------------------------|
 | Monday    | - [✅] 1.5 Objective<br>- [✅] 2.1 Host Operating System<br>- [✅] 2.2 Guest Operating System<br>  - [✅] 2.5.1 Structure<br>  - [✅] 2.5.2 Memory Management<br>- [✅] 2.3 Yocto<br>- [✅] 2.4 Xenomai |
-| Tuesday   | - [✅] 2.5 QEMU<br>- [✅] 2.6 Trace-cmd<br>- [✅] 2.7 Kernelshark<br>- [✅] 2.8 VARAN-Bus <br>- [💪] 3.1 Initial Situation<br>  - [💪] 3.1.1 Salamander 4 Bare Metal<br>  - [💪] 3.1.2 Salamander 4 Virtualization |
+| Tuesday   | - [✅] 2.5 QEMU<br>- [✅] 2.6 Trace-cmd<br>- [✅] 2.7 Kernelshark<br>- [✅] 2.8 VARAN-Bus <br>- [✅] 3.1 Initial Situation<br>  - [✅] 3.1.1 Salamander 4 Bare Metal<br>  - [✅] 3.1.2 Salamander 4 Virtualization |
 | Wednesday | - [💪] 3.2 Real-Time Performance Tuning<br>  - [💪] 3.2.1 BIOS Configurations<br>  - [💪] 3.2.2 Kernel Configurations<br>  - [💪] 3.2.3 Host OS Configurations<br>    - [💪] 3.2.3.1 CPU affinity and Isolation<br>    - [💪] 3.2.3.2 KVM Entry and KVM Exit<br>    - [💪] 3.2.3.3 Interrupt Affinity<br>    - [💪] 3.2.3.4 RT-Priority<br>    - [💪] 3.2.3.5 Disable RT Throttling<br>    - [💪] 3.2.3.6 Disable Timer Migration<br>    - [💪] 3.2.3.7 Set Device Driver Work Queue<br>    - [💪] 3.2.3.8 Disable RCU CPU Stall Warnings<br>    - [💪] 3.2.3.9 Stop Certain Services<br>    - [💪] 3.2.3.10 Disable Machine Check<br>    - [💪] 3.2.3.11 Boot into text-based environment<br>  - [💪] 3.2.4 QEMU/KVM Configurations<br>    - [💪] 3.2.4.1 Tune LAPIC Timer Advance<br>    - [💪] 3.2.4.2 Set QEMU Options for real-time VM<br>  - [❌] 3.2.5 Guest OS Configurations<br>  - [💪] 3.2.6 Other Configurations |
 | Thursday  | - [💪] 3.3 Real-Time Robotic Application<br>  - [💪] 3.3.1 Setup of Hardware Salamander 4<br>  - [💪] 3.3.2 Setup of QEMU Salamander 4<br>  - [❌] 3.3.3 Robotic Application |
 | Friday    | - [❌] Results<br>- [❌] Discussion<br>- [❌] Summary and Outlook<br>  - [❌] 6.1 Trace-cmd & Kernelshark |
