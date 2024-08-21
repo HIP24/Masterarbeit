@@ -8,13 +8,13 @@ set encoding utf8
 # Set the title and labels
 #set title "Latency Distribution"
 set xlabel 'Time in {/Symbol=12 m}s'
-set ylabel "Frequency"
+set ylabel "Samples"
 
 # Set the range for the x axis
-set xrange [0:1000] # replace 1000 with 800 if you want the range to be until 800
+set xrange [0:12] 
 
 # Set the x and y axes to logarithmic scale
-set logscale x
+#set logscale x
 set logscale y
 
 # Remove minor ticks on the axes
@@ -24,6 +24,9 @@ set mytics 1
 # Add grid lines for axes
 set grid ytics
 set grid xtics
+
+# Set the y-axis format to 10^n
+set format y "10^{%L}"
 
 # Plot the data with thicker lines
 plot 'max_latency_hardware_10min.txt' using 1:2 with lines linewidth 3 linecolor rgb "#800080" title ''

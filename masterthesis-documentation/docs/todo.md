@@ -107,8 +107,7 @@
 - Powerpoint-Präsentation der Masterarbeit
 - Videos zur Masterarbeit
 
-
-
+<hr>
 
 Zu Beginn der Arbeit wurde eine ausführliche Analyse der einzelnen Virtualisierungsmöglichkeiten von Salamander 4 durchgeführt. Im Besonderen wurde hier die Virtualisierungsperformance von Ubuntu 22.04, Windows 10 und WSL unter QEMU verglichen.
 

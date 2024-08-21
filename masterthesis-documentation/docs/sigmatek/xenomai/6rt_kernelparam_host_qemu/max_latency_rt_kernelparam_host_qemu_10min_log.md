@@ -1,4 +1,4 @@
-# Max Latency with rt_kernelparam_host
+# Max Latency with rt_kernelparam_host_qemu
 
 ```bash
 root@sigmatek-core2:~# latency -h -s -T 600

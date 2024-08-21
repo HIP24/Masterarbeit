@@ -38,3 +38,15 @@
 - [❌] illustrated, depicted, shown count
 - [❌] groß und klein schreibung in  tables & figures & codes
 
+
+
+
+
+
+Methodik-> aufbauend, beibehalten
+vorherige sachen werden genutzt, 
+limitierung: man braucht einzelbetrachtung weil man nicht zurücksetzt -> Zukunft
+URLs rausnehmen
+
+27.8 -> 11 Uhr 
+
