@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<HwVisualConfigManager>
+	<HwVisualConfig Key="__HW_MAIN_PLC__" DeviceType="PCV522" Top="20" Left="20"/>
+	<HwVisualConfig Key="PW022_1" Top="364.07" Left="20"/>
+	<HwVisualConfig Key="PW022_1_Copy" Top="127" Left="20"/>
+	<HwVisualConfig Key="PW022_1_Copy_Copy" Top="127" Left="20"/>
+	<HwVisualConfig Key="VaranManager_21" Top="127" Left="20"/>
+	<HwVisualConfig Key="VI0211" Top="20.91" Left="61.44"/>
+	<HwVisualConnection Source="VI0211.VaranIn" Destination="VaranManager_21.VaranOut_1" Vertices="(69.45,63),(41,63),(41,6),(22,6),(22,80.61),"/>
+</HwVisualConfigManager>
