@@ -1,0 +1,28 @@
+root@sigmatek-core2:~# cat max_latency_with_taskset_10min.txt 
+# 00:10:01 (periodic user-mode task, 100 us period, priority 99)
+# ----lat min|----lat avg|----lat max|-overrun|---msw|
+#       0.969|      3.948|    457.545|      94|     0|
+# Xenomai version: Xenomai/cobalt v3.2.2 -- #92edb496f (2022-08-04 16:33:30 +0200)
+# Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
+# Kernel parameters: console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable
+# Cobalt core 3.2.2 detected
+# Compiler: gcc version 11.2.0 (GCC) 
+# Build args: --build=x86_64-linux --host=i686-sigmatekmllib32-linux --target=i686-sigmatekmllib32-linux --prefix=/usr --exec_prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/libexec --datadir=/usr/share --sysconfdir=/etc --sharedstatedir=/com --localstatedir=/var --libdir=/usr/lib --includedir=/usr/include/xenomai --oldincludedir=/usr/include --infodir=/usr/share/info --mandir=/usr/share/man --disable-silent-rules --disable-dependency-tracking --with-libtool-sysroot=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot --with-core=cobalt --enable-static --enable-smp build_alias=x86_64-linux host_alias=i686-sigmatekmllib32-linux target_alias=i686-sigmatekmllib32-linux CC=i686-sigmatekmllib32-linux-gcc  -m32 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot CFLAGS= -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot=                      -fdebug-prefix-map=FIXMESTAGINGDIRHOST=  LDFLAGS=-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0=/usr/src/debug/lib32-xenomai/3.2.2-r0                      -fdebug-prefix-map=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot=                      -fdebug-prefix-map=FIXMESTAGINGDIRHOST=  -Wl,-z,relro,-z,now CPPFLAGS= CPP=i686-sigmatekmllib32-linux-gcc -E --sysroot=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot  -m32 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security PKG_CONFIG_PATH=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot/usr/lib/pkgconfig:/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot/usr/share/pkgconfig:/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/recipe-sysroot//usr/share/pkgconfig PKG_CONFIG_LIBDIR=/home/sigma_ibo/Develop/Yocto_local/salamander/salamander-core2/build/tmp/work/sigmatek_core2-sigmatekmllib32-linux/lib32-xenomai/3.2.2-r0/lib32-recipe-sysroot/usr/lib/pkgconfig
+1 1
+1.5 2
+2.5 18
+3.5 1741
+4.5 5760947
+5.5 229596
+6.5 3215
+7.5 1151
+8.5 795
+9.5 616
+10.5 456
+11.5 400
+12.5 412
+13.5 402
+14.5 199
+15.5 22
+16.5 1
+17.5 1
