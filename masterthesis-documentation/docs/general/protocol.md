@@ -131,7 +131,7 @@ Once you successfully compiled the RT kernel, the default hardware and OS config
 13    2972    8699 qemu-system-x86_64 -M pc,ac FF    -     95
 ```
 
-[Salamander 4 latency comparison](../sigmatek/xenomai/xenomai_compare.md)  
+[Salamander 4 latency comparison](../sigmatek/xenomai/xenomai_compare_latmax.md)  
 
 
 

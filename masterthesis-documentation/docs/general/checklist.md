@@ -14,7 +14,7 @@
 - [x] Latency got better after [isolation](../general/protocol.md#max-latency-with-taskset)
 - [x] Analyze Host and Guest Processes
 - [x] Latency got much better after [rt-patch](../general/protocol.md#max-latency-with-rt)
-- [x] Latency got even better after Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf): [xenomai_compare.md](../sigmatek/xenomai/xenomai_compare.md)
+- [x] Latency got even better after Intels [RT_Performance_Tuning_Best_Practice_KVM_VM.pdf](../resources/pdfs/papers/RT_Performance_Tuning_Best_Practice_KVM_VM.pdf): [xenomai_compare_latmax.md](../sigmatek/xenomai/xenomai_compare_latmax.md)
 - [x] Move robot motors with salamander hardware
 
 
