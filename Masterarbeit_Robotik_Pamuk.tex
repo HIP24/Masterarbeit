@@ -525,9 +525,9 @@ As a reference point, the \texttt{latency} program was executed on Salamander 4 
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-min & 599 & 0.711 & 0.454 \\ \hline
-avg & 5 999 988 & 1.019 & 0.150 \\ \hline
-max & 599 & 3.528 & 0.895 \\ \hline
+\textbf{min} & 599 & 0.711 & 0.454 \\ \hline
+\textbf{avg} & 5 999 988 & 1.019 & 0.150 \\ \hline
+\textbf{max} & 599 & 3.528 & 0.895 \\ \hline
 \end{tabular}
 \caption{Statistical Summary of Latency Measurements}
 \label{tab:latency_stats_hardware}
@@ -564,9 +564,9 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-min & 599 & 3.713 & 1.355 \\ \hline
-avg & 5,999,922 & 8.247 & 2.521 \\ \hline
-max & 599 & 45.705 & 52.196 \\ \hline
+\textbf{min} & 599 & 3.713 & 1.355 \\ \hline
+\textbf{avg} & 5,999,922 & 8.247 & 2.521 \\ \hline
+\textbf{max} & 599 & 45.705 & 52.196 \\ \hline
 \end{tabular}
 \caption{Statistical Summary of Latency Measurements}
 \label{tab:latency_stats_virt}
@@ -653,6 +653,33 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}
 
+
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt} and Table~\ref{tab:latency_overrun_msw_new_virt}. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+	\textbf{min} & 599 & 1.419 & 0.507 \\ \hline
+	\textbf{avg} & 5,999,885 & 3.398 & 1.251 \\ \hline
+	\textbf{max} & 599 & 74.015 & 26.590 \\ \hline
+	\end{tabular}
+	\caption{Statistical Summary of Latency Measurements}
+	\label{tab:latency_stats_virt_bios}
+	\end{table}
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches}  \\ \hline
+	0.969 & 3.948 & 457.545 & 94 & 0 \\ \hline
+	\end{tabular}
+	\caption{Latency, Overrun, Missed Switch, Best, and Worst Data}
+	\label{tab:latency_overrun_msw_new_virt_bios}
+	\end{table}
+
 \noindent The maximum latency value recorded was 457.545\textmu s. When compared to the inital worst latency of 707.62 \textmu s, this is a step for the better, but certainly still not acceptable within this work's definition of hard real-time determinism. 
 
 \subsection{Kernel Configurations}\label{subsec:kernel_configurations}
@@ -663,7 +690,6 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 		GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocbs=4 rcu_nocb_poll nohz_full=4 nohz=on default_hugepagesz=1G hugepagesz=1G hugepages=8 intel_iommu=on rdt=l3cat nmi_watchdog=0 idle=poll clocksource=tsc tsc=reliable audit=0 skew_tick=1 intel_pstate=disable intel.max_cstate=0 intel_idle.max_cstate=0 processor.max_cstate=0 processor_idle.max_cstate=0 nosoftlockup no_timer_check nospectre_v2 spectre_v2_user=off kvm.kvmclock_periodic_sync=N kvm_intel.ple_gap=0 irqaffinity=0"
 \end{lstlisting}
 
-\clearpage
 \noindent In the following, these settings along with their impact on system latency are briefly described.
 
 \begin{itemize}
@@ -674,14 +700,13 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 	\item \textbf{nohz=on}: Sets all CPUs to tickless mode system-wide.
 	\item \textbf{default\_hugepagesz=1G, hugepagesz=1G, hugepages=8}: Huge pages are large contiguous areas of memory that can be used by applications and the kernel, instead of the traditional 4KB small pages. The default huge page size is set to 1GB, and 8 huge pages of 1GB size are reserved at boot. This pre-allocation makes sure that these large memory regions are available to be used by the kernel or applications, without having to dynamically allocate and potentially fail.
 	\item \textbf{intel\_iommu=on}: Enables Intel's IOMMU (Input/Output Memory Management Unit), which connects a DMA (Direct Memory Access)-capable I/O bus, such as graphics cards and network adapters, to the main memory. It allows these devices to directly access and use memory, which is especially helpful when they are virtualized.
-	\clearpage
 	\item \textbf{rdt=l3cat}: Activates the L3 CAT (L3 Cache Allocation Technology) feature of Intel’s RDT (Resource Director Technology). Unlike L1 and L2 caches, where each core has its fixed capacity, L3 cache is a shared pool among multiple cores. L3 CAT controls the amount of L3 cache that a process can use. By controlling cache allocation, it can prevent a single process from monopolizing the L3 cache, which is particularly beneficial in virtualized environments, where multiple virtual machines share the same physical host.
 	\item \textbf{nmi\_watchdog=0}: Disables the NMI (Non-Maskable Interrupt) watchdog, which is a debugging feature of the Linux kernel. It works by periodically generating non-maskable interrupts. If the system does not respond to these interrupts within a certain timeframe, the NMI watchdog concludes that the system has hung and generates a system dump for debugging.  This constant monitoring consumes CPU cycles and can introduce undesirable latency in real-time systems.
 	\item \textbf{idle=poll}: Changes the CPU’s idle loop behavior to active polling. Instead of entering a low-power state when idle, the CPU continuously polls for new tasks. This can reduce task start latency in real-time systems, but it increases power consumption.
 	\item \textbf{clocksource=tsc, tsc=reliable}: TSC (Time Stamp Counter) is a high-resolution timer provided by most x86 processors that counts the number of CPU cycles since it was last reset. Accurate timekeeping is crucial, particularly for real-time systems. These parameters set the clocksource to TSC and mark it as a reliable source of timekeeping, meaning it increments at a consistent rate and does not stop when the processor is idle.
 	\item \textbf{audit=0}: Disables the Linux audit system. When it is enabled, it generates log entries for security-relevant events, which is a slow operation since they are written to disk. If there are a large number of such events, the audit system can consume significant CPU time and I/O bandwidth which could lead to higher latency.
 	\item \textbf{skew\_tick=1}: Enables a mode in the Linux kernel that reduces timer interrupt overhead. Normally, timer interrupts happen simultaneously on all CPUs, resulting in all CPUs to exit their low-power states at once. This can lead to increased contention for system resources. When enabled, the kernel offsets the timer interrupts on different CPUs, spreading them out over time.
-	\item \textbf{intel\_pstate=disable}: Disables the Intel P-state driver, which is a part of the Linux kernel that handles power management for Intel CPUs. It controls the frequency of the CPU by scaling it up when demand is high and scaling it down to save power when demand is low. This dynamic frequency scaling is disabled because it leads to increased latencies for real-time systems.\clearpage
+	\item \textbf{intel\_pstate=disable}: Disables the Intel P-state driver, which is a part of the Linux kernel that handles power management for Intel CPUs. It controls the frequency of the CPU by scaling it up when demand is high and scaling it down to save power when demand is low. This dynamic frequency scaling is disabled because it leads to increased latencies for real-time systems.
 	\item \textbf{intel.max\_cstate=0, intel\_idle.max\_cstate=0, processor.max\_cstate=0, processor\_idle.max\_cstate=0}: These parameters disable deeper C-states (CPU power saving states). Normally, when a CPU is idle, it can enter various C-states, with higher-numbered states representing deeper sleep states that save more power but take longer to wake up from. In real-time systems, these wake-up delays can be problematic. Disabling them leads keeps the CPUs ready to respond quickly to new tasks and helps in reducing latency.
 	\item \textbf{nosoftlockup}: Disables the soft lockup detector in the Linux kernel. A soft lockup is when a CPU is busy executing kernel code for a long period of time without giving other tasks a chance to run. Especially threads with SCHED\_FIFO policy occupy the CPU for an extensive duration. This is detected and reported by the soft lockup detector, hence it is disabled to prevent these unnecessary warnings.
 	\item \textbf{no\_timer\_check}: Disables the check for broken timer interrupt sources. Broken timer interrupt sources are problems with hardware or software that prevent timer interrupts from working as intended. Such a timer may not generate interrupts at the expected rate or at all. The kernel skips the checks for these broken timer interrupt sources, which can cause unnecessary overhead in a real-time system where every CPU cycle counts.
@@ -700,8 +725,35 @@ values gathered in 10 minutes.
 	\label{fig:gnuplot_max_latency_rt_kernelparam}
 \end{figure}
 
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_kernelparam} and Table~\ref{tab:latency_overrun_msw_new_virt_kernel}. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+	\textbf{min} & 599 & 3.356 & 0.551 \\ \hline
+	\textbf{avg} & 5,999,972 & 4.036 & 0.290 \\ \hline
+	\textbf{max} & 599 & 13.484 & 1.454 \\ \hline
+	\end{tabular}
+	\caption{Statistical Summary of Latency Measurements}
+	\label{tab:latency_stats_kernelparam}
+	\end{table}
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+	2.545 & 4.811 & 21.694 & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{Latency, Overrun, and Missed Switch Data}
+	\label{tab:latency_overrun_msw_new_virt_kernel}
+	\end{table}
+	
 \noindent Apparent is a significant improvement in the latency of the virtualized Salamander 4 OS. With a worst latency value of 21.694\textmu s, the real-time tunings appear to be working as desired. 
 
+\clearpage
 \subsection{Host OS Configurations}\label{subsec:host_configurations}
 The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest Salamander 4 OS is provided.
 \subsubsection{CPU affinity and Isolation}\label{subsubsec:cpu_isolation}
@@ -730,14 +782,12 @@ Isolating CPUs means removing all user-space threads and unbound kernel threads,
 \end{lstlisting}
 
 \subsubsection{Interrupt Affinity}\label{subsubsec:irq_handling}
-Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. All the existing interrupts can be monitored using the command~\texttt{watch -d -n 1 cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU5). When there are 6 CPUs available, the default value for~\texttt{smp\_affinity} would be 3F (11 1111). Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 2F (10 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU, since the \texttt{/proc/interrupts} file does not give away this information and looking individually in the \texttt{/proc/irq/<IRQ>/smp\_affinity} files for every IRQ would be time-consuming. The program first reads the CPU affinity settings for each IRQ from the \texttt{/proc/irq} directory and stores the CPUs assigned to each IRQ in a dictionary. It then creates a data frame to represent this information in a table format, marking the assigned CPUs with ‘x’. Finally, it prints the table and saves it as a markdown file. Figure~\ref{fig:interrupt_affinity_table} shows the output of the program. 
+Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. All the existing interrupts can be monitored using the command~\texttt{watch -d -n 1 cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU5). When there are 6 CPUs available, the default value for~\texttt{smp\_affinity} would be 3F (11 1111). Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 2F (10 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU, since the \texttt{/proc/interrupts} file does not give away this information and looking individually in the \texttt{/proc/irq/<IRQ>/smp\_affinity} files for every IRQ would be time-consuming. The program first reads the CPU affinity settings for each IRQ from the \texttt{/proc/irq} directory and stores the CPUs assigned to each IRQ in a dictionary. It then creates a data frame to represent this information in a table format, marking the assigned CPUs with ‘x’. Finally, it prints the table and saves it as a markdown file. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/salamander4/latency_reduction/IRQaffinity/table_CPU_IRQ.png}
-	\caption[Interrupt Affinity Table]{Interrupt Affinity Table}
-	\label{fig:interrupt_affinity_table}
-\end{figure}
+\bigskip \noindent However, as the \texttt{proc} filesystem resets to its default state after each reboot, manually changing numerous IRQ files through the said bitbasks is tedious and time-consuming. This process can be was automated using the shell script in Code~\ref{script:change_smp_affinity}, which can automatically be executed after every reboot. 
+
+\bigskip \noindent Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Express, a type of SSD storage) can be set away from CPU 4 to avoid impacting real-time workloads. This can be done through finding out the respective process IDs through \texttt{ps -e | grep irq/.*nvme} and then executing \texttt{sudo taskset -a -p -c 0 <PID>}.
+
 \clearpage
 \vspace*{-5em}
 \begin{lstlisting}[name={Check distribution of interrupt requests across each CPU},label={script:smp_affinity}]
@@ -793,11 +843,6 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 			f.write(markdown_table)
 \end{lstlisting}
 
-\noindent However, as the \texttt{proc} filesystem resets to its default state after each reboot, manually changing numerous IRQ files through the said bitbasks is tedious and time-consuming. This process can be was automated using the shell script in Code~\ref{script:change_smp_affinity}, which can automatically be executed after every reboot. 
-
-Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Express, a type of SSD storage) can be set away from CPU 4 to avoid impacting real-time workloads. This can be done through finding out the respective process IDs through \texttt{ps -e | grep irq/.*nvme} and then executing \texttt{sudo taskset -a -p -c 0 <PID>}.
-
-
 \clearpage
 \vspace*{-5em}
 \begin{lstlisting}[name={Change IRQ assignment of a CPU},label={script:change_smp_affinity}]
@@ -850,7 +895,7 @@ Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Expre
 \end{lstlisting}
 
 \subsubsection{RT-Priority}
-Having a real-time kernel itself is a crucial part of achieving deterministic behavior, but not enough to take full advantage of the real-time capabilities. One key aspect of this are real-time priorities, thoroughly explained by Richard Weinberger in~\cite{LinuxProcessPriorities}. In essence, Table~\ref{tab:scheduling_priorities} lists minimum and maximum priorities for different scheduling policies in Linux.
+Having a real-time kernel itself is an indispensable step of achieving deterministic behavior, but not enough by itself to take full advantage of the real-time capabilities. One key aspect of this are real-time priorities, thoroughly explained by Richard Weinberger in~\cite{LinuxProcessPriorities}. In essence, Table~\ref{tab:scheduling_priorities} lists minimum and maximum priorities for different scheduling policies in Linux.
 
 \vspace{2em}
 \begin{table}[H]
@@ -874,14 +919,16 @@ Having a real-time kernel itself is a crucial part of achieving deterministic be
 \noindent \texttt{SCHED\_FIFO} allows deterministic, high-priority execution of critical tasks without being preempted by lower-priority processes. The virtual machine can either be started with \texttt{chrt -f <PRIO>} or adjusted at a later point with \texttt{chrt -f <PRIO> <PID>}. It is also important that there are no other unexpected real time processes running on the system concurrently.
 \subsubsection{Disable RT Throttling}
 If a real-time task consumes 100\% of the CPU time, the system may become unresponsive as a whole. This happens because an RT process is constantly using the CPU and the Linux scheduler will not schedule other non-RT processes in the meantime. To prevent complete system lockups, the kernel has a function to throttle RT processes if they consume 0.95 seconds out of every 1 second of CPU time. It does this by pausing the process for the remaining 0.05 seconds, which is not desired because this could result in missed deadlines. RT throttling can be disabled by  writing the value -1 to the~\texttt{/proc/sys/kernel/sched\_rt\_runtime\_us} file. This change also needs to be made permanent because the proc filesystem resets to its default state after each reboot. For this purpose, the line~\texttt{kernel.sched\_rt\_runtime\_us = -1} can be appended to the end of the~\texttt{/etc/sysctl.conf} file, which is read at boot time and used to configure kernel parameters. This reduces the potential for missed deadlines.
+\clearpage
 \subsubsection{Disable Timer Migration}
 Timer migration allows timers to be moved from one CPU to another, which means the kernel can balance load across multiple CPUs. In a real-time system, this can introduce latency and jitter. To disable timer migration, the value ``0'' needs to be written to the~\texttt{/proc/sys/kernel/timer\_migration} file. This change also needs to be made permanent by writing the line~\texttt{kernel.timer\_migration = 0} to the~\texttt{/etc/sysctl.conf} file. This reduces the amount of context switches and interrupts.
 \subsubsection{Set Device Driver Work Queue}
-The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask}.
+The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask} In this case, that is \texttt{2F}.
 \subsubsection{Disable RCU CPU Stall Warnings}
 As already mentioned in Section~\ref{subsec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
+\clearpage
 \subsubsection{Stop Certain Services}
-Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{tab:stop_servies} can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means they will not be able to interrupt the CPU with their tasks.
+Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{tab:stop_servies}, can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means, they will not be able to interrupt the CPU with their tasks.
 
 \begin{table}[H]
 	\centering
@@ -900,12 +947,12 @@ Services like irqbalance.service, thermald.service, and wpa\_supplicant.service,
 		\end{tabular}}
 \end{table}
 \subsubsection{Disable Machine Check}
-Machine checks report hardware errors and these checks can cause interruptions and increase latency. Hence it is best to disable them in real-time scenarios by writing a ``0'' to the \texttt{/sys/devices/system/machinecheck/machinecheck0/check\_interval} file.
+Machine checks report hardware errors and these checks can cause interruptions and increase latency. Hence, it is best to disable them in real-time scenarios by writing a ``0'' to the \texttt{/sys/devices/system/machinecheck/machinecheck0/check\_interval} file.
 
 \subsubsection{Boot into text-based environment}
 The Graphical User Interface (GUI) consumes great amounts of system resources. It often runs different background processes that are not essential for real-time systems and hence increase latency. These resources can be freed up by switching to a text-based environment. This way, processing power and memory can be allocated to critical real-time tasks which in turn can lead to lower latency and deterministic behavior. The command \texttt{systemctl set-default multi-user.target} and a following reboot allow for booting into a text-based environment. For the sake of completeness, the graphical interface can be brought back through the command \texttt{systemctl set-default graphical.target} and a following reboot.
-
-\textcolor{red}{After the Host configurations, Figure~\ref{fig:max_latency_rt_kernelparam_host}}
+\clearpage
+\noindent After these comprehensive host configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host}. 
 
 \begin{figure}[H]
 	\centering
@@ -915,6 +962,38 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 \end{figure}
 
 
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_host} and Table~\ref{tab:latency_overrun_msw_new_virt_host}. 
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+	\textbf{min} & 599 & 2.998 & 0.242 \\ \hline
+	\textbf{avg} & 5,999,972 & 4.043 & 0.255 \\ \hline
+	\textbf{max} & 599 & 12.124 & 1.828 \\ \hline
+	\end{tabular}
+	\caption{Statistical Summary of Latency Measurements}
+	\label{tab:latency_stats_virt_host}
+	\end{table}
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+	2.591 & 4.834 & 17.041 & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{Latency, Overrun, and Missed Switch Data}
+	\label{tab:latency_overrun_msw_new_virt_host}
+	\end{table}
+	
+
+\noindent A worst latency value of 17.041\textmu s shows that the virtualized Salamander 4 OS got even more reliable with the host configurations. 
+
+
+\clearpage
 \subsection{QEMU/KVM Configurations}\label{subsec:guest_configurations}
 KVM allows the guest OS to run directly on the hardware, bypassing the need for traditional emulation which can introduce delays. QEMU, when used with KVM, provides hardware-assisted virtualization, which also lowers latency in the guest OS.
 
@@ -925,7 +1004,6 @@ It generates interrupts at a rate. This rate can be tuned in the \texttt{/sys/mo
 \subsubsection{Set QEMU Options for real-time VM}
 QEMU provides several options that can be used to improve the real-time performance of the guest VM. Table~\ref{tab:qemu_options} briefly explains these options.
 
-\vspace{2em}
 \begin{table}[H]
 	\centering
 	\caption{QEMU options for real-time performance}
@@ -941,7 +1019,7 @@ QEMU provides several options that can be used to improve the real-time performa
 \end{table}
 
 \noindent Code~\ref{script:qemu_def_tuned} shows the final QEMU script used to start the Salamander 4 virtualization, including these options.
-
+\clearpage
 \vspace{2em}
 \begin{lstlisting}[name={Tuned QEMU script for starting Salamander 4 virtualization},label={script:qemu_def_tuned}]
 		#!/bin/sh
@@ -952,7 +1030,7 @@ QEMU provides several options that can be used to improve the real-time performa
 				tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
 		fi
 			
-		exec taskset -c 4 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+		exec taskset -c 4 chrt -f 99 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
 		-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
 		-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 threadirqs" \
 		-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
@@ -963,10 +1041,9 @@ QEMU provides several options that can be used to improve the real-time performa
 		-mem-prealloc -mem-path /dev/hugepages \
 		-no-reboot -nographic
 	\end{lstlisting}
+\vspace{2em}
+	\noindent After QEMU configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host_qemu}. 
 
-
-
-\textcolor{red}{After the QEMU configurations, Figure~\ref{fig:max_latency_rt_kernelparam_host_qemu}}
 
 \begin{figure}[H]
 	\centering
@@ -975,10 +1052,42 @@ QEMU provides several options that can be used to improve the real-time performa
 	\label{fig:max_latency_rt_kernelparam_host_qemu}
 \end{figure}
 
-\subsection{Guest OS Configurations}
+\clearpage
+
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_qemu} and Table~\ref{tab:latency_overrun_msw_new_virt_qemu}. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+	\textbf{min} & 599 & \textbf{3.125} & 0.432 \\ \hline
+	\textbf{avg} & 5,999,973 & \textbf{4.018} & 0.291 \\ \hline
+	\textbf{max} & 599 & \textbf{15.883} & 0.351 \\ \hline
+	\end{tabular}
+	\caption{Statistical Summary of Latency Measurements}
+	\label{tab:latency_stats_virt_qemu}
+	\end{table}
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+	2.614 & 4.779 & 17.134 & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{Latency, Overrun, and Missed Switch Data}
+	\label{tab:latency_overrun_msw_new_virt_qemu}
+	\end{table}
+
+	\noindent While the worst latency value did not change much, the standard deviation of the maximum latency samples of each second, with the test lasting 600 seconds and thus having 600 worst latencies, decreased. This means, the system is more stable and predictable, thanks to the real-time tunings that have been performed till this point. 
+
+\subsection{Guest OS Configurations}\label{subsec:guest_configurations}
+The guest OS, Salamander 4, is already based on Xenomai and uses the Cobalt real-time core with the Dovetail extension. Therefore, no additional modifications were necessary for the guest OS itself. The focus was primarily on optimizing the host and virtualization layer to achieve the desired real-time performance.
+
 
 \subsection{Other Configurations}
-There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for Writing Linux Real-Time Applications is provided by John Ogness in~\cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. ~\cite{HOWTOBuildRTapplication} and~\cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real time preemption patch in great detail. Various hardware and software tunings are mentioned in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
+There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the Linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for writing Linux real-time applications is provided by John Ogness in~\cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. ~\cite{HOWTOBuildRTapplication} and~\cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real-time preemption patch in great detail. Various hardware and software tunings are listed in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
 
 \clearpage
 
