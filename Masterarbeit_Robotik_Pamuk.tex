@@ -242,7 +242,7 @@ This master’s thesis builds upon a number of previous studies in the field of 
 		\path [line] (beforevmentry) -- (vmentry);
 		\path [line] (vmentry) -- (guestirt);
 	\end{tikzpicture}
-	\caption{Flowchart of operations in a virtualized environment (own figure, inspired by~\citeauthor{maPerformanceTuningKVMbased})}
+	\caption[Flowchart of operations in a virtualized environment]{Flowchart of operations in a virtualized environment (own figure, inspired by~\citeauthor{maPerformanceTuningKVMbased})}
 	\label{fig:kvm_stages}
 \end{figure}
 
@@ -262,7 +262,6 @@ This master’s thesis builds upon a number of previous studies in the field of 
 
 \section{Problem and Task Definition}
 As stated previously, virtualization of real-time systems has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements or new applications. Moreover, during periods when the demand is lower, expensive hardware may sit idle, leading to inefficient use of resources and a poor return on investment~\cite{gabrielResourceAwareParameterTuning2019}. Another crucial factor is of course the high cost factor associated with procuring and maintaining separate hardware for each real-time system~\cite{bhardwajVirtualizationCloudComputing2021}. Especially when organizations scale their operations, they have to add more physical machines, and the expenses rise rapidly~\cite{abbasiExploringOpenStackScalable2023}. Besides, one needs physical access to the hardware for any updates or maintenance, which is hard to achieve, especially for systems in remote or difficult-to-access locations. This can lead to system downtime and may not only disrupt the operations but can also result in lost productivity and potential revenue~\cite{mahfoudRealTimePredictiveMaintenanceBased2024}.
-
 
 \bigskip \noindent Virtualization promises to overcome these challenges~\cite{queirozContainerbasedVirtualizationRealtime2024}~\cite{bhardwajVirtualizationCloudComputing2021}~\cite{cinqueEvaluatingVirtualizationFog2023}. However, virtualization also has its own challenges and pitfalls. The additional layers of abstraction can lead to increased overhead and latency~\cite{casiniLatencyAnalysisVirtualization2021}~\cite{zhangEvaluatingOptimizingVirtualization2010}. This is not desired and can be particularly problematic for real-time systems that require strict timing constraints. Making sure that tasks run predictably and on time in a virtualized environment, can be challenging. The hypervisor and other virtual components can cause variations in how long tasks take to execute~\cite{garcia-vallsChallengesRealtimeVirtualization2014}. When there are multiple virtual machines (VM) sharing the same physical resources, the VMs can affect each other's performance and consequently violate real-time constraints~\cite{queirozContainerbasedVirtualizationRealtime2024}.
 \clearpage
@@ -305,21 +304,17 @@ The host operating system is the basis for the virtualization of the guest opera
 	\label{fig:lstopo}
 \end{figure}
 
-
-
 \section{Guest Operating System}\label{sec:guest_operating_system}
 This section briefly describes the guest operating system, Salamander 4.
 
 \subsection{Structure}
 \noindent Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment~\cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command~\texttt{uname -a} can be observed in code~\ref{output:uname_a_virt}.
 
-
 \vspace{2em}
 \begin{lstlisting}[name={System information},label={output:uname_a_virt}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
-
 
 \noindent Salamander 4 is powered by SIGMATEK's CP 841~\cite{CPUEinheitenSIGMATEK} and is comprised of the following software modules:
 
@@ -357,11 +352,9 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 QEMU~\cite{QEMU}. is an open-source emulator and virtualizer that allows to run operating systems and programs for one machine on a different machine. It can emulate different hardware architectures and is used in this thesis to emulate Salamander 4. When QEMU is used together with Kernel-based Virtual Machine (KVM), it can provide near-native performance by running code directly on the host CPU. The QEMU script used to emulate Salamander 4 and the meaning of the options are described in detail in Subsection \ref{subsec:salamander4-virtualization}.
 
-
 \section{Yocto}\label{sec:yocto}
 
 Salamander 4 is built with Yocto~\cite{WelcomeYoctoProject}, an open-source project that helps develop custom Linux-based operating systems for embedded devices. It is not a Linux version itself but a framework to make custom versions. From the kernel settings to the software packages included, almost everything in the Linux distribution can be adjusted with Yocto, hence it fits custom needs. Yocto organizes different components of the system into layers, making code management and updates easier. It builds the operating system with BitBake and automates the compilation and assembly of software. Upon generating the necessary files, Yocto provides a QEMU folder with the following components shown in Code~\ref{lst:ls}.
-
 
 \vspace{2em}
 \begin{lstlisting}[name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
@@ -409,7 +402,6 @@ Salamander 4 is built with Yocto~\cite{WelcomeYoctoProject}, an open-source proj
 	-no-reboot -nographic
 \end{lstlisting}
 
-
 \vspace{2em}
 
 \noindent This script is run on a generic Ubuntu 22.04.4 system, as mentioned previously in Section~\ref{sec:host_operating_system}.
@@ -440,7 +432,6 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 
 \section{Trace-cmd}\label{sec:trace-cmd}
 \texttt{Trace-cmd}~\cite{Tracecmd} is the front-end tool of the \texttt{ftrace} tool that is built inside the Linux kernel and used for tracing the Linux kernel. \texttt{Trace-cmd} can record detailed reports of kernel events such as interrupts, scheduler decisions, function calls, and custom events in real time. It is easier with this tool to enable and disable tracing, set filters, and view results. \texttt{Trace-cmd} helped debugging and identifying the reasons for latency in Salamander 4 to continuously improve its real-time performance and determinism. A very practical aspect of \texttt{trace-cmd} is that the guest can be traced from the host. For this purpose, the guest needs to be configured up with \texttt{vsocks}, which are a virtual socket that enable direct communication between the host and guest. To enable vsockets and tracing, the guest kernel requires the following configurations, according to Linux developer and maintainer Steve Rostedt~\cite{rostedtTracecmdHostGuest}.
-
 
 \vspace{2em}
 \begin{lstlisting}[language=bash, caption={Kernel Configuration for vsocks and tracing}, label={lst:kernel-config}]
@@ -477,12 +468,12 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 \noindent After compiling the kernel with the additional settings aboce, the guest needs access to the vsocket. In QEMU, the line \texttt{-device vhost-vsock-pci,guest-cid=3,id=vsock0} was added. This command configures a virtual socket (vsock) device in QEMU, assigning the guest a unique Context Identifier (CID) of 3 for direct communication with the host. The CID can be chosen as desired. Once the guest is booted with vhost enabled, the \texttt{sudo trace-cmd agent} command can be run.  The agent now listens to connections on port 823 by default with the specified CID, 3 in this case. The host can trace itself and the guest from this moment going forward. For example, \texttt{sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all} records all events from the host and guest. \texttt{sudo trace-cmd record -e kvm:kvm\_entry -e kvm:kvm\_exit -A @3:823 --name Salamander4 -e all} traces onkly the \texttt{kvm\_entry} and \texttt{kvm\_exit} events of the host along with the exit reasons and all guest events. As a last example, \texttt{sudo trace-cmd record -e kvm -e sched -e irq -e -A @3:823 --name Salamander4 -e all} enables tracing of KVM, scheduling, and interrupt events on the host, for capturing the KVM events that manage the guest, scheduling activities, and interrupt handling respectively.
 
 \section{Kernelshark}\label{sec:kernelshark}
-Viewing the tracing data that was recorded with \texttt{trace-cmd} on a text-based file can be laborious. A better way of analyzing the data is done through \texttt{KernelShark}~\cite{KernelShark}, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitates the process of identifying patterns and correlations between events. The latency issues can be analyzed by further filtering the displayed events according to processes, event types or time ranges. After the recording, \texttt{trace-cmd} gernerates a host \texttt{trace.dat} file and a guest \texttt{trace-Salamander4.dat} file, which in this case can be loaded into \texttt{KernelShark} with the command \texttt{kernelshark trace.dat -a trace-Salamander4.dat}. Once both files are loaded, the trace data can be visually inspected. All the current CPUs for both the host and the guest can be turned off, and the KVM Combo plots menu can be selected to view the guest vCPUs plotted on top of the host threads that run them, as depicted in Figure~\ref{fig:kernelshark_combo}.
+Viewing the tracing data that was recorded with \texttt{trace-cmd} on a text-based file can be laborious. A better way of analyzing the data is done through \texttt{KernelShark}~\cite{KernelShark}, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitates the process of identifying patterns and correlations between events. The latency issues can be analyzed by further filtering the displayed events according to processes, event types or time ranges. After the recording, \texttt{trace-cmd} gernerates a host \texttt{trace.dat} file and a guest \texttt{trace-Salamander4.dat} file, which in this case can be loaded into \texttt{KernelShark} with the command \texttt{kernelshark trace.dat -a trace-Salamander4.dat}. Once both files are loaded, the trace data can be visually inspected. All the current CPUs for both the host and the guest can be turned off, and the KVM Combo plots menu can be selected to view the guest VCPUs plotted on top of the host threads that run them, as depicted in Figure~\ref{fig:kernelshark_combo}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/kernelshark_combo.png}
-	\caption[Guest vCPUs plotted on top of host threads in KernelShark]{Guest vCPUs plotted on top of host threads in KernelShark}
+	\caption[Guest VCPUs plotted on top of host threads in KernelShark]{Guest VCPUs plotted on top of host threads in KernelShark}
 	\label{fig:kernelshark_combo}
 \end{figure}
 
@@ -555,7 +546,6 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 	\label{fig:gnuplot_max_latency_default}
 \end{figure}
 
-
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt} and Table~\ref{tab:latency_overrun_msw_new_virt}. The test was again conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99.
 
 \vspace{2em}
@@ -572,7 +562,6 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \label{tab:latency_stats_virt}
 \end{table}
 
-
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
@@ -584,7 +573,6 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \label{tab:latency_overrun_msw_new_virt}
 \end{table}
 
-
 \subsection{Initial Comparison}
 \noindent Comparing the latency values of the virtualization to those of bare metal in Figure~\ref{fig:gnuplot_max_latency_combined}, it is evident that there is a significant initial gap in the statistics. A maximum latency of 707.62~\textmu s is not tolerable for a real-time virtualization and needs to be tuned.
 
@@ -594,7 +582,6 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 	\caption[Initial Comparison of Latency Distribution between Hardware and Virtualization]{Initial Comparison of Latency Distribution between Hardware and Virtualization}
 	\label{fig:gnuplot_max_latency_combined}
 \end{figure}
-
 
 \clearpage
 
@@ -652,7 +639,6 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\caption[Latency Distribution after tuning BIOS Settings]{Latency Distribution after tuning BIOS Settings}
 	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}
-
 
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt} and Table~\ref{tab:latency_overrun_msw_new_virt}. 
 
@@ -961,9 +947,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 	\label{fig:max_latency_rt_kernelparam_host}
 \end{figure}
 
-
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_host} and Table~\ref{tab:latency_overrun_msw_new_virt_host}. 
-
 
 \begin{table}[H]
 	\centering
@@ -991,7 +975,6 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 	
 
 \noindent A worst latency value of 17.041\textmu s shows that the virtualized Salamander 4 OS got even more reliable with the host configurations. 
-
 
 \clearpage
 \subsection{QEMU/KVM Configurations}\label{subsec:guest_configurations}
@@ -1044,7 +1027,6 @@ QEMU provides several options that can be used to improve the real-time performa
 \vspace{2em}
 	\noindent After QEMU configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host_qemu}. 
 
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/6rt_kernelparam_host_qemu/gnuplot_max_latency_rt_kernelparam_host_qemu.png}
@@ -1085,32 +1067,40 @@ QEMU provides several options that can be used to improve the real-time performa
 \subsection{Guest OS Configurations}\label{subsec:guest_configurations}
 The guest OS, Salamander 4, is already based on Xenomai and uses the Cobalt real-time core with the Dovetail extension. Therefore, no additional modifications were necessary for the guest OS itself. The focus was primarily on optimizing the host and virtualization layer to achieve the desired real-time performance.
 
-
 \subsection{Other Configurations}
 There are other configurations that may be relevant depending on the case. Linux Kernel Developer Steven Rostedt explains all relevant aspects of a real-time system that must be considered in~\cite{kernelrecipesKernelRecipes20162016} and gives insight for finding sources of latency on the Linux system in~\cite{thelinuxfoundationFindingSourcesLatency2020}. A Checklist for writing Linux real-time applications is provided by John Ogness in~\cite{thelinuxfoundationChecklistWritingLinux2020}. Every layer of the system stack must be deterministic to ensure predictable and reliable latency, including hardware, operating system, middleware and drivers, and the application software. ~\cite{HOWTOBuildRTapplication} and~\cite{RealtimeProgrammingLinux} describe the process of writing hard real time Linux programs using the real-time preemption patch in great detail. Various hardware and software tunings are listed in~\cite{KVMQemuVirtualization} and~\cite{RealTimePerformanceTuning2022}.
 
 \clearpage
 
 \section{Real-Time Robotic Application}\label{sec:robotic_application}
-This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings with the latency of Salamander 4 running on bare metal hardware. This comparison is done with the aid of a program that will be explained shortly. The goal is to understand how closely the performance of the virtualization can match that of the bare metal. The experimental setup includes a six-axis mini-robot, illustrated in Figure~\ref{fig:mini_robot}.
+This chapter compares the latency of the Salamander 4 operating system before and after the real-time performance tunings with the latency of Salamander 4 running on bare metal. This comparison is done with the aid of a program that will be explained shortly. The goal is to understand how closely the performance of the virtualization can match that of the bare metal. The experimental setup includes a six-axis mini-robot, illustrated in Figure~\ref{fig:mini_robot}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.45\columnwidth]{img/experiment/mini_robot.jpg}
-	\caption[Mini-robot of the experiment]{Mini-robot of the experiment}
+	\includegraphics[width=0.3\columnwidth]{img/experiment/mini_robot.jpg}
+	\caption[Mini-robot of the experiment]{Mini-robot of the experiment~\cite{6DFRoboticArm}}
 	\label{fig:mini_robot}
 \end{figure}
 
-\noindent The drive system of the robot arm consists of six MG996R digital servo motors~\cite{MG996RServoMotor}, equipped with a metal gearbox. The motor is able to rotate in a range of approximately 180 degrees and its position can be controlled with a high degree of accuracy. Each servo motor has three wires that need to be connected as shown in Figure~\ref{fig:motor_wires}.
+\noindent The robot arm consists of six MG996R digital servo motors~\cite{MG996RServoMotor}, equipped with a metal gearbox. The motor is able to rotate in a range of approximately 180 degrees and its position can be controlled with a high degree of accuracy. Each servo motor has three wires that need to be connected as shown in Figure~\ref{fig:servo}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.45\columnwidth]{img/experiment/motor_wires.png}
-	\caption[MG996R Servo Motor]{MG996R Servo Motor~\cite{MG996RServoMotor}}
-	\label{fig:motor_wires}
+	\includegraphics[width=0.7\columnwidth]{img/experiment/servo.jpg}
+	\caption[MG996R Servo Motor]{MG996R Servo Motor~\cite{PackMg996rMetal}}
+	\label{fig:servo}
 \end{figure}
 
-\noindent To drive the motor, it has to be powered using the red and brown wires and can be controlled by sending PWM signals to the orange wire. In this experiment, this PWM signal is generated by the proprietary PW 022 pulse width module of Sigmatek~\cite{DigitalOutputSIGMATEK}. Its connector layout is illustrated in Figure~\ref{fig:pw022_connectors}.
+\noindent To drive the motor, it has to be powered using the red and brown wires and can be controlled by sending PWM signals to the orange wire. A 1,500 microsecond pulse every 20 milliseconds centers the servo. A 1,000 microsecond pulse turns it 90 degrees left, and a 2,000 microsecond pulse turns it 90 degrees right. This is depicted in Figure~\ref{fig:servo_angle}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{img/experiment/servo_angle.png}
+	\caption[Controlling the MG996R Servo Motor]{Controlling the MG996R Servo Motor~\cite{twierengEmilyQuadrupedDog}}
+	\label{fig:servo_angle}
+\end{figure}
+
+\noindent In this experiment, this PWM signal is generated by the proprietary PW 022 pulse width module of Sigmatek~\cite{DigitalOutputSIGMATEK}. Its connector layout is illustrated in Figure~\ref{fig:pw022_connectors}.
 
 \begin{figure}[H]
 	\centering
@@ -1119,15 +1109,17 @@ This chapter compares the latency of the Salamander 4 operating system before an
 	\label{fig:pw022_connectors}
 \end{figure}
 
-\noindent The module has two +24 V switching PWM outputs with an adjustable frequency for controlling inductive loads. Since the mentioned servo motors operate between 4.8 volts and 7.2 volts~\cite{MG996RServoMotor}, this voltage needed to be reduced through resistors before supplying it to a servo motor. For this purpose, two resistors with resistances of 2500 kiloohms and 1000 kiloohms were connected in series. The voltage across each resistor is calculated using Ohm's law, which is given by equation~\ref{eq:ohms_law} below.
+\noindent The module has two +24 V switching PWM outputs with an adjustable frequency for controlling inductive loads. Since the mentioned servo motors operate between 4.8 volts and 7.2 volts~\cite{MG996RServoMotor}, this voltage needs to be reduced through resistors before supplying it to a servo motor. For this purpose, two resistors with resistances of 2500 kiloohms and 1000 kiloohms are connected in series. The voltage across each resistor is calculated using Ohm's law, which is given by equation~\ref{eq:ohms_law} below.
 \begin{equation}
 	\label{eq:ohms_law}
 	V = I \cdot R
 \end{equation}
-In this equation, \(V\) represents the voltage across the resistor, \(I\) is the current flowing through the resistor, and \(R\) is the resistance of the resistor. The resulting voltages across the resistors are as follows:
+
+\noindent In this equation, \(V\) represents the voltage across the resistor, \(I\) is the current flowing through the resistor, and \(R\) is the resistance of the resistor. The resulting voltages across the resistors are as follows:
+
 \begin{itemize}
 	\item The voltage across the 2.5 kiloohm resistor is approximately 17.14 volts.
-	\item The voltage across the 1 kiloohm resistor is approximately 6.86 volts. This voltage was then supplied to the control wire of servo motor 1 of the mini-robot.
+	\item The voltage across the 1 kiloohm resistor is approximately 6.86 volts. This voltage is then supplied to the control wire of servo motor 1 of the mini-robot.
 \end{itemize}
 
 \noindent Connecting a second servo motor of the mini-robot means repeating the process of reducing the voltage through resistors for the second PWM output of the PW 022 module. The connection between the PW 022 module and the motor of the mini-robot is demonstrated in Figure~\ref{fig:pw022_minirobot_connection}.
@@ -1139,45 +1131,45 @@ In this equation, \(V\) represents the voltage across the resistor, \(I\) is the
 	\label{fig:pw022_minirobot_connection}
 \end{figure}
 
-\noindent The program was written in Lasal Class 2 and was applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the specific commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment.
+\noindent The program is written in Lasal Class 2 and is applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment.
 
 \subsection{Setup of Hardware Salamander 4}
-In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 module is directly mounted on the CPU via the S-DIAS bus and communicates over the hard real-time capable Ethernet VARAN with 100 Mbit/s~\cite{SDIASSIGMATEK}. The setup is visible on Figure~\ref{fig:hardware_tree}.
+In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 modules are directly mounted on the CPU via the S-DIAS bus~\cite{SDIASSIGMATEK}. There are three PW 022 modules because each can control two motors simultaneously, and the mini-robot has six motors. The setup is visible on Figure~\ref{fig:hardware_tree}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\columnwidth]{img/experiment/hardware_tree.png}
-	\caption[Hardware tree]{Hardware tree}
+	\includegraphics[width=0.45\columnwidth]{img/experiment/hardware_tree.png}
+	\caption[Setup of Hardware Salamander 4]{Setup of Hardware Salamander 4}
 	\label{fig:hardware_tree}
 \end{figure}
 
 \subsection{Setup of QEMU Salamander 4}\label{subsec:setup_experiment_virtualized}
-In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM module. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needed to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID 5112 and device ID 2200.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}.
+In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM modules. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needs to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID \texttt{5112} and device ID \texttt{2200}.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card in the virtualization. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}.
 
+\clearpage
+\vspace*{-5em}
+\begin{lstlisting}[name={Include PCI in QEMU for Salamander 4 Virtualization},label={script:qemu_def_pci}]
+		#!/bin/sh
+
+		if  [ ! -d drive-c/ ]; then
+				echo "Filling drive-c/"
+				mkdir drive-c/
+				tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
+		fi
+			
+		exec taskset -c 4 chrt -f 99 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
+		-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
+		-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 threadirqs" \
+		-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
+		-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
+		-device vhost-vsock-pci,guest-cid=3,id=vsock0 \
+		-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
+		-object memory-backend-ram,id=ram0,size=4G,prealloc=on \
+		-mem-prealloc -mem-path /dev/hugepages \
+		-device vfio-pci,host=03:00.0 \
+		-no-reboot -nographic
+	\end{lstlisting}
 \vspace{2em}
-\begin{lstlisting}[name={Include PCI in QEMU script for Salamander 4 virtualization},label={script:qemu_def_pci}]
-	#!/bin/sh
-
-	if  [ ! -d drive-c/ ]; then
-					echo "Filling drive-c/"
-					mkdir drive-c/
-					tar -C drive-c/ -xf stek-drive-c-image-sigmatek-core2.tar.gz
-	fi
-		
-	exec taskset -c 4-5 chrt -f 99 qemu-system-x86_64 -M pc,accel=kvm -kernel ./bzImage \
-	-m 2048 -drive file=salamander-image-sigmatek-core2.ext4,format=raw,media=disk \
-	-append "console=ttyS0 console=tty1 root=/dev/sda rw panic=1 sigmatek_lrt.QEMU=1 ip=dhcp rootfstype=ext4 schedstats=enable nohlt idle=poll quiet xeno_hal.smi=1 xenomai.smi=1 threadirqs" \
-	-net nic,model=e1000,netdev=e1000 -netdev bridge,id=e1000,br=nm-bridge \
-	-fsdev local,security_model=none,id=fsdev0,path=drive-c -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=/mnt/drive-C \
-	-device vhost-vsock-pci,guest-cid=3,id=vsock0 \
-	-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
-	-object memory-backend-ram,id=ram0,size=4G,prealloc=on \
-	-mem-prealloc -mem-path /dev/hugepages \
-	-device vfio-pci,host=03:00.0 \
-	-no-reboot -nographic
-\end{lstlisting}
-
-
 \noindent An additional Varan Connection module VI 021~\cite{InterfacesSplittersSIGMATEK} was required to enable the connection between the PCV 522 module and the PW 022 module that generates the signal to move the mini-robot. This setup is depicted in Figure~\ref{fig:virt_tree}.
 
 \begin{figure}[H]
@@ -1187,9 +1179,8 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 	\label{fig:virt_tree}
 \end{figure}
 
-\noindent Essentially, the CP 841 CPU is being emulated by the VCPU functionality of QEMU, allowing the PCV 522 VARAN Manager PCI Insert Card and the Varan Connection module VI 021 to interact as if they were communicating with a physical CPU unit.
+\noindent Essentially, the CPU is being emulated by the VCPU functionality of QEMU, allowing the PCV 522 VARAN Manager PCI Insert Card and the Varan Connection module VI 021 to interact as if they were communicating with a physical CPU unit.
 
-\clearpage
 \subsection{Robotic Application}
 
 \clearpage
@@ -1421,7 +1412,6 @@ Online
 \clearpage
 
 \chapter{Summary and Outlook}\label{cha:summary_and_outlook}
-
 
 %
 % Hier beginnen die Verzeichnisse.
