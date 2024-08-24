@@ -489,7 +489,9 @@ VARAN is a real-time Ethernet bus designed for industrial automation, capable of
 \end{figure}
 
 \section{Approach}\label{sec:approach}
-Wasserfall, rechtfertigen und in Diskussion Vor und Nachteile
+The goal is to The \texttt{latency} program is first executed in the bare metal Salamander 4 OS. 
+The goal is to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. For that purpose, the first step is to apply the PREEMPT-RT patch to the host system and subsequently tune the real-time performance through BIOS, kernel, host, guest and QEMU/KVM configurations. These modifications are added sequentially and tested together. First, the BIOS is configured, followed by the kernel. The BIOS settings are not reverted when moving to the kernel configurations. Next, the host is configured, but the BIOS and kernel settings remain unchanged. After that, the guest is configured, and finally, QEMU/KVM settings are applied. This means that the configurations are not isolated but are applied and then tested as a whole. The key metric here is the latency of the system, and the real-time performance is evaluated using the \texttt{latency} tool of the Xenomai suite after each configuration step. At the end, the results are domenstarted alltogether and a holistic comparison and discussion is carried out. In addition, the improvement in real-time performance and determinism is demonstrated using a robotic application, where the modified virtualization is compared with the hardware version. 
+
 
 \clearpage
 
@@ -1182,6 +1184,12 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 \noindent Essentially, the CPU is being emulated by the VCPU functionality of QEMU, allowing the PCV 522 VARAN Manager PCI Insert Card and the Varan Connection module VI 021 to interact as if they were communicating with a physical CPU unit.
 
 \subsection{Robotic Application}
+
+
+
+
+
+
 
 \clearpage
 
