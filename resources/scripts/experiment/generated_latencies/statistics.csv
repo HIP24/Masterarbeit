@@ -1,0 +1,4 @@
+     ;     Samples     ;     Lat Min (us)     ;     Lat Avg (us)     ;     Lat Max (us)     ;     Std Dev (us)
+Hardware Salamander     ;     1000     ;     10,000     ;     11,472     ;     13,000     ;     0,877
+Tuned Salamander 4 Virtualization     ;     1000     ;     10,000     ;     15,072     ;     20,000     ;     2,920
+Untuned Salamander 4 Virtualization     ;     1000     ;     10,000     ;     40,671     ;     394,100     ;     52,711
