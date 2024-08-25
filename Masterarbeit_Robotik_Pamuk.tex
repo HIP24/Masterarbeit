@@ -109,9 +109,9 @@ Einhaltung der Echtzeit}
 %\secondsupervisor[Begutachter]{Titel Vorname Name, Titel}
 %\secondsupervisor[Begutachterinnen]{Titel Vorname Name, Titel}
 \place{Wien}
-\kurzfassung{Test}
+\kurzfassung{Kurzfassung}
 \schlagworte{Echtzeit, Virtualisierung, Xenomai, VARAN}
-\outline{Test}
+\outline{Abstract}
 \keywords{Echtzeit, Virtualisierung, Xenomai, VARAN}
 %\acknowledgements{\blindtext}
 
@@ -208,7 +208,7 @@ This master’s thesis builds upon a number of previous studies in the field of 
 \bigskip \noindent Despite the promising advantages of virtualization, one must be aware of the potential drawbacks of it, too.~\citeauthor{guStateoftheArtSurveyRealTime2012}~\cite{guStateoftheArtSurveyRealTime2012} highlight issues like lock-holder preemption and task-grain scheduling.~\citeauthor{garcia-vallsChallengesRealtimeVirtualization2014}~\cite{garcia-vallsChallengesRealtimeVirtualization2014} identify challenges in supporting real-time applications in the cloud, including resource management, quality of service guarantees, temporal and spatial isolation, and network performance.~\citeauthor{scordinoRealTimeVirtualizationIndustrial2020}~\cite{scordinoRealTimeVirtualizationIndustrial2020} address the challenge of interference on shared hardware resources, which can degrade real-time performance.
 
 \bigskip \noindent \citeauthor{maPerformanceTuningKVMbased}~\cite{maPerformanceTuningKVMbased}~\cite{junzhangPerformanceAnalysisKVMBased2010} describe in their work how KVM impacts the real-time performance, which has helped this work gain insight into the base overhead of virtualization. When a physical interrupt occurs while the guest RTOS is running, there are at least six stages that need to be traversed before the interrupt can be delivered to the guest RTOS. Once the interrupt is delivered to the guest RTOS, it incurs additional latency, called Interrupt Routine Time (IRT), since there is also the time between when an interrupt is recognized and the first instruction of the corresponding interrupt service routine (ISR) of the guest OS is started. These stages are the primary sources of latencies caused by KVM, they are briefly described in Figure~\ref{fig:kvm_stages}.
-
+\vspace{2em}
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[node distance = 0.35cm, auto, % Adjusted node distance
@@ -216,20 +216,19 @@ This master’s thesis builds upon a number of previous studies in the field of 
 					rectangle,
 					draw,
 					fill=blue!20,
-					text width=35em,
+					text width=30em,
 					rounded corners,
-					minimum height=3.5em,
 					align=center,
-					inner sep=0.2em % Adjusted inner separation
+					inner sep=0.5em
 				},
 			line/.style={draw, -latex'}
 		]
 		% Place nodes
 		\node [block] (init) {\scriptsize \textbf{Guest Code}\\  The guest OS is executing its normal operations.};
-		\node [block, below=of init] (vmexit) {\scriptsize \textbf{VM Exit}\\  External interrupt triggers VM exit. Hardware stores interrupt info in VMCS.};
+		\node [block, below=of init] (vmexit) {\scriptsize \textbf{VM Exit}\\  External interrupt triggers VM exit. Hardware stores interrupt info in \\\vspace{-0.5em} Virtual Machine Control Structure (VMCS).};
 		\node [block, below=of vmexit] (aftervmexit) {\scriptsize \textbf{After VM Exit}\\  Control returns to kernel space. KVM retrieves interrupt info from VMCS,\\\vspace{-0.5em} marks it as pending for guest.};
 		\node [block, below=of aftervmexit] (hostisr) {\scriptsize \textbf{Host ISR}\\  Host Linux handles the interrupt.};
-		\node [block, below=of hostisr] (hostscheduling) {\scriptsize \textbf{Host Scheduling}\\  Host kernel invokes scheduler. Ideally, guest RTOS process isn't preempted.};
+		\node [block, below=of hostisr] (hostscheduling) {\scriptsize \textbf{Host Scheduling}\\  Host kernel invokes scheduler. Ideally, guest RTOS process is not preempted.};
 		\node [block, below=of hostscheduling] (beforevmentry) {\scriptsize \textbf{Before VM Entry}\\  KVM's kernel module prepares for VM entry. Detects pending interrupt,\\\vspace{-0.5em} injects virtual interrupt into guest by writing to VMCS.};
 		\node [block, below=of beforevmentry] (vmentry) {\scriptsize \textbf{VM Entry}\\  Hardware emulates conventional interrupt handling for guest based on VMCS info.};
 		\node [block, below=of vmentry] (guestirt) {\scriptsize \textbf{Guest IRT}\\  Guest's interrupt handler is invoked to service the interrupt.};
@@ -245,9 +244,12 @@ This master’s thesis builds upon a number of previous studies in the field of 
 	\caption[Flowchart of operations in a virtualized environment]{Flowchart of operations in a virtualized environment (own figure, inspired by~\citeauthor{maPerformanceTuningKVMbased})}
 	\label{fig:kvm_stages}
 \end{figure}
+\vspace{1em}
 
 \noindent The paper also details several performance tuning methods, including CPU shielding and prioritization, which have been applied in this work.
+
 \clearpage
+
 \bigskip \noindent \citeauthor{broskyShieldedProcessorsGuaranteeing2003}~\cite{broskyShieldedProcessorsGuaranteeing2003} report in their work about the shielded CPU model for enhancing real-time performance in symmetric multiprocessor systems. By dedicating one or more CPUs to high-priority processes and interrupts, the goal is to provide deterministic execution of real-time applications and interrupt responses. The authors mention that there is no user interface for setting process CPU affinity in the standard Linux, while there is one for setting interrupt CPU affinity via the \texttt{/proc/irq/*/smp\_affinity} files. These files were used in this masther's thesis. According to the authors, the shielded CPU model is especially useful for tasks that require guaranteed interrupt response times, very fast interrupt responses and high-frequency, deterministic execution.
 
 \bigskip \noindent In the course of writing this thesis, the white paper "Real-Time Performance Tuning Best Practice Guidelines for KVM-Based Virtual Machines"~\cite{RealTimePerformanceTuning2022} by Intel has been instrumental. Given that the working computer used for this work is equipped with an Intel processor, the guidelines presented in this document were particularly relevant and valuable for optimizing real-time performance in KVM-based virtual machines. Chapter~\ref{sec:real-time_tunings} contains an extensive tuning process, which involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The document concludes that the described tuning methods effectively improve real-time performance for KVM-based VMs, even under heavy workloads.
@@ -255,7 +257,9 @@ This master’s thesis builds upon a number of previous studies in the field of 
 \bigskip \noindent \citeauthor{yoonRealTimePerformanceAnalysis}~\cite{yoonRealTimePerformanceAnalysis} use some of these real-time tunings in their research, including CPU shielding, memory locking, and spinning nanosleep, for controlling humanoid robots equipped with around 60 servo motors and sensors. They implement EtherCAT for real-time communication of distributed devices whereas this thesis uses Varan. The authors highlight the importance of timely data processing in robots that collect data from their environment and respond accordingly through their sensors and actuators. The authors conclude with an experiment that their robotic system could achieve deterministic control of actuators and sensors even under heavy system load through the use of Linux with the real-time preemption patch. Their research has similarities to this master's thesis in terms of real-time tunings for robot control. However, this thesis includes also the virtualization aspect that is central.
 
 \bigskip \noindent \citeauthor{kiszkaLinuxRealTimeHypervisor}~\cite{kiszkaLinuxRealTimeHypervisor} specifically focuses on Linux as a hypervisor and analyzes its real-time capabilities when using KVM and QEMU. Most importantly for this master's thesis, the author warns of starvation when the priorities of QEMU’s threads are raised and lifted into a real-time scheduling class. Starvation is when a process does not get the resources it needs for a long time because the resources are being allocated to other processes. A way to reduce this risk is by not using more virtual CPUs (VCPUs) than there are actual processor cores. Moreover, Linux has a feature that can limit how much CPU time all real-time tasks can use in the host system, which was an important information for the real-time tunings of this thesis later.
+
 \clearpage
+
 \bigskip \noindent \citeauthor{mckenneyRealTimeVs}~\cite{mckenneyRealTimeVs} addresses the overheads associated with real-time Linux when using KVM and QEMU. The author lists several sources of overhead, including memory locking to avoid page-fault latencies, increased overhead of locking and interrupts due to more-aggressive preemption, threaded interrupts that permit long-running interrupt handlers to be preempted by high-priority real-time processes, real-time task scheduling that requires global scheduling, high-resolution timers for tens-of-microseconds accuracy and precision, and preemptible RCU which has slightly higher read-side overhead than Classic RCU. These information helped understand the trade-offs involved in real-time Linux systems.
 
 \bigskip \noindent \citeauthor{deoliveiraDemystifyingRealTimeLinux}~\cite{deoliveiraDemystifyingRealTimeLinux} critique the traditional \texttt{cyclictest} tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. This is the main reason why this tool was not used to measure the scheduling latency in this work. Instead, the \texttt{latency} tool was used, as was determined in Chapter~\ref{sec:application_context}.
@@ -264,13 +268,16 @@ This master’s thesis builds upon a number of previous studies in the field of 
 As stated previously, virtualization of real-time systems has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements or new applications. Moreover, during periods when the demand is lower, expensive hardware may sit idle, leading to inefficient use of resources and a poor return on investment~\cite{gabrielResourceAwareParameterTuning2019}. Another crucial factor is of course the high cost factor associated with procuring and maintaining separate hardware for each real-time system~\cite{bhardwajVirtualizationCloudComputing2021}. Especially when organizations scale their operations, they have to add more physical machines, and the expenses rise rapidly~\cite{abbasiExploringOpenStackScalable2023}. Besides, one needs physical access to the hardware for any updates or maintenance, which is hard to achieve, especially for systems in remote or difficult-to-access locations. This can lead to system downtime and may not only disrupt the operations but can also result in lost productivity and potential revenue~\cite{mahfoudRealTimePredictiveMaintenanceBased2024}.
 
 \bigskip \noindent Virtualization promises to overcome these challenges~\cite{queirozContainerbasedVirtualizationRealtime2024}~\cite{bhardwajVirtualizationCloudComputing2021}~\cite{cinqueEvaluatingVirtualizationFog2023}. However, virtualization also has its own challenges and pitfalls. The additional layers of abstraction can lead to increased overhead and latency~\cite{casiniLatencyAnalysisVirtualization2021}~\cite{zhangEvaluatingOptimizingVirtualization2010}. This is not desired and can be particularly problematic for real-time systems that require strict timing constraints. Making sure that tasks run predictably and on time in a virtualized environment, can be challenging. The hypervisor and other virtual components can cause variations in how long tasks take to execute~\cite{garcia-vallsChallengesRealtimeVirtualization2014}. When there are multiple virtual machines (VM) sharing the same physical resources, the VMs can affect each other's performance and consequently violate real-time constraints~\cite{queirozContainerbasedVirtualizationRealtime2024}.
+
 \clearpage
+
 \bigskip \noindent In this master's thesis, the task is the virtualization of a real-time operating system to control a robot, with a focus on compliance with real-time determinism. Chapter~\ref{cha:methodology} explains in detail the procedure, how this was tackled.  As already established in Section~\ref{sec:application_context}, Salamander 4 is built with Yocto, employs hard real-time with Xenomai 3 and virtualized through QEMU/KVM. The initial latency values are measured with the \texttt{latency} program of the Xenomai tool suite. The initial situation is described in Section~\ref{sec:starting_situation}. In a nutshell, there is a significant initial gap in latency statistics between the virtualized Salamander 4 and the Salamander 4 on bare metal. For this reason, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS (guest) itself. The individual configurations are discussed in detail in Chapter~\ref{sec:real-time_tunings} and the modifications are justified with a clear explanation.
 
 \section{Objective}
 The goal is to bring the latency of the virtualized Salamander 4 closer to that of the hardware, thereby providing a comprehensive blueprint for making a virtualized guest system in a host system real-time capable with deterministic behavior. Section~\ref{sec:starting_situation} outlines the initial situation of this master's thesis and serves as the foundation for the real-time performance tunings discussed in Section~\ref{sec:real-time_tunings}. The objective is to achieve latency values below 50 microseconds during the measurement period through real-time tunings, with no outliers whatsoever. To determine and validate the performance of the tunings, the \texttt{latency} tool is used, as stated in Section~\ref{sec:application_context}. On top of that, the aim is to use a robotic application in a practical scenario to demonstrate and validate that the tunings significantly reduce latency and improve determinism compared to the unmodified virtualization.
 
 \clearpage
+
 \chapter{Methodology}\label{cha:methodology}
 
 This chapter describes in detail all the theoretical concepts and boundary conditions as well as practical methods that contributed to achieving the objectives of this master's thesis.
@@ -368,7 +375,7 @@ Salamander 4 is built with Yocto~\cite{WelcomeYoctoProject}, an open-source proj
     vmlinux
     \end{lstlisting}
 
-	\noindent The following is a description of the components used for the virtualization of Salamander 4.
+\noindent The following is a description of the components used for the virtualization of Salamander 4.
 
 \begin{itemize}
 	\item \textbf{bzImage}: Compressed Linux kernel image that is loaded by QEMU at system start. The short form ``bz`` stands for big-zipped.
@@ -401,7 +408,6 @@ Salamander 4 is built with Yocto~\cite{WelcomeYoctoProject}, an open-source proj
 	-drive if=pflash,format=qcow2,file=ovmf.code.qcow2 \
 	-no-reboot -nographic
 \end{lstlisting}
-
 \vspace{2em}
 
 \noindent This script is run on a generic Ubuntu 22.04.4 system, as mentioned previously in Section~\ref{sec:host_operating_system}.
@@ -419,7 +425,7 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 	\label{fig:cobalt}
 \end{figure}
 
-\noindent  The second approach, called Mercury and shown in Figure~\ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT~\cite{RealtimePreempt_rt_versionsWiki} patch to augment the mainline kernel's real-time responsiveness and minimize jitter, but this isn't mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses.
+\noindent  The second approach, called Mercury and shown in Figure~\ref{fig:mercury}, relies on the real-time capabilities already present in the native Linux kernel. Often, applications require the PREEMPT-RT~\cite{RealtimePreempt_rt_versionsWiki} patch to augment the mainline kernel's real-time responsiveness and minimize jitter, but this is not mandatory and depends on the application's specific requirements for responsiveness and tolerance for occasional deadline misses.
 
 \begin{figure}[H]
 	\centering
@@ -489,9 +495,8 @@ VARAN is a real-time Ethernet bus designed for industrial automation, capable of
 \end{figure}
 
 \section{Approach}\label{sec:approach}
-The goal is to The \texttt{latency} program is first executed in the bare metal Salamander 4 OS. 
-The goal is to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. For that purpose, the first step is to apply the PREEMPT-RT patch to the host system and subsequently tune the real-time performance through BIOS, kernel, host, guest and QEMU/KVM configurations. These modifications are added sequentially and tested together. First, the BIOS is configured, followed by the kernel. The BIOS settings are not reverted when moving to the kernel configurations. Next, the host is configured, but the BIOS and kernel settings remain unchanged. After that, the guest is configured, and finally, QEMU/KVM settings are applied. This means that the configurations are not isolated but are applied and then tested as a whole. The key metric here is the latency of the system, and the real-time performance is evaluated using the \texttt{latency} tool of the Xenomai suite after each configuration step. At the end, the results are domenstarted alltogether and a holistic comparison and discussion is carried out. In addition, the improvement in real-time performance and determinism is demonstrated using a robotic application, where the modified virtualization is compared with the hardware version. 
-
+The goal is to The \texttt{latency} program is first executed in the bare metal Salamander 4 OS.
+The goal is to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. For that purpose, the first step is to apply the PREEMPT-RT patch to the host system and subsequently tune the real-time performance through BIOS, kernel, host, guest and QEMU/KVM configurations. These modifications are added sequentially and tested together. First, the BIOS is configured, followed by the kernel. The BIOS settings are not reverted when moving to the kernel configurations. Next, the host is configured, but the BIOS and kernel settings remain unchanged. After that, the guest is configured, and finally, QEMU/KVM settings are applied. This means that the configurations are not isolated but are applied and then tested as a whole. The key metric here is the latency of the system, and the real-time performance is evaluated using the \texttt{latency} tool of the Xenomai suite after each configuration step. At the end, the results are domenstarted alltogether and a holistic comparison and discussion is carried out. In addition, the improvement in real-time performance and determinism is demonstrated using a robotic application, where the modified virtualization is compared with the hardware version.
 
 \clearpage
 
@@ -512,34 +517,33 @@ As a reference point, the \texttt{latency} program was executed on Salamander 4 
 
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_hardware} and Table~\ref{tab:latency_overrun_msw_hardware}. The test was conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99.
 
-\vspace{2em}
 \begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-\textbf{min} & 599 & 0.711 & 0.454 \\ \hline
-\textbf{avg} & 5 999 988 & 1.019 & 0.150 \\ \hline
-\textbf{max} & 599 & 3.528 & 0.895 \\ \hline
-\end{tabular}
-\caption{Statistical Summary of Latency Measurements}
-\label{tab:latency_stats_hardware}
+	\centering
+	\caption{Statistical Summary of Latency Measurements}
+	\label{tab:latency_stats_hardware}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+		\textbf{min}   & 599              & 0.711                 & 0.454                 \\ \hline
+		\textbf{avg}   & 5 999 988        & 1.019                 & 0.150                 \\ \hline
+		\textbf{max}   & 599              & 3.528                 & 0.895                 \\ \hline
+	\end{tabular}
 \end{table}
 
 \vspace{1em}
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-	0.613 & 1.380 & 10.709 & 0 & 0 \\ \hline
-	\end{tabular}
 	\caption{Latency, Overrun, and Missed Switch Data}
 	\label{tab:latency_overrun_msw_hardware}
-	\end{table}
-	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+		0.613                 & 1.380                 & 10.709                & 0                 & 0                        \\ \hline
+	\end{tabular}
+\end{table}
+
 \subsection{Salamander 4 Virtualization}\label{subsec:salamander4-virtualization}
-In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. Measuring the latency of the Salamander 4 virtualization with the default QEMU script in Code~\ref{script:qemu_def} and no further adjustments for 10 minutes, Figure~\ref{fig:gnuplot_max_latency_default} depicts the distribution of latency. 
+In addition to providing Salamander 4 on its own hardware, SIGMATEK has also developed a virtualised version of this operating system. Measuring the latency of the Salamander 4 virtualization with the default QEMU script in Code~\ref{script:qemu_def} and no further adjustments for 10 minutes, Figure~\ref{fig:gnuplot_max_latency_default} depicts the distribution of latency.
 
 \begin{figure}[H]
 	\centering
@@ -550,29 +554,28 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt} and Table~\ref{tab:latency_overrun_msw_new_virt}. The test was again conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99.
 
-\vspace{2em}
 \begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-\textbf{min} & 599 & 3.713 & 1.355 \\ \hline
-\textbf{avg} & 5,999,922 & 8.247 & 2.521 \\ \hline
-\textbf{max} & 599 & 45.705 & 52.196 \\ \hline
-\end{tabular}
-\caption{Statistical Summary of Latency Measurements}
-\label{tab:latency_stats_virt}
+	\centering
+	\caption{Statistical Summary of Latency Measurements}
+	\label{tab:latency_stats_virt}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+		\textbf{min}   & 599              & 3.713                 & 1.355                 \\ \hline
+		\textbf{avg}   & 5,999,922        & 8.247                 & 2.521                 \\ \hline
+		\textbf{max}   & 599              & 45.705                & 52.196                \\ \hline
+	\end{tabular}
 \end{table}
 
 \begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-2.536 & 8.940 & 707.622 & 43 & 0 \\ \hline
-\end{tabular}
-\caption{Latency, Overrun, and Missed Switch Data}
-\label{tab:latency_overrun_msw_new_virt}
+	\centering
+	\caption{Latency, Overrun, and Missed Switch Data}
+	\label{tab:latency_overrun_msw_new_virt}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+		2.536                 & 8.940                 & 707.622               & 43                & 0                        \\ \hline
+	\end{tabular}
 \end{table}
 
 \subsection{Initial Comparison}
@@ -596,6 +599,7 @@ In this chapter, the significant initial gap in latency statistics between the v
 \bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. After each tuning, the \texttt{latency} test of Xenomai is executed to evaluate the improved latency. The most important metric of a latency test is without a doubt the worst latency value, because the system is only as reliable as its worst measurement. Since the period of the tests is set to 100\textmu s, there are approximately 1,000,000 samples per second.
 
 \clearpage
+
 \subsection{BIOS Configurations}\label{subsec:bios_configurations}
 
 BIOS stands for Basic Input/Output System. It abstracts the hardware and enables basic functions of a computer during the booting process, such as starting the operating system and loading other software. Since the BIOS is embedded very deep, its configuration can significantly influence the real-time performance of the system. Table~\ref{tab:bios_configuration} illustrates the specific BIOS settings that have been adjusted for the purpose of real-time performance. As an important note, this is not a definitive, full-ended list, and other devices may have additional settings that can be modified to achieve even better latency.
@@ -627,7 +631,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \begin{itemize}
 	\item \textbf{Hyper Threading}: When hyper-threading is enabled in thd BIOS settings, this allows CPUs to work on two threads simultaneously instead of just one. This allows the parallelisation of tasks and seemingly increases performance. However, in a real-time system like the guest Salamander 4, this can lead to increased latencies due to contention between threads. In order to ensure more deterministic behavior in the guest, it is disabled on the host.
-	\item \textbf{Intel SpeedStep}: This dynamically adjusts the clock speed of the CPU based on workload. These dynamic adjustments of the speed can lead to unpredictable latencies in a real-time system. It is also disabled on the host to maintain a constant CPU speed. 
+	\item \textbf{Intel SpeedStep}: This dynamically adjusts the clock speed of the CPU based on workload. These dynamic adjustments of the speed can lead to unpredictable latencies in a real-time system. It is also disabled on the host to maintain a constant CPU speed.
 	\item \textbf{Intel® Speed Shift Technology}: Similar to SpeedStep, Speed Shift allows the processor to directly control its frequency and voltage. This can lead to unpredictable latencies, too. Hence, it is also disabled on the host.
 	\item \textbf{C States}: These are low-power idle states where the clock frequency and voltage of the CPU are reduced. Transitioning between C-states can cause variable latencies. To prevent this from happening, C-states are disabled on the host.
 	\item \textbf{VT-d}: Direct access to physical devices from within virtual machines is possible when VT-d is enabled on the host. This can help reduce latencies associated with I/O operations in the virtual machine. It is therefore enabled on the host.
@@ -642,33 +646,33 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}
 
-\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt} and Table~\ref{tab:latency_overrun_msw_new_virt}. 
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt} and Table~\ref{tab:latency_overrun_msw_new_virt}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|}
-	\hline
-	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-	\textbf{min} & 599 & 1.419 & 0.507 \\ \hline
-	\textbf{avg} & 5,999,885 & 3.398 & 1.251 \\ \hline
-	\textbf{max} & 599 & 74.015 & 26.590 \\ \hline
-	\end{tabular}
 	\caption{Statistical Summary of Latency Measurements}
 	\label{tab:latency_stats_virt_bios}
-	\end{table}
-	
-	\begin{table}[H]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches}  \\ \hline
-	0.969 & 3.948 & 457.545 & 94 & 0 \\ \hline
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+		\textbf{min}   & 599              & 1.419                 & 0.507                 \\ \hline
+		\textbf{avg}   & 5,999,885        & 3.398                 & 1.251                 \\ \hline
+		\textbf{max}   & 599              & 74.015                & 26.590                \\ \hline
 	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
 	\caption{Latency, Overrun, Missed Switch, Best, and Worst Data}
 	\label{tab:latency_overrun_msw_new_virt_bios}
-	\end{table}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+		0.969                 & 3.948                 & 457.545               & 94                & 0                        \\ \hline
+	\end{tabular}
+\end{table}
 
-\noindent The maximum latency value recorded was 457.545\textmu s. When compared to the inital worst latency of 707.62 \textmu s, this is a step for the better, but certainly still not acceptable within this work's definition of hard real-time determinism. 
+\noindent The maximum latency value recorded was 457.545\textmu s. When compared to the inital worst latency of 707.62 \textmu s, this is a step for the better, but certainly still not acceptable within this work's definition of hard real-time determinism.
 
 \subsection{Kernel Configurations}\label{subsec:kernel_configurations}
 The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} below. To access and modify them, the file is located in \texttt{/etc/default/grub}.
@@ -702,7 +706,9 @@ The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} bel
 	\item \textbf{kvm.kvmclock\_periodic\_sync=N, kvm\_intel.ple\_gap=0}: These are KVM (Kernel-based Virtual Machine) related parameters. They disable the periodic synchronization of the kvmclock and set the gap between PLE (Pause Loop Exiting) events to 0. The kvmclock is a paravirtualized clock source provided by KVM to its guest OS and disabling this reduces latency introduced by clock synchronization. By setting the gap to 0, the virtual machine exits the pause loop immediately, which can reduce latency in spinlock-intensive workloads.
 	\item \textbf{irqaffinity=0}: Sets the default interrupt request affinity to none. This means that no CPU core is preferred over another for handling IRQs. Instead, it lets the operating system decide how to distribute these IRQs across all the CPUs. Subsubsection~\ref{subsubsec:irq_handling} dives deeper into interrupt request affinity.
 \end{itemize}
+
 \clearpage
+
 \noindent After the kernel modifications on top of the BIOS settings from the last subsection, Figure~\ref{fig:gnuplot_max_latency_rt_kernelparam} demonstrates the latency
 values gathered in 10 minutes.
 
@@ -713,35 +719,36 @@ values gathered in 10 minutes.
 	\label{fig:gnuplot_max_latency_rt_kernelparam}
 \end{figure}
 
-\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_kernelparam} and Table~\ref{tab:latency_overrun_msw_new_virt_kernel}. 
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_kernelparam} and Table~\ref{tab:latency_overrun_msw_new_virt_kernel}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|}
-	\hline
-	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-	\textbf{min} & 599 & 3.356 & 0.551 \\ \hline
-	\textbf{avg} & 5,999,972 & 4.036 & 0.290 \\ \hline
-	\textbf{max} & 599 & 13.484 & 1.454 \\ \hline
-	\end{tabular}
 	\caption{Statistical Summary of Latency Measurements}
 	\label{tab:latency_stats_kernelparam}
-	\end{table}
-	
-	\begin{table}[H]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-	2.545 & 4.811 & 21.694 & 0 & 0 \\ \hline
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+		\textbf{min}   & 599              & 3.356                 & 0.551                 \\ \hline
+		\textbf{avg}   & 5,999,972        & 4.036                 & 0.290                 \\ \hline
+		\textbf{max}   & 599              & 13.484                & 1.454                 \\ \hline
 	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
 	\caption{Latency, Overrun, and Missed Switch Data}
 	\label{tab:latency_overrun_msw_new_virt_kernel}
-	\end{table}
-	
-\noindent Apparent is a significant improvement in the latency of the virtualized Salamander 4 OS. With a worst latency value of 21.694\textmu s, the real-time tunings appear to be working as desired. 
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+		2.545                 & 4.811                 & 21.694                & 0                 & 0                        \\ \hline
+	\end{tabular}
+\end{table}
+
+\noindent Apparent is a significant improvement in the latency of the virtualized Salamander 4 OS. With a worst latency value of 21.694\textmu s, the real-time tunings appear to be working as desired.
 
 \clearpage
+
 \subsection{Host OS Configurations}\label{subsec:host_configurations}
 The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest Salamander 4 OS is provided.
 \subsubsection{CPU affinity and Isolation}\label{subsubsec:cpu_isolation}
@@ -770,13 +777,14 @@ Isolating CPUs means removing all user-space threads and unbound kernel threads,
 \end{lstlisting}
 
 \subsubsection{Interrupt Affinity}\label{subsubsec:irq_handling}
-Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. All the existing interrupts can be monitored using the command~\texttt{watch -d -n 1 cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU5). When there are 6 CPUs available, the default value for~\texttt{smp\_affinity} would be 3F (11 1111). Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 2F (10 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU, since the \texttt{/proc/interrupts} file does not give away this information and looking individually in the \texttt{/proc/irq/<IRQ>/smp\_affinity} files for every IRQ would be time-consuming. The program first reads the CPU affinity settings for each IRQ from the \texttt{/proc/irq} directory and stores the CPUs assigned to each IRQ in a dictionary. It then creates a data frame to represent this information in a table format, marking the assigned CPUs with ‘x’. Finally, it prints the table and saves it as a markdown file. 
+Once the CPUs were isolated, interrupt requests handling was the next step. The purpose of interrupt requests is to inform the CPU to stop working on a certain job and start working on another. This allows hardware devices to communicate with the CPU through frequent context switches, which can introduce latency in real-time systems. All the existing interrupts can be monitored using the command~\texttt{watch -d -n 1 cat /proc/interrupts} to observe changes in the interrupt requests handled by each CPU in real-time. The IRQs needed to be removed from the isolated CPU by manipulating the~\texttt{/proc/irq/<IRQ>/smp\_affinity} files. The value in the~\texttt{smp\_affinity} file is a bitmask in hexadecimal format where each bit corresponds to a CPU. The least significant bit (LSB) on the right corresponds to the first CPU (CPU0), and the most significant bit (MSB) on the left corresponds to the last CPU (CPU5). When there are 6 CPUs available, the default value for~\texttt{smp\_affinity} would be 3F (11 1111). Removing CPU 4 out of this bitmask would be setting bit five to zero, resulting in 2F (10 1111). The python script in Code~\ref{script:smp_affinity} was written to show a table of the distribution of interrupt requests across each CPU, since the \texttt{/proc/interrupts} file does not give away this information and looking individually in the \texttt{/proc/irq/<IRQ>/smp\_affinity} files for every IRQ would be time-consuming. The program first reads the CPU affinity settings for each IRQ from the \texttt{/proc/irq} directory and stores the CPUs assigned to each IRQ in a dictionary. It then creates a data frame to represent this information in a table format, marking the assigned CPUs with ‘x’. Finally, it prints the table and saves it as a markdown file.
 
-\bigskip \noindent However, as the \texttt{proc} filesystem resets to its default state after each reboot, manually changing numerous IRQ files through the said bitbasks is tedious and time-consuming. This process can be was automated using the shell script in Code~\ref{script:change_smp_affinity}, which can automatically be executed after every reboot. 
+\bigskip \noindent However, as the \texttt{proc} filesystem resets to its default state after each reboot, manually changing numerous IRQ files through the said bitbasks is tedious and time-consuming. This process can be was automated using the shell script in Code~\ref{script:change_smp_affinity}, which can automatically be executed after every reboot.
 
 \bigskip \noindent Additionally, the CPU affinity of IRQ threads of NVME (Non-Volatile Memory Express, a type of SSD storage) can be set away from CPU 4 to avoid impacting real-time workloads. This can be done through finding out the respective process IDs through \texttt{ps -e | grep irq/.*nvme} and then executing \texttt{sudo taskset -a -p -c 0 <PID>}.
 
 \clearpage
+
 \vspace*{-5em}
 \begin{lstlisting}[name={Check distribution of interrupt requests across each CPU},label={script:smp_affinity}]
 		import os
@@ -832,6 +840,7 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 \end{lstlisting}
 
 \clearpage
+
 \vspace*{-5em}
 \begin{lstlisting}[name={Change IRQ assignment of a CPU},label={script:change_smp_affinity}]
 		#!/bin/bash
@@ -885,14 +894,13 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 \subsubsection{RT-Priority}
 Having a real-time kernel itself is an indispensable step of achieving deterministic behavior, but not enough by itself to take full advantage of the real-time capabilities. One key aspect of this are real-time priorities, thoroughly explained by Richard Weinberger in~\cite{LinuxProcessPriorities}. In essence, Table~\ref{tab:scheduling_priorities} lists minimum and maximum priorities for different scheduling policies in Linux.
 
-\vspace{2em}
 \begin{table}[H]
 	\centering
 	\caption{Minimum and maximum priorities for different scheduling policies}
 	\label{tab:scheduling_priorities}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
-		\begin{tabular}{|l|l|l|}
+		\begin{tabular}{|c|c|c|}
 			\hline
 			\textbf{Scheduling Policy} & \textbf{Min Priority} & \textbf{Max Priority} \\ \hline
 			SCHED\_OTHER               & 0                     & 0                     \\ \hline
@@ -907,14 +915,18 @@ Having a real-time kernel itself is an indispensable step of achieving determini
 \noindent \texttt{SCHED\_FIFO} allows deterministic, high-priority execution of critical tasks without being preempted by lower-priority processes. The virtual machine can either be started with \texttt{chrt -f <PRIO>} or adjusted at a later point with \texttt{chrt -f <PRIO> <PID>}. It is also important that there are no other unexpected real time processes running on the system concurrently.
 \subsubsection{Disable RT Throttling}
 If a real-time task consumes 100\% of the CPU time, the system may become unresponsive as a whole. This happens because an RT process is constantly using the CPU and the Linux scheduler will not schedule other non-RT processes in the meantime. To prevent complete system lockups, the kernel has a function to throttle RT processes if they consume 0.95 seconds out of every 1 second of CPU time. It does this by pausing the process for the remaining 0.05 seconds, which is not desired because this could result in missed deadlines. RT throttling can be disabled by  writing the value -1 to the~\texttt{/proc/sys/kernel/sched\_rt\_runtime\_us} file. This change also needs to be made permanent because the proc filesystem resets to its default state after each reboot. For this purpose, the line~\texttt{kernel.sched\_rt\_runtime\_us = -1} can be appended to the end of the~\texttt{/etc/sysctl.conf} file, which is read at boot time and used to configure kernel parameters. This reduces the potential for missed deadlines.
+
 \clearpage
+
 \subsubsection{Disable Timer Migration}
 Timer migration allows timers to be moved from one CPU to another, which means the kernel can balance load across multiple CPUs. In a real-time system, this can introduce latency and jitter. To disable timer migration, the value ``0'' needs to be written to the~\texttt{/proc/sys/kernel/timer\_migration} file. This change also needs to be made permanent by writing the line~\texttt{kernel.timer\_migration = 0} to the~\texttt{/etc/sysctl.conf} file. This reduces the amount of context switches and interrupts.
 \subsubsection{Set Device Driver Work Queue}
 The device driver work queue allows time-consuming tasks to be offloaded to be processed later in a separate kernel thread. By setting the work queue away from CPU 4 to another CPU, it is free to handle real-time tasks without being interrupted by these work queue tasks. This is done by specifying a bitmask to exclude CPU 4 in the files \texttt{/sys/devices/virtual/workqueue/cpumask} and \texttt{/sys/bus/workqueue/devices/writeback/cpumask} In this case, that is \texttt{2F}.
 \subsubsection{Disable RCU CPU Stall Warnings}
 As already mentioned in Section~\ref{subsec:kernel_configurations}, the Linux kernel uses RCU as a synchronization mechanism for reading from and writing to shared data. An RCU CPU stall in the Linux kernel can occur due to several reasons. These include a CPU looping in an RCU read-side critical section, a CPU looping with interrupts disabled, a CPU looping with preemption disabled, or a CPU not getting around to less urgent tasks, known as “bottom halves”. The number of seconds the kernel should wait before checking for stalled CPUs and reporting a stall warning can be set via the ~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_timeout} file. These warnings can be suppressed alltogether to reduce the potential for increased latency by writing ``1'' to the~\texttt{/sys/module/rcupdate/parameters/rcu\_cpu\_stall\_suppress} file. This setting is also not persistent across reboots, so the command needs to be added to a startup script.
+
 \clearpage
+
 \subsubsection{Stop Certain Services}
 Services like irqbalance.service, thermald.service, and wpa\_supplicant.service, as presented in Table~\ref{tab:stop_servies}, can be further sources for random latency and unnecessary overhead. Stopping these services through \texttt{sudo systemctl stop <SERVICE>} means, they will not be able to interrupt the CPU with their tasks.
 
@@ -939,8 +951,10 @@ Machine checks report hardware errors and these checks can cause interruptions a
 
 \subsubsection{Boot into text-based environment}
 The Graphical User Interface (GUI) consumes great amounts of system resources. It often runs different background processes that are not essential for real-time systems and hence increase latency. These resources can be freed up by switching to a text-based environment. This way, processing power and memory can be allocated to critical real-time tasks which in turn can lead to lower latency and deterministic behavior. The command \texttt{systemctl set-default multi-user.target} and a following reboot allow for booting into a text-based environment. For the sake of completeness, the graphical interface can be brought back through the command \texttt{systemctl set-default graphical.target} and a following reboot.
+
 \clearpage
-\noindent After these comprehensive host configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host}. 
+
+\noindent After these comprehensive host configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host}.
 
 \begin{figure}[H]
 	\centering
@@ -949,36 +963,36 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 	\label{fig:max_latency_rt_kernelparam_host}
 \end{figure}
 
-\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_host} and Table~\ref{tab:latency_overrun_msw_new_virt_host}. 
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_host} and Table~\ref{tab:latency_overrun_msw_new_virt_host}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|}
-	\hline
-	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-	\textbf{min} & 599 & 2.998 & 0.242 \\ \hline
-	\textbf{avg} & 5,999,972 & 4.043 & 0.255 \\ \hline
-	\textbf{max} & 599 & 12.124 & 1.828 \\ \hline
-	\end{tabular}
 	\caption{Statistical Summary of Latency Measurements}
 	\label{tab:latency_stats_virt_host}
-	\end{table}
-	
-	\begin{table}[H]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-	2.591 & 4.834 & 17.041 & 0 & 0 \\ \hline
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+		\textbf{min}   & 599              & 2.998                 & 0.242                 \\ \hline
+		\textbf{avg}   & 5,999,972        & 4.043                 & 0.255                 \\ \hline
+		\textbf{max}   & 599              & 12.124                & 1.828                 \\ \hline
 	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
 	\caption{Latency, Overrun, and Missed Switch Data}
 	\label{tab:latency_overrun_msw_new_virt_host}
-	\end{table}
-	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+		2.591                 & 4.834                 & 17.041                & 0                 & 0                        \\ \hline
+	\end{tabular}
+\end{table}
 
-\noindent A worst latency value of 17.041\textmu s shows that the virtualized Salamander 4 OS got even more reliable with the host configurations. 
+\noindent A worst latency value of 17.041\textmu s shows that the virtualized Salamander 4 OS got even more reliable with the host configurations.
 
 \clearpage
+
 \subsection{QEMU/KVM Configurations}\label{subsec:guest_configurations}
 KVM allows the guest OS to run directly on the hardware, bypassing the need for traditional emulation which can introduce delays. QEMU, when used with KVM, provides hardware-assisted virtualization, which also lowers latency in the guest OS.
 
@@ -1004,8 +1018,9 @@ QEMU provides several options that can be used to improve the real-time performa
 \end{table}
 
 \noindent Code~\ref{script:qemu_def_tuned} shows the final QEMU script used to start the Salamander 4 virtualization, including these options.
+
 \clearpage
-\vspace{2em}
+
 \begin{lstlisting}[name={Tuned QEMU script for starting Salamander 4 virtualization},label={script:qemu_def_tuned}]
 		#!/bin/sh
 
@@ -1027,7 +1042,7 @@ QEMU provides several options that can be used to improve the real-time performa
 		-no-reboot -nographic
 	\end{lstlisting}
 \vspace{2em}
-	\noindent After QEMU configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host_qemu}. 
+\noindent After QEMU configurations, the result of the \texttt{latency} test is depicted in Figure~\ref{fig:max_latency_rt_kernelparam_host_qemu}.
 
 \begin{figure}[H]
 	\centering
@@ -1038,33 +1053,33 @@ QEMU provides several options that can be used to improve the real-time performa
 
 \clearpage
 
-\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_qemu} and Table~\ref{tab:latency_overrun_msw_new_virt_qemu}. 
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_virt_qemu} and Table~\ref{tab:latency_overrun_msw_new_virt_qemu}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|}
-	\hline
-	\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-	\textbf{min} & 599 & \textbf{3.125} & 0.432 \\ \hline
-	\textbf{avg} & 5,999,973 & \textbf{4.018} & 0.291 \\ \hline
-	\textbf{max} & 599 & \textbf{15.883} & 0.351 \\ \hline
-	\end{tabular}
 	\caption{Statistical Summary of Latency Measurements}
 	\label{tab:latency_stats_virt_qemu}
-	\end{table}
-	
-	\begin{table}[H]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|}
-	\hline
-	\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-	2.614 & 4.779 & 17.134 & 0 & 0 \\ \hline
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
+		\textbf{min}   & 599              & \textbf{3.125}        & 0.432                 \\ \hline
+		\textbf{avg}   & 5,999,973        & \textbf{4.018}        & 0.291                 \\ \hline
+		\textbf{max}   & 599              & \textbf{15.883}       & 0.351                 \\ \hline
 	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
 	\caption{Latency, Overrun, and Missed Switch Data}
 	\label{tab:latency_overrun_msw_new_virt_qemu}
-	\end{table}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
+		2.614                 & 4.779                 & 17.134                & 0                 & 0                        \\ \hline
+	\end{tabular}
+\end{table}
 
-	\noindent While the worst latency value did not change much, the standard deviation of the maximum latency samples of each second, with the test lasting 600 seconds and thus having 600 worst latencies, decreased. This means, the system is more stable and predictable, thanks to the real-time tunings that have been performed till this point. 
+\noindent While the worst latency value did not change much, the standard deviation of the maximum latency samples of each second, with the test lasting 600 seconds and thus having 600 worst latencies, decreased. This means, the system is more stable and predictable, thanks to the real-time tunings that have been performed till this point.
 
 \subsection{Guest OS Configurations}\label{subsec:guest_configurations}
 The guest OS, Salamander 4, is already based on Xenomai and uses the Cobalt real-time core with the Dovetail extension. Therefore, no additional modifications were necessary for the guest OS itself. The focus was primarily on optimizing the host and virtualization layer to achieve the desired real-time performance.
@@ -1093,7 +1108,7 @@ This chapter compares the latency of the Salamander 4 operating system before an
 	\label{fig:servo}
 \end{figure}
 
-\noindent To drive the motor, it has to be powered using the red and brown wires and can be controlled by sending PWM signals to the orange wire. A 1,500 microsecond pulse every 20 milliseconds centers the servo. A 1,000 microsecond pulse turns it 90 degrees left, and a 2,000 microsecond pulse turns it 90 degrees right. This is depicted in Figure~\ref{fig:servo_angle}. 
+\noindent To drive the motor, it has to be powered using the red and brown wires and can be controlled by sending PWM signals to the orange wire. A 1,500 microsecond pulse every 20 milliseconds centers the servo. A 1,000 microsecond pulse turns it 90 degrees left, and a 2,000 microsecond pulse turns it 90 degrees right. This is depicted in Figure~\ref{fig:servo_angle}.
 
 \begin{figure}[H]
 	\centering
@@ -1149,6 +1164,7 @@ In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU
 In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM modules. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needs to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID \texttt{5112} and device ID \texttt{2200}.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card in the virtualization. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}.
 
 \clearpage
+
 \vspace*{-5em}
 \begin{lstlisting}[name={Include PCI in QEMU for Salamander 4 Virtualization},label={script:qemu_def_pci}]
 		#!/bin/sh
@@ -1185,11 +1201,117 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 
 \subsection{Robotic Application}
 
+Robots operate in real-time, meaning commands must be executed within a set time frame. As explained earlier, there are hard real-time systems, which must always meet their deadlines, and soft real-time systems, which can occasionally miss them. If a robot misses these deadlines, it can cause unwanted movements and jumpy behavior. The most crucial part of latency distribution for determinism are the outliers. Even if a system's latency is as expected 99\% of the time, the remaining 1\% can be worse than all the other measurements combined. Looking only at the mean and standard deviation misses these systemic issues.
 
+\bigskip \noindent The impacts of real-time performance tunings on the determinism and latency of Salamander 4 virtualization were already shown in the previous chapter. In this chapter, these improvements are presented using a robotic application. This application is written in Lasal Class 2, as mentoned in Section~\ref{sec:application_context}. The program sequence is shown in Figure~\ref{fig:robotic_application_flow}.
 
+\vspace{2em}
 
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[node distance = 0.35cm, auto, % Adjusted node distance
+			block/.style={
+					rectangle,
+					draw,
+					fill=orange!30,
+					text width=35em,
+					rounded corners,
+					align=center,
+					inner sep=0.5em % Adjusted inner separation
+				},
+			line/.style={draw, -latex'}
+		]
+		% Place nodes
+		\node [block] (issue) {\scriptsize \textbf{Command Issuance}\\A command is sent to the robot to move a joint.};
+		\node [block, below=of issue] (record1) {\scriptsize \textbf{Recording Command Time}\\The timestamp of the moment the command is recorded.};
+		\node [block, below=of record1] (detect) {\scriptsize \textbf{Detecting Response}\\The moment when the robot starts to execute the command is detected.};
+		\node [block, below=of detect] (record2) {\scriptsize \textbf{Recording Response Time}\\The timestamp of the detected response is recorded.};
+		\node [block, below=of record2] (calculate) {\scriptsize \textbf{Calculating Latency}\\The latency is determined by the difference between the command time and the response time.};
+		% Draw edges
+		\path [line] (issue) -- (record1);
+		\path [line] (record1) -- (detect);
+		\path [line] (detect) -- (record2);
+		\path [line] (record2) -- (calculate);
+	\end{tikzpicture}
+	\caption[Flowchart of Robotic Application]{Flowchart of Robotic Application}
+	\label{fig:robotic_application_flow}
+\end{figure}
 
+\noindent This latency measurement above is performed 1,000 times to get reliable results. These results are presented in the next subsubsections.
 
+\clearpage
+
+\subsubsection{Latency in Salamander 4 OS Hardware}\label{subsubsec:latency_hardware}
+\noindent The latency values for bare metal Salamander 4 OS aquired from the program above are demonstrated in Figure~\ref{fig:rtos_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_hardware}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/rtos_latencies.png}
+	\caption[Virtualization tree]{Virtualization tree}
+	\label{fig:rtos_latencies}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{Robotic Application Latency Values Hardware}
+	\label{tab:robotic_application_latency_values_hardware}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
+			1000             & 10.3                 & 8.5                  & 12.7                  & 0.9                   \\ \hline
+		\end{tabular}}
+\end{table}
+
+\clearpage
+
+\subsubsection{Latency in default Salamander 4 OS Virtualization}\label{subsubsec:latency_virtualization}
+\noindent The latency values aquired for the default virtualization of Salamander 4 OS are demonstrated in Figure~\ref{fig:untuned_virt_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_virt_tun}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/untuned_virt_latencies.png}
+	\caption[Virtualization tree]{Virtualization tree}
+	\label{fig:untuned_virt_latencies}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\caption{Robotic Application Latency Values Untuned Virtualization}
+	\label{tab:robotic_application_latency_values_virt_def}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
+			1000             & 12.654                 & 40.671                  & 394.126            & 52.711                  \\ \hline
+		\end{tabular}}
+\end{table}
+
+\clearpage
+
+\subsubsection{Latency in tuned Salamander 4 OS Virtualization}\label{subsubsec:latency_virtualization}
+\noindent The latency values aquired for the tuned virtualization of Salamander 4 OS are demonstrated in Figure~\ref{fig:tuned_virt_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_virt_tun}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/tuned_virt_latencies.png}
+	\caption[Virtualization tree]{Virtualization tree}
+	\label{fig:tuned_virt_latencies}
+\end{figure}
+\begin{table}[H]
+	\centering
+	\caption{Robotic Application Latency Values Tuned Virtualization}
+	\label{tab:robotic_application_latency_values_virt_tun}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
+			1000             & 10.875                 & 15.072                  & 23.856                  & 2.921                   \\ \hline
+		\end{tabular}}
+\end{table}
 
 \clearpage
 
@@ -1330,7 +1452,9 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 	\caption{Your Caption}
 	\label{tab:my_label}
 \end{table}
+
 \clearpage
+
 \end{comment}
 
 \chapter{Results}\label{cha:results}
@@ -1341,6 +1465,21 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 	\label{fig:max_latency_rt_kernelparam_host}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/combined_latencies.png}
+	\caption[Virtualization tree]{Virtualization tree}
+	\label{fig:combined_latencies}
+\end{figure}
+
+\clearpage
+
+\chapter{Discussion}\label{cha:discussion}
+
+\clearpage
+
+\chapter{Summary and Outlook}\label{cha:summary_and_outlook}
+
 Online
 
 ~\cite{WhatRealtimeLinuxa}
@@ -1349,12 +1488,14 @@ Online
 ~\cite{XenomaiXenomai}
 ~\cite{casiniLatencyAnalysisVirtualization2021}
 ~\cite{zhangEvaluatingOptimizingVirtualization2010}
-~\cite{QEMU}
 ~\cite{CPUEinheitenSIGMATEK}
 ~\cite{EngineeringToolLASAL}
+~\cite{QEMU}
+~\cite{RealtimePreempt_rt_versionsWiki}
+~\cite{LATENCY}
 ~\cite{Tracecmd}
 ~\cite{KernelShark}
-~\cite{RealtimePreempt_rt_versionsWiki}
+~\cite{rostedtTracecmdHostGuest}
 ~\cite{RealtimeKernelPatchset}
 ~\cite{rostedtInternalsRTPatch}
 ~\cite{WhatRealtimeLinux}
@@ -1365,7 +1506,10 @@ Online
 ~\cite{HOWTOBuildRTapplication}
 ~\cite{RealtimeProgrammingLinux}
 ~\cite{KVMQemuVirtualization}
+~\cite{6DFRoboticArm}
 ~\cite{MG996RServoMotor}
+~\cite{PackMg996rMetal}
+~\cite{twierengEmilyQuadrupedDog}
 ~\cite{DigitalOutputSIGMATEK}
 ~\cite{MG996RDigitalServo}
 ~\cite{SDIASSIGMATEK}
@@ -1384,7 +1528,6 @@ Online
 ~\cite{perneelRealtimeCapabilitiesStandard2015}
 ~\cite{reghenzaniRealTimeLinuxKernel2020}
 ~\cite{adamRealTimePerformanceResponse2021}
-~\cite{yoonRealTimePerformanceAnalysis}
 ~\cite{cinqueVirtualizingMixedCriticalitySystems2022}
 ~\cite{sandstromVirtualizationTechnologiesEmbedded2013}
 ~\cite{taccariEmbeddedRealTimeVirtualization2014}
@@ -1396,6 +1539,7 @@ Online
 ~\cite{junzhangPerformanceAnalysisKVMBased2010}
 ~\cite{broskyShieldedProcessorsGuaranteeing2003}
 ~\cite{RealTimePerformanceTuning2022}
+~\cite{yoonRealTimePerformanceAnalysis}
 ~\cite{kiszkaLinuxRealTimeHypervisor}
 ~\cite{mckenneyRealTimeVs}
 ~\cite{deoliveiraDemystifyingRealTimeLinux}
@@ -1414,29 +1558,30 @@ Online
 ~\cite{HardRealTime}
 ~\cite{adamPerformanceAssessmentLinux2021}
 ~\cite{jiangRealTimeSystemManycore}
-\clearpage
-
-\chapter{Discussion}\label{cha:discussion}
-\clearpage
-
-\chapter{Summary and Outlook}\label{cha:summary_and_outlook}
 
 %
 % Hier beginnen die Verzeichnisse.
 %
+
 \clearpage
+
 \printbibliography
+
 \clearpage
+
 % Das Abbildungsverzeichnis
 \listoffigures
+
 \clearpage
 
 % Das Tabellenverzeichnis
 \listoftables
+
 \clearpage
 
 % Das Quellcodeverzeichnis
 \listofcode
+
 \clearpage
 
 \phantomsection
@@ -1452,11 +1597,15 @@ Online
 %
 % Hier beginnt der Anhang.
 %
+
 \clearpage
+
 \appendix
 \begin{comment}
 \chapter{Anhang A}
+
 \clearpage
+
 \chapter{Anhang B}
 \end{comment}
 
