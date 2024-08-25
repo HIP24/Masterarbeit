@@ -19,7 +19,7 @@ Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
 
 <div id="page-wrapper">
   <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Status</a>
- der Masterarbeit:<b> Sehr Weit</b> </div> 
+ der Masterarbeit:<b>Nahe dem Ende</b> </div> 
   <div class="meter animate">
     <span style="width: 75%"><span></span></span>
   </div> 
