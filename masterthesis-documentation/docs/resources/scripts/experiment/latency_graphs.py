@@ -49,8 +49,8 @@ plt.close()
 
 # Plot Combined Latencies
 plt.figure(figsize=(10, 6))
-plt.plot(df.index, df['Untuned Salamander 4 Virtualization (us)'], '-', color='blue', label='Tuned Salamander 4 Virtualization')
-plt.plot(df.index, df['Tuned Salamander 4 Virtualization (us)'], '-', color='red', label='Untuned Salamander 4 Virtualization')
+plt.plot(df.index, df['Untuned Salamander 4 Virtualization (us)'], '-', color='blue', label='Untuned Salamander 4 Virtualization')
+plt.plot(df.index, df['Tuned Salamander 4 Virtualization (us)'], '-', color='red', label='Tuned Salamander 4 Virtualization')
 plt.plot(df.index, df['Hardware Salamander 4 (us)'], '-', color='purple', label='Hardware Salamander 4')
 plt.xlabel('Count')
 plt.ylabel('Latency [µs]')

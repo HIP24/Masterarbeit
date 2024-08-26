@@ -516,6 +516,7 @@ As a reference point, the \texttt{latency} program was executed on Salamander 4 
 \end{figure}
 
 \noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_hardware} and Table~\ref{tab:latency_overrun_msw_hardware}. The test was conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99.
+If any sample’s latency value is greater than 100\textmu s, it would be considered an overrun.
 
 \begin{table}[H]
 	\centering
@@ -533,12 +534,12 @@ As a reference point, the \texttt{latency} program was executed on Salamander 4 
 \vspace{1em}
 \begin{table}[H]
 	\centering
-	\caption{Latency, Overrun, and Missed Switch Data}
+	\caption{Latencies and Overruns}
 	\label{tab:latency_overrun_msw_hardware}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-		0.613                 & 1.380                 & 10.709                & 0                 & 0                        \\ \hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		0.613                 & 1.380                 & 10.709                & 0                 \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -569,12 +570,12 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \begin{table}[H]
 	\centering
-	\caption{Latency, Overrun, and Missed Switch Data}
+	\caption{Latencies and Overruns}
 	\label{tab:latency_overrun_msw_new_virt}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-		2.536                 & 8.940                 & 707.622               & 43                & 0                        \\ \hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		2.536                 & 8.940                 & 707.622               & 43                \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -663,12 +664,12 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \begin{table}[H]
 	\centering
-	\caption{Latency, Overrun, Missed Switch, Best, and Worst Data}
+	\caption{Latencies and Overruns, Missed Switch, Best, and Worst Data}
 	\label{tab:latency_overrun_msw_new_virt_bios}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-		0.969                 & 3.948                 & 457.545               & 94                & 0                        \\ \hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		0.969                 & 3.948                 & 457.545               & 94                \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -736,12 +737,12 @@ values gathered in 10 minutes.
 
 \begin{table}[H]
 	\centering
-	\caption{Latency, Overrun, and Missed Switch Data}
+	\caption{Latencies and Overruns}
 	\label{tab:latency_overrun_msw_new_virt_kernel}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-		2.545                 & 4.811                 & 21.694                & 0                 & 0                        \\ \hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		2.545                 & 4.811                 & 21.694                & 0                 \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -980,12 +981,12 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 
 \begin{table}[H]
 	\centering
-	\caption{Latency, Overrun, and Missed Switch Data}
+	\caption{Latencies and Overruns}
 	\label{tab:latency_overrun_msw_new_virt_host}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-		2.591                 & 4.834                 & 17.041                & 0                 & 0                        \\ \hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		2.591                 & 4.834                 & 18.441                & 0                 \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -1062,20 +1063,20 @@ QEMU provides several options that can be used to improve the real-time performa
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		\textbf{Param} & \textbf{Samples} & \textbf{Average (µs)} & \textbf{Std Dev (µs)} \\ \hline
-		\textbf{min}   & 599              & \textbf{3.125}        & 0.432                 \\ \hline
-		\textbf{avg}   & 5,999,973        & \textbf{4.018}        & 0.291                 \\ \hline
-		\textbf{max}   & 599              & \textbf{15.883}       & 0.351                 \\ \hline
+		\textbf{min}   & 599              & 3.125        & 0.432                 \\ \hline
+		\textbf{avg}   & 5,999,973        & 4.018        & 0.291                 \\ \hline
+		\textbf{max}   & 599              & 15.883       & 0.351                 \\ \hline
 	\end{tabular}
 \end{table}
 
 \begin{table}[H]
 	\centering
-	\caption{Latency, Overrun, and Missed Switch Data}
+	\caption{Latencies and Overruns}
 	\label{tab:latency_overrun_msw_new_virt_qemu}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} & \textbf{Missed Switches} \\ \hline
-		2.614                 & 4.779                 & 17.134                & 0                 & 0                        \\ \hline
+		\textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		2.614                 & 4.779                 & 17.134                & 0                 \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -1309,7 +1310,7 @@ Robots operate in real-time, meaning commands must be executed within a set time
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			1000             & 10.875                 & 15.072                  & 23.856                  & 2.921                   \\ \hline
+			1000             & 10.875                 & 15.072                  & 20.156                  & 2.921                   \\ \hline
 		\end{tabular}}
 \end{table}
 
@@ -1458,27 +1459,90 @@ The Figure below (deleted) compares non-optimized guest latency with optimized g
 \end{comment}
 
 \chapter{Results}\label{cha:results}
+The goal was to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. This chapter summarizes the results after the real-time performance tunings, both in terms of the \texttt{latency} program and the robotic application. Figure~\ref{fig:max_latency_combined_results} displays the change in latency after each real-time performance tuning, detailed in Section~\ref{sec:real-time_tunings}. 
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/012456combined/gnuplot_combined_max_latency.png}
+	\includegraphics[width=0.70\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/012456combined/gnuplot_combined_max_latency.png}
 	\caption[Latency rt kernelparam host]{Latency rt kernelparam host}
-	\label{fig:max_latency_rt_kernelparam_host}
+	\label{fig:max_latency_combined_results}
 \end{figure}
+
+\noindent As mentioned earlier in Section~\ref{sec:approach}, these modifications were added sequentially and tested together. Previous tunings were not reverted when moving to the next tunings. Table~\ref{tab:latency_tables_combined} gives an overview of the most important metrics of the measurements after each tuning. 
+
+\begin{table}[H]
+	\centering
+	\footnotesize
+	\caption{Latencies and Overruns with Tuning}
+	\label{tab:latency_tables_combined}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\textbf{Tuning} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		Salamander 4 BM        & 0.613                 & 1.380                 & 10.709            & 0                 \\ \hline
+		Unt. Salamander 4 V.        & 2.536                 & 8.940                 & 707.622      & 43                \\ \hline
+		After BIOS Conf.   & 0.969                 & 3.948                 & 457.545               & 94                \\ \hline
+		After Kernel Conf. & 2.545                 & 4.811                 & 21.694                & 0                 \\ \hline
+		After Host Conf.   & 2.591                 & 4.834                 & 18.441                & 0                 \\ \hline
+		After QEMU Conf.   & 2.614                 & 4.779                 & 17.134                & 0                 \\ \hline
+	\end{tabular}
+\end{table}
+
+\clearpage 
+
+\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the response time of the robot was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/combined_latencies.png}
-	\caption[Virtualization tree]{Virtualization tree}
+	\caption[Robotic Application Response Latency]{Robotic Application Response Latency}
 	\label{fig:combined_latencies}
 \end{figure}
+
+\noindent This response latency measurement above was performed 1,000 times to get reliable results. These results are presented in Table~\ref{tab:robotic_application_latency_values_combined}.
+
+\begin{table}[H]
+	\centering
+	\caption{Robotic Application Latency Values}
+	\label{tab:robotic_application_latency_values_combined}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|l|l|l|l|l|l|}
+			\hline
+			\textbf{Tuning} & \textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
+			Hardware        & 1000             & 10.3                  & 8.5                   & 12.7                   & 0.9                   \\ \hline
+			Untuned Virtualization    & 1000             & 12.654                & 40.671                & 394.126                & 52.711                \\ \hline
+			Tuned Virtualization      & 1000             & 10.875                & 15.072                & 20.156                 & 2.921                 \\ \hline
+		\end{tabular}}
+\end{table}
+
+
 
 \clearpage
 
 \chapter{Discussion}\label{cha:discussion}
+This master's thesis shows that the real-time performance tunings applied to the virtualized Salamander 4 OS have a positive impact on reducing latency and improving determinism. The maximum latency in the final tuned version of Salamander 4 Virtualization is significantly lower than in the default setup. The worst latency value in a 10 minute measurement span decreased from 707.622\textmu s to 17.134\textmu s after tuning  BIOS, kernel, host, guest and QEMU/KVM configurations. Especially the BIOS and kernel configurations played a crucial role in reducing the maximum latency, with a major fall to 21.694\textmu s. From this moment on, there were also no overruns in the test any longer. The host configurations, including the PREEMPT-RT patch, CPU and interrupt affinity, and real-time prioritization of QEMU further reduced latency a little bit down to 18.441\textmu s. The guest OS, Salamander 4, already had real-time capabilities through Xenomai. The focus was primarily on optimizing the host and virtualization layer to achieve the desired real-time performance. Finally, QEMU/KVM configurations, such as tuning the LAPIC timer advance and using hugepages brought the latency down a little more to the final worst latency value of 17.134\textmu s in 10 minutes. This value is very close to the bare metal value of 10.709\textmu s. The goal was set to achieving latency values below 50 microseconds in the duration of the measuremenet. This goal is acheived.
+
+\bigskip \noindent As a next step, the robotic application in a practical scenario also demonstrates and validates the improvement of the tuned virtualization compared to the unmodified virtualization. The difference between the command time and the response time of the robot was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The most imortant metric here is also the worst response latency of the robot. It dropped from 394.126\textmu s to 20.156\textmu s in the developped application. Comparing this to the worst latency value of the hardware version, which is 12.7\textmu s, it is apparent that the tuned virtualization through real-time performance configurations came very close to the determinsim and reliability of the hardware. 
+
+\bigskip \noindent It is important to underline one more time the fact that these modifications were added sequentially and tested together. First, the BIOS was configured, followed by the kernel. The BIOS settings were not reverted when moving to the kernel configurations. Next, the host was configured, but the BIOS and kernel settings remained unchanged. The guest configurations were not changed since Xenomai already provides real-time capabilities. Finally, QEMU/KVM settings were applied. This means that the configurations are not isolated but are applied and then tested as a whole.
 
 \clearpage
 
 \chapter{Summary and Outlook}\label{cha:summary_and_outlook}
+\begin{comment}
+6. Summary and Outlook
+In this thesis, we successfully virtualized the Salamander 4 operating system and applied extensive real-time performance tunings to bring its latency closer to that of the bare metal setup. The results demonstrate that with the right configurations, it is possible to achieve deterministic behavior in a virtualized environment.
+
+6.1 Summary
+The initial latency gap between the virtualized and bare metal setups was significant.
+Real-time performance tunings, including BIOS, kernel, host, and QEMU/KVM configurations, were applied.
+The tuned virtualized setup showed a substantial reduction in latency and improved determinism.
+6.2 Future Work
+Future work could focus on further optimizing the virtualization layer and exploring other real-time performance tuning techniques. Additionally, testing the system under different workloads and scenarios would provide a more comprehensive understanding of its performance.
+
+6.3 Practical Implications
+The findings of this thesis have practical implications for industries relying on real-time systems. Virtualizing real-time operating systems can lead to cost savings and increased flexibility, provided that the necessary performance tunings are applied to ensure deterministic behavior.
+\end{comment}
 
 Online
 

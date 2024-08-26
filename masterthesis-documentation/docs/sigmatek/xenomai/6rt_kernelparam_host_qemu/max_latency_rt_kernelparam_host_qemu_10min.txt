@@ -25,4 +25,4 @@ root@sigmatek-core2:~# cat max_latency_with_taskset_10min.txt
 14.5 688
 15.5 1079
 16.5 1168
-17.5 3
+17.5 1

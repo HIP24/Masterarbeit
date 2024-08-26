@@ -1,455 +1,40 @@
-@article{deoliveiraDemystifyingRealTimeLinux,
-  title = {Demystifying the {{Real-Time Linux Scheduling Latency}}},
-  author = {De Oliveira, Daniel Bristot and Casini, Daniel and Cucinotta, Tommaso},
-  abstract = {Linux has become a viable operating system for many real-time workloads. However, the black-box approach adopted by cyclictest, the tool used to evaluate the main real-time metric of the kernel, the scheduling latency, along with the absence of a theoretically-sound description of the in-kernel behavior, sheds some doubts about Linux meriting the real-time adjective. Aiming at clarifying the PREEMPT\_RT Linux scheduling latency, this paper leverages the Thread Synchronization Model of Linux to derive a set of properties and rules defining the Linux kernel behavior from a scheduling perspective. These rules are then leveraged to derive a sound bound to the scheduling latency, considering all the sources of delays occurring in all possible sequences of synchronization events in the kernel. This paper also presents a tracing method, efficient in time and memory overheads, to observe the kernel events needed to define the variables used in the analysis. This results in an easy-to-use tool for deriving reliable scheduling latency bounds that can be used in practice. Finally, an experimental analysis compares the cyclictest and the proposed tool, showing that the proposed method can find sound bounds faster with acceptable overheads.},
+@misc{XenomaiXenomai,
+  title = {Xenomai :: {{Xenomai}}},
+  url = {https://xenomai.org/},
+  urldate = {2024-03-21}
+}
+
+@article{guStateoftheArtSurveyRealTime2012,
+  title = {A {{State-of-the-Art Survey}} on {{Real-Time Issues}} in {{Embedded Systems Virtualization}}},
+  author = {Gu, Zonghua and Zhao, Qingling},
+  year = {2012},
+  journal = {Journal of Software Engineering and Applications},
+  volume = {05},
+  number = {04},
+  pages = {277--290},
+  issn = {1945-3116, 1945-3124},
+  doi = {10.4236/jsea.2012.54033},
+  url = {http://www.scirp.org/journal/doi.aspx?DOI=10.4236/jsea.2012.54033},
+  urldate = {2024-03-25},
+  abstract = {Virtualization has gained great acceptance in the server and cloud computing arena. In recent years, it has also been widely applied to real-time embedded systems with stringent timing constraints. We present a comprehensive survey on real-time issues in virtualization for embedded systems, covering popular virtualization systems including KVM, Xen, L4 and others.},
   langid = {english}
 }
 
-@article{canbazPerformanceAnalysisRealtime2022,
-  title = {Performance Analysis of Real-Time and General-Purpose Operating Systems for Path Planning of the Multi-Robot Systems},
-  author = {Canbaz, Se{\c c}kin and Erdemir, G{\"o}khan},
-  year = {2022},
-  month = feb,
-  journal = {International Journal of Electrical and Computer Engineering (IJECE)},
-  volume = {12},
-  number = {1},
-  pages = {285},
-  issn = {2722-2578, 2088-8708},
-  doi = {10.11591/ijece.v12i1.pp285-292},
-  url = {http://ijece.iaescore.com/index.php/IJECE/article/view/25808},
-  urldate = {2024-08-11},
-  abstract = {In general, modern operating systems can be divided into two essential parts, real-time operating systems (RTOS) and general-purpose operating systems (GPOS). The main difference between GPOS and RTOS is the system istime-critical or not. It means that; in GPOS, a high-priority thread cannot preempt a kernel call. But, in RTOS, a low-priority task is preempted by a high-priority task if necessary, even if it's executing a kernel call. Most Linux distributions can be used as both GPOS and RTOS with kernel modifications. In this study, two Linux distributions, Ubuntu and Pardus, were analyzed and their performances were compared both as GPOS and RTOS for path planning of the multi-robot systems. Robot groups with different numbers of members were used to perform the path tracking tasks using both Ubuntu and Pardus as GPOS and RTOS. In this way, both the performance of two different Linux distributions in robotic applications were observed and compared in two forms, GPOS, and RTOS.},
-  copyright = {http://creativecommons.org/licenses/by-sa/4.0}
-}
-
-@inproceedings{junzhangPerformanceAnalysisKVMBased2010,
-  title = {Performance Analysis towards a {{KVM-Based}} Embedded Real-Time Virtualization Architecture},
-  booktitle = {5th {{International Conference}} on {{Computer Sciences}} and {{Convergence Information Technology}}},
-  author = {{Jun Zhang} and {Kai Chen} and {Baojing Zuo} and {Ruhui Ma} and {Yaozu Dong} and {Haibing Guan}},
-  year = {2010},
-  month = nov,
-  pages = {421--426},
-  publisher = {IEEE},
-  address = {Seoul, Korea (South)},
-  doi = {10.1109/ICCIT.2010.5711095},
-  url = {http://ieeexplore.ieee.org/document/5711095/},
-  urldate = {2024-08-13},
-  abstract = {In Recent years embedded world has been undergoing a shift from traditional single-core processors to processors with multiple cores. However, this shift poses a challenge of adapting legacy uniprocessor-oriented real-time operating system (RTOS) to exploit the capability of multi-core processor. In addition, some embedded systems are inevitably going towards the direction of integrating real-time with off-the-shelf time-sharing system, as the combination of the two has the potential to provide not only timely and deterministic response but also a large application base. Virtualization technology, which ensures strong isolation between virtual machines, is therefore a promising solution to above mentioned issues. However, there remains a concern regarding the responsiveness of the RTOS running on top of a virtual machine. In this paper we propose an embedded real-time virtualization architecture based on Kernel-Based Virtual Machine (KVM), in which VxWorks and Linux are combined together. We then analyze and evaluate how KVM influences the interrupt-response times of VxWorks as a guest operating system. By applying several real-time performance tuning methods on the host Linux, we will show that sub-millisecond interrupt response latency can be achieved on the guest VxWorks.},
-  isbn = {978-1-4244-8567-3},
-  langid = {english}
-}
-
-@article{jiangRealTimeSystemManycore,
-  title = {Real-{{Time I}}/{{O System}} for {{Many-core Embedded Systems}}},
-  author = {Jiang, Zhe},
-  langid = {english}
-}
-
-@article{REALTIMEOPERATING,
-  title = {{{REAL TIME OPERATING SYSTEMS}}: {{A COMPLETE OVERVIEW}}},
-  abstract = {Telecommunication applications such as telephony, navigation and military signaling systems etc. are real time embedded systems. These systems must meet strict deadline constraints and handle different aspects of the application successfully. Real Time Operating Systems (RTOS) is most widely used software architecture for executing such embedded applications demanding strict deadlines and handling multiple tasks together. The important feature of RTOS is the timing considerations such that most urgent operations are taken care of by assigning higher priorities. RTOS also focuses on the communication and synchronization between different tasks to achieve the objective of the application. Our paper focuses on the discussion and overview for the quick understanding of design and implementing issues of RTOS for any microcontroller or microprocessor to be used in real time embedded systems.},
-  langid = {english}
-}
-
-@inproceedings{scordinoRealTimeVirtualizationIndustrial2020,
-  title = {Real-{{Time Virtualization For Industrial Automation}}},
-  booktitle = {2020 25th {{IEEE International Conference}} on {{Emerging Technologies}} and {{Factory Automation}} ({{ETFA}})},
-  author = {Scordino, Claudio and Savino, Ida Maria and Cuomo, Luca and Miccio, Luca and Tagliavini, Andrea and Bertogna, Marko and Solieri, Marco},
-  year = {2020},
-  month = sep,
-  pages = {353--360},
-  publisher = {IEEE},
-  address = {Vienna, Austria},
-  doi = {10.1109/ETFA46521.2020.9211890},
-  url = {https://ieeexplore.ieee.org/document/9211890/},
-  urldate = {2024-08-13},
-  abstract = {The industry has recently shown a growing interest in running non-critical activities (e.g., design tools) together with real-time control tasks on open-source COTS platforms.},
-  copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
-  isbn = {978-1-72818-956-7},
-  langid = {english}
-}
-
-@article{perneelRealtimeCapabilitiesStandard2015,
-  title = {Real-Time Capabilities in the Standard {{Linux Kernel}}: {{How}} to Enable and Use Them?},
-  shorttitle = {Real-Time Capabilities in the Standard {{Linux Kernel}}},
-  author = {Perneel, Luc and {Auricle Technologies Pvt. Ltd.}},
-  year = {2015},
-  journal = {International Journal on Recent and Innovation Trends in Computing and Communication},
-  volume = {3},
-  number = {1},
-  pages = {131--135},
-  issn = {2321-8169},
-  doi = {10.17762/ijritcc2321-8169.150127},
-  url = {http://www.ijritcc.org/download/1422071200.pdf},
-  urldate = {2024-08-13},
-  abstract = {Linux was originally designed as a general purpose operating system without consideration for real-time applications. Recently, it has become more attractive to the real-time community due to its low cost and open source approach. In order to help the real-time community, we will present in this paper the practical steps required to achieve a real-time Linux by applying the PREEMPT-RT patches which will provide Linux with these capabilities. We will also focus on some of the kernel configuration that should get attention while building the kernel in order to maintain the real-time behavior of the system during runtime.},
-  langid = {english}
-}
-
-@misc{WhatRealtimeLinux,
-  title = {What Is Real-Time {{Linux}}? {{Part II}}},
-  shorttitle = {What Is Real-Time {{Linux}}?},
-  journal = {Ubuntu},
-  url = {https://ubuntu.com/blog/what-is-real-time-linux-ii},
-  urldate = {2024-08-12},
-  abstract = {Welcome to this three-part mini-series on real-time Linux. In Part I, we set the stage for the remainder of the series by defining a real-time system, and went through common misconceptions.~ We also covered the broad market applications of a real-time Linux kernel.~ Several applications across a wide range of use cases and verticals requ [{\dots}]},
-  langid = {english}
-}
-
-@article{lipariRealTimeSchedulingHard,
-  title = {Real-{{Time}} Scheduling: From Hard to Soft Real-Time Systems},
-  author = {Lipari, Giuseppe and Palopoli, Luigi and {di Trento}, Universit{\`a}},
-  abstract = {Real-time systems are traditionally classified into hard real-time and soft real-time: in the first category we have safety critical real-time systems where missing a deadline can have catastrophic consequences, whereas in the second class we find systems for which we need to optimise the Quality of service provided to the user. However, the frontier between these two classes is thinner than one may think, and many systems that were considered as hard real-time in the past should now be reconsidered under a different light.},
-  langid = {english}
-}
-
-@book{wangRealtimeEmbeddedSystems2017,
-  title = {Real-Time Embedded Systems},
-  author = {Wang, Jiacun},
-  year = {2017},
-  publisher = {Wiley},
-  address = {Hoboken, NJ, USA},
-  abstract = {"Offering comprehensive coverage of the convergence of real-time embedded systems scheduling, resource access control, software design and development, and high-level system modeling, analysis and verification; Following an introductory overview, Dr. Wang delves into the specifics of hardware components, including processors, memory, I/O devices and architectures, communication structures, peripherals, and characteristics of real-time operating systems. Later chapters are dedicated to real-time task scheduling algorithms and resource access control policies, as well as priority-inversion control and deadlock avoidance. Concurrent system programming and POSIX programming for real-time systems are covered, as are finite state machines and Time Petri nets. Of special interest to software engineers will be the chapter devoted to model checking, in which the author discusses temporal logic and the NuSMV model checking tool, as well as a chapter treating real-time software design with UML. The final portion of the book explores practical issues of software reliability, aging, rejuvenation, security, safety, and power management. In addition, the book: Explains real-time embedded software modeling and design with finite state machines, Petri nets, and UML, and real-time constraints verification with the model checking tool, NuSMV Features real-world examples in finite state machines, model checking, real-time system design with UML, and more Covers embedded computer programing, designing for reliability, and designing for safety Explains how to make engineering trade-offs of power use and performance Investigates practical issues concerning software reliability, aging, rejuvenation, security, and power management Real-Time Embedded Systems is a valuable resource for those responsible for real-time and embedded software design, development, and management. It is also an excellent textbook for graduate courses in computer engineering, computer science, information technology, and software engineering on embedded and real-time software systems, and for undergraduate computer and software engineering courses"-- Provided by publisher},
-  isbn = {978-1-119-42070-5},
-  langid = {english},
-  annotation = {OCLC: 992437550}
-}
-
-@book{buttazzoHardRealtimeComputing2024,
-  title = {Hard Real-Time Computing Systems: Predictable Scheduling Algorithms and Applications},
-  shorttitle = {Hard Real-Time Computing Systems},
-  author = {Buttazzo, Giorgio C.},
-  year = {2024},
-  edition = {Fourth edition},
-  publisher = {Springer},
-  address = {Cham, Switzerland},
-  doi = {10.1007/978-3-031-45410-3},
-  isbn = {978-3-031-45409-7},
-  langid = {english}
-}
-
-@article{rostedtInternalsRTPatch,
-  title = {Internals of the {{RT Patch}}},
-  author = {Rostedt, Steven and Hart, Darren V},
-  langid = {english}
-}
-
-@misc{RealtimeKernelPatchset,
-  title = {Realtime Kernel Patchset - {{ArchWiki}}},
-  url = {https://wiki.archlinux.org/title/Realtime_kernel_patchset},
-  urldate = {2024-08-05}
-}
-
-@misc{WhatRealtimeLinuxa,
-  title = {What Is Real-Time {{Linux}}? {{Part I}}},
-  shorttitle = {What Is Real-Time {{Linux}}?},
-  journal = {Ubuntu},
-  url = {https://ubuntu.com/blog/what-is-real-time-linux-i},
-  urldate = {2024-08-05},
-  abstract = {Welcome to this three-part blog series on real-time Linux.~ Throughout the series, we will assess the key features of a real-time system. We will understand how a real-time capable Linux kernel differs from mainline, and touch upon the performance trade-offs you should consider when choosing real-time versus a low-latency kernel, for inst [{\dots}]},
-  langid = {english}
-}
-
-@misc{RealtimePreempt_rt_versionsWiki,
-  title = {Realtime:Preempt\_rt\_versions [{{Wiki}}]},
-  url = {https://wiki.linuxfoundation.org/realtime/preempt_rt_versions},
-  urldate = {2024-08-05}
-}
-
-@misc{MG996RDigitalServo,
-  title = {{MG996R Digital Servo Motor mit Metall Getriebe}},
-  journal = {Roboter-Bausatz.de},
-  url = {https://www.roboter-bausatz.de/p/mg996r-digital-servo-motor-mit-metall-getriebe},
-  urldate = {2024-07-31},
-  abstract = {Der MG996R ist eine verbesserte version der beliebten MG995 Serie. Durch ein neues PCB-Design und IC Steuersystem ist es wesentlich genauer als sein Vorg{\"a}nger und{\dots}},
-  langid = {ngerman}
-}
-
-@misc{MG996RServoMotor,
-  title = {{{MG996R Servo Motor}}},
-  journal = {Components101},
-  url = {https://components101.com/motors/mg996r-servo-motor-datasheet},
-  urldate = {2024-07-30},
-  abstract = {MG996R Servo Motor},
-  langid = {english}
-}
-
-@misc{SDIASSIGMATEK,
-  title = {S-{{DIAS}} - {{SIGMATEK}}},
-  url = {https://www.sigmatek-automation.com/en/products/io-systems/s-dias/},
-  urldate = {2024-07-30},
-  langid = {english}
-}
-
-@misc{ControlsHMIsSIGMATEK,
-  title = {Controls \& {{HMIs}} - {{SIGMATEK}}},
-  url = {https://www.sigmatek-automation.com/en/products/accessories/controls-hmis/pcv-522/},
-  urldate = {2024-07-30},
-  abstract = {PCV 522},
-  langid = {english}
-}
-
-@misc{CPUUnitsSIGMATEK,
-  title = {{{CPU Units}} - {{SIGMATEK}}},
-  url = {https://www.sigmatek-automation.com/en/products/control-systems/cpu-units/cp-841/},
-  urldate = {2024-07-30},
-  abstract = {CP 841},
-  langid = {english}
-}
-
-@misc{InterfacesSplittersSIGMATEK,
-  title = {Interfaces \& {{Splitters}} - {{SIGMATEK}}},
-  url = {https://www.sigmatek-automation.com/en/products/real-time-ethernet-varan/interfaces-splitters/vi-021/},
-  urldate = {2024-07-30},
-  abstract = {VI 021},
-  langid = {english}
-}
-
-@misc{DigitalOutputSIGMATEK,
-  title = {Digital {{Output}} - {{SIGMATEK}}},
-  url = {https://www.sigmatek-automation.com/en/products/io-systems/s-dias/digital-output/pw-022/},
-  urldate = {2024-07-30},
-  abstract = {PW 022},
-  langid = {english}
-}
-
-@inproceedings{huang2015performance,
-  title = {Performance Evaluation of Xenomai 3},
-  booktitle = {Proceedings of the 17th Real-Time Linux Workshop ({{RTLWS}})},
-  author = {Huang, {\relax CC} and Lin, Chan-Hsiang and Wu, Che-Kang},
-  year = {2015},
-  pages = {21--22}
-}
-
-@misc{LinuxProcessPriorities,
-  title = {Linux Process Priorities Demystified},
-  journal = {sigma star gmbh},
-  url = {https://sigma-star.at/blog/2022/02/linux-proc-prios/},
-  urldate = {2024-06-11},
-  abstract = {Simple questions often have not so simple answers. One example is the question is, what priority does this process have?},
-  langid = {english}
-}
-
-@misc{HOWTOBuildRTapplication,
-  title = {{{HOWTO}}: {{Build}} an {{RT-application}} - {{RTwiki}}},
-  url = {https://archive.kernel.org/oldwiki/rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application.html},
-  urldate = {2024-06-11}
-}
-
-@misc{RealtimeProgrammingLinux,
-  title = {Real-Time Programming with {{Linux}}, Part 2: Configuring {{Linux}} for Real-Time - {{Shuhao}}'s {{Blog}}},
-  url = {https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f4},
-  urldate = {2024-06-11}
-}
-
-@misc{KVMQemuVirtualization,
-  title = {{{KVM}}/{{Qemu Virtualization Tuning Guide}} on {{Intel}}{\textregistered} {{Xeon}}{\textregistered} {{Based Systems}}},
-  journal = {Intel},
-  url = {https://www.intel.com/content/www/us/en/developer/articles/guide/kvm-tuning-guide-on-xeon-based-systems.html},
-  urldate = {2024-06-11},
-  abstract = {KVM/Qemu Virtualization Tuning Guide on 3rd Generation Intel{\textregistered} Xeon{\textregistered} Scalable   Processor Based Platforms},
-  langid = {english}
-}
-
-@misc{thelinuxfoundationFindingSourcesLatency2020,
-  title = {Finding {{Sources}} of {{Latency}} on Your {{Linux System}} - {{Steven Rostedt}}, {{VMware}}},
-  author = {{The Linux Foundation}},
-  year = {2020},
-  month = sep,
-  url = {https://www.youtube.com/watch?v=Tkra8g0gXAU},
-  urldate = {2024-06-11},
-  abstract = {Creative Commons-Lizenz mit Quellenangabe (Wiederverwendung erlaubt)}
-}
-
-@misc{kernelrecipesKernelRecipes20162016,
-  title = {Kernel {{Recipes}} 2016 - {{Understanding}} a {{Real-Time System}} (More than Just a Kernel) - {{Steven Rostedt}}},
-  author = {{Kernel Recipes}},
-  year = {2016},
+@article{garcia-vallsChallengesRealtimeVirtualization2014,
+  title = {Challenges in Real-Time Virtualization and Predictable Cloud Computing},
+  author = {{Garc{\'i}a-Valls}, Marisol and Cucinotta, Tommaso and Lu, Chenyang},
+  year = {2014},
   month = oct,
-  url = {https://www.youtube.com/watch?v=w3yT8zJe0Uw},
-  urldate = {2024-06-11},
-  abstract = {Creative Commons-Lizenz mit Quellenangabe (Wiederverwendung erlaubt)}
-}
-
-@misc{thelinuxfoundationChecklistWritingLinux2020,
-  title = {A {{Checklist}} for {{Writing Linux Real-Time Applications}} - {{John Ogness}}, {{Linutronix GmbH}}},
-  author = {{The Linux Foundation}},
-  year = {2020},
-  month = nov,
-  url = {https://www.youtube.com/watch?v=NrjXEaTSyrw},
-  urldate = {2024-06-11},
-  abstract = {Creative Commons-Lizenz mit Quellenangabe (Wiederverwendung erlaubt)}
-}
-
-@article{maPerformanceTuningKVMbased,
-  title = {Performance {{Tuning Towards}} a {{KVM-based Embedded Real-Time Virtualization System}}},
-  author = {Ma, Ruhui and Zhou, Fanfu and Zhu, Erzhou and Guan, Haibing},
-  abstract = {Virtualization is a fundamental component in cloud computing because it provides numerous guest VM transparent services, such as live migration, high availability, rapid checkpoint, etc. Utilizing virtualization technology to combine real-time operating system (RTOS) and off-the-shelf time-sharing general purpose operating system (GPOS) is attracting much more interest recently. Such combination has the potential to provide a large application base, and to guarantee timely deterministic response to real-time applications, yet there remain some issues, such as responsiveness of RTOS running on top of a virtual machine (VM), system performance and CPU resource utilization rate, etc. In this paper we propose an embedded real-time virtualization architecture based on Kernel-Based Virtual Machine (KVM), in which VxWorks and Linux are combined together. We then analyze and evaluate how KVM influences the interrupt-response times of VxWorks as a guest operating system. By applying several real-time performance tuning methods on the host Linux, we will show that sub-millisecond interrupt response latency can be achieved on the guest VxWorks. Furthermore, we also find out that prioritization tuning results in waste of CPU resources when RTOS is not executing real-time tasks, so we design a dynamic scheduling mechanism  co-scheduling to improve system performance. Experimental results with SPEC2000 and bonnie 1.4 load, show that this new architecture tuned by CPU shielding, prioritization and co-scheduling, can achieve better real-time responsiveness and system performance.},
+  journal = {Journal of Systems Architecture},
+  volume = {60},
+  number = {9},
+  pages = {726--740},
+  issn = {13837621},
+  doi = {10.1016/j.sysarc.2014.07.004},
+  url = {https://linkinghub.elsevier.com/retrieve/pii/S1383762114001015},
+  urldate = {2024-03-25},
+  abstract = {Cloud computing and virtualization technology have revolutionized general-purpose computing applications in the past decade. The cloud paradigm offers advantages through reduction of operation costs, server consolidation, flexible system configuration and elastic resource provisioning. However, despite the success of cloud computing for general-purpose computing, existing cloud computing and virtualization technology face tremendous challenges in supporting emerging soft real-time applications such as online video streaming, cloud-based gaming, and telecommunication management. These applications demand real-time performance in open, shared and virtualized computing environments. This paper identifies the technical challenges in supporting real-time applications in the cloud, surveys recent advancement in real-time virtualization and cloud computing technology, and offers research directions to enable cloud-based real-time applications in the future.},
   langid = {english}
-}
-
-@misc{EngineeringToolLASAL,
-  title = {{Engineering Tool LASAL - SIGMATEK}},
-  url = {https://www.sigmatek-automation.com/de/produkte/engineering-tool-lasal/lasal-class/},
-  urldate = {2024-05-27},
-  abstract = {LASAL CLASS},
-  langid = {ngerman}
-}
-
-@misc{CPUEinheitenSIGMATEK,
-  title = {{CPU-Einheiten - SIGMATEK}},
-  url = {https://www.sigmatek-automation.com/de/produkte/steuerungssysteme/cpu-einheiten/cp-841/},
-  urldate = {2024-05-27},
-  abstract = {CP 841},
-  langid = {ngerman}
-}
-
-@article{adamRealTimePerformanceResponse2021,
-  title = {Real-{{Time Performance}} and {{Response Latency Measurements}} of {{Linux Kernels}} on {{Single-Board Computers}}},
-  author = {Adam, George K.},
-  year = {2021},
-  month = may,
-  journal = {Computers},
-  volume = {10},
-  number = {5},
-  pages = {64},
-  issn = {2073-431X},
-  doi = {10.3390/computers10050064},
-  url = {https://www.mdpi.com/2073-431X/10/5/64},
-  urldate = {2024-05-16},
-  abstract = {This research performs real-time measurements of Linux kernels with real-time support provided by the PREEMPT\_RT patch on embedded development devices such as BeagleBoard and Raspberry Pi. The experimental measurements of the Linux real-time performance on these devices are based on real-time software modules developed specifically for the purposes of this research. Taking in consideration the constraints of the specific hardware platforms under investigation, new measurements software was developed. The measurement algorithms are designed upon response and periodic task models. Measurements investigate latencies of real-time applications at user and kernel space. An outcome of this research is that the proposed performance measurements approach and evaluation methodology could be applied and deployed on other Linux-based boards and platforms. Furthermore, the results demonstrate that the PREEMPT\_RT patch overall improves the Linux kernel real-time performance compared to the standard one. The reduced worst-case latencies on such devices running Linux with real-time support could make them potentially more suitable for real-time applications as long as a latency value of about 160 {\textmu}s, as an upper bound, is an acceptable safety margin.},
-  copyright = {https://creativecommons.org/licenses/by/4.0/},
-  langid = {english}
-}
-
-@article{adamPerformanceAssessmentLinux2021,
-  title = {Performance {{Assessment}} of {{Linux Kernels}} with {{PREEMPT}}\_{{RT}} on {{ARM-Based Embedded Devices}}},
-  author = {Adam, George K. and Petrellis, Nikos and Doulos, Lambros T.},
-  year = {2021},
-  month = jun,
-  journal = {Electronics},
-  volume = {10},
-  number = {11},
-  pages = {1331},
-  issn = {2079-9292},
-  doi = {10.3390/electronics10111331},
-  url = {https://www.mdpi.com/2079-9292/10/11/1331},
-  urldate = {2024-05-08},
-  abstract = {This work investigates the real-time performance of Linux kernels and distributions with a PREEMPT\_RT real-time patch on ARM-based embedded devices. Experimental measurements, which are mainly based on heuristic methods, provide novel insights into Linux real-time performance on ARM-based embedded devices (e.g., BeagleBoard and RaspberryPi). Evaluations of the Linux real-time performance are based on specific real-time software measurement modules, developed for this purpose, and the use of a standard benchmark tool, cyclictest. Software modules were designed upon the introduction of a new response task model, an innovative aspect of this work. Measurements include the latency of response tasks at user and kernel space, the response on the execution of periodic tasks, the maximum sustained frequency and general latency performance metrics. The results show that in such systems the PREEMPT\_RT patch provides more improved real-time performance than the default Linux kernels. The latencies and particularly the worst-case latencies are reduced with real-time support, thus making such devices running Linux with PREEMPT\_RT more appropriate for use in time-sensitive embedded control systems and applications. Furthermore, the proposed performance measurements approach and evaluation methodology could be applied and deployed on other Linux-based real-time platforms.},
-  copyright = {https://creativecommons.org/licenses/by/4.0/},
-  langid = {english}
-}
-
-@article{RealTimePerformanceTuning2022,
-  title = {Real-{{Time Performance Tuning Best Practice Guidelines}} for {{KVM-Based Virtual Machines}}},
-  year = {2022},
-  langid = {english}
-}
-
-@incollection{pielAsymmetricSchedulingLoad2006,
-  title = {Asymmetric {{Scheduling}} and {{Load Balancing}} for {{Real-Time}} on {{Linux SMP}}},
-  booktitle = {Parallel {{Processing}} and {{Applied Mathematics}}},
-  author = {Piel, {\'E}ric and Marquet, Philippe and Soula, Julien and Dekeyser, Jean-Luc},
-  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Dough and Vardi, Moshe Y. and Weikum, Gerhard and Wyrzykowski, Roman and Dongarra, Jack and Meyer, Norbert and Wa{\'s}niewski, Jerzy},
-  year = {2006},
-  volume = {3911},
-  pages = {896--903},
-  publisher = {Springer Berlin Heidelberg},
-  address = {Berlin, Heidelberg},
-  doi = {10.1007/11752578_108},
-  url = {http://link.springer.com/10.1007/11752578_108},
-  urldate = {2024-05-06},
-  abstract = {The ARTiS system, a real-time extension of the GNU/Linux scheduler dedicated to SMP (Symmetric Multi-Processors) systems is proposed. ARTiS exploits the SMP architecture to guarantee the preemption of a processor when the system has to schedule a real-time task. The basic idea of ARTiS is to assign a selected set of processors to realtime operations. A migration mechanism of non-preemptible tasks insures a latency level on these real-time processors. Furthermore, specific load-balancing strategies allows ARTiS to benefit from the full power of the SMP systems: the real-time reservation, while guaranteed, is not exclusive and does not imply a waste of resources.},
-  isbn = {978-3-540-34141-3 978-3-540-34142-0},
-  langid = {english}
-}
-
-@inproceedings{broskyShieldedProcessorsGuaranteeing2003,
-  title = {Shielded Processors: Guaranteeing Sub-Millisecond Response in Standard {{Linux}}},
-  shorttitle = {Shielded Processors},
-  booktitle = {Proceedings {{International Parallel}} and {{Distributed Processing Symposium}}},
-  author = {Brosky, S. and Rotolo, S.},
-  year = {2003},
-  pages = {9},
-  publisher = {IEEE Comput. Soc},
-  address = {Nice, France},
-  doi = {10.1109/IPDPS.2003.1213237},
-  url = {http://ieeexplore.ieee.org/document/1213237/},
-  urldate = {2024-04-18},
-  abstract = {The low latency and preemption patches provide significant progress making standard Linux into a more responsive system for real-time applications. These patches allow guarantees on worst case interrupt response time at slightly above a millisecond. However, these guarantees can only be met when there is no networking or graphics activity in the system. This paper will describe the implementation of shielded processors in RedHawk Linux and their benefits. It will also present the results of realtime performance benchmarks. Interrupt response time guarantees are significantly below one millisecond and can be guaranteed even in the presence of networking and graphics activity.},
-  isbn = {978-0-7695-1926-5},
-  langid = {english}
-}
-
-@article{kiszkaLinuxRealTimeHypervisor,
-  title = {Towards {{Linux}} as a {{Real-Time Hypervisor}}},
-  author = {Kiszka, Jan},
-  abstract = {Combining virtualization and real-time is important for an increasing amount of use cases, from embedded system to enterprise computing. In this paper, we will analyze the real-time capabilities of Linux as a hypervisor when using KVM and QEMU. We will furthermore introduce and evaluate a paravirtual scheduling interface that helps resolving priority inversion problems in embedded virtualization scenarios.},
-  langid = {english}
-}
-
-@article{mckenneyRealTimeVs,
-  title = {`{{Real Time}}' vs. `{{Real Fast}}': {{How}} to {{Choose}}?},
-  author = {McKenney, Paul E},
-  langid = {english}
-}
-
-@article{yoonRealTimePerformanceAnalysis,
-  title = {Real-{{Time Performance Analysis}} in {{Linux-Based Robotic Systems}}},
-  author = {Yoon, Hobin and Song, Jungmoo and Lee, Jamee},
-  abstract = {Mobile or humanoid robots collect environmental data and reflect back as robotic behaviors via various sensors and actuators. It is crucial this occurs within a specified time. Although real-time flavored Linux has been used to control robot arms and legs for quite a while, it has not been reported much whether the current real-time features in Linux could still meet this requirement for a much more complicated system - a humanoid with about 60 servo motors and sensors with multiple algorithms such as recognition, decision, and navigation running simultaneously. In this paper, in order to meet such requirement, adopting EtherCAT technology is introduced and its Linux implementation is illustrated. In addition, results of real-time experiments and timing analysis on a multi-core processor are presented showing Linux is a viable solution to be successfully deployed in various robotic systems.},
-  langid = {english}
-}
-
-@article{HardRealTime,
-  title = {Hard {{Real}} Time {{Linux}}* {{Using Xenomai}}* on {{Intel}}{\textregistered} {{Multi-Core Processors}}},
-  langid = {english}
-}
-
-@book{lutsykPipelinedMulticoreMachine2020,
-  title = {A Pipelined Multi-Core Machine with Operating System Support: Hardware Implementation and Correctness Proof},
-  shorttitle = {A Pipelined Multi-Core Machine with Operating System Support},
-  author = {Lutsyk, Petro and Oberhauser, Jonas and Paul, Wolfgang J.},
-  year = {2020},
-  series = {Lecture Notes in Computer Science {{Theoretical Computer Science}} and {{General Issues}}},
-  number = {9999},
-  publisher = {Springer},
-  address = {Cham},
-  isbn = {978-3-030-43242-3},
-  langid = {english}
-}
-
-@misc{pixelartSIGMATEKKompletteAutomatisierungssysteme,
-  title = {{SIGMATEK - Komplette Automatisierungssysteme}},
-  author = {{pixelart}},
-  url = {https://www.sigmatek-automation.com/de/},
-  urldate = {2024-03-27},
-  abstract = {Sigmatek ist Ihr Partner f{\"u}r Industrie Automatisierung und Steuerungen wie SPS Automation oder HMI zur Visualisierung und Steuerung, sowie I/O Systeme.},
-  langid = {ngerman}
-}
-
-@misc{WelcomeYoctoProject,
-  title = {Welcome to the {{Yocto Project Documentation}} --- {{The Yocto Project}} {\textregistered} 4.3.999 Documentation},
-  url = {https://docs.yoctoproject.org/},
-  urldate = {2024-03-27}
-}
-
-@misc{QEMU,
-  title = {{{QEMU}}},
-  url = {https://www.qemu.org/},
-  urldate = {2024-03-27}
-}
-
-@misc{KernelShark,
-  title = {{{KernelShark}}},
-  url = {https://kernelshark.org/},
-  urldate = {2024-03-25}
-}
-
-@misc{Tracecmd,
-  title = {Trace-Cmd},
-  url = {https://trace-cmd.org/},
-  urldate = {2024-03-25}
 }
 
 @inproceedings{javierperezHowRealTime2022,
@@ -469,58 +54,21 @@
   langid = {english}
 }
 
-@article{guStateoftheArtSurveyRealTime2012,
-  title = {A {{State-of-the-Art Survey}} on {{Real-Time Issues}} in {{Embedded Systems Virtualization}}},
-  author = {Gu, Zonghua and Zhao, Qingling},
-  year = {2012},
-  journal = {Journal of Software Engineering and Applications},
-  volume = {05},
-  number = {04},
-  pages = {277--290},
-  issn = {1945-3116, 1945-3124},
-  doi = {10.4236/jsea.2012.54033},
-  url = {http://www.scirp.org/journal/doi.aspx?DOI=10.4236/jsea.2012.54033},
-  urldate = {2024-03-25},
-  abstract = {Virtualization has gained great acceptance in the server and cloud computing arena. In recent years, it has also been widely applied to real-time embedded systems with stringent timing constraints. We present a comprehensive survey on real-time issues in virtualization for embedded systems, covering popular virtualization systems including KVM, Xen, L4 and others.},
-  langid = {english}
-}
-
-@inproceedings{masrurVMBasedRealTimeServices2010,
-  title = {{{VM-Based Real-Time Services}} for {{Automotive Control Applications}}},
-  booktitle = {2010 {{IEEE}} 16th {{International Conference}} on {{Embedded}} and {{Real-Time Computing Systems}} and {{Applications}}},
-  author = {Masrur, Alejandro and Drossler, Sebastian and Pfeuffer, Thomas and Chakraborty, Samarjit},
-  year = {2010},
+@article{kirovaImpactModernVirtualization2019,
+  title = {Impact of {{Modern Virtualization Methods}} on {{Timing Precision}} and {{Performance}} of {{High-Speed Applications}}},
+  author = {Kirova, Veronika and Karpov, Kirill and Siemens, Eduard and Zander, Irina and Vasylenko, Oksana and Kachan, Dmitry and Maksymov, Sergii},
+  year = {2019},
   month = aug,
-  pages = {218--223},
-  publisher = {IEEE},
-  address = {Macau, China},
-  doi = {10.1109/RTCSA.2010.38},
-  url = {http://ieeexplore.ieee.org/document/5591645/},
+  journal = {Future Internet},
+  volume = {11},
+  number = {8},
+  pages = {179},
+  issn = {1999-5903},
+  doi = {10.3390/fi11080179},
+  url = {https://www.mdpi.com/1999-5903/11/8/179},
   urldate = {2024-03-25},
-  abstract = {Techniques for hardware virtualization have been successfully used to provide hardware-independent services and increase isolation between applications in the desktop domain. However, these characteristics make hardware virtualization also interesting for other domains like those involving control tasks. Since these techniques were initially not conceived for this kind of environments where, in particular, timing constraints must be guaranteed, it is necessary to analyze their behavior and investigate the viability of possible solutions based on them. In this paper, we are concerned with using VMs (Virtual Machines) to provide real-time services in the context of automotive control applications. For this purpose, we make use of the Xen hypervisor to design a real-time control loop on the top of a virtualization layer. We first analyze a typical Xen configuration and identify problems that arise when it is used for real-time applications. We show that the worst-case performance of Xen's standard SEDF scheduler (Simple Earliest Deadline First) can be improved by incorporating some minimal modifications. In addition, in order to reduce latency and jitter in a real-time control loop, we propose a new scheduler for the Xen hypervisor that uses the concept of a real-time VM. Real-time VMs are then scheduled before any other VM and under a fixed-priority policy. The proposed VM-based solution is shown to guarantee timing constraints typically encountered in automotive control applications. We further illustrate this through an extensive set of experiments.},
-  isbn = {978-1-4244-8480-5},
+  abstract = {The presented work is a result of extended research and analysis on timing methods precision, their efficiency in different virtual environments and the impact of timing precision on the performance of high-speed networks applications. We investigated how timer hardware is shared among heavily CPU- and I/O-bound tasks on a virtualized OS as well as on bare OS. By replacing the invoked timing methods within a well-known application for estimation of available path bandwidth, we provide the analysis of their impact on estimation accuracy. We show that timer overhead and precision are crucial for high-performance network applications, and low-precision timing methods usage, e.g., the delays and overheads issued by virtualization result in the degradation of the virtual environment. Furthermore, in this paper, we provide confirmation that, by using the methods we intentionally developed for both precise timing operations and AvB estimation, it is possible to overcome the inefficiency of standard time-related operations and overhead that comes with the virtualization. The impacts of negative virtualization factors were investigated in five different environments to define the most optimal virtual environment for high-speed network applications.},
   langid = {english}
-}
-
-@article{cinqueVirtualizingMixedCriticalitySystems2022,
-  title = {Virtualizing {{Mixed-Criticality Systems}}: {{A Survey}} on {{Industrial Trends}} and {{Issues}}},
-  shorttitle = {Virtualizing {{Mixed-Criticality Systems}}},
-  author = {Cinque, Marcello and Cotroneo, Domenico and De Simone, Luigi and Rosiello, Stefano},
-  year = {2022},
-  month = apr,
-  journal = {Future Generation Computer Systems},
-  volume = {129},
-  eprint = {2112.06875},
-  primaryclass = {cs},
-  pages = {315--330},
-  issn = {0167739X},
-  doi = {10.1016/j.future.2021.12.002},
-  url = {http://arxiv.org/abs/2112.06875},
-  urldate = {2024-03-25},
-  abstract = {Virtualization is gaining attraction in the industry as it promises a flexible way to integrate, manage, and re-use heterogeneous software components with mixed-criticality levels, on a shared hardware platform, while obtaining isolation guarantees. This work surveys the state-of-the-practice of real-time virtualization technologies by discussing common issues in the industry. In particular, we analyze how different virtualization approaches and solutions can impact isolation guarantees and testing/certification activities, and how they deal with dependability challenges. The aim is to highlight current industry trends and support industrial practitioners to choose the most suitable solution according to their application domains.},
-  archiveprefix = {arXiv},
-  langid = {english},
-  keywords = {Computer Science - Operating Systems,Computer Science - Software Engineering}
 }
 
 @article{queirozTestingLimitsGeneralpurpose2023,
@@ -557,37 +105,41 @@
   langid = {english}
 }
 
-@article{kirovaImpactModernVirtualization2019,
-  title = {Impact of {{Modern Virtualization Methods}} on {{Timing Precision}} and {{Performance}} of {{High-Speed Applications}}},
-  author = {Kirova, Veronika and Karpov, Kirill and Siemens, Eduard and Zander, Irina and Vasylenko, Oksana and Kachan, Dmitry and Maksymov, Sergii},
-  year = {2019},
-  month = aug,
-  journal = {Future Internet},
-  volume = {11},
-  number = {8},
-  pages = {179},
-  issn = {1999-5903},
-  doi = {10.3390/fi11080179},
-  url = {https://www.mdpi.com/1999-5903/11/8/179},
+@article{cinqueVirtualizingMixedCriticalitySystems2022,
+  title = {Virtualizing {{Mixed-Criticality Systems}}: {{A Survey}} on {{Industrial Trends}} and {{Issues}}},
+  shorttitle = {Virtualizing {{Mixed-Criticality Systems}}},
+  author = {Cinque, Marcello and Cotroneo, Domenico and De Simone, Luigi and Rosiello, Stefano},
+  year = {2022},
+  month = apr,
+  journal = {Future Generation Computer Systems},
+  volume = {129},
+  eprint = {2112.06875},
+  primaryclass = {cs},
+  pages = {315--330},
+  issn = {0167739X},
+  doi = {10.1016/j.future.2021.12.002},
+  url = {http://arxiv.org/abs/2112.06875},
   urldate = {2024-03-25},
-  abstract = {The presented work is a result of extended research and analysis on timing methods precision, their efficiency in different virtual environments and the impact of timing precision on the performance of high-speed networks applications. We investigated how timer hardware is shared among heavily CPU- and I/O-bound tasks on a virtualized OS as well as on bare OS. By replacing the invoked timing methods within a well-known application for estimation of available path bandwidth, we provide the analysis of their impact on estimation accuracy. We show that timer overhead and precision are crucial for high-performance network applications, and low-precision timing methods usage, e.g., the delays and overheads issued by virtualization result in the degradation of the virtual environment. Furthermore, in this paper, we provide confirmation that, by using the methods we intentionally developed for both precise timing operations and AvB estimation, it is possible to overcome the inefficiency of standard time-related operations and overhead that comes with the virtualization. The impacts of negative virtualization factors were investigated in five different environments to define the most optimal virtual environment for high-speed network applications.},
-  langid = {english}
+  abstract = {Virtualization is gaining attraction in the industry as it promises a flexible way to integrate, manage, and re-use heterogeneous software components with mixed-criticality levels, on a shared hardware platform, while obtaining isolation guarantees. This work surveys the state-of-the-practice of real-time virtualization technologies by discussing common issues in the industry. In particular, we analyze how different virtualization approaches and solutions can impact isolation guarantees and testing/certification activities, and how they deal with dependability challenges. The aim is to highlight current industry trends and support industrial practitioners to choose the most suitable solution according to their application domains.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Operating Systems,Computer Science - Software Engineering}
 }
 
-@article{garcia-vallsChallengesRealtimeVirtualization2014,
-  title = {Challenges in Real-Time Virtualization and Predictable Cloud Computing},
-  author = {{Garc{\'i}a-Valls}, Marisol and Cucinotta, Tommaso and Lu, Chenyang},
-  year = {2014},
-  month = oct,
-  journal = {Journal of Systems Architecture},
-  volume = {60},
-  number = {9},
-  pages = {726--740},
-  issn = {13837621},
-  doi = {10.1016/j.sysarc.2014.07.004},
-  url = {https://linkinghub.elsevier.com/retrieve/pii/S1383762114001015},
+@inproceedings{masrurVMBasedRealTimeServices2010,
+  title = {{{VM-Based Real-Time Services}} for {{Automotive Control Applications}}},
+  booktitle = {2010 {{IEEE}} 16th {{International Conference}} on {{Embedded}} and {{Real-Time Computing Systems}} and {{Applications}}},
+  author = {Masrur, Alejandro and Drossler, Sebastian and Pfeuffer, Thomas and Chakraborty, Samarjit},
+  year = {2010},
+  month = aug,
+  pages = {218--223},
+  publisher = {IEEE},
+  address = {Macau, China},
+  doi = {10.1109/RTCSA.2010.38},
+  url = {http://ieeexplore.ieee.org/document/5591645/},
   urldate = {2024-03-25},
-  abstract = {Cloud computing and virtualization technology have revolutionized general-purpose computing applications in the past decade. The cloud paradigm offers advantages through reduction of operation costs, server consolidation, flexible system configuration and elastic resource provisioning. However, despite the success of cloud computing for general-purpose computing, existing cloud computing and virtualization technology face tremendous challenges in supporting emerging soft real-time applications such as online video streaming, cloud-based gaming, and telecommunication management. These applications demand real-time performance in open, shared and virtualized computing environments. This paper identifies the technical challenges in supporting real-time applications in the cloud, surveys recent advancement in real-time virtualization and cloud computing technology, and offers research directions to enable cloud-based real-time applications in the future.},
+  abstract = {Techniques for hardware virtualization have been successfully used to provide hardware-independent services and increase isolation between applications in the desktop domain. However, these characteristics make hardware virtualization also interesting for other domains like those involving control tasks. Since these techniques were initially not conceived for this kind of environments where, in particular, timing constraints must be guaranteed, it is necessary to analyze their behavior and investigate the viability of possible solutions based on them. In this paper, we are concerned with using VMs (Virtual Machines) to provide real-time services in the context of automotive control applications. For this purpose, we make use of the Xen hypervisor to design a real-time control loop on the top of a virtualization layer. We first analyze a typical Xen configuration and identify problems that arise when it is used for real-time applications. We show that the worst-case performance of Xen's standard SEDF scheduler (Simple Earliest Deadline First) can be improved by incorporating some minimal modifications. In addition, in order to reduce latency and jitter in a real-time control loop, we propose a new scheduler for the Xen hypervisor that uses the concept of a real-time VM. Real-time VMs are then scheduled before any other VM and under a fixed-priority policy. The proposed VM-based solution is shown to guarantee timing constraints typically encountered in automotive control applications. We further illustrate this through an extensive set of experiments.},
+  isbn = {978-1-4244-8480-5},
   langid = {english}
 }
 
@@ -606,10 +158,458 @@
   langid = {english}
 }
 
-@misc{XenomaiXenomai,
-  title = {Xenomai :: {{Xenomai}}},
-  url = {https://xenomai.org/},
-  urldate = {2024-03-21}
+@misc{Tracecmd,
+  title = {Trace-Cmd},
+  url = {https://trace-cmd.org/},
+  urldate = {2024-03-25}
+}
+
+@misc{KernelShark,
+  title = {{{KernelShark}}},
+  url = {https://kernelshark.org/},
+  urldate = {2024-03-25}
+}
+
+@misc{WelcomeYoctoProject,
+  title = {Welcome to the {{Yocto Project Documentation}} --- {{The Yocto Project}} {\textregistered} 4.3.999 Documentation},
+  url = {https://docs.yoctoproject.org/},
+  urldate = {2024-03-27}
+}
+
+@misc{QEMU,
+  title = {{{QEMU}}},
+  url = {https://www.qemu.org/},
+  urldate = {2024-03-27}
+}
+
+@misc{pixelartSIGMATEKKompletteAutomatisierungssysteme,
+  title = {{SIGMATEK - Komplette Automatisierungssysteme}},
+  author = {{pixelart}},
+  url = {https://www.sigmatek-automation.com/de/},
+  urldate = {2024-03-27},
+  abstract = {Sigmatek ist Ihr Partner f{\"u}r Industrie Automatisierung und Steuerungen wie SPS Automation oder HMI zur Visualisierung und Steuerung, sowie I/O Systeme.},
+  langid = {ngerman}
+}
+
+@book{lutsykPipelinedMulticoreMachine2020,
+  title = {A Pipelined Multi-Core Machine with Operating System Support: Hardware Implementation and Correctness Proof},
+  shorttitle = {A Pipelined Multi-Core Machine with Operating System Support},
+  author = {Lutsyk, Petro and Oberhauser, Jonas and Paul, Wolfgang J.},
+  year = {2020},
+  series = {Lecture Notes in Computer Science {{Theoretical Computer Science}} and {{General Issues}}},
+  number = {9999},
+  publisher = {Springer},
+  address = {Cham},
+  isbn = {978-3-030-43242-3},
+  langid = {english}
+}
+
+@article{HardRealTime,
+  title = {Hard {{Real}} Time {{Linux}}* {{Using Xenomai}}* on {{Intel}}{\textregistered} {{Multi-Core Processors}}},
+  langid = {english}
+}
+
+@article{yoonRealTimePerformanceAnalysis,
+  title = {Real-{{Time Performance Analysis}} in {{Linux-Based Robotic Systems}}},
+  author = {Yoon, Hobin and Song, Jungmoo and Lee, Jamee},
+  abstract = {Mobile or humanoid robots collect environmental data and reflect back as robotic behaviors via various sensors and actuators. It is crucial this occurs within a specified time. Although real-time flavored Linux has been used to control robot arms and legs for quite a while, it has not been reported much whether the current real-time features in Linux could still meet this requirement for a much more complicated system - a humanoid with about 60 servo motors and sensors with multiple algorithms such as recognition, decision, and navigation running simultaneously. In this paper, in order to meet such requirement, adopting EtherCAT technology is introduced and its Linux implementation is illustrated. In addition, results of real-time experiments and timing analysis on a multi-core processor are presented showing Linux is a viable solution to be successfully deployed in various robotic systems.},
+  langid = {english}
+}
+
+@article{mckenneyRealTimeVs,
+  title = {`{{Real Time}}' vs. `{{Real Fast}}': {{How}} to {{Choose}}?},
+  author = {McKenney, Paul E},
+  langid = {english}
+}
+
+@article{kiszkaLinuxRealTimeHypervisor,
+  title = {Towards {{Linux}} as a {{Real-Time Hypervisor}}},
+  author = {Kiszka, Jan},
+  abstract = {Combining virtualization and real-time is important for an increasing amount of use cases, from embedded system to enterprise computing. In this paper, we will analyze the real-time capabilities of Linux as a hypervisor when using KVM and QEMU. We will furthermore introduce and evaluate a paravirtual scheduling interface that helps resolving priority inversion problems in embedded virtualization scenarios.},
+  langid = {english}
+}
+
+@inproceedings{broskyShieldedProcessorsGuaranteeing2003,
+  title = {Shielded Processors: Guaranteeing Sub-Millisecond Response in Standard {{Linux}}},
+  shorttitle = {Shielded Processors},
+  booktitle = {Proceedings {{International Parallel}} and {{Distributed Processing Symposium}}},
+  author = {Brosky, S. and Rotolo, S.},
+  year = {2003},
+  pages = {9},
+  publisher = {IEEE Comput. Soc},
+  address = {Nice, France},
+  doi = {10.1109/IPDPS.2003.1213237},
+  url = {http://ieeexplore.ieee.org/document/1213237/},
+  urldate = {2024-04-18},
+  abstract = {The low latency and preemption patches provide significant progress making standard Linux into a more responsive system for real-time applications. These patches allow guarantees on worst case interrupt response time at slightly above a millisecond. However, these guarantees can only be met when there is no networking or graphics activity in the system. This paper will describe the implementation of shielded processors in RedHawk Linux and their benefits. It will also present the results of realtime performance benchmarks. Interrupt response time guarantees are significantly below one millisecond and can be guaranteed even in the presence of networking and graphics activity.},
+  isbn = {978-0-7695-1926-5},
+  langid = {english}
+}
+
+@incollection{pielAsymmetricSchedulingLoad2006,
+  title = {Asymmetric {{Scheduling}} and {{Load Balancing}} for {{Real-Time}} on {{Linux SMP}}},
+  booktitle = {Parallel {{Processing}} and {{Applied Mathematics}}},
+  author = {Piel, {\'E}ric and Marquet, Philippe and Soula, Julien and Dekeyser, Jean-Luc},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Dough and Vardi, Moshe Y. and Weikum, Gerhard and Wyrzykowski, Roman and Dongarra, Jack and Meyer, Norbert and Wa{\'s}niewski, Jerzy},
+  year = {2006},
+  volume = {3911},
+  pages = {896--903},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/11752578_108},
+  url = {http://link.springer.com/10.1007/11752578_108},
+  urldate = {2024-05-06},
+  abstract = {The ARTiS system, a real-time extension of the GNU/Linux scheduler dedicated to SMP (Symmetric Multi-Processors) systems is proposed. ARTiS exploits the SMP architecture to guarantee the preemption of a processor when the system has to schedule a real-time task. The basic idea of ARTiS is to assign a selected set of processors to realtime operations. A migration mechanism of non-preemptible tasks insures a latency level on these real-time processors. Furthermore, specific load-balancing strategies allows ARTiS to benefit from the full power of the SMP systems: the real-time reservation, while guaranteed, is not exclusive and does not imply a waste of resources.},
+  isbn = {978-3-540-34141-3 978-3-540-34142-0},
+  langid = {english}
+}
+
+@article{deoliveiraDemystifyingRealTimeLinux,
+  title = {Demystifying the {{Real-Time Linux Scheduling Latency}}},
+  author = {De Oliveira, Daniel Bristot and Casini, Daniel and Cucinotta, Tommaso},
+  abstract = {Linux has become a viable operating system for many real-time workloads. However, the black-box approach adopted by cyclictest, the tool used to evaluate the main real-time metric of the kernel, the scheduling latency, along with the absence of a theoretically-sound description of the in-kernel behavior, sheds some doubts about Linux meriting the real-time adjective. Aiming at clarifying the PREEMPT\_RT Linux scheduling latency, this paper leverages the Thread Synchronization Model of Linux to derive a set of properties and rules defining the Linux kernel behavior from a scheduling perspective. These rules are then leveraged to derive a sound bound to the scheduling latency, considering all the sources of delays occurring in all possible sequences of synchronization events in the kernel. This paper also presents a tracing method, efficient in time and memory overheads, to observe the kernel events needed to define the variables used in the analysis. This results in an easy-to-use tool for deriving reliable scheduling latency bounds that can be used in practice. Finally, an experimental analysis compares the cyclictest and the proposed tool, showing that the proposed method can find sound bounds faster with acceptable overheads.},
+  langid = {english}
+}
+
+@article{adamPerformanceAssessmentLinux2021,
+  title = {Performance {{Assessment}} of {{Linux Kernels}} with {{PREEMPT}}\_{{RT}} on {{ARM-Based Embedded Devices}}},
+  author = {Adam, George K. and Petrellis, Nikos and Doulos, Lambros T.},
+  year = {2021},
+  month = jun,
+  journal = {Electronics},
+  volume = {10},
+  number = {11},
+  pages = {1331},
+  issn = {2079-9292},
+  doi = {10.3390/electronics10111331},
+  url = {https://www.mdpi.com/2079-9292/10/11/1331},
+  urldate = {2024-05-08},
+  abstract = {This work investigates the real-time performance of Linux kernels and distributions with a PREEMPT\_RT real-time patch on ARM-based embedded devices. Experimental measurements, which are mainly based on heuristic methods, provide novel insights into Linux real-time performance on ARM-based embedded devices (e.g., BeagleBoard and RaspberryPi). Evaluations of the Linux real-time performance are based on specific real-time software measurement modules, developed for this purpose, and the use of a standard benchmark tool, cyclictest. Software modules were designed upon the introduction of a new response task model, an innovative aspect of this work. Measurements include the latency of response tasks at user and kernel space, the response on the execution of periodic tasks, the maximum sustained frequency and general latency performance metrics. The results show that in such systems the PREEMPT\_RT patch provides more improved real-time performance than the default Linux kernels. The latencies and particularly the worst-case latencies are reduced with real-time support, thus making such devices running Linux with PREEMPT\_RT more appropriate for use in time-sensitive embedded control systems and applications. Furthermore, the proposed performance measurements approach and evaluation methodology could be applied and deployed on other Linux-based real-time platforms.},
+  copyright = {https://creativecommons.org/licenses/by/4.0/},
+  langid = {english}
+}
+
+@article{adamRealTimePerformanceResponse2021,
+  title = {Real-{{Time Performance}} and {{Response Latency Measurements}} of {{Linux Kernels}} on {{Single-Board Computers}}},
+  author = {Adam, George K.},
+  year = {2021},
+  month = may,
+  journal = {Computers},
+  volume = {10},
+  number = {5},
+  pages = {64},
+  issn = {2073-431X},
+  doi = {10.3390/computers10050064},
+  url = {https://www.mdpi.com/2073-431X/10/5/64},
+  urldate = {2024-05-16},
+  abstract = {This research performs real-time measurements of Linux kernels with real-time support provided by the PREEMPT\_RT patch on embedded development devices such as BeagleBoard and Raspberry Pi. The experimental measurements of the Linux real-time performance on these devices are based on real-time software modules developed specifically for the purposes of this research. Taking in consideration the constraints of the specific hardware platforms under investigation, new measurements software was developed. The measurement algorithms are designed upon response and periodic task models. Measurements investigate latencies of real-time applications at user and kernel space. An outcome of this research is that the proposed performance measurements approach and evaluation methodology could be applied and deployed on other Linux-based boards and platforms. Furthermore, the results demonstrate that the PREEMPT\_RT patch overall improves the Linux kernel real-time performance compared to the standard one. The reduced worst-case latencies on such devices running Linux with real-time support could make them potentially more suitable for real-time applications as long as a latency value of about 160 {\textmu}s, as an upper bound, is an acceptable safety margin.},
+  copyright = {https://creativecommons.org/licenses/by/4.0/},
+  langid = {english}
+}
+
+@article{RealTimePerformanceTuning2022,
+  title = {Real-{{Time Performance Tuning Best Practice Guidelines}} for {{KVM-Based Virtual Machines}}},
+  year = {2022},
+  langid = {english}
+}
+
+@misc{CPUEinheitenSIGMATEK,
+  title = {{CPU-Einheiten - SIGMATEK}},
+  url = {https://www.sigmatek-automation.com/de/produkte/steuerungssysteme/cpu-einheiten/cp-841/},
+  urldate = {2024-05-27},
+  abstract = {CP 841},
+  langid = {ngerman}
+}
+
+@misc{EngineeringToolLASAL,
+  title = {{Engineering Tool LASAL - SIGMATEK}},
+  url = {https://www.sigmatek-automation.com/de/produkte/engineering-tool-lasal/lasal-class/},
+  urldate = {2024-05-27},
+  abstract = {LASAL CLASS},
+  langid = {ngerman}
+}
+
+@article{maPerformanceTuningKVMbased,
+  title = {Performance {{Tuning Towards}} a {{KVM-based Embedded Real-Time Virtualization System}}},
+  author = {Ma, Ruhui and Zhou, Fanfu and Zhu, Erzhou and Guan, Haibing},
+  abstract = {Virtualization is a fundamental component in cloud computing because it provides numerous guest VM transparent services, such as live migration, high availability, rapid checkpoint, etc. Utilizing virtualization technology to combine real-time operating system (RTOS) and off-the-shelf time-sharing general purpose operating system (GPOS) is attracting much more interest recently. Such combination has the potential to provide a large application base, and to guarantee timely deterministic response to real-time applications, yet there remain some issues, such as responsiveness of RTOS running on top of a virtual machine (VM), system performance and CPU resource utilization rate, etc. In this paper we propose an embedded real-time virtualization architecture based on Kernel-Based Virtual Machine (KVM), in which VxWorks and Linux are combined together. We then analyze and evaluate how KVM influences the interrupt-response times of VxWorks as a guest operating system. By applying several real-time performance tuning methods on the host Linux, we will show that sub-millisecond interrupt response latency can be achieved on the guest VxWorks. Furthermore, we also find out that prioritization tuning results in waste of CPU resources when RTOS is not executing real-time tasks, so we design a dynamic scheduling mechanism  co-scheduling to improve system performance. Experimental results with SPEC2000 and bonnie 1.4 load, show that this new architecture tuned by CPU shielding, prioritization and co-scheduling, can achieve better real-time responsiveness and system performance.},
+  langid = {english}
+}
+
+@misc{thelinuxfoundationChecklistWritingLinux2020,
+  title = {A {{Checklist}} for {{Writing Linux Real-Time Applications}} - {{John Ogness}}, {{Linutronix GmbH}}},
+  author = {{The Linux Foundation}},
+  year = {2020},
+  month = nov,
+  url = {https://www.youtube.com/watch?v=NrjXEaTSyrw},
+  urldate = {2024-06-11},
+  abstract = {Creative Commons-Lizenz mit Quellenangabe (Wiederverwendung erlaubt)}
+}
+
+@misc{kernelrecipesKernelRecipes20162016,
+  title = {Kernel {{Recipes}} 2016 - {{Understanding}} a {{Real-Time System}} (More than Just a Kernel) - {{Steven Rostedt}}},
+  author = {{Kernel Recipes}},
+  year = {2016},
+  month = oct,
+  url = {https://www.youtube.com/watch?v=w3yT8zJe0Uw},
+  urldate = {2024-06-11},
+  abstract = {Creative Commons-Lizenz mit Quellenangabe (Wiederverwendung erlaubt)}
+}
+
+@misc{thelinuxfoundationFindingSourcesLatency2020,
+  title = {Finding {{Sources}} of {{Latency}} on Your {{Linux System}} - {{Steven Rostedt}}, {{VMware}}},
+  author = {{The Linux Foundation}},
+  year = {2020},
+  month = sep,
+  url = {https://www.youtube.com/watch?v=Tkra8g0gXAU},
+  urldate = {2024-06-11},
+  abstract = {Creative Commons-Lizenz mit Quellenangabe (Wiederverwendung erlaubt)}
+}
+
+@misc{KVMQemuVirtualization,
+  title = {{{KVM}}/{{Qemu Virtualization Tuning Guide}} on {{Intel}}{\textregistered} {{Xeon}}{\textregistered} {{Based Systems}}},
+  journal = {Intel},
+  url = {https://www.intel.com/content/www/us/en/developer/articles/guide/kvm-tuning-guide-on-xeon-based-systems.html},
+  urldate = {2024-06-11},
+  abstract = {KVM/Qemu Virtualization Tuning Guide on 3rd Generation Intel{\textregistered} Xeon{\textregistered} Scalable   Processor Based Platforms},
+  langid = {english}
+}
+
+@misc{RealtimeProgrammingLinux,
+  title = {Real-Time Programming with {{Linux}}, Part 2: Configuring {{Linux}} for Real-Time - {{Shuhao}}'s {{Blog}}},
+  url = {https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html#f4},
+  urldate = {2024-06-11}
+}
+
+@misc{HOWTOBuildRTapplication,
+  title = {{{HOWTO}}: {{Build}} an {{RT-application}} - {{RTwiki}}},
+  url = {https://archive.kernel.org/oldwiki/rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application.html},
+  urldate = {2024-06-11}
+}
+
+@misc{LinuxProcessPriorities,
+  title = {Linux Process Priorities Demystified},
+  journal = {sigma star gmbh},
+  url = {https://sigma-star.at/blog/2022/02/linux-proc-prios/},
+  urldate = {2024-06-11},
+  abstract = {Simple questions often have not so simple answers. One example is the question is, what priority does this process have?},
+  langid = {english}
+}
+
+@inproceedings{huang2015performance,
+  title = {Performance Evaluation of Xenomai 3},
+  booktitle = {Proceedings of the 17th Real-Time Linux Workshop ({{RTLWS}})},
+  author = {Huang, {\relax CC} and Lin, Chan-Hsiang and Wu, Che-Kang},
+  year = {2015},
+  pages = {21--22}
+}
+
+@misc{DigitalOutputSIGMATEK,
+  title = {Digital {{Output}} - {{SIGMATEK}}},
+  url = {https://www.sigmatek-automation.com/en/products/io-systems/s-dias/digital-output/pw-022/},
+  urldate = {2024-07-30},
+  abstract = {PW 022},
+  langid = {english}
+}
+
+@misc{InterfacesSplittersSIGMATEK,
+  title = {Interfaces \& {{Splitters}} - {{SIGMATEK}}},
+  url = {https://www.sigmatek-automation.com/en/products/real-time-ethernet-varan/interfaces-splitters/vi-021/},
+  urldate = {2024-07-30},
+  abstract = {VI 021},
+  langid = {english}
+}
+
+@misc{CPUUnitsSIGMATEK,
+  title = {{{CPU Units}} - {{SIGMATEK}}},
+  url = {https://www.sigmatek-automation.com/en/products/control-systems/cpu-units/cp-841/},
+  urldate = {2024-07-30},
+  abstract = {CP 841},
+  langid = {english}
+}
+
+@misc{ControlsHMIsSIGMATEK,
+  title = {Controls \& {{HMIs}} - {{SIGMATEK}}},
+  url = {https://www.sigmatek-automation.com/en/products/accessories/controls-hmis/pcv-522/},
+  urldate = {2024-07-30},
+  abstract = {PCV 522},
+  langid = {english}
+}
+
+@misc{SDIASSIGMATEK,
+  title = {S-{{DIAS}} - {{SIGMATEK}}},
+  url = {https://www.sigmatek-automation.com/en/products/io-systems/s-dias/},
+  urldate = {2024-07-30},
+  langid = {english}
+}
+
+@misc{MG996RServoMotor,
+  title = {{{MG996R Servo Motor}}},
+  journal = {Components101},
+  url = {https://components101.com/motors/mg996r-servo-motor-datasheet},
+  urldate = {2024-07-30},
+  abstract = {MG996R Servo Motor},
+  langid = {english}
+}
+
+@misc{MG996RDigitalServo,
+  title = {{MG996R Digital Servo Motor mit Metall Getriebe}},
+  journal = {Roboter-Bausatz.de},
+  url = {https://www.roboter-bausatz.de/p/mg996r-digital-servo-motor-mit-metall-getriebe},
+  urldate = {2024-07-31},
+  abstract = {Der MG996R ist eine verbesserte version der beliebten MG995 Serie. Durch ein neues PCB-Design und IC Steuersystem ist es wesentlich genauer als sein Vorg{\"a}nger und{\dots}},
+  langid = {ngerman}
+}
+
+@misc{RealtimePreempt_rt_versionsWiki,
+  title = {Realtime:Preempt\_rt\_versions [{{Wiki}}]},
+  url = {https://wiki.linuxfoundation.org/realtime/preempt_rt_versions},
+  urldate = {2024-08-05}
+}
+
+@misc{WhatRealtimeLinuxa,
+  title = {What Is Real-Time {{Linux}}? {{Part I}}},
+  shorttitle = {What Is Real-Time {{Linux}}?},
+  journal = {Ubuntu},
+  url = {https://ubuntu.com/blog/what-is-real-time-linux-i},
+  urldate = {2024-08-05},
+  abstract = {Welcome to this three-part blog series on real-time Linux.~ Throughout the series, we will assess the key features of a real-time system. We will understand how a real-time capable Linux kernel differs from mainline, and touch upon the performance trade-offs you should consider when choosing real-time versus a low-latency kernel, for inst [{\dots}]},
+  langid = {english}
+}
+
+@misc{RealtimeKernelPatchset,
+  title = {Realtime Kernel Patchset - {{ArchWiki}}},
+  url = {https://wiki.archlinux.org/title/Realtime_kernel_patchset},
+  urldate = {2024-08-05}
+}
+
+@article{rostedtInternalsRTPatch,
+  title = {Internals of the {{RT Patch}}},
+  author = {Rostedt, Steven and Hart, Darren V},
+  langid = {english}
+}
+
+@book{buttazzoHardRealtimeComputing2024,
+  title = {Hard Real-Time Computing Systems: Predictable Scheduling Algorithms and Applications},
+  shorttitle = {Hard Real-Time Computing Systems},
+  author = {Buttazzo, Giorgio C.},
+  year = {2024},
+  edition = {Fourth edition},
+  publisher = {Springer},
+  address = {Cham, Switzerland},
+  doi = {10.1007/978-3-031-45410-3},
+  isbn = {978-3-031-45409-7},
+  langid = {english}
+}
+
+@book{wangRealtimeEmbeddedSystems2017,
+  title = {Real-Time Embedded Systems},
+  author = {Wang, Jiacun},
+  year = {2017},
+  publisher = {Wiley},
+  address = {Hoboken, NJ, USA},
+  abstract = {"Offering comprehensive coverage of the convergence of real-time embedded systems scheduling, resource access control, software design and development, and high-level system modeling, analysis and verification; Following an introductory overview, Dr. Wang delves into the specifics of hardware components, including processors, memory, I/O devices and architectures, communication structures, peripherals, and characteristics of real-time operating systems. Later chapters are dedicated to real-time task scheduling algorithms and resource access control policies, as well as priority-inversion control and deadlock avoidance. Concurrent system programming and POSIX programming for real-time systems are covered, as are finite state machines and Time Petri nets. Of special interest to software engineers will be the chapter devoted to model checking, in which the author discusses temporal logic and the NuSMV model checking tool, as well as a chapter treating real-time software design with UML. The final portion of the book explores practical issues of software reliability, aging, rejuvenation, security, safety, and power management. In addition, the book: Explains real-time embedded software modeling and design with finite state machines, Petri nets, and UML, and real-time constraints verification with the model checking tool, NuSMV Features real-world examples in finite state machines, model checking, real-time system design with UML, and more Covers embedded computer programing, designing for reliability, and designing for safety Explains how to make engineering trade-offs of power use and performance Investigates practical issues concerning software reliability, aging, rejuvenation, security, and power management Real-Time Embedded Systems is a valuable resource for those responsible for real-time and embedded software design, development, and management. It is also an excellent textbook for graduate courses in computer engineering, computer science, information technology, and software engineering on embedded and real-time software systems, and for undergraduate computer and software engineering courses"-- Provided by publisher},
+  isbn = {978-1-119-42070-5},
+  langid = {english},
+  annotation = {OCLC: 992437550}
+}
+
+@article{canbazPerformanceAnalysisRealtime2022,
+  title = {Performance Analysis of Real-Time and General-Purpose Operating Systems for Path Planning of the Multi-Robot Systems},
+  author = {Canbaz, Se{\c c}kin and Erdemir, G{\"o}khan},
+  year = {2022},
+  month = feb,
+  journal = {International Journal of Electrical and Computer Engineering (IJECE)},
+  volume = {12},
+  number = {1},
+  pages = {285},
+  issn = {2722-2578, 2088-8708},
+  doi = {10.11591/ijece.v12i1.pp285-292},
+  url = {http://ijece.iaescore.com/index.php/IJECE/article/view/25808},
+  urldate = {2024-08-11},
+  abstract = {In general, modern operating systems can be divided into two essential parts, real-time operating systems (RTOS) and general-purpose operating systems (GPOS). The main difference between GPOS and RTOS is the system istime-critical or not. It means that; in GPOS, a high-priority thread cannot preempt a kernel call. But, in RTOS, a low-priority task is preempted by a high-priority task if necessary, even if it's executing a kernel call. Most Linux distributions can be used as both GPOS and RTOS with kernel modifications. In this study, two Linux distributions, Ubuntu and Pardus, were analyzed and their performances were compared both as GPOS and RTOS for path planning of the multi-robot systems. Robot groups with different numbers of members were used to perform the path tracking tasks using both Ubuntu and Pardus as GPOS and RTOS. In this way, both the performance of two different Linux distributions in robotic applications were observed and compared in two forms, GPOS, and RTOS.},
+  copyright = {http://creativecommons.org/licenses/by-sa/4.0}
+}
+
+@article{lipariRealTimeSchedulingHard,
+  title = {Real-{{Time}} Scheduling: From Hard to Soft Real-Time Systems},
+  author = {Lipari, Giuseppe and Palopoli, Luigi and {di Trento}, Universit{\`a}},
+  abstract = {Real-time systems are traditionally classified into hard real-time and soft real-time: in the first category we have safety critical real-time systems where missing a deadline can have catastrophic consequences, whereas in the second class we find systems for which we need to optimise the Quality of service provided to the user. However, the frontier between these two classes is thinner than one may think, and many systems that were considered as hard real-time in the past should now be reconsidered under a different light.},
+  langid = {english}
+}
+
+@misc{WhatRealtimeLinux,
+  title = {What Is Real-Time {{Linux}}? {{Part II}}},
+  shorttitle = {What Is Real-Time {{Linux}}?},
+  journal = {Ubuntu},
+  url = {https://ubuntu.com/blog/what-is-real-time-linux-ii},
+  urldate = {2024-08-12},
+  abstract = {Welcome to this three-part mini-series on real-time Linux. In Part I, we set the stage for the remainder of the series by defining a real-time system, and went through common misconceptions.~ We also covered the broad market applications of a real-time Linux kernel.~ Several applications across a wide range of use cases and verticals requ [{\dots}]},
+  langid = {english}
+}
+
+@article{perneelRealtimeCapabilitiesStandard2015,
+  title = {Real-Time Capabilities in the Standard {{Linux Kernel}}: {{How}} to Enable and Use Them?},
+  shorttitle = {Real-Time Capabilities in the Standard {{Linux Kernel}}},
+  author = {Perneel, Luc and {Auricle Technologies Pvt. Ltd.}},
+  year = {2015},
+  journal = {International Journal on Recent and Innovation Trends in Computing and Communication},
+  volume = {3},
+  number = {1},
+  pages = {131--135},
+  issn = {2321-8169},
+  doi = {10.17762/ijritcc2321-8169.150127},
+  url = {http://www.ijritcc.org/download/1422071200.pdf},
+  urldate = {2024-08-13},
+  abstract = {Linux was originally designed as a general purpose operating system without consideration for real-time applications. Recently, it has become more attractive to the real-time community due to its low cost and open source approach. In order to help the real-time community, we will present in this paper the practical steps required to achieve a real-time Linux by applying the PREEMPT-RT patches which will provide Linux with these capabilities. We will also focus on some of the kernel configuration that should get attention while building the kernel in order to maintain the real-time behavior of the system during runtime.},
+  langid = {english}
+}
+
+@inproceedings{scordinoRealTimeVirtualizationIndustrial2020,
+  title = {Real-{{Time Virtualization For Industrial Automation}}},
+  booktitle = {2020 25th {{IEEE International Conference}} on {{Emerging Technologies}} and {{Factory Automation}} ({{ETFA}})},
+  author = {Scordino, Claudio and Savino, Ida Maria and Cuomo, Luca and Miccio, Luca and Tagliavini, Andrea and Bertogna, Marko and Solieri, Marco},
+  year = {2020},
+  month = sep,
+  pages = {353--360},
+  publisher = {IEEE},
+  address = {Vienna, Austria},
+  doi = {10.1109/ETFA46521.2020.9211890},
+  url = {https://ieeexplore.ieee.org/document/9211890/},
+  urldate = {2024-08-13},
+  abstract = {The industry has recently shown a growing interest in running non-critical activities (e.g., design tools) together with real-time control tasks on open-source COTS platforms.},
+  copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
+  isbn = {978-1-72818-956-7},
+  langid = {english}
+}
+
+@article{REALTIMEOPERATING,
+  title = {{{REAL TIME OPERATING SYSTEMS}}: {{A COMPLETE OVERVIEW}}},
+  abstract = {Telecommunication applications such as telephony, navigation and military signaling systems etc. are real time embedded systems. These systems must meet strict deadline constraints and handle different aspects of the application successfully. Real Time Operating Systems (RTOS) is most widely used software architecture for executing such embedded applications demanding strict deadlines and handling multiple tasks together. The important feature of RTOS is the timing considerations such that most urgent operations are taken care of by assigning higher priorities. RTOS also focuses on the communication and synchronization between different tasks to achieve the objective of the application. Our paper focuses on the discussion and overview for the quick understanding of design and implementing issues of RTOS for any microcontroller or microprocessor to be used in real time embedded systems.},
+  langid = {english}
+}
+
+@article{jiangRealTimeSystemManycore,
+  title = {Real-{{Time I}}/{{O System}} for {{Many-core Embedded Systems}}},
+  author = {Jiang, Zhe},
+  langid = {english}
+}
+
+@inproceedings{junzhangPerformanceAnalysisKVMBased2010,
+  title = {Performance Analysis towards a {{KVM-Based}} Embedded Real-Time Virtualization Architecture},
+  booktitle = {5th {{International Conference}} on {{Computer Sciences}} and {{Convergence Information Technology}}},
+  author = {{Jun Zhang} and {Kai Chen} and {Baojing Zuo} and {Ruhui Ma} and {Yaozu Dong} and {Haibing Guan}},
+  year = {2010},
+  month = nov,
+  pages = {421--426},
+  publisher = {IEEE},
+  address = {Seoul, Korea (South)},
+  doi = {10.1109/ICCIT.2010.5711095},
+  url = {http://ieeexplore.ieee.org/document/5711095/},
+  urldate = {2024-08-13},
+  abstract = {In Recent years embedded world has been undergoing a shift from traditional single-core processors to processors with multiple cores. However, this shift poses a challenge of adapting legacy uniprocessor-oriented real-time operating system (RTOS) to exploit the capability of multi-core processor. In addition, some embedded systems are inevitably going towards the direction of integrating real-time with off-the-shelf time-sharing system, as the combination of the two has the potential to provide not only timely and deterministic response but also a large application base. Virtualization technology, which ensures strong isolation between virtual machines, is therefore a promising solution to above mentioned issues. However, there remains a concern regarding the responsiveness of the RTOS running on top of a virtual machine. In this paper we propose an embedded real-time virtualization architecture based on Kernel-Based Virtual Machine (KVM), in which VxWorks and Linux are combined together. We then analyze and evaluate how KVM influences the interrupt-response times of VxWorks as a guest operating system. By applying several real-time performance tuning methods on the host Linux, we will show that sub-millisecond interrupt response latency can be achieved on the guest VxWorks.},
+  isbn = {978-1-4244-8567-3},
+  langid = {english}
 }
 
 @inproceedings{sandstromVirtualizationTechnologiesEmbedded2013,

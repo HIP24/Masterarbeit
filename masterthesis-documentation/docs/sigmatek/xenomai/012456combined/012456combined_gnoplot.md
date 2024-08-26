@@ -29,15 +29,15 @@ set grid xtics
 set format y "10^{%L}"
 
 # Set custom-defined steps for the x-axis
-set xtics (1, 10, 100, 200, 400, 800)
+set xtics (0, 1, 10, 100, 200, 400, 800)
 
 # Plot the data with thicker lines and different colors
-plot '../0hardware/max_latency_hardware_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#800080" title 'Hardware', \
-     '../1default/max_latency_default_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "blue" title 'Virtualization', \
-     '../2taskset/max_latency_taskset_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#fe06ba" title 'Taskset', \
-     '../4rt_kernelparam/max_latency_rt_kernelparam_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#298a24" title 'rt kernel', \
-     '../5rt_kernelparam_host/max_latency_rt_kernelparam_host_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#f29105" title 'rt kernel host', \
-     '../6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#f20505" title 'rt kernel host qemu'
+plot '../0hardware/max_latency_hardware_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#800080" title 'Salamander 4 Bare Metal', \
+     '../1default/max_latency_default_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "blue" title 'Untuned Salamander 4 Virtualization', \
+     '../2taskset/max_latency_taskset_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#fe06ba" title 'After BIOS Configurations', \
+     '../4rt_kernelparam/max_latency_rt_kernelparam_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#298a24" title 'After Kernel Configurations', \
+     '../5rt_kernelparam_host/max_latency_rt_kernelparam_host_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#f29105" title 'After Host Configurations', \
+     '../6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#f20505" title 'After QEMU Configurations'
 ```
 
 ![gnuplot_combined_max_latency.png](gnuplot_combined_max_latency.png)

@@ -1,4 +1,4 @@
-# gnuplot with taskset
+# gnuplot with host
 ```bash
 # Set output to a PNG file
 set terminal pngcairo enhanced font 'Arial,12' size 1024,768
@@ -11,7 +11,7 @@ set xlabel 'Time in {/Symbol=12 m}s'
 set ylabel "Samples"
 
 # Set the range for the x axis
-set xrange [0:18] 
+set xrange [0:19] 
 
 # Set the x and y axes to logarithmic scale
 #set logscale x
