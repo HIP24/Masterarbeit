@@ -92,8 +92,9 @@
 | Friday  | - [✅] 3.3 Real-Time Robotic Application<br>  - [✅] 3.3.1 Setup of Hardware Salamander 4<br>  - [✅] 3.3.2 Setup of QEMU Salamander 4 |
 | Saturday | - [✅] 2.9 Approach |
 | Sunday    | - [✅] 3.3.3 Robotic Application |
-| Monday    |  - [✅] Results<br>- [✅] Discussion<br>- [❌] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract |
-| Tuesday    | - [⌛] Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations <br> - [❌] Paper schreiben |
+| Monday    |  - [✅] Results<br>- [✅] Discussion |
+| Tuesday    | - [❌] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract <br> - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations |
+| Wednesday | - [❌] Paper schreiben |
 
 
 
