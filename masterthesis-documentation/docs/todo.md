@@ -2,8 +2,8 @@
 
 ### 0. Initial
 - [✅] Declaration
-- [❌] Kurzfassung
-- [❌] Abstract
+- [✅] Kurzfassung
+- [✅] Abstract
 
 ### 1. Introduction
 - [✅] 1.1 Real-Time Operating Systems
@@ -93,7 +93,7 @@
 | Saturday | - [✅] 2.9 Approach |
 | Sunday    | - [✅] 3.3.3 Robotic Application |
 | Monday    |  - [✅] Results<br>- [✅] Discussion |
-| Tuesday    | - [✅] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract |
+| Tuesday    | - [✅] Summary and Outlook<br>  - [✅] Kurzfassung<br>- [✅] Abstract |
 | Wednesday | - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations <br> - [❌] Paper schreiben |
 
 

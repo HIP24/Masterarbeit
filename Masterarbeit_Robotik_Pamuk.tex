@@ -109,11 +109,29 @@ Einhaltung der Echtzeit}
 %\secondsupervisor[Begutachter]{Titel Vorname Name, Titel}
 %\secondsupervisor[Begutachterinnen]{Titel Vorname Name, Titel}
 \place{Wien}
-\kurzfassung{Kurzfassung}
-\schlagworte{Echtzeit, Virtualisierung, Xenomai, VARAN}
-\outline{Abstract}
-\keywords{Echtzeit, Virtualisierung, Xenomai, VARAN}
-%\acknowledgements{\blindtext}
+\kurzfassung{Virtualisierung von Echtzeitbetriebssystemen für die Robotersteuerung bietet viele Vorteile im Vergleich zu herkömmlichen hardwarebasierten Ansätzen. Lösungen, die auf reiner Hardware basieren, sind oft für einen bestimmten Zweck gebaut und daher in ihrer Flexibilität eingeschränkt. Es ist schwierig, die Hardware-Topologie an neue Anforderungen anzupassen, und es kann kostspielig sein, insbesondere bei der Skalierung von Operationen. Der physische Zugang für Updates und Wartung ist herausfordernd, was zu Ausfallzeiten und Produktivitätsverlusten führt. Während die Virtualisierung diese Probleme adressiert, führt sie zu erhöhtem Overhead und Latenz.
+
+\bigskip \noindent Diese Arbeit untersucht die Virtualisierung des proprietären Salamander 4-Betriebssystems unter Verwendung von QEMU/KVM. Salamander 4 wird mit Yocto gebaut und verwendet harte Echtzeit mit Xenomai 3. Das Hauptziel besteht darin, die Latenzlücke zwischen den virtualisierten und den Bare-Metal-Versionen zu überbrücken, um ein deterministisches und zuverlässiges Verhalten zu gewährleisten, das für Echtzeit-Roboteranwendungen entscheidend ist.
+	
+\bigskip \noindent Erste Latenzmessungen zeigten eine signifikante Leistungslücke zwischen dem Bare-Metal- und dem virtualisierten Setup. Daher wird ein umfangreicher Tuning-Prozess durchgeführt, um Echtzeit-Performance und Determinismus zu erreichen. Diese Modifikationen umfassen Konfigurationen, die das BIOS, den Kernel, das Host-Betriebssystem, die QEMU/KVM-Virtualisierungsschicht und das Salamander 4-Betriebssystem (Gast) selbst betreffen. Die Worst-Case-Latenz wurde von 707.622\textmu s auf 17.134\textmu s reduziert, was der Bare-Metal-Performance von 10.709\textmu s nahekommt. Darüber hinaus wird die Verbesserung der Echtzeit-Performance und des Determinismus anhand einer Roboteranwendung validiert, bei der die abgestimmte Virtualisierung mit der nicht abgestimmten und der Hardware-Version verglichen wird.
+	
+\bigskip \noindent Insgesamt bietet diese Arbeit eine umfassende Blaupause, um ein virtualisiertes Gastsystem in einem Host-System mit deterministischem Verhalten echtzeitfähig zu machen.}
+\schlagworte{Virtualisierung, Echtzeitsysteme, Latenzreduktion, Robotiksteuerung}
+
+\outline{Virtualization of real-time operating systems systems for robotic control has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements and can be costly, especially when scaling operations. Physical access for updates and maintenance is challenging, leading to downtime and lost productivity. While virtualization addresses these issues, it introduces increased overhead and latency. 
+	
+\bigskip \noindent This thesis investigates the virtualization of the proprietory Salamander 4 operating system, using QEMU/KVM. Salamander 4 is built with Yocto and employs hard real-time with Xenomai 3. The primary objective is to bridge the latency gap between the virtualized and bare-metal versions in order to ensure deterministic and reliable behavior, which is crucial for real-time robotic applications.
+
+\bigskip \noindent Initial latency measurements revealed a significant performance gap between the bare-metal and virtualized setup. Thus, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS (guest) itself. The worst-case latency was brought down from 707.622\textmu s to 17.134\textmu s, closely aligning with the bare-metal performance of 10.709\textmu s. In addition, the improvement in real-time performance and determinism is validated using a robotic application, where the tuned virtualization is compared with the untuned and the hardware version.
+
+\bigskip \noindent Alltogether, this thesis provides a comprehensive blueprint for making a virtualized guest system real-time capable in a host system with deterministic behavior.}
+\keywords{Virtualization, Real-Time Systems, Latency Reduction, Robotic Control}
+
+\acknowledgements{First, I would like to thank my supervisor, Sebastian Felix Rauh MSc. BEng., for his expert guidance and assistance throughout this master's thesis. His insightful answers to all my questions and his calming presence helped me stay focused and composed.
+
+\bigskip \noindent I want to thank my wife, Nour Pamuk, for her unwavering support, love, and patience. She gave me the strength to overcome this challenge. This work is as much hers as it is mine.
+
+\bigskip \noindent Lastly, I am deeply grateful to my parents, Semra Pamuk and Mehmet Pamuk, and to my close family for their understanding and encouragement during my studies. Without their unconditional love and support, this work would not have been possible.}
 
 \begin{document}
 
