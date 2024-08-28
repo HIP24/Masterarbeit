@@ -10,19 +10,19 @@ os.makedirs(folder_name, exist_ok=True)
 np.random.seed(42)  # for reproducibility
 
 def generate_rtos_latencies(size=1000):
-    return np.random.uniform(10, 13, size).round(1)
+    return np.random.uniform(1.21, 1.49, size).round(3)
 
 def generate_tuned_virt_latencies(size=1000):
-    return np.random.uniform(10, 20, size).round(1)
+    return np.random.uniform(1.21, 3.99, size).round(3)
 
 def generate_untuned_virt_latencies(size=1000):
-    # Generate most values between 10 and 100
-    base = np.random.exponential(scale=20, size=size) + 10
-    # Add some outliers
-    outliers = np.random.uniform(100, 400, size=int(size * 0.05))
+    # Generate most values between 3 and 90
+    base = np.random.uniform(3.1, 44.9, size)
+    # Add some specific outliers
+    outliers = np.array([111, 113, 125, 129, 121])
     base[:len(outliers)] = outliers
     np.random.shuffle(base)
-    return np.clip(base, 10, 400).round(1)
+    return np.round(base, 3)
 
 # Generate latencies
 rtos_latencies = generate_rtos_latencies()
@@ -36,9 +36,9 @@ untuned_virt_latencies = [str(latency).replace('.', ',') for latency in untuned_
 
 # Create a DataFrame
 data = {
-    'Hardware Salamander 4 (us)': rtos_latencies,
-    'Tuned Salamander 4 Virtualization (us)': tuned_virt_latencies,
-    'Untuned Salamander 4 Virtualization (us)': untuned_virt_latencies
+    'Hardware Salamander 4 (ms)': rtos_latencies,
+    'Tuned Salamander 4 Virtualization (ms)': tuned_virt_latencies,
+    'Untuned Salamander 4 Virtualization (ms)': untuned_virt_latencies
 }
 df = pd.DataFrame(data)
 

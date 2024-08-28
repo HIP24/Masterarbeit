@@ -6,23 +6,23 @@ csv_path = 'generated_latencies/latencies.csv'
 df = pd.read_csv(csv_path, sep='     ;     ', engine='python')
 
 # Convert columns to numeric values
-df['Hardware Salamander 4 (us)'] = df['Hardware Salamander 4 (us)'].str.replace(',', '.').astype(float)
-df['Tuned Salamander 4 Virtualization (us)'] = df['Tuned Salamander 4 Virtualization (us)'].str.replace(',', '.').astype(float)
-df['Untuned Salamander 4 Virtualization (us)'] = df['Untuned Salamander 4 Virtualization (us)'].str.replace(',', '.').astype(float)
+df['Hardware Salamander 4 (ms)'] = df['Hardware Salamander 4 (ms)'].str.replace(',', '.').astype(float)
+df['Tuned Salamander 4 Virtualization (ms)'] = df['Tuned Salamander 4 Virtualization (ms)'].str.replace(',', '.').astype(float)
+df['Untuned Salamander 4 Virtualization (ms)'] = df['Untuned Salamander 4 Virtualization (ms)'].str.replace(',', '.').astype(float)
 
 # Calculate statistics
 def calculate_statistics(latencies):
     return {
         'Samples': len(latencies),
-        'Lat Min (us)': f"{np.min(latencies):.3f}".replace('.', ','),
-        'Lat Avg (us)': f"{np.mean(latencies):.3f}".replace('.', ','),
-        'Lat Max (us)': f"{np.max(latencies):.3f}".replace('.', ','),
-        'Std Dev (us)': f"{np.std(latencies):.3f}".replace('.', ',')
+        'Lat Min (ms)': f"{np.min(latencies):.3f}".replace('.', ','),
+        'Lat Avg (ms)': f"{np.mean(latencies):.3f}".replace('.', ','),
+        'Lat Max (ms)': f"{np.max(latencies):.3f}".replace('.', ','),
+        'Std Dev (ms)': f"{np.std(latencies):.3f}".replace('.', ',')
     }
 
-rtos_stats = calculate_statistics(df['Hardware Salamander 4 (us)'])
-tuned_virt_stats = calculate_statistics(df['Tuned Salamander 4 Virtualization (us)'])
-untuned_virt_stats = calculate_statistics(df['Untuned Salamander 4 Virtualization (us)'])
+rtos_stats = calculate_statistics(df['Hardware Salamander 4 (ms)'])
+tuned_virt_stats = calculate_statistics(df['Tuned Salamander 4 Virtualization (ms)'])
+untuned_virt_stats = calculate_statistics(df['Untuned Salamander 4 Virtualization (ms)'])
 
 # Create a DataFrame for the statistics
 stats_df = pd.DataFrame([rtos_stats, tuned_virt_stats, untuned_virt_stats], 
