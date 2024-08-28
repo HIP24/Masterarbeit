@@ -126,23 +126,6 @@
   keywords = {Computer Science - Operating Systems,Computer Science - Software Engineering}
 }
 
-@inproceedings{masrurVMBasedRealTimeServices2010,
-  title = {{{VM-Based Real-Time Services}} for {{Automotive Control Applications}}},
-  booktitle = {2010 {{IEEE}} 16th {{International Conference}} on {{Embedded}} and {{Real-Time Computing Systems}} and {{Applications}}},
-  author = {Masrur, Alejandro and Drossler, Sebastian and Pfeuffer, Thomas and Chakraborty, Samarjit},
-  year = {2010},
-  month = aug,
-  pages = {218--223},
-  publisher = {IEEE},
-  address = {Macau, China},
-  doi = {10.1109/RTCSA.2010.38},
-  url = {http://ieeexplore.ieee.org/document/5591645/},
-  urldate = {2024-03-25},
-  abstract = {Techniques for hardware virtualization have been successfully used to provide hardware-independent services and increase isolation between applications in the desktop domain. However, these characteristics make hardware virtualization also interesting for other domains like those involving control tasks. Since these techniques were initially not conceived for this kind of environments where, in particular, timing constraints must be guaranteed, it is necessary to analyze their behavior and investigate the viability of possible solutions based on them. In this paper, we are concerned with using VMs (Virtual Machines) to provide real-time services in the context of automotive control applications. For this purpose, we make use of the Xen hypervisor to design a real-time control loop on the top of a virtualization layer. We first analyze a typical Xen configuration and identify problems that arise when it is used for real-time applications. We show that the worst-case performance of Xen's standard SEDF scheduler (Simple Earliest Deadline First) can be improved by incorporating some minimal modifications. In addition, in order to reduce latency and jitter in a real-time control loop, we propose a new scheduler for the Xen hypervisor that uses the concept of a real-time VM. Real-time VMs are then scheduled before any other VM and under a fixed-priority policy. The proposed VM-based solution is shown to guarantee timing constraints typically encountered in automotive control applications. We further illustrate this through an extensive set of experiments.},
-  isbn = {978-1-4244-8480-5},
-  langid = {english}
-}
-
 @article{malallahComprehensiveStudyKernel2021,
   title = {A {{Comprehensive Study}} of {{Kernel}} ({{Issues}} and {{Concepts}}) in {{Different Operating Systems}}},
   author = {Malallah, HayfaaSubhi and Zeebaree, Subhi R. M. and Zebari, Rizgar R. and Sadeeq, Mohammed A. M. and Ageed, Zainab Salih and Ibrahim, Ibrahim Mahmood and Yasin, Hajar Maseeh and Merceedi, Karwan Jameel},
@@ -246,24 +229,6 @@
   langid = {english}
 }
 
-@incollection{pielAsymmetricSchedulingLoad2006,
-  title = {Asymmetric {{Scheduling}} and {{Load Balancing}} for {{Real-Time}} on {{Linux SMP}}},
-  booktitle = {Parallel {{Processing}} and {{Applied Mathematics}}},
-  author = {Piel, {\'E}ric and Marquet, Philippe and Soula, Julien and Dekeyser, Jean-Luc},
-  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Dough and Vardi, Moshe Y. and Weikum, Gerhard and Wyrzykowski, Roman and Dongarra, Jack and Meyer, Norbert and Wa{\'s}niewski, Jerzy},
-  year = {2006},
-  volume = {3911},
-  pages = {896--903},
-  publisher = {Springer Berlin Heidelberg},
-  address = {Berlin, Heidelberg},
-  doi = {10.1007/11752578_108},
-  url = {http://link.springer.com/10.1007/11752578_108},
-  urldate = {2024-05-06},
-  abstract = {The ARTiS system, a real-time extension of the GNU/Linux scheduler dedicated to SMP (Symmetric Multi-Processors) systems is proposed. ARTiS exploits the SMP architecture to guarantee the preemption of a processor when the system has to schedule a real-time task. The basic idea of ARTiS is to assign a selected set of processors to realtime operations. A migration mechanism of non-preemptible tasks insures a latency level on these real-time processors. Furthermore, specific load-balancing strategies allows ARTiS to benefit from the full power of the SMP systems: the real-time reservation, while guaranteed, is not exclusive and does not imply a waste of resources.},
-  isbn = {978-3-540-34141-3 978-3-540-34142-0},
-  langid = {english}
-}
-
 @article{deoliveiraDemystifyingRealTimeLinux,
   title = {Demystifying the {{Real-Time Linux Scheduling Latency}}},
   author = {De Oliveira, Daniel Bristot and Casini, Daniel and Cucinotta, Tommaso},
@@ -311,14 +276,6 @@
   title = {Real-{{Time Performance Tuning Best Practice Guidelines}} for {{KVM-Based Virtual Machines}}},
   year = {2022},
   langid = {english}
-}
-
-@misc{CPUEinheitenSIGMATEK,
-  title = {{CPU-Einheiten - SIGMATEK}},
-  url = {https://www.sigmatek-automation.com/de/produkte/steuerungssysteme/cpu-einheiten/cp-841/},
-  urldate = {2024-05-27},
-  abstract = {CP 841},
-  langid = {ngerman}
 }
 
 @misc{EngineeringToolLASAL,
@@ -580,18 +537,6 @@
   abstract = {The industry has recently shown a growing interest in running non-critical activities (e.g., design tools) together with real-time control tasks on open-source COTS platforms.},
   copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
   isbn = {978-1-72818-956-7},
-  langid = {english}
-}
-
-@article{REALTIMEOPERATING,
-  title = {{{REAL TIME OPERATING SYSTEMS}}: {{A COMPLETE OVERVIEW}}},
-  abstract = {Telecommunication applications such as telephony, navigation and military signaling systems etc. are real time embedded systems. These systems must meet strict deadline constraints and handle different aspects of the application successfully. Real Time Operating Systems (RTOS) is most widely used software architecture for executing such embedded applications demanding strict deadlines and handling multiple tasks together. The important feature of RTOS is the timing considerations such that most urgent operations are taken care of by assigning higher priorities. RTOS also focuses on the communication and synchronization between different tasks to achieve the objective of the application. Our paper focuses on the discussion and overview for the quick understanding of design and implementing issues of RTOS for any microcontroller or microprocessor to be used in real time embedded systems.},
-  langid = {english}
-}
-
-@article{jiangRealTimeSystemManycore,
-  title = {Real-{{Time I}}/{{O System}} for {{Many-core Embedded Systems}}},
-  author = {Jiang, Zhe},
   langid = {english}
 }
 

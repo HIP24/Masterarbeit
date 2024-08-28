@@ -93,7 +93,7 @@
 | Saturday | - [✅] 2.9 Approach |
 | Sunday    | - [✅] 3.3.3 Robotic Application |
 | Monday    |  - [✅] Results<br>- [✅] Discussion |
-| Tuesday    | - [❌] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract <br> - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations |
+| Tuesday    | - [✅] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract <br> - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations |
 | Wednesday | - [❌] Paper schreiben |
 
 
@@ -106,7 +106,3 @@
 - Sonstiges Dateien (z.B. Freigaben für die Verwendung von Bildern in der Masterthesis) in Unterordnern
 - Powerpoint-Präsentation der Masterarbeit
 - Videos zur Masterarbeit
-
-<hr>
-
-- Anbindung eines Roboters über eine VARAN-Bus Schnittstelle:

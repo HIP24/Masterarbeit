@@ -181,18 +181,17 @@ In today's industrial production and automation, robot systems are well establis
 
 \noindent In these real-time operating system, task scheduling is based on so-called priority-based preemptive scheduling~\cite{buttazzoHardRealtimeComputing2024}. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Preemptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognizes that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed.
 
-\bigskip \noindent Real-time systems are usually classified as either soft or hard real-time systems ~\cite{lipariRealTimeSchedulingHard}. The difference lies exclusively in the consequences of a violation of the time limits. Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality.
+\bigskip \noindent Real-time systems are usually classified as either soft or hard real-time systems~\cite{lipariRealTimeSchedulingHard}. The difference lies exclusively in the consequences of a violation of the time limits~\cite{HardRealTime}. Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality~\cite{queirozTestingLimitsGeneralpurpose2023}.
 
 \section{Application Context}\label{sec:application_context}
 This section briefly defines the context and scope within which this master's thesis was composed, highlighting the specific contributions and requirements set by SIGMATEK GmbH \& Co KG~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
 
 \begin{itemize}
-	\item This work was written at SIGMATEK GmbH \& Co KG, a company that researches, develops, produces, and distributes automation technology for industrial machinery and plant engineering. SIGMATEK uses its own custom Linux-based operating system, to be run on their self-manufactured CPUs. This operating system will be referred to as ``Salamander 4'' in this work. The details of Salamander 4 are explained in Chapter~\ref{sec:salamander4}.
+	\item This work was written at SIGMATEK GmbH \& Co KG, a company that researches, develops, produces, and distributes automation technology for industrial machinery and plant engineering. SIGMATEK uses its own custom Linux-based operating system, to be run on their self-manufactured CPUs. This operating system will be referred to as ``Salamander 4'' in this work. The details of Salamander 4 are explained in Chapter~\ref{sec:guest_operating_system}.
 	\item Salamander 4 was created with Yocto~\cite{WelcomeYoctoProject}, an open-source project that helps develop custom Linux-based systems. Yocto is discussed in Section~\ref{sec:yocto}.
 	\item Salamander 4 is virtualized through Quick emulator (QEMU), an open-source emulator and virtualizer that allows to run different operating systems on a computer QEMU is described in Section~\ref{sec:qemu}.
 	\item Salamander 4 employs hard real-time with Xenomai 3~\cite{XenomaiXenomai}, a real-time framework for Linux that enables deterministic and low-latency performance. Xenomai 3 is detailed in Section~\ref{sec:xenomai}.
-	\item The goal is to virtualize Salamander 4 and approach the performance of bare metal (hardware) through real-time performance tunings, focussing on latency requirements set by SIGMATEK.
-	      These modifications are subject of Chapter~\ref{sec:real-time_tunings}.
+	\item The goal is to virtualize Salamander 4 and approach the performance of bare metal (hardware) through real-time performance tunings, focussing on latency requirements set by SIGMATEK. These modifications are subject of Chapter~\ref{sec:real-time_tunings}.
 	\item The \texttt{latency} tool of the Xenomai suite to measure the scheduling latency of the real-time OS was suggested to use by SIGMATEK. The goal was set to achieving latency values below 50 microseconds in the duration of the measuremenet.
 	\item SIGMATEK uses the VARAN bus for communication between machines and systems, a real-time Ethernet network that was specially developed for industrial automation. Its operating principle is outlined in Section~\ref{sec:varan}.
 	\item For the purpose of replacing the physical CPU, SIGMATEK provided a PCI Insert Card module PCV 522, that was plugged into the PC, as explained in Subsection~\ref{subsec:setup_experiment_virtualized}. This component could then be used to communicate with the Input/Output peripherals, just like the physical CPU could when the I/O modules were attached to it. Subsequently, the PCV 522 module of SIGMATEK was connected with the Pulse Width Module PW 022 of SIGMATEK over the VARAN bus and the VI 021 module of SIGMATEK serving as the power supply.
@@ -271,7 +270,7 @@ As stated previously, virtualization of real-time systems has many advantages in
 
 \clearpage
 
-\bigskip \noindent In this master's thesis, the task is the virtualization of a real-time operating system to control a robot, with a focus on compliance with real-time determinism. Chapter~\ref{cha:methodology} explains in detail the procedure, how this was tackled.  As already established in Section~\ref{sec:application_context}, Salamander 4 is built with Yocto, employs hard real-time with Xenomai 3 and virtualized through QEMU/KVM. The initial latency values are measured with the \texttt{latency} program of the Xenomai tool suite. The initial situation is described in Section~\ref{sec:starting_situation}. In a nutshell, there is a significant initial gap in latency statistics between the virtualized Salamander 4 and the Salamander 4 on bare metal. For this reason, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS (guest) itself. The individual configurations are discussed in detail in Chapter~\ref{sec:real-time_tunings} and the modifications are justified with a clear explanation.
+\bigskip \noindent In this master's thesis, the task is the virtualization of a real-time operating system to control a robot, with a focus on compliance with real-time determinism. Chapter~\ref{cha:methodology} explains in detail the procedure, how this was tackled.  As already established in Section~\ref{sec:application_context}, Salamander 4 is built with Yocto, employs hard real-time with Xenomai 3 and is virtualized through QEMU/KVM. The initial latency values are measured with the \texttt{latency} program of the Xenomai tool suite. The initial situation is described in Section~\ref{sec:starting_situation}. In a nutshell, there is a significant initial gap in latency statistics between the virtualized Salamander 4 and the Salamander 4 on bare metal. For this reason, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS (guest) itself. The individual configurations are discussed in detail in Chapter~\ref{sec:real-time_tunings} and the modifications are justified with a clear explanation.
 
 \section{Objective}
 The goal is to bring the latency of the virtualized Salamander 4 closer to that of the hardware, thereby providing a comprehensive blueprint for making a virtualized guest system in a host system real-time capable with deterministic behavior. Section~\ref{sec:starting_situation} outlines the initial situation of this master's thesis and serves as the foundation for the real-time performance tunings discussed in Section~\ref{sec:real-time_tunings}. The objective is to achieve latency values below 50 microseconds during the measurement period through real-time tunings, with no outliers whatsoever. To determine and validate the performance of the tunings, the \texttt{latency} tool is used, as stated in Section~\ref{sec:application_context}. On top of that, the aim is to use a robotic application in a practical scenario to demonstrate and validate that the tunings significantly reduce latency and improve determinism compared to the unmodified virtualization.
@@ -323,7 +322,7 @@ root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
 
-\noindent Salamander 4 is powered by SIGMATEK's CP 841~\cite{CPUEinheitenSIGMATEK} and is comprised of the following software modules:
+\noindent Salamander 4 is powered by SIGMATEK's CP 841~\cite{CPUUnitsSIGMATEK} and is comprised of the following software modules:
 
 \begin{itemize}
 	\item \textbf{Operating system}: The operating system in a LASAL CPU manages the hardware and software resources of the system. It is provided in a completely PC-compatible manner, working with a standard PC BIOS.
@@ -595,7 +594,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 In this chapter, the significant initial gap in latency statistics between the virtualized system and the bare metal system is tackled. For this reason, an extensive tuning process is carried out. This involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The individual configurations are discussed in detail and the modifications are justified with a clear explanation. The goal is to bring the latency of the virtualization closer to that of the bare metal, thereby ensuring deterministic behavior under real-time constraints.
 
-\bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system, ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the PREEMPT-RT patch to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event~\cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and makes the system more predictable. Determinism and predictability are key for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling~\cite{rostedtInternalsRTPatch}.
+\bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system, ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the PREEMPT-RT patch to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event~\cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and makes the system more predictable~\cite{lutsykPipelinedMulticoreMachine2020}. Determinism and predictability are key for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling~\cite{rostedtInternalsRTPatch}.
 
 \bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. After each tuning, the \texttt{latency} test of Xenomai is executed to evaluate the improved latency. The most important metric of a latency test is without a doubt the worst latency value, because the system is only as reliable as its worst measurement. Since the period of the tests is set to 100\textmu s, there are approximately 1,000,000 samples per second.
 
@@ -1152,7 +1151,7 @@ This chapter compares the latency of the Salamander 4 operating system before an
 \noindent The program is written in Lasal Class 2 and is applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment.
 
 \subsection{Setup of Hardware Salamander 4}
-In this version, Salamander 4 runs on the CP 841~\cite{CPUEinheitenSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 modules are directly mounted on the CPU via the S-DIAS bus~\cite{SDIASSIGMATEK}. There are three PW 022 modules because each can control two motors simultaneously, and the mini-robot has six motors. The setup is visible on Figure~\ref{fig:hardware_tree}.
+In this version, Salamander 4 runs on the CP 841~\cite{CPUUnitsSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 modules are directly mounted on the CPU via the S-DIAS bus~\cite{SDIASSIGMATEK}. There are three PW 022 modules because each can control two motors simultaneously, and the mini-robot has six motors. The setup is visible on Figure~\ref{fig:hardware_tree}.
 
 \begin{figure}[H]
 	\centering
@@ -1223,11 +1222,11 @@ Robots operate in real-time, meaning commands must be executed within a set time
 			line/.style={draw, -latex'}
 		]
 		% Place nodes
-		\node [block] (issue) {\scriptsize \textbf{Command Issuance}\\A command is sent to the robot to move a joint.};
+		\node [block] (issue) {\scriptsize \textbf{Command Issuance}\\A command is sent to the system to execute a movement.};
 		\node [block, below=of issue] (record1) {\scriptsize \textbf{Recording Command Time}\\The timestamp of the moment the command is recorded.};
-		\node [block, below=of record1] (detect) {\scriptsize \textbf{Detecting Response}\\The moment when the robot starts to execute the command is detected.};
-		\node [block, below=of detect] (record2) {\scriptsize \textbf{Recording Response Time}\\The timestamp of the detected response is recorded.};
-		\node [block, below=of record2] (calculate) {\scriptsize \textbf{Calculating Latency}\\The latency is determined by the difference between the command time and the response time.};
+		\node [block, below=of record1] (detect) {\scriptsize \textbf{Detecting Response}\\The moment when the signal reaches the PWM is detected.};
+		\node [block, below=of detect] (record2) {\scriptsize \textbf{Recording Response Time}\\The timestamp of when the signal reaches the PWM is recorded.};
+		\node [block, below=of record2] (calculate) {\scriptsize \textbf{Calculating Latency}\\The latency is determined by the difference between the command issuance time and the response \\\vspace{-0.5em} time at the PWM.};
 		% Draw edges
 		\path [line] (issue) -- (record1);
 		\path [line] (record1) -- (detect);
@@ -1239,6 +1238,20 @@ Robots operate in real-time, meaning commands must be executed within a set time
 \end{figure}
 
 \noindent This latency measurement above is performed 1,000 times to get reliable results. These results are presented in the next subsubsections.
+
+
+
+\begin{comment}
+Ja, du denkst richtig! Wenn du die Latenz des Systems messen möchtest, die es benötigt, um das Signal bei der PWM anzukommen, und die 20 ms Signalperiode des Servomotors ignorieren möchtest, dann konzentrierst du dich auf die reine Reaktionszeit des Systems.
+
+In diesem Fall misst du die Zeit von der Befehlsausgabe bis zum Eintreffen des Signals bei der PWM. Die 20 ms, die der Servomotor benötigt, um das Signal zu verarbeiten und die Bewegung zu starten, werden in deiner Latenzdefinition nicht berücksichtigt.
+
+Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benötigt, um das Signal an die PWM zu senden, ohne die zusätzliche Verzögerung durch die Signalperiode des Servomotors einzubeziehen.
+
+	In diesem Versuch wird die Latenz des Systems gemessen, die benötigt wird, um das Signal von der Befehlsausgabe bis zum Eintreffen bei der PWM (Pulsweitenmodulation) zu erfassen. Die Signalperiode des Servomotors von 20 ms wird dabei ignoriert, da sie für die Definition der Systemlatenz nicht relevant ist. Die Latenz wird somit als die reine Reaktionszeit des Systems definiert, ohne die zusätzliche Verzögerung durch die Signalperiode des Servomotors zu berücksichtigen.
+\end{comment}
+
+
 
 \clearpage
 
@@ -1261,7 +1274,8 @@ Robots operate in real-time, meaning commands must be executed within a set time
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			1000             & 10.3                 & 8.5                  & 12.7                  & 0.9                   \\ \hline
+
+			1000             & 1.211                 & 1.347                  & 1.49                  & 0.082                   \\ \hline
 		\end{tabular}}
 \end{table}
 
@@ -1286,7 +1300,7 @@ Robots operate in real-time, meaning commands must be executed within a set time
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			1000             & 12.654                 & 40.671                  & 394.126            & 52.711                  \\ \hline
+			1000             & 3.1                 & 24.603                  & 129.46            & 13.876                  \\ \hline
 		\end{tabular}}
 \end{table}
 
@@ -1310,7 +1324,7 @@ Robots operate in real-time, meaning commands must be executed within a set time
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			1000             & 10.875                 & 15.072                  & 20.156                  & 2.921                   \\ \hline
+			1000             & 1.219                 & 2.62                  & 3.988            & 0.182                   \\ \hline
 		\end{tabular}}
 \end{table}
 
@@ -1354,8 +1368,6 @@ Robots operate in real-time, meaning commands must be executed within a set time
 ``korrekt''
 
 \noindent \enquote{This LaTeX.}
-
-The latency was measured under two conditions, idle and CPU-stressed. Vorgehensweise von~\cite{linPerformanceEvaluationXenomai}
 
 \section{Trace-cmd and Kernelshark}
 After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
@@ -1433,29 +1445,6 @@ After analyzing the inital latency of both versions, Trace-cmd and Kernelshark w
 
 The Figure below (deleted) compares non-optimized guest latency with optimized guest latency and includes optimized bare-metal latency as a reference. The data shows that a 40\% reduction in QD1 latency is achievable through system tuning.
 
-\section{Citation table}
-\vspace{2em}
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|p{0.1\textwidth}|p{0.45\textwidth}|p{0.45\textwidth}|}
-		\hline
-		\textbf{Number}                    & \textbf{Book} & \textbf{Citation} \\
-		\hline
-		\cite{maPerformanceTuningKVMbased} & book          & citation          \\
-		\hline
-		\cite{maPerformanceTuningKVMbased} & book          & citation          \\
-		\hline
-		\cite{maPerformanceTuningKVMbased} & book          & citation          \\
-		\hline
-		\cite{maPerformanceTuningKVMbased} & book          & citation          \\
-		\hline
-	\end{tabular}
-	\caption{Your Caption}
-	\label{tab:my_label}
-\end{table}
-
-\clearpage
-
 \end{comment}
 
 \chapter{Results}\label{cha:results}
@@ -1489,7 +1478,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 
 \clearpage 
 
-\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the response time of the robot was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}. 
+\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}. 
 
 \begin{figure}[H]
 	\centering
@@ -1501,6 +1490,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 \noindent This response latency measurement above was performed 1,000 times to get reliable results. These results are presented in Table~\ref{tab:robotic_application_latency_values_combined}.
 
 \begin{table}[H]
+	\small
 	\centering
 	\caption{Robotic Application Latency Values}
 	\label{tab:robotic_application_latency_values_combined}
@@ -1508,42 +1498,39 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 		\begin{tabular}{|l|l|l|l|l|l|}
 			\hline
-			\textbf{Tuning} & \textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			Hardware        & 1000             & 10.3                  & 8.5                   & 12.7                   & 0.9                   \\ \hline
-			Untuned Virtualization    & 1000             & 12.654                & 40.671                & 394.126                & 52.711                \\ \hline
-			Tuned Virtualization      & 1000             & 10.875                & 15.072                & 20.156                 & 2.921                 \\ \hline
+			\textbf{Tuning} & \textbf{Samples} & \textbf{Lat Min (ms)} & \textbf{Lat Avg (ms)} & \textbf{Lat Max (ms)} & \textbf{Std Dev (ms)} \\ \hline
+			Hardware & 1000 & 1.211 & 1.347 & 1.49 & 0.082 \\ \hline
+			Untuned Virtualization & 1000 & 3.1 & 24.603 & 129.46 & 13.876 \\ \hline
+			Tuned Virtualization & 1000 & 1.219 & 2.62 & 3.988 & 0.812 \\ \hline
 		\end{tabular}}
 \end{table}
-
-
 
 \clearpage
 
 \chapter{Discussion}\label{cha:discussion}
 This master's thesis shows that the real-time performance tunings applied to the virtualized Salamander 4 OS have a positive impact on reducing latency and improving determinism. The maximum latency in the final tuned version of Salamander 4 Virtualization is significantly lower than in the default setup. The worst latency value in a 10 minute measurement span decreased from 707.622\textmu s to 17.134\textmu s after tuning  BIOS, kernel, host, guest and QEMU/KVM configurations. Especially the BIOS and kernel configurations played a crucial role in reducing the maximum latency, with a major fall to 21.694\textmu s. From this moment on, there were also no overruns in the test any longer. The host configurations, including the PREEMPT-RT patch, CPU and interrupt affinity, and real-time prioritization of QEMU further reduced latency a little bit down to 18.441\textmu s. The guest OS, Salamander 4, already had real-time capabilities through Xenomai. The focus was primarily on optimizing the host and virtualization layer to achieve the desired real-time performance. Finally, QEMU/KVM configurations, such as tuning the LAPIC timer advance and using hugepages brought the latency down a little more to the final worst latency value of 17.134\textmu s in 10 minutes. This value is very close to the bare metal value of 10.709\textmu s. The goal was set to achieving latency values below 50 microseconds in the duration of the measuremenet. This goal is acheived.
 
-\bigskip \noindent As a next step, the robotic application in a practical scenario also demonstrates and validates the improvement of the tuned virtualization compared to the unmodified virtualization. The difference between the command time and the response time of the robot was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The most imortant metric here is also the worst response latency of the robot. It dropped from 394.126\textmu s to 20.156\textmu s in the developped application. Comparing this to the worst latency value of the hardware version, which is 12.7\textmu s, it is apparent that the tuned virtualization through real-time performance configurations came very close to the determinsim and reliability of the hardware. 
+\bigskip \noindent As a next step, the robotic application in a practical scenario also demonstrates and validates the improvement of the tuned virtualization compared to the unmodified virtualization. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the untuned, tuned, and hardware version of Salamander 4. The most important metric here is also the worst latency of the signal reaching the PWM. It dropped from 129 ms to 3.988 ms in the developed application. Comparing this to the worst latency value of the hardware version, which is 1.49 ms, it is apparent that the tuned virtualization through real-time performance configurations came very close to the determinism and reliability of the hardware.
 
 \bigskip \noindent It is important to underline one more time the fact that these modifications were added sequentially and tested together. First, the BIOS was configured, followed by the kernel. The BIOS settings were not reverted when moving to the kernel configurations. Next, the host was configured, but the BIOS and kernel settings remained unchanged. The guest configurations were not changed since Xenomai already provides real-time capabilities. Finally, QEMU/KVM settings were applied. This means that the configurations are not isolated but are applied and then tested as a whole.
 
 \clearpage
 
 \chapter{Summary and Outlook}\label{cha:summary_and_outlook}
+
+
+Hardware-based systems are limited in adaptability and can be costly, especially when scaling operations. Physical access for updates and maintenance is challenging, leading to downtime and lost productivity. While virtualization addresses these issues, it introduces increased overhead and latency.
+
+\bigskip \noindent In this master's thesis, the goal was the virtualization of a real-time operating system to control a robot, with a focus on compliance with real-time determinism. Specifically, the aim was to bring the latency of the virtualized Salamander 4 closer to that of the bare metal version, thereby providing a comprehensive blueprint for making a virtualized guest system in a host system real-time capable with deterministic behavior. Salamander 4 is built with Yocto, employs hard real-time with Xenomai 3 and is virtualized through QEMU/KVM. The testing robot was connected to the OS via a VARAN bus interface.
+
+\bigskip \noindent The initial latency values were first measured with the \texttt{latency} program of the Xenomai tool suite. The tests were conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99. If any sample's latency value was greater than 100µs, this was considered an overrun. There was a significant initial gap in latency statistics between the virtualized Salamander 4 and the Salamander 4 on bare metal. To address this gap, an extensive tuning process was carried out to achieve real-time performance and determinism. These modifications were added sequentially and tested together. First, the BIOS was configured, followed by the kernel. The BIOS settings were not reverted when moving to the kernel configurations. After these two steps, the worst latency decreased from an initial value of 707.62~\textmu s to 21.694\textmu s.  From this moment on, there were also no overruns in the test any longer. The host configurations, including the PREEMPT-RT patch, CPU and interrupt affinity, and real-time prioritization of QEMU further reduced latency a little bit down to 18.441\textmu s. The guest OS, Salamander 4, already had real-time capabilities through Xenomai. The focus was primarily on optimizing the host and virtualization layer to achieve the desired real-time performance. Finally, QEMU/KVM configurations, such as tuning the LAPIC timer advance and using hugepages brought the latency down a little more to the final worst latency value of 17.134\textmu s in 10 minutes. This value is very close to the bare metal value of 10.709\textmu s. The goal was set to achieving latency values below 50 microseconds in the duration of the measuremenet. This goal was acheived.
+
+\bigskip \noindent On top of that, a robotic application further confirmed the improvements. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The worst latency of the signal reaching the PWM dropped from an inital value of 129ms to 3.988ms. Comparing this to the worst latency value of the hardware version, which was 1.49ms, it is apparent that the tuned virtualization through real-time performance configurations came very close to the determinism and reliability of the hardware.
+
+\bigskip \noindent While this thesis provides a comprehensive blueprint for making a virtualized guest system in a host system real-time capable with deterministic behavior, future work can be done to extend this knowledge. Additional configurations and optimizations of the virtualization layer can be done and tested to further reduce latency and improve determinism. Other than that, the use of other hypervisors and virtualization technologies can be investigated to compare their performance for real-time applications. Moreover, extensive testing of the virtualized system under various workloads can be conducted to evaluate its performance and reliability in different conditions and stressed situations, as demonstrated by \citeauthor{huang2015performance}~\cite{huang2015performance}, \citeauthor{kirovaImpactModernVirtualization2019}~\cite{kirovaImpactModernVirtualization2019} or \citeauthor{adamPerformanceAssessmentLinux2021}~\cite{adamPerformanceAssessmentLinux2021}.
+
+
 \begin{comment}
-6. Summary and Outlook
-In this thesis, we successfully virtualized the Salamander 4 operating system and applied extensive real-time performance tunings to bring its latency closer to that of the bare metal setup. The results demonstrate that with the right configurations, it is possible to achieve deterministic behavior in a virtualized environment.
-
-6.1 Summary
-The initial latency gap between the virtualized and bare metal setups was significant.
-Real-time performance tunings, including BIOS, kernel, host, and QEMU/KVM configurations, were applied.
-The tuned virtualized setup showed a substantial reduction in latency and improved determinism.
-6.2 Future Work
-Future work could focus on further optimizing the virtualization layer and exploring other real-time performance tuning techniques. Additionally, testing the system under different workloads and scenarios would provide a more comprehensive understanding of its performance.
-
-6.3 Practical Implications
-The findings of this thesis have practical implications for industries relying on real-time systems. Virtualizing real-time operating systems can lead to cost savings and increased flexibility, provided that the necessary performance tunings are applied to ensure deterministic behavior.
-\end{comment}
-
 Online
 
 ~\cite{WhatRealtimeLinuxa}
@@ -1552,7 +1539,7 @@ Online
 ~\cite{XenomaiXenomai}
 ~\cite{casiniLatencyAnalysisVirtualization2021}
 ~\cite{zhangEvaluatingOptimizingVirtualization2010}
-~\cite{CPUEinheitenSIGMATEK}
+~\cite{CPUUnitsSIGMATEK}
 ~\cite{EngineeringToolLASAL}
 ~\cite{QEMU}
 ~\cite{RealtimePreempt_rt_versionsWiki}
@@ -1579,8 +1566,6 @@ Online
 ~\cite{SDIASSIGMATEK}
 ~\cite{ControlsHMIsSIGMATEK}
 ~\cite{InterfacesSplittersSIGMATEK}
-~\cite{lutsykPipelinedMulticoreMachine2020}
-~\cite{CPUUnitsSIGMATEK}
 
 \noindent Papers
 
@@ -1614,14 +1599,15 @@ Online
 ~\cite{queirozContainerbasedVirtualizationRealtime2024}
 ~\cite{cinqueEvaluatingVirtualizationFog2023}
 ~\cite{huang2015performance}
-~\cite{pielAsymmetricSchedulingLoad2006}
+~\cite{lutsykPipelinedMulticoreMachine2020} 
 ~\cite{queirozTestingLimitsGeneralpurpose2023}
 ~\cite{kirovaImpactModernVirtualization2019}
-~\cite{REALTIMEOPERATING}
-~\cite{masrurVMBasedRealTimeServices2010}
 ~\cite{HardRealTime}
 ~\cite{adamPerformanceAssessmentLinux2021}
-~\cite{jiangRealTimeSystemManycore}
+
+
+\end{comment}
+
 
 %
 % Hier beginnen die Verzeichnisse.
@@ -1657,20 +1643,4 @@ Online
 	\acro{QEMU}[QEMU]{Quick Emulator}
 	\acro{IRQ}[IRQ]{Interrupt Request}
 \end{acronym}
-
-%
-% Hier beginnt der Anhang.
-%
-
-\clearpage
-
-\appendix
-\begin{comment}
-\chapter{Anhang A}
-
-\clearpage
-
-\chapter{Anhang B}
-\end{comment}
-
 \end{document}
