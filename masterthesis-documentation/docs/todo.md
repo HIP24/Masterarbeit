@@ -54,13 +54,13 @@
   - [✅] 3.3.3 Robotic Application
 
 ### 4. Results
-- [❌] Results
+- [✅] Results
 
 ### 5. Discussion
-- [❌] Discussion
+- [✅] Discussion
 
 ### 6. Summary and Outlook
-- [❌] Summary and Outlook
+- [✅] Summary and Outlook
 
 ### Bibliography
 - [❌] Bibliography
@@ -93,8 +93,8 @@
 | Saturday | - [✅] 2.9 Approach |
 | Sunday    | - [✅] 3.3.3 Robotic Application |
 | Monday    |  - [✅] Results<br>- [✅] Discussion |
-| Tuesday    | - [✅] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract <br> - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations |
-| Wednesday | - [❌] Paper schreiben |
+| Tuesday    | - [✅] Summary and Outlook<br>  - [❌] Kurzfassung<br>- [❌] Abstract |
+| Wednesday | - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations <br> - [❌] Paper schreiben |
 
 
 
