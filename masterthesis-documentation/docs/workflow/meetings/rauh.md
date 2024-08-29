@@ -7,7 +7,7 @@
 - [✅] New Chapter 3 "Implementation", 1. Initial, 2. Tunings 
 - [✅] Abkürzungen
 - [✅] Code beschreiben, formatieren
-- [❌] Literaturverzeichnis vervollständigen
+- [✅] Literaturverzeichnis vervollständigen
 - [✅] Abstract: keine Quellen
 - [✅] Methodology: In der Gegenwart
 
