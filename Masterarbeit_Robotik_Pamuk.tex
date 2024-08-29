@@ -23,7 +23,7 @@
 % *) V0.5: 8.8.2014, WK: Literaturquellen überarbeitet und angepasst
 % *) V0.4: 4.8.2014, WK: Initalversion in SVN eingespielt
 %
-\documentclass[MMR,Master,english]{twbook}
+\documentclass[MMR,Master,english]{style/twbook}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 %
@@ -124,7 +124,7 @@
 \bigskip \noindent Initial latency measurements revealed a significant performance gap between the bare metal and virtualized setup. Thus, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host operating system, QEMU/KVM virtualization layer, and the Salamander 4 operating system (guest) itself. The worst-case latency was brought down from 707.622\textmu s to 17.134\textmu s, closely aligning with the bare metal performance of 10.709\textmu s. In addition, the improvement in real-time performance and determinism is validated using a robotic application, where the tuned virtualization is compared with the untuned and the hardware version.
 
 \bigskip \noindent Altogether, this thesis provides a comprehensive blueprint for making a virtualized guest system real-time capable in a host system with deterministic behavior.}
-\keywords{Virtualization, Real-Time Systems, Latency Reduction, Robotic Control}
+\keywords{Virtualization, Real-Time Systems, Latency Reduction, Robot Control}
 
 \acknowledgements{First, I would like to thank my supervisor, Sebastian Felix Rauh MSc. BEng., for his expert guidance and assistance throughout this master's thesis. His insightful answers to all my questions and his calming presence helped me stay focused and composed.
 

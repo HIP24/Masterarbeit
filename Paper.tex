@@ -1,0 +1,233 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------------
+% LaTeX FHPaper Template by Thomas MIGLINCI
+% ------------------------------------------------------------------------
+%
+% Das eigentliche Paper beginnt ab Zeile 124 - dort die Daten in den
+% Aufruf von FHInfo eintragen.
+%
+% Bitte ersetzen Sie gegebenenfalls Master-Studiengang Mechatronik/Robotik durch Bachelor-.....
+%
+% Erstellt von T. Miglinci, Jänner 2012 und getestet von W. Kubinger, März 2012 und September 2012
+%
+% Updates:
+%  -) 30.10.2013, WK:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,a4paper,twoside]{article}
+
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% mathematische Symbole
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+%damit sind Bilder gezielter zu plazieren
+\usepackage{float}
+
+%%% ----------------------------------------------------------------------
+\usepackage{color}
+% Die Corporate Farben sind Blau (RGB 0/134/203), Grün (RGB 0/132/98) und Grau (RGB 98/107/113)
+\definecolor{fhblue}{RGB}{0,134,203}
+\newcommand\FHblue{\textcolor{fhblue}}
+\definecolor{fhgruen}{RGB}{0,132,98}
+\newcommand\FHgruen{\textcolor{fhgruen}}
+\definecolor{fhgrau}{RGB}{98,107,113}
+\newcommand\FHgrau{\textcolor{fhgrau}}
+
+\unitlength1mm
+
+% Zitierung im Harvard-Style
+\usepackage{harvard}
+\usepackage{url} %Darstellung von URLs erlauben
+\citationstyle{dcu}  % für Zitate
+\bibliographystyle{style/HarvardFHTWMR_V1_2e}% für Literaturverzeichnis
+\citationmode{abbr}
+\newcommand\citet{\citeasnoun}
+\newcommand\citep{\cite}
+% \citet(cootes01) -> Cootes (2001)
+% \citep(cootes01) -> (Cootes, 2001)
+\renewcommand{\harvardand}{\&}
+%Deutsch (wahlweise mit DE)
+\newcommand{\acessedthrough}{Verfügbar unter:}%Für URL-Angabe
+\newcommand{\acessedthroughp}{Verfügbar durch:}%Für URL-Angabe (Geschützte Datenbank, Zugriff durch FH)
+\newcommand{\acessedat}{Zugang am}%Für URL-Datum-Angabe
+%Englisch (wahlweise mit EN)
+%\newcommand{\acessedthrough}{Available at:}%Für URL-Angabe
+%\newcommand{\acessedthroughp}{Available through:}%Für URL-Angabe (Geschützte Datenbank, Zugriff durch FH)
+%\newcommand{\acessedat}{Accessed}%Für URL-Datum-Angabe
+% bis hierher
+
+% Seiten-Layout definieren
+\usepackage[tmargin=14.5mm, bmargin=20mm, lmargin=20mm, rmargin=20mm,
+            paper=a4paper,nofoot=true, nohead=true, noheadfoot=true]{geometry}
+
+\usepackage{multicol}
+\setlength{\columnsep}{7mm}
+
+% weniger Warnungen wegen überfüllter Boxen
+\tolerance = 9999
+\sloppy
+
+% Anpassung einiger Überschriften
+\addto\captionsngerman
+{
+  \renewcommand\figurename{Abb.}
+  \renewcommand\tablename{Tab.}
+}
+
+% Abbildungen, Gleichungen und Tabellen werden fortlaufend nummeriert
+\renewcommand\thefigure{\arabic{figure}}
+\renewcommand\thetable{\arabic{table}}
+\renewcommand\theequation{\arabic{equation}}
+\renewcommand\thesection{\arabic{section}.}
+\renewcommand\thesubsection{\thesection\arabic{subsection}.}
+
+\makeatletter
+  % Überschriften neu definieren
+  \renewcommand\section
+  {
+    \@startsection
+    {section}{1}{0mm}      % für 'section', Ebene 1, 0mm Einzug
+    {9pt} {6pt}            % Abstand darüber und darunter
+    {\noindent\fontsize{10}{9pt}\scshape\textbf}%
+  }
+
+  \renewcommand\subsection
+  {
+    \@startsection
+    {subsection}{2}{0mm}    % für 'subsection', Ebene 2, 0mm Einzug
+    {9pt} {6pt}             % Abstand darüber und darunter
+    {\noindent\fontsize{9}{9pt}\textbf}
+  }
+  \renewcommand\abstract[2]
+  {
+    \noindent\fontsize{9}{9pt}\textit{\textbf{Abstract—} #1}\\
+    \noindent\fontsize{9}{9pt}\textit{\textbf{Keywords—} #2}
+  }
+
+  \newcommand\FHInfo[8]
+  {
+    \begin{multicols}{2}
+      \fontsize{11}{14pt}
+      \noindent{\textbf{\small Master-Studiengang Robotics Engineering}}\\
+      {\fontsize{10}{20pt}
+        \noindent \small FH Technikum Wien, Höchstädtplatz 6, A-1200 Wien\\
+        \vspace{30pt}
+      }
+      \columnbreak
+      \begin{figure}[H]
+        \begin{flushright}
+        \includegraphics[width=40mm,height=15mm,keepaspectratio=true]{#3}
+        \label{fig:logo}
+        \end{flushright}
+      \end{figure}
+    \end{multicols}
+    \begin{center}
+      \fontsize{12}{14pt}
+      \noindent \textbf{\textsc {#4\\}}
+      \bigskip
+      {\fontsize{10}{12pt}
+        \noindent{\textbf{Student: } #5, \textbf{PK: } #6}\\
+        \noindent{\textbf{Supervisor: } #7}\\
+      }
+    \end{center}
+    \vspace{0mm}
+  }
+\makeatother
+
+
+\begin{document}
+  \pagestyle{empty}  % keine Kopf- oder Fusszeile
+
+  \FHInfo
+    {Eintrag wird nicht verwendet}              % Eintrag wird nicht verwendet
+    {Eintrag wird nicht verwendet}              % Eintrag wird nicht verwendet
+    {img_paper/FHTW_Logo_Farbe_randlos.jpg}                 % FH-Logo
+    {Virtualization of a Real-Time Operating System for Robot Control \\
+    with a Focus on Real-Time Compliance}                       % Titel der Arbeit
+    {Pamuk, Halil Ibrahim, BSc.}            % Student-Name
+    {51842568}                                    % Student-PK-Nr
+    {Rauh, Sebastian, MSc. BEng.}            % Name FH-Betreuer (1. BegutachterIn)
+    {Dr.nat.techn. Wöber, Wilfried, MSc.}            % Name Firmenbetreuer (2. BegutachterIn)
+
+  \fontsize{9}{10pt}
+
+  \begin{multicols}{2}
+    \abstract{\textbf{Die  Kurzfassung soll einen Überblick über die Arbeit geben, sowie den "'roten Faden"' und die wichtigsten Details für den Leser liefern. Sie muss informativ sein, unabhängig ob sie alleine oder zusammen mit der Arbeit gelesen wird.}} {\textbf{Virtualization, Real-Time Systems, Latency Reduction, Robot Control}}
+
+    \section{Einleitung}
+    Die Einleitung soll die Aufmerksamkeit des Lesers erwecken und ausreichend Informationen für das Verständnis der Arbeit liefern sowie die Motivation zum Schreiben dieser Arbeit enthalten.
+    Die Einleitung soll die Ziele der Arbeit erläutern und eine grobe Darstellung des Themenkreises enthalten, sowie die Beschreibung der Methoden und Vorgänge zur Problemlösung (Literaturrecherchen, vergleichende Studien oder Experimente).
+    Eventuell kann das Firmenumfeld an dieser Stelle beschrieben werden.
+    Hinweis: Der innovative Charakter der Arbeit soll in Einleitung und Problemstellung bereits klar ersichtlich sein
+
+    \section{Problem- und Aufgabenstellung}
+    Prägnante Formulierung der Kernfragen ohne den Ansatz der Lösungsfindung darzustellen, da dies Teil der Einleitung ist. Um informativ zu sein empfiehlt sich die Struktur eines Trichters. Die Idee der Trichterstruktur ist, dass sie breit beginnt und sich dann Schritt für Schritt zur Problemstellung verengt. Die Problemstellung soll schlüssig und nachvollziehbar hervorgehen.
+
+    \section{Materialien und Methoden}
+    In „Material und Methoden“ werden die theoretischen Grundlagen zum Verständnis der Arbeit aufbereitet, sowie die Experimente (evt. Studien), die in im Zuge der Arbeit durchgeführt wurden, dargestellt. Es sollen ausreichend Details und Referenzen angeführt sein, damit ein vergleichbar qualifizierter Kollege, Wissenschafter, etc. die Arbeit beurteilen und wiederholen kann. Alle in diesem Kapitel beschriebenen Materialien wie Geräte, Rechenprogramme, Reagenzien, etc. sind mit Namen, eventuell Typenbezeichnung, Herstellerfirma, Herkunftsland anzugeben.
+
+    \section{Praktische Durchführung}
+    Dieses Kapitel ist nur in der Variante „Arbeit mit Praxisanteil“ enthalten.
+    Ausgehend von den Grundlagen werden die eigenen Ideen, Produkte, Konzepte, Technologien oder Software entwickelt. Dieser Prozess wird umfassend dokumentiert. Zum Abschluss werden die Ergebnisse in nachvollziehbarer Form dargestellt. Die Gliederung dieses Kapitels enthält in der Regel folgende Punkte: Planung (kann auch ähnlich wie in einem Projekthandbuch geschildert werden), gegebenenfalls Spezifikation, Umsetzung, Ergebnisse, eventuell Überprüfung der Ergebnisse.
+    Bei Arbeiten mit wirtschaftlichem Hintergrund oder bei stark unternehmensbezogenen Fragestellungen empfiehlt sich auch eine detaillierte Beschreibung des Unternehmensumfeldes. Bei Untersuchungen oder Messaufbauten sollten die verwendeten Verfahren oder Messinstrumente ebenfalls kurz geschildert werden.
+
+    \subsection{Abbildungen}
+    Abbildungen sollen Druckqualität haben. Abbildungen sind mit einer fortlaufenden Nummer zu versehen unter Angabe der Quelle (falls nicht selbst erstellt).
+    \begin{figure}[H]%
+      \fbox{%
+        \begin{minipage}{8.1cm}%
+          \begin{center}%
+            \includegraphics[width=80mm]{img_paper/FHTW_Logo_Farbe_randlos.jpg}%
+          \end{center}%
+        \end{minipage}%
+      }%
+      \caption{ Logo der FH-Technikum-Wien (Quelle: \protect\citep{HuZi10})}%
+      \label{fig:fh_logo_welle}%
+    \end{figure}%
+    Jede Abbildung (auch die Abb. \ref{fig:fh_logo_welle}) ist im Text zu referenzieren und zu erläutern. Abbildungen sind mit einem Rahmen zu versehen.
+
+    \subsection{Tabellen}
+    Tabellen sind mit einer fortlaufenden Nummer zu versehen unter Angabe der Quelle (falls nicht selbst erstellt). Jede Tabelle (auch Tab. \ref{tab:example}) ist im Text zu referenzieren und zu erläutern. Tabellen sind mit einem Rahmen zu versehen.
+    \begin{table}[H]%
+      \centering%
+      \caption{Beschreibung der Tabelle}\label{tab:example}%
+      \begin{tabular}{ | c | c | c | }\hline
+        {\bf Datum} & {\bf Thema} & {\bf Raum}\\ \hline
+        20. 08. 2008 & Graphentheorie & HS 3.13\\ \hline
+        01. 10. 2008 & Biomathematik & HS 1.05\\ \hline
+      \end{tabular}%
+    \end{table}%
+
+    \subsection{Referenzieren}
+     Bei Diagrammen oder Abbildungen, die von anderen Quellen übernommen werden, wird der Verweis im Text unterhalb der Abbildung angeführt.
+
+    \subsection{Anmerkungen zum Format diese Papers}
+    \begin{itemize}
+      \item Freiraum: oben, unten, links und rechts jeweils 20 mm.
+      \item 2 Spalten, Abstand zwischen den Spalten 7 mm.
+      \item Beide Spalten auf der ersten und zweiten Seite muss enden am Rand der Seite.
+      \item Paper soll in WINWORD oder \LaTeX~Format geschrieben werden.
+      \item Schriftart ist Times New Roman
+      \item Paper ist begrenzt auf exakt \textbf{zwei volle A4 Seiten}. Bitte nutzen Sie den gesamten verfügbaren Platz!
+    \end{itemize}
+
+    \section{Ergebnisse}
+    Die Aufgabe dieses Kapitels ist es, die Ergebnisse der in „Material und Methoden“ beschriebenen Experimente zu formulieren. Weiters soll das Kapitel den Leser zu den Daten hinführen und deren Abfolge erläutern. 
+
+    \section{Zusammenfassung und Ausblick}
+    Zusammenfassung stellt das Resümee und die kritische Reflexion über das Projekt dar.
+
+    \section{Literaturverzeichnis}
+    {
+      \renewcommand{\refname}{\vspace{-5mm}} % keine eigene Überschrift durch \bibliography...
+      \linespread{.8}\selectfont
+      \bibliography{Literature_paper}
+    }
+
+  \end{multicols}
+
+\end{document}
