@@ -40,4 +40,4 @@ plot '../0hardware/max_latency_hardware_10min.txt' using 1:2 with lines linewidt
      '../6rt_kernelparam_host_qemu/max_latency_rt_kernelparam_host_qemu_10min.txt' using 1:2 with lines linewidth 2 linecolor rgb "#f20505" title 'After QEMU Configurations'
 ```
 
-![gnuplot_combined_max_latency.png](gnuplot_combined_max_latency.png)
+![gnuplot_combined_max_latency_all.png](gnuplot_combined_max_latency_all.png)

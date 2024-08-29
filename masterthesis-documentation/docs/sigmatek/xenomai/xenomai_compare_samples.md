@@ -38,4 +38,4 @@
 
 ## All together
 
-![all_together](012456combined/gnuplot_combined_max_latency.png)
+![all_together](012456combined/gnuplot_combined_max_latency_all.png)

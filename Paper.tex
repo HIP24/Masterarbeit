@@ -156,69 +156,56 @@
   \fontsize{9}{10pt}
 
   \begin{multicols}{2}
-    \abstract{\textbf{Die  Kurzfassung soll einen Überblick über die Arbeit geben, sowie den "'roten Faden"' und die wichtigsten Details für den Leser liefern. Sie muss informativ sein, unabhängig ob sie alleine oder zusammen mit der Arbeit gelesen wird.}} {\textbf{Virtualization, Real-Time Systems, Latency Reduction, Robot Control}}
+    \abstract{\textbf{Virtualizing real-time operating systems for robotic control offers many advantages over traditional hardware-based approaches, especially when it comes to flexibility, scaling, and costs. Virtualization addresses these issues but introduces overhead and latency. This thesis investigates the virtualization of a real-time operating system, which is built with Yocto, employs hard real-time through Xenomai 3 and is emulated using QEMU/KVM. The primary objective aim was to bridge the latency gap between virtualized and bare metal versions to ensure deterministic and reliable behavior, which is crucial for real-time robotics. Initial latency measurements showed a high gap between bare metal and virtualized setups. Extensive tuning across BIOS, kernel, host OS, QEMU/KVM, and Salamander 4 (guest) reduced worst-case latency from 707.622 µs to 17.134 µs, close to the bare metal performance of 10.709 µs. The improvement is validated using a robotic application, comparing tuned virtualization with untuned and hardware versions.}} {\textbf{Virtualization, Real-Time Systems, Latency Reduction, Robot Control}}
 
-    \section{Einleitung}
-    Die Einleitung soll die Aufmerksamkeit des Lesers erwecken und ausreichend Informationen für das Verständnis der Arbeit liefern sowie die Motivation zum Schreiben dieser Arbeit enthalten.
-    Die Einleitung soll die Ziele der Arbeit erläutern und eine grobe Darstellung des Themenkreises enthalten, sowie die Beschreibung der Methoden und Vorgänge zur Problemlösung (Literaturrecherchen, vergleichende Studien oder Experimente).
-    Eventuell kann das Firmenumfeld an dieser Stelle beschrieben werden.
-    Hinweis: Der innovative Charakter der Arbeit soll in Einleitung und Problemstellung bereits klar ersichtlich sein
+    \section{Introduction}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1.0\columnwidth]{img/implementation/gnuplot_combined_max_latency.png}
+      \caption[Initial Comparison of Latency Distribution between Hardware and Virtualization]{Initial Comparison of Latency Distribution between Hardware and Virtualization}
+      \label{fig:gnuplot_max_latency_combined}
+    \end{figure}
 
-    \section{Problem- und Aufgabenstellung}
-    Prägnante Formulierung der Kernfragen ohne den Ansatz der Lösungsfindung darzustellen, da dies Teil der Einleitung ist. Um informativ zu sein empfiehlt sich die Struktur eines Trichters. Die Idee der Trichterstruktur ist, dass sie breit beginnt und sich dann Schritt für Schritt zur Problemstellung verengt. Die Problemstellung soll schlüssig und nachvollziehbar hervorgehen.
+  
+    \section{Methodology}
+    \section{Implementation}
+    \section{Initial Situation} 
+    \section{Real-Time Performance Tunings}
+    \section{Real-Time Robotic Application}
+    \section{Results}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1.0\columnwidth]{img/results/gnuplot_combined_max_latency_all.png}
+      \caption[Comparison of Latency Distribution of Salamander 4 Configurations]{Comparison of Latency Distribution of Salamander 4 under different Configurations}
+      \label{fig:max_latency_combined_results}
+    \end{figure}
 
-    \section{Materialien und Methoden}
-    In „Material und Methoden“ werden die theoretischen Grundlagen zum Verständnis der Arbeit aufbereitet, sowie die Experimente (evt. Studien), die in im Zuge der Arbeit durchgeführt wurden, dargestellt. Es sollen ausreichend Details und Referenzen angeführt sein, damit ein vergleichbar qualifizierter Kollege, Wissenschafter, etc. die Arbeit beurteilen und wiederholen kann. Alle in diesem Kapitel beschriebenen Materialien wie Geräte, Rechenprogramme, Reagenzien, etc. sind mit Namen, eventuell Typenbezeichnung, Herstellerfirma, Herkunftsland anzugeben.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1.0\columnwidth]{img/results/combined_latencies.png}
+      \caption[Comparison of Robotic Application Latency of Salamander 4 Configurations]{Comparison of Robotic Application Latency of Salamander 4 under different Configurations}
+      \label{fig:combined_latencies}
+    \end{figure}
 
-    \section{Praktische Durchführung}
-    Dieses Kapitel ist nur in der Variante „Arbeit mit Praxisanteil“ enthalten.
-    Ausgehend von den Grundlagen werden die eigenen Ideen, Produkte, Konzepte, Technologien oder Software entwickelt. Dieser Prozess wird umfassend dokumentiert. Zum Abschluss werden die Ergebnisse in nachvollziehbarer Form dargestellt. Die Gliederung dieses Kapitels enthält in der Regel folgende Punkte: Planung (kann auch ähnlich wie in einem Projekthandbuch geschildert werden), gegebenenfalls Spezifikation, Umsetzung, Ergebnisse, eventuell Überprüfung der Ergebnisse.
-    Bei Arbeiten mit wirtschaftlichem Hintergrund oder bei stark unternehmensbezogenen Fragestellungen empfiehlt sich auch eine detaillierte Beschreibung des Unternehmensumfeldes. Bei Untersuchungen oder Messaufbauten sollten die verwendeten Verfahren oder Messinstrumente ebenfalls kurz geschildert werden.
+    
+\begin{table}[H]
+	\scriptsize
+	\centering
+	\caption{Comparison of Robotic Application Latency Statistics}
+	\label{tab:robotic_application_latency_values_combined}
+	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
+		\begin{tabular}{|l|l|l|l|l|l|}
+			\hline
+			\textbf{Tuning} & \textbf{Samples} & \textbf{Lat Min (ms)} & \textbf{Lat Avg (ms)} & \textbf{Lat Max (ms)} & \textbf{Std Dev (ms)} \\ \hline
+			Hardware & 1000 & 1.211 & 1.347 & 1.49 & 0.082 \\ \hline
+			Untuned Virtualization & 1000 & 3.1 & 24.603 & 129.46 & 13.876 \\ \hline
+			Tuned Virtualization & 1000 & 1.219 & 2.62 & 3.988 & 0.812 \\ \hline
+		\end{tabular}}
+\end{table}
 
-    \subsection{Abbildungen}
-    Abbildungen sollen Druckqualität haben. Abbildungen sind mit einer fortlaufenden Nummer zu versehen unter Angabe der Quelle (falls nicht selbst erstellt).
-    \begin{figure}[H]%
-      \fbox{%
-        \begin{minipage}{8.1cm}%
-          \begin{center}%
-            \includegraphics[width=80mm]{img/paper/FHTW_Logo_Farbe_randlos.jpg}%
-          \end{center}%
-        \end{minipage}%
-      }%
-      \caption{Logo der FH-Technikum-Wien (Quelle:)}%
-      \label{fig:fh_logo_welle}%
-    \end{figure}%
-    Jede Abbildung (auch die Abb. \ref{fig:fh_logo_welle}) ist im Text zu referenzieren und zu erläutern. Abbildungen sind mit einem Rahmen zu versehen.
-
-    \subsection{Tabellen}
-    Tabellen sind mit einer fortlaufenden Nummer zu versehen unter Angabe der Quelle (falls nicht selbst erstellt). Jede Tabelle (auch Tab. \ref{tab:example}) ist im Text zu referenzieren und zu erläutern. Tabellen sind mit einem Rahmen zu versehen.
-    \begin{table}[H]%
-      \centering%
-      \caption{Beschreibung der Tabelle}\label{tab:example}%
-      \begin{tabular}{ | c | c | c | }\hline
-        {\bf Datum} & {\bf Thema} & {\bf Raum}\\ \hline
-        20. 08. 2008 & Graphentheorie & HS 3.13\\ \hline
-        01. 10. 2008 & Biomathematik & HS 1.05\\ \hline
-      \end{tabular}%
-    \end{table}%
-
-    \subsection{Referenzieren}
-     Bei Diagrammen oder Abbildungen, die von anderen Quellen übernommen werden, wird der Verweis im Text unterhalb der Abbildung angeführt.
-
-    \subsection{Anmerkungen zum Format diese Papers}
-    \begin{itemize}
-      \item Freiraum: oben, unten, links und rechts jeweils 20 mm.
-      \item 2 Spalten, Abstand zwischen den Spalten 7 mm.
-      \item Beide Spalten auf der ersten und zweiten Seite muss enden am Rand der Seite.
-      \item Paper soll in WINWORD oder \LaTeX~Format geschrieben werden.
-      \item Schriftart ist Times New Roman
-      \item Paper ist begrenzt auf exakt \textbf{zwei volle A4 Seiten}. Bitte nutzen Sie den gesamten verfügbaren Platz!
-    \end{itemize}
-
-    \section{Ergebnisse}
-    Die Aufgabe dieses Kapitels ist es, die Ergebnisse der in „Material und Methoden“ beschriebenen Experimente zu formulieren. Weiters soll das Kapitel den Leser zu den Daten hinführen und deren Abfolge erläutern. 
-
-    \section{Zusammenfassung und Ausblick}
+    \section{Discussion}
+    \section{Summary and Outlook}
     Zusammenfassung stellt das Resümee und die kritische Reflexion über das Projekt dar.
 
     \section{Literaturverzeichnis}
