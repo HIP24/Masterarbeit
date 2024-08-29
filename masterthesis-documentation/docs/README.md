@@ -1,16 +1,13 @@
-## Thema Masterarbeit 
-Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die 
-Einhaltung der Echtzeit 
+## Topic of Master's Thesis 
+Virtualisation of a real-time operating system to control a robot with a focus on real-time compliance 
 
-### Kurze Umschreibung 
-Erstellung einer Echtzeit-Robotersteuerungsplattform unter Verwendung von Salamander OS, Xenomai, QEMU 
-und PCV-521 in der Yocto-Umgebung. Die Plattform basiert auf Salamander OS und nutzt Xenomai für Echtzeit-
-Funktionen. Dazu muss im ersten Schritt die Virtualisierungsplattform evaluiert werden. (QEMU, Hyper-V, Virtual 
-Box, etc.) Als weiterer Schritt folgt die Anbindung eines Roboters über eine VARAN-Bus Schnittstelle. Das 
-gesamte System wird in der Yocto-Umgebung erstellt und konfiguriert. 
-Das Hauptziel der Arbeit ist es, herauszufinden, wie die Integration von Echtzeit-Funktionen und effizienten 
-Kommunikationssystemen in eine Robotersteuerungsplattform die Reaktionszeit und Zuverlässigkeit von 
-Roboteranwendungen verbessern kann. 
+### Abstract 
+Virtualization of real-time operating systems systems for robotic control has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements and can be costly, especially when scaling operations. Physical access for updates and maintenance is challenging, leading to downtime and lost productivity. While virtualization addresses these issues, it introduces increased overhead and latency.  
+This thesis investigates the virtualization of the proprietary Salamander 4 operating system, using QEMU/KVM. Salamander 4 is built with Yocto and employs hard real-time with Xenomai 3. The primary objective is to bridge the latency gap between the virtualized and bare metal versions in order to ensure deterministic and reliable behavior, which is crucial for real-time robotic applications.  
+Initial latency measurements revealed a significant performance gap between the bare metal and virtualized setup. Thus, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host operating system, QEMU/KVM virtualization layer, and the Salamander 4 operating system (guest) itself. The worst-case latency was brought down from 707.622μs to 17.134μs, closely aligning with the bare metal performance of 10.709μs. In addition, the improvement in real-time performance and determinism is validated using a robotic application, where the tuned virtualization is compared with the untuned and the hardware version.  
+Altogether, this thesis provides a comprehensive blueprint for making a virtualized guest system real-time capable in a host system with deterministic behavior.  
+
+Keywords{Virtualization, Real-Time Systems, Latency Reduction, Robotic Control}
 
 ### Masterarbeit 
 Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
@@ -19,9 +16,9 @@ Hier ist die [Masterarbeit](Masterarbeit_Robotik_Pamuk.pdf).
 
 <div id="page-wrapper">
   <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Status</a>
- der Masterarbeit:<b> Nahe dem Ende</b> </div> 
+ der Masterarbeit:<b> Final fine-tunings</b> </div> 
   <div class="meter animate">
-    <span style="width: 90%"><span></span></span>
+    <span style="width: 99%"><span></span></span>
   </div> 
   <!--<div class="meter orange nostripes">
     <span style="width: 33.3%"></span>

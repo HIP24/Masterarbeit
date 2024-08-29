@@ -96,8 +96,7 @@
 %
 % Einträge für Deckblatt, Kurzfassung, etc.
 %
-\title{Virtualisierung eines Echtzeit-Betriebssystems zur Steuerung eines Roboters mit Schwerpunkt auf die
-Einhaltung der Echtzeit}
+\title{Virtualization of a Real-Time Operating System for Robot Control with a Focus on Real-Time Compliance}
 \author{Halil Pamuk, BSc}
 \studentnumber{51842568}
 %\author{Titel Vorname Name, Titel\and{}Titel Vorname Name, Titel}
@@ -120,11 +119,11 @@ Einhaltung der Echtzeit}
 
 \outline{Virtualization of real-time operating systems systems for robotic control has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements and can be costly, especially when scaling operations. Physical access for updates and maintenance is challenging, leading to downtime and lost productivity. While virtualization addresses these issues, it introduces increased overhead and latency. 
 	
-\bigskip \noindent This thesis investigates the virtualization of the proprietory Salamander 4 operating system, using QEMU/KVM. Salamander 4 is built with Yocto and employs hard real-time with Xenomai 3. The primary objective is to bridge the latency gap between the virtualized and bare metal versions in order to ensure deterministic and reliable behavior, which is crucial for real-time robotic applications.
+\bigskip \noindent This thesis investigates the virtualization of the proprietary Salamander 4 operating system, using QEMU/KVM. Salamander 4 is built with Yocto and employs hard real-time with Xenomai 3. The primary objective is to bridge the latency gap between the virtualized and bare metal versions in order to ensure deterministic and reliable behavior, which is crucial for real-time robotic applications.
 
 \bigskip \noindent Initial latency measurements revealed a significant performance gap between the bare metal and virtualized setup. Thus, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host operating system, QEMU/KVM virtualization layer, and the Salamander 4 operating system (guest) itself. The worst-case latency was brought down from 707.622\textmu s to 17.134\textmu s, closely aligning with the bare metal performance of 10.709\textmu s. In addition, the improvement in real-time performance and determinism is validated using a robotic application, where the tuned virtualization is compared with the untuned and the hardware version.
 
-\bigskip \noindent Alltogether, this thesis provides a comprehensive blueprint for making a virtualized guest system real-time capable in a host system with deterministic behavior.}
+\bigskip \noindent Altogether, this thesis provides a comprehensive blueprint for making a virtualized guest system real-time capable in a host system with deterministic behavior.}
 \keywords{Virtualization, Real-Time Systems, Latency Reduction, Robotic Control}
 
 \acknowledgements{First, I would like to thank my supervisor, Sebastian Felix Rauh MSc. BEng., for his expert guidance and assistance throughout this master's thesis. His insightful answers to all my questions and his calming presence helped me stay focused and composed.
@@ -323,7 +322,7 @@ The host operating system is the basis for the virtualization of the guest opera
 \noindent Figure~\ref{fig:lstopo} is the output of the~\texttt{lstopo} command and visualizes the hardware nodes of the system, including CPU cores, caches, memory, and I/O devices.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.55\columnwidth]{img/lstopo.png}
+	\includegraphics[width=0.55\columnwidth]{img/methodology/lstopo.png}
 	\caption[Host Operating System Hardware Topology]{Host Operating System Hardware Topology}
 	\label{fig:lstopo}
 \end{figure}
@@ -355,7 +354,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
+	\includegraphics[width=0.5\columnwidth]{img/methodology/Software-Struktur_einer_LASAL_CPU.png}
 	\caption[Structure of Salamander 4 CPU]{Structure of Salamander 4 CPU~\cite{LASALOSSIGMATEK}}
 	\label{fig:lasal_cpu}
 \end{figure}
@@ -365,7 +364,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
+	\includegraphics[width=0.8\columnwidth]{img/methodology/RAM_Memory_management.png}
 	\caption[Memory Management of Salamander 4]{Memory Management of Salamander 4~\cite{LASALOSSIGMATEK}}
 	\label{fig:memory_management}
 \end{figure}
@@ -495,7 +494,7 @@ Viewing the tracing data that was recorded with \texttt{trace-cmd} on a text-bas
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\columnwidth]{img/kernelshark_combo.png}
+	\includegraphics[width=1.0\columnwidth]{img/methodology/kernelshark_combo.png}
 	\caption[Guest vCPUs plotted on top of Host Threads in KernelShark]{Guest vCPUs plotted on top of Host Threads in KernelShark}
 	\label{fig:kernelshark_combo}
 \end{figure}
@@ -506,7 +505,7 @@ VARAN is a real-time Ethernet bus designed for industrial automation, capable of
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\columnwidth]{img/multiple_varans.png}
+	\includegraphics[width=0.75\columnwidth]{img/methodology/multiple_varans.png}
 	\caption[Synchronization between Systems and their Data Exchange]{Synchronization between Systems and their Data Exchange}
 	\label{fig:multiple_varans}
 \end{figure}
@@ -527,7 +526,7 @@ As a reference point, the \texttt{latency} program was executed on Salamander 4 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/0hardware/gnuplot_max_latency_hardware.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_max_latency_hardware.png}
 	\caption[Latency Distribution of Salamander 4 Bare Metal]{Latency Distribution of Salamander 4 Bare Metal}
 	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
@@ -563,7 +562,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/1default/gnuplot_max_latency_default.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_max_latency_default.png}
 	\caption[Latency Distribution of Salamander 4 Untuned Virtualization]{Latency Distribution of Salamander 4 Untuned Virtualization}
 	\label{fig:gnuplot_max_latency_default}
 \end{figure}
@@ -599,7 +598,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/01combined/gnuplot_combined_max_latency.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_combined_max_latency.png}
 	\caption[Initial Comparison of Latency Distribution between Hardware and Virtualization]{Initial Comparison of Latency Distribution between Hardware and Virtualization}
 	\label{fig:gnuplot_max_latency_combined}
 \end{figure}
@@ -657,7 +656,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/2taskset/gnuplot_max_latency_taskset.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_max_latency_taskset.png}
 	\caption[Latency Distribution of Salamander 4 after BIOS Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning BIOS Configurations}
 	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}
@@ -730,7 +729,7 @@ values gathered in 10 minutes.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/4rt_kernelparam/gnuplot_max_latency_rt_kernelparam.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_max_latency_rt_kernelparam.png}
 	\caption[Latency Distribution of Salamander 4 after Kernel Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning Kernel Configurations}
 	\label{fig:gnuplot_max_latency_rt_kernelparam}
 \end{figure}
@@ -974,7 +973,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/5rt_kernelparam_host/gnuplot_max_latency_rt_kernelparam_host.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_max_latency_rt_kernelparam_host.png}
 	\caption[Latency Distribution of Salamander 4 after Host Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning Host Configurations}
 	\label{fig:max_latency_rt_kernelparam_host}
 \end{figure}
@@ -1062,7 +1061,7 @@ QEMU provides several options that can be used to improve the real-time performa
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/6rt_kernelparam_host_qemu/gnuplot_max_latency_rt_kernelparam_host_qemu.png}
+	\includegraphics[width=0.7\columnwidth]{img/implementation/gnuplot_max_latency_rt_kernelparam_host_qemu.png}
 	\caption[Latency Distribution of Salamander 4 after QEMU Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning QEMU Configurations}
 	\label{fig:max_latency_rt_kernelparam_host_qemu}
 \end{figure}
@@ -1277,7 +1276,7 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/rtos_latencies.png}
+	\includegraphics[width=1.0\columnwidth]{img/implementation/rtos_latencies.png}
 	\caption[Robotic Application Latency Values of Salamander 4 Hardware]{Robotic Application Latency Values of Salamander 4 Hardware}
 	\label{fig:rtos_latencies}
 \end{figure}
@@ -1303,7 +1302,7 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/untuned_virt_latencies.png}
+	\includegraphics[width=1.0\columnwidth]{img/implementation/untuned_virt_latencies.png}
 	\caption[Robotic Application Latency Values of Salamander 4 Untuned Virtualization]{Robotic Application Latency Values of Salamander 4 Untuned Virtualization}
 	\label{fig:untuned_virt_latencies}
 \end{figure}
@@ -1328,7 +1327,7 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/tuned_virt_latencies.png}
+	\includegraphics[width=1.0\columnwidth]{img/implementation/tuned_virt_latencies.png}
 	\caption[Robotic Application Latency Values of Salamander 4 Tuned Virtualization]{Robotic Application Latency Values of Salamander 4 Tuned Virtualization}
 	\label{fig:tuned_virt_latencies}
 \end{figure}
@@ -1469,7 +1468,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.70\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/012456combined/gnuplot_combined_max_latency.png}
+	\includegraphics[width=0.70\columnwidth]{img/results/gnuplot_combined_max_latency_all.png}
 	\caption[Comparison of Latency Distribution of Salamander 4 Configurations]{Comparison of Latency Distribution of Salamander 4 under different Configurations}
 	\label{fig:max_latency_combined_results}
 \end{figure}
@@ -1499,7 +1498,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/combined_latencies.png}
+	\includegraphics[width=1.0\columnwidth]{img/results/combined_latencies.png}
 	\caption[Comparison of Robotic Application Latency of Salamander 4 Configurations]{Comparison of Robotic Application Latency of Salamander 4 under different Configurations}
 	\label{fig:combined_latencies}
 \end{figure}
