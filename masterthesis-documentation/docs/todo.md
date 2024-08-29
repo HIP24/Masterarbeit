@@ -63,19 +63,19 @@
 - [✅] Summary and Outlook
 
 ### Bibliography
-- [❌] Bibliography
+- [✅] Bibliography
 
 ### List of Figures
-- [⌛] List of Figures
+- [✅] List of Figures
 
 ### List of Tables
-- [⌛] List of Tables
+- [✅] List of Tables
 
 ### List of Code
-- [⌛] List of Code
+- [✅] List of Code
 
 ### List of Abbreviations
-- [⌛] List of Abbreviations
+- [✅] List of Abbreviations
 
 ### Completion
 - [❌] Paper
@@ -94,8 +94,8 @@
 | Sunday    | - [✅] 3.3.3 Robotic Application |
 | Monday    |  - [✅] Results<br>- [✅] Discussion |
 | Tuesday    | - [✅] Summary and Outlook<br>  - [✅] Kurzfassung<br>- [✅] Abstract |
-| Wednesday | - [⌛]  Bibliography<br>- [⌛] List of Figures<br>- [⌛] List of Tables<br>- [⌛] List of Code<br>- [⌛] List of Abbreviations <br> - [❌] Paper schreiben |
-
+| Wednesday | - [✅]  Bibliography<br>- [✅] List of Figures<br>- [✅] List of Tables<br>- [✅] List of Code<br>- [✅] List of Abbreviations |
+| Thursday | - [❌] Paper schreiben|
 
 
 1. Abgabe über CIS:

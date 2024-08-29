@@ -120,9 +120,9 @@ Einhaltung der Echtzeit}
 
 \outline{Virtualization of real-time operating systems systems for robotic control has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements and can be costly, especially when scaling operations. Physical access for updates and maintenance is challenging, leading to downtime and lost productivity. While virtualization addresses these issues, it introduces increased overhead and latency. 
 	
-\bigskip \noindent This thesis investigates the virtualization of the proprietory Salamander 4 operating system, using QEMU/KVM. Salamander 4 is built with Yocto and employs hard real-time with Xenomai 3. The primary objective is to bridge the latency gap between the virtualized and bare-metal versions in order to ensure deterministic and reliable behavior, which is crucial for real-time robotic applications.
+\bigskip \noindent This thesis investigates the virtualization of the proprietory Salamander 4 operating system, using QEMU/KVM. Salamander 4 is built with Yocto and employs hard real-time with Xenomai 3. The primary objective is to bridge the latency gap between the virtualized and bare metal versions in order to ensure deterministic and reliable behavior, which is crucial for real-time robotic applications.
 
-\bigskip \noindent Initial latency measurements revealed a significant performance gap between the bare-metal and virtualized setup. Thus, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS (guest) itself. The worst-case latency was brought down from 707.622\textmu s to 17.134\textmu s, closely aligning with the bare-metal performance of 10.709\textmu s. In addition, the improvement in real-time performance and determinism is validated using a robotic application, where the tuned virtualization is compared with the untuned and the hardware version.
+\bigskip \noindent Initial latency measurements revealed a significant performance gap between the bare metal and virtualized setup. Thus, an extensive tuning process is carried out to achieve real-time performance and determinism. These modifications involve configurations spanning the BIOS, kernel, host operating system, QEMU/KVM virtualization layer, and the Salamander 4 operating system (guest) itself. The worst-case latency was brought down from 707.622\textmu s to 17.134\textmu s, closely aligning with the bare metal performance of 10.709\textmu s. In addition, the improvement in real-time performance and determinism is validated using a robotic application, where the tuned virtualization is compared with the untuned and the hardware version.
 
 \bigskip \noindent Alltogether, this thesis provides a comprehensive blueprint for making a virtualized guest system real-time capable in a host system with deterministic behavior.}
 \keywords{Virtualization, Real-Time Systems, Latency Reduction, Robotic Control}
@@ -172,7 +172,7 @@ In today's industrial production and automation, robot systems are well establis
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\columnwidth]{img/introduction/kernel_generic.png}
-	\caption[Non-preemptible kernel]{Non-preemptible kernel~\cite{WhatRealtimeLinuxa}}
+	\caption[Non-preemptible Kernel]{Non-preemptible Kernel~\cite{WhatRealtimeLinux}}
 	\label{fig:kernel_generic}
 \end{figure}
 
@@ -181,7 +181,7 @@ In today's industrial production and automation, robot systems are well establis
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\columnwidth]{img/introduction/kernel_rt.png}
-	\caption[Non-preemptible kernel]{Non-preemptible kernel~\cite{WhatRealtimeLinuxa}}
+	\caption[Preemptible Kernel]{Preemptible Kernel~\cite{WhatRealtimeLinux}}
 	\label{fig:kernel_rt}
 \end{figure}
 
@@ -199,7 +199,7 @@ In today's industrial production and automation, robot systems are well establis
 
 \noindent In these real-time operating system, task scheduling is based on so-called priority-based preemptive scheduling~\cite{buttazzoHardRealtimeComputing2024}. Each task in a software application is assigned a priority. A higher priority means that a faster response is required. Preemptive task scheduling ensures a very fast response. Preemptive means that the scheduler can stop a currently running task at any point if it recognizes that another task needs to be executed immediately. The basic rule on which priority-based preemptive scheduling is based is that the task with the highest priority that is ready to run is always the task that must be executed. So if both a task with a lower priority and a task with a higher priority are ready to run, the scheduler ensures that the task with the higher priority runs first. The lower priority task is only executed once the higher priority task has been processed.
 
-\bigskip \noindent Real-time systems are usually classified as either soft or hard real-time systems~\cite{lipariRealTimeSchedulingHard}. The difference lies exclusively in the consequences of a violation of the time limits~\cite{HardRealTime}. Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality~\cite{queirozTestingLimitsGeneralpurpose2023}.
+\bigskip \noindent Real-time systems are usually classified as either soft or hard real-time systems~\cite{lipariRealTimeSchedulingHard2015}. The difference lies exclusively in the consequences of a violation of the time limits~\cite{amarpreetHardRealTime2009}. Hard real-time is when the system stops operating if a deadline is missed, which can have catastrophic consequences. Soft real-time exists when a system continues to function even if it cannot perform the tasks within a specified time. If the system has missed the deadline, this has no critical consequences. The system continues to run, although it does so with undesirably lower output quality~\cite{queirozTestingLimitsGeneralpurpose2023}.
 
 \section{Application Context}\label{sec:application_context}
 This section briefly defines the context and scope within which this master's thesis was composed, highlighting the specific contributions and requirements set by SIGMATEK GmbH \& Co KG~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}.
@@ -224,7 +224,7 @@ This master’s thesis builds upon a number of previous studies in the field of 
 
 \bigskip \noindent Despite the promising advantages of virtualization, one must be aware of the potential drawbacks of it, too.~\citeauthor{guStateoftheArtSurveyRealTime2012}~\cite{guStateoftheArtSurveyRealTime2012} highlight issues like lock-holder preemption and task-grain scheduling.~\citeauthor{garcia-vallsChallengesRealtimeVirtualization2014}~\cite{garcia-vallsChallengesRealtimeVirtualization2014} identify challenges in supporting real-time applications in the cloud, including resource management, quality of service guarantees, temporal and spatial isolation, and network performance.~\citeauthor{scordinoRealTimeVirtualizationIndustrial2020}~\cite{scordinoRealTimeVirtualizationIndustrial2020} address the challenge of interference on shared hardware resources, which can degrade real-time performance.
 
-\bigskip \noindent \citeauthor{maPerformanceTuningKVMbased}~\cite{maPerformanceTuningKVMbased}~\cite{junzhangPerformanceAnalysisKVMBased2010} describe in their work how KVM impacts the real-time performance, which has helped this work gain insight into the base overhead of virtualization. When a physical interrupt occurs while the guest RTOS is running, there are at least six stages that need to be traversed before the interrupt can be delivered to the guest RTOS. Once the interrupt is delivered to the guest RTOS, it incurs additional latency, called Interrupt Routine Time (IRT), since there is also the time between when an interrupt is recognized and the first instruction of the corresponding interrupt service routine (ISR) of the guest OS is started. These stages are the primary sources of latencies caused by KVM, they are briefly described in Figure~\ref{fig:kvm_stages}.
+\bigskip \noindent \citeauthor{maPerformanceTuningKVMbased2013}~\cite{maPerformanceTuningKVMbased2013}~\cite{junzhangPerformanceAnalysisKVMBased2010} describe in their work how KVM impacts the real-time performance, which has helped this work gain insight into the base overhead of virtualization. When a physical interrupt occurs while the guest RTOS is running, there are at least six stages that need to be traversed before the interrupt can be delivered to the guest RTOS. Once the interrupt is delivered to the guest RTOS, it incurs additional latency, called Interrupt Routine Time (IRT), since there is also the time between when an interrupt is recognized and the first instruction of the corresponding interrupt service routine (ISR) of the guest OS is started. These stages are the primary sources of latencies caused by KVM, they are briefly described in Figure~\ref{fig:kvm_stages}.
 \vspace{2em}
 \begin{figure}[H]
 	\centering
@@ -258,7 +258,7 @@ This master’s thesis builds upon a number of previous studies in the field of 
 		\path [line] (beforevmentry) -- (vmentry);
 		\path [line] (vmentry) -- (guestirt);
 	\end{tikzpicture}
-	\caption[Flowchart of operations in a virtualized environment]{Flowchart of operations in a virtualized environment (own figure, inspired by~\citeauthor{maPerformanceTuningKVMbased})}
+	\caption[Flowchart of Operations in a virtualized Environment]{Flowchart of Operations in a virtualized Environment (Own Figure, inspired by~\citeauthor{maPerformanceTuningKVMbased2013})}
 	\label{fig:kvm_stages}
 \end{figure}
 \vspace{1em}
@@ -271,15 +271,15 @@ This master’s thesis builds upon a number of previous studies in the field of 
 
 \bigskip \noindent In the course of writing this thesis, the white paper "Real-Time Performance Tuning Best Practice Guidelines for KVM-Based Virtual Machines"~\cite{RealTimePerformanceTuning2022} by Intel has been instrumental. Given that the working computer used for this work is equipped with an Intel processor, the guidelines presented in this document were particularly relevant and valuable for optimizing real-time performance in KVM-based virtual machines. Chapter~\ref{sec:real-time_tunings} contains an extensive tuning process, which involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The document concludes that the described tuning methods effectively improve real-time performance for KVM-based VMs, even under heavy workloads.
 
-\bigskip \noindent \citeauthor{yoonRealTimePerformanceAnalysis}~\cite{yoonRealTimePerformanceAnalysis} use some of these real-time tunings in their research, including CPU shielding, memory locking, and spinning nanosleep, for controlling humanoid robots equipped with around 60 servo motors and sensors. They implement EtherCAT for real-time communication of distributed devices whereas this thesis uses Varan. The authors highlight the importance of timely data processing in robots that collect data from their environment and respond accordingly through their sensors and actuators. The authors conclude with an experiment that their robotic system could achieve deterministic control of actuators and sensors even under heavy system load through the use of Linux with the real-time preemption patch. Their research has similarities to this master's thesis in terms of real-time tunings for robot control. However, this thesis includes also the virtualization aspect that is central.
+\bigskip \noindent \citeauthor{yoonRealTimePerformanceAnalysis2009}~\cite{yoonRealTimePerformanceAnalysis2009} use some of these real-time tunings in their research, including CPU shielding, memory locking, and spinning nanosleep, for controlling humanoid robots equipped with around 60 servo motors and sensors. They implement EtherCAT for real-time communication of distributed devices whereas this thesis uses Varan. The authors highlight the importance of timely data processing in robots that collect data from their environment and respond accordingly through their sensors and actuators. The authors conclude with an experiment that their robotic system could achieve deterministic control of actuators and sensors even under heavy system load through the use of Linux with the real-time preemption patch. Their research has similarities to this master's thesis in terms of real-time tunings for robot control. However, this thesis includes also the virtualization aspect that is central.
 
-\bigskip \noindent \citeauthor{kiszkaLinuxRealTimeHypervisor}~\cite{kiszkaLinuxRealTimeHypervisor} specifically focuses on Linux as a hypervisor and analyzes its real-time capabilities when using KVM and QEMU. Most importantly for this master's thesis, the author warns of starvation when the priorities of QEMU’s threads are raised and lifted into a real-time scheduling class. Starvation is when a process does not get the resources it needs for a long time because the resources are being allocated to other processes. A way to reduce this risk is by not using more virtual CPUs (VCPUs) than there are actual processor cores. Moreover, Linux has a feature that can limit how much CPU time all real-time tasks can use in the host system, which was an important information for the real-time tunings of this thesis later.
+\bigskip \noindent \citeauthor{kiszkaLinuxRealTimeHypervisor2009}~\cite{kiszkaLinuxRealTimeHypervisor2009} specifically focuses on Linux as a hypervisor and analyzes its real-time capabilities when using KVM and QEMU. Most importantly for this master's thesis, the author warns of starvation when the priorities of QEMU’s threads are raised and lifted into a real-time scheduling class. Starvation is when a process does not get the resources it needs for a long time because the resources are being allocated to other processes. A way to reduce this risk is by not using more virtual CPUs (vCPUs) than there are actual processor cores. Moreover, Linux has a feature that can limit how much CPU time all real-time tasks can use in the host system, which was an important information for the real-time tunings of this thesis later.
 
 \clearpage
 
-\bigskip \noindent \citeauthor{mckenneyRealTimeVs}~\cite{mckenneyRealTimeVs} addresses the overheads associated with real-time Linux when using KVM and QEMU. The author lists several sources of overhead, including memory locking to avoid page-fault latencies, increased overhead of locking and interrupts due to more-aggressive preemption, threaded interrupts that permit long-running interrupt handlers to be preempted by high-priority real-time processes, real-time task scheduling that requires global scheduling, high-resolution timers for tens-of-microseconds accuracy and precision, and preemptible RCU which has slightly higher read-side overhead than Classic RCU. These information helped understand the trade-offs involved in real-time Linux systems.
+\bigskip \noindent \citeauthor{mckenneyRealTimeVs2008}~\cite{mckenneyRealTimeVs2008} addresses the overheads associated with real-time Linux when using KVM and QEMU. The author lists several sources of overhead, including memory locking to avoid page-fault latencies, increased overhead of locking and interrupts due to more-aggressive preemption, threaded interrupts that permit long-running interrupt handlers to be preempted by high-priority real-time processes, real-time task scheduling that requires global scheduling, high-resolution timers for tens-of-microseconds accuracy and precision, and preemptible RCU which has slightly higher read-side overhead than Classic RCU. These information helped understand the trade-offs involved in real-time Linux systems.
 
-\bigskip \noindent \citeauthor{deoliveiraDemystifyingRealTimeLinux}~\cite{deoliveiraDemystifyingRealTimeLinux} critique the traditional \texttt{cyclictest} tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. This is the main reason why this tool was not used to measure the scheduling latency in this work. Instead, the \texttt{latency} tool was used, as was determined in Chapter~\ref{sec:application_context}.
+\bigskip \noindent \citeauthor{deoliveiraDemystifyingRealTimeLinux2020}~\cite{deoliveiraDemystifyingRealTimeLinux2020} critique the traditional \texttt{cyclictest} tool used for measuring scheduling latency, highlighting its limitations due to its black-box approach and lack of theoretical grounding. This is the main reason why this tool was not used to measure the scheduling latency in this work. Instead, the \texttt{latency} tool was used, as was determined in Chapter~\ref{sec:application_context}.
 
 \section{Problem and Task Definition}
 As stated previously, virtualization of real-time systems has many advantages in comparison to traditional hardware-based approaches. Solutions based on pure hardware are often built for a distinct purpose and are hence limited in flexibility. It is difficult to adapt the hardware topology to new requirements or new applications. Moreover, during periods when the demand is lower, expensive hardware may sit idle, leading to inefficient use of resources and a poor return on investment~\cite{gabrielResourceAwareParameterTuning2019}. Another crucial factor is of course the high cost factor associated with procuring and maintaining separate hardware for each real-time system~\cite{bhardwajVirtualizationCloudComputing2021}. Especially when organizations scale their operations, they have to add more physical machines, and the expenses rise rapidly~\cite{abbasiExploringOpenStackScalable2023}. Besides, one needs physical access to the hardware for any updates or maintenance, which is hard to achieve, especially for systems in remote or difficult-to-access locations. This can lead to system downtime and may not only disrupt the operations but can also result in lost productivity and potential revenue~\cite{mahfoudRealTimePredictiveMaintenanceBased2024}.
@@ -304,7 +304,7 @@ The host operating system is the basis for the virtualization of the guest opera
 
 \begin{table}[H]
 	\centering
-	\caption[Host operating system configuration]{Host operating system configuration}
+	\caption[Host Operating System Configuration]{Host Operating System Configuration}
 	\label{tab:testbed_configuration}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -324,7 +324,7 @@ The host operating system is the basis for the virtualization of the guest opera
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.55\columnwidth]{img/lstopo.png}
-	\caption[Hardware topology]{Hardware topology}
+	\caption[Host Operating System Hardware Topology]{Host Operating System Hardware Topology}
 	\label{fig:lstopo}
 \end{figure}
 
@@ -335,7 +335,7 @@ This section briefly describes the guest operating system, Salamander 4.
 \noindent Salamander 4 is the proprietary operating system of SIGMATEK. It is based on Linux version 5.15.94 and integrates Xenomai 3.2, a real-time development environment~\cite{XenomaiXenomai}. Salamander 4 is a 64-bit system, which refers to the x86\_64 architecture. The real-time behaviour is achieved through the use of Symmetric Multi-Processing (SMP) and Preemptive Scheduling (PREEMPT). In addition, it uses IRQPIPE to process interrupts in a way that meets the real-time requirements of the system. The output of the command~\texttt{uname -a} can be observed in code~\ref{output:uname_a_virt}.
 
 \vspace{2em}
-\begin{lstlisting}[name={System information},label={output:uname_a_virt}]
+\begin{lstlisting}[name={System Information},label={output:uname_a_virt}]
 root@sigmatek-core2:~# uname -a
 Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023 x86_64 GNU/Linux
 \end{lstlisting}
@@ -356,7 +356,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\columnwidth]{img/Software-Struktur_einer_LASAL_CPU.png}
-	\caption[Structure of Salamander 4 CPU]{Structure of Salamander 4 CPU}
+	\caption[Structure of Salamander 4 CPU]{Structure of Salamander 4 CPU~\cite{LASALOSSIGMATEK}}
 	\label{fig:lasal_cpu}
 \end{figure}
 
@@ -366,7 +366,7 @@ Linux sigmatek-core2 5.15.94 #1 SMP PREEMPT IRQPIPE Tue Feb 14 18:18:05 UTC 2023
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{img/RAM_Memory_management.png}
-	\caption[Memory Management]{Memory Management}
+	\caption[Memory Management of Salamander 4]{Memory Management of Salamander 4~\cite{LASALOSSIGMATEK}}
 	\label{fig:memory_management}
 \end{figure}
 
@@ -381,7 +381,7 @@ QEMU~\cite{QEMU}. is an open-source emulator and virtualizer that allows to run 
 Salamander 4 is built with Yocto~\cite{WelcomeYoctoProject}, an open-source project that helps develop custom Linux-based operating systems for embedded devices. It is not a Linux version itself but a framework to make custom versions. From the kernel settings to the software packages included, almost everything in the Linux distribution can be adjusted with Yocto, hence it fits custom needs. Yocto organizes different components of the system into layers, making code management and updates easier. It builds the operating system with BitBake and automates the compilation and assembly of software. Upon generating the necessary files, Yocto provides a QEMU folder with the following components shown in Code~\ref{lst:ls}.
 
 \vspace{2em}
-\begin{lstlisting}[name={Contents of QEMU folder for Salamander 4},label={lst:ls}]
+\begin{lstlisting}[name={Contents of QEMU Folder for Salamander 4},label={lst:ls}]
     sigma_ibo@localhost:~/Desktop/salamander-image$ ls -1
     bzImage
     drive-c
@@ -407,7 +407,7 @@ Salamander 4 is built with Yocto~\cite{WelcomeYoctoProject}, an open-source proj
 \noindent The inital QEMU script after the custom Yocto build and the starting point for this work is shown in Code~\ref{script:qemu_def}. This script is used to start QEMU with required parameters to boot Salamamder 4 OS. It will be adjusted in Chapter~\ref{sec:real-time_tunings} in order to accompany real-time performance tunings.
 
 \vspace{2em}
-\begin{lstlisting}[name={QEMU script for starting Salamander 4 virtualization},label={script:qemu_def}]
+\begin{lstlisting}[name={QEMU script for starting Salamander 4 Virtualization},label={script:qemu_def}]
 	#!/bin/sh
 
 	if  [ ! -d drive-c/ ]; then
@@ -438,7 +438,7 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\columnwidth]{img/introduction/xenomai/x3-cobalt-interfaces.png}
-	\caption[Xenomai Cobalt interfaces]{Xenomai Cobalt interfaces~\cite{XenomaiXenomai}}
+	\caption[Xenomai 3 Cobalt Interfaces]{Xenomai 3 Cobalt Interfaces~\cite{OverviewXenomai}}
 	\label{fig:cobalt}
 \end{figure}
 
@@ -447,7 +447,7 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\columnwidth]{img/introduction/xenomai/x3-mercury-interfaces.png}
-	\caption[Xenomai Mercury interfaces]{Xenomai Mercury interfaces~\cite{XenomaiXenomai}}
+	\caption[Xenomai 3 Mercury Interfaces]{Xenomai 3 Mercury Interfaces~\cite{OverviewXenomai}}
 	\label{fig:mercury}
 \end{figure}
 
@@ -457,7 +457,7 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 \texttt{Trace-cmd}~\cite{Tracecmd} is the front-end tool of the \texttt{ftrace} tool that is built inside the Linux kernel and used for tracing the Linux kernel. \texttt{Trace-cmd} can record detailed reports of kernel events such as interrupts, scheduler decisions, function calls, and custom events in real time. It is easier with this tool to enable and disable tracing, set filters, and view results. \texttt{Trace-cmd} helped debugging and identifying the reasons for latency in Salamander 4 to continuously improve its real-time performance and determinism. A very practical aspect of \texttt{trace-cmd} is that the guest can be traced from the host. For this purpose, the guest needs to be configured up with \texttt{vsocks}, which are a virtual socket that enable direct communication between the host and guest. To enable vsockets and tracing, the guest kernel requires the following configurations, according to Linux developer and maintainer Steve Rostedt~\cite{rostedtTracecmdHostGuest}.
 
 \vspace{2em}
-\begin{lstlisting}[language=bash, caption={Kernel Configuration for vsocks and tracing}, label={lst:kernel-config}]
+\begin{lstlisting}[language=bash, caption={Kernel Flags for Vsocks and Tracing}, label={lst:kernel-config}]
 	# Vsockets settings
 	CONFIG_VSOCKETS=m
 	CONFIG_VHOST_VSOCK=m
@@ -491,12 +491,12 @@ Xenomai 3~\cite{XenomaiXenomai} is an open-source real-time framework that offer
 \noindent After compiling the kernel with the additional settings aboce, the guest needs access to the vsocket. In QEMU, the line \texttt{-device vhost-vsock-pci,guest-cid=3,id=vsock0} was added. This command configures a virtual socket (vsock) device in QEMU, assigning the guest a unique Context Identifier (CID) of 3 for direct communication with the host. The CID can be chosen as desired. Once the guest is booted with vhost enabled, the \texttt{sudo trace-cmd agent} command can be run.  The agent now listens to connections on port 823 by default with the specified CID, 3 in this case. The host can trace itself and the guest from this moment going forward. For example, \texttt{sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all} records all events from the host and guest. \texttt{sudo trace-cmd record -e kvm:kvm\_entry -e kvm:kvm\_exit -A @3:823 --name Salamander4 -e all} traces onkly the \texttt{kvm\_entry} and \texttt{kvm\_exit} events of the host along with the exit reasons and all guest events. As a last example, \texttt{sudo trace-cmd record -e kvm -e sched -e irq -e -A @3:823 --name Salamander4 -e all} enables tracing of KVM, scheduling, and interrupt events on the host, for capturing the KVM events that manage the guest, scheduling activities, and interrupt handling respectively.
 
 \section{Kernelshark}\label{sec:kernelshark}
-Viewing the tracing data that was recorded with \texttt{trace-cmd} on a text-based file can be laborious. A better way of analyzing the data is done through \texttt{KernelShark}~\cite{KernelShark}, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitates the process of identifying patterns and correlations between events. The latency issues can be analyzed by further filtering the displayed events according to processes, event types or time ranges. After the recording, \texttt{trace-cmd} gernerates a host \texttt{trace.dat} file and a guest \texttt{trace-Salamander4.dat} file, which in this case can be loaded into \texttt{KernelShark} with the command \texttt{kernelshark trace.dat -a trace-Salamander4.dat}. Once both files are loaded, the trace data can be visually inspected. All the current CPUs for both the host and the guest can be turned off, and the KVM Combo plots menu can be selected to view the guest VCPUs plotted on top of the host threads that run them, as depicted in Figure~\ref{fig:kernelshark_combo}.
+Viewing the tracing data that was recorded with \texttt{trace-cmd} on a text-based file can be laborious. A better way of analyzing the data is done through \texttt{KernelShark}~\cite{KernelShark}, which is a graphical front-end tool. It visualizes the recorded kernel trace data in a readable way on an interactive timeline, which facilitates the process of identifying patterns and correlations between events. The latency issues can be analyzed by further filtering the displayed events according to processes, event types or time ranges. After the recording, \texttt{trace-cmd} gernerates a host \texttt{trace.dat} file and a guest \texttt{trace-Salamander4.dat} file, which in this case can be loaded into \texttt{KernelShark} with the command \texttt{kernelshark trace.dat -a trace-Salamander4.dat}. Once both files are loaded, the trace data can be visually inspected. All the current CPUs for both the host and the guest can be turned off, and the KVM Combo plots menu can be selected to view the guest vCPUs plotted on top of the host threads that run them, as depicted in Figure~\ref{fig:kernelshark_combo}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{img/kernelshark_combo.png}
-	\caption[Guest VCPUs plotted on top of host threads in KernelShark]{Guest VCPUs plotted on top of host threads in KernelShark}
+	\caption[Guest vCPUs plotted on top of Host Threads in KernelShark]{Guest vCPUs plotted on top of Host Threads in KernelShark}
 	\label{fig:kernelshark_combo}
 \end{figure}
 
@@ -528,16 +528,15 @@ As a reference point, the \texttt{latency} program was executed on Salamander 4 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/0hardware/gnuplot_max_latency_hardware.png}
-	\caption[Distribution of Latency of Salamander 4 Bare Metal]{Distribution of Latency of Salamander 4 Bare Metal}
+	\caption[Latency Distribution of Salamander 4 Bare Metal]{Latency Distribution of Salamander 4 Bare Metal}
 	\label{fig:gnuplot_max_latency_hardware}
 \end{figure}
 
-\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_hardware} and Table~\ref{tab:latency_overrun_msw_hardware}. The test was conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99.
-If any sample’s latency value is greater than 100\textmu s, it would be considered an overrun.
+\noindent The statistics obtained from this measurement are provided in Table~\ref{tab:latency_stats_hardware} and Table~\ref{tab:latency_overrun_msw_hardware}. The test was conducted with a sampling period of 100 µs, using a periodic user-mode task, and was assigned a priority of 99. If any sample's latency value is greater than 100\textmu s, it would be considered an overrun.
 
 \begin{table}[H]
 	\centering
-	\caption{Statistical Summary of Latency Measurements}
+	\caption{Latency Parameters for Bare Metal}
 	\label{tab:latency_stats_hardware}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -548,10 +547,9 @@ If any sample’s latency value is greater than 100\textmu s, it would be consid
 	\end{tabular}
 \end{table}
 
-\vspace{1em}
 \begin{table}[H]
 	\centering
-	\caption{Latencies and Overruns}
+	\caption{Minimum, Average, and Maximum Latency with Overrun Counts of Bare Metal}
 	\label{tab:latency_overrun_msw_hardware}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -566,7 +564,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/1default/gnuplot_max_latency_default.png}
-	\caption[Distribution of Latency of Salamander 4 unmodified Virtualization]{Distribution of Latency of Salamander 4 unmodified Virtualization}
+	\caption[Latency Distribution of Salamander 4 Untuned Virtualization]{Latency Distribution of Salamander 4 Untuned Virtualization}
 	\label{fig:gnuplot_max_latency_default}
 \end{figure}
 
@@ -574,7 +572,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \begin{table}[H]
 	\centering
-	\caption{Statistical Summary of Latency Measurements}
+	\caption{Latency Parameters for Untuned Virtualization}
 	\label{tab:latency_stats_virt}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -587,7 +585,7 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 \begin{table}[H]
 	\centering
-	\caption{Latencies and Overruns}
+	\caption[Latency Statistics with Overrun Counts for Untuned Virtualization]{Minimum, Average, and Maximum Latency with Overrun Counts for Untuned Virtualization}
 	\label{tab:latency_overrun_msw_new_virt}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -612,9 +610,9 @@ In addition to providing Salamander 4 on its own hardware, SIGMATEK has also dev
 
 In this chapter, the significant initial gap in latency statistics between the virtualized system and the bare metal system is tackled. For this reason, an extensive tuning process is carried out. This involves configurations spanning the BIOS, kernel, host OS, QEMU/KVM virtualization layer, and the Salamander 4 OS itself. The individual configurations are discussed in detail and the modifications are justified with a clear explanation. The goal is to bring the latency of the virtualization closer to that of the bare metal, thereby ensuring deterministic behavior under real-time constraints.
 
-\bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system, ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the PREEMPT-RT patch to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event~\cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and makes the system more predictable~\cite{lutsykPipelinedMulticoreMachine2020}. Determinism and predictability are key for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling~\cite{rostedtInternalsRTPatch}.
+\bigskip \noindent It is important to mention that a real-time system implies determinism at every component of the system, ranging from hardware over the kernel to the software and the application on it. As already established earlier, the guest OS Salamamder 4 runs Xenomai and is hence real-time capable. The host system also needs to be aware of the real-time determinism in order to achieve highest possible reliability. The very step of achieving the goal of reducing latency is to apply the PREEMPT-RT patch to the host system. This patch is a set of modifications to the Linux kernel with the goal of making it fully preemptible. This means, almost all parts of the kernel can be preempted and higher-priority tasks can interrupt lower-priority ones. This significantly reduces the time it takes for high-priority tasks to start executing after an event~\cite{RealtimeKernelPatchset}. The patch also includes support for high-resolution timers and makes the system more predictable~\cite{lutsykPipelinedMulticoreMachine2020}. Determinism and predictability are key for real-time applications where the timing of operations must be guaranteed with precise timing and scheduling~\cite{rostedtInternalsRTPatch2007}.
 
-\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinux}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. After each tuning, the \texttt{latency} test of Xenomai is executed to evaluate the improved latency. The most important metric of a latency test is without a doubt the worst latency value, because the system is only as reliable as its worst measurement. Since the period of the tests is set to 100\textmu s, there are approximately 1,000,000 samples per second.
+\bigskip \noindent Nevertheless, a real-time kernel alone does not make a system truly “real-time”~\cite{WhatRealtimeLinuxa}. Additional modifications are required to achieve this. The next sections will deal with these real-time performance tunings. After each tuning, the \texttt{latency} test of Xenomai is executed to evaluate the improved latency. The most important metric of a latency test is without a doubt the worst latency value, because the system is only as reliable as its worst measurement. Since the period of the tests is set to 100\textmu s, there are approximately 1,000,000 samples per second.
 
 \clearpage
 
@@ -624,7 +622,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \begin{table}[H]
 	\centering
-	\caption{BIOS Configurations}
+	\caption{BIOS Configurations for Real-Time Performance}
 	\label{tab:bios_configuration}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -660,7 +658,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/2taskset/gnuplot_max_latency_taskset.png}
-	\caption[Latency Distribution after tuning BIOS Settings]{Latency Distribution after tuning BIOS Settings}
+	\caption[Latency Distribution of Salamander 4 after BIOS Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning BIOS Configurations}
 	\label{fig:gnuplot_max_latency_taskset}
 \end{figure}
 
@@ -668,7 +666,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \begin{table}[H]
 	\centering
-	\caption{Statistical Summary of Latency Measurements}
+	\caption{Latency Parameters after BIOS Configurations}
 	\label{tab:latency_stats_virt_bios}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -681,7 +679,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 
 \begin{table}[H]
 	\centering
-	\caption{Latencies and Overruns, Missed Switch, Best, and Worst Data}
+	\caption[Latency Statistics with Overrun Counts after BIOS Configurations]{Minimum, Average, and Maximum Latency with Overrun Counts after BIOS Configurations}
 	\label{tab:latency_overrun_msw_new_virt_bios}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -696,7 +694,7 @@ BIOS stands for Basic Input/Output System. It abstracts the hardware and enables
 The kernel command-line parameters are shown in Code~\ref{script:kernel_cli} below. To access and modify them, the file is located in \texttt{/etc/default/grub}.
 
 \vspace{2em}
-\begin{lstlisting}[name={Kernel Configuration},label={script:kernel_cli}]
+\begin{lstlisting}[name={Kernel Configurations for Real-Time Performance},label={script:kernel_cli}]
 		GRUB_CMDLINE_LINUX="isolcpus=4 rcu_nocbs=4 rcu_nocb_poll nohz_full=4 nohz=on default_hugepagesz=1G hugepagesz=1G hugepages=8 intel_iommu=on rdt=l3cat nmi_watchdog=0 idle=poll clocksource=tsc tsc=reliable audit=0 skew_tick=1 intel_pstate=disable intel.max_cstate=0 intel_idle.max_cstate=0 processor.max_cstate=0 processor_idle.max_cstate=0 nosoftlockup no_timer_check nospectre_v2 spectre_v2_user=off kvm.kvmclock_periodic_sync=N kvm_intel.ple_gap=0 irqaffinity=0"
 \end{lstlisting}
 
@@ -733,7 +731,7 @@ values gathered in 10 minutes.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/4rt_kernelparam/gnuplot_max_latency_rt_kernelparam.png}
-	\caption[Latency Distribution after tuning Kernel Settings]{Latency Distribution after tuning Kernel Settings}
+	\caption[Latency Distribution of Salamander 4 after Kernel Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning Kernel Configurations}
 	\label{fig:gnuplot_max_latency_rt_kernelparam}
 \end{figure}
 
@@ -741,7 +739,7 @@ values gathered in 10 minutes.
 
 \begin{table}[H]
 	\centering
-	\caption{Statistical Summary of Latency Measurements}
+	\caption{Latency Parameters after Kernel Configurations}
 	\label{tab:latency_stats_kernelparam}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -754,7 +752,7 @@ values gathered in 10 minutes.
 
 \begin{table}[H]
 	\centering
-	\caption{Latencies and Overruns}
+	\caption[Latency Statistics with Overrun Counts after Kernel Configurations]{Minimum, Average, and Maximum Latency with Overrun Counts after Kernel Configurations}
 	\label{tab:latency_overrun_msw_new_virt_kernel}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -771,10 +769,10 @@ values gathered in 10 minutes.
 The host OS needs to provide an environment where the guest OS can operate in real-time. This entails a number of host-side adjustments to reduce interruptions and latency. In the following, a detailed overview of these configurations and their impact on the real-time performance of the guest Salamander 4 OS is provided.
 \subsubsection{CPU affinity and Isolation}\label{subsubsec:cpu_isolation}
 
-Isolating CPUs means removing all user-space threads and unbound kernel threads, since bound kernel threads are tied to specific CPUs and hence cannot be moved. For CPU isolation, the~\texttt{isolcpus} function is used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased}, including systemd services. To prevent systemd services from running on an isolated CPU, the CPU affinity can be set with the line \texttt{CPUAffinity=0 1 2 3 5} in the \texttt{/etc/systemd/system.conf} file to indicate the CPUs that systemd services are allowed to run on. Every CPU other than the isolated CPU 4 is allowed. Code~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. An isolated CPU can be bound to a task by using \texttt{taskset -c <CPU>}, as shown later in Subsection~\ref{subsec:guest_configurations}. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
+Isolating CPUs means removing all user-space threads and unbound kernel threads, since bound kernel threads are tied to specific CPUs and hence cannot be moved. For CPU isolation, the~\texttt{isolcpus} function is used to isolate a performance CPU from the general scheduling algorithms of the operating system. This means that the isolated CPUs will not be used for regular task scheduling, allowing them to be dedicated for the real-time specific tasks. However, the isolcpus function only isolates at the user level and does not affect kernel tasks. Consequently, these kernel tasks and interrupts can still utilize the CPU~\cite{maPerformanceTuningKVMbased2013}, including systemd services. To prevent systemd services from running on an isolated CPU, the CPU affinity can be set with the line \texttt{CPUAffinity=0 1 2 3 5} in the \texttt{/etc/systemd/system.conf} file to indicate the CPUs that systemd services are allowed to run on. Every CPU other than the isolated CPU 4 is allowed. Code~\ref{output:pse} shows the user and kernel tasks that run on CPU 4. An isolated CPU can be bound to a task by using \texttt{taskset -c <CPU>}, as shown later in Subsection~\ref{subsec:guest_configurations}. After the isolation, user tasks other than the QEMU process have been removed from running on this CPU. Only few per-CPU kernel threads that are tied to this CPU still take CPU time.
 
 \vspace{2em}
-\begin{lstlisting}[name={User and Kernel Tasks},label={output:pse},escapeinside={(*@}{@*)}]
+\begin{lstlisting}[name={User and Kernel Tasks on the isolated CPU},label={output:pse},escapeinside={(*@}{@*)}]
 		sigma_ibo@sigma-ibo:~$ cat /sys/devices/system/cpu/isolated
 		4
 		sigma_ibo@sigma-ibo:~$ ps axHo psr,pid,lwp,args,policy,nice,rtprio | awk '$1 == 4'
@@ -804,7 +802,7 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 \clearpage
 
 \vspace*{-5em}
-\begin{lstlisting}[name={Check distribution of interrupt requests across each CPU},label={script:smp_affinity}]
+\begin{lstlisting}[name={Code to show a table of the distribution of interrupt requests across each CPU},label={script:smp_affinity}]
 		import os
 		import pandas as pd
 		from tabulate import tabulate
@@ -860,7 +858,7 @@ Once the CPUs were isolated, interrupt requests handling was the next step. The 
 \clearpage
 
 \vspace*{-5em}
-\begin{lstlisting}[name={Change IRQ assignment of a CPU},label={script:change_smp_affinity}]
+\begin{lstlisting}[name={Script to change IRQ Assignment of a CPU},label={script:change_smp_affinity}]
 		#!/bin/bash
 
 		# Check if a command-line argument is provided
@@ -914,7 +912,7 @@ Having a real-time kernel itself is an indispensable step of achieving determini
 
 \begin{table}[H]
 	\centering
-	\caption{Minimum and maximum priorities for different scheduling policies}
+	\caption{Minimum and maximum Priorities for different Scheduling Policies}
 	\label{tab:scheduling_priorities}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -950,7 +948,7 @@ Services like irqbalance.service, thermald.service, and wpa\_supplicant.service,
 
 \begin{table}[H]
 	\centering
-	\caption{Description of Services}
+	\caption{Services that are stopped to reduce random Latency and Overhead}
 	\label{tab:stop_servies}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -977,7 +975,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/5rt_kernelparam_host/gnuplot_max_latency_rt_kernelparam_host.png}
-	\caption[Latency rt kernelparam host]{Latency rt kernelparam host}
+	\caption[Latency Distribution of Salamander 4 after Host Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning Host Configurations}
 	\label{fig:max_latency_rt_kernelparam_host}
 \end{figure}
 
@@ -985,7 +983,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 
 \begin{table}[H]
 	\centering
-	\caption{Statistical Summary of Latency Measurements}
+	\caption{Latency Parameters for Host Configurations}
 	\label{tab:latency_stats_virt_host}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -998,7 +996,7 @@ The Graphical User Interface (GUI) consumes great amounts of system resources. I
 
 \begin{table}[H]
 	\centering
-	\caption{Latencies and Overruns}
+	\caption[Latency Statistics with Overrun Counts after Host Configurations]{Minimum, Average, and Maximum Latency with Overrun Counts after Host Configurations}
 	\label{tab:latency_overrun_msw_new_virt_host}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -1023,7 +1021,7 @@ QEMU provides several options that can be used to improve the real-time performa
 
 \begin{table}[H]
 	\centering
-	\caption{QEMU options for real-time performance}
+	\caption{QEMU Options for Real-Time Performance}
 	\label{tab:qemu_options}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -1039,7 +1037,7 @@ QEMU provides several options that can be used to improve the real-time performa
 
 \clearpage
 
-\begin{lstlisting}[name={Tuned QEMU script for starting Salamander 4 virtualization},label={script:qemu_def_tuned}]
+\begin{lstlisting}[name={Tuned QEMU Script for starting Salamander 4 Virtualization},label={script:qemu_def_tuned}]
 		#!/bin/sh
 
 		if  [ ! -d drive-c/ ]; then
@@ -1065,7 +1063,7 @@ QEMU provides several options that can be used to improve the real-time performa
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/6rt_kernelparam_host_qemu/gnuplot_max_latency_rt_kernelparam_host_qemu.png}
-	\caption[Latency rt kernelparam host qemu]{Latency rt kernelparam host qemu}
+	\caption[Latency Distribution of Salamander 4 after QEMU Configurations]{Latency Distribution of Salamander 4 Virtualization after tuning QEMU Configurations}
 	\label{fig:max_latency_rt_kernelparam_host_qemu}
 \end{figure}
 
@@ -1075,7 +1073,7 @@ QEMU provides several options that can be used to improve the real-time performa
 
 \begin{table}[H]
 	\centering
-	\caption{Statistical Summary of Latency Measurements}
+	\caption{Latency Parameters after QEMU Configurations}
 	\label{tab:latency_stats_virt_qemu}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -1088,7 +1086,7 @@ QEMU provides several options that can be used to improve the real-time performa
 
 \begin{table}[H]
 	\centering
-	\caption{Latencies and Overruns}
+	\caption[Latency Statistics with Overrun Counts after QEMU Configurations]{Minimum, Average, and Maximum Latency with Overrun Counts after QEMU Configurations}
 	\label{tab:latency_overrun_msw_new_virt_qemu}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -1113,7 +1111,7 @@ This chapter compares the latency of the Salamander 4 operating system before an
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.3\columnwidth]{img/experiment/mini_robot.jpg}
-	\caption[Mini-robot of the experiment]{Mini-robot of the experiment~\cite{6DFRoboticArm}}
+	\caption[Mini-Robot of the Experiment]{Mini-Robot of the Experiment~\cite{6DFRoboticArm}}
 	\label{fig:mini_robot}
 \end{figure}
 
@@ -1140,7 +1138,7 @@ This chapter compares the latency of the Salamander 4 operating system before an
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\columnwidth]{img/experiment/pw022_connectors.png}
-	\caption[PW 022 pulse width module connector layout]{PW 022 pulse width module connector layout~\cite{DigitalOutputSIGMATEK}}
+	\caption[PW 022 Pulse Width Module Connector Layout]{PW 022 Pulse Width Module Connector Layout~\cite{DigitalOutputSIGMATEK}}
 	\label{fig:pw022_connectors}
 \end{figure}
 
@@ -1162,29 +1160,29 @@ This chapter compares the latency of the Salamander 4 operating system before an
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{img/experiment/pw022_minirobot.png}
-	\caption[Connection between PW 022 and mini-robot]{Connection between PW 022 and mini-robot~\cite{MG996RDigitalServo}}
+	\caption[Connection between PW 022 and Mini-Robot]{Connection between PW 022 and Mini-Robot~\cite{MG996RDigitalServo}}
 	\label{fig:pw022_minirobot_connection}
 \end{figure}
 
 \noindent The program is written in Lasal Class 2 and is applied to all three mentioned versions of Salamander 4 to measure the reaction time of the robot to the commands. Prior to examining the software program, the next two subsections briefly explain the setup of each version of the experiment.
 
-\subsection{Setup of Hardware Salamander 4}
+\subsection{Setup of Salamander 4 Bare Metal}
 In this version, Salamander 4 runs on the CP 841~\cite{CPUUnitsSIGMATEK} CPU unit, specifically designed for the Salamander 4 operating system. The PW 022 modules are directly mounted on the CPU via the S-DIAS bus~\cite{SDIASSIGMATEK}. There are three PW 022 modules because each can control two motors simultaneously, and the mini-robot has six motors. The setup is visible on Figure~\ref{fig:hardware_tree}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.45\columnwidth]{img/experiment/hardware_tree.png}
-	\caption[Setup of Hardware Salamander 4]{Setup of Hardware Salamander 4}
+	\caption[Setup of Salamander 4 Bare Metal]{Setup of Salamander 4 Bare Metal}
 	\label{fig:hardware_tree}
 \end{figure}
 
-\subsection{Setup of QEMU Salamander 4}\label{subsec:setup_experiment_virtualized}
-In the virtualized setup of the experiment, the VCPU functionality of QEMU is used to connect QEMU with the PWM modules. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needs to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID \texttt{5112} and device ID \texttt{2200}.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card in the virtualization. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}.
+\subsection{Setup of Salamander 4 Virtualization}\label{subsec:setup_experiment_virtualized}
+In the virtualized setup of the experiment, the vCPU functionality of QEMU is used to connect QEMU with the PWM modules. In order to achieve that, the PCV 522 VARAN Manager PCI Insert Card~\cite{ControlsHMIsSIGMATEK}, which serves as a bridge between the PC and the rest of the setup, needs to be plugged into the PC. The command \texttt{lspci -nn} lists all PCI devices along with their vendor and device IDs. In this case, the command for binding the PCV 522 module to the VFIO-PCI driver was \texttt{sudo sh -c 'echo "5112 2200" > /sys/bus/pci/drivers/vfio-pci/new\_id'} with vendor ID \texttt{5112} and device ID \texttt{2200}.  To verify that the device has been successfully bound to the VFIO-PCI driver, \texttt{lspci -v} can be used. On top of the binding process, the QEMU script from the previous sections also needed to be modified to include the PCV 522 VARAN Manager PCI Insert Card in the virtualization. This is done by adding \texttt{-device\ vfio-pci,host=03:00.0 } to the QEMU script, where \texttt{03:00.0} refers to the PCI address of the device, with \texttt{03} being the bus number, \texttt{00} the device number, and \texttt{0} the function number. The final script can be seen in Code~\ref{script:qemu_def_pci}.
 
 \clearpage
 
 \vspace*{-5em}
-\begin{lstlisting}[name={Include PCI in QEMU for Salamander 4 Virtualization},label={script:qemu_def_pci}]
+\begin{lstlisting}[name={QEMU script for Salamander 4 Virtualization with PCI Configuration},label={script:qemu_def_pci}]
 		#!/bin/sh
 
 		if  [ ! -d drive-c/ ]; then
@@ -1211,11 +1209,11 @@ In the virtualized setup of the experiment, the VCPU functionality of QEMU is us
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\columnwidth]{img/experiment/virt_tree.png}
-	\caption[Virtualization tree]{Virtualization tree}
+	\caption[Setup of Salamander 4 Virtualization]{Setup of Salamander 4 Virtualization}
 	\label{fig:virt_tree}
 \end{figure}
 
-\noindent Essentially, the CPU is being emulated by the VCPU functionality of QEMU, allowing the PCV 522 VARAN Manager PCI Insert Card and the Varan Connection module VI 021 to interact as if they were communicating with a physical CPU unit.
+\noindent Essentially, the CPU is being emulated by the vCPU functionality of QEMU, allowing the PCV 522 VARAN Manager PCI Insert Card and the Varan Connection module VI 021 to interact as if they were communicating with a physical CPU unit.
 
 \subsection{Robotic Application}
 
@@ -1254,6 +1252,7 @@ Robots operate in real-time, meaning commands must be executed within a set time
 	\caption[Flowchart of Robotic Application]{Flowchart of Robotic Application}
 	\label{fig:robotic_application_flow}
 \end{figure}
+\vspace{1em}
 
 \noindent This latency measurement above is performed 1,000 times to get reliable results. These results are presented in the next subsubsections.
 
@@ -1273,19 +1272,19 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 
 \clearpage
 
-\subsubsection{Latency in Salamander 4 OS Hardware}\label{subsubsec:latency_hardware}
+\subsubsection{Latency in Salamander 4 Bare Metal}\label{subsubsec:latency_hardware}
 \noindent The latency values for bare metal Salamander 4 OS aquired from the program above are demonstrated in Figure~\ref{fig:rtos_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_hardware}. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/rtos_latencies.png}
-	\caption[Virtualization tree]{Virtualization tree}
+	\caption[Robotic Application Latency Values of Salamander 4 Hardware]{Robotic Application Latency Values of Salamander 4 Hardware}
 	\label{fig:rtos_latencies}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\caption{Robotic Application Latency Values Hardware}
+	\caption{Robotic Application Latency Statistics Hardware}
 	\label{tab:robotic_application_latency_values_hardware}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -1305,13 +1304,13 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/untuned_virt_latencies.png}
-	\caption[Virtualization tree]{Virtualization tree}
+	\caption[Robotic Application Latency Values of Salamander 4 Untuned Virtualization]{Robotic Application Latency Values of Salamander 4 Untuned Virtualization}
 	\label{fig:untuned_virt_latencies}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\caption{Robotic Application Latency Values Untuned Virtualization}
+	\caption{Robotic Application Latency Statistics Untuned Virtualization}
 	\label{tab:robotic_application_latency_values_virt_def}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -1330,12 +1329,12 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/tuned_virt_latencies.png}
-	\caption[Virtualization tree]{Virtualization tree}
+	\caption[Robotic Application Latency Values of Salamander 4 Tuned Virtualization]{Robotic Application Latency Values of Salamander 4 Tuned Virtualization}
 	\label{fig:tuned_virt_latencies}
 \end{figure}
 \begin{table}[H]
 	\centering
-	\caption{Robotic Application Latency Values Tuned Virtualization}
+	\caption{Robotic Application Latency Statistics Tuned Virtualization}
 	\label{tab:robotic_application_latency_values_virt_tun}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -1461,7 +1460,7 @@ After analyzing the inital latency of both versions, Trace-cmd and Kernelshark w
 
 \end{itemize}
 
-The Figure below (deleted) compares non-optimized guest latency with optimized guest latency and includes optimized bare-metal latency as a reference. The data shows that a 40\% reduction in QD1 latency is achievable through system tuning.
+The Figure below (deleted) compares non-optimized guest latency with optimized guest latency and includes optimized bare metal latency as a reference. The data shows that a 40\% reduction in QD1 latency is achievable through system tuning.
 
 \end{comment}
 
@@ -1471,7 +1470,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.70\columnwidth]{masterthesis-documentation/docs/sigmatek/xenomai/012456combined/gnuplot_combined_max_latency.png}
-	\caption[Latency rt kernelparam host]{Latency rt kernelparam host}
+	\caption[Comparison of Latency Distribution of Salamander 4 Configurations]{Comparison of Latency Distribution of Salamander 4 under different Configurations}
 	\label{fig:max_latency_combined_results}
 \end{figure}
 
@@ -1480,7 +1479,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 \begin{table}[H]
 	\centering
 	\footnotesize
-	\caption{Latencies and Overruns with Tuning}
+	\caption{Comparison of Latency Statistics in Salamander 4 under different Configurations}
 	\label{tab:latency_tables_combined}
 	\begin{tabular}{|c|c|c|c|c|c|}
 		\hline
@@ -1501,7 +1500,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\columnwidth]{masterthesis-documentation/docs/resources/scripts/experiment/generated_latencies/combined_latencies.png}
-	\caption[Robotic Application Response Latency]{Robotic Application Response Latency}
+	\caption[Comparison of Robotic Application Latency of Salamander 4 Configurations]{Comparison of Robotic Application Latency of Salamander 4 under different Configurations}
 	\label{fig:combined_latencies}
 \end{figure}
 
@@ -1510,7 +1509,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 \begin{table}[H]
 	\small
 	\centering
-	\caption{Robotic Application Latency Values}
+	\caption{Comparison of Robotic Application Latency Statistics}
 	\label{tab:robotic_application_latency_values_combined}
 	\setlength{\tabcolsep}{0.5em} % for the horizontal padding
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
@@ -1547,27 +1546,58 @@ Hardware-based systems are limited in adaptability and can be costly, especially
 
 \bigskip \noindent While this thesis provides a comprehensive blueprint for making a virtualized guest system in a host system real-time capable with deterministic behavior, future work can be done to extend this knowledge. Additional configurations and optimizations of the virtualization layer can be done and tested to further reduce latency and improve determinism. Other than that, the use of other hypervisors and virtualization technologies can be investigated to compare their performance for real-time applications. Moreover, extensive testing of the virtualized system under various workloads can be conducted to evaluate its performance and reliability in different conditions and stressed situations, as demonstrated by \citeauthor{huang2015performance}~\cite{huang2015performance}, \citeauthor{kirovaImpactModernVirtualization2019}~\cite{kirovaImpactModernVirtualization2019} or \citeauthor{adamPerformanceAssessmentLinux2021}~\cite{adamPerformanceAssessmentLinux2021}.
 
-
 \begin{comment}
-Online
-
-~\cite{WhatRealtimeLinuxa}
+~\cite{canbazPerformanceAnalysisRealtime2022}
+~\cite{WhatRealtimeLinux}
+~\cite{malallahComprehensiveStudyKernel2021}
+~\cite{wangRealtimeEmbeddedSystems2017}
+~\cite{buttazzoHardRealtimeComputing2024}
+~\cite{lipariRealTimeSchedulingHard2015}
+~\cite{amarpreetHardRealTime2009}
+~\cite{queirozTestingLimitsGeneralpurpose2023}
 ~\cite{pixelartSIGMATEKKompletteAutomatisierungssysteme}
 ~\cite{WelcomeYoctoProject}
 ~\cite{XenomaiXenomai}
+~\cite{perneelRealtimeCapabilitiesStandard2015}
+~\cite{reghenzaniRealTimeLinuxKernel2020}
+~\cite{adamRealTimePerformanceResponse2021}
+~\cite{cinqueVirtualizingMixedCriticalitySystems2022}
+~\cite{sandstromVirtualizationTechnologiesEmbedded2013}
+~\cite{taccariEmbeddedRealTimeVirtualization2014}
+~\cite{javierperezHowRealTime2022}
+~\cite{guStateoftheArtSurveyRealTime2012}
+~\cite{garcia-vallsChallengesRealtimeVirtualization2014}
+~\cite{scordinoRealTimeVirtualizationIndustrial2020}
+~\cite{maPerformanceTuningKVMbased2013}
+~\cite{junzhangPerformanceAnalysisKVMBased2010}
+~\cite{broskyShieldedProcessorsGuaranteeing2003}
+~\cite{RealTimePerformanceTuning2022}
+~\cite{yoonRealTimePerformanceAnalysis2009}
+~\cite{kiszkaLinuxRealTimeHypervisor2009}
+~\cite{mckenneyRealTimeVs2008}
+~\cite{deoliveiraDemystifyingRealTimeLinux2020}
+~\cite{gabrielResourceAwareParameterTuning2019}
+~\cite{bhardwajVirtualizationCloudComputing2021}
+~\cite{abbasiExploringOpenStackScalable2023}
+~\cite{mahfoudRealTimePredictiveMaintenanceBased2024}
+~\cite{queirozContainerbasedVirtualizationRealtime2024}
+~\cite{cinqueEvaluatingVirtualizationFog2023}
 ~\cite{casiniLatencyAnalysisVirtualization2021}
 ~\cite{zhangEvaluatingOptimizingVirtualization2010}
 ~\cite{CPUUnitsSIGMATEK}
 ~\cite{EngineeringToolLASAL}
+~\cite{LASALOSSIGMATEK}
 ~\cite{QEMU}
+~\cite{OverviewXenomai}
 ~\cite{RealtimePreempt_rt_versionsWiki}
 ~\cite{LATENCY}
 ~\cite{Tracecmd}
-~\cite{KernelShark}
 ~\cite{rostedtTracecmdHostGuest}
+~\cite{KernelShark}
 ~\cite{RealtimeKernelPatchset}
-~\cite{rostedtInternalsRTPatch}
-~\cite{WhatRealtimeLinux}
+~\cite{lutsykPipelinedMulticoreMachine2020}
+~\cite{rostedtInternalsRTPatch2007}
+~\cite{WhatRealtimeLinuxa}
 ~\cite{LinuxProcessPriorities}
 ~\cite{kernelrecipesKernelRecipes20162016}
 ~\cite{thelinuxfoundationFindingSourcesLatency2020}
@@ -1584,46 +1614,9 @@ Online
 ~\cite{SDIASSIGMATEK}
 ~\cite{ControlsHMIsSIGMATEK}
 ~\cite{InterfacesSplittersSIGMATEK}
-
-\noindent Papers
-
-~\cite{canbazPerformanceAnalysisRealtime2022}
-~\cite{malallahComprehensiveStudyKernel2021}
-~\cite{wangRealtimeEmbeddedSystems2017}
-~\cite{buttazzoHardRealtimeComputing2024}
-~\cite{lipariRealTimeSchedulingHard}
-~\cite{perneelRealtimeCapabilitiesStandard2015}
-~\cite{reghenzaniRealTimeLinuxKernel2020}
-~\cite{adamRealTimePerformanceResponse2021}
-~\cite{cinqueVirtualizingMixedCriticalitySystems2022}
-~\cite{sandstromVirtualizationTechnologiesEmbedded2013}
-~\cite{taccariEmbeddedRealTimeVirtualization2014}
-~\cite{javierperezHowRealTime2022}
-~\cite{guStateoftheArtSurveyRealTime2012}
-~\cite{garcia-vallsChallengesRealtimeVirtualization2014}
-~\cite{scordinoRealTimeVirtualizationIndustrial2020}
-~\cite{maPerformanceTuningKVMbased}
-~\cite{junzhangPerformanceAnalysisKVMBased2010}
-~\cite{broskyShieldedProcessorsGuaranteeing2003}
-~\cite{RealTimePerformanceTuning2022}
-~\cite{yoonRealTimePerformanceAnalysis}
-~\cite{kiszkaLinuxRealTimeHypervisor}
-~\cite{mckenneyRealTimeVs}
-~\cite{deoliveiraDemystifyingRealTimeLinux}
-~\cite{gabrielResourceAwareParameterTuning2019}
-~\cite{bhardwajVirtualizationCloudComputing2021}
-~\cite{abbasiExploringOpenStackScalable2023}
-~\cite{mahfoudRealTimePredictiveMaintenanceBased2024}
-~\cite{queirozContainerbasedVirtualizationRealtime2024}
-~\cite{cinqueEvaluatingVirtualizationFog2023}
-~\cite{huang2015performance}
-~\cite{lutsykPipelinedMulticoreMachine2020} 
-~\cite{queirozTestingLimitsGeneralpurpose2023}
+~\cite{huang2015performance} 
 ~\cite{kirovaImpactModernVirtualization2019}
-~\cite{HardRealTime}
 ~\cite{adamPerformanceAssessmentLinux2021}
-
-
 \end{comment}
 
 
@@ -1655,10 +1648,31 @@ Online
 \phantomsection
 \addcontentsline{toc}{chapter}{\listacroname}
 
+
+
 \chapter*{\listacroname}
 \begin{acronym}[XXXXX]
+	\acro{AI}[AI]{Artificial Intelligence}
+	\acro{CID}[CID]{Context Identifier}
 	\acro{CPU}[CPU]{Central Processing Unit}
-	\acro{QEMU}[QEMU]{Quick Emulator}
+	\acro{GPOS}[GPOS]{General Purpose Operating System}
+	\acro{GUI}[GUI]{Graphical User Interface}
 	\acro{IRQ}[IRQ]{Interrupt Request}
+	\acro{IRT}[IRT]{Interrupt Response Time}
+	\acro{ISR}[ISR]{Interrupt Service Routine}
+	\acro{KVM}[KVM]{Kernel-based Virtual Machine}
+	\acro{LAPIC}[LAPIC]{Local Advanced Programmable Interrupt Controller}
+	\acro{LSB}[LSB]{Least Significant Bit}
+	\acro{ML}[ML]{Machine Learning}
+	\acro{MSB}[MSB]{Most Significant Bit}
+	\acro{PLC}[PLC]{Programmable Logic Controller}
+	\acro{PWM}[PWM]{Pulse Width Modulation}
+	\acro{QEMU}[QEMU]{Quick Emulator}
+	\acro{RTOS}[RTOS]{Real-Time Operating System}
+	\acro{SMP}[SMP]{Symmetric Multiprocessing}
+	\acro{vCPU}[vCPU]{Virtual Central Processing Unit}
+	\acro{VM}[VM]{Virtual Machine}
+	\acro{VMCS}[VMCS]{Virtual Machine Control Structure}
+	\acro{vsock}[vsock]{Virtual Socket}
 \end{acronym}
 \end{document}
