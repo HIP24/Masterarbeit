@@ -148,9 +148,9 @@ Hier ist das [Paper](Paper.pdf).
 
 <div id="page-wrapper">
   <div><a href="https://codepen.io/chriscoyier/pen/eYBOvJB">Status</a>
- des Papers:<b> Anfang</b> </div> 
+ des Papers:<b> Final fine-tunings</b> </div> 
   <div class="meter orange animate">
-    <span style="width: 10%"><span></span></span>
+    <span style="width: 99%"><span></span></span>
   </div> 
   <!--<div class="meter orange nostripes">
     <span style="width: 33.3%"></span>
