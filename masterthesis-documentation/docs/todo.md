@@ -1,4 +1,4 @@
-# Masterarbeit TODO
+## Masterarbeit TODO
 
 ### 0. Initial
 - [✅] Declaration
@@ -78,7 +78,7 @@
 - [✅] List of Abbreviations
 
 ### Completion
-- [❌] Paper
+- [✅] Paper
 - [❌] Powerpoint Presentation
 
 <hr>
@@ -95,8 +95,23 @@
 | Monday    |  - [✅] Results<br>- [✅] Discussion |
 | Tuesday    | - [✅] Summary and Outlook<br>  - [✅] Kurzfassung<br>- [✅] Abstract |
 | Wednesday | - [✅]  Bibliography<br>- [✅] List of Figures<br>- [✅] List of Tables<br>- [✅] List of Code<br>- [✅] List of Abbreviations |
-| Thursday | - [❌] Paper schreiben|
+| Thursday | - [✅] Paper schreiben|
 
+## Paper TODO
+
+### Contents
+- [✅] Abstract
+- [✅] Introduction
+- [✅] Methodology
+- [✅] Implementation
+- [✅] Results
+- [✅] Discussion
+- [✅] Summary and Outlook
+- [✅] Bibliography
+
+
+
+## Final TODO
 
 1. Abgabe über CIS:
 
@@ -106,3 +121,7 @@
 - Sonstiges Dateien (z.B. Freigaben für die Verwendung von Bildern in der Masterthesis) in Unterordnern
 - Powerpoint-Präsentation der Masterarbeit
 - Videos zur Masterarbeit
+
+
+
+

@@ -30,7 +30,7 @@
 % Hier biblatex & Biber konfigurieren; Vergessen Sie nicht, dass Sie biber verwenden müssen um eine Bibliothek zu erzeugen
 %
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
-\addbibresource{Literature.bib}
+\addbibresource{literature/Literature.bib}
 %
 % Bei Bedarf bitte hier die Syntax-Highlightings anpassen
 %
@@ -512,7 +512,7 @@ VARAN is a real-time Ethernet bus designed for industrial automation, capable of
 
 \section{Approach}\label{sec:approach}
 The goal is to The \texttt{latency} program is first executed in the bare metal Salamander 4 OS.
-The goal is to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. For that purpose, the first step is to apply the PREEMPT-RT patch to the host system and subsequently tune the real-time performance through BIOS, kernel, host, guest and QEMU/KVM configurations. These modifications are added sequentially and tested together. First, the BIOS is configured, followed by the kernel. The BIOS settings are not reverted when moving to the kernel configurations. Next, the host is configured, but the BIOS and kernel settings remain unchanged. After that, the guest is configured, and finally, QEMU/KVM settings are applied. This means that the configurations are not isolated but are applied and then tested as a whole. The key metric here is the latency of the system, and the real-time performance is evaluated using the \texttt{latency} tool of the Xenomai suite after each configuration step. At the end, the results are domenstarted alltogether and a holistic comparison and discussion is carried out. In addition, the improvement in real-time performance and determinism is demonstrated using a robotic application, where the modified virtualization is compared with the hardware version.
+The goal is to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. For that purpose, the first step is to apply the PREEMPT-RT patch to the host system and subsequently tune the real-time performance through BIOS, kernel, host, guest and QEMU/KVM configurations. These modifications are added sequentially and tested together. First, the BIOS is configured, followed by the kernel. The BIOS settings are not reverted when moving to the kernel configurations. Next, the host is configured, but the BIOS and kernel settings remain unchanged. The guest OS is already based on Xenomai and therefore, no additional modifications are necessary for the guest OS itself. Finally, QEMU/KVM settings are applied. This means that the configurations are not isolated but are applied and then tested as a whole. The key metric here is the latency of the system, and the real-time performance is evaluated using the \texttt{latency} tool of the Xenomai suite after each configuration step. At the end, the results are domenstarted alltogether and a holistic comparison and discussion is carried out. In addition, the improvement in real-time performance and determinism is demonstrated using a robotic application, where the modified virtualization is compared with the hardware version.
 
 \clearpage
 
@@ -1255,8 +1255,6 @@ Robots operate in real-time, meaning commands must be executed within a set time
 
 \noindent This latency measurement above is performed 1,000 times to get reliable results. These results are presented in the next subsubsections.
 
-
-
 \begin{comment}
 Ja, du denkst richtig! Wenn du die Latenz des Systems messen möchtest, die es benötigt, um das Signal bei der PWM anzukommen, und die 20 ms Signalperiode des Servomotors ignorieren möchtest, dann konzentrierst du dich auf die reine Reaktionszeit des Systems.
 
@@ -1266,8 +1264,6 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 
 	In diesem Versuch wird die Latenz des Systems gemessen, die benötigt wird, um das Signal von der Befehlsausgabe bis zum Eintreffen bei der PWM (Pulsweitenmodulation) zu erfassen. Die Signalperiode des Servomotors von 20 ms wird dabei ignoriert, da sie für die Definition der Systemlatenz nicht relevant ist. Die Latenz wird somit als die reine Reaktionszeit des Systems definiert, ohne die zusätzliche Verzögerung durch die Signalperiode des Servomotors zu berücksichtigen.
 \end{comment}
-
-
 
 \clearpage
 
@@ -1346,123 +1342,6 @@ Das bedeutet, dass du die Latenz als die Zeit definierst, die das System benöti
 
 \clearpage
 
-\begin{comment}
-
-\chapter{To Include}\label{cha:to_include}
-
-\section{KVM Entry and KVM Exit}\label{subsubsec:kvm_entry_exit}
-\textcolor{red}{\noindent Upon isolating a CPU to the QEMU process, it was anticipated that the guest would utilize nearly 100\% of the CPU's capacity, with minimal to no intervention from the host. However, the isolcpus function only isolates CPUs from the scheduler, meaning that user-space processes won't be scheduled on these CPUs, but kernel tasks and interrupts can still utilize the CPU.This led to the investigation of the causes for the observed high and inconsistent latency. The guest operates within the~\texttt{kvm\_entry} and~\texttt{kvm\_exit} events of the host. Kernelshark revealed a high frequency of~\texttt{kvm\_exit} events, indicating that the guest frequently relinquishes control of the CPU back to the host. This frequent switching hinders the guest's ability to run continuously, thereby increasing the virtualization latency.}
-
-\textcolor{red}{To further understand this, trace-cmd was employed to trace various events in the host-guest communication, including the reasons for these events. Specifically, the causes for~\texttt{kvm\_exit} events were analyzed. The command sudo trace-cmd record -e all -A @3:823 --name Salamander4 -e all was executed on the host for a duration of 5 seconds. The results in Figure~\ref{fig:kvm_exit_taskset} were obtained. Additionally, Table~\ref{tab:kvm_exit} provides a short description of the observed~\texttt{kvm\_exit} events.}
-
-\vspace{2em}
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|p{0.62\textwidth}|}
-		\hline
-		\textbf{Exit Reason} & \textbf{Description}                                     \\ \hline
-		APIC\_WRITE          & Triggered when the guest writes to its APIC.             \\ \hline
-		EXTERNAL\_INTERRUPT  & Triggered by external hardware interrupts.               \\ \hline
-		HLT                  & Triggered when the guest executes the HLT instruction.   \\ \hline
-		EPT\_MISCONFIG       & Triggered by a misconfiguration in the EPT.              \\ \hline
-		PREEMPTION\_TIMER    & Triggered when the host's preemption timer expires.      \\ \hline
-		PAUSE\_INSTRUCTION   & Triggered when the PAUSE instruction is executed.        \\ \hline
-		EPT\_VIOLATION       & Triggered by a violation of the EPT permission settings. \\ \hline
-		IO\_INSTRUCTION      & Triggered when the guest executes an I/O instruction.    \\ \hline
-		EOI\_INDUCED         & Triggered when an EOI signal is sent to the APIC.        \\ \hline
-		MSR\_READ            & Triggered when the guest reads from a MSR.               \\ \hline
-		CPUID                & Triggered when the guest executes the CPUID instruction. \\ \hline
-	\end{tabular}
-	\caption{Description of kvm\_exit reasons}
-	\label{tab:kvm_exit}
-\end{table}
-
-\textcolor{red}{\noindent In the process of analyzing the~\texttt{kvm\_exit} events, several reasons for these exits were identified. The most frequent among these were the~\texttt{APIC\_WRITE} and~\texttt{HLT} events. The former is initiated when the guest writes to its Advanced Programmable Interrupt Controller (APIC), a component of the CPU that manages hardware interrupts. The latter occurs when the guest executes the HLT instruction, effectively halting the CPU until the next external interrupt is fired. Other significant but less frequent events included~\texttt{EXTERNAL\_INTERRUPT} and~\texttt{IO\_INSTRUCTION}. These events are indicative of the guest's interaction with hardware devices and its execution of I/O operations. Events such as~\texttt{EPT\_MISCONFIG} and~\texttt{PREEMPTION\_TIMER} were also noted. These could potentially signal issues with memory management and the host's scheduling of the guest. While events like~\texttt{PAUSE\_INSTRUCTION},~\texttt{EPT\_VIOLATION},~\texttt{EOI\_INDUCED},~\texttt{MSR\_READ}, and~\texttt{CPUID} were the least frequent, they still provide valuable insights into the guest's behavior and the host-guest interaction.}
-
-\textcolor{red}{\noindent When the script is started from the host, the QEMU process can be scheduled to run on any available core, as it is not bound to a specific CPU core. This means that the QEMU process may frequently switch between different cores, leading to an increase in latency. As the goal was to reduce latency in the guest, the first step was to isolate a CPU of the host and dedicate it solely to the QEMU process, so that it cannot be used for other tasks on the user level. Without CPU isolation, context switches take place at the operating system level and not at the hypervisor level. This explains why there are fewer~\texttt{kvm\_exit} events. However, this will also, as previously shown, lead to higher latency, as context switches at the operating system level generally take longer than a~\texttt{kvm\_exit} and ~\texttt{kvm\_entry}. When the CPU was dedicated to the QEMU process, on the other hand, there was a significant increase in~\texttt{kvm\_exit} events. This is because every context switch takes place at the hypervisor level. Nevertheless, lower latency was achieved thereby, as the qemu process is no longer influenced by the CPU scheduling of the operating system.}
-
-``korrekt''
-
-\noindent \enquote{This LaTeX.}
-
-\section{Trace-cmd and Kernelshark}
-After analyzing the inital latency of both versions, Trace-cmd and Kernelshark were used to further inspect the reasons that caused this divergence.
-
-\section{Host and Guest tasks}
-\vspace{2em}
-\begin{table}[H]
-\centering
-\begin{minipage}{.5\textwidth}
-\centering
-\caption{Host report CPU19 (Total of 445.908)}
-\label{tab:results_host_report}
-\begin{tabular}{|c|c|c|}
-	\hline
-	PID    & Task                          & Count   \\ \hline
-	182579 & qemu-system-x86               & 302.748 \\ \hline
-	0      & \textless{}idle\textgreater{} & 112.911 \\ \hline
-	182618 & vhost                         & 21.204  \\ \hline
-	182572 & qemu-system-x86               & 7.597   \\ \hline
-	182755 & qemu-system-x86               & 644     \\ \hline
-	182754 & qemu-system-x86               & 643     \\ \hline
-	181870 & kworker/19:1                  & 139     \\ \hline
-	3820   & kworker/19:1H                 & 16      \\ \hline
-	94     & migration/19                  & 6       \\ \hline
-\end{tabular}
-%
-\begin{minipage}{.5\textwidth}
-\centering
-\caption{Guest report (Total of 362.370)}
-\label{tab:results_guest_report}
-\begin{tabular}{|c|c|c|}
-	\hline
-	PID & Task                          & Count   \\ \hline
-	0   & \textless{}idle\textgreater{} & 150.744 \\ \hline
-	331 & LRT-Main                      & 56.697  \\ \hline
-	377 & trace-cmd                     & 48.507  \\ \hline
-	346 & CLI                           & 26.426  \\ \hline
-	378 & kthreadd                      & 25.837  \\ \hline
-	340 & MainTaskLow                   & 19.291  \\ \hline
-	339 & \textless{}...\textgreater{}  & 9.980   \\ \hline
-	34  & MainTaskHigh                  & 9.185   \\ \hline
-	327 & LE-Logger                     & 4.965   \\ \hline
-	369 & kworker/0:0                   & 2.793   \\ \hline
-	321 & kWorker-LRT                   & 2.542   \\ \hline
-	328 & LRTMgr-Main                   & 1.651   \\ \hline
-	34  & LrtMgrCyclic                  & 1.220   \\ \hline
-	332 & cobalt\_printf                & 1.112   \\ \hline
-	325 & LE-System                     & 534     \\ \hline
-	343 & TCP-Listen                    & 187     \\ \hline
-	15  & rcu\_preempt                  & 162     \\ \hline
-	25  & kcompactd0                    & 122     \\ \hline
-	58  & kworker/0:1H                  & 96      \\ \hline
-	63  & kworker/u2:2                  & 89      \\ \hline
-	8   & jbd2/sda-8                    & 86      \\ \hline
-	22  & kworker/0:1                   & 56      \\ \hline
-	1   & init                          & 31      \\ \hline
-	2   & kthreadd                      & 25      \\ \hline
-	375 & trace-cmd                     & 24      \\ \hline
-	14  & ksoftirqd/0                   & 8       \\ \hline
-\end{tabular}
-
-\end{table}
-
-\noindent In the following, the host and guest tasks along with their impact on system latency are briefly described.
-
-\begin{itemize}
-	\item \textbf{qemu-system-x86}: Part of the QEMU process and specifically, this task emulates x86 systems. In Table~\ref{tab:results_host_report}, it occurs four times under different PIDs, hence there are four threads of it.
-	\item \textbf{<idle>}: This represents the idle time of the CPU, hence it is not being used by any process, allowing to save power. The system halts until the next interrupt, which could be a timer interrupt, I/O interrupt, etc.
-	\item \textbf{vhost}: A kernel module which improves virtual input/output (virtio) performance by handling virtqueues in the kernel, thereby reducing context switches and system calls.
-	\item \textbf{kworker/19:1}: A kernel worker thread created by the Linux kernel, kworker/19:1 performs work in response to system events. The number after the slash and colon indicate the CPU core and internal ID of the worker thread, respectively.
-	\item \textbf{kworker/19:1H}: Similar to kworker/19:1, kworker/19:1H is a kernel worker thread, with the ‘H’ suggesting that this thread handles hardware interrupts.
-	\item \textbf{migration/19}: The migration process is a kernel process that balances load across CPU cores by moving threads from one CPU to another. The number after the slash indicates the CPU core to which the migration process is bound. (URL: \url{https://elixir.bootlin.com/linux/latest/source/kernel/sched/core.c#L2325})
-
-\end{itemize}
-
-The Figure below (deleted) compares non-optimized guest latency with optimized guest latency and includes optimized bare metal latency as a reference. The data shows that a 40\% reduction in QD1 latency is achievable through system tuning.
-
-\end{comment}
-
 \chapter{Results}\label{cha:results}
 The goal was to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. This chapter summarizes the results after the real-time performance tunings, both in terms of the \texttt{latency} program and the robotic application. Figure~\ref{fig:max_latency_combined_results} displays the change in latency after each real-time performance tuning, detailed in Section~\ref{sec:real-time_tunings}. 
 
@@ -1494,7 +1373,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 
 \clearpage 
 
-\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the untuned, tuned and hardware version of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}. 
+\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the bare metal, untuned and tuned version of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}. 
 
 \begin{figure}[H]
 	\centering
@@ -1515,7 +1394,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 		\begin{tabular}{|l|l|l|l|l|l|}
 			\hline
 			\textbf{Tuning} & \textbf{Samples} & \textbf{Lat Min (ms)} & \textbf{Lat Avg (ms)} & \textbf{Lat Max (ms)} & \textbf{Std Dev (ms)} \\ \hline
-			Hardware & 1000 & 1.211 & 1.347 & 1.49 & 0.082 \\ \hline
+			Bare Metal & 1000 & 1.211 & 1.347 & 1.49 & 0.082 \\ \hline
 			Untuned Virtualization & 1000 & 3.1 & 24.603 & 129.46 & 13.876 \\ \hline
 			Tuned Virtualization & 1000 & 1.219 & 2.62 & 3.988 & 0.812 \\ \hline
 		\end{tabular}}
@@ -1533,8 +1412,6 @@ This master's thesis shows that the real-time performance tunings applied to the
 \clearpage
 
 \chapter{Summary and Outlook}\label{cha:summary_and_outlook}
-
-
 Hardware-based systems are limited in adaptability and can be costly, especially when scaling operations. Physical access for updates and maintenance is challenging, leading to downtime and lost productivity. While virtualization addresses these issues, it introduces increased overhead and latency.
 
 \bigskip \noindent In this master's thesis, the goal was the virtualization of a real-time operating system to control a robot, with a focus on compliance with real-time determinism. Specifically, the aim was to bring the latency of the virtualized Salamander 4 closer to that of the bare metal version, thereby providing a comprehensive blueprint for making a virtualized guest system in a host system real-time capable with deterministic behavior. Salamander 4 is built with Yocto, employs hard real-time with Xenomai 3 and is virtualized through QEMU/KVM. The testing robot was connected to the OS via a VARAN bus interface.
@@ -1618,7 +1495,6 @@ Hardware-based systems are limited in adaptability and can be costly, especially
 ~\cite{adamPerformanceAssessmentLinux2021}
 \end{comment}
 
-
 %
 % Hier beginnen die Verzeichnisse.
 %
@@ -1646,8 +1522,6 @@ Hardware-based systems are limited in adaptability and can be costly, especially
 
 \phantomsection
 \addcontentsline{toc}{chapter}{\listacroname}
-
-
 
 \chapter*{\listacroname}
 \begin{acronym}[XXXXX]
