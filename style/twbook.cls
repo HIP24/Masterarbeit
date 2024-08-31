@@ -927,9 +927,11 @@ urlcolor=TWblue, urlbordercolor=white}
     I further declare that up to this date I have not published the work to
     hand nor have I presented it to another examination board in the same or
     similar form. I affirm that the version submitted matches the version in
-    the upload tool.``\vspace{4\baselineskip}
+    the upload tool.``\vspace{2\baselineskip}
 
-  \noindent \@place, \today\hspace{0.4\linewidth}Signature
+    \includegraphics[width=0.9\linewidth]{img/signing.png}
+
+    \noindent \@place, \today\hspace{0.5\linewidth}Signature
   \ifx\@kurzfassung\@empty
   \ifx\@schlagworte\@empty
   \else\clearpage\null\vfill\paragraph*{Schlagworte:}\@schlagworte
