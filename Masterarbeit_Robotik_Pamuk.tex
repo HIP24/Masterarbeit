@@ -1265,7 +1265,7 @@ Robots operate in real-time, meaning commands must be executed within a set time
 \clearpage
 
 \subsubsection{Latency in Salamander 4 Bare Metal}\label{subsubsec:latency_hardware}
-\noindent The latency values for bare metal Salamander 4 OS acquired from the program above are demonstrated in Figure~\ref{fig:rtos_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_hardware}. 
+\noindent The latency values for bare metal Salamander 4 OS acquired from the program above are demonstrated in Figure~\ref{fig:rtos_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_hardware}.
 
 \begin{figure}[H]
 	\centering
@@ -1284,14 +1284,14 @@ Robots operate in real-time, meaning commands must be executed within a set time
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
 
-			1000             & 1.211                 & 1.347                  & 1.49                  & 0.082                   \\ \hline
+			1000             & 1.211                 & 1.347                 & 1.49                  & 0.082                 \\ \hline
 		\end{tabular}}
 \end{table}
 
 \clearpage
 
 \subsubsection{Latency in Default Salamander 4 OS Virtualization}\label{subsubsec:latency_virtualization}
-\noindent The latency values acquired for the default virtualization of Salamander 4 OS are demonstrated in Figure~\ref{fig:untuned_virt_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_virt_def}. 
+\noindent The latency values acquired for the default virtualization of Salamander 4 OS are demonstrated in Figure~\ref{fig:untuned_virt_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_virt_def}.
 
 \begin{figure}[H]
 	\centering
@@ -1309,14 +1309,14 @@ Robots operate in real-time, meaning commands must be executed within a set time
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			1000             & 3.1                 & 24.603                  & 129.46            & 13.876                  \\ \hline
+			1000             & 3.1                   & 24.603                & 129.46                & 13.876                \\ \hline
 		\end{tabular}}
 \end{table}
 
 \clearpage
 
 \subsubsection{Latency in Tuned Salamander 4 OS Virtualization}\label{subsubsec:latency_virtualization}
-\noindent The latency values acquired for the tuned virtualization of Salamander 4 OS are demonstrated in Figure~\ref{fig:tuned_virt_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_virt_tun}. 
+\noindent The latency values acquired for the tuned virtualization of Salamander 4 OS are demonstrated in Figure~\ref{fig:tuned_virt_latencies} and detailed in Table~\ref{tab:robotic_application_latency_values_virt_tun}.
 
 \begin{figure}[H]
 	\centering
@@ -1333,14 +1333,14 @@ Robots operate in real-time, meaning commands must be executed within a set time
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
 			\textbf{Samples} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Std Dev (µs)} \\ \hline
-			1000             & 1.219                 & 2.62                  & 3.988            & 0.182                   \\ \hline
+			1000             & 1.219                 & 2.62                  & 3.988                 & 0.182                 \\ \hline
 		\end{tabular}}
 \end{table}
 
 \clearpage
 
 \chapter{Results}\label{cha:results}
-The goal was to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. This chapter summarizes the results after the real-time performance tunings, both in terms of the \texttt{latency} program and the robotic application. Figure~\ref{fig:max_latency_combined_results} displays the change in latency after each real-time performance tuning, detailed in Section~\ref{sec:real-time_tunings}. 
+The goal was to virtualize the Salamander 4 OS and bring its real-time performance closer to that of the hardware version and guarantee deterministic and reliable behavior. This chapter summarizes the results after the real-time performance tunings, both in terms of the \texttt{latency} program and the robotic application. Figure~\ref{fig:max_latency_combined_results} displays the change in latency after each real-time performance tuning, detailed in Section~\ref{sec:real-time_tunings}.
 
 \begin{figure}[H]
 	\centering
@@ -1349,7 +1349,7 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 	\label{fig:max_latency_combined_results}
 \end{figure}
 
-\noindent As mentioned earlier in Section~\ref{sec:approach}, these modifications were added sequentially and tested together. Previous tunings were not reverted when moving to the next tunings. Table~\ref{tab:latency_tables_combined} gives an overview of the most important metrics of the measurements after each tuning. 
+\noindent As mentioned earlier in Section~\ref{sec:approach}, these modifications were added sequentially and tested together. Previous tunings were not reverted when moving to the next tunings. Table~\ref{tab:latency_tables_combined} gives an overview of the most important metrics of the measurements after each tuning.
 
 \begin{table}[H]
 	\centering
@@ -1358,19 +1358,19 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 	\label{tab:latency_tables_combined}
 	\begin{tabular}{|c|c|c|c|c|c|}
 		\hline
-		\textbf{Tuning} & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
-		Salamander 4 BM        & 0.613                 & 1.380                 & 10.709            & 0                 \\ \hline
-		Unt. Salamander 4 V.        & 2.536                 & 8.940                 & 707.622      & 43                \\ \hline
-		After BIOS Conf.   & 0.969                 & 3.948                 & 457.545               & 94                \\ \hline
-		After Kernel Conf. & 2.545                 & 4.811                 & 21.694                & 0                 \\ \hline
-		After Host Conf.   & 2.591                 & 4.834                 & 18.441                & 0                 \\ \hline
-		After QEMU Conf.   & 2.614                 & 4.779                 & 17.134                & 0                 \\ \hline
+		\textbf{Tuning}      & \textbf{Lat Min (µs)} & \textbf{Lat Avg (µs)} & \textbf{Lat Max (µs)} & \textbf{Overruns} \\ \hline
+		Salamander 4 BM      & 0.613                 & 1.380                 & 10.709                & 0                 \\ \hline
+		Unt. Salamander 4 V. & 2.536                 & 8.940                 & 707.622               & 43                \\ \hline
+		After BIOS Conf.     & 0.969                 & 3.948                 & 457.545               & 94                \\ \hline
+		After Kernel Conf.   & 2.545                 & 4.811                 & 21.694                & 0                 \\ \hline
+		After Host Conf.     & 2.591                 & 4.834                 & 18.441                & 0                 \\ \hline
+		After QEMU Conf.     & 2.614                 & 4.779                 & 17.134                & 0                 \\ \hline
 	\end{tabular}
 \end{table}
 
-\clearpage 
+\clearpage
 
-\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the bare metal, untuned, and tuned versions of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}. 
+\noindent The improved latency was also tested with the robotic application in Subsection~\ref{sec:robotic_application}. The difference between the command time and the time the signal reaches the PWM was measured 1,000 times for the bare metal, untuned, and tuned versions of Salamander 4. The results are visualized in Figure~\ref{fig:combined_latencies}.
 
 \begin{figure}[H]
 	\centering
@@ -1390,10 +1390,10 @@ The goal was to virtualize the Salamander 4 OS and bring its real-time performan
 	{\renewcommand{\arraystretch}{1.2}% for the vertical padding
 		\begin{tabular}{|l|l|l|l|l|l|}
 			\hline
-			\textbf{Tuning} & \textbf{Samples} & \textbf{Lat Min (ms)} & \textbf{Lat Avg (ms)} & \textbf{Lat Max (ms)} & \textbf{Std Dev (ms)} \\ \hline
-			Bare Metal & 1000 & 1.211 & 1.347 & 1.49 & 0.082 \\ \hline
-			Untuned Virtualization & 1000 & 3.1 & 24.603 & 129.46 & 13.876 \\ \hline
-			Tuned Virtualization & 1000 & 1.219 & 2.62 & 3.988 & 0.812 \\ \hline
+			\textbf{Tuning}        & \textbf{Samples} & \textbf{Lat Min (ms)} & \textbf{Lat Avg (ms)} & \textbf{Lat Max (ms)} & \textbf{Std Dev (ms)} \\ \hline
+			Bare Metal             & 1000             & 1.211                 & 1.347                 & 1.49                  & 0.082                 \\ \hline
+			Untuned Virtualization & 1000             & 3.1                   & 24.603                & 129.46                & 13.876                \\ \hline
+			Tuned Virtualization   & 1000             & 1.219                 & 2.62                  & 3.988                 & 0.812                 \\ \hline
 		\end{tabular}}
 \end{table}
 
