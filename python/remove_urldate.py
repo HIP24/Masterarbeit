@@ -13,6 +13,6 @@ def process_bib_file(input_file, output_file):
                 continue
             file.write(line)
 
-input_file = '../Literature.bib'
-output_file = '../Literature.bib'
+input_file = '../literature/Literature.bib'
+output_file = '../literature/Literature.bib'
 process_bib_file(input_file, output_file)
