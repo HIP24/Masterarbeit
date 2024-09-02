@@ -931,7 +931,7 @@ urlcolor=TWblue, urlbordercolor=white}
 
     \includegraphics[width=0.9\linewidth]{img/signing.png}
 
-    \noindent \@place, \today\hspace{0.5\linewidth}Signature
+    \noindent \@place, \today\hspace{0.45\linewidth}Signature
   \ifx\@kurzfassung\@empty
   \ifx\@schlagworte\@empty
   \else\clearpage\null\vfill\paragraph*{Schlagworte:}\@schlagworte
