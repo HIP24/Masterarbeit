@@ -31,6 +31,7 @@ masterthesis-documentation/docs/Paper.pdf
 Paper.pdf
 papers-delete/
 else/
+Abgabe/
 
 # Ignore .dat
 **/*.dat
