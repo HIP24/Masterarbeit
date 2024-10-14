@@ -7,8 +7,27 @@
         "**/*.dat": true,
         "**/*.png": true,
         "**/*.jpg": true,
-        "**/*.cls": true,
         "**/bkp.*": true
+    },
+    "files.exclude": {
+        "**/Masterarbeit_Robotik_Pamuk.aux": true,
+        "**/Masterarbeit_Robotik_Pamuk.bbl": true,
+        "**/Masterarbeit_Robotik_Pamuk.blg": true,
+        "**/Masterarbeit_Robotik_Pamuk.lof": true,
+        "**/Masterarbeit_Robotik_Pamuk.log": true,
+        "**/Masterarbeit_Robotik_Pamuk.lol": true,
+        "**/Masterarbeit_Robotik_Pamuk.lot": true,
+        "**/Masterarbeit_Robotik_Pamuk.run.xml": true,
+        "**/Masterarbeit_Robotik_Pamuk.synctex.gz": true,
+        "**/Masterarbeit_Robotik_Pamuk.toc": true,
+        "**/Masterarbeit_Robotik_Pamuk.bcf": true,
+        "**/Masterarbeit_Robotik_Pamuk.toc": true,
+        "**/Masterarbeit_Robotik_Pamuk.toc": true,
+        "**/else": true,
+        "**/trash": true,
+        "**/clean": true,
+        "**/site": true,
+        "**/twbook.pdf": true,
     },
     "latex-workshop.latex.recipes": [
         {
@@ -39,7 +58,7 @@
             ],
             "env": {}
         }
-    ]
-    
+    ],
+    "editor.wordWrap": "on",
 
 }
